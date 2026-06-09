@@ -1,44 +1,29 @@
-import type { Metadata } from "next";
-import "./globals.css";
+import type { Metadata } from 'next';
+import './globals.css';
 
 export const metadata: Metadata = {
-  title: {
-    default: "SVK Academy | أكاديمية SVK",
-    template: "%s | SVK Academy",
-  },
-  description: "منصة تعليمية احترافية للشرق الأوسط وشمال أفريقيا - SVK Academy",
-  keywords: ["SVK Academy", "أكاديمية", "تعليم", "كورسات", "مصر", "عربي"],
-  authors: [{ name: "SVK Academy" }],
-  creator: "SmartVenom",
-  metadataBase: new URL("https://svk-academy.com"),
+  title: 'SVK Academy - الأكاديمية الأولى عربياً للبرمجة',
+  description: 'تعلم البرمجة بالعربي من الصفر للاحتراف مع SVK Academy - Python, JavaScript, React, AI والمزيد',
+  keywords: 'تعلم برمجة, أكاديمية عربية, بايثون, جافاسكريبت, ريأكت, ذكاء اصطناعي, مصر',
   openGraph: {
-    type: "website",
-    locale: "ar_EG",
-    title: "SVK Academy | أكاديمية SVK",
-    description: "منصة تعليمية احترافية للشرق الأوسط وشمال أفريقيا",
-    siteName: "SVK Academy",
-  },
-  icons: {
-    icon: "/favicon.ico",
+    title: 'SVK Academy - الأكاديمية الأولى عربياً للبرمجة',
+    description: 'تعلم البرمجة بالعربي من الصفر للاحتراف',
+    url: 'https://www.smartvenomk.xyz',
+    siteName: 'SVK Academy',
+    locale: 'ar_EG',
+    type: 'website',
   },
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="ar" dir="rtl" suppressHydrationWarning>
+    <html lang="ar" dir="rtl">
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap"
-          rel="stylesheet"
-        />
+        <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet" />
       </head>
-      <body className="gradient-bg min-h-screen antialiased">
+      <body style={{ margin: 0, padding: 0, fontFamily: "'Cairo', sans-serif" }}>
         {children}
       </body>
     </html>
