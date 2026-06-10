@@ -75,7 +75,7 @@ export default function StudentLoginPage() {
                   type="text" value={identifier} onChange={e => setIdentifier(e.target.value)}
                   onFocus={() => setFocused('identifier')} onBlur={() => setFocused(null)}
                   placeholder="رقم الهاتف أو الإيميل" disabled={loading}
-                  style={{ width: '100%', padding: '1.2rem 3rem 1.2rem 1.2rem', background: focused === 'identifier' ? 'rgba(6,182,212,0.08)' : 'rgba(255,255,255,0.03)', border: \`1px solid \${focused === 'identifier' ? '#06b6d4' : 'rgba(255,255,255,0.1)'}\`, borderRadius: '12px', color: '#fff', fontSize: '1rem', outline: 'none', transition: 'all 0.3s', fontFamily: "'Cairo', sans-serif", direction: 'ltr', textAlign: 'left' }}
+                  style={{ width: '100%', padding: '1.2rem 3rem 1.2rem 1.2rem', background: focused === 'identifier' ? 'rgba(6,182,212,0.08)' : 'rgba(255,255,255,0.03)', border: `1px solid ${focused === 'identifier' ? '#06b6d4' : 'rgba(255,255,255,0.1)'}`, borderRadius: '12px', color: '#fff', fontSize: '1rem', outline: 'none', transition: 'all 0.3s', fontFamily: "'Cairo', sans-serif", direction: 'ltr', textAlign: 'left' }}
                 />
               </div>
             </div>
@@ -89,7 +89,7 @@ export default function StudentLoginPage() {
                   type="password" value={password} onChange={e => setPassword(e.target.value)}
                   onFocus={() => setFocused('password')} onBlur={() => setFocused(null)}
                   placeholder="••••••••••••" disabled={loading}
-                  style={{ width: '100%', padding: '1.2rem 3rem 1.2rem 1.2rem', background: focused === 'password' ? 'rgba(6,182,212,0.08)' : 'rgba(255,255,255,0.03)', border: \`1px solid \${focused === 'password' ? '#06b6d4' : 'rgba(255,255,255,0.1)'}\`, borderRadius: '12px', color: '#fff', fontSize: '1rem', outline: 'none', transition: 'all 0.3s', fontFamily: "'Cairo', sans-serif", direction: 'ltr', textAlign: 'left' }}
+                  style={{ width: '100%', padding: '1.2rem 3rem 1.2rem 1.2rem', background: focused === 'password' ? 'rgba(6,182,212,0.08)' : 'rgba(255,255,255,0.03)', border: `1px solid ${focused === 'password' ? '#06b6d4' : 'rgba(255,255,255,0.1)'}`, borderRadius: '12px', color: '#fff', fontSize: '1rem', outline: 'none', transition: 'all 0.3s', fontFamily: "'Cairo', sans-serif", direction: 'ltr', textAlign: 'left' }}
                 />
               </div>
             </div>

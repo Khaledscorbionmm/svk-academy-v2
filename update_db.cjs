@@ -10,6 +10,7 @@ async function update() {
     await pool.query("ALTER TABLE lessons ADD COLUMN IF NOT EXISTS content_type VARCHAR(50) DEFAULT 'video'");
     await pool.query("ALTER TABLE lessons ADD COLUMN IF NOT EXISTS text_content TEXT");
     await pool.query("ALTER TABLE lessons ADD COLUMN IF NOT EXISTS exam_data JSONB");
+    await pool.query("ALTER TABLE students ADD COLUMN IF NOT EXISTS age INTEGER");
     console.log('Columns added successfully');
   } catch(e) {
     console.error(e);

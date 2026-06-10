@@ -19,8 +19,8 @@ export async function GET(request: NextRequest) {
     const coursesRes = await query('SELECT COUNT(*) as count FROM courses');
     
     // Calculate estimated revenue (students * 369)
-    const totalStudents = parseInt(studentsRes.rows[0].count, 10);
-    const totalCourses = parseInt(coursesRes.rows[0].count, 10);
+    const totalStudents = parseInt(studentsRes[0].count as string, 10);
+    const totalCourses = parseInt(coursesRes[0].count as string, 10);
     const estimatedRevenue = totalStudents * 369;
 
     // 2. Recent Lesson Access Requests
@@ -49,10 +49,10 @@ export async function GET(request: NextRequest) {
         totalStudents,
         totalCourses,
         revenue: estimatedRevenue,
-        pendingRequests: requestsRes.rows.length
+        pendingRequests: requestsRes.length
       },
-      requests: requestsRes.rows,
-      recentSignups: signupsRes.rows
+      requests: requestsRes,
+      recentSignups: signupsRes
     });
   } catch (error) {
     console.error('[Radar API Error]', error);

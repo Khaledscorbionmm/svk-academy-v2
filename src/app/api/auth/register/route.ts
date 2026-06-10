@@ -16,14 +16,14 @@ export async function POST(req: NextRequest) {
     // Check if email or phone already exists
     if (email) {
       const emailCheck = await query('SELECT id FROM students WHERE email = $1', [email]);
-      if (emailCheck.rows.length > 0) {
+      if (emailCheck.length > 0) {
         return NextResponse.json({ error: 'البريد الإلكتروني مسجل مسبقاً' }, { status: 400 });
       }
     }
     
     if (phone) {
       const phoneCheck = await query('SELECT id FROM students WHERE phone = $1', [phone]);
-      if (phoneCheck.rows.length > 0) {
+      if (phoneCheck.length > 0) {
         return NextResponse.json({ error: 'رقم الهاتف مسجل مسبقاً' }, { status: 400 });
       }
     }
@@ -37,8 +37,8 @@ export async function POST(req: NextRequest) {
       RETURNING id, name, email, phone
     `, [name, email || null, phone || null, parsedAge, hash]);
 
-    const user = insertRes.rows[0];
-    const token = signToken({ id: user.id, email: user.email || user.phone, role: 'student' });
+    const user = insertRes[0] as { id: number; name: string; email: string | null; phone: string | null };
+    const token = signToken({ id: user.id, email: (user.email || user.phone) as string, name: user.name, role: 'student' });
 
     const response = NextResponse.json({
       success: true,

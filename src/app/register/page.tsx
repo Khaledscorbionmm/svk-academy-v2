@@ -92,7 +92,7 @@ export default function RegisterPage() {
             <div>
               <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 700, color: '#cbd5e1', marginBottom: '0.5rem' }}>الاسم الكامل</label>
               <input name="name" type="text" value={formData.name} onChange={handleChange} onFocus={() => setFocused('name')} onBlur={() => setFocused(null)} placeholder="الاسم الكامل"
-                style={{ width: '100%', padding: '1rem', background: focused === 'name' ? 'rgba(99,102,241,0.08)' : 'rgba(255,255,255,0.03)', border: \`1px solid \${focused === 'name' ? '#6366f1' : 'rgba(255,255,255,0.1)'}\`, borderRadius: '12px', color: '#fff', fontSize: '0.95rem', outline: 'none', transition: 'all 0.3s', fontFamily: "'Cairo', sans-serif" }} />
+                style={{ width: '100%', padding: '1rem', background: focused === 'name' ? 'rgba(99,102,241,0.08)' : 'rgba(255,255,255,0.03)', border: `1px solid ${focused === 'name' ? '#6366f1' : 'rgba(255,255,255,0.1)'}`, borderRadius: '12px', color: '#fff', fontSize: '0.95rem', outline: 'none', transition: 'all 0.3s', fontFamily: "'Cairo', sans-serif" }} />
             </div>
 
             {/* Split row for Phone & Age */}
@@ -100,12 +100,12 @@ export default function RegisterPage() {
               <div style={{ flex: 1 }}>
                 <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 700, color: '#cbd5e1', marginBottom: '0.5rem' }}>رقم الهاتف (اختياري)</label>
                 <input name="phone" type="tel" value={formData.phone} onChange={handleChange} onFocus={() => setFocused('phone')} onBlur={() => setFocused(null)} placeholder="01xxxxxxxxx"
-                  style={{ width: '100%', padding: '1rem', background: focused === 'phone' ? 'rgba(99,102,241,0.08)' : 'rgba(255,255,255,0.03)', border: \`1px solid \${focused === 'phone' ? '#6366f1' : 'rgba(255,255,255,0.1)'}\`, borderRadius: '12px', color: '#fff', fontSize: '0.95rem', outline: 'none', transition: 'all 0.3s', fontFamily: "'Cairo', sans-serif", direction: 'ltr' }} />
+                  style={{ width: '100%', padding: '1rem', background: focused === 'phone' ? 'rgba(99,102,241,0.08)' : 'rgba(255,255,255,0.03)', border: `1px solid ${focused === 'phone' ? '#6366f1' : 'rgba(255,255,255,0.1)'}`, borderRadius: '12px', color: '#fff', fontSize: '0.95rem', outline: 'none', transition: 'all 0.3s', fontFamily: "'Cairo', sans-serif", direction: 'ltr' }} />
               </div>
               <div style={{ flex: 1 }}>
                 <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 700, color: '#cbd5e1', marginBottom: '0.5rem' }}>السن</label>
                 <input name="age" type="number" value={formData.age} onChange={handleChange} onFocus={() => setFocused('age')} onBlur={() => setFocused(null)} placeholder="العمر"
-                  style={{ width: '100%', padding: '1rem', background: focused === 'age' ? 'rgba(99,102,241,0.08)' : 'rgba(255,255,255,0.03)', border: \`1px solid \${focused === 'age' ? '#6366f1' : 'rgba(255,255,255,0.1)'}\`, borderRadius: '12px', color: '#fff', fontSize: '0.95rem', outline: 'none', transition: 'all 0.3s', fontFamily: "'Cairo', sans-serif" }} />
+                  style={{ width: '100%', padding: '1rem', background: focused === 'age' ? 'rgba(99,102,241,0.08)' : 'rgba(255,255,255,0.03)', border: `1px solid ${focused === 'age' ? '#6366f1' : 'rgba(255,255,255,0.1)'}`, borderRadius: '12px', color: '#fff', fontSize: '0.95rem', outline: 'none', transition: 'all 0.3s', fontFamily: "'Cairo', sans-serif" }} />
               </div>
             </div>
 
@@ -113,14 +113,14 @@ export default function RegisterPage() {
             <div>
               <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 700, color: '#cbd5e1', marginBottom: '0.5rem' }}>البريد الإلكتروني (اختياري)</label>
               <input name="email" type="email" value={formData.email} onChange={handleChange} onFocus={() => setFocused('email')} onBlur={() => setFocused(null)} placeholder="your@email.com"
-                style={{ width: '100%', padding: '1rem', background: focused === 'email' ? 'rgba(99,102,241,0.08)' : 'rgba(255,255,255,0.03)', border: \`1px solid \${focused === 'email' ? '#6366f1' : 'rgba(255,255,255,0.1)'}\`, borderRadius: '12px', color: '#fff', fontSize: '0.95rem', outline: 'none', transition: 'all 0.3s', fontFamily: "'Cairo', sans-serif", direction: 'ltr' }} />
+                style={{ width: '100%', padding: '1rem', background: focused === 'email' ? 'rgba(99,102,241,0.08)' : 'rgba(255,255,255,0.03)', border: `1px solid ${focused === 'email' ? '#6366f1' : 'rgba(255,255,255,0.1)'}`, borderRadius: '12px', color: '#fff', fontSize: '0.95rem', outline: 'none', transition: 'all 0.3s', fontFamily: "'Cairo', sans-serif", direction: 'ltr' }} />
             </div>
 
             {/* Password */}
             <div>
               <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 700, color: '#cbd5e1', marginBottom: '0.5rem' }}>كلمة المرور</label>
               <input name="password" type="password" value={formData.password} onChange={handleChange} onFocus={() => setFocused('password')} onBlur={() => setFocused(null)} placeholder="••••••••"
-                style={{ width: '100%', padding: '1rem', background: focused === 'password' ? 'rgba(99,102,241,0.08)' : 'rgba(255,255,255,0.03)', border: \`1px solid \${focused === 'password' ? '#6366f1' : 'rgba(255,255,255,0.1)'}\`, borderRadius: '12px', color: '#fff', fontSize: '0.95rem', outline: 'none', transition: 'all 0.3s', fontFamily: "'Cairo', sans-serif", direction: 'ltr' }} />
+                style={{ width: '100%', padding: '1rem', background: focused === 'password' ? 'rgba(99,102,241,0.08)' : 'rgba(255,255,255,0.03)', border: `1px solid ${focused === 'password' ? '#6366f1' : 'rgba(255,255,255,0.1)'}`, borderRadius: '12px', color: '#fff', fontSize: '0.95rem', outline: 'none', transition: 'all 0.3s', fontFamily: "'Cairo', sans-serif", direction: 'ltr' }} />
             </div>
 
             <button type="submit" disabled={loading} style={{
