@@ -117,32 +117,97 @@ function LightAudioPlayer({ src, title, textContent }: { src: string; title: str
   );
 }
 
-function LightVideoPlayer({ src }: { src: string }) {
-  if (!src) return (
-    <div style={{ aspectRatio: '16/9', background: '#e2e8f0', borderRadius: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#64748b', fontWeight: 600 }}>
-      الفيديو غير متاح
-    </div>
-  );
+function InteractiveFlashcards({ lessonTitle }: { lessonTitle: string }) {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isPlayingEn, setIsPlayingEn] = useState(false);
+  const [isPlayingAr, setIsPlayingAr] = useState(false);
 
-  const getYouTubeId = (url: string) => {
-    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
-    const match = url.match(regExp);
-    return (match && match[2].length === 11) ? match[2] : null;
+  // Sample data until backend provides specific arrays
+  const flashcards = [
+    { en: "Hello, how are you?", ar: "مرحباً، كيف حالك؟" },
+    { en: "I would like to order coffee, please.", ar: "أريد طلب القهوة من فضلك." },
+    { en: "Where is the nearest train station?", ar: "أين تقع أقرب محطة قطار؟" },
+    { en: "Nice to meet you.", ar: "سعدت بلقائك." },
+    { en: "Can you help me?", ar: "هل يمكنك مساعدتي؟" }
+  ];
+
+  const currentCard = flashcards[currentIndex];
+
+  const playVoice = (text: string, lang: string, setIsPlaying: any) => {
+    if (typeof window === 'undefined' || !window.speechSynthesis) return;
+    window.speechSynthesis.cancel();
+    
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = lang;
+    utterance.rate = 0.9;
+    
+    const voices = window.speechSynthesis.getVoices();
+    const voice = voices.find(v => v.lang.startsWith(lang.split('-')[0]));
+    if (voice) utterance.voice = voice;
+
+    utterance.onstart = () => setIsPlaying(true);
+    utterance.onend = () => setIsPlaying(false);
+    utterance.onerror = () => setIsPlaying(false);
+
+    window.speechSynthesis.speak(utterance);
   };
 
-  const ytId = getYouTubeId(src);
-  let embedUrl = src;
-  if (ytId) embedUrl = `https://www.youtube.com/embed/${ytId}`;
-
   return (
-    <div style={{ width: '100%', aspectRatio: '16/9', borderRadius: '16px', overflow: 'hidden', boxShadow: '0 20px 40px rgba(0,0,0,0.1)', border: '1px solid #e2e8f0', background: '#000', position: 'relative' }}>
-      {ytId ? (
-        <iframe src={embedUrl} style={{ width: '100%', height: '100%', border: 'none' }} allowFullScreen />
-      ) : (
-        <video src={src} controls style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
-      )}
-      <div style={{ position: 'absolute', top: '16px', right: '16px', background: 'rgba(239, 68, 68, 0.9)', color: '#fff', padding: '4px 10px', borderRadius: '6px', fontSize: '0.75rem', fontWeight: 800, letterSpacing: '1px' }}>
-        LIVE 🔴
+    <div style={{ background: 'linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%)', borderRadius: '24px', padding: '40px', color: '#fff', position: 'relative', overflow: 'hidden', boxShadow: '0 20px 40px rgba(59, 130, 246, 0.2)' }}>
+      {/* Decorative Circles */}
+      <div style={{ position: 'absolute', top: '-50px', right: '-50px', width: '200px', height: '200px', borderRadius: '50%', background: 'rgba(255,255,255,0.05)' }} />
+      <div style={{ position: 'absolute', bottom: '-80px', left: '-20px', width: '250px', height: '250px', borderRadius: '50%', background: 'rgba(255,255,255,0.05)' }} />
+
+      <div style={{ position: 'relative', zIndex: 2, textAlign: 'center' }}>
+        <h2 style={{ fontSize: '1.2rem', fontWeight: 600, color: '#bfdbfe', marginBottom: '30px', textTransform: 'uppercase', letterSpacing: '2px' }}>
+          Interactive Pronunciation Hub
+        </h2>
+        
+        <div style={{ background: '#fff', borderRadius: '20px', padding: '40px 20px', marginBottom: '30px', boxShadow: '0 10px 25px rgba(0,0,0,0.1)' }}>
+          <div style={{ fontSize: '2.5rem', fontWeight: 900, color: '#1e293b', marginBottom: '16px', fontFamily: "'Inter', sans-serif" }}>
+            {currentCard.en}
+          </div>
+          <button 
+            onClick={() => playVoice(currentCard.en, 'en-US', setIsPlayingEn)}
+            style={{ background: isPlayingEn ? '#eff6ff' : '#f1f5f9', border: '1px solid #cbd5e1', color: '#3b82f6', width: '60px', height: '60px', borderRadius: '50%', fontSize: '1.5rem', cursor: 'pointer', transition: 'all 0.2s', marginBottom: '30px' }}
+          >
+            {isPlayingEn ? '🔊' : '▶'}
+          </button>
+
+          <div style={{ height: '1px', background: '#e2e8f0', margin: '0 40px 30px' }} />
+
+          <div style={{ fontSize: '1.8rem', fontWeight: 800, color: '#475569', marginBottom: '16px', fontFamily: "'Cairo', sans-serif" }}>
+            {currentCard.ar}
+          </div>
+          <button 
+            onClick={() => playVoice(currentCard.ar, 'ar-EG', setIsPlayingAr)}
+            style={{ background: isPlayingAr ? '#f0fdf4' : '#f1f5f9', border: '1px solid #cbd5e1', color: '#10b981', width: '50px', height: '50px', borderRadius: '50%', fontSize: '1.2rem', cursor: 'pointer', transition: 'all 0.2s' }}
+          >
+            {isPlayingAr ? '🔊' : '▶'}
+          </button>
+        </div>
+
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <button 
+            disabled={currentIndex === 0}
+            onClick={() => setCurrentIndex(prev => prev - 1)}
+            style={{ background: 'rgba(255,255,255,0.2)', color: '#fff', border: 'none', padding: '12px 24px', borderRadius: '12px', fontWeight: 700, cursor: currentIndex === 0 ? 'not-allowed' : 'pointer', opacity: currentIndex === 0 ? 0.5 : 1 }}
+          >
+            السابق
+          </button>
+          
+          <div style={{ fontWeight: 700, fontSize: '1.1rem', background: 'rgba(0,0,0,0.2)', padding: '8px 20px', borderRadius: '20px' }}>
+            {currentIndex + 1} / {flashcards.length}
+          </div>
+
+          <button 
+            disabled={currentIndex === flashcards.length - 1}
+            onClick={() => setCurrentIndex(prev => prev + 1)}
+            style={{ background: '#fff', color: '#1e3a8a', border: 'none', padding: '12px 24px', borderRadius: '12px', fontWeight: 800, cursor: currentIndex === flashcards.length - 1 ? 'not-allowed' : 'pointer', opacity: currentIndex === flashcards.length - 1 ? 0.5 : 1, boxShadow: '0 4px 10px rgba(0,0,0,0.1)' }}
+          >
+            التالي
+          </button>
+        </div>
       </div>
     </div>
   );
@@ -285,15 +350,13 @@ export default function LanguageLearningLayout({ data }: { data: any }) {
             <p style={{ color: '#64748b', fontSize: '0.95rem', margin: 0 }}>شاهد الشرح بتركيز، ثم انتقل للتطبيقات العملية بالأسفل.</p>
           </div>
 
-          {/* Video Player */}
-          {lesson.video_url && (
-            <LightVideoPlayer src={lesson.video_url} />
-          )}
+          {/* Interactive Pronunciation Hub (Replaces Video) */}
+          <InteractiveFlashcards lessonTitle={lesson.title} />
 
           {/* Explanation Text */}
           <div style={{ background: '#fff', borderRadius: '20px', padding: '32px', border: '1px solid #e2e8f0', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.02)' }}>
             <h2 style={{ fontSize: '1.2rem', fontWeight: 800, color: '#1e3a8a', marginBottom: '20px', display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <span>📖</span> القراءة والمفردات
+              <span>📖</span> القراءة والنص الكامل
             </h2>
             <div dangerouslySetInnerHTML={{ __html: lesson.text_content }} style={{ lineHeight: 1.9, fontSize: '1.05rem', color: '#334155' }} />
           </div>
