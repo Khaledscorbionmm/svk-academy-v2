@@ -1,6 +1,17 @@
 import type { NextConfig } from "next";
 
+const isProd = process.env.NODE_ENV === 'production';
+const buildId = isProd 
+  ? (process.env.VERCEL_GIT_COMMIT_SHA || `build-${Date.now()}`)
+  : 'development';
+
 const nextConfig: NextConfig = {
+  generateBuildId: async () => {
+    return buildId;
+  },
+  env: {
+    NEXT_PUBLIC_APP_VERSION: buildId,
+  },
   async headers() {
     return [
       {

@@ -33,7 +33,7 @@ export async function GET() {
       },
       api: {
         status: 'healthy',
-        version: '1.4.0',
+        version: process.env.NEXT_PUBLIC_APP_VERSION || 'development',
       },
     },
     app: {

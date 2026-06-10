@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 
-const CURRENT_VERSION = '1.4.0';
+const CURRENT_VERSION = process.env.NEXT_PUBLIC_APP_VERSION || 'development';
 
 export default function VersionNotifier() {
   const [newVersion, setNewVersion] = useState<string | null>(null);
@@ -40,6 +40,14 @@ export default function VersionNotifier() {
     checkVersion();
     const interval = setInterval(checkVersion, 180000);
 
+    // Check when user focuses/returns to tab
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'visible') {
+        checkVersion();
+      }
+    };
+    window.addEventListener('visibilitychange', handleVisibilityChange);
+
     // 3. Catch ChunkLoadError globally and trigger auto-reload
     const handleGlobalError = (event: ErrorEvent) => {
       const message = event.message || '';
@@ -48,12 +56,27 @@ export default function VersionNotifier() {
         window.location.reload();
       }
     };
-
     window.addEventListener('error', handleGlobalError);
+
+    // Catch unhandled rejections for dynamic chunks (dynamic imports)
+    const handleUnhandledRejection = (event: PromiseRejectionEvent) => {
+      const reason = event.reason?.message || event.reason?.toString() || '';
+      if (
+        reason.includes('ChunkLoadError') || 
+        reason.includes('Loading chunk') || 
+        reason.includes('Failed to fetch dynamically imported module')
+      ) {
+        console.warn('ChunkLoadError in promise caught. Performing forced reload...');
+        window.location.reload();
+      }
+    };
+    window.addEventListener('unhandledrejection', handleUnhandledRejection);
 
     return () => {
       clearInterval(interval);
+      window.removeEventListener('visibilitychange', handleVisibilityChange);
       window.removeEventListener('error', handleGlobalError);
+      window.removeEventListener('unhandledrejection', handleUnhandledRejection);
     };
   }, []);
 

@@ -8,6 +8,7 @@ export default function AmbientAudio() {
   
   // Web Audio nodes refs
   const audioCtxRef = useRef<AudioContext | null>(null);
+  const silentAudioRef = useRef<HTMLAudioElement | null>(null);
   const oscillatorsRef = useRef<OscillatorNode[]>([]);
   const gainNodesRef = useRef<GainNode[]>([]);
   const masterGainRef = useRef<GainNode | null>(null);
@@ -53,8 +54,39 @@ export default function AmbientAudio() {
     };
   }, []);
 
+  // Resume audio context on tab visibility change if it was active
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'visible' && isPlaying) {
+        if (audioCtxRef.current && audioCtxRef.current.state === 'suspended') {
+          audioCtxRef.current.resume().catch(e => console.log('Auto-resume failed:', e));
+        }
+        if (silentAudioRef.current) {
+          silentAudioRef.current.play().catch(e => console.log('Silent audio resume failed:', e));
+        }
+      }
+    };
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
+  }, [isPlaying]);
+
   const startAmbient = () => {
     try {
+      // Unmute iOS silent switch by playing a silent WAV in HTML5 audio (switches to media channel)
+      if (!silentAudioRef.current) {
+        const audio = new Audio();
+        audio.src = 'data:audio/wav;base64,UklGRigAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQQAAAAAAAAD';
+        audio.loop = true;
+        audio.setAttribute('x-webkit-airplay', 'deny');
+        audio.setAttribute('playsinline', 'true');
+        silentAudioRef.current = audio;
+      }
+      silentAudioRef.current.play().catch(err => {
+        console.warn('Silent audio play blocked:', err);
+      });
+
       if (audioCtxRef.current && audioCtxRef.current.state === 'suspended') {
         audioCtxRef.current.resume();
         setIsPlaying(true);
@@ -163,6 +195,9 @@ export default function AmbientAudio() {
 
   const stopAmbientImmediate = () => {
     try {
+      if (silentAudioRef.current) {
+        try { silentAudioRef.current.pause(); } catch {}
+      }
       if (oscillatorsRef.current) {
         oscillatorsRef.current.forEach(osc => {
           try { osc.stop(); } catch {}
