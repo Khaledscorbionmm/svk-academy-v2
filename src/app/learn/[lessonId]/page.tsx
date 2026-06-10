@@ -901,7 +901,7 @@ export default function LearnPage({ params }: { params: Promise<{ lessonId: stri
       <header className="learning-header" style={{ borderBottom: '1px solid rgba(16,185,129,0.1)', padding: '0 20px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', background: 'rgba(5,5,10,0.95)', backdropFilter: 'blur(20px)', height: 70, flexShrink: 0, zIndex: 100 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
           <button onClick={() => setSidebar(!sidebar)} style={{ background: 'rgba(16,185,129,0.1)', border: '1px solid rgba(16,185,129,0.2)', color: '#10b981', width: 40, height: 40, borderRadius: '10px', cursor: 'pointer', fontSize: '1.2rem', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'all 0.2s' }}>☰</button>
-          <div style={{ display: 'flex', flexDirection: 'column' }}>
+          <div className="lesson-header-title">
             <span className="desktop-text" style={{ fontSize: '0.75rem', color: '#64748b' }}>{course.title_ar || course.title}</span>
             <span className="lesson-title" style={{ fontSize: '1rem', fontWeight: 800, color: '#fff' }}>{lesson.title}</span>
           </div>
@@ -1573,6 +1573,16 @@ export default function LearnPage({ params }: { params: Promise<{ lessonId: stri
         ::-webkit-scrollbar-track { background: #020205; }
         ::-webkit-scrollbar-thumb { background: rgba(16,185,129,0.2); border-radius: 3px; }
         ::-webkit-scrollbar-thumb:hover { background: rgba(16,185,129,0.4); }
+        
+        .lesson-header-title {
+          display: flex;
+          flex-direction: column;
+        }
+        @media (max-width: 768px) {
+          .lesson-header-title {
+            display: none !important;
+          }
+        }
       `}</style>
     </div>
   );

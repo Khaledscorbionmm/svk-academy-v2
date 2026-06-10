@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 import AmbientAudio from '@/components/AmbientAudio';
 import VersionNotifier from '@/components/VersionNotifier';
+import WhatsAppButton from '@/components/WhatsAppButton';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -35,6 +36,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {children}
         <AmbientAudio />
         <VersionNotifier />
+        <WhatsAppButton />
       </body>
     </html>
   );
