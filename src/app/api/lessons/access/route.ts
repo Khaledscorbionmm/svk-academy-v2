@@ -93,7 +93,7 @@ export async function PUT(request: NextRequest) {
     // Resolve student ID from email if not provided
     let resolvedStudentId = studentId;
     if (!resolvedStudentId && studentEmail) {
-      const studentRows = await query('SELECT id FROM students WHERE email = $1', [studentEmail]) as any[];
+      const studentRows = await query('SELECT id FROM students WHERE email = $1 OR phone = $1', [studentEmail]) as any[];
       if (!studentRows.length) {
         return NextResponse.json({ error: 'الطالب غير موجود' }, { status: 404 });
       }

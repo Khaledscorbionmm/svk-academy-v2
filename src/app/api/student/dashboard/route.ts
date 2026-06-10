@@ -18,7 +18,7 @@ export async function GET(req: NextRequest) {
 
     // Get the student record
     const studentRows = await query(
-      'SELECT id, name, xp FROM students WHERE email = $1',
+      'SELECT id, name, xp FROM students WHERE email = $1 OR phone = $1',
       [studentEmail]
     ) as any[];
 

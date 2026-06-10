@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { query, initializeDatabase } from '@/lib/db';
-import { signToken, COOKIE_NAME } from '@/lib/auth';
+import { signToken, COOKIE_NAME, COOKIE_OPTIONS } from '@/lib/auth';
 import bcrypt from 'bcryptjs';
 
 export async function POST(req: NextRequest) {
@@ -45,19 +45,8 @@ export async function POST(req: NextRequest) {
       user: { id: user.id, name: user.name, email: user.email }
     });
 
-    response.cookies.set(COOKIE_NAME, token, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'lax',
-      path: '/'
-    });
-
-    response.cookies.set('svk_student_token', token, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'lax',
-      path: '/'
-    });
+    response.cookies.set(COOKIE_NAME, token, COOKIE_OPTIONS);
+    response.cookies.set('svk_student_token', token, COOKIE_OPTIONS);
 
     return response;
   } catch (error) {

@@ -22,7 +22,7 @@ export async function POST(req: NextRequest) {
 
     // Get student
     const studentRows = await query(
-      'SELECT id, xp FROM students WHERE email = $1',
+      'SELECT id, xp FROM students WHERE email = $1 OR phone = $1',
       [payload.email]
     ) as any[];
 
