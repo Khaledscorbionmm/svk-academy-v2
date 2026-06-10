@@ -152,10 +152,15 @@ export default function StudentDashboardPage() {
         fetch('/api/student/dashboard'),
       ]);
 
+      let dashDataResult = null;
+      if (dashRes.ok) {
+        dashDataResult = await dashRes.json();
+      }
+
       if (meRes.ok) {
         const data = await meRes.json();
         if (data.user && data.user.role === 'student') {
-          const xp = dashRes.ok ? (await dashRes.json()).student?.xp ?? 0 : 0;
+          const xp = dashDataResult?.student?.xp ?? 0;
           setStudent({
             name: data.user.name,
             email: data.user.email,
@@ -170,15 +175,15 @@ export default function StudentDashboardPage() {
         router.push('/login');
       }
 
-      if (dashRes.ok) {
-        const d = await dashRes.json();
-        setDashData(d);
+      if (dashDataResult) {
+        setDashData(dashDataResult);
         // Update student XP from dashboard
-        if (d.student) {
-          setStudent(prev => prev ? { ...prev, xp: d.student.xp, level: Math.floor(d.student.xp / 100) + 1 } : prev);
+        if (dashDataResult.student) {
+          setStudent(prev => prev ? { ...prev, xp: dashDataResult.student.xp, level: Math.floor(dashDataResult.student.xp / 100) + 1 } : prev);
         }
       }
-    } catch {
+    } catch (err) {
+      console.error('Failed to load profile:', err);
       router.push('/login');
     } finally {
       setLoading(false);
