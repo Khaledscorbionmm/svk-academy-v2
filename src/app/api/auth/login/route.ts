@@ -10,15 +10,17 @@ const HARDCODED_ADMIN = {
   role: 'admin',
 };
 
-async function tryDatabaseLogin(email: string, password: string) {
+async function tryDatabaseLogin(identifier: string, password: string) {
   try {
     const { query, queryOne, initializeDatabase } = await import('@/lib/db');
     await initializeDatabase();
     
+    const lowerIdentifier = identifier.toLowerCase().trim();
+
     // Check admins
     const admin = await queryOne<{
       id: number; email: string; name: string; role: string; password_hash: string;
-    }>('SELECT id, email, name, role, password_hash FROM admins WHERE email = $1', [email.toLowerCase().trim()]);
+    }>('SELECT id, email, name, role, password_hash FROM admins WHERE email = $1', [lowerIdentifier]);
 
     if (admin) {
       const valid = await comparePassword(password, admin.password_hash);
@@ -29,21 +31,21 @@ async function tryDatabaseLogin(email: string, password: string) {
       return null;
     }
 
-    // Check students
+    // Check students (by email or phone)
     const student = await queryOne<{
-      id: number; email: string; name: string; password_hash: string;
-    }>('SELECT id, email, name, password_hash FROM students WHERE email = $1', [email.toLowerCase().trim()]);
+      id: number; email: string; phone: string; name: string; password_hash: string;
+    }>('SELECT id, email, phone, name, password_hash FROM students WHERE email = $1 OR phone = $1', [lowerIdentifier]);
 
     if (student) {
       const valid = await comparePassword(password, student.password_hash);
       if (valid) {
-        return { id: student.id, email: student.email, name: student.name, role: 'student' };
+        return { id: student.id, email: student.email || student.phone, name: student.name, role: 'student' };
       }
       return null;
     }
 
     // Auto-seed default admin
-    if (email === HARDCODED_ADMIN.email) {
+    if (lowerIdentifier === HARDCODED_ADMIN.email) {
       const hash = await hashPassword(HARDCODED_ADMIN.password);
       await query(
         'INSERT INTO admins (email, password_hash, name, role) VALUES ($1,$2,$3,$4) ON CONFLICT (email) DO NOTHING',
@@ -51,7 +53,7 @@ async function tryDatabaseLogin(email: string, password: string) {
       );
       const newAdmin = await queryOne<{
         id: number; email: string; name: string; role: string; password_hash: string;
-      }>('SELECT id, email, name, role, password_hash FROM admins WHERE email = $1', [email]);
+      }>('SELECT id, email, name, role, password_hash FROM admins WHERE email = $1', [lowerIdentifier]);
       if (newAdmin) {
         const valid = await comparePassword(password, newAdmin.password_hash);
         if (valid) return { id: newAdmin.id, email: newAdmin.email, name: newAdmin.name, role: newAdmin.role };
@@ -67,22 +69,22 @@ async function tryDatabaseLogin(email: string, password: string) {
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { email, password } = body;
+    const { identifier, password } = body;
 
-    if (!email || !password) {
-      return NextResponse.json({ error: 'البريد الإلكتروني وكلمة المرور مطلوبان' }, { status: 400 });
+    if (!identifier || !password) {
+      return NextResponse.json({ error: 'البريد/الهاتف وكلمة المرور مطلوبان' }, { status: 400 });
     }
 
     let user: { id: number; email: string; name: string; role: string } | null = null;
     let dbWorking = true;
 
     // Try DB login first
-    const dbResult = await tryDatabaseLogin(email, password);
+    const dbResult = await tryDatabaseLogin(identifier, password);
     
     if (dbResult === undefined) {
       // DB error - use hardcoded fallback
       dbWorking = false;
-      if (email === HARDCODED_ADMIN.email && password === HARDCODED_ADMIN.password) {
+      if (identifier.toLowerCase().trim() === HARDCODED_ADMIN.email && password === HARDCODED_ADMIN.password) {
         user = { id: HARDCODED_ADMIN.id, email: HARDCODED_ADMIN.email, name: HARDCODED_ADMIN.name, role: HARDCODED_ADMIN.role };
       }
     } else {
@@ -90,7 +92,7 @@ export async function POST(request: NextRequest) {
     }
 
     if (!user) {
-      return NextResponse.json({ error: 'البريد الإلكتروني أو كلمة المرور غير صحيحة' }, { status: 401 });
+      return NextResponse.json({ error: 'بيانات الدخول غير صحيحة' }, { status: 401 });
     }
 
     const token = signToken({ id: user.id, email: user.email, name: user.name, role: user.role });
@@ -104,6 +106,7 @@ export async function POST(request: NextRequest) {
     if (user.role === 'admin') {
       response.cookies.set(COOKIE_NAME, token, COOKIE_OPTIONS);
     } else {
+      response.cookies.set(COOKIE_NAME, token, COOKIE_OPTIONS);
       response.cookies.set('svk_student_token', token, COOKIE_OPTIONS);
     }
     return response;

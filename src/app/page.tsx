@@ -22,7 +22,9 @@ const FEATURES = [
 ];
 
 export default function HomePage() {
+  const [mounted, setMounted] = useState(false);
   const [scrollY, setScrollY] = useState(0);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeNav, setActiveNav] = useState(false);
   const [typed, setTyped] = useState('');
   const words = ['Python', 'JavaScript', 'React', 'AI', 'SQL', 'DevOps'];
@@ -31,6 +33,7 @@ export default function HomePage() {
   const [deleting, setDeleting] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
     const onScroll = () => setScrollY(window.scrollY);
     window.addEventListener('scroll', onScroll);
     return () => window.removeEventListener('scroll', onScroll);
@@ -64,7 +67,7 @@ export default function HomePage() {
         <div style={{ position: 'absolute', width: 900, height: 900, borderRadius: '50%', background: 'radial-gradient(circle, rgba(99,102,241,0.15) 0%, transparent 70%)', top: -300, right: -200, animation: 'pulse 8s ease-in-out infinite' }} />
         <div style={{ position: 'absolute', width: 700, height: 700, borderRadius: '50%', background: 'radial-gradient(circle, rgba(168,85,247,0.12) 0%, transparent 70%)', bottom: -200, left: -100, animation: 'pulse 10s ease-in-out infinite 3s' }} />
         <div style={{ position: 'absolute', width: 500, height: 500, borderRadius: '50%', background: 'radial-gradient(circle, rgba(6,182,212,0.10) 0%, transparent 70%)', top: '40%', left: '40%', animation: 'pulse 12s ease-in-out infinite 5s' }} />
-        {[...Array(50)].map((_, i) => (
+        {mounted && [...Array(50)].map((_, i) => (
           <div key={i} style={{
             position: 'absolute',
             width: Math.random() * 3 + 1,
@@ -95,19 +98,25 @@ export default function HomePage() {
               <div style={{ fontSize: 10, color: '#94a3b8', marginTop: -2 }}>الأكاديمية الأولى عربياً</div>
             </div>
           </div>
+          
+          {/* Hamburger Icon */}
+          <button className="mobile-menu-btn" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} style={{ background: 'none', border: 'none', color: '#fff', fontSize: '1.5rem', cursor: 'pointer', display: 'none' }}>
+            {isMobileMenuOpen ? '✕' : '☰'}
+          </button>
+
           {/* Nav Links */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: 32 }}>
+          <div className={`nav-links ${isMobileMenuOpen ? 'open' : ''}`} style={{ display: 'flex', alignItems: 'center', gap: 32 }}>
             {[['#courses', 'الكورسات'], ['#features', 'المميزات'], ['#stats', 'إحصائيات']].map(([href, label]) => (
-              <a key={href} href={href} style={{ color: '#94a3b8', textDecoration: 'none', fontSize: 14, fontWeight: 600, transition: 'color 0.2s', cursor: 'pointer' }}
+              <a key={href} href={href} onClick={() => setIsMobileMenuOpen(false)} style={{ color: '#94a3b8', textDecoration: 'none', fontSize: 14, fontWeight: 600, transition: 'color 0.2s', cursor: 'pointer' }}
                 onMouseOver={e => (e.currentTarget.style.color = '#a855f7')}
                 onMouseOut={e => (e.currentTarget.style.color = '#94a3b8')}>{label}</a>
             ))}
-            <Link href="/login" style={{
+            <Link href="/login" onClick={() => setIsMobileMenuOpen(false)} style={{
               color: '#94a3b8', textDecoration: 'none', padding: '8px 16px',
               borderRadius: 8, fontSize: 13, fontWeight: 600, border: '1px solid rgba(255,255,255,0.1)',
               transition: 'all 0.2s',
             }}>تسجيل الدخول</Link>
-            <Link href="/register" style={{
+            <Link href="/register" onClick={() => setIsMobileMenuOpen(false)} style={{
               background: 'linear-gradient(135deg, #6366f1, #a855f7)',
               color: '#fff', textDecoration: 'none', padding: '8px 20px',
               borderRadius: 8, fontSize: 13, fontWeight: 700,
@@ -335,6 +344,19 @@ export default function HomePage() {
         @keyframes scrollDown { 0%{opacity:1;transform:translateY(0)} 100%{opacity:0;transform:translateY(16px)} }
         * { box-sizing: border-box; }
         html { scroll-behavior: smooth; }
+        @media (max-width: 768px) {
+          .mobile-menu-btn { display: block !important; }
+          .nav-links {
+            position: absolute; top: 70px; left: 0; right: 0;
+            background: rgba(6,6,18,0.98); backdrop-filter: blur(20px);
+            flex-direction: column; padding: 2rem; gap: 1.5rem !important;
+            border-bottom: 1px solid rgba(99,102,241,0.2);
+            transform: translateY(-150%); opacity: 0; transition: all 0.3s ease;
+            pointer-events: none; z-index: 999;
+          }
+          .nav-links.open { transform: translateY(0); opacity: 1; pointer-events: all; }
+          .nav-links a { width: 100%; text-align: center; font-size: 1.1rem !important; }
+        }
       `}</style>
     </div>
   );

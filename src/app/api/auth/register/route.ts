@@ -1,75 +1,60 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { signToken, hashPassword, COOKIE_NAME, COOKIE_OPTIONS } from '@/lib/auth';
+import { query, initializeDatabase } from '@/lib/db';
+import { signToken, COOKIE_NAME } from '@/lib/auth';
+import bcrypt from 'bcryptjs';
 
-export async function POST(request: NextRequest) {
+export async function POST(req: NextRequest) {
   try {
-    const body = await request.json();
-    const { name, email, password, phone } = body;
+    const { name, email, phone, age, password } = await req.json();
 
-    if (!name || !email || !password) {
-      return NextResponse.json({ error: 'الاسم والبريد الإلكتروني وكلمة المرور مطلوبان' }, { status: 400 });
+    if (!name || !password || (!email && !phone)) {
+      return NextResponse.json({ error: 'يرجى إدخال كافة البيانات المطلوبة' }, { status: 400 });
     }
 
-    if (password.length < 6) {
-      return NextResponse.json({ error: 'كلمة المرور يجب أن تكون 6 أحرف على الأقل' }, { status: 400 });
-    }
+    await initializeDatabase();
 
-    let user: { id: number; email: string; name: string; role: string } | null = null;
-
-    try {
-      const { query, queryOne, initializeDatabase } = await import('@/lib/db');
-      await initializeDatabase();
-
-      // Add students table if missing
-      await query(`
-        CREATE TABLE IF NOT EXISTS students (
-          id SERIAL PRIMARY KEY,
-          email VARCHAR(255) UNIQUE NOT NULL,
-          name VARCHAR(255) NOT NULL,
-          phone VARCHAR(50),
-          password_hash VARCHAR(255),
-          country VARCHAR(100) DEFAULT 'Egypt',
-          avatar_url VARCHAR(1000),
-          xp INTEGER DEFAULT 0,
-          is_active BOOLEAN DEFAULT true,
-          created_at TIMESTAMPTZ DEFAULT NOW()
-        )
-      `);
-
-      const existing = await queryOne<{ id: number }>('SELECT id FROM students WHERE email = $1', [email.toLowerCase().trim()]);
-      if (existing) {
-        return NextResponse.json({ error: 'هذا البريد الإلكتروني مسجل بالفعل' }, { status: 409 });
+    // Check if email or phone already exists
+    if (email) {
+      const emailCheck = await query('SELECT id FROM students WHERE email = $1', [email]);
+      if (emailCheck.rows.length > 0) {
+        return NextResponse.json({ error: 'البريد الإلكتروني مسجل مسبقاً' }, { status: 400 });
       }
-
-      const hash = await hashPassword(password);
-      const result = await query<{ id: number; email: string; name: string }>(
-        `INSERT INTO students (name, email, password_hash, phone) VALUES ($1, $2, $3, $4) RETURNING id, name, email`,
-        [name.trim(), email.toLowerCase().trim(), hash, phone || null]
-      );
-
-      if (result[0]) {
-        user = { id: result[0].id, email: result[0].email, name: result[0].name, role: 'student' };
+    }
+    
+    if (phone) {
+      const phoneCheck = await query('SELECT id FROM students WHERE phone = $1', [phone]);
+      if (phoneCheck.rows.length > 0) {
+        return NextResponse.json({ error: 'رقم الهاتف مسجل مسبقاً' }, { status: 400 });
       }
-    } catch (dbErr) {
-      console.warn('[Register DB Error]', (dbErr as Error).message);
-      // Create a fake user ID for demo
-      user = { id: Math.floor(Math.random() * 10000), email: email.toLowerCase().trim(), name: name.trim(), role: 'student' };
     }
 
-    if (!user) {
-      return NextResponse.json({ error: 'حدث خطأ في إنشاء الحساب' }, { status: 500 });
-    }
+    const hash = await bcrypt.hash(password, 12);
+    const parsedAge = age ? parseInt(age, 10) : null;
 
-    const token = signToken({ id: user.id, email: user.email, name: user.name, role: user.role });
+    const insertRes = await query(`
+      INSERT INTO students (name, email, phone, age, password_hash)
+      VALUES ($1, $2, $3, $4, $5)
+      RETURNING id, name, email, phone
+    `, [name, email || null, phone || null, parsedAge, hash]);
+
+    const user = insertRes.rows[0];
+    const token = signToken({ id: user.id, email: user.email || user.phone, role: 'student' });
+
     const response = NextResponse.json({
       success: true,
-      user: { id: user.id, email: user.email, name: user.name, role: user.role },
-    }, { status: 201 });
+      user: { id: user.id, name: user.name, email: user.email }
+    });
 
-    response.cookies.set('svk_student_token', token, COOKIE_OPTIONS);
+    response.cookies.set(COOKIE_NAME, token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax',
+      path: '/'
+    });
+
     return response;
   } catch (error) {
-    console.error('[Register Error]', error);
-    return NextResponse.json({ error: 'حدث خطأ داخلي' }, { status: 500 });
+    console.error('[Register API Error]', error);
+    return NextResponse.json({ error: 'حدث خطأ أثناء إنشاء الحساب' }, { status: 500 });
   }
 }
