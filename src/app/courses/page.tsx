@@ -23,24 +23,25 @@ interface Course {
 }
 
 const CATEGORY_ICONS: Record<string, string> = {
-  python: '🐍', 'البرمجة': '🐍', 'Programming': '💻',
-  javascript: '⚡', 'تطوير الويب': '⚡', 'Web Development': '🌐',
+  python: '🐍', 'البرمجة': '💻', 'Programming': '💻',
+  javascript: '⚡', 'تطوير الويب': '🌐', 'Web Development': '🌐',
   react: '⚛️',
   ai: '🤖', 'الذكاء الاصطناعي': '🤖',
   database: '🗄️', 'قواعد البيانات': '🗄️',
   devops: '🛠️',
-  security: '🔒', 'الأمن السيبراني': '🔒', 'Security': '🛡️',
+  security: '🛡️', 'الأمن السيبراني': '🛡️', 'Security': '🛡️',
   languages: '🌍', 'اللغات': '🌍', 'Languages': '🌍',
   default: '📚',
 };
 
-const LEVEL_LABELS: Record<string, { label: string; color: string }> = {
-  beginner: { label: 'مبتدئ', color: '#22c55e' },
-  intermediate: { label: 'متوسط', color: '#f59e0b' },
-  advanced: { label: 'متقدم', color: '#ef4444' },
+const LEVEL_LABELS: Record<string, { label: string; color: string; badgeIcon: string }> = {
+  beginner: { label: 'مبتدئ وممتع', color: '#ec4899', badgeIcon: '🧸' },
+  all_levels: { label: 'للجميع', color: '#06b6d4', badgeIcon: '🌟' },
+  intermediate: { label: 'متوسط', color: '#f59e0b', badgeIcon: '🚀' },
+  advanced: { label: 'متقدم واحترافي', color: '#22c55e', badgeIcon: '💻' },
+  professional: { label: 'خبير', color: '#ef4444', badgeIcon: '🔥' }
 };
 
-// Map Arabic DB categories to filter IDs
 const CAT_MAP: Record<string, string> = {
   'البرمجة': 'python', 'python': 'python', 'Programming': 'python',
   'تطوير الويب': 'javascript', 'javascript': 'javascript', 'Web Development': 'javascript',
@@ -55,85 +56,119 @@ const CAT_MAP: Record<string, string> = {
 const CATEGORIES = [
   { id: 'all', label: 'كل الكورسات', icon: '🌟' },
   { id: 'languages', label: 'اللغات', icon: '🌍' },
-  { id: 'python', label: 'Python', icon: '🐍' },
-  { id: 'javascript', label: 'JavaScript', icon: '⚡' },
+  { id: 'python', label: 'البرمجة', icon: '💻' },
+  { id: 'javascript', label: 'تطوير الويب', icon: '🌐' },
   { id: 'react', label: 'React', icon: '⚛️' },
   { id: 'ai', label: 'الذكاء الاصطناعي', icon: '🤖' },
-  { id: 'database', label: 'قواعد البيانات', icon: '🗄️' },
-  { id: 'devops', label: 'DevOps', icon: '🛠️' },
-  { id: 'security', label: 'الأمن السيبراني', icon: '🔒' },
+  { id: 'security', label: 'الأمن السيبراني', icon: '🛡️' },
 ];
 
 function StarRating({ rating }: { rating: number }) {
   return (
     <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
       {[1, 2, 3, 4, 5].map(i => (
-        <span key={i} style={{ color: i <= Math.round(rating) ? '#fbbf24' : '#334155', fontSize: 13 }}>★</span>
+        <span key={i} style={{ color: i <= Math.round(rating) ? '#fbbf24' : '#334155', fontSize: 14, textShadow: i <= Math.round(rating) ? '0 0 10px rgba(251,191,36,0.5)' : 'none' }}>★</span>
       ))}
-      <span style={{ color: '#fbbf24', fontSize: 13, fontWeight: 700, marginRight: 4 }}>{rating.toFixed(1)}</span>
+      <span style={{ color: '#fbbf24', fontSize: 13, fontWeight: 800, marginRight: 6 }}>{rating.toFixed(1)}</span>
     </div>
   );
 }
 
 function CourseCard({ course }: { course: Course }) {
   const icon = CATEGORY_ICONS[course.category || 'default'] || CATEGORY_ICONS.default;
-  const level = (course.level && LEVEL_LABELS[course.level]) ? LEVEL_LABELS[course.level] : LEVEL_LABELS.beginner;
-  const gradients: Record<string, string> = {
-    python: 'linear-gradient(135deg, #1e3a5f, #0a2440)',
-    javascript: 'linear-gradient(135deg, #3b2a00, #1a1000)',
-    react: 'linear-gradient(135deg, #0a2a3a, #001525)',
-    ai: 'linear-gradient(135deg, #2a0a3a, #150025)',
-    database: 'linear-gradient(135deg, #1a2a1a, #001500)',
-    devops: 'linear-gradient(135deg, #2a1a0a, #150800)',
-    security: 'linear-gradient(135deg, #0a203a, #000c1a)',
-    languages: 'linear-gradient(135deg, #3a1a20, #1a000a)',
-    default: 'linear-gradient(135deg, #1a1040, #0a0820)',
+  const levelInfo = (course.level && LEVEL_LABELS[course.level]) ? LEVEL_LABELS[course.level] : LEVEL_LABELS.beginner;
+  
+  const isBeginner = course.level === 'beginner' || course.level === 'all_levels' || !course.level;
+  const isAdvanced = course.level === 'advanced' || course.level === 'professional';
+
+  // Dynamic styling based on level
+  const cardStyle = isBeginner ? {
+    background: 'rgba(255,255,255,0.03)',
+    border: '2px solid rgba(236,72,153,0.15)', // Pinkish soft border
+    borderRadius: 36, // Extremely rounded for kids/beginners
+    boxShadow: '0 10px 40px rgba(236,72,153,0.05)',
+  } : isAdvanced ? {
+    background: 'rgba(5,5,10,0.95)',
+    border: '1px solid rgba(34,197,94,0.3)', // Hacker green border
+    borderRadius: 12, // Sharp for pros
+    boxShadow: '0 10px 30px rgba(34,197,94,0.05)',
+  } : {
+    // Intermediate
+    background: 'rgba(15,15,30,0.8)',
+    border: '1px solid rgba(99,102,241,0.2)',
+    borderRadius: 24,
+    boxShadow: '0 10px 30px rgba(99,102,241,0.05)',
   };
-  const normalizedCat = CAT_MAP[course.category || ''] || 'default';
-  const gradient = gradients[normalizedCat] || gradients.default;
+
+  const headerGradient = isBeginner 
+    ? 'linear-gradient(135deg, rgba(236,72,153,0.25), rgba(6,182,212,0.25))' // Vibrant Pink to Cyan
+    : isAdvanced
+    ? 'linear-gradient(135deg, rgba(5,20,10,0.8), rgba(0,0,0,0.9))' // Dark matrix
+    : 'linear-gradient(135deg, rgba(99,102,241,0.2), rgba(168,85,247,0.2))'; // Default purple
 
   return (
     <Link href={`/courses/${course.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
     <div
       style={{
-        background: 'rgba(15,15,30,0.8)',
-        border: '1px solid rgba(99,102,241,0.15)',
-        borderRadius: 20,
+        ...cardStyle,
         overflow: 'hidden',
-        transition: 'all 0.3s ease',
+        transition: isBeginner ? 'all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)' : 'all 0.3s ease', // Bouncy for beginners, smooth for pros
         cursor: 'pointer',
-        backdropFilter: 'blur(10px)',
+        backdropFilter: 'blur(15px)',
+        position: 'relative'
       }}
       onMouseEnter={e => {
-        (e.currentTarget as HTMLDivElement).style.transform = 'translateY(-8px)';
-        (e.currentTarget as HTMLDivElement).style.border = '1px solid rgba(99,102,241,0.4)';
-        (e.currentTarget as HTMLDivElement).style.boxShadow = '0 20px 60px rgba(99,102,241,0.15)';
+        if (isBeginner) {
+          (e.currentTarget as HTMLDivElement).style.transform = 'translateY(-12px) scale(1.02)';
+          (e.currentTarget as HTMLDivElement).style.border = '2px solid rgba(236,72,153,0.5)';
+          (e.currentTarget as HTMLDivElement).style.boxShadow = '0 30px 60px rgba(6,182,212,0.2)';
+        } else if (isAdvanced) {
+          (e.currentTarget as HTMLDivElement).style.transform = 'translateY(-5px)';
+          (e.currentTarget as HTMLDivElement).style.border = '1px solid rgba(34,197,94,0.8)';
+          (e.currentTarget as HTMLDivElement).style.boxShadow = '0 0 30px rgba(34,197,94,0.2)';
+        } else {
+          (e.currentTarget as HTMLDivElement).style.transform = 'translateY(-8px)';
+          (e.currentTarget as HTMLDivElement).style.border = '1px solid rgba(99,102,241,0.5)';
+          (e.currentTarget as HTMLDivElement).style.boxShadow = '0 20px 50px rgba(99,102,241,0.2)';
+        }
       }}
       onMouseLeave={e => {
-        (e.currentTarget as HTMLDivElement).style.transform = 'translateY(0)';
-        (e.currentTarget as HTMLDivElement).style.border = '1px solid rgba(99,102,241,0.15)';
-        (e.currentTarget as HTMLDivElement).style.boxShadow = 'none';
+        (e.currentTarget as HTMLDivElement).style.transform = 'translateY(0) scale(1)';
+        (e.currentTarget as HTMLDivElement).style.border = cardStyle.border;
+        (e.currentTarget as HTMLDivElement).style.boxShadow = cardStyle.boxShadow;
       }}
     >
-      {/* Card Header */}
-      <div style={{ background: gradient, padding: '32px 24px 24px', position: 'relative', overflow: 'hidden' }}>
-        <div style={{ position: 'absolute', top: -20, left: -20, width: 120, height: 120, borderRadius: '50%', background: 'rgba(255,255,255,0.03)' }} />
-        <div style={{ position: 'absolute', bottom: -30, right: -10, width: 100, height: 100, borderRadius: '50%', background: 'rgba(255,255,255,0.02)' }} />
+      {/* Decorative Orbs for beginners */}
+      {isBeginner && (
+        <>
+          <div style={{ position: 'absolute', top: -30, right: -30, width: 100, height: 100, background: 'rgba(236,72,153,0.3)', filter: 'blur(30px)', borderRadius: '50%' }} />
+          <div style={{ position: 'absolute', bottom: -30, left: -30, width: 100, height: 100, background: 'rgba(6,182,212,0.3)', filter: 'blur(30px)', borderRadius: '50%' }} />
+        </>
+      )}
 
+      {/* Card Header */}
+      <div style={{ background: headerGradient, padding: '32px 24px 24px', position: 'relative', borderBottom: '1px solid rgba(255,255,255,0.03)' }}>
         <div style={{ position: 'relative', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-          <span style={{ fontSize: 52, lineHeight: 1 }}>{icon}</span>
-          <div style={{ textAlign: 'left' }}>
+          <div style={{ 
+            fontSize: isBeginner ? 60 : 45, 
+            lineHeight: 1, 
+            filter: isBeginner ? 'drop-shadow(0 10px 10px rgba(0,0,0,0.2))' : 'none',
+            transition: 'transform 0.3s'
+          }} className="course-icon">
+            {icon}
+          </div>
+          <div style={{ textAlign: 'left', display: 'flex', flexDirection: 'column', gap: 6, alignItems: 'flex-end' }}>
             <span style={{
-              display: 'inline-block', padding: '3px 12px', borderRadius: 20,
-              background: `rgba(${level.color === '#22c55e' ? '34,197,94' : level.color === '#f59e0b' ? '245,158,11' : '239,68,68'},0.15)`,
-              border: `1px solid ${level.color}40`,
-              color: level.color, fontSize: 11, fontWeight: 700,
+              display: 'inline-flex', alignItems: 'center', gap: 4, padding: '4px 12px', borderRadius: isBeginner ? 20 : 6,
+              background: `rgba(${levelInfo.color.replace('#','').match(/.{2}/g)?.map(c=>parseInt(c,16)).join(',')},0.15)`,
+              border: `1px solid ${levelInfo.color}40`,
+              color: levelInfo.color, fontSize: 11, fontWeight: 800,
             }}>
-              {level.label}
+              <span>{levelInfo.badgeIcon}</span> {levelInfo.label}
             </span>
             {course.is_featured && (
-              <div style={{ marginTop: 6, padding: '2px 10px', background: 'rgba(168,85,247,0.2)', border: '1px solid rgba(168,85,247,0.4)', borderRadius: 20, color: '#a855f7', fontSize: 10, fontWeight: 700, textAlign: 'center' }}>
-                ⭐ مميز
+              <div style={{ padding: '2px 10px', background: 'rgba(251,191,36,0.2)', border: '1px solid rgba(251,191,36,0.4)', borderRadius: 20, color: '#fbbf24', fontSize: 10, fontWeight: 900, textAlign: 'center', boxShadow: '0 0 10px rgba(251,191,36,0.2)' }}>
+                ⭐ كورس مميز
               </div>
             )}
           </div>
@@ -141,53 +176,51 @@ function CourseCard({ course }: { course: Course }) {
       </div>
 
       {/* Card Body */}
-      <div style={{ padding: '20px 24px 24px' }}>
-        <h3 style={{ fontSize: 17, fontWeight: 800, margin: '0 0 8px', lineHeight: 1.4, color: '#f1f5f9' }}>
+      <div style={{ padding: '24px', position: 'relative', zIndex: 1 }}>
+        <h3 style={{ fontSize: isBeginner ? 20 : 18, fontWeight: 900, margin: '0 0 10px', lineHeight: 1.4, color: isAdvanced ? '#4ade80' : '#fff', textShadow: isAdvanced ? '0 0 10px rgba(74,222,128,0.2)' : 'none' }}>
           {course.title_ar || course.title}
         </h3>
-        <p style={{ color: '#64748b', fontSize: 13, margin: '0 0 16px', lineHeight: 1.6 }}>
+        <p style={{ color: '#94a3b8', fontSize: 14, margin: '0 0 20px', lineHeight: 1.6, minHeight: 44 }}>
           {(course.description_ar || course.description || '').slice(0, 90)}{(course.description_ar || course.description || '').length > 90 ? '...' : ''}
         </p>
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12 }}>
-          <span style={{ fontSize: 20 }}>👨‍🏫</span>
-          <span style={{ color: '#94a3b8', fontSize: 13 }}>{course.instructor_name || 'مدرب SVK'}</span>
-        </div>
+        <StarRating rating={Number(course.rating) || 4.5} />
 
-        <StarRating rating={Number(course.rating) || 0} />
-
-        <div style={{ display: 'flex', gap: 16, marginTop: 12, paddingTop: 12, borderTop: '1px solid rgba(255,255,255,0.05)' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 4, color: '#64748b', fontSize: 12 }}>
-            <span>⏱</span>
-            <span>{course.duration_hours || 0} ساعة</span>
+        <div style={{ display: 'flex', gap: 16, marginTop: 16, paddingTop: 16, borderTop: '1px solid rgba(255,255,255,0.05)' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 6, color: '#64748b', fontSize: 12, fontWeight: 600 }}>
+            <span style={{ fontSize: 16 }}>⏱</span>
+            <span>{course.duration_hours || 0} ساعة ممتعة</span>
           </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 4, color: '#64748b', fontSize: 12 }}>
-            <span>👥</span>
-            <span>{(course.enrollment_count || 0).toLocaleString('ar-EG')} طالب</span>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 6, color: '#64748b', fontSize: 12, fontWeight: 600 }}>
+            <span style={{ fontSize: 16 }}>👩‍🎓</span>
+            <span>{(course.enrollment_count || 0).toLocaleString('ar-EG')} بطل</span>
           </div>
         </div>
 
         {/* Price + CTA */}
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 16 }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 24 }}>
           <div>
             {Number(course.price) === 0 ? (
-              <span style={{ fontSize: 18, fontWeight: 900, color: '#22c55e' }}>مجاني 🎁</span>
+              <span style={{ fontSize: 22, fontWeight: 900, color: '#22c55e', textShadow: '0 0 20px rgba(34,197,94,0.4)', animation: 'pulse 2s infinite' }}>مجاني 🎁</span>
             ) : (
               <div>
-                <span style={{ fontSize: 20, fontWeight: 900, color: '#a855f7' }}>{course.price}</span>
-                <span style={{ color: '#64748b', fontSize: 12, marginRight: 4 }}>{course.currency}</span>
+                <span style={{ fontSize: 24, fontWeight: 900, color: isBeginner ? '#ec4899' : isAdvanced ? '#22c55e' : '#a855f7' }}>{course.price}</span>
+                <span style={{ color: '#64748b', fontSize: 12, marginRight: 4, fontWeight: 700 }}>{course.currency}</span>
               </div>
             )}
           </div>
           <span style={{
-            display: 'inline-block',
-            background: 'linear-gradient(135deg, #6366f1, #a855f7)',
-            color: '#fff',
-            padding: '10px 20px', borderRadius: 10,
-            fontSize: 13, fontWeight: 700,
-            transition: 'all 0.2s',
+            display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+            background: isBeginner ? 'linear-gradient(135deg, #ec4899, #8b5cf6)' : isAdvanced ? 'transparent' : 'linear-gradient(135deg, #6366f1, #a855f7)',
+            border: isAdvanced ? '1px solid #22c55e' : 'none',
+            color: isAdvanced ? '#22c55e' : '#fff',
+            padding: isBeginner ? '12px 24px' : '10px 20px', 
+            borderRadius: isBeginner ? 100 : 8,
+            fontSize: isBeginner ? 15 : 13, 
+            fontWeight: 800,
+            boxShadow: isBeginner ? '0 10px 20px rgba(236,72,153,0.3)' : 'none',
           }}>
-            عرض الكورس ←
+            {isBeginner ? '🚀 ابدأ المغامرة' : isAdvanced ? '⚡ بدء التحدي' : 'عرض الكورس ←'}
           </span>
         </div>
       </div>
@@ -198,13 +231,13 @@ function CourseCard({ course }: { course: Course }) {
 
 function SkeletonCard() {
   return (
-    <div style={{ background: 'rgba(15,15,30,0.8)', border: '1px solid rgba(99,102,241,0.1)', borderRadius: 20, overflow: 'hidden' }}>
-      <div style={{ height: 130, background: 'rgba(255,255,255,0.03)', animation: 'pulse 1.5s ease infinite' }} />
-      <div style={{ padding: '20px 24px' }}>
-        <div style={{ height: 20, background: 'rgba(255,255,255,0.05)', borderRadius: 6, marginBottom: 10, animation: 'pulse 1.5s ease infinite' }} />
-        <div style={{ height: 14, background: 'rgba(255,255,255,0.03)', borderRadius: 6, marginBottom: 6, animation: 'pulse 1.5s ease infinite' }} />
+    <div style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: 24, overflow: 'hidden' }}>
+      <div style={{ height: 140, background: 'rgba(255,255,255,0.03)', animation: 'pulse 1.5s ease infinite' }} />
+      <div style={{ padding: '24px' }}>
+        <div style={{ height: 24, background: 'rgba(255,255,255,0.05)', borderRadius: 8, marginBottom: 16, animation: 'pulse 1.5s ease infinite' }} />
+        <div style={{ height: 14, background: 'rgba(255,255,255,0.03)', borderRadius: 6, marginBottom: 8, animation: 'pulse 1.5s ease infinite' }} />
         <div style={{ height: 14, background: 'rgba(255,255,255,0.03)', borderRadius: 6, width: '70%', animation: 'pulse 1.5s ease infinite' }} />
-        <div style={{ height: 36, background: 'rgba(99,102,241,0.1)', borderRadius: 10, marginTop: 20, animation: 'pulse 1.5s ease infinite' }} />
+        <div style={{ height: 45, background: 'rgba(255,255,255,0.05)', borderRadius: 100, marginTop: 24, animation: 'pulse 1.5s ease infinite' }} />
       </div>
     </div>
   );
@@ -259,140 +292,118 @@ export default function CoursesPage() {
     return matchCat && matchSearch;
   });
 
-  const totalStudents = courses.reduce((s, c) => s + (c.enrollment_count || 0), 0);
-
   if (!mounted) {
-    return <div style={{ minHeight: '100vh', background: '#060612' }} />;
+    return <div style={{ minHeight: '100vh', background: '#0B0B1A' }} />;
   }
 
   return (
-    <div style={{ fontFamily: "'Cairo', sans-serif", direction: 'rtl', background: '#060612', color: '#fff', minHeight: '100vh' }}>
-      <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet" />
+    <div style={{ fontFamily: "'Cairo', sans-serif", direction: 'rtl', background: '#0B0B1A', color: '#fff', minHeight: '100vh', overflowX: 'hidden' }}>
+      <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+
+      {/* Animated Background Orbs */}
+      <div style={{ position: 'fixed', inset: 0, zIndex: 0, pointerEvents: 'none' }}>
+        <div style={{ position: 'absolute', top: '-10%', right: '-5%', width: '50vw', height: '50vw', background: 'radial-gradient(circle, rgba(236,72,153,0.08) 0%, transparent 60%)', filter: 'blur(60px)', animation: 'floatOrb 10s infinite alternate' }} />
+        <div style={{ position: 'absolute', bottom: '-10%', left: '-10%', width: '60vw', height: '60vw', background: 'radial-gradient(circle, rgba(6,182,212,0.08) 0%, transparent 60%)', filter: 'blur(80px)', animation: 'floatOrb 15s infinite alternate-reverse' }} />
+      </div>
 
       {/* Navbar */}
-      <nav style={{ borderBottom: '1px solid rgba(255,255,255,0.06)', padding: '16px 40px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', position: 'sticky', top: 0, zIndex: 100, background: 'rgba(6,6,18,0.9)', backdropFilter: 'blur(20px)' }}>
-        <Link href="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 10 }}>
-          <span style={{ fontSize: 28 }}>🎓</span>
-          <span style={{ fontSize: 20, fontWeight: 900, background: 'linear-gradient(135deg,#6366f1,#a855f7)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>SVK Academy</span>
+      <nav style={{ position: 'relative', zIndex: 10, borderBottom: '1px solid rgba(255,255,255,0.05)', padding: '16px 40px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', background: 'rgba(11,11,26,0.7)', backdropFilter: 'blur(20px)' }}>
+        <Link href="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 12 }}>
+          <div style={{ width: 44, height: 44, borderRadius: 14, background: 'linear-gradient(135deg, #ec4899, #8b5cf6, #06b6d4)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 22, boxShadow: '0 0 20px rgba(236,72,153,0.4)' }}>✨</div>
+          <span style={{ fontSize: 22, fontWeight: 900, background: 'linear-gradient(90deg,#ec4899,#06b6d4)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>SVK Academy</span>
         </Link>
-        <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+        <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
           {user ? (
-            <Link href={user.role === 'admin' ? '/admin/dashboard' : '/dashboard'} style={{ textDecoration: 'none', background: 'linear-gradient(135deg,#6366f1,#a855f7)', color: '#fff', padding: '8px 20px', borderRadius: 10, fontSize: 14, fontWeight: 700 }}>
-              لوحة التحكم 🖥️ ({user.name})
+            <Link href={user.role === 'admin' ? '/admin/dashboard' : '/dashboard'} style={{ textDecoration: 'none', background: 'linear-gradient(135deg,#8b5cf6,#06b6d4)', color: '#fff', padding: '10px 24px', borderRadius: 100, fontSize: 14, fontWeight: 800, boxShadow: '0 4px 15px rgba(6,182,212,0.3)' }}>
+              لوحة التحكم 🎮
             </Link>
           ) : (
             <>
-              <Link href="/login" style={{ textDecoration: 'none', color: '#94a3b8', padding: '8px 16px', borderRadius: 10, fontSize: 14 }}>تسجيل الدخول</Link>
-              <Link href="/register" style={{ textDecoration: 'none', background: 'linear-gradient(135deg,#6366f1,#a855f7)', color: '#fff', padding: '8px 20px', borderRadius: 10, fontSize: 14, fontWeight: 700 }}>سجّل مجاناً</Link>
+              <Link href="/login" style={{ textDecoration: 'none', color: '#cbd5e1', padding: '10px 20px', borderRadius: 100, fontSize: 14, fontWeight: 700, transition: 'background 0.2s' }} onMouseOver={e=>e.currentTarget.style.background='rgba(255,255,255,0.05)'} onMouseOut={e=>e.currentTarget.style.background='transparent'}>تسجيل الدخول</Link>
+              <Link href="/register" style={{ textDecoration: 'none', background: 'linear-gradient(135deg,#ec4899,#8b5cf6)', color: '#fff', padding: '10px 28px', borderRadius: 100, fontSize: 14, fontWeight: 800, boxShadow: '0 4px 20px rgba(236,72,153,0.4)', transition: 'transform 0.2s' }} onMouseOver={e=>e.currentTarget.style.transform='scale(1.05)'} onMouseOut={e=>e.currentTarget.style.transform='scale(1)'}>ابدأ اللعب مجاناً 🚀</Link>
             </>
           )}
         </div>
       </nav>
 
-      {/* Hero */}
-      <div style={{ position: 'relative', padding: '80px 40px 60px', textAlign: 'center', overflow: 'hidden' }}>
-        <div style={{ position: 'absolute', top: -100, right: -100, width: 500, height: 500, borderRadius: '50%', background: 'radial-gradient(circle, rgba(99,102,241,0.1) 0%, transparent 70%)', filter: 'blur(40px)' }} />
-        <div style={{ position: 'absolute', bottom: -50, left: -100, width: 400, height: 400, borderRadius: '50%', background: 'radial-gradient(circle, rgba(168,85,247,0.08) 0%, transparent 70%)', filter: 'blur(40px)' }} />
-        <div style={{ position: 'relative' }}>
-          <div style={{ display: 'inline-block', padding: '6px 20px', background: 'rgba(99,102,241,0.15)', border: '1px solid rgba(99,102,241,0.3)', borderRadius: 100, fontSize: 13, color: '#a855f7', fontWeight: 700, marginBottom: 20 }}>
-            🚀 كورسات تقنية بالعربي
-          </div>
-          <h1 style={{ fontSize: 'clamp(32px, 5vw, 52px)', fontWeight: 900, margin: '0 0 16px', background: 'linear-gradient(135deg, #fff, #c4b5fd, #93c5fd)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
-            استكشف كورساتنا
-          </h1>
-          <p style={{ color: '#94a3b8', fontSize: 18, margin: '0 0 40px', maxWidth: 600, marginInline: 'auto', lineHeight: 1.8 }}>
-            كورسات شاملة بالعربي من مدربين متخصصين — تعلّم من الصفر للاحتراف
-          </p>
+      {/* Header */}
+      <div style={{ position: 'relative', zIndex: 1, padding: '80px 20px 40px', textAlign: 'center' }}>
+        <h1 style={{ fontSize: 'clamp(36px, 6vw, 64px)', fontWeight: 900, margin: '0 0 20px', background: 'linear-gradient(to right, #fff, #f8fafc)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', filter: 'drop-shadow(0 4px 10px rgba(0,0,0,0.5))' }}>
+          اختر <span style={{ color: '#ec4899', WebkitTextFillColor: 'initial' }}>مغامرتك</span> القادمة! 🎮
+        </h1>
+        <p style={{ color: '#94a3b8', fontSize: 'clamp(16px, 2vw, 20px)', margin: '0 auto 40px', maxWidth: 700, lineHeight: 1.8, fontWeight: 600 }}>
+          سواء كنت شبلاً صغيراً يبدأ أولى خطواته، أو محترفاً يبحث عن تحديات الهاكرز العميقة... لدينا المسار المثالي لك!
+        </p>
 
-          {/* Search */}
-          <div style={{ maxWidth: 500, margin: '0 auto', position: 'relative' }}>
-            <span style={{ position: 'absolute', right: 16, top: '50%', transform: 'translateY(-50%)', fontSize: 18, color: '#64748b' }}>🔍</span>
-            <input
-              type="text"
-              value={search}
-              onChange={e => setSearch(e.target.value)}
-              placeholder="ابحث عن كورس..."
-              style={{
-                width: '100%', padding: '16px 48px 16px 20px', borderRadius: 14,
-                background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(99,102,241,0.3)',
-                color: '#fff', fontSize: 16, outline: 'none', boxSizing: 'border-box',
-                fontFamily: "'Cairo', sans-serif",
-              }}
-            />
-          </div>
+        {/* Search Bar */}
+        <div style={{ maxWidth: 600, margin: '0 auto', position: 'relative' }}>
+          <div style={{ position: 'absolute', right: 20, top: '50%', transform: 'translateY(-50%)', fontSize: 24, filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.2))' }}>🔍</div>
+          <input
+            type="text"
+            value={search}
+            onChange={e => setSearch(e.target.value)}
+            placeholder="ابحث عن كورس، لغة برمجة، أو مهارة..."
+            style={{
+              width: '100%', padding: '20px 60px 20px 24px', borderRadius: 100,
+              background: 'rgba(255,255,255,0.05)', border: '2px solid rgba(255,255,255,0.1)',
+              color: '#fff', fontSize: 18, outline: 'none', boxSizing: 'border-box',
+              fontFamily: "'Cairo', sans-serif", fontWeight: 600,
+              boxShadow: '0 10px 30px rgba(0,0,0,0.2), inset 0 2px 5px rgba(255,255,255,0.02)',
+              transition: 'border 0.3s'
+            }}
+            onFocus={e => e.currentTarget.style.borderColor = 'rgba(236,72,153,0.5)'}
+            onBlur={e => e.currentTarget.style.borderColor = 'rgba(255,255,255,0.1)'}
+          />
         </div>
       </div>
 
-      {/* Stats Bar */}
-      <div style={{ display: 'flex', justifyContent: 'center', gap: 'clamp(20px, 4vw, 60px)', padding: '20px 40px', borderTop: '1px solid rgba(255,255,255,0.04)', borderBottom: '1px solid rgba(255,255,255,0.04)', background: 'rgba(255,255,255,0.01)', flexWrap: 'wrap' }}>
-        {[
-          { label: 'كورس متاح', value: courses.length || 6, icon: '📚' },
-          { label: 'طالب مسجل', value: totalStudents || 7503, icon: '👥' },
-          { label: 'مدرب متخصص', value: 12, icon: '👨‍🏫' },
-          { label: 'ساعة محتوى', value: 200, icon: '⏱' },
-        ].map((s, i) => (
-          <div key={i} style={{ textAlign: 'center' }}>
-            <div style={{ fontSize: 24, marginBottom: 4 }}>{s.icon}</div>
-            <div style={{ fontSize: 28, fontWeight: 900, background: 'linear-gradient(135deg,#6366f1,#a855f7)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
-              {s.value.toLocaleString('ar-EG')}+
-            </div>
-            <div style={{ color: '#64748b', fontSize: 13 }}>{s.label}</div>
-          </div>
-        ))}
-      </div>
-
-      {/* Main content */}
-      <div style={{ maxWidth: 1400, margin: '0 auto', padding: '40px 24px' }}>
-        {/* Category Tabs */}
-        <div style={{ display: 'flex', gap: 10, marginBottom: 40, overflowX: 'auto', paddingBottom: 8, flexWrap: 'wrap' }}>
+      {/* Main Content */}
+      <div style={{ position: 'relative', zIndex: 1, maxWidth: 1400, margin: '0 auto', padding: '20px 24px 80px' }}>
+        
+        {/* Playful Category Tabs */}
+        <div style={{ display: 'flex', gap: 16, marginBottom: 50, overflowX: 'auto', paddingBottom: 16, flexWrap: 'wrap', justifyContent: 'center' }}>
           {CATEGORIES.map(cat => (
             <button
               key={cat.id}
               onClick={() => setActiveCategory(cat.id)}
               style={{
-                padding: '10px 20px', borderRadius: 12, border: 'none',
-                background: activeCategory === cat.id ? 'linear-gradient(135deg,#6366f1,#a855f7)' : 'rgba(255,255,255,0.05)',
-                color: activeCategory === cat.id ? '#fff' : '#94a3b8',
-                fontSize: 14, fontWeight: activeCategory === cat.id ? 700 : 400,
+                padding: '12px 28px', borderRadius: 100,
+                background: activeCategory === cat.id ? 'linear-gradient(135deg, #ec4899, #8b5cf6)' : 'rgba(255,255,255,0.05)',
+                color: activeCategory === cat.id ? '#fff' : '#cbd5e1',
+                fontSize: 16, fontWeight: 800,
                 cursor: 'pointer', fontFamily: "'Cairo', sans-serif",
-                transition: 'all 0.2s', whiteSpace: 'nowrap',
-                boxShadow: activeCategory === cat.id ? '0 4px 20px rgba(99,102,241,0.3)' : 'none',
+                transition: 'all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)',
+                boxShadow: activeCategory === cat.id ? '0 10px 25px rgba(236,72,153,0.4)' : '0 4px 10px rgba(0,0,0,0.2)',
+                transform: activeCategory === cat.id ? 'scale(1.05) translateY(-4px)' : 'scale(1)',
+                border: activeCategory !== cat.id ? '1px solid rgba(255,255,255,0.05)' : 'none',
               }}
+              onMouseOver={e => { if (activeCategory !== cat.id) e.currentTarget.style.background = 'rgba(255,255,255,0.1)' }}
+              onMouseOut={e => { if (activeCategory !== cat.id) e.currentTarget.style.background = 'rgba(255,255,255,0.05)' }}
             >
-              {cat.icon} {cat.label}
+              <span style={{ fontSize: 20, marginRight: 8, verticalAlign: 'middle' }}>{cat.icon}</span>
+              {cat.label}
             </button>
           ))}
         </div>
 
-        {/* Results count */}
+        {/* Results Info */}
         {!loading && (
-          <div style={{ marginBottom: 24, color: '#64748b', fontSize: 14 }}>
-            عرض {filtered.length} كورس{search && ` - نتائج البحث عن "${search}"`}
+          <div style={{ marginBottom: 30, color: '#94a3b8', fontSize: 16, fontWeight: 700, textAlign: 'center' }}>
+            وجدت لك <span style={{ color: '#ec4899', fontSize: 20 }}>{filtered.length}</span> مغامرة جاهزة! {search && `عن "${search}"`}
           </div>
         )}
 
-        {/* Error State */}
-        {error && (
-          <div style={{ textAlign: 'center', padding: '40px 20px', background: 'rgba(239,68,68,0.08)', border: '1px solid rgba(239,68,68,0.2)', borderRadius: 16, marginBottom: 24 }}>
-            <div style={{ fontSize: 40, marginBottom: 12 }}>⚠️</div>
-            <div style={{ color: '#ef4444', fontSize: 16, marginBottom: 8 }}>{error}</div>
-            <button onClick={fetchCourses} style={{ background: 'rgba(239,68,68,0.2)', border: '1px solid rgba(239,68,68,0.3)', color: '#ef4444', padding: '8px 20px', borderRadius: 8, cursor: 'pointer', fontFamily: "'Cairo', sans-serif" }}>
-              إعادة المحاولة
-            </button>
-          </div>
-        )}
-
-        {/* Courses Grid */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: 24 }}>
+        {/* Grid */}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: 32 }}>
           {loading ? (
             Array.from({ length: 6 }).map((_, i) => <SkeletonCard key={i} />)
           ) : filtered.length === 0 ? (
-            <div style={{ gridColumn: '1 / -1', textAlign: 'center', padding: '80px 20px' }}>
-              <div style={{ fontSize: 60, marginBottom: 16 }}>🔍</div>
-              <h3 style={{ fontSize: 22, fontWeight: 700, margin: '0 0 8px' }}>لا توجد كورسات</h3>
-              <p style={{ color: '#64748b' }}>جرب كلمة بحث مختلفة أو اختر تصنيفاً آخر</p>
-              <button onClick={() => { setSearch(''); setActiveCategory('all'); }} style={{ marginTop: 16, background: 'rgba(99,102,241,0.2)', border: '1px solid rgba(99,102,241,0.3)', color: '#a855f7', padding: '10px 24px', borderRadius: 10, cursor: 'pointer', fontFamily: "'Cairo', sans-serif" }}>
-                إعادة الضبط
+            <div style={{ gridColumn: '1 / -1', textAlign: 'center', padding: '100px 20px', background: 'rgba(255,255,255,0.02)', borderRadius: 40, border: '2px dashed rgba(255,255,255,0.1)' }}>
+              <div style={{ fontSize: 80, marginBottom: 20, animation: 'floatOrb 4s infinite alternate' }}>🕵️‍♂️</div>
+              <h3 style={{ fontSize: 28, fontWeight: 900, margin: '0 0 12px' }}>لم نعثر على هذا الكنز!</h3>
+              <p style={{ color: '#94a3b8', fontSize: 18 }}>حاول البحث بكلمات مختلفة أو اختر مساراً آخر من الأعلى.</p>
+              <button onClick={() => { setSearch(''); setActiveCategory('all'); }} style={{ marginTop: 24, background: '#fff', color: '#0B0B1A', border: 'none', padding: '14px 32px', borderRadius: 100, fontSize: 16, fontWeight: 900, cursor: 'pointer', boxShadow: '0 10px 20px rgba(255,255,255,0.2)' }}>
+                إلغاء البحث 🔄
               </button>
             </div>
           ) : (
@@ -401,17 +412,16 @@ export default function CoursesPage() {
         </div>
       </div>
 
-      {/* Footer */}
-      <footer style={{ borderTop: '1px solid rgba(255,255,255,0.06)', padding: '40px', textAlign: 'center', color: '#334155', marginTop: 60 }}>
-        <p style={{ margin: 0, fontSize: 14 }}>© 2025 SVK Academy — SmartVenom Technologies · جميع الحقوق محفوظة</p>
-      </footer>
-
       <style>{`
         * { box-sizing: border-box; }
         @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
-        ::-webkit-scrollbar { width: 6px; height: 6px; }
-        ::-webkit-scrollbar-track { background: #060612; }
-        ::-webkit-scrollbar-thumb { background: rgba(99,102,241,0.3); border-radius: 3px; }
+        @keyframes floatOrb { 0% { transform: translate(0, 0) scale(1); } 100% { transform: translate(30px, -50px) scale(1.1); } }
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #0B0B1A; }
+        ::-webkit-scrollbar-thumb { background: rgba(236,72,153,0.5); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: rgba(236,72,153,0.8); }
+        .course-icon { display: inline-block; }
+        a, button { -webkit-tap-highlight-color: transparent; }
       `}</style>
     </div>
   );

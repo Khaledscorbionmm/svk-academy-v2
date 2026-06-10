@@ -96,7 +96,7 @@ export async function POST(request: NextRequest) {
       user = dbResult as any;
     }
 
-    if (user === 'BANNED') {
+    if (dbResult === 'BANNED') {
       return NextResponse.json({ error: 'تم إيقاف حسابك. يرجى التواصل مع الإدارة.' }, { status: 403 });
     }
 
