@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import { query, initializeDatabase } from '@/lib/db';
 import { verifyToken, COOKIE_NAME } from '@/lib/auth';
 
+export const dynamic = 'force-dynamic';
+
 // Static fallback courses if DB is empty
 const FALLBACK_COURSES = [
   {

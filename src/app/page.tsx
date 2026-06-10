@@ -5,6 +5,7 @@ import Link from 'next/link';
 
 const COURSES = [
   { icon: '🧸', title: 'أساسيات الكمبيوتر للأطفال', level: 'مبتدئ وممتع', hours: 10, price: 'مجاني', students: 1240, rating: 5.0, cat: 'مبتدئين', color: '#ec4899', isKid: true },
+  { icon: '🌍', title: 'تحدث الإنجليزية بطلاقة', level: 'للجميع', hours: 25, price: 350, students: 2314, rating: 4.9, cat: 'اللغات', color: '#8b5cf6', isKid: true },
   { icon: '🐍', title: 'بايثون الممتعة', level: 'مبتدئ وممتع', hours: 40, price: 299, students: 847, rating: 4.9, cat: 'البرمجة', color: '#06b6d4', isKid: true },
   { icon: '⚡', title: 'JavaScript الحديث', level: 'متوسط', hours: 30, price: 249, students: 612, rating: 4.8, cat: 'تطوير الويب', color: '#f59e0b', isKid: false },
   { icon: '💻', title: 'خوارزميات وهياكل البيانات', level: 'خبير', hours: 60, price: 449, students: 189, rating: 5.0, cat: 'علوم الحاسب', color: '#22c55e', isKid: false },
