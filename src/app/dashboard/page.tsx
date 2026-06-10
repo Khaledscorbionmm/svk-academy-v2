@@ -41,8 +41,8 @@ const MOCK_STUDENT = {
 };
 
 const ENROLLED_COURSES: EnrolledCourse[] = [
-  { id: 1, title: 'Python للمبتدئين', icon: '🐍', progress: 33, lessonsTotal: 6, lessonsDone: 2, lastLesson: 'الشروط if/elif/else', lastLessonHref: '/learn/python-conditions' },
-  { id: 2, title: 'JavaScript الحديث', icon: '⚡', progress: 10, lessonsTotal: 10, lessonsDone: 1, lastLesson: 'مقدمة في JavaScript', lastLessonHref: '/learn/python-variables' },
+  { id: 1, title: 'Python للمبتدئين', icon: '🐍', progress: 33, lessonsTotal: 6, lessonsDone: 2, lastLesson: 'الشروط if/elif/else', lastLessonHref: '/learn/python-if' },
+  { id: 2, title: 'JavaScript الحديث', icon: '⚡', progress: 10, lessonsTotal: 10, lessonsDone: 1, lastLesson: 'مقدمة في JavaScript', lastLessonHref: '/learn/python-vars' },
 ];
 
 const ACHIEVEMENTS: Achievement[] = [
@@ -269,8 +269,8 @@ export default function StudentDashboardPage() {
             <div style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.06)', borderRadius: 18, padding: '20px' }}>
               <h3 style={{ fontSize: 17, fontWeight: 800, margin: '0 0 14px' }}>⚡ روابط سريعة</h3>
               {[
-                { href: '/learn/python-variables', label: '🐍 درس المتغيرات', desc: 'Python · 25 دقيقة' },
-                { href: '/learn/python-conditions', label: '🔀 الشروط if/else', desc: 'Python · 30 دقيقة' },
+                { href: '/learn/python-vars', label: '🐍 درس المتغيرات', desc: 'Python · 25 دقيقة' },
+                { href: '/learn/python-if', label: '🔀 الشروط if/else', desc: 'Python · 30 دقيقة' },
                 { href: '/courses', label: '📚 كل الكورسات', desc: 'استكشف المزيد' },
               ].map((link, i) => (
                 <Link key={i} href={link.href} style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 10, padding: '10px 12px', borderRadius: 10, marginBottom: 6, background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.04)', color: '#f1f5f9', transition: 'all 0.2s' }}>
