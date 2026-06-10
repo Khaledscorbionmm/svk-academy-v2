@@ -67,10 +67,10 @@ const TRANSLATIONS = {
     completed_of: 'مكتملة',
     leaderboard: '🏅 أفضل الطلاب',
     quick_links: '⚡ روابط سريعة',
-    vars_lesson: '🐍 درس المتغيرات',
-    vars_desc: 'Python · 25 دقيقة',
-    if_lesson: '🔀 الشروط if/else',
-    if_desc: 'Python · 30 دقيقة',
+    vars_lesson: '🐍 الدرس الأول: Hello World',
+    vars_desc: 'بايثون · 10 دقائق',
+    if_lesson: '📦 الدرس الحادي عشر: المتغيرات',
+    if_desc: 'بايثون · 15 دقيقة',
     all_courses: '📚 كل الكورسات',
     explore_more: 'استكشف المزيد',
     explore_new: '+ استكشف كورسات جديدة',
@@ -97,10 +97,10 @@ const TRANSLATIONS = {
     completed_of: 'completed',
     leaderboard: '🏅 Leaderboard',
     quick_links: '⚡ Quick Links',
-    vars_lesson: '🐍 Variables Lesson',
-    vars_desc: 'Python · 25 mins',
-    if_lesson: '🔀 Conditions if/else',
-    if_desc: 'Python · 30 mins',
+    vars_lesson: '🐍 Lesson 1: Hello World',
+    vars_desc: 'Python · 10 mins',
+    if_lesson: '📦 Lesson 11: Variables',
+    if_desc: 'Python · 15 mins',
     all_courses: '📚 All Courses',
     explore_more: 'Explore More',
     explore_new: '+ Explore New Courses',
@@ -438,8 +438,8 @@ export default function StudentDashboardPage() {
             <div style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.06)', borderRadius: 18, padding: '20px' }}>
               <h3 style={{ fontSize: 17, fontWeight: 800, margin: '0 0 14px' }}>{t.quick_links}</h3>
               {[
-                { href: '/learn/python-vars', label: t.vars_lesson, desc: t.vars_desc },
-                { href: '/learn/python-if', label: t.if_lesson, desc: t.if_desc },
+                { href: '/learn/1', label: t.vars_lesson, desc: t.vars_desc },
+                { href: '/learn/11', label: t.if_lesson, desc: t.if_desc },
                 { href: '/courses', label: t.all_courses, desc: t.explore_more },
               ].map((link, i) => (
                 <Link key={i} href={link.href} style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 10, padding: '10px 12px', borderRadius: 10, marginBottom: 6, background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.04)', color: '#f1f5f9', transition: 'all 0.2s' }}>

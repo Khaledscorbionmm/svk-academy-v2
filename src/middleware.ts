@@ -13,7 +13,7 @@ const ALWAYS_PUBLIC = [
 
 const PUBLIC_PAGES = ['/', '/courses', '/login', '/register', '/about'];
 
-export function proxy(request: NextRequest) {
+export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   // 1. Allow always public resources

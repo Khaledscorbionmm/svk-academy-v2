@@ -847,13 +847,27 @@ export default function LearnPage({ params }: { params: Promise<{ lessonId: stri
     }, 600);
   };
 
-  const handleExamSubmit = () => {
+  const handleExamSubmit = async () => {
     let correct = 0;
     examObj.questions.forEach((q: any, i: number) => {
       if (answers[i] === q.correctAnswer) correct++;
     });
     setScore(correct);
     setShowResults(true);
+
+    try {
+      await fetch('/api/lessons/complete', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          lessonSlug: String(lesson.id),
+          score: correct,
+          totalQuestions: examObj.questions.length
+        })
+      });
+    } catch (e) {
+      console.error('Failed to submit lesson completion score:', e);
+    }
   };
 
   const handleRequestActivation = async () => {

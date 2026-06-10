@@ -29,9 +29,9 @@ export async function GET(req: NextRequest) {
     const student = studentRows[0];
     const studentId = student.id;
 
-    // Count approved (enrolled) courses
+    // Count approved (enrolled) courses from enrollments table
     const enrolledRows = await query(
-      `SELECT COUNT(DISTINCT course_id) as count FROM lesson_access WHERE student_id = $1 AND status = 'approved'`,
+      `SELECT COUNT(*) as count FROM enrollments WHERE student_id = $1`,
       [studentId]
     ) as any[];
 
@@ -59,12 +59,12 @@ export async function GET(req: NextRequest) {
       `SELECT name, xp, LEFT(name, 1) as avatar_letter FROM students ORDER BY xp DESC NULLS LAST LIMIT 5`
     ) as any[];
 
-    // Get enrolled courses list
+    // Get enrolled courses list from enrollments table
     const coursesRows = await query(
       `SELECT DISTINCT c.id, c.title, c.title_ar, c.thumbnail_url, c.category
        FROM courses c
-       JOIN lesson_access la ON la.course_id = c.id
-       WHERE la.student_id = $1 AND la.status = 'approved'
+       JOIN enrollments e ON e.course_id = c.id
+       WHERE e.student_id = $1
        LIMIT 6`,
       [studentId]
     ) as any[];

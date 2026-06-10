@@ -83,6 +83,7 @@ export async function initializeDatabase(): Promise<void> {
       name VARCHAR(255) NOT NULL,
       phone VARCHAR(50),
       password_hash VARCHAR(255),
+      age INTEGER DEFAULT NULL,
       country VARCHAR(100) DEFAULT 'Egypt',
       avatar_url VARCHAR(1000),
       xp INTEGER DEFAULT 0,

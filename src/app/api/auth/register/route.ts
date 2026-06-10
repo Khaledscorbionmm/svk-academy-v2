@@ -52,6 +52,13 @@ export async function POST(req: NextRequest) {
       path: '/'
     });
 
+    response.cookies.set('svk_student_token', token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax',
+      path: '/'
+    });
+
     return response;
   } catch (error) {
     console.error('[Register API Error]', error);

@@ -312,8 +312,8 @@ export default function HomePage() {
       <section id="stats" style={{ position: 'relative', zIndex: 1, padding: '80px 2rem', background: 'rgba(99,102,241,0.05)', borderTop: '1px solid rgba(99,102,241,0.1)', borderBottom: '1px solid rgba(99,102,241,0.1)' }}>
         <div style={{ maxWidth: 1000, margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 48, textAlign: 'center' }}>
           {[
-            { num: '3,240+', label: 'طالب نشط', icon: '👨‍🎓' },
-            { num: '10+', label: 'كورس متخصص', icon: '📚' },
+            { num: siteStats.totalStudents > 0 ? `${siteStats.totalStudents}+` : '...', label: 'طالب نشط', icon: '👨‍🎓' },
+            { num: siteStats.totalCourses > 0 ? `${siteStats.totalCourses}+` : '...', label: 'كورس متخصص', icon: '📚' },
             { num: '98%', label: 'معدل الرضا', icon: '⭐' },
             { num: '24/7', label: 'دعم فوري', icon: '💬' },
           ].map((s, i) => (

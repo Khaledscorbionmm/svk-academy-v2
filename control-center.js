@@ -415,13 +415,12 @@ const server = http.createServer((req, res) => {
       box-shadow: 0 6px 20px var(--cyan);
     }
 
-    /* main workspace split layout */
     .workspace-pane {
       display: grid;
       grid-template-columns: 320px 1fr;
       gap: 16px;
-      flex: 1;
-      min-height: 0; /* Important for scroll */
+      height: calc(100vh - 380px);
+      min-height: 400px;
       margin-bottom: 16px;
     }
 
@@ -435,6 +434,7 @@ const server = http.createServer((req, res) => {
       box-shadow: 0 8px 32px rgba(0,0,0,0.3);
       display: flex;
       flex-direction: column;
+      height: 100%;
       min-height: 0;
     }
 
@@ -526,6 +526,7 @@ const server = http.createServer((req, res) => {
       box-shadow: 0 8px 32px rgba(0,0,0,0.3);
       display: flex;
       flex-direction: column;
+      height: 100%;
       min-height: 0;
       overflow: hidden;
     }
@@ -567,7 +568,8 @@ const server = http.createServer((req, res) => {
     #editor-container {
       flex: 1;
       width: 100%;
-      min-height: 0;
+      height: 100%;
+      position: relative;
     }
 
     /* Terminal logs pane */
@@ -639,7 +641,7 @@ const server = http.createServer((req, res) => {
   </div>
 
   <div class="container">
-    {/* Header bar */}
+    <!-- Header bar -->
     <div class="header-bar">
       <div class="branding">
         <span class="logo">🛠️</span>
@@ -657,9 +659,9 @@ const server = http.createServer((req, res) => {
       </div>
     </div>
 
-    {/* Split workspace */}
+    <!-- Split workspace -->
     <div class="workspace-pane">
-      {/* File Explorer */}
+      <!-- File Explorer -->
       <div class="explorer-card">
         <div class="explorer-header">
           <span>📁</span>
@@ -671,7 +673,7 @@ const server = http.createServer((req, res) => {
         </div>
       </div>
 
-      {/* Code Editor */}
+      <!-- Code Editor -->
       <div class="editor-card">
         <div class="editor-header-bar">
           <div class="open-file-title">
@@ -684,7 +686,7 @@ const server = http.createServer((req, res) => {
       </div>
     </div>
 
-    {/* Console Output */}
+    <!-- Console Output -->
     <div class="console-card">
       <div class="console-header">
         <div class="console-title">
@@ -697,7 +699,7 @@ const server = http.createServer((req, res) => {
     </div>
   </div>
 
-  {/* Load Monaco Editor CDN */}
+  <!-- Load Monaco Editor CDN -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js"></script>
   <script>
     const consoleBody = document.getElementById('console-body');
@@ -717,7 +719,7 @@ const server = http.createServer((req, res) => {
     require.config({ paths: { vs: 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.39.0/min/vs' } });
     require(['vs/editor/editor.main'], function () {
       editor = monaco.editor.create(document.getElementById('editor-container'), {
-        value: '// اختر ملفاً من القائمة الجانبية لعرض وتعديل الكود...\n// Choose a file from the explorer list to view or edit code...',
+        value: '// اختر ملفاً من القائمة الجانبية لعرض وتعديل الكود...\\n// Choose a file from the explorer list to view or edit code...',
         language: 'plaintext',
         theme: 'vs-dark',
         automaticLayout: true,
@@ -727,6 +729,7 @@ const server = http.createServer((req, res) => {
         scrollBeyondLastLine: false,
         padding: { top: 12, bottom: 12 }
       });
+      setTimeout(() => { editor.layout(); }, 100);
     });
 
     // Connect to SSE log stream
@@ -744,7 +747,7 @@ const server = http.createServer((req, res) => {
     }
 
     function clearConsole() {
-      consoleBody.textContent = 'تم مسح الشاشة...\n';
+      consoleBody.textContent = 'تم مسح الشاشة...\\n';
     }
 
     // Load files tree
@@ -802,7 +805,7 @@ const server = http.createServer((req, res) => {
     async function loadFileContent(filePath) {
       if (!editor) return;
       try {
-        appendLog(`\\n[Explorer] جاري فتح الملف: ${filePath}...\\n`);
+        appendLog(\`\\n[Explorer] جاري فتح الملف: \${filePath}...\\n\`);
         const res = await fetch(\`/api/file/read?path=\${encodeURIComponent(filePath)}\`);
         const data = await res.json();
         
@@ -823,6 +826,7 @@ const server = http.createServer((req, res) => {
 
         const model = monaco.editor.createModel(data.content, lang);
         editor.setModel(model);
+        setTimeout(() => { editor.layout(); }, 50);
 
         // Highlight active explorer item
         const items = document.querySelectorAll('.file-item');
@@ -835,7 +839,7 @@ const server = http.createServer((req, res) => {
         });
 
       } catch (err) {
-        appendLog(`\\n[Error] فشل في فتح الملف: \${err.message}\\n`);
+        appendLog(\`\\n[Error] فشل في فتح الملف: \${err.message}\\n\`);
       }
     }
 
@@ -844,7 +848,7 @@ const server = http.createServer((req, res) => {
       if (!editor || !currentFilePath) return;
       const content = editor.getValue();
       try {
-        appendLog(`\\n[Editor] جاري حفظ التعديلات على الملف: ${currentFilePath}...\\n`);
+        appendLog(\`\\n[Editor] جاري حفظ التعديلات على الملف: \${currentFilePath}...\\n\`);
         const res = await fetch('/api/file/write', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -852,12 +856,12 @@ const server = http.createServer((req, res) => {
         });
         const data = await res.json();
         if (res.ok) {
-          appendLog(`✓ تم حفظ التعديلات بنجاح!\\n`);
+          appendLog(\`✓ تم حفظ التعديلات بنجاح!\\n\`);
         } else {
-          appendLog(`✗ فشل الحفظ: \${data.error}\\n`);
+          appendLog(\`✗ فشل الحفظ: \${data.error}\\n\`);
         }
       } catch (err) {
-        appendLog(`\\n[Error] حدث خطأ أثناء الحفظ: \${err.message}\\n`);
+        appendLog(\`\\n[Error] حدث خطأ أثناء الحفظ: \${err.message}\\n\`);
       }
     }
 

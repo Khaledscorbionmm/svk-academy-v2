@@ -33,26 +33,61 @@ export async function POST(req: NextRequest) {
     const student = studentRows[0];
     const studentId = student.id;
 
-    // Check lesson_access exists and is approved
-    const accessRows = await query(
-      `SELECT id, completed_at FROM lesson_access WHERE student_id = $1 AND lesson_slug = $2 AND status = 'approved'`,
-      [studentId, lessonSlug]
+    // Get course_id for this lesson
+    const lessonRows = await query(
+      'SELECT course_id FROM lessons WHERE id = $1',
+      [parseInt(lessonSlug, 10) || 0]
     ) as any[];
 
-    if (!accessRows.length) {
+    if (!lessonRows.length) {
+      return NextResponse.json({ error: 'Lesson not found' }, { status: 404 });
+    }
+    const courseId = lessonRows[0].course_id;
+
+    // Check if enrolled in this course
+    const enrollRows = await query(
+      'SELECT id FROM enrollments WHERE student_id = $1 AND course_id = $2',
+      [studentId, courseId]
+    ) as any[];
+
+    let isAuthorized = enrollRows.length > 0;
+    let alreadyCompleted = false;
+
+    // If not enrolled directly, check manual override approved lesson_access
+    if (!isAuthorized) {
+      const accessRows = await query(
+        `SELECT id, completed_at FROM lesson_access WHERE student_id = $1 AND lesson_slug = $2 AND status = 'approved'`,
+        [studentId, lessonSlug]
+      ) as any[];
+      if (accessRows.length > 0) {
+        isAuthorized = true;
+        alreadyCompleted = accessRows[0].completed_at !== null;
+      }
+    } else {
+      // Check if already completed
+      const accessRows = await query(
+        `SELECT completed_at FROM lesson_access WHERE student_id = $1 AND lesson_slug = $2`,
+        [studentId, lessonSlug]
+      ) as any[];
+      if (accessRows.length > 0) {
+        alreadyCompleted = accessRows[0].completed_at !== null;
+      }
+    }
+
+    if (!isAuthorized) {
       return NextResponse.json({ error: 'No approved access for this lesson' }, { status: 403 });
     }
 
-    // Mark as complete with score
+    // Mark as complete with score (upsert)
     await query(
-      `UPDATE lesson_access
-       SET completed_at = NOW(), score = $1, total_questions = $2
-       WHERE student_id = $3 AND lesson_slug = $4 AND status = 'approved'`,
-      [score, totalQuestions, studentId, lessonSlug]
+      `INSERT INTO lesson_access (student_id, course_id, lesson_slug, status, completed_at, score, total_questions)
+       VALUES ($1, $2, $3, 'approved', NOW(), $4, $5)
+       ON CONFLICT (student_id, lesson_slug)
+       DO UPDATE SET completed_at = NOW(), score = $4, total_questions = $5, status = 'approved'`,
+      [studentId, courseId, lessonSlug, score, totalQuestions]
     );
 
     // Award XP based on score percentage (max 50 XP per lesson, scaled by score)
-    const alreadyCompleted = accessRows[0].completed_at !== null;
     let xpAwarded = 0;
 
     if (!alreadyCompleted) {
