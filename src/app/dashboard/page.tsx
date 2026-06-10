@@ -249,7 +249,7 @@ export default function StudentDashboardPage() {
       <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet" />
 
       {/* Navbar */}
-      <nav style={{ borderBottom: '1px solid rgba(255,255,255,0.06)', padding: '14px 32px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', position: 'sticky', top: 0, zIndex: 100, background: 'rgba(6,6,18,0.95)', backdropFilter: 'blur(20px)' }}>
+      <nav className="dashboard-nav">
         <Link href="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 10 }}>
           <span style={{ fontSize: 24 }}>🎓</span>
           <span style={{ fontSize: 18, fontWeight: 900, background: 'linear-gradient(135deg,#6366f1,#a855f7)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
@@ -321,7 +321,7 @@ export default function StudentDashboardPage() {
           ))}
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 340px', gap: 24, alignItems: 'start' }}>
+        <div className="dashboard-grid">
           <div>
             {/* Continue from where you left off - real course from DB */}
             {realCourses.length > 0 && (() => {
@@ -599,6 +599,40 @@ export default function StudentDashboardPage() {
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: #060612; }
         ::-webkit-scrollbar-thumb { background: rgba(99,102,241,0.3); border-radius: 3px; }
+        
+        .dashboard-grid {
+          display: grid;
+          grid-template-columns: 1fr 340px;
+          gap: 24px;
+          align-items: start;
+        }
+        
+        .dashboard-nav {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+          padding: 14px 32px;
+          position: sticky;
+          top: 0;
+          z-index: 100;
+          background: rgba(6, 6, 18, 0.95);
+          backdrop-filter: blur(20px);
+        }
+        
+        @media (max-width: 968px) {
+          .dashboard-grid {
+            grid-template-columns: 1fr !important;
+          }
+        }
+        
+        @media (max-width: 768px) {
+          .dashboard-nav {
+            padding: 12px 16px !important;
+            flex-wrap: wrap;
+            gap: 12px;
+          }
+        }
       `}</style>
     </div>
   );
