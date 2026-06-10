@@ -11,6 +11,11 @@ async function update() {
     await pool.query("ALTER TABLE lessons ADD COLUMN IF NOT EXISTS text_content TEXT");
     await pool.query("ALTER TABLE lessons ADD COLUMN IF NOT EXISTS exam_data JSONB");
     await pool.query("ALTER TABLE students ADD COLUMN IF NOT EXISTS age INTEGER");
+    await pool.query("ALTER TABLE lessons ADD COLUMN IF NOT EXISTS code_explanation TEXT");
+    await pool.query("ALTER TABLE lessons ADD COLUMN IF NOT EXISTS code_template TEXT");
+    await pool.query("ALTER TABLE lessons ADD COLUMN IF NOT EXISTS practice_instructions TEXT");
+    await pool.query("ALTER TABLE lessons ADD COLUMN IF NOT EXISTS practice_expected TEXT");
+    await pool.query("ALTER TABLE lessons ADD COLUMN IF NOT EXISTS code_example TEXT");
     console.log('Columns added successfully');
   } catch(e) {
     console.error(e);
