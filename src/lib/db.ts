@@ -61,7 +61,7 @@ export async function initializeDatabase(): Promise<void> {
       description TEXT,
       description_ar TEXT,
       thumbnail_url VARCHAR(1000),
-      price DECIMAL(10,2) DEFAULT 0,
+      price DECIMAL(10,2) DEFAULT 369.00,
       currency VARCHAR(10) DEFAULT 'EGP',
       instructor_name VARCHAR(255),
       category VARCHAR(100),
@@ -82,8 +82,10 @@ export async function initializeDatabase(): Promise<void> {
       email VARCHAR(255) UNIQUE NOT NULL,
       name VARCHAR(255) NOT NULL,
       phone VARCHAR(50),
+      password_hash VARCHAR(255),
       country VARCHAR(100) DEFAULT 'Egypt',
       avatar_url VARCHAR(1000),
+      xp INTEGER DEFAULT 0,
       is_active BOOLEAN DEFAULT true,
       created_at TIMESTAMPTZ DEFAULT NOW()
     )
@@ -92,12 +94,25 @@ export async function initializeDatabase(): Promise<void> {
   await query(`
     CREATE TABLE IF NOT EXISTS enrollments (
       id SERIAL PRIMARY KEY,
-      student_id INTEGER REFERENCES students(id),
-      course_id INTEGER REFERENCES courses(id),
+      student_id INTEGER REFERENCES students(id) ON DELETE CASCADE,
+      course_id INTEGER REFERENCES courses(id) ON DELETE CASCADE,
       enrolled_at TIMESTAMPTZ DEFAULT NOW(),
       progress_percent INTEGER DEFAULT 0,
       completed_at TIMESTAMPTZ,
       UNIQUE(student_id, course_id)
+    )
+  `);
+
+  await query(`
+    CREATE TABLE IF NOT EXISTS lesson_access (
+      id SERIAL PRIMARY KEY,
+      student_id INTEGER REFERENCES students(id) ON DELETE CASCADE,
+      course_id INTEGER REFERENCES courses(id) ON DELETE CASCADE,
+      lesson_slug VARCHAR(255) NOT NULL,
+      status VARCHAR(50) DEFAULT 'requested',
+      requested_at TIMESTAMPTZ DEFAULT NOW(),
+      approved_at TIMESTAMPTZ,
+      UNIQUE(student_id, lesson_slug)
     )
   `);
 }

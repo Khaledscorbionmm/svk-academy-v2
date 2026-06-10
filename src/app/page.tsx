@@ -102,12 +102,17 @@ export default function HomePage() {
                 onMouseOver={e => (e.currentTarget.style.color = '#a855f7')}
                 onMouseOut={e => (e.currentTarget.style.color = '#94a3b8')}>{label}</a>
             ))}
-            <Link href="/admin/login" style={{
+            <Link href="/login" style={{
+              color: '#94a3b8', textDecoration: 'none', padding: '8px 16px',
+              borderRadius: 8, fontSize: 13, fontWeight: 600, border: '1px solid rgba(255,255,255,0.1)',
+              transition: 'all 0.2s',
+            }}>تسجيل الدخول</Link>
+            <Link href="/register" style={{
               background: 'linear-gradient(135deg, #6366f1, #a855f7)',
               color: '#fff', textDecoration: 'none', padding: '8px 20px',
               borderRadius: 8, fontSize: 13, fontWeight: 700,
               boxShadow: '0 0 20px rgba(99,102,241,0.3)', transition: 'all 0.2s',
-            }}>دخول الادمن 🔐</Link>
+            }}>سجّل مجاناً 🚀</Link>
           </div>
         </div>
       </nav>
@@ -313,10 +318,12 @@ export default function HomePage() {
           <span style={{ fontWeight: 900, fontSize: 18, background: 'linear-gradient(90deg,#6366f1,#a855f7)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>SVK Academy</span>
         </div>
         <p style={{ color: '#334155', fontSize: 14, margin: '0 0 8px' }}>الأكاديمية الأولى عربياً للبرمجة والتكنولوجيا</p>
-        <p style={{ color: '#1e293b', fontSize: 12, margin: 0 }}>© 2025 Smart Venom K Academy. جميع الحقوق محفوظة.</p>
-        <div style={{ marginTop: 24 }}>
-          <Link href="/admin/login" style={{ color: '#334155', fontSize: 12, textDecoration: 'none' }}>دخول الإدارة</Link>
+        <div style={{ display: 'flex', gap: 24, justifyContent: 'center', marginTop: 16, marginBottom: 16 }}>
+          <Link href="/courses" style={{ color: '#64748b', fontSize: 13, textDecoration: 'none' }}>الكورسات</Link>
+          <Link href="/login" style={{ color: '#64748b', fontSize: 13, textDecoration: 'none' }}>تسجيل الدخول</Link>
+          <Link href="/register" style={{ color: '#64748b', fontSize: 13, textDecoration: 'none' }}>حساب جديد</Link>
         </div>
+        <p style={{ color: '#1e293b', fontSize: 12, margin: 0 }}>© 2025 Smart Venom K Academy. جميع الحقوق محفوظة.</p>
       </footer>
 
       <style>{`

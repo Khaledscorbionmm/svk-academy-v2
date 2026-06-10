@@ -15,34 +15,49 @@ async function tryDatabaseLogin(email: string, password: string) {
     const { query, queryOne, initializeDatabase } = await import('@/lib/db');
     await initializeDatabase();
     
+    // Check admins
     const admin = await queryOne<{
       id: number; email: string; name: string; role: string; password_hash: string;
     }>('SELECT id, email, name, role, password_hash FROM admins WHERE email = $1', [email.toLowerCase().trim()]);
 
-    if (!admin) {
-      // Auto-seed default admin
-      if (email === HARDCODED_ADMIN.email) {
-        const hash = await hashPassword(HARDCODED_ADMIN.password);
-        await query(
-          'INSERT INTO admins (email, password_hash, name, role) VALUES ($1,$2,$3,$4) ON CONFLICT (email) DO NOTHING',
-          [HARDCODED_ADMIN.email, hash, HARDCODED_ADMIN.name, HARDCODED_ADMIN.role]
-        );
-        const newAdmin = await queryOne<{
-          id: number; email: string; name: string; role: string; password_hash: string;
-        }>('SELECT id, email, name, role, password_hash FROM admins WHERE email = $1', [email]);
-        if (newAdmin) {
-          const valid = await comparePassword(password, newAdmin.password_hash);
-          if (valid) return { id: newAdmin.id, email: newAdmin.email, name: newAdmin.name, role: newAdmin.role };
-        }
+    if (admin) {
+      const valid = await comparePassword(password, admin.password_hash);
+      if (valid) {
+        await query('UPDATE admins SET last_login = NOW() WHERE id = $1', [admin.id]);
+        return { id: admin.id, email: admin.email, name: admin.name, role: admin.role };
       }
       return null;
     }
 
-    const valid = await comparePassword(password, admin.password_hash);
-    if (!valid) return null;
+    // Check students
+    const student = await queryOne<{
+      id: number; email: string; name: string; password_hash: string;
+    }>('SELECT id, email, name, password_hash FROM students WHERE email = $1', [email.toLowerCase().trim()]);
 
-    await query('UPDATE admins SET last_login = NOW() WHERE id = $1', [admin.id]);
-    return { id: admin.id, email: admin.email, name: admin.name, role: admin.role };
+    if (student) {
+      const valid = await comparePassword(password, student.password_hash);
+      if (valid) {
+        return { id: student.id, email: student.email, name: student.name, role: 'student' };
+      }
+      return null;
+    }
+
+    // Auto-seed default admin
+    if (email === HARDCODED_ADMIN.email) {
+      const hash = await hashPassword(HARDCODED_ADMIN.password);
+      await query(
+        'INSERT INTO admins (email, password_hash, name, role) VALUES ($1,$2,$3,$4) ON CONFLICT (email) DO NOTHING',
+        [HARDCODED_ADMIN.email, hash, HARDCODED_ADMIN.name, HARDCODED_ADMIN.role]
+      );
+      const newAdmin = await queryOne<{
+        id: number; email: string; name: string; role: string; password_hash: string;
+      }>('SELECT id, email, name, role, password_hash FROM admins WHERE email = $1', [email]);
+      if (newAdmin) {
+        const valid = await comparePassword(password, newAdmin.password_hash);
+        if (valid) return { id: newAdmin.id, email: newAdmin.email, name: newAdmin.name, role: newAdmin.role };
+      }
+    }
+    return null;
   } catch (err) {
     console.warn('[DB Login failed, using fallback]', (err as Error).message);
     return undefined; // undefined = DB error, try fallback
@@ -86,7 +101,11 @@ export async function POST(request: NextRequest) {
       dbStatus: dbWorking ? 'connected' : 'offline',
     });
 
-    response.cookies.set(COOKIE_NAME, token, COOKIE_OPTIONS);
+    if (user.role === 'admin') {
+      response.cookies.set(COOKIE_NAME, token, COOKIE_OPTIONS);
+    } else {
+      response.cookies.set('svk_student_token', token, COOKIE_OPTIONS);
+    }
     return response;
 
   } catch (error) {

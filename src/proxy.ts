@@ -7,42 +7,77 @@ const ALWAYS_PUBLIC = [
   '/api/auth/logout',
   '/api/auth/register',
   '/api/healthz',
-  '/api/courses',
   '/_next',
   '/favicon.ico',
 ];
 
-const PUBLIC_PAGES = ['/', '/courses', '/learn', '/login', '/register', '/about'];
+const PUBLIC_PAGES = ['/', '/courses', '/login', '/register'];
 
 export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  if (ALWAYS_PUBLIC.some(p => pathname.startsWith(p))) return NextResponse.next();
-  if (PUBLIC_PAGES.some(p => pathname === p || pathname.startsWith(p + '/'))) return NextResponse.next();
+  // 1. Allow always public resources
+  if (ALWAYS_PUBLIC.some(p => pathname.startsWith(p))) {
+    return NextResponse.next();
+  }
 
+  // 2. Allow public pages
+  if (PUBLIC_PAGES.some(p => pathname === p)) {
+    return NextResponse.next();
+  }
+
+  // 3. Protect Admin Dashboard and APIs
   const requiresAdminAuth =
     pathname.startsWith('/admin/dashboard') ||
-    pathname.startsWith('/admin/courses') ||
-    pathname.startsWith('/admin/students') ||
-    pathname.startsWith('/admin/settings') ||
     pathname.startsWith('/api/admin/');
 
   if (requiresAdminAuth) {
     const token = request.cookies.get(COOKIE_NAME)?.value;
     if (!token) {
-      if (pathname.startsWith('/api/')) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+      if (pathname.startsWith('/api/')) {
+        return NextResponse.json({ error: 'غير مصرح لك' }, { status: 401 });
+      }
       return NextResponse.redirect(new URL('/admin/login', request.url));
     }
     const payload = verifyToken(token);
     if (!payload || payload.role !== 'admin') {
-      if (pathname.startsWith('/api/')) return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
+      if (pathname.startsWith('/api/')) {
+        return NextResponse.json({ error: 'غير مسموح لك' }, { status: 403 });
+      }
       return NextResponse.redirect(new URL('/admin/login', request.url));
     }
-    const headers = new Headers(request.headers);
-    headers.set('x-user-id', String(payload.id));
-    headers.set('x-user-email', payload.email);
-    headers.set('x-user-role', payload.role);
-    return NextResponse.next({ request: { headers } });
+    return NextResponse.next();
+  }
+
+  // 4. Protect Student Dashboard and Learning Space
+  const requiresStudentAuth =
+    pathname.startsWith('/dashboard') ||
+    pathname.startsWith('/learn');
+
+  if (requiresStudentAuth) {
+    const studentToken = request.cookies.get('svk_student_token')?.value;
+    const adminToken = request.cookies.get(COOKIE_NAME)?.value;
+    
+    let isAuthorized = false;
+    
+    // Check student token
+    if (studentToken) {
+      const payload = verifyToken(studentToken);
+      if (payload) isAuthorized = true;
+    }
+    
+    // Admin is also allowed to view dashboard/learn space for previewing
+    if (adminToken && !isAuthorized) {
+      const payload = verifyToken(adminToken);
+      if (payload && payload.role === 'admin') isAuthorized = true;
+    }
+
+    if (!isAuthorized) {
+      if (pathname.startsWith('/api/')) {
+        return NextResponse.json({ error: 'يرجى تسجيل الدخول' }, { status: 401 });
+      }
+      return NextResponse.redirect(new URL('/login', request.url));
+    }
   }
 
   return NextResponse.next();
