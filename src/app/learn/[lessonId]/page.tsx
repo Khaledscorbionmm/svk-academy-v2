@@ -3,6 +3,7 @@
 import { useState, useEffect, use, useRef } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import LanguageLearningLayout from '@/components/LanguageLearningLayout';
 
 function PremiumAudioPlayer({ src, title, textContent }: { src: string; title: string; textContent: string }) {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -662,7 +663,7 @@ const SYNTAX_DICTIONARY: Record<string, SyntaxItem> = {
   }
 };
 
-export default function LearnPage({ params }: { params: Promise<{ lessonId: string }> }) {
+export default function LessonPage({ params }: { params: Promise<{ lessonId: string }> }) {
   const router = useRouter();
   const { lessonId } = use(params);
   const [data, setData] = useState<any>(null);
@@ -775,6 +776,7 @@ export default function LearnPage({ params }: { params: Promise<{ lessonId: stri
   if (!data) return null;
 
   const { lesson, course, sidebar: sideLessons } = data;
+  const isLanguage = course?.category?.toLowerCase() === 'languages';
 
   let examObj = null;
   if (lesson.exam_data) {
@@ -1100,6 +1102,15 @@ export default function LearnPage({ params }: { params: Promise<{ lessonId: stri
     }
   };
 
+  if (isLanguage) {
+    return (
+      <>
+        <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet" />
+        <LanguageLearningLayout data={data} />
+      </>
+    );
+  }
+
   return (
     <div style={{ fontFamily: "'Cairo', sans-serif", direction: 'rtl', background: '#020205', color: '#e2e8f0', minHeight: '100vh', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
       <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet" />
@@ -1133,8 +1144,8 @@ export default function LearnPage({ params }: { params: Promise<{ lessonId: stri
               whiteSpace: 'nowrap'
             }}
           >
-            <span className="desktop-text">💻 مساحة التطبيق العملي (4 لوحات)</span>
-            <span className="mobile-text">💻 التطبيق</span>
+            <span className="desktop-text">{isLanguage ? '📖 مساحة الدرس والتعلم' : '💻 مساحة التطبيق العملي (4 لوحات)'}</span>
+            <span className="mobile-text">{isLanguage ? '📖 الدرس' : '💻 التطبيق'}</span>
           </button>
           {examObj && (
             <button 
@@ -1351,46 +1362,50 @@ export default function LearnPage({ params }: { params: Promise<{ lessonId: stri
                 >
                   📖 الدرس
                 </button>
-                <button 
-                  onClick={() => setActiveWorkspaceTab('syntax')} 
-                  style={{
-                    background: activeWorkspaceTab === 'syntax' ? 'rgba(16,185,129,0.15)' : 'transparent',
-                    border: 'none',
-                    color: activeWorkspaceTab === 'syntax' ? '#10b981' : '#94a3b8',
-                    padding: '8px 12px',
-                    borderRadius: '8px',
-                    cursor: 'pointer',
-                    fontFamily: "'Cairo', sans-serif",
-                    fontSize: '0.8rem',
-                    fontWeight: 700,
-                    whiteSpace: 'nowrap',
-                    flex: 1,
-                    textAlign: 'center',
-                    transition: 'all 0.2s'
-                  }}
-                >
-                  💡 القاموس
-                </button>
-                <button 
-                  onClick={() => setActiveWorkspaceTab('editor')} 
-                  style={{
-                    background: activeWorkspaceTab === 'editor' ? 'rgba(16,185,129,0.15)' : 'transparent',
-                    border: 'none',
-                    color: activeWorkspaceTab === 'editor' ? '#10b981' : '#94a3b8',
-                    padding: '8px 12px',
-                    borderRadius: '8px',
-                    cursor: 'pointer',
-                    fontFamily: "'Cairo', sans-serif",
-                    fontSize: '0.8rem',
-                    fontWeight: 700,
-                    whiteSpace: 'nowrap',
-                    flex: 1,
-                    textAlign: 'center',
-                    transition: 'all 0.2s'
-                  }}
-                >
-                  💻 التجربة
-                </button>
+                {!isLanguage && (
+                  <>
+                    <button 
+                      onClick={() => setActiveWorkspaceTab('syntax')} 
+                      style={{
+                        background: activeWorkspaceTab === 'syntax' ? 'rgba(16,185,129,0.15)' : 'transparent',
+                        border: 'none',
+                        color: activeWorkspaceTab === 'syntax' ? '#10b981' : '#94a3b8',
+                        padding: '8px 12px',
+                        borderRadius: '8px',
+                        cursor: 'pointer',
+                        fontFamily: "'Cairo', sans-serif",
+                        fontSize: '0.8rem',
+                        fontWeight: 700,
+                        whiteSpace: 'nowrap',
+                        flex: 1,
+                        textAlign: 'center',
+                        transition: 'all 0.2s'
+                      }}
+                    >
+                      💡 القاموس
+                    </button>
+                    <button 
+                      onClick={() => setActiveWorkspaceTab('editor')} 
+                      style={{
+                        background: activeWorkspaceTab === 'editor' ? 'rgba(16,185,129,0.15)' : 'transparent',
+                        border: 'none',
+                        color: activeWorkspaceTab === 'editor' ? '#10b981' : '#94a3b8',
+                        padding: '8px 12px',
+                        borderRadius: '8px',
+                        cursor: 'pointer',
+                        fontFamily: "'Cairo', sans-serif",
+                        fontSize: '0.8rem',
+                        fontWeight: 700,
+                        whiteSpace: 'nowrap',
+                        flex: 1,
+                        textAlign: 'center',
+                        transition: 'all 0.2s'
+                      }}
+                    >
+                      💻 التجربة
+                    </button>
+                  </>
+                )}
                 <button 
                   onClick={() => setActiveWorkspaceTab('instructions')} 
                   style={{
@@ -1414,7 +1429,7 @@ export default function LearnPage({ params }: { params: Promise<{ lessonId: stri
               </div>
 
               {/* 4-Panel Grid Workspace */}
-              <div className="workspace-grid" style={{ gap: '12px', padding: '12px', background: '#020205', flex: 1, overflow: 'hidden' }}>
+              <div className="workspace-grid" data-is-language={isLanguage ? 'true' : 'false'} style={{ gap: '12px', padding: '12px', background: '#020205', flex: 1, overflow: 'hidden' }}>
                 
                 {/* Panel 1: Written Explanation (الشرح النظري) */}
                 <section className={`workspace-panel ${activeWorkspaceTab === 'explanation' ? 'active-panel' : 'hidden-panel'}`} style={{ background: 'rgba(9,10,18,0.7)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '16px', padding: '24px', overflowY: 'auto', display: 'flex', flexDirection: 'column', boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.03)' }}>
