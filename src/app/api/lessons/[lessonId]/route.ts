@@ -35,11 +35,13 @@ export async function GET(req: NextRequest, { params }: { params: Promise<{ less
       payload = verifyToken(studentToken);
     }
 
+    const isFree = Number(lesson.order_index) === 1;
+
     if (payload) {
       if (payload.role === 'admin') {
         accessStatus = 'approved'; // Admins can access everything
       } else if (payload.role === 'student') {
-        if (lesson.is_free) {
+        if (isFree) {
           accessStatus = 'approved';
         } else {
           // Check enrollment
@@ -54,7 +56,7 @@ export async function GET(req: NextRequest, { params }: { params: Promise<{ less
       }
     } else {
       // Guest access
-      if (lesson.is_free) {
+      if (isFree) {
         accessStatus = 'approved';
       }
     }
