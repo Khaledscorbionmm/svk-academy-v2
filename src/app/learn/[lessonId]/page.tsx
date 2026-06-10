@@ -222,7 +222,59 @@ export default function LearnPage({ params }: { params: Promise<{ lessonId: stri
 
         {/* Content Workspace */}
         <main style={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden', position: 'relative' }}>
-          {activeTab === 'workspace' ? (
+          {data.accessStatus === 'locked' ? (
+            /* Locked Course Access Screen with WhatsApp Button */
+            <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '40px', background: 'radial-gradient(circle, rgba(16,185,129,0.03) 0%, transparent 70%)', overflowY: 'auto' }}>
+              <div style={{
+                maxWidth: '600px', width: '100%', background: 'rgba(5,5,10,0.7)', border: '1px solid rgba(16,185,129,0.2)',
+                borderRadius: '24px', padding: '40px', textAlign: 'center', backdropFilter: 'blur(20px)',
+                boxShadow: '0 20px 50px rgba(0,0,0,0.5)'
+              }}>
+                <div style={{
+                  width: '90px', height: '90px', borderRadius: '50%', background: 'rgba(239,68,68,0.1)',
+                  border: '1px solid rgba(239,68,68,0.3)', color: '#f87171', display: 'flex',
+                  alignItems: 'center', justifyContent: 'center', fontSize: '3rem', margin: '0 auto 24px',
+                  boxShadow: '0 0 30px rgba(239,68,68,0.2)', animation: 'pulse 2s infinite'
+                }}>
+                  🔒
+                </div>
+                
+                <h2 style={{ fontSize: '1.8rem', fontWeight: 900, color: '#fff', marginBottom: '16px' }}>هذا الدرس مدفوع ومحمي 🔒</h2>
+                <p style={{ color: '#94a3b8', fontSize: '1rem', lineHeight: 1.8, marginBottom: '32px' }}>
+                  عذراً، هذا المحتوى مخصص للطلاب المشتركين فقط. يرجى التواصل مع إدارة الأكاديمية لحجز الكورس وتفعيله على حسابك للبدء في التعلم فوراً.
+                </p>
+
+                <div style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '16px', padding: '20px', marginBottom: '32px', textAlign: 'right' }}>
+                  <h4 style={{ margin: '0 0 12px', color: '#10b981', fontSize: '0.95rem', fontWeight: 800 }}>ميزات الاشتراك في الكورس الكامل:</h4>
+                  <ul style={{ margin: 0, paddingRight: '20px', color: '#cbd5e1', fontSize: '0.9rem', display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                    <li>🔓 فتح جميع الدروس (100 درس كامل) مدى الحياة.</li>
+                    <li>💻 إمكانية استخدام المحرر البرمجي التفاعلي وتشغيل الأكواد.</li>
+                    <li>🧠 إجراء الاختبارات بعد كل درس والحصول على تصحيح فوري.</li>
+                    <li>🏆 شهادة إتمام معتمدة عند إنهاء الكورس بنسبة 100%.</li>
+                  </ul>
+                </div>
+
+                <a 
+                  href={`https://wa.me/201034009418?text=${encodeURIComponent(
+                    `مرحباً يا هندسة، أريد تفعيل كورس: "${course.title_ar || course.title}".\nبيانات حسابي المسجل بها:\n- الاسم: ${data.studentInfo?.name || ''}\n- الهاتف: ${data.studentInfo?.phone || ''}\n- البريد الإلكتروني: ${data.studentInfo?.email || ''}`
+                  )}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ textDecoration: 'none' }}
+                >
+                  <button style={{
+                    width: '100%', padding: '16px', borderRadius: '14px', border: 'none',
+                    background: 'linear-gradient(135deg, #25d366, #128c7e)', color: '#fff',
+                    fontSize: '1.1rem', fontWeight: 800, cursor: 'pointer', fontFamily: "'Cairo', sans-serif",
+                    boxShadow: '0 10px 25px rgba(37,211,102,0.3)', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px',
+                    transition: 'all 0.3s'
+                  }}>
+                    💬 تواصل عبر الواتساب لحجز الكورس وتفعيله
+                  </button>
+                </a>
+              </div>
+            </div>
+          ) : activeTab === 'workspace' ? (
             /* 4-Panel Grid Workspace */
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gridTemplateRows: '1fr 1fr', gap: '12px', padding: '12px', height: '100%', overflow: 'hidden', background: '#020205' }}>
               

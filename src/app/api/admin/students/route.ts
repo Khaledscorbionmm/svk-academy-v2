@@ -1,24 +1,58 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { query, initializeDatabase } from '@/lib/db';
-import { verifyToken } from '@/lib/auth';
+import { verifyToken, COOKIE_NAME } from '@/lib/auth';
 
 export async function GET(request: NextRequest) {
+  const token = request.cookies.get(COOKIE_NAME)?.value;
+  const payload = token ? verifyToken(token) : null;
+
+  if (!payload || payload.role !== 'admin') {
+    return NextResponse.json({ error: 'غير مصرح لك' }, { status: 403 });
+  }
+
   try {
     await initializeDatabase();
-    const adminToken = request.cookies.get('svk_admin_token')?.value;
-    const adminPayload = adminToken ? verifyToken(adminToken) : null;
     
-    if (!adminPayload || adminPayload.role !== 'admin') {
-      return NextResponse.json({ error: 'غير مصرح لك للوصول إلى هذه البيانات' }, { status: 403 });
-    }
-    
-    const students = await query(
-      'SELECT id, name, email, phone, country, created_at FROM students ORDER BY created_at DESC'
-    );
-    
+    // Get all students
+    const students = await query(`
+      SELECT s.id, s.name, s.email, s.phone, s.age, s.created_at, s.is_active,
+             (SELECT COUNT(*) FROM enrollments e WHERE e.student_id = s.id) as course_count
+      FROM students s
+      ORDER BY s.created_at DESC
+    `);
+
     return NextResponse.json({ students });
   } catch (error) {
-    console.error('[Admin Get Students Error]', error);
-    return NextResponse.json({ error: 'حدث خطأ في جلب بيانات الطلاب' }, { status: 500 });
+    console.error('[Admin Students GET Error]', error);
+    return NextResponse.json({ error: 'حدث خطأ في جلب قائمة الطلاب' }, { status: 500 });
+  }
+}
+
+// Toggle student status (active/inactive)
+export async function POST(request: NextRequest) {
+  const token = request.cookies.get(COOKIE_NAME)?.value;
+  const payload = token ? verifyToken(token) : null;
+
+  if (!payload || payload.role !== 'admin') {
+    return NextResponse.json({ error: 'غير مصرح لك' }, { status: 403 });
+  }
+
+  try {
+    await initializeDatabase();
+    const { studentId, is_active } = await request.json();
+
+    if (!studentId) {
+      return NextResponse.json({ error: 'مُعرف الطالب مطلوب' }, { status: 400 });
+    }
+
+    await query(
+      'UPDATE students SET is_active = $1 WHERE id = $2',
+      [is_active, studentId]
+    );
+
+    return NextResponse.json({ success: true });
+  } catch (error) {
+    console.error('[Admin Student Status POST Error]', error);
+    return NextResponse.json({ error: 'حدث خطأ في تعديل حالة الطالب' }, { status: 500 });
   }
 }
