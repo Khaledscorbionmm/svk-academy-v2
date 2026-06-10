@@ -144,6 +144,32 @@ export default function AdminStudents() {
     }
   };
 
+  const handleResetPassword = async (student: Student) => {
+    const newPassword = prompt(`أدخل كلمة المرور الجديدة للطالب (${student.name}):`, '123456');
+    if (newPassword === null) return;
+    if (!newPassword.trim()) {
+      alert('كلمة المرور لا يمكن أن تكون فارغة');
+      return;
+    }
+
+    try {
+      const res = await fetch('/api/admin/students', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ studentId: student.id, newPassword: newPassword.trim() })
+      });
+      const data = await res.json();
+      if (res.ok) {
+        alert(`تم إعادة تعيين كلمة مرور الطالب (${student.name}) بنجاح إلى: ${newPassword.trim()}`);
+      } else {
+        alert(data.error || 'حدث خطأ في إعادة تعيين كلمة المرور');
+      }
+    } catch (err) {
+      console.error(err);
+      alert('حدث خطأ في الاتصال بالسيرفر');
+    }
+  };
+
   return (
     <div style={{ padding: '2rem', direction: 'rtl' }}>
       <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
@@ -156,8 +182,8 @@ export default function AdminStudents() {
       {loading ? (
         <div style={{ padding: '4rem', textAlign: 'center', color: '#3b82f6' }}>جاري تحميل الحسابات والطلاب...</div>
       ) : (
-        <div style={{ background: 'rgba(5,5,10,0.6)', border: '1px solid rgba(59,130,246,0.2)', borderRadius: '12px', overflow: 'hidden', backdropFilter: 'blur(10px)' }}>
-          <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'right' }}>
+        <div style={{ background: 'rgba(5,5,10,0.6)', border: '1px solid rgba(59,130,246,0.2)', borderRadius: '12px', overflowX: 'auto', backdropFilter: 'blur(10px)' }}>
+          <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'right', minWidth: '900px' }}>
             <thead>
               <tr style={{ background: 'rgba(59,130,246,0.1)', borderBottom: '1px solid rgba(59,130,246,0.2)' }}>
                 <th style={{ padding: '1rem 1.5rem', color: '#3b82f6', fontWeight: 700 }}>اسم الطالب</th>
@@ -219,12 +245,20 @@ export default function AdminStudents() {
                     </button>
                   </td>
                   <td style={{ padding: '1rem 1.5rem' }}>
-                    <button 
-                      onClick={() => openEnrollmentModal(student)}
-                      style={{ background: '#3b82f6', color: '#fff', border: 'none', padding: '0.5rem 1rem', borderRadius: '6px', cursor: 'pointer', fontSize: '0.85rem', fontWeight: 700 }}
-                    >
-                      تفعيل كورس 🔑
-                    </button>
+                    <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', alignItems: 'center', minWidth: '240px' }}>
+                      <button 
+                        onClick={() => openEnrollmentModal(student)}
+                        style={{ background: '#3b82f6', color: '#fff', border: 'none', padding: '0.5rem 1rem', borderRadius: '6px', cursor: 'pointer', fontSize: '0.85rem', fontWeight: 700, whiteSpace: 'nowrap' }}
+                      >
+                        تفعيل كورس 🔑
+                      </button>
+                      <button 
+                        onClick={() => handleResetPassword(student)}
+                        style={{ background: 'rgba(245,158,11,0.15)', border: '1px solid rgba(245,158,11,0.3)', color: '#fbbf24', padding: '0.5rem 1rem', borderRadius: '6px', cursor: 'pointer', fontSize: '0.85rem', fontWeight: 700, whiteSpace: 'nowrap' }}
+                      >
+                        🔐 كلمة السر
+                      </button>
+                    </div>
                   </td>
                 </tr>
               ))}

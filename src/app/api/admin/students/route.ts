@@ -63,3 +63,35 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'حدث خطأ في تعديل حالة الطالب' }, { status: 500 });
   }
 }
+
+// Reset student password
+export async function PUT(request: NextRequest) {
+  const token = request.cookies.get(COOKIE_NAME)?.value;
+  const payload = token ? verifyToken(token) : null;
+
+  if (!payload || payload.role !== 'admin') {
+    return NextResponse.json({ error: 'غير مصرح لك' }, { status: 403 });
+  }
+
+  try {
+    await initializeDatabase();
+    const { studentId, newPassword } = await request.json();
+
+    if (!studentId || !newPassword || !newPassword.trim()) {
+      return NextResponse.json({ error: 'مُعرف الطالب وكلمة المرور الجديدة مطلوبان' }, { status: 400 });
+    }
+
+    const { hashPassword } = await import('@/lib/auth');
+    const hash = await hashPassword(newPassword);
+
+    await query(
+      'UPDATE students SET password_hash = $1 WHERE id = $2',
+      [hash, studentId]
+    );
+
+    return NextResponse.json({ success: true, message: 'تم إعادة تعيين كلمة السر بنجاح' });
+  } catch (error) {
+    console.error('[Admin Student Password PUT Error]', error);
+    return NextResponse.json({ error: 'حدث خطأ في إعادة تعيين كلمة السر' }, { status: 500 });
+  }
+}
