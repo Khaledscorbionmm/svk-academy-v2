@@ -13,20 +13,107 @@ const cleanHtmlText = (text: string) => {
     .replace(/&gt;/g, '>');
 };
 
+// Core dictionary metadata for high-fidelity fallbacks and details
+const COMMON_METADATA: Record<string, { phonetic: string; context: string }> = {
+  "hello, how are you?": {
+    phonetic: "هيلو، هاو آر يو؟",
+    context: "التحية الأساسية للسلام والسؤال عن الحال والأحوال بأسلوب مهذب عند مقابلة أي شخص."
+  },
+  "nice to meet you": {
+    phonetic: "نايس تو ميت يو",
+    context: "تُقال للتعبير عن اللطف والاحترام عند مقابلة شخص ما لأول مرة لإشعاره بالترحاب."
+  },
+  "please help me": {
+    phonetic: "بليز هيلب مي",
+    context: "تُستخدم لطلب المساعدة أو الدعم من الآخرين بأسلوب مهذب ومحترم."
+  },
+  "thank you very much": {
+    phonetic: "ثانك يو فيري ماتش",
+    context: "لتقديم خالص الشكر والامتنان لشخص قدم لك صنيعاً أو معروفاً."
+  },
+  "see you later": {
+    phonetic: "سي يو ليتر",
+    context: "عبارة وداع ودية وشائعة بين الأصدقاء والزملاء تعني التطلع للقاء قريب."
+  },
+  "bonjour": {
+    phonetic: "بونجور",
+    context: "التحية الصباحية والنهارية الأساسية في فرنسا للترحيب اليومي."
+  },
+  "merci beaucoup": {
+    phonetic: "ميرسي بوكو",
+    context: "للتعبير عن الشكر الجزيل والامتنان العالي في مختلف المواقف بالفرنسية."
+  },
+  "s'il vous plaît": {
+    phonetic: "سيل فو بليه",
+    context: "صيغة الطلب المهذب والرسمي للأشخاص أو مجموعات التقدير بالفرنسية."
+  },
+  "comment ça va?": {
+    phonetic: "كومون سا فا؟",
+    context: "السؤال الودي والبسيط عن الأحوال بين الأصدقاء والمقربين."
+  },
+  "au revoir": {
+    phonetic: "أو روفوار",
+    context: "عبارة الوداع الرسمية المعتادة عند إنهاء اللقاء والمغادرة بالفرنسية."
+  },
+  "hallo": {
+    phonetic: "هالو",
+    context: "تحية يومية بسيطة وشائعة جداً لبدء الحديث مع الأصدقاء بالألمانية."
+  },
+  "guten morgen": {
+    phonetic: "جوتن مورجن",
+    context: "التحية الصباحية الرسمية المعتادة في ألمانيا حتى فترة الظهر."
+  },
+  "danke schön": {
+    phonetic: "دانكه شون",
+    context: "لتقديم الشكر اللطيف والتقدير لمن قدم لك مساعدة أو معروفاً بالألمانية."
+  },
+  "wie geht es dir?": {
+    phonetic: "في جيت إس دير؟",
+    context: "السؤال المباشر والودي عن الأحوال والصحة للشخص المقابل بالألمانية."
+  },
+  "tschüss": {
+    phonetic: "تشوز",
+    context: "كلمة الوداع غير الرسمية الأكثر تداولاً في ألمانيا عند الانفصال والذهاب."
+  }
+};
+
+const getMetadata = (foreign: string) => {
+  const key = foreign.toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()?]/g, "").trim();
+  if (COMMON_METADATA[key]) {
+    return COMMON_METADATA[key];
+  }
+  return {
+    phonetic: "لفظ صوتي تقريبي متوفر بالصوت",
+    context: "تُستخدم هذه العبارة لتبادل الحديث والممارسة اللغوية العملية في المواقف اليومية المتنوعة."
+  };
+};
+
 // Parser to extract vocabulary pairs from the Markdown text content
-const parseFlashcards = (textContent: string, courseTitle: string) => {
+const parseFlashcards = (textContent: string, courseTitle: string): Flashcard[] => {
   if (!textContent) return [];
   
   const clean = textContent.replace(/<[^>]*>/g, '\n').replace(/&nbsp;/g, ' ');
-  const regex = /(?:^|\n)[-*+]\s*([a-zA-ZÀ-ÿ\s',!?./~:-]+)\s*\(([\u0600-\u06FF\s،؛؟()]+)\)/g;
-  const cards: { en: string; ar: string }[] = [];
+  // Flexible regex to capture English (Arabic) [Phonetics] {Context}
+  const regex = /(?:^|\n)[-*+]\s*([a-zA-ZÀ-ÿ\s',!?./~:-]+)\s*\(([\u0600-\u06FF\s،؛؟()]+)\)(?:\s*\[([^\]]+)\])?(?:\s*\{([^\}]+)\})?/g;
+  const cards: Flashcard[] = [];
   let match;
+  let index = 1;
   
   while ((match = regex.exec(clean)) !== null) {
     const foreign = match[1].trim();
     const arabic = match[2].trim();
+    const meta = getMetadata(foreign);
+    const phonetic = match[3] ? match[3].trim() : meta.phonetic;
+    const context = match[4] ? match[4].trim() : meta.context;
+    
     if (foreign && arabic) {
-      cards.push({ en: foreign, ar: arabic });
+      cards.push({
+        id: `fc_${index++}`,
+        text_english: foreign,
+        translation_arabic: arabic,
+        phonetic_guide: phonetic,
+        situational_context: context
+      });
     }
   }
 
@@ -36,27 +123,27 @@ const parseFlashcards = (textContent: string, courseTitle: string) => {
     
     if (isFrench) {
       return [
-        { en: "Bonjour", ar: "صباح الخير" },
-        { en: "Merci beaucoup", ar: "شكراً جزيلاً" },
-        { en: "S'il vous plaît", ar: "من فضلك" },
-        { en: "Comment ça va?", ar: "كيف حالك؟" },
-        { en: "Au revoir", ar: "إلى اللقاء" }
+        { id: "fc_fr_1", text_english: "Bonjour", translation_arabic: "صباح الخير / مرحباً", phonetic_guide: "بونجور", situational_context: "التحية الصباحية والنهارية الأساسية للترحيب اليومي." },
+        { id: "fc_fr_2", text_english: "Merci beaucoup", translation_arabic: "شكراً جزيلاً", phonetic_guide: "ميرسي بوكو", situational_context: "للتعبير عن الشكر الجزيل والامتنان العالي." },
+        { id: "fc_fr_3", text_english: "S'il vous plaît", translation_arabic: "من فضلك", phonetic_guide: "سيل فو بليه", situational_context: "صيغة الطلب المهذب والرسمي للأشخاص والجمع." },
+        { id: "fc_fr_4", text_english: "Comment ça va?", translation_arabic: "كيف حالك؟", phonetic_guide: "كومون سا فا؟", situational_context: "السؤال الودي والبسيط عن الأحوال بين الأصدقاء." },
+        { id: "fc_fr_5", text_english: "Au revoir", translation_arabic: "إلى اللقاء", phonetic_guide: "أو روفوار", situational_context: "عبارة الوداع الرسمية المعتادة عند إنهاء الحوار والمغادرة." }
       ];
     } else if (isGerman) {
       return [
-        { en: "Hallo", ar: "مرحباً" },
-        { en: "Guten Morgen", ar: "صباح الخير" },
-        { en: "Danke schön", ar: "شكراً جزيلًا" },
-        { en: "Wie geht es dir?", ar: "كيف حالك؟" },
-        { en: "Tschüss", ar: "وداعاً" }
+        { id: "fc_de_1", text_english: "Hallo", translation_arabic: "مرحباً", phonetic_guide: "هالو", situational_context: "تحية يومية بسيطة وشائعة جداً لبدء الحديث بالألمانية." },
+        { id: "fc_de_2", text_english: "Guten Morgen", translation_arabic: "صباح الخير", phonetic_guide: "جوتن مورجن", situational_context: "التحية الصباحية الرسمية المعتادة حتى فترة الظهر." },
+        { id: "fc_de_3", text_english: "Danke schön", translation_arabic: "شكراً جزيلًا", phonetic_guide: "دانكه شون", situational_context: "لتقديم الشكر اللطيف والتقدير لمن قدم لك مساعدة." },
+        { id: "fc_de_4", text_english: "Wie geht es dir?", translation_arabic: "كيف حالك؟", phonetic_guide: "في جيت إس دير؟", situational_context: "السؤال المباشر والودي عن الأحوال للشخص المقابل." },
+        { id: "fc_de_5", text_english: "Tschüss", translation_arabic: "وداعاً", phonetic_guide: "تشوز", situational_context: "كلمة الوداع غير الرسمية الأكثر تداولاً عند الذهاب." }
       ];
     } else {
       return [
-        { en: "Hello, how are you?", ar: "مرحباً، كيف حالك؟" },
-        { en: "Nice to meet you", ar: "سعدت بلقائك" },
-        { en: "Please help me", ar: "من فضلك ساعدني" },
-        { en: "Thank you very much", ar: "شكراً جزيلاً لك" },
-        { en: "See you later", ar: "أراك لاحقاً" }
+        { id: "fc_en_1", text_english: "Hello, how are you?", translation_arabic: "مرحباً، كيف حالك؟", phonetic_guide: "هيلو، هاو آر يو؟", situational_context: "التحية الأساسية للسلام والسؤال عن الحال والأحوال بأسلوب مهذب." },
+        { id: "fc_en_2", text_english: "Nice to meet you", translation_arabic: "سعدت بلقائك", phonetic_guide: "نايس تو ميت يو", situational_context: "تُقال للتعبير عن اللطف والاحترام عند مقابلة شخص ما لأول مرة." },
+        { id: "fc_en_3", text_english: "Please help me", translation_arabic: "من فضلك ساعدني", phonetic_guide: "بليز هيلب مي", situational_context: "تُستخدم لطلب المساعدة أو الدعم من الآخرين بأسلوب مهذب ومحترم." },
+        { id: "fc_en_4", text_english: "Thank you very much", translation_arabic: "شكراً جزيلاً لك", phonetic_guide: "ثانك يو فيري ماتش", situational_context: "لتقديم خالص الشكر والامتنان لشخص قدم لك صنيعاً أو معروفاً." },
+        { id: "fc_en_5", text_english: "See you later", translation_arabic: "أراك لاحقاً", phonetic_guide: "سي يو ليتر", situational_context: "عبارة وداع ودية وشائعة بين الأصدقاء والزملاء تعني التطلع للقاء قريب." }
       ];
     }
   }
@@ -72,7 +159,6 @@ function AudioNarrationPlayer({ textContent, isKids }: { textContent: string; is
   const cleanText = cleanHtmlText(textContent);
 
   useEffect(() => {
-    // Estimate speaking duration (approx 130 words per minute)
     const words = cleanText.trim().split(/\s+/).length;
     setDuration(Math.max(10, Math.round((words / 130) * 60)));
     setIsPlaying(false);
@@ -211,12 +297,12 @@ function AudioNarrationPlayer({ textContent, isKids }: { textContent: string; is
 }
 
 // 3D Flip Flashcards Component
-function FlashcardHub({ flashcards, courseTitle, isKids, isDarkMode }: { flashcards: { en: string; ar: string }[]; courseTitle: string; isKids: boolean; isDarkMode: boolean }) {
+function FlashcardHub({ flashcards, courseTitle, isKids, isDarkMode }: { flashcards: Flashcard[]; courseTitle: string; isKids: boolean; isDarkMode: boolean }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isFlipped, setIsFlipped] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
 
-  const currentCard = flashcards[currentIndex] || { en: "No words found", ar: "لا توجد كلمات" };
+  const currentCard = flashcards[currentIndex] || { id: "empty", text_english: "No words found", translation_arabic: "لا توجد كلمات", phonetic_guide: "", situational_context: "" };
 
   const playPronunciation = (e: React.MouseEvent, text: string, lang: string) => {
     e.stopPropagation();
@@ -266,7 +352,7 @@ function FlashcardHub({ flashcards, courseTitle, isKids, isDarkMode }: { flashca
           perspective: 1000px;
           width: 100%;
           max-width: 500px;
-          height: 240px;
+          height: 300px;
           cursor: pointer;
         }
         .flashcard-inner {
@@ -287,19 +373,23 @@ function FlashcardHub({ flashcards, courseTitle, isKids, isDarkMode }: { flashca
           border-radius: 24px;
           display: flex;
           flex-direction: column;
+          box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+        .flashcard-front {
           align-items: center;
           justify-content: center;
           padding: 24px;
-          box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-        }
-        .flashcard-front {
           background: ${isKids ? '#ffffff' : (isDarkMode ? '#1e293b' : '#ffffff')};
           color: ${isKids ? '#0f172a' : (isDarkMode ? '#f8fafc' : '#1e293b')};
           border: ${isKids ? '4px solid #3b82f6' : (isDarkMode ? '1px solid rgba(255, 255, 255, 0.08)' : '1px solid #cbd5e1')};
         }
         .flashcard-back {
-          background: ${isKids ? '#def7ec' : (isDarkMode ? '#0f172a' : '#f0fdf4')};
-          color: ${isKids ? '#047857' : (isDarkMode ? '#e2e8f0' : '#15803d')};
+          align-items: flex-start;
+          justify-content: flex-start;
+          padding: 24px;
+          overflow-y: auto;
+          background: ${isKids ? '#def7ec' : (isDarkMode ? '#0f172a' : '#f8fafc')};
+          color: ${isKids ? '#047857' : (isDarkMode ? '#e2e8f0' : '#1e293b')};
           transform: rotateY(180deg);
           border: ${isKids ? '4px solid #10b981' : (isDarkMode ? '1px solid rgba(16, 185, 129, 0.2)' : '1px solid #a7f3d0')};
         }
@@ -309,17 +399,30 @@ function FlashcardHub({ flashcards, courseTitle, isKids, isDarkMode }: { flashca
         <div className={`flashcard-inner ${isFlipped ? 'flipped' : ''}`}>
           
           {/* FRONT */}
-          <div className="flashcard-front">
-            <div style={{ fontSize: '0.8rem', color: '#94a3b8', marginBottom: '8px', fontWeight: 800 }}>الكلمة الأجنبية (انقر للترجمة)</div>
-            <div style={{ fontSize: '2.4rem', fontWeight: 900, marginBottom: '20px', fontFamily: "'Outfit', 'Inter', sans-serif" }}>
-              {currentCard.en}
+          <div className="flashcard-front" style={{ zIndex: isFlipped ? 1 : 2 }}>
+            <div style={{ fontSize: '0.8rem', color: '#94a3b8', marginBottom: '16px', fontWeight: 800 }}>الكلمة الأجنبية (انقر للترجمة 🔄)</div>
+            
+            {/* LTR container to avoid Bi-directional punctuation flip */}
+            <div 
+              dir="ltr"
+              style={{ 
+                fontSize: '2.4rem', 
+                fontWeight: 900, 
+                marginBottom: '20px', 
+                fontFamily: "'Outfit', 'Inter', sans-serif",
+                textAlign: 'center',
+                unicodeBidi: 'isolate'
+              }}
+            >
+              <bdi>{currentCard.text_english}</bdi>
             </div>
+            
             <button
-              onClick={(e) => playPronunciation(e, currentCard.en, getLanguageTag())}
+              onClick={(e) => playPronunciation(e, currentCard.text_english, getLanguageTag())}
               style={{
-                width: '48px', height: '48px', borderRadius: '50%',
+                width: '52px', height: '52px', borderRadius: '50%',
                 background: '#3b82f6', border: 'none', color: '#fff',
-                fontSize: '1.2rem', cursor: 'pointer', display: 'flex',
+                fontSize: '1.3rem', cursor: 'pointer', display: 'flex',
                 alignItems: 'center', justifyContent: 'center',
                 boxShadow: '0 4px 12px rgba(59, 130, 246, 0.3)'
               }}
@@ -329,23 +432,32 @@ function FlashcardHub({ flashcards, courseTitle, isKids, isDarkMode }: { flashca
           </div>
 
           {/* BACK */}
-          <div className="flashcard-back">
-            <div style={{ fontSize: '0.8rem', color: '#94a3b8', marginBottom: '8px', fontWeight: 800 }}>الترجمة باللغة العربية</div>
-            <div style={{ fontSize: '2rem', fontWeight: 900, marginBottom: '20px', fontFamily: "'Cairo', sans-serif" }}>
-              {currentCard.ar}
+          <div className="flashcard-back" style={{ display: 'flex', flexDirection: 'column', gap: '12px', textAlign: 'right' }}>
+            <div style={{ fontSize: '0.75rem', color: '#94a3b8', fontWeight: 800, alignSelf: 'flex-start' }}>الترجمة والتفاصيل اللغوية</div>
+            
+            {/* Contextual translation */}
+            <div style={{ width: '100%', borderBottom: '1px solid rgba(128,128,128,0.1)', paddingBottom: '6px' }}>
+              <div style={{ fontSize: '0.7rem', color: '#94a3b8' }}>الترجمة العربية:</div>
+              <div style={{ fontSize: '1.4rem', fontWeight: 900, color: '#10b981', fontFamily: "'Cairo', sans-serif" }}>
+                {currentCard.translation_arabic}
+              </div>
             </div>
-            <button
-              onClick={(e) => playPronunciation(e, currentCard.ar, 'ar-EG')}
-              style={{
-                width: '44px', height: '44px', borderRadius: '50%',
-                background: '#10b981', border: 'none', color: '#fff',
-                fontSize: '1.1rem', cursor: 'pointer', display: 'flex',
-                alignItems: 'center', justifyContent: 'center',
-                boxShadow: '0 4px 10px rgba(16, 185, 129, 0.3)'
-              }}
-            >
-              {isPlaying ? '🔊' : '▶'}
-            </button>
+
+            {/* Phonetic guide */}
+            <div style={{ width: '100%', borderBottom: '1px solid rgba(128,128,128,0.1)', paddingBottom: '6px' }}>
+              <div style={{ fontSize: '0.7rem', color: '#94a3b8' }}>دليل النطق الصوتي التقريبي:</div>
+              <div style={{ fontSize: '1rem', fontWeight: 800, color: '#3b82f6' }}>
+                🎙️ {currentCard.phonetic_guide}
+              </div>
+            </div>
+
+            {/* Situational context */}
+            <div style={{ width: '100%' }}>
+              <div style={{ fontSize: '0.7rem', color: '#94a3b8' }}>سياق الاستخدام العملي:</div>
+              <div style={{ fontSize: '0.85rem', color: isKids ? '#1e293b' : (isDarkMode ? '#cbd5e1' : '#475569'), lineHeight: 1.5, fontWeight: 700 }}>
+                💡 {currentCard.situational_context}
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -384,18 +496,18 @@ function FlashcardHub({ flashcards, courseTitle, isKids, isDarkMode }: { flashca
 }
 
 // Language Application Sandbox Component
-function LanguageSandbox({ flashcards, isKids, isDarkMode, onComplete }: { flashcards: { en: string; ar: string }[]; isKids: boolean; isDarkMode: boolean; onComplete: () => void }) {
+function LanguageSandbox({ flashcards, isKids, isDarkMode, onComplete }: { flashcards: Flashcard[]; isKids: boolean; isDarkMode: boolean; onComplete: () => void }) {
   const [userInput, setUserInput] = useState('');
   const [currentIdx, setCurrentIdx] = useState(0);
   const [logs, setLogs] = useState<string[]>([]);
   const [status, setStatus] = useState<'idle' | 'success' | 'fail'>('idle');
 
-  const card = flashcards[currentIdx] || { en: "Hello", ar: "مرحباً" };
+  const card = flashcards[currentIdx] || { text_english: "Hello", translation_arabic: "مرحباً" };
 
   const checkAnswer = () => {
     const input = userInput.trim().toLowerCase();
-    const target = card.ar.trim().toLowerCase();
-    const targetEn = card.en.trim().toLowerCase();
+    const target = card.translation_arabic.trim().toLowerCase();
+    const targetEn = card.text_english.trim().toLowerCase();
 
     // Check if matching English or Arabic correctly
     const isCorrect = input.includes(target) || target.includes(input) || input.includes(targetEn) || targetEn.includes(input);
@@ -406,7 +518,7 @@ function LanguageSandbox({ flashcards, isKids, isDarkMode, onComplete }: { flash
         ...prev,
         `sandbox-terminal:~$ verify "${userInput}"`,
         `[SUCCESS] Translation matched successfully!`,
-        `✓ "${card.en}" = "${card.ar}"`
+        `✓ "${card.text_english}" = "${card.translation_arabic}"`
       ]);
       onComplete();
     } else {
@@ -447,7 +559,7 @@ function LanguageSandbox({ flashcards, isKids, isDarkMode, onComplete }: { flash
       <div style={{ background: 'rgba(0,0,0,0.3)', borderRadius: '12px', padding: '16px', border: '1px solid rgba(255,255,255,0.03)' }}>
         <div style={{ fontSize: '0.8rem', color: '#94a3b8', marginBottom: '6px', fontWeight: 700 }}>العبارة المستهدفة للتطبيق:</div>
         <div style={{ fontSize: '1.5rem', fontWeight: 800, color: '#10b981', direction: 'ltr', textAlign: 'center' }}>
-          {card.en}
+          {card.text_english}
         </div>
       </div>
 
@@ -562,7 +674,7 @@ export default function LanguageLearningLayout({ data }: { data: any }) {
   const [activeTab, setActiveTab] = useState<'explanation' | 'guided' | 'sandbox'>('explanation');
   
   // Flashcards state
-  const [flashcards, setFlashcards] = useState<{ en: string; ar: string }[]>([]);
+  const [flashcards, setFlashcards] = useState<Flashcard[]>([]);
   
   // Progress unlocks
   const [sandboxPassed, setSandboxPassed] = useState(false);
@@ -591,17 +703,17 @@ export default function LanguageLearningLayout({ data }: { data: any }) {
     // Generate single question micro quiz
     if (parsed.length > 0) {
       const targetCard = parsed[0];
-      const wrongOptions = parsed.slice(1).map(c => c.ar);
+      const wrongOptions = parsed.slice(1).map(c => c.translation_arabic);
       while (wrongOptions.length < 3) {
         wrongOptions.push("ترجمة عشوائية بديلة " + (wrongOptions.length + 1));
       }
-      const shuffledOptions = [targetCard.ar, ...wrongOptions.slice(0, 3)].sort(() => 0.5 - Math.random());
+      const shuffledOptions = [targetCard.translation_arabic, ...wrongOptions.slice(0, 3)].sort(() => 0.5 - Math.random());
       
       setQuizQuestion({
-        question: `ما هو المعنى الدقيق للكلمة أو الجملة اللغوية: "${targetCard.en}"؟`,
+        question: `ما هو المعنى الدقيق للكلمة أو الجملة اللغوية: "${targetCard.text_english}"؟`,
         options: shuffledOptions,
-        correctIndex: shuffledOptions.indexOf(targetCard.ar),
-        explanation: `المعنى الصحيح هو: ${targetCard.ar}`
+        correctIndex: shuffledOptions.indexOf(targetCard.translation_arabic),
+        explanation: `المعنى الصحيح هو: ${targetCard.translation_arabic}`
       });
     }
 
