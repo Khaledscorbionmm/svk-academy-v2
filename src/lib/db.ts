@@ -112,9 +112,17 @@ export async function initializeDatabase(): Promise<void> {
       status VARCHAR(50) DEFAULT 'requested',
       requested_at TIMESTAMPTZ DEFAULT NOW(),
       approved_at TIMESTAMPTZ,
+      completed_at TIMESTAMPTZ,
+      score INTEGER DEFAULT NULL,
+      total_questions INTEGER DEFAULT NULL,
       UNIQUE(student_id, lesson_slug)
     )
   `);
+
+  // Migrate existing lesson_access table - add columns if missing
+  await query(`ALTER TABLE lesson_access ADD COLUMN IF NOT EXISTS completed_at TIMESTAMPTZ`).catch(() => {});
+  await query(`ALTER TABLE lesson_access ADD COLUMN IF NOT EXISTS score INTEGER DEFAULT NULL`).catch(() => {});
+  await query(`ALTER TABLE lesson_access ADD COLUMN IF NOT EXISTS total_questions INTEGER DEFAULT NULL`).catch(() => {});
 
   await query(`
     CREATE TABLE IF NOT EXISTS course_requests (
@@ -129,3 +137,6 @@ export async function initializeDatabase(): Promise<void> {
 }
 
 export default pool;
+
+// Alias for convenience in new routes
+export const initDb = initializeDatabase;

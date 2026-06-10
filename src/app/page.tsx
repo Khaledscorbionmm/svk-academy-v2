@@ -32,6 +32,7 @@ export default function HomePage() {
   const [charIdx, setCharIdx] = useState(0);
   const [deleting, setDeleting] = useState(false);
   const [stars, setStars] = useState<Array<{ width: number; height: number; bg: string; top: string; left: string; delay: string; duration: string }>>([]);
+  const [siteStats, setSiteStats] = useState({ totalStudents: 0, totalCourses: 0 });
 
   useEffect(() => {
     setMounted(true);
@@ -56,6 +57,13 @@ export default function HomePage() {
 
     const onScroll = () => setScrollY(window.scrollY);
     window.addEventListener('scroll', onScroll);
+
+    // Fetch real counts from DB
+    fetch('/api/stats')
+      .then(r => r.json())
+      .then(d => setSiteStats({ totalStudents: d.totalStudents ?? 0, totalCourses: d.totalCourses ?? 0 }))
+      .catch(() => {});
+
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
@@ -196,9 +204,14 @@ export default function HomePage() {
             </a>
           </div>
 
-          {/* Stats Row */}
+          {/* Stats Row — real counts from DB */}
           <div style={{ display: 'flex', gap: 40, justifyContent: 'center', flexWrap: 'wrap', animation: 'fadeInUp 0.8s ease 0.4s both' }}>
-            {[['3,240+', 'طالب مسجل'], ['10+', 'كورس متخصص'], ['98%', 'رضا الطلاب'], ['∞', 'مجاناً للبدء']].map(([num, label]) => (
+            {[
+              [siteStats.totalStudents > 0 ? `${siteStats.totalStudents}+` : '...', 'طالب مسجل'],
+              [siteStats.totalCourses > 0 ? `${siteStats.totalCourses}+` : '...', 'كورس متخصص'],
+              ['98%', 'رضا الطلاب'],
+              ['∞', 'مجاناً للبدء'],
+            ].map(([num, label]) => (
               <div key={label} style={{ textAlign: 'center' }}>
                 <div style={{ fontSize: '2rem', fontWeight: 900, background: 'linear-gradient(90deg,#6366f1,#a855f7)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>{num}</div>
                 <div style={{ fontSize: 12, color: '#64748b', marginTop: 4 }}>{label}</div>

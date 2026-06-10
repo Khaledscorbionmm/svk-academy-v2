@@ -1,75 +1,97 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { query, initializeDatabase } from '@/lib/db';
+import { NextResponse, NextRequest } from 'next/server';
+import { query, initDb } from '@/lib/db';
 import { verifyToken, COOKIE_NAME } from '@/lib/auth';
 
-export async function GET(request: NextRequest) {
+export async function GET(req: NextRequest) {
   try {
-    const token = request.cookies.get(COOKIE_NAME)?.value;
-    if (!token) return NextResponse.json({ error: 'غير مصرح' }, { status: 401 });
-    
-    const payload = verifyToken(token);
+    await initDb();
+
+    // Verify admin via JWT cookie
+    const token = req.cookies.get(COOKIE_NAME)?.value;
+    const payload = token ? verifyToken(token) : null;
+
     if (!payload || payload.role !== 'admin') {
-      return NextResponse.json({ error: 'غير مسموح' }, { status: 403 });
+      return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
     }
 
-    await initializeDatabase();
+    // Total students
+    const studentsRows = await query('SELECT COUNT(*) as count FROM students') as any[];
+    const totalStudents = parseInt(studentsRows[0]?.count ?? '0');
 
-    // 1. Stats
-    const studentsRes = await query('SELECT COUNT(*) as count FROM students');
-    const coursesRes = await query('SELECT COUNT(*) as count FROM courses');
-    
-    // Calculate estimated revenue (students * 369)
-    const totalStudents = parseInt(studentsRes[0].count as string, 10);
-    const totalCourses = parseInt(coursesRes[0].count as string, 10);
-    const estimatedRevenue = totalStudents * 369;
+    // Total courses
+    const coursesRows = await query('SELECT COUNT(*) as count FROM courses') as any[];
+    const totalCourses = parseInt(coursesRows[0]?.count ?? '0');
 
-    // 2. Recent Lesson Access Requests
-    const requestsRes = await query(`
-      SELECT la.id, la.lesson_slug, la.status, la.requested_at,
-             s.name as student_name, s.email as student_email, s.id as student_id,
-             c.title_ar as course_title
-      FROM lesson_access la
-      JOIN students s ON la.student_id = s.id
-      JOIN courses c ON la.course_id = c.id
-      WHERE la.status = 'requested'
-      ORDER BY la.requested_at DESC
-      LIMIT 10
-    `);
+    // Active enrollments (students who have at least 1 approved lesson_access)
+    const enrollmentsRows = await query(
+      `SELECT COUNT(DISTINCT student_id) as count FROM lesson_access WHERE status = 'approved'`
+    ) as any[];
+    const activeEnrollments = parseInt(enrollmentsRows[0]?.count ?? '0');
 
-    // 2b. Recent Course Activation Requests
-    const courseRequestsRes = await query(`
-      SELECT cr.id, cr.status, cr.requested_at,
-             s.name as student_name, s.email as student_email, s.id as student_id,
-             c.title_ar as course_title, c.id as course_id
-      FROM course_requests cr
-      JOIN students s ON cr.student_id = s.id
-      JOIN courses c ON cr.course_id = c.id
-      WHERE cr.status = 'pending'
-      ORDER BY cr.requested_at DESC
-      LIMIT 10
-    `);
+    // Total completed lessons
+    const completedRows = await query(
+      `SELECT COUNT(*) as count FROM lesson_access WHERE status = 'approved' AND completed_at IS NOT NULL`
+    ) as any[];
+    const completedLessons = parseInt(completedRows[0]?.count ?? '0');
 
-    // 3. Recent Signups
-    const signupsRes = await query(`
-      SELECT id, name, email, created_at, xp 
-      FROM students 
-      ORDER BY created_at DESC 
-      LIMIT 5
-    `);
+    // Total pending requests
+    const pendingRows = await query(
+      `SELECT COUNT(*) as count FROM lesson_access WHERE status = 'requested'`
+    ) as any[];
+    const pendingRequests = parseInt(pendingRows[0]?.count ?? '0');
+
+    // Students registered this month
+    let newStudentsThisMonth = 0;
+    try {
+      const thisMonthRows = await query(
+        `SELECT COUNT(*) as count FROM students WHERE created_at >= date_trunc('month', NOW())`
+      ) as any[];
+      newStudentsThisMonth = parseInt(thisMonthRows[0]?.count ?? '0');
+    } catch (_) {
+      // created_at may not exist yet
+    }
+
+    // Recent course activity
+    const topCoursesRows = await query(
+      `SELECT c.title_ar, c.title, COUNT(la.student_id) as enrolled_count, c.category
+       FROM courses c
+       LEFT JOIN lesson_access la ON la.course_id = c.id AND la.status = 'approved'
+       GROUP BY c.id, c.title_ar, c.title, c.category
+       ORDER BY enrolled_count DESC, c.id ASC
+       LIMIT 5`
+    ) as any[];
+
+    // Top students by XP
+    const topStudentsRows = await query(
+      `SELECT name, email, xp FROM students ORDER BY xp DESC NULLS LAST LIMIT 5`
+    ) as any[];
+
+    // Recent pending lesson requests
+    const pendingLessonsRows = await query(
+      `SELECT s.name as student_name, s.email, la.lesson_slug, la.requested_at, c.title_ar as course_title
+       FROM lesson_access la
+       JOIN students s ON s.id = la.student_id
+       JOIN courses c ON c.id = la.course_id
+       WHERE la.status = 'requested'
+       ORDER BY la.requested_at DESC
+       LIMIT 10`
+    ) as any[];
 
     return NextResponse.json({
       stats: {
         totalStudents,
         totalCourses,
-        revenue: estimatedRevenue,
-        pendingRequests: requestsRes.length + courseRequestsRes.length
+        activeEnrollments,
+        completedLessons,
+        pendingRequests,
+        newStudentsThisMonth,
       },
-      requests: requestsRes,
-      courseRequests: courseRequestsRes,
-      recentSignups: signupsRes
+      topCourses: topCoursesRows,
+      topStudents: topStudentsRows,
+      pendingLessons: pendingLessonsRows,
     });
   } catch (error) {
-    console.error('[Radar API Error]', error);
-    return NextResponse.json({ error: 'خطأ في جلب بيانات الرادار' }, { status: 500 });
+    console.error('Admin radar API error:', error);
+    return NextResponse.json({ error: 'Server error' }, { status: 500 });
   }
 }

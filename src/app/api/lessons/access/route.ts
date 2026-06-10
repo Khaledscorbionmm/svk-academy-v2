@@ -84,20 +84,31 @@ export async function PUT(request: NextRequest) {
     }
     
     const body = await request.json();
-    const { studentId, lessonSlug, status } = body; // status can be 'approved' or 'requested'
+    const { studentId, studentEmail, lessonSlug, status } = body;
     
-    if (!studentId || !lessonSlug || !status) {
+    if (!lessonSlug || !status) {
       return NextResponse.json({ error: 'بيانات التحديث غير مكتملة' }, { status: 400 });
+    }
+
+    // Resolve student ID from email if not provided
+    let resolvedStudentId = studentId;
+    if (!resolvedStudentId && studentEmail) {
+      const studentRows = await query('SELECT id FROM students WHERE email = $1', [studentEmail]) as any[];
+      if (!studentRows.length) {
+        return NextResponse.json({ error: 'الطالب غير موجود' }, { status: 404 });
+      }
+      resolvedStudentId = studentRows[0].id;
+    }
+    
+    if (!resolvedStudentId) {
+      return NextResponse.json({ error: 'يجب توفير معرف الطالب أو بريده الإلكتروني' }, { status: 400 });
     }
     
     const approvedAt = status === 'approved' ? new Date() : null;
     
     await query(
-      `INSERT INTO lesson_access (student_id, course_id, lesson_slug, status, approved_at) 
-       VALUES ($1, 1, $2, $3, $4)
-       ON CONFLICT (student_id, lesson_slug) 
-       DO UPDATE SET status = $3, approved_at = $4`,
-      [studentId, lessonSlug, status, approvedAt]
+      `UPDATE lesson_access SET status = $1, approved_at = $2 WHERE student_id = $3 AND lesson_slug = $4`,
+      [status, approvedAt, resolvedStudentId, lessonSlug]
     );
     
     return NextResponse.json({ success: true });
@@ -106,3 +117,4 @@ export async function PUT(request: NextRequest) {
     return NextResponse.json({ error: 'حدث خطأ في تحديث البيانات' }, { status: 500 });
   }
 }
+

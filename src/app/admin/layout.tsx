@@ -14,11 +14,12 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   const [pendingLessons, setPendingLessons] = useState(0);
 
   const links = [
-    { href: '/admin/dashboard', label: '📡 نظام الرادار' },
+    { href: '/admin/dashboard', label: '📊 لوحة التحكم' },
     { href: '/admin/courses', label: '📚 الكورسات والدروس' },
     { href: '/admin/students', label: '👥 الطلاب' },
     { href: '/admin/payments', label: '💳 المدفوعات' },
   ];
+
 
   useEffect(() => {
     if (pathname === '/admin/login') return;

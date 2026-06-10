@@ -36,49 +36,15 @@ interface LeaderboardEntry {
   isMe?: boolean;
 }
 
-const ENROLLED_COURSES: EnrolledCourse[] = [
-  { 
-    id: 1, 
-    title: 'Python للمبتدئين', 
-    title_en: 'Python for Beginners',
-    icon: '🐍', 
-    progress: 33, 
-    lessonsTotal: 6, 
-    lessonsDone: 2, 
-    lastLesson: 'الشروط if/elif/else', 
-    lastLessonEn: 'Conditions if/elif/else',
-    lastLessonHref: '/learn/python-if' 
-  },
-  { 
-    id: 2, 
-    title: 'JavaScript الحديث', 
-    title_en: 'Modern JavaScript',
-    icon: '⚡', 
-    progress: 10, 
-    lessonsTotal: 10, 
-    lessonsDone: 1, 
-    lastLesson: 'المتغيرات وأنواع البيانات', 
-    lastLessonEn: 'Variables and Data Types',
-    lastLessonHref: '/learn/python-vars' 
-  },
-];
+interface DashboardData {
+  student: { name: string; xp: number };
+  stats: { enrolledCourses: number; completedLessons: number; avgScore: number; rank: number };
+  leaderboard: { name: string; xp: number; avatar_letter: string }[];
+  courses: { id: number; title: string; title_ar: string; thumbnail_url: string; category: string }[];
+  recentQuizzes: { lesson_slug: string; score: number; total_questions: number; completed_at: string; course_title: string }[];
+}
 
-const ACHIEVEMENTS: Achievement[] = [
-  { id: 'first_login', title: 'البداية', title_en: 'The Beginning', icon: '🎯', description: 'سجّل دخولك للمرة الأولى', description_en: 'Log in for the first time', earned: true, xp: 10 },
-  { id: 'first_lesson', title: 'أول خطوة', title_en: 'First Step', icon: '👣', description: 'أكملت درسك الأول', description_en: 'Completed your first lesson', earned: true, xp: 50 },
-  { id: 'first_quiz', title: 'محارب الاختبارات', title_en: 'Quiz Warrior', icon: '🧠', description: 'أنجزت اختبارك الأول', description_en: 'Completed your first quiz', earned: true, xp: 80 },
-  { id: 'week_streak', title: 'مثابر', title_en: 'Persistent', icon: '🔥', description: '7 أيام متواصلة من التعلم', description_en: '7 continuous days of learning', earned: false, xp: 100 },
-  { id: 'perfect_quiz', title: 'نجم اختبارات', title_en: 'Quiz Star', icon: '⭐', description: 'احصل على 100% في اختبار', description_en: 'Score 100% in a quiz', earned: false, xp: 150 },
-  { id: 'first_course', title: 'مُكمِل', title_en: 'Completer', icon: '🏆', description: 'أكمل كورساً كاملاً', description_en: 'Complete an entire course', earned: false, xp: 500 },
-];
 
-const LEADERBOARD: LeaderboardEntry[] = [
-  { rank: 1, name: 'أحمد علي', avatar: '🥇', xp: 2450 },
-  { rank: 2, name: 'سارة محمود', avatar: '🥈', xp: 2100 },
-  { rank: 3, name: 'خالد سعد', avatar: '🥉', xp: 1800 },
-  { rank: 4, name: 'طالب نشط', avatar: '👨‍💻', xp: 340, isMe: true },
-  { rank: 5, name: 'فاطمة أحمد', avatar: '👩‍💻', xp: 280 },
-];
 
 const TRANSLATIONS = {
   ar: {
@@ -164,6 +130,7 @@ export default function StudentDashboardPage() {
   const [student, setStudent] = useState<{ name: string; email: string; xp: number; level: number; avatar: string } | null>(null);
   const [loading, setLoading] = useState(true);
   const [loggingOut, setLoggingOut] = useState(false);
+  const [dashData, setDashData] = useState<DashboardData | null>(null);
 
   useEffect(() => {
     // Load language preference
@@ -180,15 +147,20 @@ export default function StudentDashboardPage() {
 
   async function fetchStudentProfile() {
     try {
-      const res = await fetch('/api/auth/me');
-      if (res.ok) {
-        const data = await res.json();
+      const [meRes, dashRes] = await Promise.all([
+        fetch('/api/auth/me'),
+        fetch('/api/student/dashboard'),
+      ]);
+
+      if (meRes.ok) {
+        const data = await meRes.json();
         if (data.user && data.user.role === 'student') {
+          const xp = dashRes.ok ? (await dashRes.json()).student?.xp ?? 0 : 0;
           setStudent({
             name: data.user.name,
             email: data.user.email,
-            xp: 340, // default dummy
-            level: 4,
+            xp,
+            level: Math.floor(xp / 100) + 1,
             avatar: '👨‍💻'
           });
         } else {
@@ -196,6 +168,15 @@ export default function StudentDashboardPage() {
         }
       } else {
         router.push('/login');
+      }
+
+      if (dashRes.ok) {
+        const d = await dashRes.json();
+        setDashData(d);
+        // Update student XP from dashboard
+        if (d.student) {
+          setStudent(prev => prev ? { ...prev, xp: d.student.xp, level: Math.floor(d.student.xp / 100) + 1 } : prev);
+        }
       }
     } catch {
       router.push('/login');
@@ -237,17 +218,10 @@ export default function StudentDashboardPage() {
   const isRtl = lang === 'ar';
   const dir = isRtl ? 'rtl' : 'ltr';
 
-  const totalLessonsDone = ENROLLED_COURSES.reduce((s, c) => s + c.lessonsDone, 0);
-  const avgQuizScore = 78;
-  const lastCourse = ENROLLED_COURSES[0];
+  const realStats = dashData?.stats ?? { enrolledCourses: 0, completedLessons: 0, avgScore: 0, rank: 0 };
+  const realLeaderboard = dashData?.leaderboard ?? [];
+  const realCourses = dashData?.courses ?? [];
 
-  // Modify leaderboard with current student name
-  const updatedLeaderboard = LEADERBOARD.map(entry => {
-    if (entry.isMe && student) {
-      return { ...entry, name: student.name };
-    }
-    return entry;
-  });
 
   return (
     <div style={{ fontFamily: "'Cairo', 'Tajawal', sans-serif", direction: dir, background: '#060612', color: '#fff', minHeight: '100vh', transition: 'all 0.3s' }}>
@@ -310,13 +284,13 @@ export default function StudentDashboardPage() {
           </div>
         )}
 
-        {/* Stats Cards */}
+        {/* Stats Cards — real data from DB */}
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: 16, marginBottom: 32 }}>
           {[
-            { label: t.stat_courses, value: ENROLLED_COURSES.length, icon: '📚', color: '#6366f1', gradient: 'rgba(99,102,241,0.12)' },
-            { label: t.stat_lessons, value: totalLessonsDone, icon: '✅', color: '#22c55e', gradient: 'rgba(34,197,94,0.1)' },
-            { label: t.stat_quiz, value: `${avgQuizScore}%`, icon: '🧠', color: '#fbbf24', gradient: 'rgba(251,191,36,0.1)' },
-            { label: t.stat_xp, value: student?.xp || 340, icon: '⚡', color: '#a855f7', gradient: 'rgba(168,85,247,0.1)' },
+            { label: t.stat_courses, value: realStats.enrolledCourses, icon: '📚', color: '#6366f1', gradient: 'rgba(99,102,241,0.12)' },
+            { label: t.stat_lessons, value: realStats.completedLessons, icon: '✅', color: '#22c55e', gradient: 'rgba(34,197,94,0.1)' },
+            { label: t.stat_quiz, value: `${realStats.avgScore}%`, icon: '🧠', color: '#fbbf24', gradient: 'rgba(251,191,36,0.1)' },
+            { label: t.stat_xp, value: student?.xp ?? 0, icon: '⚡', color: '#a855f7', gradient: 'rgba(168,85,247,0.1)' },
           ].map((stat, i) => (
             <div key={i} style={{ background: stat.gradient, border: `1px solid ${stat.color}25`, borderRadius: 16, padding: '20px', textAlign: 'center' }}>
               <div style={{ fontSize: 32, marginBottom: 8 }}>{stat.icon}</div>
@@ -328,80 +302,78 @@ export default function StudentDashboardPage() {
 
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 340px', gap: 24, alignItems: 'start' }}>
           <div>
-            {/* Continue from where you left off */}
-            {lastCourse && (
-              <div style={{ background: 'linear-gradient(135deg, rgba(99,102,241,0.15), rgba(168,85,247,0.1))', border: '1px solid rgba(99,102,241,0.25)', borderRadius: 20, padding: '28px', marginBottom: 24 }}>
-                <div style={{ fontSize: 14, color: '#64748b', marginBottom: 12 }}>⏯️ {t.continue_learning}</div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 16 }}>
-                  <span style={{ fontSize: 36 }}>{lastCourse.icon}</span>
-                  <div>
-                    <div style={{ fontWeight: 800, fontSize: 18 }}>
-                      {lang === 'ar' ? lastCourse.title : lastCourse.title_en}
+            {/* Continue from where you left off - real course from DB */}
+            {realCourses.length > 0 && (() => {
+              const lastCourse = realCourses[0];
+              return (
+                <div style={{ background: 'linear-gradient(135deg, rgba(99,102,241,0.15), rgba(168,85,247,0.1))', border: '1px solid rgba(99,102,241,0.25)', borderRadius: 20, padding: '28px', marginBottom: 24 }}>
+                  <div style={{ fontSize: 14, color: '#64748b', marginBottom: 12 }}>⏯️ {t.continue_learning}</div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 16 }}>
+                    <span style={{ fontSize: 36 }}>📖</span>
+                    <div>
+                      <div style={{ fontWeight: 800, fontSize: 18 }}>
+                        {lang === 'ar' ? (lastCourse.title_ar || lastCourse.title) : lastCourse.title}
+                      </div>
+                      <div style={{ color: '#94a3b8', fontSize: 13 }}>{lastCourse.category}</div>
                     </div>
-                    <div style={{ color: '#94a3b8', fontSize: 13 }}>
-                      {lang === 'ar' ? lastCourse.lastLesson : lastCourse.lastLessonEn}
-                    </div>
                   </div>
+                  <Link href={`/courses/${lastCourse.id}`} style={{ textDecoration: 'none' }}>
+                    <button style={{ background: 'linear-gradient(135deg,#6366f1,#a855f7)', border: 'none', color: '#fff', padding: '14px 32px', borderRadius: 12, fontSize: 16, fontWeight: 800, cursor: 'pointer', fontFamily: "'Cairo', sans-serif", boxShadow: '0 8px 24px rgba(99,102,241,0.35)' }}>
+                      {t.btn_continue}
+                    </button>
+                  </Link>
                 </div>
-                <div style={{ marginBottom: 16 }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6, fontSize: 13, color: '#64748b' }}>
-                    <span>{t.progress}</span>
-                    <span>{lastCourse.lessonsDone} / {lastCourse.lessonsTotal} {t.lessons}</span>
-                  </div>
-                  <div style={{ height: 8, background: 'rgba(255,255,255,0.06)', borderRadius: 4, overflow: 'hidden' }}>
-                    <div style={{ height: '100%', width: `${lastCourse.progress}%`, background: 'linear-gradient(90deg,#6366f1,#a855f7)', borderRadius: 4 }} />
-                  </div>
-                </div>
-                <Link href={lastCourse.lastLessonHref} style={{ textDecoration: 'none' }}>
-                  <button style={{ background: 'linear-gradient(135deg,#6366f1,#a855f7)', border: 'none', color: '#fff', padding: '14px 32px', borderRadius: 12, fontSize: 16, fontWeight: 800, cursor: 'pointer', fontFamily: "'Cairo', sans-serif", boxShadow: '0 8px 24px rgba(99,102,241,0.35)' }}>
-                    {t.btn_continue}
-                  </button>
-                </Link>
-              </div>
-            )}
+              );
+            })()}
 
-            {/* My Courses */}
+
+            {/* My Courses - real from DB */}
             <div style={{ marginBottom: 24 }}>
               <h2 style={{ fontSize: 20, fontWeight: 800, margin: '0 0 16px', display: 'flex', alignItems: 'center', gap: 8 }}>
                 {t.my_courses}
               </h2>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-                {ENROLLED_COURSES.map(course => (
-                  <div key={course.id} style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.06)', borderRadius: 14, padding: '20px', display: 'flex', gap: 16, alignItems: 'center', flexWrap: 'wrap' }}>
-                    <span style={{ fontSize: 36 }}>{course.icon}</span>
-                    <div style={{ flex: 1, minWidth: 200 }}>
-                      <div style={{ fontWeight: 700, fontSize: 16, marginBottom: 4 }}>
-                        {lang === 'ar' ? course.title : course.title_en}
-                      </div>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 12, color: '#64748b', marginBottom: 6 }}>
-                        <span>{course.lessonsDone} / {course.lessonsTotal} {t.lessons} {t.completed_of}</span>
-                        <span>{course.progress}%</span>
-                      </div>
-                      <div style={{ height: 6, background: 'rgba(255,255,255,0.05)', borderRadius: 3, overflow: 'hidden' }}>
-                        <div style={{ height: '100%', width: `${course.progress}%`, background: 'linear-gradient(90deg,#6366f1,#a855f7)', borderRadius: 3, transition: 'width 0.5s ease' }} />
-                      </div>
-                    </div>
-                    <Link href={course.lastLessonHref} style={{ textDecoration: 'none', padding: '8px 20px', background: 'rgba(99,102,241,0.15)', border: '1px solid rgba(99,102,241,0.3)', borderRadius: 10, color: '#a855f7', fontSize: 13, fontWeight: 700, whiteSpace: 'nowrap' }}>
-                      {t.btn_follow}
-                    </Link>
+                {realCourses.length === 0 ? (
+                  <div style={{ textAlign: 'center', padding: '2rem', background: 'rgba(255,255,255,0.02)', border: '1px dashed rgba(255,255,255,0.1)', borderRadius: 14, color: '#64748b' }}>
+                    <div style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>📚</div>
+                    <p style={{ margin: 0, fontSize: 14 }}>{lang === 'ar' ? 'لم تنضم لأي كورس بعد' : 'No enrolled courses yet'}</p>
                   </div>
-                ))}
+                ) : (
+                  realCourses.map(course => (
+                    <div key={course.id} style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.06)', borderRadius: 14, padding: '20px', display: 'flex', gap: 16, alignItems: 'center', flexWrap: 'wrap' }}>
+                      <div style={{ width: 48, height: 48, borderRadius: 12, background: 'linear-gradient(135deg,#6366f1,#a855f7)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.5rem', flexShrink: 0 }}>📖</div>
+                      <div style={{ flex: 1, minWidth: 200 }}>
+                        <div style={{ fontWeight: 700, fontSize: 16, marginBottom: 4 }}>
+                          {lang === 'ar' ? (course.title_ar || course.title) : course.title}
+                        </div>
+                        <div style={{ fontSize: 12, color: '#64748b' }}>{course.category}</div>
+                      </div>
+                      <Link href={`/courses/${course.id}`} style={{ textDecoration: 'none', padding: '8px 20px', background: 'rgba(99,102,241,0.15)', border: '1px solid rgba(99,102,241,0.3)', borderRadius: 10, color: '#a855f7', fontSize: 13, fontWeight: 700, whiteSpace: 'nowrap' }}>
+                        {t.btn_follow}
+                      </Link>
+                    </div>
+                  ))
+                )}
                 <Link href="/courses" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, padding: '14px', background: 'rgba(255,255,255,0.02)', border: '1px dashed rgba(255,255,255,0.1)', borderRadius: 14, color: '#64748b', fontSize: 14, transition: 'all 0.2s' }}>
                   {t.explore_new}
                 </Link>
               </div>
             </div>
 
-            {/* Achievements */}
+            {/* Achievements - based on real completed lessons */}
             <div>
               <h2 style={{ fontSize: 20, fontWeight: 800, margin: '0 0 16px', display: 'flex', alignItems: 'center', gap: 8 }}>
                 <span>🏆</span> {t.achievements}
-                <span style={{ fontSize: 12, color: '#64748b', fontWeight: 400, marginRight: isRtl ? 'auto' : 0, marginLeft: isRtl ? 0 : 'auto' }}>
-                  {ACHIEVEMENTS.filter(a => a.earned).length} / {ACHIEVEMENTS.length} {t.completed_of}
-                </span>
               </h2>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(140px, 1fr))', gap: 12 }}>
-                {ACHIEVEMENTS.map(ach => (
+                {[
+                  { id: 'registered', title: 'البداية', title_en: 'The Beginning', icon: '🎯', desc: 'سجّلت حسابك', desc_en: 'Created your account', earned: true, xp: 10 },
+                  { id: 'first_lesson', title: 'أول خطوة', title_en: 'First Step', icon: '👣', desc: 'أكملت درسك الأول', desc_en: 'Completed first lesson', earned: realStats.completedLessons >= 1, xp: 50 },
+                  { id: 'five_lessons', title: 'مثابر', title_en: 'Diligent', icon: '🔥', desc: 'أكملت 5 دروس', desc_en: 'Completed 5 lessons', earned: realStats.completedLessons >= 5, xp: 100 },
+                  { id: 'ten_lessons', title: 'محترف', title_en: 'Professional', icon: '⭐', desc: 'أكملت 10 دروس', desc_en: 'Completed 10 lessons', earned: realStats.completedLessons >= 10, xp: 200 },
+                  { id: 'first_course', title: 'مُكمِل', title_en: 'Completer', icon: '🏆', desc: 'أكملت كورساً كاملاً', desc_en: 'Completed a full course', earned: realStats.enrolledCourses >= 1 && realStats.completedLessons >= 6, xp: 500 },
+                  { id: 'high_scorer', title: 'نجم الاختبارات', title_en: 'Quiz Star', icon: '🧠', desc: 'متوسط اختبارات 80%+', desc_en: '80%+ quiz average', earned: realStats.avgScore >= 80, xp: 150 },
+                ].map(ach => (
                   <div key={ach.id} style={{
                     background: ach.earned ? 'rgba(99,102,241,0.07)' : 'rgba(255,255,255,0.02)',
                     border: `1px solid ${ach.earned ? 'rgba(99,102,241,0.25)' : 'rgba(255,255,255,0.05)'}`,
@@ -414,7 +386,7 @@ export default function StudentDashboardPage() {
                       {lang === 'ar' ? ach.title : ach.title_en}
                     </div>
                     <div style={{ fontSize: 11, color: '#64748b', lineHeight: 1.4 }}>
-                      {lang === 'ar' ? ach.description : ach.description_en}
+                      {lang === 'ar' ? ach.desc : ach.desc_en}
                     </div>
                     {ach.earned && (
                       <div style={{ marginTop: 8, fontSize: 11, color: '#a855f7', fontWeight: 700 }}>+{ach.xp} XP</div>
@@ -432,24 +404,34 @@ export default function StudentDashboardPage() {
               <h3 style={{ fontSize: 17, fontWeight: 800, margin: '0 0 16px', display: 'flex', alignItems: 'center', gap: 8 }}>
                 {t.leaderboard}
               </h3>
-              {updatedLeaderboard.map((entry, i) => (
-                <div key={i} style={{
-                  display: 'flex', alignItems: 'center', gap: 10, padding: '10px 12px',
-                  borderRadius: 10, marginBottom: 6,
-                  background: entry.isMe ? 'rgba(99,102,241,0.12)' : 'transparent',
-                  border: entry.isMe ? '1px solid rgba(99,102,241,0.25)' : '1px solid transparent',
-                }}>
-                  <div style={{ width: 28, height: 28, borderRadius: 8, background: entry.rank <= 3 ? 'rgba(251,191,36,0.15)' : 'rgba(255,255,255,0.05)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 700, color: entry.rank <= 3 ? '#fbbf24' : '#64748b' }}>
-                    {entry.rank}
-                  </div>
-                  <span style={{ fontSize: 20 }}>{entry.avatar}</span>
-                  <div style={{ flex: 1 }}>
-                    <div style={{ fontSize: 13, fontWeight: entry.isMe ? 700 : 400, color: entry.isMe ? '#a855f7' : '#e2e8f0' }}>{entry.name}</div>
-                    <div style={{ fontSize: 11, color: '#64748b' }}>{entry.xp.toLocaleString(isRtl ? 'ar-EG' : 'en-US')} XP</div>
-                  </div>
-                  {entry.isMe && <span style={{ fontSize: 11, color: '#a855f7', fontWeight: 700 }}>{t.you}</span>}
-                </div>
-              ))}
+              {realLeaderboard.length === 0 ? (
+                <div style={{ textAlign: 'center', padding: '1.5rem', color: '#475569', fontSize: '0.85rem' }}>لا يوجد طلاب بعد</div>
+              ) : (
+                realLeaderboard.map((entry, i) => {
+                  const isMe = student && entry.name === student.name;
+                  const medals = ['🥇', '🥈', '🥉'];
+                  return (
+                    <div key={i} style={{
+                      display: 'flex', alignItems: 'center', gap: 10, padding: '10px 12px',
+                      borderRadius: 10, marginBottom: 6,
+                      background: isMe ? 'rgba(99,102,241,0.12)' : 'transparent',
+                      border: isMe ? '1px solid rgba(99,102,241,0.25)' : '1px solid transparent',
+                    }}>
+                      <div style={{ width: 28, height: 28, borderRadius: 8, background: i < 3 ? 'rgba(251,191,36,0.15)' : 'rgba(255,255,255,0.05)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 700, color: i < 3 ? '#fbbf24' : '#64748b' }}>
+                        {medals[i] || i + 1}
+                      </div>
+                      <div style={{ width: 32, height: 32, borderRadius: '50%', background: 'linear-gradient(135deg,#6366f1,#a855f7)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 800, color: '#fff', fontSize: '0.9rem', flexShrink: 0 }}>
+                        {entry.avatar_letter || (entry.name || '?').charAt(0)}
+                      </div>
+                      <div style={{ flex: 1 }}>
+                        <div style={{ fontSize: 13, fontWeight: isMe ? 700 : 400, color: isMe ? '#a855f7' : '#e2e8f0' }}>{entry.name}</div>
+                        <div style={{ fontSize: 11, color: '#64748b' }}>{(entry.xp || 0).toLocaleString(isRtl ? 'ar-EG' : 'en-US')} XP</div>
+                      </div>
+                      {isMe && <span style={{ fontSize: 11, color: '#a855f7', fontWeight: 700 }}>{t.you}</span>}
+                    </div>
+                  );
+                })
+              )}
             </div>
 
             {/* Quick Actions */}
