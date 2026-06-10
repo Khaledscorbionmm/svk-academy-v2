@@ -1056,20 +1056,53 @@ export default function LearnPage({ params }: { params: Promise<{ lessonId: stri
               <section style={{ background: 'rgba(5,5,10,0.6)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '14px', padding: '24px', overflowY: 'auto', display: 'flex', flexDirection: 'column' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 8, borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '12px', marginBottom: '16px' }}>
                   <span style={{ fontSize: '1.25rem' }}>📖</span>
-                  <h3 style={{ margin: 0, fontSize: '1.05rem', fontWeight: 800, color: '#10b981' }}>لوحة الشرح النظري والكتابي</h3>
+                  <h3 style={{ margin: 0, fontSize: '1.05rem', fontWeight: 800, color: '#10b981' }}>الشرح الصوتي والكتابي والعملي للدرس</h3>
                 </div>
                 
-                {lesson.video_url && (
-                  <PremiumVideoPlayer src={lesson.video_url} />
-                )}
-                
-                <PremiumAudioPlayer
-                  src={lesson.audio_url || ''}
-                  title={lesson.title}
-                  textContent={lesson.text_content || ''}
-                />
+                {/* 1. Audio Player at the top */}
+                <div style={{ marginBottom: '24px' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
+                    <span style={{ fontSize: '1.1rem' }}>💡</span>
+                    <span style={{ fontSize: '0.85rem', fontWeight: 700, color: '#f59e0b' }}>نصيحة ذكية للأبطال: استمع إلى الشرح الصوتي للدرس أولاً لتسهيل الحفظ والفهم السريع! 🎧</span>
+                  </div>
+                  <PremiumAudioPlayer
+                    src={lesson.audio_url || ''}
+                    title={lesson.title}
+                    textContent={lesson.text_content || ''}
+                  />
+                </div>
 
-                <div className="explanation-content" style={{ lineHeight: 1.8, fontSize: '0.95rem', color: '#cbd5e1' }} dangerouslySetInnerHTML={{ __html: lesson.text_content }} />
+                {/* 2. Practical Video Player below audio */}
+                {lesson.video_url && (
+                  <div style={{ marginBottom: '24px' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
+                      <span style={{ fontSize: '1.1rem' }}>📺</span>
+                      <span style={{ fontSize: '0.85rem', fontWeight: 700, color: '#3b82f6' }}>فيديو الشرح العملي: شاهد كيف نطبق الدرس خطوة بخطوة بالصوت والصورة! 🚀</span>
+                    </div>
+                    <PremiumVideoPlayer src={lesson.video_url} />
+                  </div>
+                )}
+
+                {/* 3. Written Explanations below video */}
+                <div style={{ marginTop: '8px' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '12px', borderBottom: '1px solid rgba(255,255,255,0.03)', paddingBottom: '8px' }}>
+                    <span style={{ fontSize: '1.1rem' }}>📝</span>
+                    <span style={{ fontSize: '0.9rem', fontWeight: 800, color: '#e2e8f0' }}>قراءة الدرس والشرح بالتفصيل:</span>
+                  </div>
+                  <div 
+                    className="explanation-content" 
+                    style={{ 
+                      lineHeight: 1.9, 
+                      fontSize: '1.05rem', 
+                      color: '#cbd5e1',
+                      background: 'rgba(255,255,255,0.01)',
+                      border: '1px solid rgba(255,255,255,0.02)',
+                      padding: '20px',
+                      borderRadius: '12px'
+                    }} 
+                    dangerouslySetInnerHTML={{ __html: lesson.text_content }} 
+                  />
+                </div>
               </section>
 
               {/* Panel 2: Code & Syntax Explanation (الكود البرمجي وشرحه) */}
