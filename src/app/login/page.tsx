@@ -31,7 +31,7 @@ export default function StudentLoginPage() {
         if (data.user?.role === 'admin') {
           router.push('/admin/dashboard');
         } else {
-          router.push('/learn/dashboard');
+          router.push('/dashboard');
         }
         router.refresh();
       } else {

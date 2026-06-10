@@ -6,6 +6,10 @@ export async function GET(req: NextRequest, { params }: { params: Promise<{ less
   try {
     const { lessonId } = await params;
     
+    if (isNaN(Number(lessonId))) {
+      return NextResponse.json({ error: 'Invalid lesson ID' }, { status: 400 });
+    }
+    
     // Fetch lesson first
     const result = await query('SELECT * FROM lessons WHERE id = $1', [lessonId]);
     if (result.length === 0) {
