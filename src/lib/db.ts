@@ -135,6 +135,16 @@ export async function initializeDatabase(): Promise<void> {
       UNIQUE(student_id, course_id)
     )
   `);
+
+  await query(`
+    CREATE TABLE IF NOT EXISTS email_verifications (
+      id SERIAL PRIMARY KEY,
+      email VARCHAR(255) NOT NULL,
+      code VARCHAR(6) NOT NULL,
+      expires_at TIMESTAMPTZ NOT NULL,
+      created_at TIMESTAMPTZ DEFAULT NOW()
+    )
+  `);
 }
 
 export default pool;
