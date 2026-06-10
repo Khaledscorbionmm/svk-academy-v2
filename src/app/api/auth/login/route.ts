@@ -33,10 +33,13 @@ async function tryDatabaseLogin(identifier: string, password: string) {
 
     // Check students (by email or phone)
     const student = await queryOne<{
-      id: number; email: string; phone: string; name: string; password_hash: string;
-    }>('SELECT id, email, phone, name, password_hash FROM students WHERE email = $1 OR phone = $1', [lowerIdentifier]);
+      id: number; email: string; phone: string; name: string; password_hash: string; is_active: boolean;
+    }>('SELECT id, email, phone, name, password_hash, is_active FROM students WHERE email = $1 OR phone = $1', [lowerIdentifier]);
 
     if (student) {
+      if (student.is_active === false) {
+         throw new Error('BANNED');
+      }
       const valid = await comparePassword(password, student.password_hash);
       if (valid) {
         return { id: student.id, email: student.email || student.phone, name: student.name, role: 'student' };
@@ -60,7 +63,8 @@ async function tryDatabaseLogin(identifier: string, password: string) {
       }
     }
     return null;
-  } catch (err) {
+  } catch (err: any) {
+    if (err.message === 'BANNED') return 'BANNED';
     console.warn('[DB Login failed, using fallback]', (err as Error).message);
     return undefined; // undefined = DB error, try fallback
   }
@@ -89,7 +93,11 @@ export async function POST(request: NextRequest) {
         user = { id: HARDCODED_ADMIN.id, email: HARDCODED_ADMIN.email, name: HARDCODED_ADMIN.name, role: HARDCODED_ADMIN.role };
       }
     } else {
-      user = dbResult;
+      user = dbResult as any;
+    }
+
+    if (user === 'BANNED') {
+      return NextResponse.json({ error: 'تم إيقاف حسابك. يرجى التواصل مع الإدارة.' }, { status: 403 });
     }
 
     if (!user) {

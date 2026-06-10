@@ -88,7 +88,7 @@ export default function CourseDetailPage({ params }: { params: Promise<{ id: str
     setMounted(true);
     async function load() {
       try {
-        const res = await fetch(`/api/courses/${id}`);
+        const res = await fetch(`/api/courses/${id}`, { cache: 'no-store' });
         if (res.ok) {
           const data = await res.json();
           setCourse(data.course);
@@ -110,7 +110,7 @@ export default function CourseDetailPage({ params }: { params: Promise<{ id: str
 
   async function checkUser() {
     try {
-      const res = await fetch('/api/auth/me');
+      const res = await fetch('/api/auth/me', { cache: 'no-store' });
       if (res.ok) {
         const data = await res.json();
         if (data.user) {

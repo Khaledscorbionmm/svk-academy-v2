@@ -18,7 +18,7 @@ export default function AdminPayments() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('/api/auth/me').then(r => r.json()).then(d => {
+    fetch('/api/auth/me', { cache: 'no-store' }).then(r => r.json()).then(d => {
       if (!d.user || d.user.role !== 'admin') router.push('/admin/login');
     }).catch(() => router.push('/admin/login'));
 

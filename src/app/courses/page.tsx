@@ -23,13 +23,14 @@ interface Course {
 }
 
 const CATEGORY_ICONS: Record<string, string> = {
-  python: '🐍', 'البرمجة': '🐍',
-  javascript: '⚡', 'تطوير الويب': '⚡',
+  python: '🐍', 'البرمجة': '🐍', 'Programming': '💻',
+  javascript: '⚡', 'تطوير الويب': '⚡', 'Web Development': '🌐',
   react: '⚛️',
   ai: '🤖', 'الذكاء الاصطناعي': '🤖',
   database: '🗄️', 'قواعد البيانات': '🗄️',
   devops: '🛠️',
-  security: '🔒', 'الأمن السيبراني': '🔒',
+  security: '🔒', 'الأمن السيبراني': '🔒', 'Security': '🛡️',
+  languages: '🌍', 'اللغات': '🌍', 'Languages': '🌍',
   default: '📚',
 };
 
@@ -41,23 +42,26 @@ const LEVEL_LABELS: Record<string, { label: string; color: string }> = {
 
 // Map Arabic DB categories to filter IDs
 const CAT_MAP: Record<string, string> = {
-  'البرمجة': 'python', 'python': 'python',
-  'تطوير الويب': 'javascript', 'javascript': 'javascript',
+  'البرمجة': 'python', 'python': 'python', 'Programming': 'python',
+  'تطوير الويب': 'javascript', 'javascript': 'javascript', 'Web Development': 'javascript',
   'react': 'react',
   'الذكاء الاصطناعي': 'ai', 'ai': 'ai',
   'قواعد البيانات': 'database', 'database': 'database',
   'devops': 'devops', 'DevOps': 'devops',
-  'الأمن السيبراني': 'security', 'security': 'security',
+  'الأمن السيبراني': 'security', 'security': 'security', 'Security': 'security',
+  'اللغات': 'languages', 'Languages': 'languages', 'languages': 'languages',
 };
 
 const CATEGORIES = [
   { id: 'all', label: 'كل الكورسات', icon: '🌟' },
+  { id: 'languages', label: 'اللغات', icon: '🌍' },
   { id: 'python', label: 'Python', icon: '🐍' },
   { id: 'javascript', label: 'JavaScript', icon: '⚡' },
   { id: 'react', label: 'React', icon: '⚛️' },
   { id: 'ai', label: 'الذكاء الاصطناعي', icon: '🤖' },
   { id: 'database', label: 'قواعد البيانات', icon: '🗄️' },
   { id: 'devops', label: 'DevOps', icon: '🛠️' },
+  { id: 'security', label: 'الأمن السيبراني', icon: '🔒' },
 ];
 
 function StarRating({ rating }: { rating: number }) {
@@ -81,9 +85,12 @@ function CourseCard({ course }: { course: Course }) {
     ai: 'linear-gradient(135deg, #2a0a3a, #150025)',
     database: 'linear-gradient(135deg, #1a2a1a, #001500)',
     devops: 'linear-gradient(135deg, #2a1a0a, #150800)',
+    security: 'linear-gradient(135deg, #0a203a, #000c1a)',
+    languages: 'linear-gradient(135deg, #3a1a20, #1a000a)',
     default: 'linear-gradient(135deg, #1a1040, #0a0820)',
   };
-  const gradient = gradients[course.category || 'default'] || gradients.default;
+  const normalizedCat = CAT_MAP[course.category || ''] || 'default';
+  const gradient = gradients[normalizedCat] || gradients.default;
 
   return (
     <Link href={`/courses/${course.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
@@ -220,7 +227,7 @@ export default function CoursesPage() {
 
   async function checkUser() {
     try {
-      const res = await fetch('/api/auth/me');
+      const res = await fetch('/api/auth/me', { cache: 'no-store' });
       if (res.ok) {
         const data = await res.json();
         if (data.user) {
@@ -234,7 +241,7 @@ export default function CoursesPage() {
 
   async function fetchCourses() {
     try {
-      const res = await fetch('/api/courses');
+      const res = await fetch('/api/courses', { cache: 'no-store' });
       if (!res.ok) throw new Error('فشل في جلب الكورسات');
       const data = await res.json();
       setCourses(data.courses || []);

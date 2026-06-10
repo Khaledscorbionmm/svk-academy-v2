@@ -35,7 +35,7 @@ export async function POST(req: NextRequest) {
 
     // Get course_id for this lesson
     const lessonRows = await query(
-      'SELECT course_id FROM lessons WHERE id = $1',
+      'SELECT course_id, is_free FROM lessons WHERE id = $1',
       [parseInt(lessonSlug, 10) || 0]
     ) as any[];
 
@@ -43,6 +43,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Lesson not found' }, { status: 404 });
     }
     const courseId = lessonRows[0].course_id;
+    const isFree = lessonRows[0].is_free;
 
     // Check if enrolled in this course
     const enrollRows = await query(
@@ -53,7 +54,7 @@ export async function POST(req: NextRequest) {
     let isAuthorized = enrollRows.length > 0;
     let alreadyCompleted = false;
 
-    // If not enrolled directly, check manual override approved lesson_access
+    // If not enrolled directly, check manual override approved lesson_access or if lesson is free
     if (!isAuthorized) {
       const accessRows = await query(
         `SELECT id, completed_at FROM lesson_access WHERE student_id = $1 AND lesson_slug = $2 AND status = 'approved'`,
@@ -62,6 +63,15 @@ export async function POST(req: NextRequest) {
       if (accessRows.length > 0) {
         isAuthorized = true;
         alreadyCompleted = accessRows[0].completed_at !== null;
+      } else if (isFree) {
+        isAuthorized = true;
+        const freeAccessRows = await query(
+          `SELECT completed_at FROM lesson_access WHERE student_id = $1 AND lesson_slug = $2`,
+          [studentId, lessonSlug]
+        ) as any[];
+        if (freeAccessRows.length > 0) {
+          alreadyCompleted = freeAccessRows[0].completed_at !== null;
+        }
       }
     } else {
       // Check if already completed

@@ -164,8 +164,8 @@ export default function StudentDashboardPage() {
   async function fetchStudentProfile() {
     try {
       const [meRes, dashRes] = await Promise.all([
-        fetch('/api/auth/me'),
-        fetch('/api/student/dashboard'),
+        fetch('/api/auth/me', { cache: 'no-store' }),
+        fetch('/api/student/dashboard', { cache: 'no-store' }),
       ]);
 
       let dashDataResult = null;

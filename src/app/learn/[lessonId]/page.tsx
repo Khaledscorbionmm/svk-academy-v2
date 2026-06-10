@@ -739,7 +739,7 @@ export default function LearnPage({ params }: { params: Promise<{ lessonId: stri
   useEffect(() => {
     async function fetchLesson() {
       try {
-        const res = await fetch(`/api/lessons/${lessonId}`);
+        const res = await fetch(`/api/lessons/${lessonId}`, { cache: 'no-store' });
         if (res.ok) {
           const json = await res.json();
           setData(json);

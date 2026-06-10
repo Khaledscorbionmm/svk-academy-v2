@@ -43,7 +43,22 @@ export default function AdminLoginPage() {
   useEffect(() => {
     setMounted(true);
     setParticles(generateParticles(30));
-  }, []);
+    
+    // Check if already logged in
+    fetch('/api/auth/me', { cache: 'no-store' })
+      .then(res => {
+        if (res.ok) return res.json();
+        throw new Error('Not logged in');
+      })
+      .then(data => {
+        if (data.user && data.user.role === 'admin') {
+          router.push('/admin/dashboard');
+        } else if (data.user && data.user.role === 'student') {
+          router.push('/dashboard');
+        }
+      })
+      .catch(() => {});
+  }, [router]);
 
   const handleSubmit = useCallback(async (e: React.FormEvent) => {
     e.preventDefault();

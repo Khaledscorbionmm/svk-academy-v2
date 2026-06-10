@@ -47,7 +47,7 @@ export default function AdminDashboard() {
 
   async function fetchUser() {
     try {
-      const res = await fetch('/api/auth/me');
+      const res = await fetch('/api/auth/me', { cache: 'no-store' });
       if (res.ok) {
         const d = await res.json();
         if (d.user && d.user.role === 'admin') {
