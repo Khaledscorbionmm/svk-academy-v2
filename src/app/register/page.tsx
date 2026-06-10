@@ -30,7 +30,7 @@ export default function RegisterPage() {
       const data = await res.json();
       
       if (res.ok) {
-        router.push('/login');
+        router.push('/dashboard');
         router.refresh();
       } else {
         setError(data.error || 'حدث خطأ أثناء التسجيل');
