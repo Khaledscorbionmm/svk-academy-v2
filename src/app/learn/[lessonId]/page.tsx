@@ -815,6 +815,11 @@ export default function LearnPage({ params }: { params: Promise<{ lessonId: stri
           try {
             const outputsList: string[] = [];
             const sandbox = {
+              _mul: (a: any, b: any) => {
+                if (typeof a === 'string') return a.repeat(b);
+                if (typeof b === 'string') return b.repeat(a);
+                return a * b;
+              },
               print: (...args: any[]) => {
                 outputsList.push(args.map(arg => {
                   if (typeof arg === 'object') return JSON.stringify(arg);
@@ -872,7 +877,7 @@ export default function LearnPage({ params }: { params: Promise<{ lessonId: stri
             for (let i = 0; i < lines.length; i++) {
               const line = lines[i];
               const trimmed = line.trim();
-              if (!trimmed || trimmed.startsWith('#')) {
+              if (!trimmed) {
                 jsLines.push(line);
                 continue;
               }
@@ -885,14 +890,54 @@ export default function LearnPage({ params }: { params: Promise<{ lessonId: stri
                 jsLines.push(' '.repeat(closedIndent) + '}');
               }
 
-              let processed = line;
+              // Parse line to extract inline comments
+              let cleanLine = '';
+              let inString = false;
+              let stringChar = '';
+              let charIdx = 0;
+              while (charIdx < line.length) {
+                const char = line[charIdx];
+                if ((char === '"' || char === "'") && (charIdx === 0 || line[charIdx - 1] !== '\\')) {
+                  if (!inString) {
+                    inString = true;
+                    stringChar = char;
+                  } else if (char === stringChar) {
+                    inString = false;
+                  }
+                  cleanLine += char;
+                  charIdx++;
+                  continue;
+                }
+                if (inString) {
+                  cleanLine += char;
+                  charIdx++;
+                  continue;
+                }
+                if (char === '#') {
+                  cleanLine += '//' + line.substring(charIdx + 1);
+                  break;
+                }
+                cleanLine += char;
+                charIdx++;
+              }
+
+              let processed = cleanLine;
+
+              // If it's a full comment line now, just push and skip
+              if (processed.trim().startsWith('//')) {
+                jsLines.push(processed);
+                continue;
+              }
 
               // Booleans
               processed = processed.replace(/\bTrue\b/g, 'true').replace(/\bFalse\b/g, 'false');
 
-              // String multiplication
-              processed = processed.replace(/(["'])(.*?)\1\s*\*\s*(\d+)/g, '"$2".repeat($3)');
-              processed = processed.replace(/(["'])(.*?)\1\s*\*\s*([a-zA-Z_][a-zA-Z0-9_]*)/g, '"$2".repeat($3)');
+              // String and variable multiplications using helper _mul
+              processed = processed.replace(/(["'])(.*?)\1\s*\*\s*(\d+)/g, '_mul("$2", $3)');
+              processed = processed.replace(/(\d+)\s*\*\s*(["'])(.*?)\2/g, '_mul($1, "$3")');
+              processed = processed.replace(/\b([a-zA-Z_][a-zA-Z0-9_]*)\s*\*\s*(\d+)/g, '_mul($1, $2)');
+              processed = processed.replace(/\b(\d+)\s*\*\s*([a-zA-Z_][a-zA-Z0-9_]*)\b/g, '_mul($1, $2)');
+              processed = processed.replace(/\b([a-zA-Z_][a-zA-Z0-9_]*)\s*\*\s*([a-zA-Z_][a-zA-Z0-9_]*)\b/g, '_mul($1, $2)');
 
               // Convert print
               processed = processed.replace(/\bprint\s*\(/g, 'print(');
