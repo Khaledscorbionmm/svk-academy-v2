@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { verifyToken, COOKIE_NAME } from '@/lib/auth';
+import { verifyTokenEdge, COOKIE_NAME } from '@/lib/auth-edge';
 
 const ALWAYS_PUBLIC = [
   '/admin/login',
@@ -13,7 +13,7 @@ const ALWAYS_PUBLIC = [
 
 const PUBLIC_PAGES = ['/', '/courses', '/login', '/register', '/about'];
 
-export function middleware(request: NextRequest) {
+export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   // 1. Allow always public resources
@@ -48,7 +48,7 @@ export function middleware(request: NextRequest) {
       }
       return NextResponse.redirect(new URL('/admin/login', request.url));
     }
-    const payload = verifyToken(token);
+    const payload = await verifyTokenEdge(token);
     if (!payload || payload.role !== 'admin') {
       if (pathname.startsWith('/api/')) {
         return NextResponse.json({ error: 'غير مسموح لك' }, { status: 403 });
@@ -71,13 +71,13 @@ export function middleware(request: NextRequest) {
     
     // Check student token
     if (studentToken) {
-      const payload = verifyToken(studentToken);
+      const payload = await verifyTokenEdge(studentToken);
       if (payload) isAuthorized = true;
     }
     
     // Admin is also allowed to view dashboard/learn space for previewing
     if (adminToken && !isAuthorized) {
-      const payload = verifyToken(adminToken);
+      const payload = await verifyTokenEdge(adminToken);
       if (payload && payload.role === 'admin') isAuthorized = true;
     }
 
