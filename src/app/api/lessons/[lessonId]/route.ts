@@ -27,8 +27,13 @@ export async function GET(req: NextRequest, { params }: { params: Promise<{ less
 
     // Check Access
     let accessStatus = 'locked';
-    const token = req.cookies.get(COOKIE_NAME)?.value;
-    const payload = token ? verifyToken(token) : null;
+    const adminToken = req.cookies.get(COOKIE_NAME)?.value;
+    const studentToken = req.cookies.get('svk_student_token')?.value;
+    
+    let payload = adminToken ? verifyToken(adminToken) : null;
+    if (!payload && studentToken) {
+      payload = verifyToken(studentToken);
+    }
 
     if (payload) {
       if (payload.role === 'admin') {
