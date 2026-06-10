@@ -9,6 +9,11 @@ const mockPayments = [
   { id: 'PAY-1004', student: 'محمد علي', amount: 500, date: '2026-06-10', method: 'Vodafone Cash', status: 'Failed' },
 ];
 
+const formatStudentName = (name: string) => {
+  if (!name) return '';
+  return name.length > 2 ? name.slice(0, 2) + '..' : name;
+};
+
 export default function AdminPayments() {
   const [payments] = useState(mockPayments);
 
@@ -43,7 +48,7 @@ export default function AdminPayments() {
             {payments.map((pay, idx) => (
               <tr key={pay.id} style={{ borderBottom: idx === payments.length - 1 ? 'none' : '1px solid rgba(255,255,255,0.05)', transition: 'background 0.2s', cursor: 'pointer' }} onMouseEnter={e => e.currentTarget.style.background = 'rgba(255,255,255,0.02)'} onMouseLeave={e => e.currentTarget.style.background = 'transparent'}>
                 <td style={{ padding: '1rem 1.5rem', fontFamily: 'monospace', color: '#94a3b8' }}>{pay.id}</td>
-                <td style={{ padding: '1rem 1.5rem', fontWeight: 600 }}>{pay.student}</td>
+                <td style={{ padding: '1rem 1.5rem', fontWeight: 600 }}>{formatStudentName(pay.student)}</td>
                 <td style={{ padding: '1rem 1.5rem', fontFamily: 'monospace', fontWeight: 700 }}>{pay.amount} EGP</td>
                 <td style={{ padding: '1rem 1.5rem', fontFamily: 'monospace' }}>{pay.date}</td>
                 <td style={{ padding: '1rem 1.5rem' }}>{pay.method}</td>

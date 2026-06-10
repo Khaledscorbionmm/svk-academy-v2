@@ -11,6 +11,7 @@ interface Student {
   created_at: string;
   is_active: boolean;
   course_count: number;
+  requested_courses?: { course_id: number; title: string }[];
 }
 
 interface Course {
@@ -18,6 +19,11 @@ interface Course {
   title: string;
   title_ar?: string;
 }
+
+const formatStudentName = (name: string) => {
+  if (!name) return '';
+  return name.length > 2 ? name.slice(0, 2) + '..' : name;
+};
 
 export default function AdminStudents() {
   const [students, setStudents] = useState<Student[]>([]);
@@ -27,6 +33,7 @@ export default function AdminStudents() {
   const [selectedStudent, setSelectedStudent] = useState<Student | null>(null);
   const [courses, setCourses] = useState<Course[]>([]);
   const [activeCourseIds, setActiveCourseIds] = useState<number[]>([]);
+  const [requestedCourseIds, setRequestedCourseIds] = useState<number[]>([]);
   const [modalLoading, setModalLoading] = useState(false);
 
   useEffect(() => {
@@ -71,6 +78,7 @@ export default function AdminStudents() {
         const json = await res.json();
         setCourses(json.courses || []);
         setActiveCourseIds(json.activeCourseIds || []);
+        setRequestedCourseIds(json.requestedCourseIds || []);
       }
     } catch (e) {
       console.error(e);
@@ -90,6 +98,7 @@ export default function AdminStudents() {
       } else {
         // Activate
         setActiveCourseIds(prev => [...prev, courseId]);
+        setRequestedCourseIds(prev => prev.filter(id => id !== courseId));
         setStudents(prev => prev.map(s => s.id === selectedStudent.id ? { ...s, course_count: s.course_count + 1 } : s));
       }
 
@@ -100,6 +109,34 @@ export default function AdminStudents() {
           studentId: selectedStudent.id,
           courseId,
           activate: !isActive
+        })
+      });
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  const handleDirectActivate = async (studentId: number, courseId: number) => {
+    try {
+      // Optimistic UI update for the table
+      setStudents(prev => prev.map(s => {
+        if (s.id === studentId) {
+          return {
+            ...s,
+            course_count: s.course_count + 1,
+            requested_courses: s.requested_courses?.filter(rc => rc.course_id !== courseId) || []
+          };
+        }
+        return s;
+      }));
+
+      await fetch('/api/admin/students/enroll', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          studentId,
+          courseId,
+          activate: true
         })
       });
     } catch (e) {
@@ -136,10 +173,29 @@ export default function AdminStudents() {
               {students.map((student, idx) => (
                 <tr key={student.id} style={{ borderBottom: idx === students.length - 1 ? 'none' : '1px solid rgba(255,255,255,0.05)', transition: 'background 0.2s' }} onMouseEnter={e => e.currentTarget.style.background = 'rgba(255,255,255,0.02)'} onMouseLeave={e => e.currentTarget.style.background = 'transparent'}>
                   <td style={{ padding: '1rem 1.5rem', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                    <div style={{ width: '32px', height: '32px', borderRadius: '50%', background: 'rgba(59,130,246,0.2)', color: '#3b82f6', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold' }}>
+                    <div style={{ width: '32px', height: '32px', borderRadius: '50%', background: 'rgba(59,130,246,0.2)', color: '#3b82f6', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold', flexShrink: 0 }}>
                       {student.name.charAt(0)}
                     </div>
-                    {student.name}
+                    <div style={{ display: 'flex', flexDirection: 'column' }}>
+                      <span>{formatStudentName(student.name)}</span>
+                      {student.requested_courses && student.requested_courses.length > 0 && (
+                        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginTop: '6px' }}>
+                          {student.requested_courses.map(rc => (
+                            <div key={rc.course_id} style={{ display: 'flex', alignItems: 'center', gap: '6px', background: 'rgba(245,158,11,0.12)', border: '1px solid rgba(245,158,11,0.3)', padding: '2px 8px', borderRadius: '4px', fontSize: '0.75rem' }}>
+                              <span style={{ color: '#f59e0b', fontWeight: 'bold' }}>طلب تفعيل: {rc.title}</span>
+                              <button
+                                onClick={() => handleDirectActivate(student.id, rc.course_id)}
+                                style={{
+                                  background: '#10b981', color: '#000', border: 'none', padding: '2px 6px', borderRadius: '3px', cursor: 'pointer', fontSize: '0.7rem', fontWeight: 'bold'
+                                }}
+                              >
+                                تفعيل 🔑
+                              </button>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </div>
                   </td>
                   <td style={{ padding: '1rem 1.5rem', color: '#e2e8f0', fontFamily: 'monospace' }}>
                     <div>{student.phone || '—'}</div>
@@ -182,7 +238,7 @@ export default function AdminStudents() {
         <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.8)', backdropFilter: 'blur(8px)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1000 }}>
           <div style={{ background: '#0a0a16', border: '1px solid rgba(59,130,246,0.3)', borderRadius: '20px', padding: '30px', maxWidth: '600px', width: '90%', maxHeight: '80%', overflowY: 'auto', display: 'flex', flexDirection: 'column' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '16px', marginBottom: '20px' }}>
-              <h3 style={{ margin: 0, fontSize: '1.25rem', fontWeight: 800, color: '#3b82f6' }}>تفعيل تراخيص الكورسات لـ: {selectedStudent.name}</h3>
+              <h3 style={{ margin: 0, fontSize: '1.25rem', fontWeight: 800, color: '#3b82f6' }}>تفعيل تراخيص الكورسات لـ: {formatStudentName(selectedStudent.name)}</h3>
               <button onClick={() => setSelectedStudent(null)} style={{ background: 'transparent', border: 'none', color: '#94a3b8', fontSize: '1.5rem', cursor: 'pointer' }}>×</button>
             </div>
 
@@ -196,9 +252,15 @@ export default function AdminStudents() {
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
                   {courses.map(course => {
                     const isEnrolled = activeCourseIds.includes(course.id);
+                    const isRequested = requestedCourseIds.includes(course.id);
                     return (
-                      <div key={course.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px 16px', background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '10px' }}>
-                        <span style={{ color: '#fff', fontWeight: 600, fontSize: '0.95rem' }}>{course.title_ar || course.title}</span>
+                      <div key={course.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px 16px', background: isRequested && !isEnrolled ? 'rgba(245,158,11,0.05)' : 'rgba(255,255,255,0.02)', border: isRequested && !isEnrolled ? '1px solid rgba(245,158,11,0.3)' : '1px solid rgba(255,255,255,0.05)', borderRadius: '10px' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                          <span style={{ color: '#fff', fontWeight: 600, fontSize: '0.95rem' }}>{course.title_ar || course.title}</span>
+                          {isRequested && !isEnrolled && (
+                            <span style={{ fontSize: '0.75rem', background: 'rgba(245,158,11,0.2)', color: '#f59e0b', padding: '2px 8px', borderRadius: '4px', fontWeight: 'bold' }}>⚠️ مطلوب تفعيله</span>
+                          )}
+                        </div>
                         <button
                           onClick={() => toggleCourseActivation(course.id, isEnrolled)}
                           style={{

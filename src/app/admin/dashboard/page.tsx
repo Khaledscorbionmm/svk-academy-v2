@@ -18,6 +18,7 @@ interface RadarData {
     pendingRequests: number;
   };
   requests: any[];
+  courseRequests?: any[];
   recentSignups: any[];
 }
 
@@ -28,6 +29,11 @@ const LESSON_NAMES: Record<string, string> = {
   'python-fns': 'الدوال Functions',
   'python-lists': 'القوائم Lists',
   'python-dicts': 'القواميس Dicts',
+};
+
+const formatStudentName = (name: string) => {
+  if (!name) return '';
+  return name.length > 2 ? name.slice(0, 2) + '..' : name;
 };
 
 export default function AdminDashboard() {
@@ -93,6 +99,19 @@ export default function AdminDashboard() {
     }
   }
 
+  async function handleApproveCourse(studentId: number, courseId: number, approve: boolean) {
+    try {
+      await fetch('/api/admin/students/enroll', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ studentId, courseId, activate: approve }),
+      });
+      fetchRadarData(); // Refresh immediately
+    } catch (e) {
+      console.error('Error approving course request', e);
+    }
+  }
+
   if (loading) {
     return (
       <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#050508' }}>
@@ -146,24 +165,60 @@ export default function AdminDashboard() {
                 ))}
               </div>
 
-              {/* Action Center: Pending Requests */}
+              {/* Action Required: Course Activation Requests */}
+              <div style={{ background: 'rgba(5,5,10,0.8)', border: '1px solid rgba(245,158,11,0.3)', borderRadius: '12px', overflow: 'hidden' }}>
+                <div style={{ background: 'rgba(245,158,11,0.1)', padding: '1rem 1.5rem', borderBottom: '1px solid rgba(245,158,11,0.2)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <h2 style={{ fontSize: '1rem', color: '#f59e0b', margin: 0, display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <span style={{ width: '8px', height: '8px', background: '#f59e0b', borderRadius: '50%', animation: 'pulse 1s infinite' }} />
+                    ACTION REQUIRED: COURSE ACTIVATION REQUESTS (طلبات تفعيل الكورسات المعلقة)
+                  </h2>
+                </div>
+                <div style={{ padding: '1rem' }}>
+                  {!radarData.courseRequests || radarData.courseRequests.length === 0 ? (
+                    <div style={{ textAlign: 'center', padding: '3rem', color: '#64748b', fontFamily: 'monospace' }}>NO PENDING COURSE REQUESTS</div>
+                  ) : (
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                      {radarData.courseRequests.map(req => (
+                        <div key={'course-' + req.id} style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '8px', padding: '1rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                          <div>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.25rem' }}>
+                              <span style={{ color: '#fff', fontWeight: 700 }}>{formatStudentName(req.student_name)}</span>
+                              <span style={{ color: '#64748b', fontSize: '0.8rem' }}>({req.student_email})</span>
+                            </div>
+                            <div style={{ color: '#f59e0b', fontSize: '0.9rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                              <span>REQUESTS ACTIVATION OF:</span>
+                              <strong>{req.course_title}</strong>
+                            </div>
+                          </div>
+                          <div style={{ display: 'flex', gap: '0.5rem' }}>
+                            <button onClick={() => handleApproveCourse(req.student_id, req.course_id, true)} style={{ background: '#10b981', color: '#000', border: 'none', padding: '0.5rem 1rem', borderRadius: '4px', fontWeight: 700, cursor: 'pointer', transition: 'all 0.2s' }}>GRANT ✓</button>
+                            <button onClick={() => handleApproveCourse(req.student_id, req.course_id, false)} style={{ background: '#ef4444', color: '#fff', border: 'none', padding: '0.5rem 1rem', borderRadius: '4px', fontWeight: 700, cursor: 'pointer', transition: 'all 0.2s' }}>DENY ✕</button>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              {/* Action Required: Lesson Access Requests */}
               <div style={{ background: 'rgba(5,5,10,0.8)', border: '1px solid rgba(239,68,68,0.3)', borderRadius: '12px', overflow: 'hidden' }}>
                 <div style={{ background: 'rgba(239,68,68,0.1)', padding: '1rem 1.5rem', borderBottom: '1px solid rgba(239,68,68,0.2)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                   <h2 style={{ fontSize: '1rem', color: '#ef4444', margin: 0, display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                     <span style={{ width: '8px', height: '8px', background: '#ef4444', borderRadius: '50%', animation: 'pulse 1s infinite' }} />
-                    ACTION REQUIRED: ACCESS REQUESTS
+                    ACTION REQUIRED: LESSON ACCESS REQUESTS (طلبات تفعيل الدروس المعلقة)
                   </h2>
                 </div>
                 <div style={{ padding: '1rem' }}>
                   {radarData.requests.length === 0 ? (
-                    <div style={{ textAlign: 'center', padding: '3rem', color: '#64748b', fontFamily: 'monospace' }}>NO PENDING ALERTS</div>
+                    <div style={{ textAlign: 'center', padding: '3rem', color: '#64748b', fontFamily: 'monospace' }}>NO PENDING LESSON ALERTS</div>
                   ) : (
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                       {radarData.requests.map(req => (
                         <div key={req.id} style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '8px', padding: '1rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                           <div>
                             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.25rem' }}>
-                              <span style={{ color: '#fff', fontWeight: 700 }}>{req.student_name}</span>
+                              <span style={{ color: '#fff', fontWeight: 700 }}>{formatStudentName(req.student_name)}</span>
                               <span style={{ color: '#64748b', fontSize: '0.8rem' }}>({req.student_email})</span>
                             </div>
                             <div style={{ color: '#3b82f6', fontSize: '0.9rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
@@ -194,7 +249,7 @@ export default function AdminDashboard() {
                     <div key={user.id} style={{ display: 'flex', gap: '1rem', animation: `slideIn 0.3s ease ${i * 0.1}s forwards`, opacity: 0 }}>
                       <div style={{ color: '#64748b' }}>{new Date(user.created_at).toLocaleTimeString('en-US', { hour12: false })}</div>
                       <div style={{ flex: 1 }}>
-                        <span style={{ color: '#10b981' }}>[NEW_USER]</span> {user.name} registered.
+                        <span style={{ color: '#10b981' }}>[NEW_USER]</span> {formatStudentName(user.name)} registered.
                       </div>
                     </div>
                   ))}
@@ -202,7 +257,15 @@ export default function AdminDashboard() {
                     <div key={req.id + 'feed'} style={{ display: 'flex', gap: '1rem', animation: `slideIn 0.3s ease ${(i + radarData.recentSignups.length) * 0.1}s forwards`, opacity: 0 }}>
                       <div style={{ color: '#64748b' }}>{new Date(req.requested_at).toLocaleTimeString('en-US', { hour12: false })}</div>
                       <div style={{ flex: 1 }}>
-                        <span style={{ color: '#ef4444' }}>[ALERT]</span> {req.student_name} requests access to {req.lesson_slug}.
+                        <span style={{ color: '#ef4444' }}>[ALERT]</span> {formatStudentName(req.student_name)} requests access to {req.lesson_slug}.
+                      </div>
+                    </div>
+                  ))}
+                  {radarData.courseRequests?.slice(0, 3).map((req, i) => (
+                    <div key={req.id + 'course-feed'} style={{ display: 'flex', gap: '1rem', animation: `slideIn 0.3s ease ${(i + radarData.recentSignups.length + radarData.requests.length) * 0.1}s forwards`, opacity: 0 }}>
+                      <div style={{ color: '#64748b' }}>{new Date(req.requested_at).toLocaleTimeString('en-US', { hour12: false })}</div>
+                      <div style={{ flex: 1 }}>
+                        <span style={{ color: '#f59e0b' }}>[ALERT]</span> {formatStudentName(req.student_name)} requests course activation for {req.course_title}.
                       </div>
                     </div>
                   ))}

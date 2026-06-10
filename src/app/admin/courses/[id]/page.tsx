@@ -17,6 +17,7 @@ interface Lesson {
   order_index: number;
   is_free: boolean;
   duration_minutes: number;
+  audio_url?: string;
 }
 
 export default function AdminCourseDetail({ params }: { params: Promise<{ id: string }> }) {
@@ -45,15 +46,12 @@ export default function AdminCourseDetail({ params }: { params: Promise<{ id: st
 
   const toggleFree = async (lessonId: number, currentFree: boolean) => {
     try {
-      // In production, we'd hit a PUT/PATCH endpoint to save.
-      // For instant frontend feedback:
       setLessons(prev => prev.map(l => l.id === lessonId ? { ...l, is_free: !currentFree } : l));
       
-      // Call mock api/update lesson status
-      await fetch(`/api/lessons/access`, {
-        method: 'POST',
+      await fetch(`/api/admin/lessons/${lessonId}`, {
+        method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ lessonId, is_free: !currentFree })
+        body: JSON.stringify({ is_free: !currentFree })
       });
     } catch (e) {
       console.error(e);
@@ -105,10 +103,44 @@ export default function AdminCourseDetail({ params }: { params: Promise<{ id: st
 
         <div style={{ maxHeight: '600px', overflowY: 'auto' }}>
           {lessons.map((lesson, idx) => (
-            <div key={lesson.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '1rem 1.5rem', borderBottom: idx === lessons.length - 1 ? 'none' : '1px solid rgba(255,255,255,0.05)', transition: 'background 0.2s' }} onMouseEnter={e => e.currentTarget.style.background = 'rgba(255,255,255,0.02)'} onMouseLeave={e => e.currentTarget.style.background = 'transparent'}>
-              <div>
-                <span style={{ color: '#64748b', marginLeft: '10px', fontSize: '0.9rem', fontFamily: 'monospace' }}>#{lesson.order_index}</span>
-                <span style={{ color: '#fff', fontWeight: 600 }}>{lesson.title}</span>
+            <div key={lesson.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '1.25rem 1.5rem', borderBottom: idx === lessons.length - 1 ? 'none' : '1px solid rgba(255,255,255,0.05)', transition: 'background 0.2s' }} onMouseEnter={e => e.currentTarget.style.background = 'rgba(255,255,255,0.02)'} onMouseLeave={e => e.currentTarget.style.background = 'transparent'}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+                <div>
+                  <span style={{ color: '#64748b', marginLeft: '10px', fontSize: '0.9rem', fontFamily: 'monospace' }}>#{lesson.order_index}</span>
+                  <span style={{ color: '#fff', fontWeight: 600 }}>{lesson.title}</span>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginTop: 4 }}>
+                  <span style={{ fontSize: '0.75rem', color: '#64748b' }}>🎙️ رابط المقطع الصوتي:</span>
+                  <input
+                    type="text"
+                    defaultValue={lesson.audio_url || ''}
+                    placeholder="ضع رابط MP3 للشرح هنا..."
+                    onBlur={async (e) => {
+                      const url = e.target.value;
+                      try {
+                        await fetch(`/api/admin/lessons/${lesson.id}`, {
+                          method: 'PUT',
+                          headers: { 'Content-Type': 'application/json' },
+                          body: JSON.stringify({ audio_url: url })
+                        });
+                      } catch (err) {
+                        console.error(err);
+                      }
+                    }}
+                    style={{
+                      background: 'rgba(255,255,255,0.03)',
+                      border: '1px solid rgba(255,255,255,0.08)',
+                      borderRadius: '6px',
+                      padding: '4px 10px',
+                      color: '#cbd5e1',
+                      fontSize: '0.8rem',
+                      width: '320px',
+                      outline: 'none',
+                      direction: 'ltr',
+                      fontFamily: 'monospace'
+                    }}
+                  />
+                </div>
               </div>
               
               <div style={{ display: 'flex', alignItems: 'center', gap: '2rem' }}>

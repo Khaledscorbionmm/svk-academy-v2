@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 
@@ -9,12 +9,37 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   const router = useRouter();
   const [loggingOut, setLoggingOut] = useState(false);
 
+  // Notification counts
+  const [pendingCourses, setPendingCourses] = useState(0);
+  const [pendingLessons, setPendingLessons] = useState(0);
+
   const links = [
     { href: '/admin/dashboard', label: '📡 نظام الرادار' },
     { href: '/admin/courses', label: '📚 الكورسات والدروس' },
     { href: '/admin/students', label: '👥 الطلاب' },
     { href: '/admin/payments', label: '💳 المدفوعات' },
   ];
+
+  useEffect(() => {
+    if (pathname === '/admin/login') return;
+
+    async function fetchCounts() {
+      try {
+        const res = await fetch('/api/admin/pending-counts');
+        if (res.ok) {
+          const data = await res.json();
+          setPendingCourses(data.pendingCourses || 0);
+          setPendingLessons(data.pendingLessons || 0);
+        }
+      } catch (e) {
+        console.error('Failed to fetch pending counts', e);
+      }
+    }
+
+    fetchCounts();
+    const interval = setInterval(fetchCounts, 12000); // Poll every 12 seconds
+    return () => clearInterval(interval);
+  }, [pathname]);
 
   async function handleLogout() {
     setLoggingOut(true);
@@ -42,6 +67,12 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         <nav style={{ padding: '1.5rem', flex: 1, display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
           {links.map(link => {
             const isActive = pathname === link.href;
+            
+            // Get badge count based on link
+            let badgeCount = 0;
+            if (link.href === '/admin/dashboard') badgeCount = pendingLessons;
+            if (link.href === '/admin/students') badgeCount = pendingCourses;
+
             return (
               <Link key={link.href} href={link.href} style={{ textDecoration: 'none' }}>
                 <div style={{
@@ -58,6 +89,26 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                   alignItems: 'center'
                 }}>
                   <span>{link.label}</span>
+                  {badgeCount > 0 && (
+                    <span style={{
+                      background: 'linear-gradient(135deg, #ef4444, #b91c1c)',
+                      color: '#fff',
+                      fontSize: '0.75rem',
+                      fontWeight: 'bold',
+                      minWidth: '20px',
+                      height: '20px',
+                      borderRadius: '10px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      padding: '0 6px',
+                      boxShadow: '0 0 8px rgba(239,68,68,0.6)',
+                      animation: 'pulseGlow 2s infinite',
+                      fontFamily: 'monospace'
+                    }}>
+                      {badgeCount}
+                    </span>
+                  )}
                 </div>
               </Link>
             );
@@ -82,6 +133,11 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         ::-webkit-scrollbar-track { background: #050508; }
         ::-webkit-scrollbar-thumb { background: #1f2937; border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: #374151; }
+        
+        @keyframes pulseGlow {
+          0%, 100% { transform: scale(1); box-shadow: 0 0 8px rgba(239,68,68,0.6); }
+          50% { transform: scale(1.1); box-shadow: 0 0 15px rgba(239,68,68,0.9); }
+        }
       `}</style>
     </div>
   );

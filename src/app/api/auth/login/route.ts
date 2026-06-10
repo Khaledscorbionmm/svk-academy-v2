@@ -69,9 +69,10 @@ async function tryDatabaseLogin(identifier: string, password: string) {
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { identifier, password } = body;
+    const { identifier, email, password } = body;
+    const loginIdentifier = identifier || email;
 
-    if (!identifier || !password) {
+    if (!loginIdentifier || !password) {
       return NextResponse.json({ error: 'البريد/الهاتف وكلمة المرور مطلوبان' }, { status: 400 });
     }
 
@@ -79,12 +80,12 @@ export async function POST(request: NextRequest) {
     let dbWorking = true;
 
     // Try DB login first
-    const dbResult = await tryDatabaseLogin(identifier, password);
+    const dbResult = await tryDatabaseLogin(loginIdentifier, password);
     
     if (dbResult === undefined) {
       // DB error - use hardcoded fallback
       dbWorking = false;
-      if (identifier.toLowerCase().trim() === HARDCODED_ADMIN.email && password === HARDCODED_ADMIN.password) {
+      if (loginIdentifier.toLowerCase().trim() === HARDCODED_ADMIN.email && password === HARDCODED_ADMIN.password) {
         user = { id: HARDCODED_ADMIN.id, email: HARDCODED_ADMIN.email, name: HARDCODED_ADMIN.name, role: HARDCODED_ADMIN.role };
       }
     } else {

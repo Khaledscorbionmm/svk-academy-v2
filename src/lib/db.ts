@@ -115,6 +115,17 @@ export async function initializeDatabase(): Promise<void> {
       UNIQUE(student_id, lesson_slug)
     )
   `);
+
+  await query(`
+    CREATE TABLE IF NOT EXISTS course_requests (
+      id SERIAL PRIMARY KEY,
+      student_id INTEGER REFERENCES students(id) ON DELETE CASCADE,
+      course_id INTEGER REFERENCES courses(id) ON DELETE CASCADE,
+      status VARCHAR(50) DEFAULT 'pending',
+      requested_at TIMESTAMPTZ DEFAULT NOW(),
+      UNIQUE(student_id, course_id)
+    )
+  `);
 }
 
 export default pool;

@@ -73,7 +73,7 @@ function StarRating({ rating }: { rating: number }) {
 
 function CourseCard({ course }: { course: Course }) {
   const icon = CATEGORY_ICONS[course.category || 'default'] || CATEGORY_ICONS.default;
-  const level = LEVEL_LABELS[course.level || 'beginner'] || LEVEL_LABELS.beginner;
+  const level = (course.level && LEVEL_LABELS[course.level]) ? LEVEL_LABELS[course.level] : LEVEL_LABELS.beginner;
   const gradients: Record<string, string> = {
     python: 'linear-gradient(135deg, #1e3a5f, #0a2440)',
     javascript: 'linear-gradient(135deg, #3b2a00, #1a1000)',
@@ -147,7 +147,7 @@ function CourseCard({ course }: { course: Course }) {
           <span style={{ color: '#94a3b8', fontSize: 13 }}>{course.instructor_name || 'مدرب SVK'}</span>
         </div>
 
-        <StarRating rating={course.rating || 0} />
+        <StarRating rating={Number(course.rating) || 0} />
 
         <div style={{ display: 'flex', gap: 16, marginTop: 12, paddingTop: 12, borderTop: '1px solid rgba(255,255,255,0.05)' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 4, color: '#64748b', fontSize: 12 }}>
@@ -237,6 +237,10 @@ export default function CoursesPage() {
   });
 
   const totalStudents = courses.reduce((s, c) => s + (c.enrollment_count || 0), 0);
+
+  if (!mounted) {
+    return <div style={{ minHeight: '100vh', background: '#060612' }} />;
+  }
 
   return (
     <div style={{ fontFamily: "'Cairo', sans-serif", direction: 'rtl', background: '#060612', color: '#fff', minHeight: '100vh' }}>

@@ -31,9 +31,29 @@ export default function HomePage() {
   const [wordIdx, setWordIdx] = useState(0);
   const [charIdx, setCharIdx] = useState(0);
   const [deleting, setDeleting] = useState(false);
+  const [stars, setStars] = useState<Array<{ width: number; height: number; bg: string; top: string; left: string; delay: string; duration: string }>>([]);
 
   useEffect(() => {
     setMounted(true);
+    
+    // Safely generate stars client-side to prevent hydration mismatch or spread crashes
+    const generatedStars = Array.from({ length: 40 }).map((_, i) => {
+      const size = Math.random() * 3 + 1;
+      const duration = 4 + Math.random() * 6;
+      const delay = Math.random() * 5;
+      const bgColors = ['rgba(99,102,241,0.6)', 'rgba(168,85,247,0.6)', 'rgba(6,182,212,0.6)'];
+      return {
+        width: size,
+        height: size,
+        bg: bgColors[i % 3],
+        top: `${Math.random() * 100}%`,
+        left: `${Math.random() * 100}%`,
+        delay: `${delay}s`,
+        duration: `${duration}s`
+      };
+    });
+    setStars(generatedStars);
+
     const onScroll = () => setScrollY(window.scrollY);
     window.addEventListener('scroll', onScroll);
     return () => window.removeEventListener('scroll', onScroll);
@@ -60,23 +80,26 @@ export default function HomePage() {
 
   return (
     <div style={{ fontFamily: "'Cairo', 'Tajawal', sans-serif", direction: 'rtl', background: '#060612', color: '#fff', overflowX: 'hidden' }}>
-      <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet" />
 
       {/* ── ANIMATED BACKGROUND ── */}
       <div style={{ position: 'fixed', inset: 0, zIndex: 0, overflow: 'hidden', pointerEvents: 'none' }}>
         <div style={{ position: 'absolute', width: 900, height: 900, borderRadius: '50%', background: 'radial-gradient(circle, rgba(99,102,241,0.15) 0%, transparent 70%)', top: -300, right: -200, animation: 'pulse 8s ease-in-out infinite' }} />
         <div style={{ position: 'absolute', width: 700, height: 700, borderRadius: '50%', background: 'radial-gradient(circle, rgba(168,85,247,0.12) 0%, transparent 70%)', bottom: -200, left: -100, animation: 'pulse 10s ease-in-out infinite 3s' }} />
         <div style={{ position: 'absolute', width: 500, height: 500, borderRadius: '50%', background: 'radial-gradient(circle, rgba(6,182,212,0.10) 0%, transparent 70%)', top: '40%', left: '40%', animation: 'pulse 12s ease-in-out infinite 5s' }} />
-        {mounted && [...Array(50)].map((_, i) => (
+        {mounted && stars.map((star, i) => (
           <div key={i} style={{
             position: 'absolute',
-            width: Math.random() * 3 + 1,
-            height: Math.random() * 3 + 1,
+            width: star.width,
+            height: star.height,
             borderRadius: '50%',
-            background: `rgba(${i % 3 === 0 ? '99,102,241' : i % 3 === 1 ? '168,85,247' : '6,182,212'},0.6)`,
-            top: `${Math.random() * 100}%`,
-            left: `${Math.random() * 100}%`,
-            animation: `float ${4 + Math.random() * 6}s ease-in-out infinite ${Math.random() * 5}s`,
+            background: star.bg,
+            top: star.top,
+            left: star.left,
+            animationDelay: star.delay,
+            animationDuration: star.duration,
+            animationName: 'float',
+            animationTimingFunction: 'ease-in-out',
+            animationIterationCount: 'infinite'
           }} />
         ))}
       </div>
@@ -250,7 +273,7 @@ export default function HomePage() {
                   </div>
                   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                     <div>
-                      <span style={{ color: '#fbbf24', fontSize: 14 }}>{'★'.repeat(Math.floor(c.rating))}</span>
+                      <span style={{ color: '#fbbf24', fontSize: 14 }}>{'★★★★★'.slice(0, Math.floor(c.rating))}</span>
                       <span style={{ color: '#64748b', fontSize: 12, marginRight: 4 }}>{c.rating}</span>
                     </div>
                     <div style={{ fontSize: 20, fontWeight: 900, background: 'linear-gradient(90deg,#6366f1,#a855f7)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>{c.price} ج.م</div>
@@ -334,30 +357,6 @@ export default function HomePage() {
         </div>
         <p style={{ color: '#1e293b', fontSize: 12, margin: 0 }}>© 2025 Smart Venom K Academy. جميع الحقوق محفوظة.</p>
       </footer>
-
-      <style>{`
-        @keyframes pulse { 0%,100%{transform:scale(1);opacity:0.5} 50%{transform:scale(1.05);opacity:0.8} }
-        @keyframes float { 0%,100%{transform:translateY(0) rotate(0deg)} 50%{transform:translateY(-20px) rotate(180deg)} }
-        @keyframes fadeInDown { from{opacity:0;transform:translateY(-20px)} to{opacity:1;transform:translateY(0)} }
-        @keyframes fadeInUp { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
-        @keyframes bounce { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(-10px)} }
-        @keyframes scrollDown { 0%{opacity:1;transform:translateY(0)} 100%{opacity:0;transform:translateY(16px)} }
-        * { box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-        @media (max-width: 768px) {
-          .mobile-menu-btn { display: block !important; }
-          .nav-links {
-            position: absolute; top: 70px; left: 0; right: 0;
-            background: rgba(6,6,18,0.98); backdrop-filter: blur(20px);
-            flex-direction: column; padding: 2rem; gap: 1.5rem !important;
-            border-bottom: 1px solid rgba(99,102,241,0.2);
-            transform: translateY(-150%); opacity: 0; transition: all 0.3s ease;
-            pointer-events: none; z-index: 999;
-          }
-          .nav-links.open { transform: translateY(0); opacity: 1; pointer-events: all; }
-          .nav-links a { width: 100%; text-align: center; font-size: 1.1rem !important; }
-        }
-      `}</style>
     </div>
   );
 }

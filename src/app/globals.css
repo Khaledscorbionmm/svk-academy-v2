@@ -190,4 +190,35 @@ input:-webkit-autofill:focus {
   body {
     font-size: 14px;
   }
+  .mobile-menu-btn {
+    display: block !important;
+  }
+  .nav-links {
+    position: absolute;
+    top: 70px;
+    left: 0;
+    right: 0;
+    background: rgba(6, 6, 18, 0.98);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    flex-direction: column;
+    padding: 2rem;
+    gap: 1.5rem !important;
+    border-bottom: 1px solid rgba(99, 102, 241, 0.2);
+    transform: translateY(-150%);
+    opacity: 0;
+    transition: all 0.3s ease;
+    pointer-events: none;
+    z-index: 999;
+  }
+  .nav-links.open {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: all;
+  }
+  .nav-links a {
+    width: 100%;
+    text-align: center;
+    font-size: 1.1rem !important;
+  }
 }

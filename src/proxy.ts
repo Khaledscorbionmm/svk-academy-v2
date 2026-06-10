@@ -11,7 +11,7 @@ const ALWAYS_PUBLIC = [
   '/favicon.ico',
 ];
 
-const PUBLIC_PAGES = ['/', '/courses', '/login', '/register'];
+const PUBLIC_PAGES = ['/', '/courses', '/login', '/register', '/about'];
 
 export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
@@ -21,14 +21,23 @@ export function proxy(request: NextRequest) {
     return NextResponse.next();
   }
 
-  // 2. Allow public pages
-  if (PUBLIC_PAGES.some(p => pathname === p)) {
+  // 2. Allow static assets (files with extensions) that are not API calls
+  if (pathname.includes('.') && !pathname.startsWith('/api/')) {
     return NextResponse.next();
   }
 
-  // 3. Protect Admin Dashboard and APIs
+  // 3. Allow public pages
+  if (PUBLIC_PAGES.some(p => pathname === p || pathname.startsWith(p + '/'))) {
+    return NextResponse.next();
+  }
+
+  // 4. Protect Admin Dashboard and APIs
   const requiresAdminAuth =
     pathname.startsWith('/admin/dashboard') ||
+    pathname.startsWith('/admin/courses') ||
+    pathname.startsWith('/admin/students') ||
+    pathname.startsWith('/admin/payments') ||
+    pathname.startsWith('/admin/settings') ||
     pathname.startsWith('/api/admin/');
 
   if (requiresAdminAuth) {
@@ -49,7 +58,7 @@ export function proxy(request: NextRequest) {
     return NextResponse.next();
   }
 
-  // 4. Protect Student Dashboard and Learning Space
+  // 5. Protect Student Dashboard and Learning Space
   const requiresStudentAuth =
     pathname.startsWith('/dashboard') ||
     pathname.startsWith('/learn');

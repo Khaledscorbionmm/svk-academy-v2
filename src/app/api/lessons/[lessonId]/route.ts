@@ -61,6 +61,17 @@ export async function GET(req: NextRequest, { params }: { params: Promise<{ less
       phone: (payload as any).phone || ''
     } : null;
 
+    let hasRequested = false;
+    if (payload && payload.role === 'student') {
+      const requestCheck = await query(
+        "SELECT id FROM course_requests WHERE student_id = $1 AND course_id = $2 AND status = 'pending'",
+        [payload.id, lesson.course_id]
+      );
+      if (requestCheck.length > 0) {
+        hasRequested = true;
+      }
+    }
+
     return NextResponse.json({
       lesson: accessStatus === 'approved' ? lesson : { 
         id: lesson.id, 
@@ -72,7 +83,8 @@ export async function GET(req: NextRequest, { params }: { params: Promise<{ less
       course,
       sidebar: allLessons,
       accessStatus,
-      studentInfo
+      studentInfo,
+      hasRequested
     });
   } catch (error) {
     console.error('Failed to fetch lesson:', error);

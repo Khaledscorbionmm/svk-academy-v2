@@ -81,8 +81,10 @@ export default function CourseDetailPage({ params }: { params: Promise<{ id: str
   const [lessons, setLessons] = useState<Lesson[]>([]);
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState<'overview' | 'curriculum' | 'instructor' | 'reviews'>('overview');
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
     async function load() {
       try {
         const res = await fetch(`/api/courses/${id}`);
@@ -114,6 +116,10 @@ export default function CourseDetailPage({ params }: { params: Promise<{ id: str
   const icon = CATEGORY_ICONS[course?.category || 'default'] || CATEGORY_ICONS.default;
   const firstFreeLesson = lessons.find(l => l.is_free);
   const firstLessonHref = firstFreeLesson ? getLessonHref(firstFreeLesson) : '/learn/1';
+
+  if (!mounted) {
+    return <div style={{ minHeight: '100vh', background: '#060612' }} />;
+  }
 
   if (loading) {
     return (
@@ -157,7 +163,7 @@ export default function CourseDetailPage({ params }: { params: Promise<{ id: str
       {/* Hero Section */}
       <div style={{ background: 'linear-gradient(135deg, #0a0718 0%, #080e1f 50%, #0a0520 100%)', borderBottom: '1px solid rgba(255,255,255,0.06)', position: 'relative', overflow: 'hidden' }}>
         <div style={{ position: 'absolute', top: -100, right: -100, width: 500, height: 500, borderRadius: '50%', background: 'radial-gradient(circle, rgba(99,102,241,0.12) 0%, transparent 70%)', filter: 'blur(40px)' }} />
-        <div style={{ maxWidth: 1200, margin: '0 auto', padding: '60px 40px', display: 'grid', gridTemplateColumns: '1fr auto', gap: 40, alignItems: 'start' }}>
+        <div className="hero-grid-container" style={{ maxWidth: 1200, margin: '0 auto', padding: '60px 40px', alignItems: 'start' }}>
           <div>
             {/* Breadcrumb */}
             <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 20, color: '#64748b', fontSize: 13 }}>
@@ -186,8 +192,8 @@ export default function CourseDetailPage({ params }: { params: Promise<{ id: str
             {/* Meta */}
             <div style={{ display: 'flex', gap: 24, flexWrap: 'wrap', marginBottom: 24 }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                <span style={{ color: '#fbbf24' }}>{'★'.repeat(Math.round(course.rating || 0))}</span>
-                <span style={{ fontWeight: 700, color: '#fbbf24' }}>{(course.rating || 0).toFixed(1)}</span>
+                <span style={{ color: '#fbbf24' }}>{'★★★★★'.slice(0, Math.round(Number(course.rating) || 0))}</span>
+                <span style={{ fontWeight: 700, color: '#fbbf24' }}>{(Number(course.rating) || 0).toFixed(1)}</span>
                 <span style={{ color: '#64748b', fontSize: 13 }}>({(course.enrollment_count || 0).toLocaleString('ar-EG')} طالب)</span>
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: 6, color: '#94a3b8', fontSize: 14 }}>
@@ -225,7 +231,7 @@ export default function CourseDetailPage({ params }: { params: Promise<{ id: str
           </div>
 
           {/* Price Card */}
-          <div style={{ background: 'rgba(15,15,30,0.9)', border: '1px solid rgba(99,102,241,0.2)', borderRadius: 20, padding: 28, minWidth: 280, backdropFilter: 'blur(20px)' }}>
+          <div className="price-card" style={{ background: 'rgba(15,15,30,0.9)', border: '1px solid rgba(99,102,241,0.2)', borderRadius: 20, padding: 28, backdropFilter: 'blur(20px)' }}>
             <div style={{ textAlign: 'center', marginBottom: 20 }}>
               {course.price === 0 ? (
                 <div style={{ fontSize: 36, fontWeight: 900, color: '#22c55e' }}>مجاني 🎁</div>
@@ -258,7 +264,7 @@ export default function CourseDetailPage({ params }: { params: Promise<{ id: str
       </div>
 
       {/* Tabs */}
-      <div style={{ borderBottom: '1px solid rgba(255,255,255,0.06)', padding: '0 40px', display: 'flex', gap: 0, position: 'sticky', top: 61, zIndex: 99, background: 'rgba(6,6,18,0.95)', backdropFilter: 'blur(20px)' }}>
+      <div className="tabs-container" style={{ borderBottom: '1px solid rgba(255,255,255,0.06)', padding: '0 40px', display: 'flex', gap: 0, position: 'sticky', top: 61, zIndex: 99, background: 'rgba(6,6,18,0.95)', backdropFilter: 'blur(20px)' }}>
         {TABS.map(tab => (
           <button key={tab.id} onClick={() => setActiveTab(tab.id)} style={{
             padding: '18px 24px', background: 'none', border: 'none',
@@ -274,7 +280,7 @@ export default function CourseDetailPage({ params }: { params: Promise<{ id: str
       </div>
 
       {/* Tab Content */}
-      <div style={{ maxWidth: 1000, margin: '0 auto', padding: '40px 40px' }}>
+      <div className="tab-content-container" style={{ maxWidth: 1000, margin: '0 auto', padding: '40px 40px' }}>
 
         {/* Overview Tab */}
         {activeTab === 'overview' && (
@@ -392,12 +398,12 @@ export default function CourseDetailPage({ params }: { params: Promise<{ id: str
         {/* Reviews Tab */}
         {activeTab === 'reviews' && (
           <div>
-            <div style={{ display: 'grid', gridTemplateColumns: '200px 1fr', gap: 40, marginBottom: 40 }}>
+            <div className="reviews-summary-grid" style={{ marginBottom: 40 }}>
               <div style={{ textAlign: 'center', background: 'rgba(255,255,255,0.02)', borderRadius: 16, padding: '24px 16px', border: '1px solid rgba(255,255,255,0.06)' }}>
                 <div style={{ fontSize: 64, fontWeight: 900, background: 'linear-gradient(135deg,#fbbf24,#f59e0b)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
                   {(course.rating || 0).toFixed(1)}
                 </div>
-                <div style={{ color: '#fbbf24', fontSize: 24, margin: '8px 0' }}>{'★'.repeat(Math.round(course.rating || 0))}</div>
+                <div style={{ color: '#fbbf24', fontSize: 24, margin: '8px 0' }}>{'★★★★★'.slice(0, Math.round(course.rating || 0))}</div>
                 <div style={{ color: '#64748b', fontSize: 13 }}>من 5 نجوم</div>
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 8, justifyContent: 'center' }}>
@@ -422,7 +428,7 @@ export default function CourseDetailPage({ params }: { params: Promise<{ id: str
                   <span style={{ fontSize: 32 }}>{review.avatar}</span>
                   <div>
                     <div style={{ fontWeight: 700, fontSize: 15 }}>{review.name}</div>
-                    <div style={{ color: '#fbbf24', fontSize: 14 }}>{'★'.repeat(review.rating)}</div>
+                    <div style={{ color: '#fbbf24', fontSize: 14 }}>{'★★★★★'.slice(0, review.rating)}</div>
                   </div>
                 </div>
                 <p style={{ margin: 0, color: '#94a3b8', fontSize: 14, lineHeight: 1.7 }}>{review.text}</p>
@@ -438,6 +444,50 @@ export default function CourseDetailPage({ params }: { params: Promise<{ id: str
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: #060612; }
         ::-webkit-scrollbar-thumb { background: rgba(99,102,241,0.3); border-radius: 3px; }
+        
+        .hero-grid-container {
+          display: grid;
+          grid-template-columns: 1fr 320px;
+          gap: 40px;
+        }
+        .price-card {
+          min-width: 320px;
+        }
+        .reviews-summary-grid {
+          display: grid;
+          grid-template-columns: 200px 1fr;
+          gap: 40px;
+        }
+        
+        @media (max-width: 991px) {
+          .hero-grid-container {
+            grid-template-columns: 1fr !important;
+            gap: 30px !important;
+            padding: 30px 20px !important;
+          }
+          .price-card {
+            width: 100% !important;
+            min-width: 100% !important;
+          }
+        }
+        
+        @media (max-width: 768px) {
+          .reviews-summary-grid {
+            grid-template-columns: 1fr !important;
+            gap: 20px !important;
+          }
+          nav {
+            padding: 16px 20px !important;
+          }
+          .tabs-container {
+            padding: 0 20px !important;
+            overflow-x: auto !important;
+            white-space: nowrap !important;
+          }
+          .tab-content-container {
+            padding: 30px 20px !important;
+          }
+        }
       `}</style>
     </div>
   );

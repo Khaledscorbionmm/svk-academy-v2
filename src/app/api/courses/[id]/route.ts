@@ -14,7 +14,7 @@ export async function GET(
     );
     if (!course) return NextResponse.json({ error: 'الكورس غير موجود' }, { status: 404 });
     const lessons = await query<Record<string, unknown>>(
-      'SELECT id, title, order_index, is_free, duration_minutes FROM lessons WHERE course_id = $1 ORDER BY order_index',
+      'SELECT id, title, order_index, is_free, duration_minutes, audio_url FROM lessons WHERE course_id = $1 ORDER BY order_index',
       [id]
     );
     return NextResponse.json({ course, lessons });

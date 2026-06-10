@@ -16,7 +16,14 @@ export async function GET(request: NextRequest) {
     // Get all students
     const students = await query(`
       SELECT s.id, s.name, s.email, s.phone, s.age, s.created_at, s.is_active,
-             (SELECT COUNT(*) FROM enrollments e WHERE e.student_id = s.id) as course_count
+             (SELECT COUNT(*) FROM enrollments e WHERE e.student_id = s.id) as course_count,
+             COALESCE(
+               (SELECT JSON_AGG(JSON_BUILD_OBJECT('course_id', cr.course_id, 'title', c.title_ar))
+                FROM course_requests cr
+                JOIN courses c ON c.id = cr.course_id
+                WHERE cr.student_id = s.id AND cr.status = 'pending'),
+               '[]'::json
+             ) as requested_courses
       FROM students s
       ORDER BY s.created_at DESC
     `);

@@ -36,6 +36,19 @@ export async function GET(request: NextRequest) {
       LIMIT 10
     `);
 
+    // 2b. Recent Course Activation Requests
+    const courseRequestsRes = await query(`
+      SELECT cr.id, cr.status, cr.requested_at,
+             s.name as student_name, s.email as student_email, s.id as student_id,
+             c.title_ar as course_title, c.id as course_id
+      FROM course_requests cr
+      JOIN students s ON cr.student_id = s.id
+      JOIN courses c ON cr.course_id = c.id
+      WHERE cr.status = 'pending'
+      ORDER BY cr.requested_at DESC
+      LIMIT 10
+    `);
+
     // 3. Recent Signups
     const signupsRes = await query(`
       SELECT id, name, email, created_at, xp 
@@ -49,9 +62,10 @@ export async function GET(request: NextRequest) {
         totalStudents,
         totalCourses,
         revenue: estimatedRevenue,
-        pendingRequests: requestsRes.length
+        pendingRequests: requestsRes.length + courseRequestsRes.length
       },
       requests: requestsRes,
+      courseRequests: courseRequestsRes,
       recentSignups: signupsRes
     });
   } catch (error) {
