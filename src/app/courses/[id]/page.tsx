@@ -71,11 +71,8 @@ const FALLBACK_COURSES: Record<string, { course: Course; lessons: Lesson[] }> = 
   },
 };
 
-function getLessonHref(lesson: Lesson, courseCategory?: string): string {
-  for (const [keyword, slug] of Object.entries(LESSON_SLUGS)) {
-    if (lesson.title.includes(keyword)) return `/learn/${slug}`;
-  }
-  return `/learn/${courseCategory}-lesson-${lesson.order_index}`;
+function getLessonHref(lesson: Lesson): string {
+  return `/learn/${lesson.id}`;
 }
 
 export default function CourseDetailPage({ params }: { params: Promise<{ id: string }> }) {
@@ -116,7 +113,7 @@ export default function CourseDetailPage({ params }: { params: Promise<{ id: str
 
   const icon = CATEGORY_ICONS[course?.category || 'default'] || CATEGORY_ICONS.default;
   const firstFreeLesson = lessons.find(l => l.is_free);
-  const firstLessonHref = firstFreeLesson ? getLessonHref(firstFreeLesson, course?.category) : '/learn/python-variables';
+  const firstLessonHref = firstFreeLesson ? getLessonHref(firstFreeLesson) : '/learn/1';
 
   if (loading) {
     return (
@@ -320,7 +317,7 @@ export default function CourseDetailPage({ params }: { params: Promise<{ id: str
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
               {lessons.length > 0 ? lessons.map((lesson, i) => {
-                const href = getLessonHref(lesson, course.category);
+                const href = getLessonHref(lesson);
                 const canAccess = lesson.is_free;
                 return (
                   <div key={lesson.id} style={{
