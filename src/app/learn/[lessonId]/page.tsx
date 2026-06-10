@@ -1138,12 +1138,45 @@ export default function LessonPage({ params }: { params: Promise<{ lessonId: str
     }
   };
 
+  // Lock logic: Check if any previous milestones are not passed
+  let lockedMilestone = 0;
+  if (data && currentIdx !== -1) {
+    const maxMilestoneToCheck = Math.floor(currentIdx / 20) * 20;
+    for (let m = 20; m <= maxMilestoneToCheck; m += 20) {
+      if (typeof window !== 'undefined' && localStorage.getItem(`svk_macro_exam_${track}_${m}`) !== 'passed') {
+        lockedMilestone = m;
+        break;
+      }
+    }
+  }
+
+  if (lockedMilestone > 0) {
+    return (
+      <ComprehensiveExamView 
+        track={track} 
+        milestone={lockedMilestone} 
+        onPass={() => {
+          if (typeof window !== 'undefined') {
+            localStorage.setItem(`svk_macro_exam_${track}_${lockedMilestone}`, 'passed');
+            window.location.reload();
+          }
+        }} 
+        onExit={() => router.push('/courses')} 
+      />
+    );
+  }
+
   if (isMacroExamDue && !macroExamPassed) {
     return (
       <ComprehensiveExamView 
         track={track} 
         milestone={milestone} 
-        onPass={() => setMacroExamPassed(true)} 
+        onPass={() => {
+          if (typeof window !== 'undefined') {
+            localStorage.setItem(`svk_macro_exam_${track}_${milestone}`, 'passed');
+          }
+          setMacroExamPassed(true);
+        }} 
         onExit={() => router.push('/courses')} 
       />
     );
