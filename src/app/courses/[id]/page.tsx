@@ -30,8 +30,14 @@ interface Course {
 }
 
 const LESSON_SLUGS: Record<string, string> = {
-  'المتغيرات': 'python-variables',
-  'الشروط': 'python-conditions',
+  'المتغيرات': 'python-vars',
+  'الشروط': 'python-if',
+  'الحلقات': 'python-loops',
+  'الدوال': 'python-fns',
+  'القوائم': 'python-lists',
+  'القواميس': 'python-dicts',
+  'Variables': 'python-vars',
+  'Conditions': 'python-if',
 };
 
 const LEVEL_LABELS: Record<string, string> = {

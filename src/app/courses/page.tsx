@@ -23,13 +23,13 @@ interface Course {
 }
 
 const CATEGORY_ICONS: Record<string, string> = {
-  python: '🐍',
-  javascript: '⚡',
+  python: '🐍', 'البرمجة': '🐍',
+  javascript: '⚡', 'تطوير الويب': '⚡',
   react: '⚛️',
-  ai: '🤖',
-  database: '🗄️',
+  ai: '🤖', 'الذكاء الاصطناعي': '🤖',
+  database: '🗄️', 'قواعد البيانات': '🗄️',
   devops: '🛠️',
-  security: '🔒',
+  security: '🔒', 'الأمن السيبراني': '🔒',
   default: '📚',
 };
 
@@ -37,6 +37,17 @@ const LEVEL_LABELS: Record<string, { label: string; color: string }> = {
   beginner: { label: 'مبتدئ', color: '#22c55e' },
   intermediate: { label: 'متوسط', color: '#f59e0b' },
   advanced: { label: 'متقدم', color: '#ef4444' },
+};
+
+// Map Arabic DB categories to filter IDs
+const CAT_MAP: Record<string, string> = {
+  'البرمجة': 'python', 'python': 'python',
+  'تطوير الويب': 'javascript', 'javascript': 'javascript',
+  'react': 'react',
+  'الذكاء الاصطناعي': 'ai', 'ai': 'ai',
+  'قواعد البيانات': 'database', 'database': 'database',
+  'devops': 'devops', 'DevOps': 'devops',
+  'الأمن السيبراني': 'security', 'security': 'security',
 };
 
 const CATEGORIES = [
@@ -47,7 +58,6 @@ const CATEGORIES = [
   { id: 'ai', label: 'الذكاء الاصطناعي', icon: '🤖' },
   { id: 'database', label: 'قواعد البيانات', icon: '🗄️' },
   { id: 'devops', label: 'DevOps', icon: '🛠️' },
-  { id: 'security', label: 'الأمن السيبراني', icon: '🔒' },
 ];
 
 function StarRating({ rating }: { rating: number }) {
@@ -76,6 +86,7 @@ function CourseCard({ course }: { course: Course }) {
   const gradient = gradients[course.category || 'default'] || gradients.default;
 
   return (
+    <Link href={`/courses/${course.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
     <div
       style={{
         background: 'rgba(15,15,30,0.8)',
@@ -152,7 +163,7 @@ function CourseCard({ course }: { course: Course }) {
         {/* Price + CTA */}
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 16 }}>
           <div>
-            {course.price === 0 ? (
+            {Number(course.price) === 0 ? (
               <span style={{ fontSize: 18, fontWeight: 900, color: '#22c55e' }}>مجاني 🎁</span>
             ) : (
               <div>
@@ -161,21 +172,20 @@ function CourseCard({ course }: { course: Course }) {
               </div>
             )}
           </div>
-          <Link href={`/courses/${course.id}`} style={{ textDecoration: 'none' }}>
-            <button style={{
-              background: 'linear-gradient(135deg, #6366f1, #a855f7)',
-              border: 'none', color: '#fff',
-              padding: '10px 20px', borderRadius: 10,
-              fontSize: 13, fontWeight: 700, cursor: 'pointer',
-              fontFamily: "'Cairo', sans-serif",
-              transition: 'all 0.2s',
-            }}>
-              سجّل الآن ←
-            </button>
-          </Link>
+          <span style={{
+            display: 'inline-block',
+            background: 'linear-gradient(135deg, #6366f1, #a855f7)',
+            color: '#fff',
+            padding: '10px 20px', borderRadius: 10,
+            fontSize: 13, fontWeight: 700,
+            transition: 'all 0.2s',
+          }}>
+            عرض الكورس ←
+          </span>
         </div>
       </div>
     </div>
+    </Link>
   );
 }
 
@@ -220,8 +230,9 @@ export default function CoursesPage() {
   }
 
   const filtered = courses.filter(c => {
-    const matchCat = activeCategory === 'all' || c.category === activeCategory;
-    const matchSearch = !search || (c.title_ar || c.title || '').includes(search) || (c.description_ar || c.description || '').includes(search);
+    const normalizedCat = CAT_MAP[c.category || ''] || c.category || '';
+    const matchCat = activeCategory === 'all' || normalizedCat === activeCategory || c.category === activeCategory;
+    const matchSearch = !search || (c.title_ar || c.title || '').toLowerCase().includes(search.toLowerCase()) || (c.description_ar || c.description || '').includes(search);
     return matchCat && matchSearch;
   });
 

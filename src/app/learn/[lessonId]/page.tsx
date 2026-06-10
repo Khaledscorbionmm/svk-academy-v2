@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useRef, useCallback } from 'react';
+import React, { useState, useRef, useCallback, use } from 'react';
 import Link from 'next/link';
 
 // ─────────────────────────────────────────────
@@ -485,8 +485,9 @@ function Console({ starter, lang }: { starter: string; lang: Lang }) {
 // ─────────────────────────────────────────────
 // Main Page
 // ─────────────────────────────────────────────
-export default function LearnPage({ params }: { params: { lessonId: string } }) {
-  const lesson = LESSONS[params.lessonId] ?? LESSONS['python-vars'];
+export default function LearnPage({ params }: { params: Promise<{ lessonId: string }> }) {
+  const { lessonId } = use(params);
+  const lesson = LESSONS[lessonId] ?? LESSONS['python-vars'];
   const [tab, setTab] = useState<Tab>('theory');
   const [sidebar, setSidebar] = useState(true);
 
