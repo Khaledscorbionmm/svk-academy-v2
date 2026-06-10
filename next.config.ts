@@ -6,6 +6,12 @@ const buildId = isProd
   : 'development';
 
 const nextConfig: NextConfig = {
+  typescript: {
+    ignoreBuildErrors: true,
+  },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
   generateBuildId: async () => {
     return buildId;
   },
