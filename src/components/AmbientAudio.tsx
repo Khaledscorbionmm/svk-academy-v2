@@ -20,8 +20,13 @@ export default function AmbientAudio() {
 
   useEffect(() => {
     // Check localStorage for prior preference
-    const saved = localStorage.getItem('svk_music_enabled');
-    const explicitlyPaused = localStorage.getItem('svk_music_explicitly_paused');
+    let explicitlyPaused = null;
+    try {
+      const saved = localStorage.getItem('svk_music_enabled');
+      explicitlyPaused = localStorage.getItem('svk_music_explicitly_paused');
+    } catch (e) {
+      console.warn('LocalStorage not supported:', e);
+    }
     
     if (explicitlyPaused === 'true') {
       isExplicitlyPausedRef.current = true;
@@ -53,7 +58,9 @@ export default function AmbientAudio() {
       if (audioCtxRef.current && audioCtxRef.current.state === 'suspended') {
         audioCtxRef.current.resume();
         setIsPlaying(true);
-        localStorage.setItem('svk_music_enabled', 'true');
+        try {
+          localStorage.setItem('svk_music_enabled', 'true');
+        } catch (e) {}
         return;
       }
 
@@ -127,7 +134,9 @@ export default function AmbientAudio() {
       masterGain.gain.linearRampToValueAtTime(0.1, ctx.currentTime + 3.0); // 3 seconds fade-in
 
       setIsPlaying(true);
-      localStorage.setItem('svk_music_enabled', 'true');
+      try {
+        localStorage.setItem('svk_music_enabled', 'true');
+      } catch (e) {}
     } catch (e) {
       console.error('Failed to start ambient audio:', e);
     }
@@ -182,11 +191,15 @@ export default function AmbientAudio() {
   const handleToggle = () => {
     if (isPlaying) {
       isExplicitlyPausedRef.current = true;
-      localStorage.setItem('svk_music_explicitly_paused', 'true');
+      try {
+        localStorage.setItem('svk_music_explicitly_paused', 'true');
+      } catch (e) {}
       stopAmbient();
     } else {
       isExplicitlyPausedRef.current = false;
-      localStorage.setItem('svk_music_explicitly_paused', 'false');
+      try {
+        localStorage.setItem('svk_music_explicitly_paused', 'false');
+      } catch (e) {}
       startAmbient();
     }
   };

@@ -33,7 +33,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <script dangerouslySetInnerHTML={{ __html: `
           (function() {
             try {
-              var CURRENT_VERSION = '1.3.0';
+              var CURRENT_VERSION = '1.4.0';
               var savedVersion = localStorage.getItem('svk_app_version');
               if (savedVersion !== CURRENT_VERSION) {
                 if ('caches' in window) {

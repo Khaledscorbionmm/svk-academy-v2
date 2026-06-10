@@ -14,7 +14,7 @@ export async function PUT(req: NextRequest, { params }: { params: Promise<{ less
     }
 
     const body = await req.json();
-    const { is_free, audio_url } = body;
+    const { is_free, audio_url, video_url } = body;
 
     await initializeDatabase();
     
@@ -29,6 +29,10 @@ export async function PUT(req: NextRequest, { params }: { params: Promise<{ less
     if (audio_url !== undefined) {
       updates.push(`audio_url = $${idx++}`);
       values.push(audio_url);
+    }
+    if (video_url !== undefined) {
+      updates.push(`video_url = $${idx++}`);
+      values.push(video_url);
     }
 
     if (updates.length > 0) {

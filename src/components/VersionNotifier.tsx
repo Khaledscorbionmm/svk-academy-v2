@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 
-const CURRENT_VERSION = '1.3.0';
+const CURRENT_VERSION = '1.4.0';
 
 export default function VersionNotifier() {
   const [newVersion, setNewVersion] = useState<string | null>(null);

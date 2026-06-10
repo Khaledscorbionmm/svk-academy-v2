@@ -230,6 +230,69 @@ function PremiumAudioPlayer({ src, title, textContent }: { src: string; title: s
   );
 }
 
+function PremiumVideoPlayer({ src }: { src: string }) {
+  if (!src) return null;
+
+  // Helper to extract YouTube ID
+  const getYouTubeId = (url: string) => {
+    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+    const match = url.match(regExp);
+    return (match && match[2].length === 11) ? match[2] : null;
+  };
+
+  const ytId = getYouTubeId(src);
+  let embedUrl = src;
+  const isYouTube = !!ytId;
+
+  if (isYouTube) {
+    embedUrl = `https://www.youtube.com/embed/${ytId}`;
+  } else if (src.includes('drive.google.com')) {
+    embedUrl = src.replace('/view', '/preview').replace('/edit', '/preview');
+  }
+
+  return (
+    <div style={{
+      width: '100%',
+      position: 'relative',
+      borderRadius: '16px',
+      overflow: 'hidden',
+      border: '1px solid rgba(139, 92, 246, 0.25)',
+      boxShadow: '0 0 25px rgba(139, 92, 246, 0.15), 0 10px 30px rgba(0,0,0,0.5)',
+      background: '#000',
+      marginBottom: '20px',
+      aspectRatio: '16/9'
+    }}>
+      {isYouTube || src.includes('drive.google.com') ? (
+        <iframe
+          src={embedUrl}
+          title="شرح الدرس فيديو"
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowFullScreen
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            border: 'none'
+          }}
+        />
+      ) : (
+        <video
+          src={src}
+          controls
+          style={{
+            width: '100%',
+            height: '100%',
+            objectFit: 'contain'
+          }}
+        />
+      )}
+    </div>
+  );
+}
+
 function getCodeExample(cat: string, idx: any) {
   if (cat === 'python') return `print("مثال عملي للدرس ${idx}")`;
   return `console.log("مثال عملي للدرس ${idx}");`;
@@ -981,6 +1044,10 @@ export default function LearnPage({ params }: { params: Promise<{ lessonId: stri
                   <span style={{ fontSize: '1.25rem' }}>📖</span>
                   <h3 style={{ margin: 0, fontSize: '1.05rem', fontWeight: 800, color: '#10b981' }}>لوحة الشرح النظري والكتابي</h3>
                 </div>
+                
+                {lesson.video_url && (
+                  <PremiumVideoPlayer src={lesson.video_url} />
+                )}
                 
                 <PremiumAudioPlayer
                   src={lesson.audio_url || ''}

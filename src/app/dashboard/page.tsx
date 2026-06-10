@@ -167,9 +167,13 @@ export default function StudentDashboardPage() {
 
   useEffect(() => {
     // Load language preference
-    const savedLang = localStorage.getItem('svk_lang');
-    if (savedLang === 'en' || savedLang === 'ar') {
-      setLang(savedLang);
+    try {
+      const savedLang = localStorage.getItem('svk_lang');
+      if (savedLang === 'en' || savedLang === 'ar') {
+        setLang(savedLang);
+      }
+    } catch (e) {
+      console.warn('Local storage not available:', e);
     }
     fetchStudentProfile();
   }, []);
@@ -203,7 +207,11 @@ export default function StudentDashboardPage() {
   const toggleLanguage = () => {
     const nextLang = lang === 'ar' ? 'en' : 'ar';
     setLang(nextLang);
-    localStorage.setItem('svk_lang', nextLang);
+    try {
+      localStorage.setItem('svk_lang', nextLang);
+    } catch (e) {
+      console.warn('Failed to save language preference:', e);
+    }
   };
 
   const handleLogout = async () => {

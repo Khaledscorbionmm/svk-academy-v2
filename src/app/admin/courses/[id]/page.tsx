@@ -18,6 +18,7 @@ interface Lesson {
   is_free: boolean;
   duration_minutes: number;
   audio_url?: string;
+  video_url?: string;
 }
 
 export default function AdminCourseDetail({ params }: { params: Promise<{ id: string }> }) {
@@ -109,37 +110,71 @@ export default function AdminCourseDetail({ params }: { params: Promise<{ id: st
                   <span style={{ color: '#64748b', marginLeft: '10px', fontSize: '0.9rem', fontFamily: 'monospace' }}>#{lesson.order_index}</span>
                   <span style={{ color: '#fff', fontWeight: 600 }}>{lesson.title}</span>
                 </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginTop: 4 }}>
-                  <span style={{ fontSize: '0.75rem', color: '#64748b' }}>🎙️ رابط المقطع الصوتي:</span>
-                  <input
-                    type="text"
-                    defaultValue={lesson.audio_url || ''}
-                    placeholder="ضع رابط MP3 للشرح هنا..."
-                    onBlur={async (e) => {
-                      const url = e.target.value;
-                      try {
-                        await fetch(`/api/admin/lessons/${lesson.id}`, {
-                          method: 'PUT',
-                          headers: { 'Content-Type': 'application/json' },
-                          body: JSON.stringify({ audio_url: url })
-                        });
-                      } catch (err) {
-                        console.error(err);
-                      }
-                    }}
-                    style={{
-                      background: 'rgba(255,255,255,0.03)',
-                      border: '1px solid rgba(255,255,255,0.08)',
-                      borderRadius: '6px',
-                      padding: '4px 10px',
-                      color: '#cbd5e1',
-                      fontSize: '0.8rem',
-                      width: '320px',
-                      outline: 'none',
-                      direction: 'ltr',
-                      fontFamily: 'monospace'
-                    }}
-                  />
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginTop: 4 }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                    <span style={{ fontSize: '0.75rem', color: '#64748b', width: '120px' }}>🎙️ رابط المقطع الصوتي:</span>
+                    <input
+                      type="text"
+                      defaultValue={lesson.audio_url || ''}
+                      placeholder="ضع رابط MP3 للشرح هنا..."
+                      onBlur={async (e) => {
+                        const url = e.target.value;
+                        try {
+                          await fetch(`/api/admin/lessons/${lesson.id}`, {
+                            method: 'PUT',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ audio_url: url })
+                          });
+                        } catch (err) {
+                          console.error(err);
+                        }
+                      }}
+                      style={{
+                        background: 'rgba(255,255,255,0.03)',
+                        border: '1px solid rgba(255,255,255,0.08)',
+                        borderRadius: '6px',
+                        padding: '4px 10px',
+                        color: '#cbd5e1',
+                        fontSize: '0.8rem',
+                        width: '320px',
+                        outline: 'none',
+                        direction: 'ltr',
+                        fontFamily: 'monospace'
+                      }}
+                    />
+                  </div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                    <span style={{ fontSize: '0.75rem', color: '#64748b', width: '120px' }}>🎥 رابط مقطع الفيديو:</span>
+                    <input
+                      type="text"
+                      defaultValue={lesson.video_url || ''}
+                      placeholder="ضع رابط mp4 أو YouTube للدرس هنا..."
+                      onBlur={async (e) => {
+                        const url = e.target.value;
+                        try {
+                          await fetch(`/api/admin/lessons/${lesson.id}`, {
+                            method: 'PUT',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ video_url: url })
+                          });
+                        } catch (err) {
+                          console.error(err);
+                        }
+                      }}
+                      style={{
+                        background: 'rgba(255,255,255,0.03)',
+                        border: '1px solid rgba(255,255,255,0.08)',
+                        borderRadius: '6px',
+                        padding: '4px 10px',
+                        color: '#cbd5e1',
+                        fontSize: '0.8rem',
+                        width: '320px',
+                        outline: 'none',
+                        direction: 'ltr',
+                        fontFamily: 'monospace'
+                      }}
+                    />
+                  </div>
                 </div>
               </div>
               
