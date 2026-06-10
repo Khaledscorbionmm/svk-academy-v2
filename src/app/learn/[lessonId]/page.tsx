@@ -725,6 +725,9 @@ export default function LearnPage({ params }: { params: Promise<{ lessonId: stri
   };
 
   useEffect(() => {
+    if (typeof window !== 'undefined' && window.innerWidth < 1024) {
+      setSidebar(false);
+    }
     return () => {
       if (typeof window !== 'undefined' && window.speechSynthesis) {
         window.speechSynthesis.cancel();
@@ -1467,7 +1470,7 @@ export default function LearnPage({ params }: { params: Promise<{ lessonId: stri
           }
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 1024px) {
           .desktop-text { display: none !important; }
           .mobile-text { display: inline !important; }
           .navigation-sidebar {
@@ -1578,7 +1581,7 @@ export default function LearnPage({ params }: { params: Promise<{ lessonId: stri
           display: flex;
           flex-direction: column;
         }
-        @media (max-width: 768px) {
+        @media (max-width: 1024px) {
           .lesson-header-title {
             display: none !important;
           }
