@@ -59,15 +59,32 @@ export async function GET(req: NextRequest) {
       `SELECT name, xp, LEFT(name, 1) as avatar_letter FROM students ORDER BY xp DESC NULLS LAST LIMIT 5`
     ) as any[];
 
-    // Get enrolled courses list from enrollments table
+    // Get enrolled courses list with progress metrics
     const coursesRows = await query(
-      `SELECT DISTINCT c.id, c.title, c.title_ar, c.thumbnail_url, c.category
+      `SELECT c.id, c.title, c.title_ar, c.thumbnail_url, c.category,
+              (SELECT COUNT(*) FROM lessons l WHERE l.course_id = c.id) as total_lessons,
+              (SELECT COUNT(*) FROM lesson_access la WHERE la.student_id = $1 AND la.course_id = c.id AND la.completed_at IS NOT NULL) as completed_lessons
        FROM courses c
        JOIN enrollments e ON e.course_id = c.id
        WHERE e.student_id = $1
        LIMIT 6`,
       [studentId]
     ) as any[];
+
+    // Calculate progress percentage for each course
+    const coursesWithProgress = coursesRows.map((course: any) => {
+      const total = parseInt(course.total_lessons || '0', 10);
+      const completed = parseInt(course.completed_lessons || '0', 10);
+      const progress = total > 0 ? Math.round((completed / total) * 100) : 0;
+      return {
+        id: course.id,
+        title: course.title,
+        title_ar: course.title_ar,
+        thumbnail_url: course.thumbnail_url,
+        category: course.category,
+        progress: progress
+      };
+    });
 
     // Get recent quiz results
     const recentQuizzesRows = await query(
@@ -92,7 +109,7 @@ export async function GET(req: NextRequest) {
         rank: parseInt(rankRows[0]?.rank ?? '1'),
       },
       leaderboard: leaderboardRows,
-      courses: coursesRows,
+      courses: coursesWithProgress,
       recentQuizzes: recentQuizzesRows,
     });
   } catch (error) {

@@ -40,7 +40,7 @@ interface DashboardData {
   student: { name: string; xp: number };
   stats: { enrolledCourses: number; completedLessons: number; avgScore: number; rank: number };
   leaderboard: { name: string; xp: number; avatar_letter: string }[];
-  courses: { id: number; title: string; title_ar: string; thumbnail_url: string; category: string }[];
+  courses: { id: number; title: string; title_ar: string; thumbnail_url: string; category: string; progress: number }[];
   recentQuizzes: { lesson_slug: string; score: number; total_questions: number; completed_at: string; course_title: string }[];
 }
 
@@ -131,6 +131,22 @@ export default function StudentDashboardPage() {
   const [loading, setLoading] = useState(true);
   const [loggingOut, setLoggingOut] = useState(false);
   const [dashData, setDashData] = useState<DashboardData | null>(null);
+
+  // Certificate Modal States
+  const [certModalOpen, setCertModalOpen] = useState(false);
+  const [certCourseId, setCertCourseId] = useState<number | null>(null);
+  const [certNameAr, setCertNameAr] = useState('');
+  const [certNameEn, setCertNameEn] = useState('');
+
+  const handleClaimCertificateSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!certNameAr.trim() || !certNameEn.trim()) {
+      alert(lang === 'ar' ? 'يرجى إدخال الاسم باللغة العربية والإنجليزية' : 'Please enter name in both Arabic and English');
+      return;
+    }
+    setCertModalOpen(false);
+    router.push(`/courses/${certCourseId}/certificate?nameAr=${encodeURIComponent(certNameAr.trim())}&nameEn=${encodeURIComponent(certNameEn.trim())}`);
+  };
 
   useEffect(() => {
     // Load language preference
@@ -351,11 +367,42 @@ export default function StudentDashboardPage() {
                         <div style={{ fontWeight: 700, fontSize: 16, marginBottom: 4 }}>
                           {lang === 'ar' ? (course.title_ar || course.title) : course.title}
                         </div>
-                        <div style={{ fontSize: 12, color: '#64748b' }}>{course.category}</div>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: 12, color: '#64748b' }}>
+                          <span>{course.category}</span>
+                          <span style={{ width: '4px', height: '4px', borderRadius: '50%', background: '#64748b' }} />
+                          <span style={{ color: course.progress === 100 ? '#10b981' : '#6366f1', fontWeight: 'bold' }}>
+                            {course.progress || 0}% {lang === 'ar' ? 'مكتمل' : 'completed'}
+                          </span>
+                        </div>
+                        
+                        {/* Progress Bar */}
+                        <div style={{ width: '100%', height: '5px', background: 'rgba(255,255,255,0.05)', borderRadius: '10px', marginTop: '10px', overflow: 'hidden' }}>
+                          <div style={{ width: `${course.progress || 0}%`, height: '100%', background: course.progress === 100 ? 'linear-gradient(90deg, #10b981, #059669)' : 'linear-gradient(90deg, #6366f1, #a855f7)', borderRadius: '10px', transition: 'width 1s ease' }} />
+                        </div>
                       </div>
-                      <Link href={`/courses/${course.id}`} style={{ textDecoration: 'none', padding: '8px 20px', background: 'rgba(99,102,241,0.15)', border: '1px solid rgba(99,102,241,0.3)', borderRadius: 10, color: '#a855f7', fontSize: 13, fontWeight: 700, whiteSpace: 'nowrap' }}>
-                        {t.btn_follow}
-                      </Link>
+                      <div style={{ display: 'flex', gap: '10px', alignItems: 'center', flexWrap: 'wrap' }}>
+                        {course.progress === 100 && (
+                          <button
+                            onClick={() => {
+                              setCertCourseId(course.id);
+                              setCertNameAr(student?.name && !student.name.includes('طالب') ? student.name : '');
+                              setCertNameEn('');
+                              setCertModalOpen(true);
+                            }}
+                            style={{
+                              background: 'linear-gradient(135deg, #fbbf24, #d97706)',
+                              border: 'none', color: '#000', padding: '8px 20px', borderRadius: 10,
+                              fontSize: 13, fontWeight: 800, cursor: 'pointer', fontFamily: "'Cairo', sans-serif",
+                              boxShadow: '0 0 15px rgba(251,191,36,0.3)', whiteSpace: 'nowrap'
+                            }}
+                          >
+                            🏆 {lang === 'ar' ? 'استلام الشهادة' : 'Claim Certificate'}
+                          </button>
+                        )}
+                        <Link href={`/courses/${course.id}`} style={{ textDecoration: 'none', padding: '8px 20px', background: 'rgba(99,102,241,0.15)', border: '1px solid rgba(99,102,241,0.3)', borderRadius: 10, color: '#a855f7', fontSize: 13, fontWeight: 700, whiteSpace: 'nowrap' }}>
+                          {t.btn_follow}
+                        </Link>
+                      </div>
                     </div>
                   ))
                 )}
@@ -459,6 +506,93 @@ export default function StudentDashboardPage() {
           </div>
         </div>
       </div>
+
+      {/* Certificate Modal */}
+      {certModalOpen && (
+        <div style={{
+          position: 'fixed', inset: 0, background: 'rgba(2, 2, 5, 0.85)',
+          backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)',
+          display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1000,
+          padding: '20px'
+        }}>
+          <div style={{
+            background: 'rgba(10, 10, 25, 0.95)', border: '1px solid rgba(168, 85, 247, 0.25)',
+            boxShadow: '0 20px 50px rgba(0,0,0,0.6), 0 0 30px rgba(168, 85, 247, 0.15)',
+            borderRadius: '24px', padding: '32px', maxWidth: '500px', width: '100%',
+            direction: 'rtl', fontFamily: "'Cairo', sans-serif"
+          }}>
+            <h3 style={{ margin: '0 0 8px', fontSize: '1.4rem', fontWeight: 900, color: '#fff', textAlign: 'center' }}>
+              🏆 استلام شهادة التخرج والتميز
+            </h3>
+            <p style={{ margin: '0 0 24px', fontSize: '0.85rem', color: '#94a3b8', lineHeight: 1.6, textAlign: 'center' }}>
+              تهانينا الحارة لإتمامك الكورس بنجاح! يرجى إدخال اسمك باللغتين العربية والإنجليزية لطباعته على شهادتك الرسمية.
+            </p>
+
+            <form onSubmit={handleClaimCertificateSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+              <div>
+                <label style={{ display: 'block', fontSize: '0.825rem', fontWeight: '700', color: '#cbd5e1', marginBottom: '6px' }}>
+                  الاسم الكامل باللغة العربية (كما تريده في الشهادة):
+                </label>
+                <input
+                  type="text"
+                  value={certNameAr}
+                  onChange={(e) => setCertNameAr(e.target.value)}
+                  placeholder="مثال: صبري أحمد محمد"
+                  required
+                  style={{
+                    width: '100%', padding: '12px 16px', background: 'rgba(255,255,255,0.03)',
+                    border: '1px solid rgba(255,255,255,0.08)', borderRadius: '10px',
+                    color: '#fff', outline: 'none', fontSize: '0.9rem', fontFamily: "'Cairo', sans-serif"
+                  }}
+                />
+              </div>
+
+              <div>
+                <label style={{ display: 'block', fontSize: '0.825rem', fontWeight: '700', color: '#cbd5e1', marginBottom: '6px', direction: 'ltr', textAlign: 'left' }}>
+                  Full Name in English (as you want it in the certificate):
+                </label>
+                <input
+                  type="text"
+                  value={certNameEn}
+                  onChange={(e) => setCertNameEn(e.target.value)}
+                  placeholder="Example: Sabry Ahmed Mohamed"
+                  required
+                  style={{
+                    width: '100%', padding: '12px 16px', background: 'rgba(255,255,255,0.03)',
+                    border: '1px solid rgba(255,255,255,0.08)', borderRadius: '10px',
+                    color: '#fff', outline: 'none', fontSize: '0.9rem', direction: 'ltr', textAlign: 'left',
+                    fontFamily: "'Cairo', sans-serif"
+                  }}
+                />
+              </div>
+
+              <div style={{ display: 'flex', gap: '12px', marginTop: '12px' }}>
+                <button
+                  type="submit"
+                  style={{
+                    flex: 1, padding: '12px', borderRadius: '10px', border: 'none',
+                    background: 'linear-gradient(135deg, #10b981, #059669)', color: '#000',
+                    fontWeight: 700, fontSize: '0.95rem', cursor: 'pointer', fontFamily: "'Cairo', sans-serif"
+                  }}
+                >
+                  إصدار الشهادة 🎓
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setCertModalOpen(false)}
+                  style={{
+                    padding: '12px 20px', borderRadius: '10px', border: '1px solid rgba(255,255,255,0.1)',
+                    background: 'rgba(255,255,255,0.02)', color: '#94a3b8',
+                    fontWeight: 700, fontSize: '0.95rem', cursor: 'pointer', fontFamily: "'Cairo', sans-serif"
+                  }}
+                >
+                  إلغاء
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
 
       <style>{`
         * { box-sizing: border-box; }
