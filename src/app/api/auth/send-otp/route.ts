@@ -19,6 +19,26 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'البريد الإلكتروني مسجل مسبقاً' }, { status: 400 });
     }
 
+    // Rate limit check: Only allow sending OTP once per 60 seconds per email
+    const lastOtp = await query(
+      'SELECT created_at FROM email_verifications WHERE email = $1 ORDER BY created_at DESC LIMIT 1',
+      [emailTrimmed]
+    ) as any[];
+
+    if (lastOtp.length > 0) {
+      const lastSentTime = new Date(lastOtp[0].created_at).getTime();
+      const timePassed = Date.now() - lastSentTime;
+      if (timePassed < 60 * 1000) {
+        const secondsLeft = Math.ceil((60 * 1000 - timePassed) / 1000);
+        return NextResponse.json({
+          error: `يرجى الانتظار ${secondsLeft} ثانية قبل طلب كود تحقق جديد`
+        }, { status: 429 });
+      }
+    }
+
+    // Clean up expired verification records to keep the DB tidy
+    await query('DELETE FROM email_verifications WHERE expires_at < NOW()').catch(() => {});
+
     // 2. Generate a 6-digit code
     const code = Math.floor(100000 + Math.random() * 900000).toString();
 
