@@ -210,11 +210,27 @@ export default function CoursesPage() {
   const [activeCategory, setActiveCategory] = useState('all');
   const [search, setSearch] = useState('');
   const [mounted, setMounted] = useState(false);
+  const [user, setUser] = useState<any>(null);
 
   useEffect(() => {
     setMounted(true);
     fetchCourses();
+    checkUser();
   }, []);
+
+  async function checkUser() {
+    try {
+      const res = await fetch('/api/auth/me');
+      if (res.ok) {
+        const data = await res.json();
+        if (data.user) {
+          setUser(data.user);
+        }
+      }
+    } catch (e) {
+      console.error(e);
+    }
+  }
 
   async function fetchCourses() {
     try {
@@ -253,8 +269,16 @@ export default function CoursesPage() {
           <span style={{ fontSize: 20, fontWeight: 900, background: 'linear-gradient(135deg,#6366f1,#a855f7)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>SVK Academy</span>
         </Link>
         <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
-          <Link href="/login" style={{ textDecoration: 'none', color: '#94a3b8', padding: '8px 16px', borderRadius: 10, fontSize: 14 }}>تسجيل الدخول</Link>
-          <Link href="/register" style={{ textDecoration: 'none', background: 'linear-gradient(135deg,#6366f1,#a855f7)', color: '#fff', padding: '8px 20px', borderRadius: 10, fontSize: 14, fontWeight: 700 }}>سجّل مجاناً</Link>
+          {user ? (
+            <Link href={user.role === 'admin' ? '/admin/dashboard' : '/dashboard'} style={{ textDecoration: 'none', background: 'linear-gradient(135deg,#6366f1,#a855f7)', color: '#fff', padding: '8px 20px', borderRadius: 10, fontSize: 14, fontWeight: 700 }}>
+              لوحة التحكم 🖥️ ({user.name})
+            </Link>
+          ) : (
+            <>
+              <Link href="/login" style={{ textDecoration: 'none', color: '#94a3b8', padding: '8px 16px', borderRadius: 10, fontSize: 14 }}>تسجيل الدخول</Link>
+              <Link href="/register" style={{ textDecoration: 'none', background: 'linear-gradient(135deg,#6366f1,#a855f7)', color: '#fff', padding: '8px 20px', borderRadius: 10, fontSize: 14, fontWeight: 700 }}>سجّل مجاناً</Link>
+            </>
+          )}
         </div>
       </nav>
 

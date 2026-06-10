@@ -82,6 +82,7 @@ export default function CourseDetailPage({ params }: { params: Promise<{ id: str
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState<'overview' | 'curriculum' | 'instructor' | 'reviews'>('overview');
   const [mounted, setMounted] = useState(false);
+  const [user, setUser] = useState<any>(null);
 
   useEffect(() => {
     setMounted(true);
@@ -104,7 +105,22 @@ export default function CourseDetailPage({ params }: { params: Promise<{ id: str
       }
     }
     load();
+    checkUser();
   }, [id]);
+
+  async function checkUser() {
+    try {
+      const res = await fetch('/api/auth/me');
+      if (res.ok) {
+        const data = await res.json();
+        if (data.user) {
+          setUser(data.user);
+        }
+      }
+    } catch (e) {
+      console.error(e);
+    }
+  }
 
   const TABS = [
     { id: 'overview' as const, label: 'نظرة عامة', icon: '📋' },
@@ -151,9 +167,16 @@ export default function CourseDetailPage({ params }: { params: Promise<{ id: str
 
       {/* Navbar */}
       <nav style={{ borderBottom: '1px solid rgba(255,255,255,0.06)', padding: '16px 40px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', position: 'sticky', top: 0, zIndex: 100, background: 'rgba(6,6,18,0.9)', backdropFilter: 'blur(20px)' }}>
-        <Link href="/courses" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 8, color: '#94a3b8', fontSize: 14 }}>
-          ← الكورسات
-        </Link>
+        <div style={{ display: 'flex', gap: 16, alignItems: 'center' }}>
+          <Link href="/courses" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 8, color: '#94a3b8', fontSize: 14 }}>
+            ← الكورسات
+          </Link>
+          {user && (
+            <Link href={user.role === 'admin' ? '/admin/dashboard' : '/dashboard'} style={{ textDecoration: 'none', color: '#c4b5fd', fontSize: 14, fontWeight: 700 }}>
+              لوحة التحكم 🖥️
+            </Link>
+          )}
+        </div>
         <Link href="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 10 }}>
           <span style={{ fontSize: 22 }}>🎓</span>
           <span style={{ fontSize: 18, fontWeight: 900, background: 'linear-gradient(135deg,#6366f1,#a855f7)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>SVK Academy</span>
