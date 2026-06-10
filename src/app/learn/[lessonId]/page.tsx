@@ -811,20 +811,177 @@ export default function LearnPage({ params }: { params: Promise<{ lessonId: stri
           } finally {
             console.log = originalLog;
           }
-        } else if (course.category === 'python') {
-          // Simple python print statement parser mockup
-          const lines = code.split('\n');
-          lines.forEach(line => {
-            const trimmed = line.trim();
-            if (trimmed.startsWith('print(')) {
-              const matches = trimmed.match(/print\((['"])(.*?)\1\)/);
-              if (matches && matches[2]) {
-                outputs.push(matches[2]);
+        } else if (course.category === 'python' || course.category === 'ai') {
+          try {
+            const outputsList: string[] = [];
+            const sandbox = {
+              print: (...args: any[]) => {
+                outputsList.push(args.map(arg => {
+                  if (typeof arg === 'object') return JSON.stringify(arg);
+                  return String(arg);
+                }).join(' '));
+              },
+              str: (v: any) => String(v),
+              int: (v: any) => parseInt(v),
+              float: (v: any) => parseFloat(v),
+              type: (v: any) => {
+                if (typeof v === 'number') {
+                  return Number.isInteger(v) ? "<class 'int'>" : "<class 'float'>";
+                }
+                if (typeof v === 'string') return "<class 'str'>";
+                if (typeof v === 'boolean') return "<class 'bool'>";
+                if (Array.isArray(v)) return "<class 'list'>";
+                return `<class '${typeof v}'>`;
+              },
+              len: (v: any) => v ? v.length : 0,
+              range: (start: number, end?: number, step?: number) => {
+                let s = start;
+                let e = end;
+                let st = step || 1;
+                if (e === undefined) {
+                  e = start;
+                  s = 0;
+                }
+                const res = [];
+                for (let i = s; st > 0 ? i < e : i > e; i += st) {
+                  res.push(i);
+                }
+                return res;
+              },
+              math: {
+                sqrt: (v: number) => Math.sqrt(v),
+                floor: (v: number) => Math.floor(v),
+              },
+              random: {
+                randint: (min: number, max: number) => Math.floor(Math.random() * (max - min + 1)) + min,
+              },
+              datetime: {
+                date: {
+                  today: () => ({ year: new Date().getFullYear() })
+                }
+              },
+              json: {
+                loads: (v: string) => JSON.parse(v)
               }
+            };
+
+            const lines = code.split('\n');
+            const jsLines: string[] = [];
+            const indentStack: number[] = [];
+
+            for (let i = 0; i < lines.length; i++) {
+              const line = lines[i];
+              const trimmed = line.trim();
+              if (!trimmed || trimmed.startsWith('#')) {
+                jsLines.push(line);
+                continue;
+              }
+
+              const indentMatch = line.match(/^(\s*)/);
+              const indent = indentMatch ? indentMatch[1].length : 0;
+
+              while (indentStack.length > 0 && indent <= indentStack[indentStack.length - 1]) {
+                const closedIndent = indentStack.pop() || 0;
+                jsLines.push(' '.repeat(closedIndent) + '}');
+              }
+
+              let processed = line;
+
+              // Booleans
+              processed = processed.replace(/\bTrue\b/g, 'true').replace(/\bFalse\b/g, 'false');
+
+              // String multiplication
+              processed = processed.replace(/(["'])(.*?)\1\s*\*\s*(\d+)/g, '"$2".repeat($3)');
+              processed = processed.replace(/(["'])(.*?)\1\s*\*\s*([a-zA-Z_][a-zA-Z0-9_]*)/g, '"$2".repeat($3)');
+
+              // Convert print
+              processed = processed.replace(/\bprint\s*\(/g, 'print(');
+
+              // Assignments x = y to let x = y
+              const assignmentMatch = processed.match(/^(\s*)([a-zA-Z_][a-zA-Z0-9_]*)\s*=\s*(.*)$/);
+              if (assignmentMatch && !processed.includes('==') && !processed.includes('!=') && !processed.includes('>=') && !processed.includes('<=')) {
+                const ind = assignmentMatch[1];
+                const varName = assignmentMatch[2];
+                const valExpr = assignmentMatch[3];
+                processed = `${ind}let ${varName} = ${valExpr};`;
+              }
+
+              // Functions
+              if (trimmed.startsWith('def ')) {
+                processed = processed.replace(/\bdef\s+([a-zA-Z_][a-zA-Z0-9_]*)\s*\((.*?)\)\s*:/g, 'function $1($2) {');
+                indentStack.push(indent);
+              }
+              // Classes
+              else if (trimmed.startsWith('class ')) {
+                processed = processed.replace(/\bclass\s+([a-zA-Z_][a-zA-Z0-9_]*)\s*:/g, 'class $1 {');
+                indentStack.push(indent);
+              }
+              else if (trimmed.startsWith('def __init__')) {
+                processed = processed.replace(/\bdef\s+__init__\s*\(\s*self\s*,?\s*(.*?)\)\s*:/g, 'constructor($1) {');
+                indentStack.push(indent);
+              }
+              else if (trimmed.startsWith('def ') && indentStack.length > 0) {
+                processed = processed.replace(/\bdef\s+([a-zA-Z_][a-zA-Z0-9_]*)\s*\(\s*self\s*,?\s*(.*?)\)\s*:/g, '$1($2) {');
+                indentStack.push(indent);
+              }
+              // Statements if, elif, else, while, for
+              else if (trimmed.startsWith('if ') && trimmed.endsWith(':')) {
+                processed = processed.replace(/\bif\s+(.*?)\s*:/g, 'if ($1) {');
+                indentStack.push(indent);
+              }
+              else if (trimmed.startsWith('elif ') && trimmed.endsWith(':')) {
+                processed = processed.replace(/\belif\s+(.*?)\s*:/g, 'else if ($1) {');
+                indentStack.push(indent);
+              }
+              else if (trimmed === 'else:') {
+                processed = 'else {';
+                indentStack.push(indent);
+              }
+              else if (trimmed.startsWith('while ') && trimmed.endsWith(':')) {
+                processed = processed.replace(/\bwhile\s+(.*?)\s*:/g, 'while ($1) {');
+                indentStack.push(indent);
+              }
+              else if (trimmed.startsWith('for ') && trimmed.includes('range(') && trimmed.endsWith(':')) {
+                const forMatch = trimmed.match(/for\s+([a-zA-Z_][a-zA-Z0-9_]*)\s+in\s+range\(\s*(.*?)\s*\)\s*:/);
+                if (forMatch) {
+                  processed = ' '.repeat(indent) + `for (let ${forMatch[1]} of range(${forMatch[2]})) {`;
+                  indentStack.push(indent);
+                }
+              }
+              else if (trimmed.startsWith('for ') && trimmed.includes(' in ') && trimmed.endsWith(':')) {
+                const forMatch = trimmed.match(/for\s+([a-zA-Z_][a-zA-Z0-9_]*)\s+in\s+(.*?)\s*:/);
+                if (forMatch) {
+                  processed = ' '.repeat(indent) + `for (let ${forMatch[1]} of ${forMatch[2]}) {`;
+                  indentStack.push(indent);
+                }
+              }
+
+              // self. to this.
+              processed = processed.replace(/\bself\./g, 'this.');
+              // Logical and/or/not
+              processed = processed.replace(/\band\b/g, '&&').replace(/\bor\b/g, '||').replace(/\bnot\b/g, '!');
+
+              jsLines.push(processed);
             }
-          });
-          if (outputs.length === 0) {
-            outputs.push('Code executed successfully. No output returned.');
+
+            while (indentStack.length > 0) {
+              const closedIndent = indentStack.pop() || 0;
+              jsLines.push(' '.repeat(closedIndent) + '}');
+            }
+
+            const finalJsCode = jsLines.join('\n');
+
+            const sandboxKeys = Object.keys(sandbox);
+            const sandboxVals = Object.values(sandbox);
+            const runnerFn = new Function(...sandboxKeys, finalJsCode);
+            runnerFn(...sandboxVals);
+
+            outputs.push(...outputsList);
+            if (outputs.length === 0) {
+              outputs.push('Code executed successfully. No output returned.');
+            }
+          } catch (err: any) {
+            outputs.push(`Error: ${err.message}`);
           }
         } else {
           // Fallback static output
