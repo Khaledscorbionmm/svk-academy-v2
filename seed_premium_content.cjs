@@ -301,10 +301,29 @@ function generateLessonDetails(courseTitle, category, keyword, moduleName, lesso
       practiceInstructions = `اكتب دالة الطباعة print لطباعة الجملة "مرحباً بك في لغة بايثون" باللغة العربية بدقة.`;
       codeExplanation = `نستخدم دالة print المدمجة لعرض المخرجات للمستخدم على لوحة الكونسول.`;
     } else if (kw === '+') {
-      codeTemplate = `print("أكاديمية" + " " + "SVK")`;
-      practiceExpected = `أكاديمية SVK`;
-      practiceInstructions = `اكتب كود بايثون لدمج كلمتي "أكاديمية" و "SVK" مع ترك مسافة بينهما باستخدام المعامل (+).`;
-      codeExplanation = `المعامل (+) يقوم بعملية دمج النصوص (String Concatenation) عند تطبيقه على قيم نصية.`;
+      if (lessonIndex === 2) {
+        codeTemplate = `print("أكاديمية" + " " + "SVK")`;
+        practiceExpected = `أكاديمية SVK`;
+        practiceInstructions = `اكتب كود بايثون لدمج كلمتي "أكاديمية" و "SVK" مع ترك مسافة بينهما باستخدام المعامل (+).`;
+        codeExplanation = `المعامل (+) يقوم بعملية دمج النصوص (String Concatenation) عند تطبيقه على قيم نصية.`;
+      } else {
+        codeTemplate = `a = 15\nb = 10\nprint(a + b)`;
+        practiceExpected = `25`;
+        practiceInstructions = `احسب واطبع ناتج جمع المتغيرين a=15 و b=10 باستخدام المعامل (+).`;
+        codeExplanation = `يُسخدم المعامل (+) لجمع الأرقام وتجميع القيم العددية.`;
+      }
+    } else if (kw === '*') {
+      if (lessonIndex === 10) {
+        codeTemplate = `print("SVK! " * 3)`;
+        practiceExpected = `SVK! SVK! SVK! `;
+        practiceInstructions = `كرر طباعة النص "SVK! " ثلاث مرات باستخدام معامل التكرار النصي (*).`;
+        codeExplanation = `يؤدي معامل الضرب (*) عند استخدامه مع نص ورقم إلى تكرار النص بعدد الرقم المحدد.`;
+      } else {
+        codeTemplate = `a = 6\nb = 7\nprint(a * b)`;
+        practiceExpected = `42`;
+        practiceInstructions = `احسب واطبع حاصل ضرب المتغيرين a=6 و b=7 باستخدام المعامل (*).`;
+        codeExplanation = `يُسخدم المعامل (*) لحساب حاصل الضرب الرياضي بين رقمين.`;
+      }
     } else if (kw === '#') {
       codeTemplate = `# هذا تعليق توضيحي\nprint("مرحبا")`;
       practiceExpected = `مرحبا`;
@@ -330,21 +349,36 @@ function generateLessonDetails(courseTitle, category, keyword, moduleName, lesso
       practiceExpected = `369`;
       practiceInstructions = `عرّف متغير x وأسند له القيمة 369 ثم اطبع قيمته.`;
       codeExplanation = `يستخدم معامل اليساوي (=) لتعيين وإسناد القيم للمتغيرات في الذاكرة.`;
-    } else if (kw === 'str' || kw === 'str()') {
+    } else if (kw === 'str') {
+      codeTemplate = `x = "SVK"\nprint(x)`;
+      practiceExpected = `SVK`;
+      practiceInstructions = `عرّف متغيراً نصياً باسم x يحمل القيمة "SVK" واطبعه.`;
+      codeExplanation = `النوع str هو النوع الأساسي لتمثيل سلاسل الحروف والنصوص في بايثون.`;
+    } else if (kw === 'str()') {
       codeTemplate = `x = str(100)\nprint("الرقم هو: " + x)`;
       practiceExpected = `الرقم هو: 100`;
-      practiceInstructions = `قم بتحويل الرقم 100 إلى نص لدمجه بنجاح مع عبارة نصية أخرى.`;
-      codeExplanation = `تقوم دالة str() بتحويل البيانات غير النصية إلى نصوص لتفادي أخطاء النوع.`;
-    } else if (kw === 'int' || kw === 'int()') {
+      practiceInstructions = `قم بتحويل الرقم 100 إلى نص باستخدام str() لدمجه بنجاح مع عبارة نصية أخرى.`;
+      codeExplanation = `تقوم دالة str() بتحويل البيانات غير النصية (مثل الأرقام) إلى نصوص لتفادي أخطاء النوع عند الدمج.`;
+    } else if (kw === 'int') {
+      codeTemplate = `x = 50\nprint(x)`;
+      practiceExpected = `50`;
+      practiceInstructions = `عرّف متغيراً من النوع الصحيح (int) يحمل القيمة 50 واطبعه.`;
+      codeExplanation = `يمثل النوع int الأعداد الصحيحة الموجبة والسالبة دون أي فاصلة عشرية.`;
+    } else if (kw === 'int()') {
       codeTemplate = `x = int("50")\nprint(x + 10)`;
       practiceExpected = `60`;
-      practiceInstructions = `حوّل النص الرقمي "50" إلى رقم صحيح واجمع عليه 10.`;
-      codeExplanation = `تستخدم دالة int() لتحويل النصوص والأرقام العشرية إلى أعداد صحيحة.`;
-    } else if (kw === 'float' || kw === 'float()') {
+      practiceInstructions = `حوّل النص الرقمي "50" إلى رقم صحيح باستخدام int() واجمع عليه 10.`;
+      codeExplanation = `تستخدم دالة int() لتحويل النصوص والأرقام العشرية المتوافقة إلى أعداد صحيحة.`;
+    } else if (kw === 'float') {
+      codeTemplate = `x = 3.14\nprint(x)`;
+      practiceExpected = `3.14`;
+      practiceInstructions = `عرّف متغيراً من النوع العشري (float) يحمل القيمة 3.14 واطبعه.`;
+      codeExplanation = `يمثل النوع float الأعداد الكسرية والعشرية التي تحتوي على جزء بعد الفاصلة.`;
+    } else if (kw === 'float()') {
       codeTemplate = `x = float("3.14")\nprint(x + 1.0)`;
       practiceExpected = `4.14`;
-      practiceInstructions = `حوّل النص "3.14" لرقم عشري واجمع عليه 1.0.`;
-      codeExplanation = `تستخدم دالة float() لتحويل البيانات النصية المتوافقة إلى أعداد كسرية.`;
+      practiceInstructions = `حوّل النص "3.14" لرقم عشري باستخدام float() واجمع عليه 1.0.`;
+      codeExplanation = `تستخدم دالة float() لتحويل البيانات النصية والأعداد الصحيحة المتوافقة إلى أعداد عشرية.`;
     } else if (kw === 'bool') {
       codeTemplate = `is_active = True\nprint(is_active)`;
       practiceExpected = `True`;
