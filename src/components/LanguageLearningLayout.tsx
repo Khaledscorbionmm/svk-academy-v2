@@ -2,20 +2,27 @@
 
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
+import { useTargetGroup } from '@/context/UserTargetGroupContext';
+
+// Helper to clean HTML tags from text
+const cleanHtmlText = (text: string) => {
+  if (!text) return '';
+  return text.replace(/<[^>]*>/g, ' ')
+    .replace(/&nbsp;/g, ' ')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>');
+};
 
 // Parser to extract vocabulary pairs from the Markdown text content
 const parseFlashcards = (textContent: string, courseTitle: string) => {
   if (!textContent) return [];
   
-  // Clean HTML if any
-  const cleanText = textContent.replace(/<[^>]*>/g, '\n').replace(/&nbsp;/g, ' ');
-  
-  // Find lines starting with a bullet point followed by foreign text and Arabic in parentheses
+  const clean = textContent.replace(/<[^>]*>/g, '\n').replace(/&nbsp;/g, ' ');
   const regex = /(?:^|\n)[-*+]\s*([a-zA-ZÀ-ÿ\s',!?./~:-]+)\s*\(([\u0600-\u06FF\s،؛؟()]+)\)/g;
   const cards: { en: string; ar: string }[] = [];
   let match;
   
-  while ((match = regex.exec(cleanText)) !== null) {
+  while ((match = regex.exec(clean)) !== null) {
     const foreign = match[1].trim();
     const arabic = match[2].trim();
     if (foreign && arabic) {
@@ -23,14 +30,13 @@ const parseFlashcards = (textContent: string, courseTitle: string) => {
     }
   }
 
-  // Fallback if no matching pairs are found
   if (cards.length === 0) {
     const isFrench = courseTitle.toLowerCase().includes('french') || courseTitle.toLowerCase().includes('français');
     const isGerman = courseTitle.toLowerCase().includes('german') || courseTitle.toLowerCase().includes('deutsch');
     
     if (isFrench) {
       return [
-        { en: "Bonjour", ar: "صباح الخير / مرحباً" },
+        { en: "Bonjour", ar: "صباح الخير" },
         { en: "Merci beaucoup", ar: "شكراً جزيلاً" },
         { en: "S'il vous plaît", ar: "من فضلك" },
         { en: "Comment ça va?", ar: "كيف حالك؟" },
@@ -57,172 +63,169 @@ const parseFlashcards = (textContent: string, courseTitle: string) => {
   return cards;
 };
 
-// Generates dynamic multiple-choice questions from vocabulary cards
-const generateQuizQuestions = (cards: { en: string; ar: string }[]) => {
-  if (!cards || cards.length === 0) return [];
-  return cards.map((card, idx) => {
-    const options = [card.ar];
-    const otherCards = cards.filter((_, i) => i !== idx);
-    const shuffledOthers = [...otherCards].sort(() => 0.5 - Math.random());
-    
-    for (let i = 0; i < Math.min(3, shuffledOthers.length); i++) {
-      options.push(shuffledOthers[i].ar);
-    }
-    
-    while (options.length < 4) {
-      options.push("خيار بديل " + (options.length + 1));
-    }
-    
-    const shuffledOptions = [...options].sort(() => 0.5 - Math.random());
-    const correctIndex = shuffledOptions.indexOf(card.ar);
-    
-    return {
-      question: `ما هو المعنى الصحيح للعبارة: "${card.en}"؟`,
-      options: shuffledOptions,
-      correctAnswer: correctIndex,
-      explanation: `الترجمة الصحيحة هي: ${card.ar}`
-    };
-  });
-};
-
-function LightAudioPlayer({ src, title, textContent, isDarkMode }: { src: string; title: string; textContent: string; isDarkMode: boolean }) {
+// Custom premium audio narration player
+function AudioNarrationPlayer({ textContent, isKids }: { textContent: string; isKids: boolean }) {
   const [isPlaying, setIsPlaying] = useState(false);
-  const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
-  const audioRef = useRef<HTMLAudioElement | null>(null);
-
-  const isTTS = !src || src.includes('SoundHelix') || src === '';
-
-  const getCleanText = () => {
-    if (!textContent) return '';
-    return textContent.replace(/<[^>]*>/g, ' ').replace(/&nbsp;/g, ' ').replace(/&lt;/g, '<').replace(/&gt;/g, '>');
-  };
+  const [duration, setDuration] = useState(0);
+  
+  const cleanText = cleanHtmlText(textContent);
 
   useEffect(() => {
-    if (isTTS) {
-      const clean = getCleanText();
-      const words = clean.trim().split(/\s+/).length;
-      setDuration(Math.max(10, Math.round((words / 130) * 60)));
-      setIsPlaying(false);
-      setCurrentTime(0);
-    } else if (audioRef.current) {
-      audioRef.current.src = src;
-      setIsPlaying(false);
-      setCurrentTime(0);
+    // Estimate speaking duration (approx 130 words per minute)
+    const words = cleanText.trim().split(/\s+/).length;
+    setDuration(Math.max(10, Math.round((words / 130) * 60)));
+    setIsPlaying(false);
+    setCurrentTime(0);
+    if (typeof window !== 'undefined' && window.speechSynthesis) {
+      window.speechSynthesis.cancel();
     }
-  }, [src, textContent]);
+  }, [textContent]);
+
+  useEffect(() => {
+    return () => {
+      if (typeof window !== 'undefined' && window.speechSynthesis) {
+        window.speechSynthesis.cancel();
+      }
+    };
+  }, []);
 
   const togglePlay = () => {
-    if (isTTS) {
-      if (typeof window === 'undefined' || !window.speechSynthesis) return;
-      if (isPlaying) {
-        window.speechSynthesis.pause();
-        setIsPlaying(false);
-      } else {
-        if (window.speechSynthesis.paused) {
-          window.speechSynthesis.resume();
-          setIsPlaying(true);
-        } else {
-          window.speechSynthesis.cancel();
-          const cleanText = getCleanText();
-          const utterance = new SpeechSynthesisUtterance(cleanText);
-          utterance.lang = 'ar-EG';
-          utterance.rate = 0.95;
-          const voices = window.speechSynthesis.getVoices();
-          const arVoice = voices.find(v => v.lang.startsWith('ar'));
-          if (arVoice) utterance.voice = arVoice;
-
-          utterance.onend = () => { setIsPlaying(false); setCurrentTime(0); };
-          utterance.onerror = () => { setIsPlaying(false); };
-          
-          utterance.onboundary = (event) => {
-            if (event.name === 'word') {
-              const charIndex = event.charIndex;
-              const totalChars = cleanText.length;
-              if (totalChars > 0) {
-                setCurrentTime(Math.min(duration, (charIndex / totalChars) * duration));
-              }
-            }
-          };
-          
-          setIsPlaying(true);
-          window.speechSynthesis.speak(utterance);
-        }
-      }
-    } else {
-      if (!audioRef.current) return;
-      if (isPlaying) audioRef.current.pause();
-      else audioRef.current.play();
-      setIsPlaying(!isPlaying);
+    if (typeof window === 'undefined' || !window.speechSynthesis) {
+      alert('متصفحك لا يدعم قراءة النصوص صوتياً.');
+      return;
     }
-  };
 
-  const handleTimeUpdate = () => {
-    if (!isTTS && audioRef.current) setCurrentTime(audioRef.current.currentTime);
+    if (isPlaying) {
+      window.speechSynthesis.pause();
+      setIsPlaying(false);
+    } else {
+      if (window.speechSynthesis.paused) {
+        window.speechSynthesis.resume();
+        setIsPlaying(true);
+      } else {
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(cleanText);
+        utterance.lang = 'ar-EG';
+        utterance.rate = 0.95;
+
+        const voices = window.speechSynthesis.getVoices();
+        const arVoice = voices.find(v => v.lang.startsWith('ar'));
+        if (arVoice) utterance.voice = arVoice;
+
+        utterance.onend = () => {
+          setIsPlaying(false);
+          setCurrentTime(0);
+        };
+        utterance.onerror = () => {
+          setIsPlaying(false);
+        };
+        utterance.onboundary = (event) => {
+          if (event.name === 'word') {
+            const charIndex = event.charIndex;
+            const totalChars = cleanText.length;
+            if (totalChars > 0) {
+              setCurrentTime(Math.min(duration, (charIndex / totalChars) * duration));
+            }
+          }
+        };
+
+        setIsPlaying(true);
+        window.speechSynthesis.speak(utterance);
+      }
+    }
   };
 
   const formatTime = (time: number) => {
-    if (isNaN(time)) return '0:00';
     const mins = Math.floor(time / 60);
     const secs = Math.floor(time % 60);
     return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
   };
 
   return (
-    <div style={{ 
-      background: isDarkMode ? 'rgba(255, 255, 255, 0.03)' : '#f1f5f9', 
-      borderRadius: '12px', 
-      padding: '16px', 
-      display: 'flex', 
-      flexDirection: 'column', 
-      gap: '12px', 
-      border: isDarkMode ? '1px solid rgba(255, 255, 255, 0.08)' : '1px solid #e2e8f0' 
+    <div style={{
+      background: isKids ? '#f3f4f6' : 'rgba(255, 255, 255, 0.03)',
+      border: `2px solid ${isKids ? '#fb7185' : 'rgba(59, 130, 246, 0.2)'}`,
+      borderRadius: '16px',
+      padding: '16px 20px',
+      marginBottom: '20px',
+      display: 'flex',
+      flexDirection: 'column',
+      gap: '12px',
     }}>
-      {!isTTS && <audio ref={audioRef} onTimeUpdate={handleTimeUpdate} onLoadedMetadata={() => setDuration(audioRef.current?.duration || 0)} onEnded={() => setIsPlaying(false)} />}
-      
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <div style={{ fontSize: '0.9rem', fontWeight: 700, color: isDarkMode ? '#e2e8f0' : '#1e293b' }}>
-          {isTTS ? 'النطق الذكي (AI Reader)' : 'التسجيل الصوتي للدرس'}
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+          <span style={{ fontSize: '1.3rem', animation: isPlaying ? 'pulse 1.5s infinite' : 'none' }}>🎙️</span>
+          <div>
+            <div style={{ fontSize: '0.85rem', fontWeight: 800, color: isKids ? '#e11d48' : '#3b82f6' }}>
+              قارئ الشرح الذكي بالذكاء الاصطناعي (Narration)
+            </div>
+            <div style={{ fontSize: '0.75rem', color: isKids ? '#4b5563' : '#94a3b8' }}>
+              استمع لقراءة آلية تفاعلية للشرح اللغوي
+            </div>
+          </div>
         </div>
-        {isPlaying && <div style={{ display: 'flex', gap: '3px' }}>
-          {[1,2,3,4].map(i => (
-            <div key={i} style={{ width: '3px', height: '12px', background: '#3b82f6', borderRadius: '2px', animation: `bounce 1s infinite ${i*0.1}s` }} />
-          ))}
-        </div>}
+        {isPlaying && (
+          <span style={{
+            fontSize: '0.7rem',
+            padding: '2px 8px',
+            background: 'rgba(59, 130, 246, 0.15)',
+            border: '1px solid #3b82f6',
+            borderRadius: '20px',
+            color: '#3b82f6',
+            fontWeight: 700
+          }}>
+            جاري القراءة
+          </span>
+        )}
       </div>
 
-      <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-        <button onClick={togglePlay} style={{ width: '36px', height: '36px', borderRadius: '50%', background: '#3b82f6', border: 'none', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', flexShrink: 0, boxShadow: '0 4px 10px rgba(59, 130, 246, 0.3)' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+        <button
+          onClick={togglePlay}
+          style={{
+            background: isPlaying ? '#ef4444' : '#3b82f6',
+            border: 'none',
+            color: '#fff',
+            width: '40px', height: '40px',
+            borderRadius: '50%',
+            cursor: 'pointer',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            fontSize: '1rem',
+            transition: 'all 0.3s'
+          }}
+        >
           {isPlaying ? '⏸' : '▶'}
         </button>
-        <div style={{ flex: 1, display: 'flex', alignItems: 'center', gap: '8px', direction: 'ltr' }}>
-          <span style={{ fontSize: '0.75rem', color: isDarkMode ? '#94a3b8' : '#64748b', fontWeight: 600 }}>{formatTime(currentTime)}</span>
-          <div style={{ flex: 1, height: '6px', background: isDarkMode ? 'rgba(255,255,255,0.1)' : '#cbd5e1', borderRadius: '3px', position: 'relative', overflow: 'hidden' }}>
-            <div style={{ position: 'absolute', top: 0, left: 0, height: '100%', background: '#3b82f6', width: `${duration > 0 ? (currentTime / duration) * 100 : 0}%`, borderRadius: '3px' }} />
+
+        <div style={{ flex: 1, display: 'flex', alignItems: 'center', gap: '10px', direction: 'ltr' }}>
+          <span style={{ fontSize: '0.75rem', color: isKids ? '#4b5563' : '#94a3b8', fontFamily: 'monospace' }}>{formatTime(currentTime)}</span>
+          <div style={{ flex: 1, height: '6px', background: isKids ? '#e5e7eb' : 'rgba(255,255,255,0.1)', borderRadius: '3px', position: 'relative', overflow: 'hidden' }}>
+            <div style={{ position: 'absolute', top: 0, left: 0, height: '100%', background: '#3b82f6', width: `${duration > 0 ? (currentTime / duration) * 100 : 0}%` }} />
           </div>
-          <span style={{ fontSize: '0.75rem', color: isDarkMode ? '#94a3b8' : '#64748b', fontWeight: 600 }}>{formatTime(duration)}</span>
+          <span style={{ fontSize: '0.75rem', color: isKids ? '#4b5563' : '#94a3b8', fontFamily: 'monospace' }}>{formatTime(duration)}</span>
         </div>
       </div>
     </div>
   );
 }
 
-function InteractiveFlashcards({ flashcards, courseTitle, isDarkMode }: { flashcards: { en: string; ar: string }[]; courseTitle: string; isDarkMode: boolean }) {
+// 3D Flip Flashcards Component
+function FlashcardHub({ flashcards, courseTitle, isKids, isDarkMode }: { flashcards: { en: string; ar: string }[]; courseTitle: string; isKids: boolean; isDarkMode: boolean }) {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isPlayingEn, setIsPlayingEn] = useState(false);
-  const [isPlayingAr, setIsPlayingAr] = useState(false);
   const [isFlipped, setIsFlipped] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
 
   const currentCard = flashcards[currentIndex] || { en: "No words found", ar: "لا توجد كلمات" };
 
-  const playVoice = (e: React.MouseEvent, text: string, lang: string, setIsPlaying: any) => {
-    e.stopPropagation(); // Avoid flipping when clicking play button
+  const playPronunciation = (e: React.MouseEvent, text: string, lang: string) => {
+    e.stopPropagation();
     if (typeof window === 'undefined' || !window.speechSynthesis) return;
     window.speechSynthesis.cancel();
     
     const utterance = new SpeechSynthesisUtterance(text);
     utterance.lang = lang;
-    utterance.rate = 0.85;
+    utterance.rate = 0.8;
     
     const voices = window.speechSynthesis.getVoices();
     const voice = voices.find(v => v.lang.startsWith(lang.split('-')[0]));
@@ -235,236 +238,342 @@ function InteractiveFlashcards({ flashcards, courseTitle, isDarkMode }: { flashc
     window.speechSynthesis.speak(utterance);
   };
 
-  const nextCard = () => {
-    if (currentIndex < flashcards.length - 1) {
-      setIsFlipped(false);
-      setTimeout(() => {
-        setCurrentIndex(prev => prev + 1);
-      }, 150);
-    }
-  };
-
-  const prevCard = () => {
-    if (currentIndex > 0) {
-      setIsFlipped(false);
-      setTimeout(() => {
-        setCurrentIndex(prev => prev - 1);
-      }, 150);
-    }
-  };
-
-  const detectLang = () => {
+  const getLanguageTag = () => {
     const title = courseTitle.toLowerCase();
     if (title.includes('french') || title.includes('français')) return 'fr-FR';
     if (title.includes('german') || title.includes('deutsch')) return 'de-DE';
     return 'en-US';
   };
 
+  const handleNext = () => {
+    if (currentIndex < flashcards.length - 1) {
+      setIsFlipped(false);
+      setTimeout(() => setCurrentIndex(prev => prev + 1), 150);
+    }
+  };
+
+  const handlePrev = () => {
+    if (currentIndex > 0) {
+      setIsFlipped(false);
+      setTimeout(() => setCurrentIndex(prev => prev - 1), 150);
+    }
+  };
+
   return (
-    <div style={{ 
-      background: isDarkMode ? 'linear-gradient(135deg, #0f172a 0%, #1e293b 100%)' : 'linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%)', 
-      borderRadius: '24px', 
-      padding: '30px', 
-      color: '#fff', 
-      position: 'relative', 
-      overflow: 'hidden', 
-      boxShadow: isDarkMode ? '0 20px 40px rgba(0,0,0,0.4)' : '0 20px 40px rgba(59, 130, 246, 0.15)',
-      border: isDarkMode ? '1px solid rgba(255, 255, 255, 0.05)' : 'none'
-    }}>
-      
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', alignItems: 'center', width: '100%' }}>
       <style>{`
-        .flip-card {
+        .flashcard-wrapper {
           perspective: 1000px;
           width: 100%;
-          height: 220px;
-          margin-bottom: 25px;
+          max-width: 500px;
+          height: 240px;
           cursor: pointer;
         }
-        .flip-card-inner {
+        .flashcard-inner {
           position: relative;
           width: 100%;
           height: 100%;
-          text-align: center;
           transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
           transform-style: preserve-3d;
         }
-        .flip-card-inner.flipped {
+        .flashcard-inner.flipped {
           transform: rotateY(180deg);
         }
-        .flip-card-front, .flip-card-back {
+        .flashcard-front, .flashcard-back {
           position: absolute;
           width: 100%;
           height: 100%;
-          -webkit-backface-visibility: hidden;
           backface-visibility: hidden;
-          border-radius: 20px;
+          border-radius: 24px;
           display: flex;
           flex-direction: column;
           align-items: center;
           justify-content: center;
-          padding: 20px;
-          box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+          padding: 24px;
+          box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
         }
-        .flip-card-front {
-          background: ${isDarkMode ? '#1e293b' : '#ffffff'};
-          color: ${isDarkMode ? '#f8fafc' : '#1e293b'};
-          border: 1px solid ${isDarkMode ? 'rgba(255, 255, 255, 0.08)' : '#e2e8f0'};
+        .flashcard-front {
+          background: ${isKids ? '#ffffff' : (isDarkMode ? '#1e293b' : '#ffffff')};
+          color: ${isKids ? '#0f172a' : (isDarkMode ? '#f8fafc' : '#1e293b')};
+          border: ${isKids ? '4px solid #3b82f6' : (isDarkMode ? '1px solid rgba(255, 255, 255, 0.08)' : '1px solid #cbd5e1')};
         }
-        .flip-card-back {
-          background: ${isDarkMode ? '#0f172a' : '#f8fafc'};
-          color: ${isDarkMode ? '#e2e8f0' : '#475569'};
+        .flashcard-back {
+          background: ${isKids ? '#def7ec' : (isDarkMode ? '#0f172a' : '#f0fdf4')};
+          color: ${isKids ? '#047857' : (isDarkMode ? '#e2e8f0' : '#15803d')};
           transform: rotateY(180deg);
-          border: 1px solid ${isDarkMode ? 'rgba(255, 255, 255, 0.08)' : '#e2e8f0'};
-        }
-        @keyframes bounce {
-          0%, 100% { transform: translateY(0); }
-          50% { transform: translateY(-6px); }
+          border: ${isKids ? '4px solid #10b981' : (isDarkMode ? '1px solid rgba(16, 185, 129, 0.2)' : '1px solid #a7f3d0')};
         }
       `}</style>
 
-      <div style={{ position: 'relative', zIndex: 2 }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
-          <h2 style={{ fontSize: '1.1rem', fontWeight: 700, color: '#bfdbfe', margin: 0, textTransform: 'uppercase', letterSpacing: '1px' }}>
-            Interactive Pronunciation & Flashcards
-          </h2>
-          <span style={{ fontSize: '0.8rem', background: 'rgba(255,255,255,0.15)', padding: '4px 10px', borderRadius: '10px', fontWeight: 600 }}>
-            اضغط على البطاقة لقلبها لرؤية الترجمة 🔄
-          </span>
-        </div>
-
-        {/* Flipping Card Container */}
-        <div className="flip-card" onClick={() => setIsFlipped(!isFlipped)}>
-          <div className={`flip-card-inner ${isFlipped ? 'flipped' : ''}`}>
-            
-            {/* Front (Foreign Language) */}
-            <div className="flip-card-front">
-              <div style={{ fontSize: '0.8rem', color: '#94a3b8', marginBottom: '10px', fontWeight: 700 }}>
-                FOREIGN WORD / PHRASE
-              </div>
-              <div style={{ fontSize: '2.2rem', fontWeight: 800, marginBottom: '20px', fontFamily: "'Inter', sans-serif" }}>
-                {currentCard.en}
-              </div>
-              <button 
-                onClick={(e) => playVoice(e, currentCard.en, detectLang(), setIsPlayingEn)}
-                style={{ 
-                  background: isPlayingEn ? '#eff6ff' : 'rgba(59, 130, 246, 0.1)', 
-                  border: '1px solid #cbd5e1', 
-                  color: '#3b82f6', 
-                  width: '54px', 
-                  height: '54px', 
-                  borderRadius: '50%', 
-                  fontSize: '1.3rem', 
-                  cursor: 'pointer', 
-                  transition: 'all 0.2s',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  boxShadow: '0 4px 6px rgba(0,0,0,0.05)'
-                }}
-              >
-                {isPlayingEn ? '🔊' : '▶'}
-              </button>
-            </div>
-
-            {/* Back (Arabic Translation) */}
-            <div className="flip-card-back">
-              <div style={{ fontSize: '0.8rem', color: '#94a3b8', marginBottom: '10px', fontWeight: 700 }}>
-                الترجمة العربية
-              </div>
-              <div style={{ fontSize: '1.8rem', fontWeight: 800, marginBottom: '20px', fontFamily: "'Cairo', sans-serif" }}>
-                {currentCard.ar}
-              </div>
-              <button 
-                onClick={(e) => playVoice(e, currentCard.ar, 'ar-EG', setIsPlayingAr)}
-                style={{ 
-                  background: isPlayingAr ? '#f0fdf4' : 'rgba(16, 185, 129, 0.1)', 
-                  border: '1px solid #cbd5e1', 
-                  color: '#10b981', 
-                  width: '50px', 
-                  height: '50px', 
-                  borderRadius: '50%', 
-                  fontSize: '1.1rem', 
-                  cursor: 'pointer', 
-                  transition: 'all 0.2s',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center'
-                }}
-              >
-                {isPlayingAr ? '🔊' : '▶'}
-              </button>
-            </div>
-
-          </div>
-        </div>
-
-        {/* Card Navigation */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <button 
-            disabled={currentIndex === 0}
-            onClick={prevCard}
-            style={{ 
-              background: 'rgba(255,255,255,0.15)', 
-              color: '#fff', 
-              border: 'none', 
-              padding: '10px 20px', 
-              borderRadius: '10px', 
-              fontWeight: 700, 
-              cursor: currentIndex === 0 ? 'not-allowed' : 'pointer', 
-              opacity: currentIndex === 0 ? 0.4 : 1,
-              transition: 'background 0.2s'
-            }}
-          >
-            السابق
-          </button>
+      <div className="flashcard-wrapper" onClick={() => setIsFlipped(!isFlipped)}>
+        <div className={`flashcard-inner ${isFlipped ? 'flipped' : ''}`}>
           
-          <div style={{ fontWeight: 700, fontSize: '1rem', background: 'rgba(0,0,0,0.3)', padding: '6px 16px', borderRadius: '20px' }}>
-            {currentIndex + 1} / {flashcards.length}
+          {/* FRONT */}
+          <div className="flashcard-front">
+            <div style={{ fontSize: '0.8rem', color: '#94a3b8', marginBottom: '8px', fontWeight: 800 }}>الكلمة الأجنبية (انقر للترجمة)</div>
+            <div style={{ fontSize: '2.4rem', fontWeight: 900, marginBottom: '20px', fontFamily: "'Outfit', 'Inter', sans-serif" }}>
+              {currentCard.en}
+            </div>
+            <button
+              onClick={(e) => playPronunciation(e, currentCard.en, getLanguageTag())}
+              style={{
+                width: '48px', height: '48px', borderRadius: '50%',
+                background: '#3b82f6', border: 'none', color: '#fff',
+                fontSize: '1.2rem', cursor: 'pointer', display: 'flex',
+                alignItems: 'center', justifyContent: 'center',
+                boxShadow: '0 4px 12px rgba(59, 130, 246, 0.3)'
+              }}
+            >
+              {isPlaying ? '🔊' : '▶'}
+            </button>
           </div>
 
-          <button 
-            disabled={currentIndex === flashcards.length - 1}
-            onClick={nextCard}
-            style={{ 
-              background: '#fff', 
-              color: '#1e3a8a', 
-              border: 'none', 
-              padding: '10px 20px', 
-              borderRadius: '10px', 
-              fontWeight: 800, 
-              cursor: currentIndex === flashcards.length - 1 ? 'not-allowed' : 'pointer', 
-              opacity: currentIndex === flashcards.length - 1 ? 0.4 : 1, 
-              boxShadow: '0 4px 10px rgba(0,0,0,0.15)' 
-            }}
-          >
-            التالي
-          </button>
+          {/* BACK */}
+          <div className="flashcard-back">
+            <div style={{ fontSize: '0.8rem', color: '#94a3b8', marginBottom: '8px', fontWeight: 800 }}>الترجمة باللغة العربية</div>
+            <div style={{ fontSize: '2rem', fontWeight: 900, marginBottom: '20px', fontFamily: "'Cairo', sans-serif" }}>
+              {currentCard.ar}
+            </div>
+            <button
+              onClick={(e) => playPronunciation(e, currentCard.ar, 'ar-EG')}
+              style={{
+                width: '44px', height: '44px', borderRadius: '50%',
+                background: '#10b981', border: 'none', color: '#fff',
+                fontSize: '1.1rem', cursor: 'pointer', display: 'flex',
+                alignItems: 'center', justifyContent: 'center',
+                boxShadow: '0 4px 10px rgba(16, 185, 129, 0.3)'
+              }}
+            >
+              {isPlaying ? '🔊' : '▶'}
+            </button>
+          </div>
         </div>
+      </div>
+
+      {/* Nav */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: '20px', marginTop: '10px' }}>
+        <button
+          onClick={handlePrev}
+          disabled={currentIndex === 0}
+          style={{
+            padding: '8px 20px', borderRadius: '10px',
+            border: isKids ? '2px solid #3b82f6' : '1px solid #cbd5e1',
+            background: isKids ? '#eff6ff' : 'transparent',
+            color: '#3b82f6', fontWeight: 800, cursor: 'pointer',
+            opacity: currentIndex === 0 ? 0.4 : 1
+          }}
+        >
+          السابق
+        </button>
+        <span style={{ fontWeight: 800 }}>{currentIndex + 1} / {flashcards.length}</span>
+        <button
+          onClick={handleNext}
+          disabled={currentIndex === flashcards.length - 1}
+          style={{
+            padding: '8px 20px', borderRadius: '10px',
+            border: 'none', background: '#3b82f6',
+            color: '#fff', fontWeight: 800, cursor: 'pointer',
+            opacity: currentIndex === flashcards.length - 1 ? 0.4 : 1
+          }}
+        >
+          التالي
+        </button>
       </div>
     </div>
   );
 }
 
+// Language Application Sandbox Component
+function LanguageSandbox({ flashcards, isKids, isDarkMode, onComplete }: { flashcards: { en: string; ar: string }[]; isKids: boolean; isDarkMode: boolean; onComplete: () => void }) {
+  const [userInput, setUserInput] = useState('');
+  const [currentIdx, setCurrentIdx] = useState(0);
+  const [logs, setLogs] = useState<string[]>([]);
+  const [status, setStatus] = useState<'idle' | 'success' | 'fail'>('idle');
+
+  const card = flashcards[currentIdx] || { en: "Hello", ar: "مرحباً" };
+
+  const checkAnswer = () => {
+    const input = userInput.trim().toLowerCase();
+    const target = card.ar.trim().toLowerCase();
+    const targetEn = card.en.trim().toLowerCase();
+
+    // Check if matching English or Arabic correctly
+    const isCorrect = input.includes(target) || target.includes(input) || input.includes(targetEn) || targetEn.includes(input);
+
+    if (isCorrect && input.length >= 2) {
+      setStatus('success');
+      setLogs(prev => [
+        ...prev,
+        `sandbox-terminal:~$ verify "${userInput}"`,
+        `[SUCCESS] Translation matched successfully!`,
+        `✓ "${card.en}" = "${card.ar}"`
+      ]);
+      onComplete();
+    } else {
+      setStatus('fail');
+      setLogs(prev => [
+        ...prev,
+        `sandbox-terminal:~$ verify "${userInput}"`,
+        `[ERROR] Validation failed. Incorrect translation match.`
+      ]);
+    }
+  };
+
+  const handleNextChallenge = () => {
+    setUserInput('');
+    setStatus('idle');
+    setCurrentIdx((currentIdx + 1) % flashcards.length);
+  };
+
+  return (
+    <div style={{
+      background: isKids ? '#ffffff' : 'rgba(9, 10, 18, 0.75)',
+      border: isKids ? '4px solid #e11d48' : '1px solid rgba(59, 130, 246, 0.2)',
+      borderRadius: '20px',
+      padding: '24px',
+      display: 'flex',
+      flexDirection: 'column',
+      gap: '16px'
+    }}>
+      <div style={{ borderBottom: `1px solid ${isKids ? '#e5e7eb' : 'rgba(255,255,255,0.08)'}`, paddingBottom: '12px' }}>
+        <h4 style={{ margin: 0, color: isKids ? '#e11d48' : '#3b82f6', fontWeight: 900, fontSize: '1.05rem' }}>
+          💻 محاكي التطبيق اللغوي العملي (Language Sandbox Terminal)
+        </h4>
+        <p style={{ margin: '4px 0 0', fontSize: '0.85rem', color: '#94a3b8' }}>
+          قم بترجمة أو مطابقة الجملة المطلوبة لتشغيل كود المحاكي بنجاح.
+        </p>
+      </div>
+
+      <div style={{ background: 'rgba(0,0,0,0.3)', borderRadius: '12px', padding: '16px', border: '1px solid rgba(255,255,255,0.03)' }}>
+        <div style={{ fontSize: '0.8rem', color: '#94a3b8', marginBottom: '6px', fontWeight: 700 }}>العبارة المستهدفة للتطبيق:</div>
+        <div style={{ fontSize: '1.5rem', fontWeight: 800, color: '#10b981', direction: 'ltr', textAlign: 'center' }}>
+          {card.en}
+        </div>
+      </div>
+
+      <div style={{ display: 'flex', gap: '10px' }}>
+        <input
+          type="text"
+          value={userInput}
+          onChange={(e) => setUserInput(e.target.value)}
+          placeholder="اكتب الترجمة العربية الصحيحة هنا..."
+          style={{
+            flex: 1,
+            padding: '12px 16px',
+            borderRadius: '10px',
+            border: isKids ? '2px solid #cbd5e1' : '1px solid rgba(255,255,255,0.1)',
+            background: isKids ? '#f9fafb' : '#0b0c16',
+            color: isKids ? '#1f2937' : '#fff',
+            fontFamily: "'Cairo', sans-serif",
+            outline: 'none'
+          }}
+          onKeyDown={(e) => e.key === 'Enter' && checkAnswer()}
+        />
+        <button
+          onClick={checkAnswer}
+          style={{
+            background: 'linear-gradient(135deg, #3b82f6, #1d4ed8)',
+            color: '#fff',
+            border: 'none',
+            padding: '0 24px',
+            borderRadius: '10px',
+            fontWeight: 800,
+            cursor: 'pointer',
+            fontFamily: "'Cairo', sans-serif"
+          }}
+        >
+          تحقق وتشغيل ▶
+        </button>
+      </div>
+
+      {/* Terminal logs */}
+      <div style={{
+        background: '#020205',
+        borderRadius: '10px',
+        padding: '12px',
+        height: '120px',
+        overflowY: 'auto',
+        fontFamily: 'monospace',
+        fontSize: '0.85rem',
+        color: '#3b82f6',
+        direction: 'ltr',
+        textAlign: 'left'
+      }}>
+        <div style={{ color: '#475569', marginBottom: '4px' }}>// Sandbox Terminal Logs:</div>
+        {logs.map((log, idx) => {
+          let logColor = '#60a5fa';
+          if (log.startsWith('[SUCCESS]')) logColor = '#10b981';
+          if (log.startsWith('[ERROR]')) logColor = '#f87171';
+          return <div key={idx} style={{ color: logColor, marginBottom: '2px' }}>{log}</div>;
+        })}
+        {logs.length === 0 && <div style={{ color: '#334155' }}>Waiting for verification inputs...</div>}
+      </div>
+
+      {status === 'success' && (
+        <div style={{
+          background: 'rgba(16, 185, 129, 0.1)',
+          border: '1px solid rgba(16, 185, 129, 0.3)',
+          borderRadius: '10px',
+          padding: '12px',
+          color: '#10b981',
+          fontWeight: 700,
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center'
+        }}>
+          <span>✅ أحسنت! إجابة صحيحة وتم تفعيل التطبيق بنجاح.</span>
+          <button
+            onClick={handleNextChallenge}
+            style={{
+              background: '#10b981', color: '#000', border: 'none',
+              padding: '6px 12px', borderRadius: '6px', fontWeight: 800,
+              cursor: 'pointer', fontFamily: "'Cairo', sans-serif"
+            }}
+          >
+            التحدي التالي ➡️
+          </button>
+        </div>
+      )}
+
+      {status === 'fail' && (
+        <div style={{
+          background: 'rgba(239, 68, 68, 0.1)',
+          border: '1px solid rgba(239, 68, 68, 0.3)',
+          borderRadius: '10px',
+          padding: '12px',
+          color: '#ef4444',
+          fontWeight: 700
+        }}>
+          ❌ ترجمة غير مطابقة. حاول مراجعة كارت الحفظ ثانيةً!
+        </div>
+      )}
+    </div>
+  );
+}
+
+// Language Learning Layout Main View
 export default function LanguageLearningLayout({ data }: { data: any }) {
-  const { lesson, course, sidebar: sideLessons, accessStatus, hasRequested } = data;
-  const [requesting, setRequesting] = useState(false);
-  const [requestedLocal, setRequestedLocal] = useState(hasRequested);
+  const { lesson, course, sidebar: sideLessons } = data;
   
-  // Theme state
+  const { targetGroup, toggleTargetGroup } = useTargetGroup();
+  const isKids = targetGroup === 'kids';
+  
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const [activeTab, setActiveTab] = useState<'explanation' | 'guided' | 'sandbox'>('explanation');
   
-  // Parse dynamic vocabulary
+  // Flashcards state
   const [flashcards, setFlashcards] = useState<{ en: string; ar: string }[]>([]);
   
-  // Dynamic Quiz state
-  const [quizQuestions, setQuizQuestions] = useState<any[]>([]);
-  const [currentQuizIdx, setCurrentQuizIdx] = useState(0);
+  // Progress unlocks
+  const [sandboxPassed, setSandboxPassed] = useState(false);
+  const [microQuizPassed, setMicroQuizPassed] = useState(false);
+  
+  // Micro Quiz state
+  const [quizQuestion, setQuizQuestion] = useState<any>(null);
   const [selectedAns, setSelectedAns] = useState<number | null>(null);
-  const [quizScore, setQuizScore] = useState(0);
-  const [quizFinished, setQuizFinished] = useState(false);
   const [isAnswered, setIsAnswered] = useState(false);
+  const [quizError, setQuizError] = useState(false);
 
-  // Initialize theme and vocabulary
   useEffect(() => {
     const savedTheme = localStorage.getItem('svk_theme');
     if (savedTheme === 'dark') {
@@ -473,15 +582,34 @@ export default function LanguageLearningLayout({ data }: { data: any }) {
     
     const parsed = parseFlashcards(lesson.text_content || '', course.title || '');
     setFlashcards(parsed);
-    const questions = generateQuizQuestions(parsed);
-    setQuizQuestions(questions);
     
-    // Reset quiz
-    setCurrentQuizIdx(0);
+    // Check if lesson was already completed previously
+    const previouslyQuizPassed = localStorage.getItem(`svk_quiz_passed_${lesson.id}`) === 'true';
+    setMicroQuizPassed(previouslyQuizPassed);
+    setSandboxPassed(previouslyQuizPassed);
+
+    // Generate single question micro quiz
+    if (parsed.length > 0) {
+      const targetCard = parsed[0];
+      const wrongOptions = parsed.slice(1).map(c => c.ar);
+      while (wrongOptions.length < 3) {
+        wrongOptions.push("ترجمة عشوائية بديلة " + (wrongOptions.length + 1));
+      }
+      const shuffledOptions = [targetCard.ar, ...wrongOptions.slice(0, 3)].sort(() => 0.5 - Math.random());
+      
+      setQuizQuestion({
+        question: `ما هو المعنى الدقيق للكلمة أو الجملة اللغوية: "${targetCard.en}"؟`,
+        options: shuffledOptions,
+        correctIndex: shuffledOptions.indexOf(targetCard.ar),
+        explanation: `المعنى الصحيح هو: ${targetCard.ar}`
+      });
+    }
+
+    // Reset current lesson states
     setSelectedAns(null);
-    setQuizScore(0);
-    setQuizFinished(false);
     setIsAnswered(false);
+    setQuizError(false);
+    setActiveTab('explanation');
   }, [lesson, course]);
 
   const toggleTheme = () => {
@@ -490,87 +618,55 @@ export default function LanguageLearningLayout({ data }: { data: any }) {
     localStorage.setItem('svk_theme', nextDark ? 'dark' : 'light');
   };
 
-  const handleQuizAnswer = (optionIdx: number) => {
+  const handleQuizAnswer = (idx: number) => {
     if (isAnswered) return;
-    setSelectedAns(optionIdx);
+    setSelectedAns(idx);
     setIsAnswered(true);
     
-    const currentQ = quizQuestions[currentQuizIdx];
-    if (optionIdx === currentQ.correctAnswer) {
-      setQuizScore(prev => prev + 1);
-    }
-  };
+    if (idx === quizQuestion.correctIndex) {
+      setMicroQuizPassed(true);
+      setQuizError(false);
+      localStorage.setItem(`svk_quiz_passed_${lesson.id}`, 'true');
+      
+      // Post progress completion to API
+      fetch('/api/lessons/complete', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          lessonSlug: String(lesson.id),
+          score: 1,
+          totalQuestions: 1
+        })
+      }).catch(e => console.error('Error auto-completing:', e));
 
-  const handleNextQuizQuestion = () => {
-    setSelectedAns(null);
-    setIsAnswered(false);
-    if (currentQuizIdx < quizQuestions.length - 1) {
-      setCurrentQuizIdx(prev => prev + 1);
     } else {
-      setQuizFinished(true);
+      setQuizError(true);
     }
   };
 
-  const handleResetQuiz = () => {
-    setCurrentQuizIdx(0);
+  const resetQuiz = () => {
     setSelectedAns(null);
-    setQuizScore(0);
-    setQuizFinished(false);
     setIsAnswered(false);
+    setQuizError(false);
   };
 
   const currentIdx = sideLessons.findIndex((l: any) => Number(l.id) === Number(lesson.id));
   const progressPercent = Math.round(((currentIdx + 1) / sideLessons.length) * 100);
+  
+  const prevLesson = currentIdx > 0 ? sideLessons[currentIdx - 1] : null;
+  const nextLesson = currentIdx < sideLessons.length - 1 ? sideLessons[currentIdx + 1] : null;
 
-  const handleRequest = async () => {
-    setRequesting(true);
-    try {
-      const res = await fetch('/api/courses/request-activation', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ courseId: course.id })
-      });
-      if (res.ok) setRequestedLocal(true);
-    } catch (e) {
-      console.error(e);
-    } finally {
-      setRequesting(false);
-    }
-  };
-
-  // If Locked
-  if (accessStatus === 'locked') {
-    return (
-      <div style={{ fontFamily: "'Cairo', sans-serif", background: isDarkMode ? '#090a15' : '#f8fafc', minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px', direction: 'rtl' }}>
-        <div style={{ background: isDarkMode ? 'rgba(255,255,255,0.02)' : '#fff', borderRadius: '24px', padding: '40px', maxWidth: '600px', width: '100%', boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.08)', textAlign: 'center', border: isDarkMode ? '1px solid rgba(255,255,255,0.08)' : '1px solid #e2e8f0' }}>
-          <div style={{ width: '80px', height: '80px', background: '#fef2f2', color: '#ef4444', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '2.5rem', margin: '0 auto 24px' }}>🔒</div>
-          <h2 style={{ fontSize: '1.8rem', fontWeight: 900, color: isDarkMode ? '#f8fafc' : '#0f172a', marginBottom: '16px' }}>الفصل محمي ومخصص للمشتركين</h2>
-          <p style={{ color: isDarkMode ? '#94a3b8' : '#64748b', fontSize: '1.05rem', lineHeight: 1.7, marginBottom: '32px' }}>
-            لقد أنهيت الجزء المجاني بنجاح! لمتابعة طريقك نحو إتقان اللغة وفتح جميع الدروس والاختبارات، يرجى تفعيل اشتراكك في الكورس.
-          </p>
-          
-          {requestedLocal ? (
-            <div style={{ background: '#ecfdf5', color: '#10b981', padding: '16px', borderRadius: '12px', fontWeight: 700, marginBottom: '20px' }}>
-              ✓ تم إرسال طلب التفعيل بنجاح!
-            </div>
-          ) : (
-            <button onClick={handleRequest} disabled={requesting} style={{ width: '100%', background: isDarkMode ? 'rgba(255,255,255,0.05)' : '#f1f5f9', color: isDarkMode ? '#e2e8f0' : '#0f172a', padding: '16px', borderRadius: '12px', border: isDarkMode ? '1px solid rgba(255,255,255,0.1)' : '1px solid #cbd5e1', fontWeight: 800, fontSize: '1.1rem', cursor: 'pointer', marginBottom: '16px', transition: 'all 0.2s' }}>
-              {requesting ? 'جاري الإرسال...' : '🔑 طلب التفعيل من الأكاديمية'}
-            </button>
-          )}
-
-          <a href={`https://wa.me/201034009418?text=${encodeURIComponent(`مرحباً أريد تفعيل كورس اللغات: ${course.title_ar || course.title}`)}`} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
-            <button style={{ width: '100%', background: '#25d366', color: '#fff', padding: '16px', borderRadius: '12px', border: 'none', fontWeight: 800, fontSize: '1.1rem', cursor: 'pointer', boxShadow: '0 10px 15px -3px rgba(37, 211, 102, 0.3)' }}>
-              💬 تواصل عبر الواتساب للتفعيل الفوري
-            </button>
-          </a>
-        </div>
-      </div>
-    );
-  }
-
-  // Theme object variables
-  const theme = {
+  // Theme object variables based on targetGroup and mode
+  const theme = isKids ? {
+    bg: '#fef08a',
+    cardBg: '#ffffff',
+    cardBorder: '3px solid #f43f5e',
+    textColor: '#1e293b',
+    titleColor: '#e11d48',
+    subTextColor: '#475569',
+    headerBg: '#ffffff',
+    sidebarBg: '#ffffff',
+  } : {
     bg: isDarkMode ? '#090a15' : '#f8fafc',
     cardBg: isDarkMode ? 'rgba(255, 255, 255, 0.02)' : '#ffffff',
     cardBorder: isDarkMode ? '1px solid rgba(255, 255, 255, 0.06)' : '1px solid #e2e8f0',
@@ -585,10 +681,10 @@ export default function LanguageLearningLayout({ data }: { data: any }) {
     <div style={{ fontFamily: "'Cairo', sans-serif", direction: 'rtl', background: theme.bg, minHeight: '100vh', display: 'flex', flexDirection: 'column', color: theme.textColor, transition: 'background-color 0.3s ease, color 0.3s ease' }}>
       
       {/* HEADER */}
-      <header style={{ background: theme.headerBg, borderBottom: isDarkMode ? '1px solid rgba(255,255,255,0.06)' : '1px solid #e2e8f0', padding: '0 24px', height: '70px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', position: 'sticky', top: 0, zIndex: 10, backdropFilter: 'blur(20px)' }}>
+      <header style={{ background: theme.headerBg, borderBottom: isKids ? '4px solid #f43f5e' : (isDarkMode ? '1px solid rgba(255,255,255,0.06)' : '1px solid #e2e8f0'), padding: '0 24px', height: '70px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', position: 'sticky', top: 0, zIndex: 100, backdropFilter: 'blur(20px)' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-          <div style={{ fontWeight: 900, fontSize: '1.2rem', color: '#3b82f6', letterSpacing: '0.5px' }}>
-            SVK Academy <span style={{ color: '#10b981' }}>Languages</span>
+          <div style={{ fontWeight: 900, fontSize: '1.2rem', color: isKids ? '#e11d48' : '#3b82f6', letterSpacing: '0.5px' }}>
+            SVK Academy <span style={{ color: '#10b981' }}>{isKids ? '🎈 للأطفال' : 'Languages'}</span>
           </div>
         </div>
         
@@ -597,76 +693,78 @@ export default function LanguageLearningLayout({ data }: { data: any }) {
         </div>
         
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-          {/* Light/Dark Toggle */}
+          {/* Toggle */}
           <button 
-            onClick={toggleTheme}
-            style={{ 
-              background: isDarkMode ? 'rgba(255, 255, 255, 0.08)' : '#f1f5f9', 
-              border: `1px solid ${isDarkMode ? 'rgba(255, 255, 255, 0.1)' : '#cbd5e1'}`, 
-              color: isDarkMode ? '#f59e0b' : '#475569', 
-              padding: '8px 12px', 
-              borderRadius: '8px', 
-              fontWeight: 700, 
-              cursor: 'pointer', 
-              fontSize: '0.9rem',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '6px',
-              transition: 'all 0.2s'
+            onClick={toggleTargetGroup}
+            style={{
+              background: isKids ? '#fb7185' : '#1e293b',
+              border: 'none',
+              color: '#fff',
+              padding: '8px 16px',
+              borderRadius: '20px',
+              fontWeight: 800,
+              cursor: 'pointer',
+              fontSize: '0.85rem',
+              boxShadow: '0 4px 6px rgba(0,0,0,0.1)'
             }}
           >
-            {isDarkMode ? '☀️ الوضع المضيء' : '🌙 الوضع الداكن'}
+            {isKids ? '🧑‍💼 الكبار' : '👶 الأطفال'}
           </button>
+
+          {!isKids && (
+            <button 
+              onClick={toggleTheme}
+              style={{ 
+                background: isDarkMode ? 'rgba(255, 255, 255, 0.08)' : '#f1f5f9', 
+                border: `1px solid ${isDarkMode ? 'rgba(255, 255, 255, 0.1)' : '#cbd5e1'}`, 
+                color: isDarkMode ? '#f59e0b' : '#475569', 
+                padding: '8px 12px', 
+                borderRadius: '8px', 
+                fontWeight: 700, 
+                cursor: 'pointer', 
+                fontSize: '0.9rem'
+              }}
+            >
+              {isDarkMode ? '☀️ المضيء' : '🌙 الداكن'}
+            </button>
+          )}
           
           <Link href={`/courses/${course.id}`} style={{ textDecoration: 'none' }}>
-            <button style={{ background: isDarkMode ? 'rgba(255, 255, 255, 0.05)' : '#f1f5f9', border: `1px solid ${isDarkMode ? 'rgba(255,255,255,0.1)' : '#e2e8f0'}`, color: theme.textColor, padding: '8px 16px', borderRadius: '8px', fontWeight: 700, cursor: 'pointer', fontSize: '0.9rem' }}>
-              عودة للكورس
+            <button style={{ background: isKids ? '#3b82f6' : (isDarkMode ? 'rgba(255, 255, 255, 0.05)' : '#f1f5f9'), border: isKids ? 'none' : `1px solid ${isDarkMode ? 'rgba(255,255,255,0.1)' : '#e2e8f0'}`, color: isKids ? '#fff' : theme.textColor, padding: '8px 16px', borderRadius: '8px', fontWeight: 700, cursor: 'pointer', fontSize: '0.9rem' }}>
+              خروج
             </button>
           </Link>
         </div>
       </header>
 
-      {/* MAIN DASHBOARD */}
+      {/* DASHBOARD LAYOUT */}
       <div style={{ display: 'flex', flex: 1, overflow: 'hidden', padding: '24px', gap: '24px', maxWidth: '1600px', margin: '0 auto', width: '100%' }}>
         
-        {/* LEFT: TIMELINE (OUR INTEGRATED APPROACH) */}
-        <aside style={{ width: '300px', background: theme.sidebarBg, borderRadius: '20px', border: theme.cardBorder, display: 'flex', flexDirection: 'column', overflow: 'hidden', flexShrink: 0, boxShadow: '0 10px 15px -3px rgba(0,0,0,0.05)' }}>
-          <div style={{ background: '#1e3a8a', padding: '16px', color: '#fff', textAlign: 'center', fontWeight: 800, fontSize: '1.1rem' }}>
-            منهج الكورس
+        {/* LEFT: PROGRESS TIMELINE */}
+        <aside style={{ width: '280px', background: theme.sidebarBg, borderRadius: '20px', border: theme.cardBorder, display: 'flex', flexDirection: 'column', overflow: 'hidden', flexShrink: 0 }}>
+          <div style={{ background: isKids ? '#fb7185' : '#1e3a8a', padding: '16px', color: '#fff', textAlign: 'center', fontWeight: 800 }}>
+            {isKids ? '🗺️ طريق البطل' : 'منهج الكورس'}
           </div>
-          <div style={{ padding: '24px 20px', overflowY: 'auto', flex: 1, position: 'relative' }}>
-            {/* Vertical Line */}
-            <div style={{ position: 'absolute', right: '35px', top: '24px', bottom: '24px', width: '2px', background: isDarkMode ? 'rgba(255,255,255,0.06)' : '#e2e8f0', zIndex: 1 }} />
-            
+          <div style={{ padding: '20px', overflowY: 'auto', flex: 1, position: 'relative' }}>
+            <div style={{ position: 'absolute', right: '35px', top: '24px', bottom: '24px', width: '2px', background: '#e2e8f0', zIndex: 1 }} />
             {sideLessons.map((l: any, idx: number) => {
               const isActive = Number(l.id) === Number(lesson.id);
               const isPast = idx < currentIdx;
               
               return (
-                <Link key={l.id} href={`/learn/${l.id}`} style={{ textDecoration: 'none', display: 'block', position: 'relative', zIndex: 2, marginBottom: '24px' }}>
-                  <div style={{ display: 'flex', gap: '16px' }}>
-                    {/* Circle */}
+                <Link key={l.id} href={`/learn/${l.id}`} style={{ textDecoration: 'none', display: 'block', position: 'relative', zIndex: 2, marginBottom: '20px' }}>
+                  <div style={{ display: 'flex', gap: '12px' }}>
                     <div style={{ 
-                      width: '32px', height: '32px', borderRadius: '50%', background: isActive ? '#3b82f6' : (isPast ? '#10b981' : (isDarkMode ? '#131428' : '#fff')), 
-                      border: `2px solid ${isActive ? '#3b82f6' : (isPast ? '#10b981' : (isDarkMode ? 'rgba(255,255,255,0.2)' : '#cbd5e1'))}`,
-                      display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontWeight: 'bold', fontSize: '0.8rem',
-                      boxShadow: isActive ? '0 0 0 4px rgba(59, 130, 246, 0.2)' : 'none', flexShrink: 0, marginTop: '4px'
+                      width: '28px', height: '28px', borderRadius: '50%', background: isActive ? '#3b82f6' : (isPast ? '#10b981' : '#fff'), 
+                      border: `2px solid ${isActive ? '#3b82f6' : (isPast ? '#10b981' : '#cbd5e1')}`,
+                      display: 'flex', alignItems: 'center', justifyContent: 'center', color: isActive || isPast ? '#fff' : '#475569', fontWeight: 'bold', fontSize: '0.8rem',
                     }}>
-                      {isPast ? '✓' : idx + 1}
+                      {isPast ? '⭐' : idx + 1}
                     </div>
-                    {/* Content */}
-                    <div style={{ 
-                      background: isActive ? (isDarkMode ? 'rgba(255,255,255,0.05)' : '#f8fafc') : 'transparent', 
-                      border: isActive ? theme.cardBorder : 'none', 
-                      padding: isActive ? '12px 16px' : '8px 0', borderRadius: '12px', flex: 1,
-                      boxShadow: isActive ? '0 4px 6px -1px rgba(0,0,0,0.05)' : 'none'
-                    }}>
-                      <div style={{ fontWeight: isActive ? 800 : 600, color: isActive ? theme.textColor : theme.subTextColor, fontSize: '0.95rem', lineHeight: 1.4 }}>
+                    <div style={{ flex: 1, padding: '4px 0' }}>
+                      <div style={{ fontWeight: isActive ? 800 : 600, color: isActive ? theme.textColor : theme.subTextColor, fontSize: '0.9rem' }}>
                         {l.title}
                       </div>
-                      {isActive && <div style={{ fontSize: '0.75rem', color: '#3b82f6', marginTop: '6px', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '4px' }}>
-                        <span>▶</span> جاري التعلم
-                      </div>}
                     </div>
                   </div>
                 </Link>
@@ -675,101 +773,128 @@ export default function LanguageLearningLayout({ data }: { data: any }) {
           </div>
         </aside>
 
-        {/* CENTER: MAIN LEARNING AREA */}
-        <main style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '24px', overflowY: 'auto', paddingRight: '4px' }}>
+        {/* CENTER: STEP-DRIVEN WORKSPACE */}
+        <main style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '24px', overflowY: 'auto' }}>
           
-          {/* Header Title inside Content */}
-          <div style={{ background: theme.cardBg, borderRadius: '20px', padding: '24px', border: theme.cardBorder, boxShadow: '0 4px 6px -1px rgba(0,0,0,0.02)' }}>
-            <h1 style={{ fontSize: '1.5rem', fontWeight: 900, color: theme.titleColor, margin: '0 0 8px' }}>
-              الدرس الحالي: {lesson.title}
-            </h1>
-            <p style={{ color: theme.subTextColor, fontSize: '0.95rem', margin: 0 }}>تدرب على النطق الصحيح واحفظ المفردات الهامة أدناه.</p>
+          {/* Stepper progress indicator */}
+          <div style={{ background: theme.cardBg, borderRadius: '20px', padding: '20px', border: theme.cardBorder }}>
+            <div style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center', position: 'relative' }}>
+              <div style={{ position: 'absolute', left: '10%', right: '10%', top: '50%', height: '4px', background: '#e5e7eb', zIndex: 1 }} />
+              <div style={{ position: 'absolute', left: '10%', right: '10%', top: '50%', height: '4px', background: '#3b82f6', zIndex: 1, width: activeTab === 'explanation' ? '0%' : activeTab === 'guided' ? '50%' : '100%', transition: 'width 0.3s' }} />
+              
+              <button onClick={() => setActiveTab('explanation')} style={{ zIndex: 2, background: activeTab === 'explanation' ? '#3b82f6' : '#fff', color: activeTab === 'explanation' ? '#fff' : '#3b82f6', border: '2px solid #3b82f6', borderRadius: '50%', width: '40px', height: '40px', fontWeight: 800, cursor: 'pointer' }}>١</button>
+              <button onClick={() => setActiveTab('guided')} style={{ zIndex: 2, background: activeTab === 'guided' ? '#3b82f6' : '#fff', color: activeTab === 'guided' ? '#fff' : '#3b82f6', border: '2px solid #3b82f6', borderRadius: '50%', width: '40px', height: '40px', fontWeight: 800, cursor: 'pointer' }}>٢</button>
+              <button onClick={() => setActiveTab('sandbox')} style={{ zIndex: 2, background: activeTab === 'sandbox' ? '#3b82f6' : '#fff', color: activeTab === 'sandbox' ? '#fff' : '#3b82f6', border: '2px solid #3b82f6', borderRadius: '50%', width: '40px', height: '40px', fontWeight: 800, cursor: 'pointer' }}>٣</button>
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '10px', fontSize: '0.85rem', fontWeight: 800 }}>
+              <span style={{ color: activeTab === 'explanation' ? '#3b82f6' : 'inherit' }}>📖 الخطوة ١: شرح المفاهيم</span>
+              <span style={{ color: activeTab === 'guided' ? '#3b82f6' : 'inherit' }}>💡 الخطوة ٢: كروت الحفظ</span>
+              <span style={{ color: activeTab === 'sandbox' ? '#3b82f6' : 'inherit' }}>💻 الخطوة ٣: التطبيق اللغوي</span>
+            </div>
           </div>
 
-          {/* Interactive Pronunciation Hub */}
-          <InteractiveFlashcards flashcards={flashcards} courseTitle={course.title || ''} isDarkMode={isDarkMode} />
-
-          {/* Explanation Text */}
-          <div style={{ background: theme.cardBg, borderRadius: '20px', padding: '32px', border: theme.cardBorder, boxShadow: '0 4px 6px -1px rgba(0,0,0,0.02)' }}>
-            <h2 style={{ fontSize: '1.2rem', fontWeight: 800, color: isDarkMode ? '#60a5fa' : '#1e3a8a', marginBottom: '20px', display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <span>📖</span> القراءة والنص الكامل
-            </h2>
-            <div dangerouslySetInnerHTML={{ __html: lesson.text_content }} style={{ lineHeight: 1.9, fontSize: '1.05rem', color: theme.textColor }} />
-          </div>
-
-          {/* Dynamic Interactive Quiz Practice */}
-          {quizQuestions.length > 0 && (
-            <div style={{ background: theme.cardBg, borderRadius: '20px', padding: '32px', border: theme.cardBorder, boxShadow: '0 4px 6px -1px rgba(0,0,0,0.02)', marginBottom: '40px' }}>
-              <h2 style={{ fontSize: '1.2rem', fontWeight: 800, color: '#10b981', marginBottom: '20px', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <span>🎯</span> اختبر مفرداتك تفاعلياً (Interactive Vocabulary Game)
+          {/* Tab Viewport */}
+          {activeTab === 'explanation' && (
+            <div style={{ background: theme.cardBg, borderRadius: '20px', padding: '32px', border: theme.cardBorder }}>
+              <h2 style={{ fontSize: '1.25rem', fontWeight: 900, color: theme.titleColor, marginBottom: '20px' }}>
+                📖 الخطوة الأولى: شرح الدرس ومفاهيم اللغة الممتعة
               </h2>
               
-              {!quizFinished ? (
-                <div style={{ background: isDarkMode ? 'rgba(0,0,0,0.2)' : '#f8fafc', padding: '24px', borderRadius: '16px', border: theme.cardBorder }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
-                    <span style={{ fontSize: '0.85rem', color: '#10b981', fontWeight: 700 }}>
-                      السؤال {currentQuizIdx + 1} من {quizQuestions.length}
-                    </span>
-                    <span style={{ fontSize: '0.85rem', color: theme.subTextColor, fontWeight: 700 }}>
-                      النقاط: {quizScore}
-                    </span>
-                  </div>
+              {/* Dedicated Audio Player narration block at the top */}
+              <AudioNarrationPlayer textContent={lesson.text_content || ''} isKids={isKids} />
 
-                  <p style={{ fontWeight: 800, fontSize: '1.15rem', color: theme.textColor, marginBottom: '20px' }}>
-                    {quizQuestions[currentQuizIdx].question}
-                  </p>
+              <div dangerouslySetInnerHTML={{ __html: lesson.text_content }} style={{ lineHeight: 2, fontSize: '1.05rem' }} />
+              
+              <div style={{ marginTop: '30px', textAlign: 'center' }}>
+                <button
+                  onClick={() => setActiveTab('guided')}
+                  style={{
+                    background: 'linear-gradient(135deg, #3b82f6, #1d4ed8)',
+                    color: '#fff', border: 'none', padding: '12px 32px',
+                    borderRadius: '10px', fontWeight: 900, cursor: 'pointer',
+                    fontSize: '1rem'
+                  }}
+                >
+                  انتقال للخطوة ٢: كروت النطق والحفظ التفاعلية ➡️
+                </button>
+              </div>
+            </div>
+          )}
 
+          {activeTab === 'guided' && (
+            <div style={{ background: theme.cardBg, borderRadius: '20px', padding: '32px', border: theme.cardBorder }}>
+              <h2 style={{ fontSize: '1.25rem', fontWeight: 900, color: theme.titleColor, marginBottom: '20px', textAlign: 'center' }}>
+                💡 الخطوة الثانية: كروت الحفظ التفاعلية ونطق الكلمات
+              </h2>
+              <FlashcardHub flashcards={flashcards} courseTitle={course.title || ''} isKids={isKids} isDarkMode={isDarkMode} />
+              
+              <div style={{ marginTop: '30px', textAlign: 'center' }}>
+                <button
+                  onClick={() => setActiveTab('sandbox')}
+                  style={{
+                    background: 'linear-gradient(135deg, #10b981, #059669)',
+                    color: '#fff', border: 'none', padding: '12px 32px',
+                    borderRadius: '10px', fontWeight: 900, cursor: 'pointer',
+                    fontSize: '1rem'
+                  }}
+                >
+                  انتقال للخطوة ٣: اختبار التطبيق اللغوي العملي ➡️
+                </button>
+              </div>
+            </div>
+          )}
+
+          {activeTab === 'sandbox' && (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+              <LanguageSandbox 
+                flashcards={flashcards} 
+                isKids={isKids} 
+                isDarkMode={isDarkMode} 
+                onComplete={() => setSandboxPassed(true)} 
+              />
+              
+              {/* MICRO-QUIZ: Embed a strict, client-side verified single-question quiz component directly after sandbox */}
+              {sandboxPassed && quizQuestion && (
+                <div style={{ background: theme.cardBg, borderRadius: '20px', padding: '32px', border: '3px solid #10b981', boxShadow: '0 10px 25px rgba(16, 185, 129, 0.15)' }}>
+                  <h3 style={{ fontSize: '1.2rem', fontWeight: 900, color: '#10b981', marginBottom: '16px' }}>
+                    🧠 الاختبار السريع للدرس (Micro-Quiz) - اجتياز السؤال يفتح الدرس التالي!
+                  </h3>
+                  <p style={{ fontWeight: 700, marginBottom: '20px' }}>{quizQuestion.question}</p>
+                  
                   <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
-                    {quizQuestions[currentQuizIdx].options.map((opt: string, i: number) => {
+                    {quizQuestion.options.map((opt: string, i: number) => {
                       const isSelected = selectedAns === i;
-                      const isCorrect = i === quizQuestions[currentQuizIdx].correctAnswer;
+                      const isCorrect = i === quizQuestion.correctIndex;
                       
-                      let buttonBg = isDarkMode ? 'rgba(255,255,255,0.02)' : '#fff';
-                      let borderStyle = isDarkMode ? '1px solid rgba(255,255,255,0.1)' : '1px solid #cbd5e1';
+                      let btnBg = isDarkMode ? 'rgba(255,255,255,0.02)' : '#f3f4f6';
+                      let btnBorder = '1px solid #cbd5e1';
                       
                       if (isAnswered) {
                         if (isCorrect) {
-                          buttonBg = isDarkMode ? 'rgba(16, 185, 129, 0.2)' : '#d1fae5';
-                          borderStyle = '2px solid #10b981';
+                          btnBg = '#d1fae5';
+                          btnBorder = '2px solid #10b981';
                         } else if (isSelected) {
-                          buttonBg = isDarkMode ? 'rgba(239, 68, 68, 0.2)' : '#fee2e2';
-                          borderStyle = '2px solid #ef4444';
+                          btnBg = '#fee2e2';
+                          btnBorder = '2px solid #ef4444';
                         }
                       } else if (isSelected) {
-                        borderStyle = '2px solid #3b82f6';
-                        buttonBg = isDarkMode ? 'rgba(59, 130, 246, 0.1)' : '#eff6ff';
+                        btnBg = '#eff6ff';
+                        btnBorder = '2px solid #3b82f6';
                       }
 
                       return (
-                        <button 
-                          key={i} 
+                        <button
+                          key={i}
                           onClick={() => handleQuizAnswer(i)}
                           disabled={isAnswered}
-                          style={{ 
-                            padding: '16px', 
-                            borderRadius: '12px', 
-                            border: borderStyle,
-                            background: buttonBg, 
-                            color: theme.textColor, 
-                            fontWeight: 600, 
-                            textAlign: 'right', 
-                            cursor: isAnswered ? 'default' : 'pointer', 
-                            transition: 'all 0.2s', 
-                            fontSize: '1rem',
-                            display: 'flex',
-                            alignItems: 'center',
-                            gap: '10px'
+                          style={{
+                            padding: '14px', borderRadius: '10px',
+                            background: btnBg, border: btnBorder,
+                            color: theme.textColor, fontWeight: 700,
+                            cursor: isAnswered ? 'default' : 'pointer',
+                            textAlign: 'right'
                           }}
                         >
-                          <span style={{ 
-                            display: 'inline-block', 
-                            width: '20px', 
-                            height: '20px', 
-                            borderRadius: '50%', 
-                            border: '2px solid #cbd5e1', 
-                            background: isAnswered && isCorrect ? '#10b981' : (isSelected ? '#ef4444' : 'transparent'),
-                            verticalAlign: 'middle'
-                          }} />
                           {opt}
                         </button>
                       );
@@ -777,123 +902,97 @@ export default function LanguageLearningLayout({ data }: { data: any }) {
                   </div>
 
                   {isAnswered && (
-                    <div style={{ marginTop: '20px', padding: '12px 16px', background: isDarkMode ? 'rgba(255,255,255,0.03)' : '#f1f5f9', borderRadius: '10px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                      <div style={{ fontWeight: 700, color: selectedAns === quizQuestions[currentQuizIdx].correctAnswer ? '#10b981' : '#ef4444' }}>
-                        {selectedAns === quizQuestions[currentQuizIdx].correctAnswer ? 'إجابة صحيحة! أحسنت 🌟' : 'إجابة خاطئة! حاول التركيز 📚'}
+                    <div style={{ marginTop: '20px', padding: '12px 16px', background: '#f8fafc', borderRadius: '10px', color: '#000' }}>
+                      <div style={{ fontWeight: 800, color: microQuizPassed ? '#10b981' : '#ef4444', marginBottom: '4px' }}>
+                        {microQuizPassed ? '🎉 أحسنت! إجابة صحيحة وتم فتح الدرس التالي بنجاح.' : '❌ إجابة خاطئة. يرجى المراجعة والمحاولة مرة أخرى.'}
                       </div>
-                      <div style={{ fontSize: '0.9rem', color: theme.subTextColor }}>
-                        {quizQuestions[currentQuizIdx].explanation}
-                      </div>
+                      <p style={{ margin: 0, fontSize: '0.9rem', color: '#4b5563' }}>{quizQuestion.explanation}</p>
+                      
+                      {!microQuizPassed && (
+                        <button onClick={resetQuiz} style={{ marginTop: '10px', background: '#3b82f6', color: '#fff', border: 'none', padding: '6px 16px', borderRadius: '6px', cursor: 'pointer', fontFamily: "'Cairo', sans-serif" }}>
+                          إعادة المحاولة 🔄
+                        </button>
+                      )}
                     </div>
                   )}
-
-                  {isAnswered && (
-                    <div style={{ marginTop: '24px', textAlign: 'center' }}>
-                      <button 
-                        onClick={handleNextQuizQuestion}
-                        style={{ 
-                          background: '#10b981', 
-                          color: '#fff', 
-                          border: 'none', 
-                          padding: '12px 32px', 
-                          borderRadius: '10px', 
-                          fontWeight: 800, 
-                          fontSize: '1rem', 
-                          cursor: 'pointer', 
-                          boxShadow: '0 4px 6px rgba(16, 185, 129, 0.3)' 
-                        }}
-                      >
-                        {currentQuizIdx === quizQuestions.length - 1 ? 'إنهاء التحدي 🏁' : 'السؤال التالي ➡️'}
-                      </button>
-                    </div>
-                  )}
-                </div>
-              ) : (
-                <div style={{ background: isDarkMode ? 'rgba(0,0,0,0.2)' : '#f8fafc', padding: '40px 20px', borderRadius: '16px', border: theme.cardBorder, textAlign: 'center' }}>
-                  <div style={{ fontSize: '4rem', marginBottom: '20px' }}>🎉</div>
-                  <h3 style={{ fontSize: '1.5rem', fontWeight: 900, marginBottom: '10px', color: '#10b981' }}>تهانينا! أكملت تحدي المفردات بنجاح</h3>
-                  <p style={{ color: theme.subTextColor, marginBottom: '30px' }}>
-                    لقد أجبت بشكل صحيح على {quizScore} من أصل {quizQuestions.length} مفردات لغوية.
-                  </p>
-                  <button 
-                    onClick={handleResetQuiz}
-                    style={{ 
-                      background: '#3b82f6', 
-                      color: '#fff', 
-                      border: 'none', 
-                      padding: '12px 32px', 
-                      borderRadius: '10px', 
-                      fontWeight: 800, 
-                      fontSize: '1rem', 
-                      cursor: 'pointer',
-                      boxShadow: '0 4px 6px rgba(59, 130, 246, 0.3)'
-                    }}
-                  >
-                    إعادة التحدي 🔄
-                  </button>
                 </div>
               )}
             </div>
           )}
+
         </main>
 
-        {/* RIGHT: RESOURCES HUB */}
-        <aside style={{ width: '340px', display: 'flex', flexDirection: 'column', gap: '24px', flexShrink: 0, overflowY: 'auto', paddingRight: '4px' }}>
-          
-          {/* Progress Chart Card */}
-          <div style={{ background: theme.cardBg, borderRadius: '20px', padding: '24px', border: theme.cardBorder, boxShadow: '0 4px 6px -1px rgba(0,0,0,0.02)' }}>
-            <h3 style={{ fontSize: '1rem', fontWeight: 800, color: theme.textColor, marginBottom: '16px' }}>التقدم العام (My Progress)</h3>
+        {/* RIGHT SIDEBAR: DOWNLOADS & GENERAL INFOS */}
+        <aside style={{ width: '300px', display: 'flex', flexDirection: 'column', gap: '24px', flexShrink: 0 }}>
+          <div style={{ background: theme.cardBg, borderRadius: '20px', padding: '24px', border: theme.cardBorder }}>
+            <h3 style={{ fontSize: '1rem', fontWeight: 800, color: theme.textColor, marginBottom: '16px' }}>التقدم الإجمالي</h3>
             <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-              <div style={{ width: '80px', height: '80px', borderRadius: '50%', background: `conic-gradient(#10b981 ${progressPercent}%, ${isDarkMode ? 'rgba(255,255,255,0.08)' : '#e2e8f0'} 0)`, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <div style={{ width: '64px', height: '64px', borderRadius: '50%', background: isDarkMode ? '#131428' : '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 900, fontSize: '1.2rem', color: theme.textColor }}>
+              <div style={{ width: '70px', height: '70px', borderRadius: '50%', background: `conic-gradient(#10b981 ${progressPercent}%, #e2e8f0 0)`, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <div style={{ width: '56px', height: '56px', borderRadius: '50%', background: isDarkMode ? '#131428' : '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 900 }}>
                   {progressPercent}%
                 </div>
               </div>
               <div>
-                <div style={{ fontWeight: 800, color: '#10b981' }}>مستوى ممتاز</div>
-                <div style={{ fontSize: '0.85rem', color: theme.subTextColor, marginTop: '4px' }}>لقد أكملت {currentIdx} من {sideLessons.length} دروس.</div>
+                <div style={{ fontWeight: 800, color: '#10b981' }}>{isKids ? 'بطل اللغات' : 'مستوى ممتاز'}</div>
+                <div style={{ fontSize: '0.8rem', color: theme.subTextColor }}>أكملت {currentIdx} من {sideLessons.length} دروس.</div>
               </div>
             </div>
           </div>
 
-          {/* Listening Practice Hub */}
-          <div style={{ background: theme.cardBg, borderRadius: '20px', padding: '24px', border: theme.cardBorder, boxShadow: '0 4px 6px -1px rgba(0,0,0,0.02)' }}>
-            <h3 style={{ fontSize: '1rem', fontWeight: 800, color: theme.textColor, marginBottom: '16px', textTransform: 'uppercase' }}>Listening Practice Hub</h3>
-            <LightAudioPlayer src={lesson.audio_url || ''} title={lesson.title} textContent={lesson.text_content || ''} isDarkMode={isDarkMode} />
-          </div>
-
-          {/* Downloadables */}
-          <div style={{ background: theme.cardBg, borderRadius: '20px', padding: '24px', border: theme.cardBorder, boxShadow: '0 4px 6px -1px rgba(0,0,0,0.02)' }}>
-            <h3 style={{ fontSize: '1rem', fontWeight: 800, color: theme.textColor, marginBottom: '16px', textTransform: 'uppercase' }}>تحميلات المرفقات</h3>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-              {[1, 2].map(i => (
-                <div key={i} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', background: isDarkMode ? 'rgba(255,255,255,0.02)' : '#f8fafc', padding: '12px 16px', borderRadius: '12px', border: theme.cardBorder }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                    <span style={{ fontSize: '1.2rem' }}>📄</span>
-                    <div>
-                      <div style={{ fontSize: '0.85rem', fontWeight: 700, color: theme.textColor }}>ملخص الدرس {i}</div>
-                      <div style={{ fontSize: '0.7rem', color: theme.subTextColor }}>PDF Document</div>
-                    </div>
-                  </div>
-                  <button style={{ background: 'transparent', border: 'none', color: '#3b82f6', fontSize: '1.2rem', cursor: 'pointer' }}>⬇</button>
-                </div>
-              ))}
+          <div style={{ background: theme.cardBg, borderRadius: '20px', padding: '24px', border: theme.cardBorder }}>
+            <h3 style={{ fontSize: '1rem', fontWeight: 800, color: theme.textColor, marginBottom: '12px' }}>مرفقات الدرس</h3>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: '#f8fafc', padding: '10px 14px', borderRadius: '10px', border: theme.cardBorder, color: '#000' }}>
+                <span style={{ fontSize: '0.85rem', fontWeight: 700 }}>ملخص المفردات PDF</span>
+                <button style={{ background: 'transparent', border: 'none', color: '#3b82f6', fontSize: '1.2rem', cursor: 'pointer' }}>⬇</button>
+              </div>
             </div>
           </div>
-
-          {/* Achievements */}
-          <div style={{ background: theme.cardBg, borderRadius: '20px', padding: '24px', border: theme.cardBorder, boxShadow: '0 4px 6px -1px rgba(0,0,0,0.02)', textAlign: 'center' }}>
-            <h3 style={{ fontSize: '1rem', fontWeight: 800, color: theme.textColor, marginBottom: '16px', textTransform: 'uppercase' }}>الشهادة الأكاديمية</h3>
-            <button style={{ width: '100%', background: '#1e3a8a', color: '#fff', border: 'none', padding: '12px', borderRadius: '10px', fontWeight: 700, marginBottom: '16px', cursor: 'pointer' }}>
-              تحميل الشهادة (عند الإتمام)
-            </button>
-            <div style={{ height: '120px', background: isDarkMode ? 'rgba(0,0,0,0.2)' : '#f1f5f9', borderRadius: '12px', border: `2px dashed ${isDarkMode ? 'rgba(255,255,255,0.1)' : '#cbd5e1'}`, display: 'flex', alignItems: 'center', justifyContent: 'center', color: theme.subTextColor, fontSize: '0.85rem', fontWeight: 600 }}>
-              معاينة الشهادة غير متاحة
-            </div>
-          </div>
-
         </aside>
       </div>
+
+      {/* FOOTER NAVIGATION */}
+      <footer style={{ borderTop: isKids ? '4px solid #f43f5e' : (isDarkMode ? '1px solid rgba(255,255,255,0.06)' : '1px solid #e2e8f0'), padding: '16px 24px', display: 'flex', justifyContent: 'space-between', background: theme.headerBg }}>
+        {prevLesson ? (
+          <Link href={`/learn/${prevLesson.id}`} style={{ textDecoration: 'none' }}>
+            <button style={{ background: isKids ? '#f3f4f6' : 'transparent', color: theme.textColor, border: '1px solid #cbd5e1', padding: '10px 20px', borderRadius: '8px', cursor: 'pointer', fontFamily: "'Cairo', sans-serif", fontWeight: 700 }}>
+              ← الدرس السابق
+            </button>
+          </Link>
+        ) : <div />}
+
+        {nextLesson ? (
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+            {!microQuizPassed && (
+              <span style={{ fontSize: '0.8rem', color: '#f43f5e', fontWeight: 800 }}>⚠️ يرجى اجتياز اختبار الدرس لفتح التالي</span>
+            )}
+            <Link 
+              href={microQuizPassed ? `/learn/${nextLesson.id}` : '#'} 
+              onClick={(e) => !microQuizPassed && e.preventDefault()}
+              style={{ textDecoration: 'none' }}
+            >
+              <button 
+                disabled={!microQuizPassed}
+                style={{ 
+                  background: microQuizPassed ? '#10b981' : '#e5e7eb', 
+                  color: microQuizPassed ? '#fff' : '#9ca3af', 
+                  border: 'none', 
+                  padding: '10px 24px', 
+                  borderRadius: '8px', 
+                  cursor: microQuizPassed ? 'pointer' : 'not-allowed', 
+                  fontFamily: "'Cairo', sans-serif", 
+                  fontWeight: 700,
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '6px'
+                }}
+              >
+                {!microQuizPassed && '🔒'} الدرس التالي →
+              </button>
+            </Link>
+          </div>
+        ) : <div />}
+      </footer>
 
     </div>
   );

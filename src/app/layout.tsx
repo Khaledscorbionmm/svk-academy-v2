@@ -3,6 +3,7 @@ import './globals.css';
 import AmbientAudio from '@/components/AmbientAudio';
 import VersionNotifier from '@/components/VersionNotifier';
 import WhatsAppButton from '@/components/WhatsAppButton';
+import { UserTargetGroupProvider } from '@/context/UserTargetGroupContext';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -21,8 +22,6 @@ export const metadata: Metadata = {
   },
 };
 
-// We use a client wrapper to add the floating AI chat
-// but keep layout as server component for SEO
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ar" dir="rtl">
@@ -33,7 +32,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <meta name="theme-color" content="#060612" />
       </head>
       <body style={{ margin: 0, padding: 0, fontFamily: "'Cairo', sans-serif", background: '#060612' }}>
-        {children}
+        <UserTargetGroupProvider>
+          {children}
+        </UserTargetGroupProvider>
         <AmbientAudio />
         <VersionNotifier />
         <WhatsAppButton />
@@ -41,3 +42,4 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     </html>
   );
 }
+

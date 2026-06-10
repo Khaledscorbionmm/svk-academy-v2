@@ -4,6 +4,8 @@ import { useState, useEffect, use, useRef } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import LanguageLearningLayout from '@/components/LanguageLearningLayout';
+import { useTargetGroup } from '@/context/UserTargetGroupContext';
+import ComprehensiveExamView from '@/components/ComprehensiveExamView';
 
 function PremiumAudioPlayer({ src, title, textContent }: { src: string; title: string; textContent: string }) {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -232,67 +234,9 @@ function PremiumAudioPlayer({ src, title, textContent }: { src: string; title: s
 }
 
 function PremiumVideoPlayer({ src }: { src: string }) {
-  if (!src) return null;
-
-  // Helper to extract YouTube ID
-  const getYouTubeId = (url: string) => {
-    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
-    const match = url.match(regExp);
-    return (match && match[2].length === 11) ? match[2] : null;
-  };
-
-  const ytId = getYouTubeId(src);
-  let embedUrl = src;
-  const isYouTube = !!ytId;
-
-  if (isYouTube) {
-    embedUrl = `https://www.youtube.com/embed/${ytId}`;
-  } else if (src.includes('drive.google.com')) {
-    embedUrl = src.replace('/view', '/preview').replace('/edit', '/preview');
-  }
-
-  return (
-    <div style={{
-      width: '100%',
-      position: 'relative',
-      borderRadius: '16px',
-      overflow: 'hidden',
-      border: '1px solid rgba(139, 92, 246, 0.25)',
-      boxShadow: '0 0 25px rgba(139, 92, 246, 0.15), 0 10px 30px rgba(0,0,0,0.5)',
-      background: '#000',
-      marginBottom: '20px',
-      aspectRatio: '16/9'
-    }}>
-      {isYouTube || src.includes('drive.google.com') ? (
-        <iframe
-          src={embedUrl}
-          title="شرح الدرس فيديو"
-          frameBorder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowFullScreen
-          style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            width: '100%',
-            height: '100%',
-            border: 'none'
-          }}
-        />
-      ) : (
-        <video
-          src={src}
-          controls
-          style={{
-            width: '100%',
-            height: '100%',
-            objectFit: 'contain'
-          }}
-        />
-      )}
-    </div>
-  );
+  return null;
 }
+
 
 function getCodeExample(cat: string, idx: any) {
   if (cat === 'python') return `print("مثال عملي للدرس ${idx}")`;
@@ -669,13 +613,27 @@ export default function LessonPage({ params }: { params: Promise<{ lessonId: str
   const [data, setData] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [sidebar, setSidebar] = useState(true);
-  const [activeWorkspaceTab, setActiveWorkspaceTab] = useState<'explanation' | 'syntax' | 'editor' | 'instructions'>('explanation');
+  const [activeWorkspaceTab, setActiveWorkspaceTab] = useState<'explanation' | 'syntax' | 'editor'>('explanation');
   
+  // Target group state from context
+  const { targetGroup, toggleTargetGroup } = useTargetGroup();
+  const isKids = targetGroup === 'kids';
+
+  // Macro exam state
+  const [macroExamPassed, setMacroExamPassed] = useState(false);
+
   // Interactive Code Playground States
   const [code, setCode] = useState('');
   const [consoleOutput, setConsoleOutput] = useState<string[]>([]);
   const [isRunning, setIsRunning] = useState(false);
   const [practiceStatus, setPracticeStatus] = useState<'idle' | 'success' | 'fail'>('idle');
+
+  // Micro Quiz & progression states
+  const [microQuizPassed, setMicroQuizPassed] = useState(false);
+  const [selectedMicroAnswer, setSelectedMicroAnswer] = useState<number | null>(null);
+  const [microQuizAnswered, setMicroQuizAnswered] = useState(false);
+  const [microQuizError, setMicroQuizError] = useState(false);
+  const [microQuizQuestion, setMicroQuizQuestion] = useState<any>(null);
 
   // Exam States
   const [answers, setAnswers] = useState<Record<number, number>>({});
@@ -686,6 +644,7 @@ export default function LessonPage({ params }: { params: Promise<{ lessonId: str
   // Activation Request States
   const [requested, setRequested] = useState(false);
   const [requesting, setRequesting] = useState(false);
+
 
   const [activeSpeech, setActiveSpeech] = useState<{ keyword: string; lang: 'ar' | 'en' } | null>(null);
 
@@ -752,6 +711,44 @@ export default function LessonPage({ params }: { params: Promise<{ lessonId: str
           setActiveTab('workspace');
           setActiveWorkspaceTab('explanation');
           setRequested(json.hasRequested || false);
+
+          // Micro quiz reset and generation
+          const previouslyQuizPassed = localStorage.getItem(`svk_quiz_passed_${json.lesson.id}`) === 'true';
+          setMicroQuizPassed(previouslyQuizPassed);
+          setSelectedMicroAnswer(null);
+          setMicroQuizAnswered(false);
+          setMicroQuizError(false);
+
+          let questions = [];
+          if (json.lesson.exam_data) {
+            try {
+              const parsed = typeof json.lesson.exam_data === 'string' ? JSON.parse(json.lesson.exam_data) : json.lesson.exam_data;
+              if (parsed && parsed.questions) {
+                questions = parsed.questions;
+              }
+            } catch (e) {
+              console.error(e);
+            }
+          }
+
+          if (questions.length > 0) {
+            setMicroQuizQuestion(questions[0]);
+          } else {
+            const isCyber = json.course?.category?.toLowerCase() === 'cybersecurity';
+            setMicroQuizQuestion({
+              question: isCyber 
+                ? `ما هو الهدف الأساسي من الإجراء الأمني المشروح في هذا الدرس؟`
+                : `ما هي الوظيفة الأساسية للأداة/التعليمة البرمجية المشروحة في هذا الدرس؟`,
+              options: [
+                "تنفيذ الإجراء الأمني البرمجي الصحيح وحماية النظام وتطبيقه بكفاءة.",
+                "تسريع استهلاك موارد الجهاز وإبطاء الشبكة بلا مبرر.",
+                "إلغاء تفعيل بروتوكولات الحماية بالكامل والسماح بالاختراقات.",
+                "تكرار كتابة المتغيرات يدوياً بدون وظيفة محددة."
+              ],
+              correctAnswer: 0,
+              explanation: "الهدف الرئيسي هو تحقيق الوظيفة البرمجية أو الأمنية المطلوبة لحماية وبناء الأنظمة بكفاءة."
+            });
+          }
         } else {
           router.push('/courses');
         }
@@ -763,6 +760,19 @@ export default function LessonPage({ params }: { params: Promise<{ lessonId: str
     }
     fetchLesson();
   }, [lessonId]);
+
+  // Find index of current lesson in sidebar
+  const currentIdx = data ? data.sidebar.findIndex((l: any) => Number(l.id) === Number(lessonId)) : -1;
+  const isMacroExamDue = data && (currentIdx + 1) % 20 === 0;
+  const milestone = data ? Math.ceil((currentIdx + 1) / 20) * 20 : 0;
+  const track = data ? (data.course?.category?.toLowerCase() === 'languages' ? 'languages' : (data.course?.category?.toLowerCase() === 'cybersecurity' ? 'cybersecurity' : 'programming')) : 'programming';
+
+  useEffect(() => {
+    if (data && currentIdx !== -1) {
+      const passed = localStorage.getItem(`svk_macro_exam_${track}_${milestone}`) === 'passed';
+      setMacroExamPassed(passed);
+    }
+  }, [data, currentIdx, track, milestone]);
 
   if (loading) {
     return (
@@ -783,8 +793,6 @@ export default function LessonPage({ params }: { params: Promise<{ lessonId: str
     examObj = typeof lesson.exam_data === 'string' ? JSON.parse(lesson.exam_data) : lesson.exam_data;
   }
 
-  // Find index of current lesson in sidebar
-  const currentIdx = sideLessons.findIndex((l: any) => Number(l.id) === Number(lessonId));
   const prevLesson = currentIdx > 0 ? sideLessons[currentIdx - 1] : null;
   const nextLesson = currentIdx < sideLessons.length - 1 ? sideLessons[currentIdx + 1] : null;
 
@@ -797,7 +805,34 @@ export default function LessonPage({ params }: { params: Promise<{ lessonId: str
       try {
         const outputs: string[] = [];
         
-        if (course.category === 'javascript') {
+        if (course.category?.toLowerCase() === 'cybersecurity') {
+          const cmd = code.trim();
+          if (cmd === 'nmap -sS target') {
+            outputs.push("Starting Nmap 7.92 ( https://nmap.org )");
+            outputs.push("Nmap scan report for target (192.168.1.100)");
+            outputs.push("PORT    STATE SERVICE");
+            outputs.push("22/tcp  open  ssh");
+            outputs.push("80/tcp  open  http");
+            outputs.push("443/tcp open  https");
+            outputs.push("Nmap done: 1 IP address scanned in 2.10 seconds");
+          } else if (cmd.startsWith('ssh ')) {
+            outputs.push("ssh: Connecting to " + cmd.replace('ssh ', '') + "...");
+            outputs.push("Warning: Permanently added to list of known hosts.");
+            outputs.push("admin@sandbox:~$ Welcome to Linux Defense Terminal!");
+          } else if (cmd === 'iptables -L' || cmd.startsWith('iptables ')) {
+            outputs.push("Chain INPUT (policy ACCEPT)");
+            outputs.push("target     prot opt source               destination");
+            if (cmd.includes('-A INPUT -p tcp --dport 22 -j DROP')) {
+              outputs.push("DROP       tcp  --  anywhere             anywhere             tcp dpt:ssh");
+            }
+          } else if (cmd.startsWith('encrypt ') || cmd.startsWith('decrypt ')) {
+            outputs.push("Applying Cryptography Primitives...");
+            outputs.push("Result: " + Buffer.from(cmd.split(' ')[1] || '').toString('base64'));
+          } else {
+            outputs.push("Linux Shell Sandbox: Command not recognized.");
+            outputs.push("Try security commands like: 'nmap -sS target', 'iptables -L', or 'ssh admin@target'.");
+          }
+        } else if (course.category === 'javascript') {
           // Safe eval capturing console.log
           const originalLog = console.log;
           console.log = (...args) => {
@@ -1035,6 +1070,7 @@ export default function LessonPage({ params }: { params: Promise<{ lessonId: str
           outputs.push(lesson.practice_expected || 'Code executed successfully!');
         }
 
+
         setConsoleOutput(outputs);
 
         // Verify output
@@ -1102,6 +1138,17 @@ export default function LessonPage({ params }: { params: Promise<{ lessonId: str
     }
   };
 
+  if (isMacroExamDue && !macroExamPassed) {
+    return (
+      <ComprehensiveExamView 
+        track={track} 
+        milestone={milestone} 
+        onPass={() => setMacroExamPassed(true)} 
+        onExit={() => router.push('/courses')} 
+      />
+    );
+  }
+
   if (isLanguage) {
     return (
       <>
@@ -1111,19 +1158,21 @@ export default function LessonPage({ params }: { params: Promise<{ lessonId: str
     );
   }
 
+
   return (
-    <div style={{ fontFamily: "'Cairo', sans-serif", direction: 'rtl', background: '#020205', color: '#e2e8f0', minHeight: '100vh', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+    <div style={{ fontFamily: "'Cairo', sans-serif", direction: 'rtl', background: isKids ? '#fef08a' : '#020205', color: isKids ? '#1e293b' : '#e2e8f0', minHeight: '100vh', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
       <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet" />
 
       {/* Header */}
-      <header className="learning-header" style={{ borderBottom: '1px solid rgba(16,185,129,0.1)', padding: '0 20px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', background: 'rgba(5,5,10,0.95)', backdropFilter: 'blur(20px)', height: 70, flexShrink: 0, zIndex: 100, flexWrap: 'nowrap' }}>
+      <header className="learning-header" style={{ borderBottom: isKids ? '4px solid #f43f5e' : '1px solid rgba(16,185,129,0.1)', padding: '0 20px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', background: isKids ? '#ffffff' : 'rgba(5,5,10,0.95)', backdropFilter: 'blur(20px)', height: 70, flexShrink: 0, zIndex: 100, flexWrap: 'nowrap' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 16, flexShrink: 0 }}>
-          <button onClick={() => setSidebar(!sidebar)} style={{ background: 'rgba(16,185,129,0.1)', border: '1px solid rgba(16,185,129,0.2)', color: '#10b981', width: 40, height: 40, borderRadius: '10px', cursor: 'pointer', fontSize: '1.2rem', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'all 0.2s' }}>☰</button>
+          <button onClick={() => setSidebar(!sidebar)} style={{ background: isKids ? '#ffe4e6' : 'rgba(16,185,129,0.1)', border: `1px solid ${isKids ? '#fb7185' : 'rgba(16,185,129,0.2)'}`, color: isKids ? '#e11d48' : '#10b981', width: 40, height: 40, borderRadius: '10px', cursor: 'pointer', fontSize: '1.2rem', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'all 0.2s' }}>☰</button>
           <div className="lesson-header-title">
-            <span className="desktop-text" style={{ fontSize: '0.75rem', color: '#64748b' }}>{course.title_ar || course.title}</span>
-            <span className="lesson-title" style={{ fontSize: '1rem', fontWeight: 800, color: '#fff' }}>{lesson.title}</span>
+            <span className="desktop-text" style={{ fontSize: '0.75rem', color: isKids ? '#fb7185' : '#64748b' }}>{course.title_ar || course.title}</span>
+            <span className="lesson-title" style={{ fontSize: '1rem', fontWeight: 900, color: isKids ? '#e11d48' : '#fff' }}>{lesson.title}</span>
           </div>
         </div>
+
 
         {/* Tab Controls */}
         <div style={{ display: 'flex', background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '10px', padding: '4px', flexShrink: 0 }}>
@@ -1175,6 +1224,25 @@ export default function LessonPage({ params }: { params: Promise<{ lessonId: str
         </div>
 
         <div style={{ display: 'flex', alignItems: 'center', gap: 12, flexShrink: 0 }}>
+          {/* Kids/Adults mode Switcher toggle */}
+          <button 
+            onClick={toggleTargetGroup}
+            style={{
+              background: isKids ? '#fb7185' : 'rgba(255,255,255,0.08)',
+              border: `1px solid ${isKids ? '#e11d48' : 'rgba(255,255,255,0.1)'}`,
+              color: '#fff',
+              padding: '8px 16px',
+              borderRadius: '20px',
+              fontWeight: 800,
+              cursor: 'pointer',
+              fontSize: '0.85rem',
+              boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
+              fontFamily: "'Cairo', sans-serif"
+            }}
+          >
+            {isKids ? '🧑‍💼 وضع الكبار' : '👶 وضع الأطفال'}
+          </button>
+
           <Link href={`/courses/${lesson.course_id}`} style={{ textDecoration: 'none' }}>
             <button 
               className="exit-button"
@@ -1202,6 +1270,7 @@ export default function LessonPage({ params }: { params: Promise<{ lessonId: str
         </div>
       </header>
 
+
       {/* Main Container */}
       <div style={{ display: 'flex', flex: 1, overflow: 'hidden', position: 'relative' }}>
         {/* Mobile Sidebar Backdrop */}
@@ -1223,14 +1292,14 @@ export default function LessonPage({ params }: { params: Promise<{ lessonId: str
 
         {/* Navigation Sidebar */}
         {sidebar && (
-          <aside className="navigation-sidebar" style={{ width: 320, background: 'rgba(5,5,10,0.85)', borderLeft: '1px solid rgba(16,185,129,0.1)', overflowY: 'auto', display: 'flex', flexDirection: 'column', flexShrink: 0 }}>
-            <div style={{ padding: '24px 20px', borderBottom: '1px solid rgba(16,185,129,0.1)', background: 'rgba(16,185,129,0.02)' }}>
+          <aside className="navigation-sidebar" style={{ width: 320, background: isKids ? '#ffffff' : 'rgba(5,5,10,0.85)', borderLeft: isKids ? '4px solid #fb7185' : '1px solid rgba(16,185,129,0.1)', overflowY: 'auto', display: 'flex', flexDirection: 'column', flexShrink: 0 }}>
+            <div style={{ padding: '24px 20px', borderBottom: `1px solid ${isKids ? '#ffe4e6' : 'rgba(16,185,129,0.1)'}`, background: isKids ? '#fff9fa' : 'rgba(16,185,129,0.02)' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
-                <span style={{ fontSize: '0.85rem', color: '#10b981', fontWeight: 700 }}>التقدم الدراسي</span>
-                <span style={{ fontSize: '0.85rem', color: '#64748b', fontFamily: 'monospace' }}>{currentIdx + 1} / {sideLessons.length}</span>
+                <span style={{ fontSize: '0.85rem', color: isKids ? '#e11d48' : '#10b981', fontWeight: 800 }}>{isKids ? '🗺️ طريق البطل' : 'التقدم الدراسي'}</span>
+                <span style={{ fontSize: '0.85rem', color: isKids ? '#475569' : '#64748b', fontFamily: 'monospace', fontWeight: 'bold' }}>{currentIdx + 1} / {sideLessons.length}</span>
               </div>
-              <div style={{ width: '100%', height: 6, background: 'rgba(255,255,255,0.05)', borderRadius: 3, overflow: 'hidden' }}>
-                <div style={{ width: `${((currentIdx + 1) / sideLessons.length) * 100}%`, height: '100%', background: 'linear-gradient(90deg, #10b981, #059669)', borderRadius: 3 }} />
+              <div style={{ width: '100%', height: 8, background: isKids ? '#cbd5e1' : 'rgba(255,255,255,0.05)', borderRadius: 4, overflow: 'hidden' }}>
+                <div style={{ width: `${((currentIdx + 1) / sideLessons.length) * 100}%`, height: '100%', background: isKids ? 'linear-gradient(90deg, #fb7185, #e11d48)' : 'linear-gradient(90deg, #10b981, #059669)', borderRadius: 4 }} />
               </div>
             </div>
             
@@ -1241,14 +1310,14 @@ export default function LessonPage({ params }: { params: Promise<{ lessonId: str
                   <Link key={l.id} href={`/learn/${l.id}`} style={{ textDecoration: 'none' }}>
                     <div style={{
                       padding: '12px 16px', borderRadius: '10px', display: 'flex', alignItems: 'center', gap: 12,
-                      background: isActive ? 'rgba(16,185,129,0.1)' : 'transparent',
-                      border: isActive ? '1px solid rgba(16,185,129,0.2)' : '1px solid transparent',
-                      color: isActive ? '#10b981' : '#94a3b8', transition: 'all 0.2s', cursor: 'pointer'
+                      background: isActive ? (isKids ? '#ffe4e6' : 'rgba(16,185,129,0.1)') : 'transparent',
+                      border: isActive ? `1px solid ${isKids ? '#fb7185' : 'rgba(16,185,129,0.2)'}` : '1px solid transparent',
+                      color: isActive ? (isKids ? '#e11d48' : '#10b981') : (isKids ? '#475569' : '#94a3b8'), transition: 'all 0.2s', cursor: 'pointer'
                     }}>
-                      <div style={{ width: 24, height: 24, borderRadius: 6, background: isActive ? '#10b981' : 'rgba(255,255,255,0.05)', color: isActive ? '#000' : '#64748b', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.75rem', fontWeight: 800 }}>
+                      <div style={{ width: 24, height: 24, borderRadius: 6, background: isActive ? (isKids ? '#e11d48' : '#10b981') : 'rgba(255,255,255,0.05)', color: isActive ? (isKids ? '#fff' : '#000') : '#64748b', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.75rem', fontWeight: 800 }}>
                         {idx + 1}
                       </div>
-                      <span style={{ fontSize: '0.9rem', fontWeight: isActive ? 700 : 400, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', flex: 1 }}>{l.title.replace(/الدرس \d+:\s*/, '')}</span>
+                      <span style={{ fontSize: '0.9rem', fontWeight: isActive ? 800 : 500, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', flex: 1 }}>{l.title.replace(/الدرس \d+:\s*/, '')}</span>
                     </div>
                   </Link>
                 );
@@ -1256,6 +1325,7 @@ export default function LessonPage({ params }: { params: Promise<{ lessonId: str
             </div>
           </aside>
         )}
+
 
         {/* Content Workspace */}
         <main className="main-content" style={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden', position: 'relative' }}>
@@ -1337,443 +1407,398 @@ export default function LessonPage({ params }: { params: Promise<{ lessonId: str
               </div>
             </div>
           ) : activeTab === 'workspace' ? (
-            /* Workspace Container containing switcher and grid */
-            <div className="workspace-container" style={{ display: 'flex', flexDirection: 'column', flex: 1, overflow: 'hidden' }}>
+            /* Workspace Container containing stepper and active panel */
+            <div className="workspace-container" style={{ display: 'flex', flexDirection: 'column', flex: 1, overflow: 'hidden', padding: '20px' }}>
               
-              {/* Mobile Workspace Tabs Switcher */}
-              <div className="mobile-workspace-tabs" style={{ display: 'none', background: 'rgba(5,5,10,0.95)', borderBottom: '1px solid rgba(16,185,129,0.1)', padding: '6px', gap: '4px', overflowX: 'auto', flexShrink: 0 }}>
-                <button 
-                  onClick={() => setActiveWorkspaceTab('explanation')} 
-                  style={{
-                    background: activeWorkspaceTab === 'explanation' ? 'rgba(16,185,129,0.15)' : 'transparent',
-                    border: 'none',
-                    color: activeWorkspaceTab === 'explanation' ? '#10b981' : '#94a3b8',
-                    padding: '8px 12px',
-                    borderRadius: '8px',
-                    cursor: 'pointer',
-                    fontFamily: "'Cairo', sans-serif",
-                    fontSize: '0.8rem',
-                    fontWeight: 700,
-                    whiteSpace: 'nowrap',
-                    flex: 1,
-                    textAlign: 'center',
-                    transition: 'all 0.2s'
-                  }}
-                >
-                  📖 الدرس
-                </button>
-                {!isLanguage && (
-                  <>
-                    <button 
-                      onClick={() => setActiveWorkspaceTab('syntax')} 
-                      style={{
-                        background: activeWorkspaceTab === 'syntax' ? 'rgba(16,185,129,0.15)' : 'transparent',
-                        border: 'none',
-                        color: activeWorkspaceTab === 'syntax' ? '#10b981' : '#94a3b8',
-                        padding: '8px 12px',
-                        borderRadius: '8px',
-                        cursor: 'pointer',
-                        fontFamily: "'Cairo', sans-serif",
-                        fontSize: '0.8rem',
-                        fontWeight: 700,
-                        whiteSpace: 'nowrap',
-                        flex: 1,
-                        textAlign: 'center',
-                        transition: 'all 0.2s'
-                      }}
-                    >
-                      💡 القاموس
-                    </button>
-                    <button 
-                      onClick={() => setActiveWorkspaceTab('editor')} 
-                      style={{
-                        background: activeWorkspaceTab === 'editor' ? 'rgba(16,185,129,0.15)' : 'transparent',
-                        border: 'none',
-                        color: activeWorkspaceTab === 'editor' ? '#10b981' : '#94a3b8',
-                        padding: '8px 12px',
-                        borderRadius: '8px',
-                        cursor: 'pointer',
-                        fontFamily: "'Cairo', sans-serif",
-                        fontSize: '0.8rem',
-                        fontWeight: 700,
-                        whiteSpace: 'nowrap',
-                        flex: 1,
-                        textAlign: 'center',
-                        transition: 'all 0.2s'
-                      }}
-                    >
-                      💻 التجربة
-                    </button>
-                  </>
-                )}
-                <button 
-                  onClick={() => setActiveWorkspaceTab('instructions')} 
-                  style={{
-                    background: activeWorkspaceTab === 'instructions' ? 'rgba(16,185,129,0.15)' : 'transparent',
-                    border: 'none',
-                    color: activeWorkspaceTab === 'instructions' ? '#10b981' : '#94a3b8',
-                    padding: '8px 12px',
-                    borderRadius: '8px',
-                    cursor: 'pointer',
-                    fontFamily: "'Cairo', sans-serif",
-                    fontSize: '0.8rem',
-                    fontWeight: 700,
-                    whiteSpace: 'nowrap',
-                    flex: 1,
-                    textAlign: 'center',
-                    transition: 'all 0.2s'
-                  }}
-                >
-                  🎯 الهدف
-                </button>
+              {/* Stepper Progress bar */}
+              <div style={{
+                background: isKids ? '#ffffff' : 'rgba(5, 5, 10, 0.85)',
+                borderRadius: '20px',
+                padding: '20px',
+                border: isKids ? '4px solid #fb7185' : '1px solid rgba(16, 185, 129, 0.1)',
+                marginBottom: '20px',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '10px'
+              }}>
+                <div style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center', position: 'relative' }}>
+                  <div style={{ position: 'absolute', left: '10%', right: '10%', top: '50%', height: '4px', background: isKids ? '#cbd5e1' : 'rgba(255,255,255,0.05)', zIndex: 1 }} />
+                  <div style={{ position: 'absolute', left: '10%', right: '10%', top: '50%', height: '4px', background: '#10b981', zIndex: 1, width: activeWorkspaceTab === 'explanation' ? '0%' : activeWorkspaceTab === 'syntax' ? '50%' : '100%', transition: 'width 0.3s' }} />
+                  
+                  <button onClick={() => setActiveWorkspaceTab('explanation')} style={{ zIndex: 2, background: activeWorkspaceTab === 'explanation' ? '#10b981' : (isKids ? '#e2e8f0' : 'rgba(255,255,255,0.05)'), color: activeWorkspaceTab === 'explanation' ? '#000' : (isKids ? '#475569' : '#cbd5e1'), border: 'none', borderRadius: '50%', width: '40px', height: '40px', fontWeight: 800, cursor: 'pointer', fontFamily: 'monospace' }}>١</button>
+                  <button onClick={() => setActiveWorkspaceTab('syntax')} style={{ zIndex: 2, background: activeWorkspaceTab === 'syntax' ? '#10b981' : (isKids ? '#e2e8f0' : 'rgba(255,255,255,0.05)'), color: activeWorkspaceTab === 'syntax' ? '#000' : (isKids ? '#475569' : '#cbd5e1'), border: 'none', borderRadius: '50%', width: '40px', height: '40px', fontWeight: 800, cursor: 'pointer', fontFamily: 'monospace' }}>٢</button>
+                  <button onClick={() => setActiveWorkspaceTab('editor')} style={{ zIndex: 2, background: activeWorkspaceTab === 'editor' ? '#10b981' : (isKids ? '#e2e8f0' : 'rgba(255,255,255,0.05)'), color: activeWorkspaceTab === 'editor' ? '#000' : (isKids ? '#475569' : '#cbd5e1'), border: 'none', borderRadius: '50%', width: '40px', height: '40px', fontWeight: 800, cursor: 'pointer', fontFamily: 'monospace' }}>٣</button>
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.85rem', fontWeight: 800, color: isKids ? '#1e293b' : '#94a3b8' }}>
+                  <span style={{ color: activeWorkspaceTab === 'explanation' ? '#10b981' : 'inherit' }}>📖 الخطوة ١: الشرح المفاهيمي</span>
+                  <span style={{ color: activeWorkspaceTab === 'syntax' ? '#10b981' : 'inherit' }}>💡 الخطوة ٢: الفهم التفاعلي</span>
+                  <span style={{ color: activeWorkspaceTab === 'editor' ? '#10b981' : 'inherit' }}>💻 الخطوة ٣: التطبيق العملي</span>
+                </div>
               </div>
 
-              {/* 4-Panel Grid Workspace */}
-              <div className="workspace-grid" data-is-language={isLanguage ? 'true' : 'false'} style={{ gap: '12px', padding: '12px', background: '#020205', flex: 1, overflow: 'hidden' }}>
+              {/* Viewport for sequenced steps */}
+              <div style={{ flex: 1, display: 'flex', flexDirection: 'column', overflowY: 'auto', gap: '20px' }}>
                 
-                {/* Panel 1: Written Explanation (الشرح النظري) */}
-                <section className={`workspace-panel ${activeWorkspaceTab === 'explanation' ? 'active-panel' : 'hidden-panel'}`} style={{ background: 'rgba(9,10,18,0.7)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '16px', padding: '24px', overflowY: 'auto', display: 'flex', flexDirection: 'column', boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.03)' }}>
-                  
-                  {/* Lesson title header for mobile/desktop reading anchor */}
-                  <div className="panel-lesson-title" style={{ marginBottom: '20px', padding: '16px', background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.05) 0%, transparent 100%)', borderRadius: '12px', borderRight: '4px solid #10b981' }}>
-                    <div style={{ fontSize: '0.8rem', color: '#64748b', fontWeight: 700, marginBottom: '4px' }}>{course.title_ar || course.title}</div>
-                    <h2 style={{ fontSize: '1.25rem', fontWeight: 900, color: '#fff', margin: 0 }}>{lesson.title}</h2>
-                  </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 8, borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '12px', marginBottom: '16px' }}>
-                  <span style={{ fontSize: '1.25rem' }}>📖</span>
-                  <h3 style={{ margin: 0, fontSize: '1.05rem', fontWeight: 800, color: '#10b981' }}>الشرح الصوتي والكتابي والعملي للدرس</h3>
-                </div>
-                
-                {/* 1. Audio Player at the top */}
-                <div style={{ marginBottom: '24px' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
-                    <span style={{ fontSize: '1.1rem' }}>💡</span>
-                    <span style={{ fontSize: '0.85rem', fontWeight: 700, color: '#f59e0b' }}>نصيحة ذكية للأبطال: استمع إلى الشرح الصوتي للدرس أولاً لتسهيل الحفظ والفهم السريع! 🎧</span>
-                  </div>
-                  <PremiumAudioPlayer
-                    src={lesson.audio_url || ''}
-                    title={lesson.title}
-                    textContent={lesson.text_content || ''}
-                  />
-                </div>
-
-                {/* 2. Practical Video Player below audio */}
-                {lesson.video_url && (
-                  <div style={{ marginBottom: '24px' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
-                      <span style={{ fontSize: '1.1rem' }}>📺</span>
-                      <span style={{ fontSize: '0.85rem', fontWeight: 700, color: '#3b82f6' }}>فيديو الشرح العملي: شاهد كيف نطبق الدرس خطوة بخطوة بالصوت والصورة! 🚀</span>
+                {/* STEP 1: Conceptual Explanation */}
+                {activeWorkspaceTab === 'explanation' && (
+                  <section style={{ background: isKids ? '#ffffff' : 'rgba(9,10,18,0.7)', border: isKids ? '4px solid #3b82f6' : '1px solid rgba(255,255,255,0.05)', borderRadius: '16px', padding: '24px', display: 'flex', flexDirection: 'column', boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.03)' }}>
+                    <div className="panel-lesson-title" style={{ marginBottom: '20px', padding: '16px', background: isKids ? '#eff6ff' : 'linear-gradient(135deg, rgba(16, 185, 129, 0.05) 0%, transparent 100%)', borderRadius: '12px', borderRight: `4px solid ${isKids ? '#3b82f6' : '#10b981'}` }}>
+                      <div style={{ fontSize: '0.8rem', color: isKids ? '#3b82f6' : '#64748b', fontWeight: 800, marginBottom: '4px' }}>{course.title_ar || course.title}</div>
+                      <h2 style={{ fontSize: '1.25rem', fontWeight: 900, color: isKids ? '#1e3a8a' : '#fff', margin: 0 }}>{lesson.title}</h2>
                     </div>
-                    <PremiumVideoPlayer src={lesson.video_url} />
-                  </div>
+
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 8, borderBottom: `1px solid ${isKids ? '#e2e8f0' : 'rgba(255,255,255,0.05)'}`, paddingBottom: '12px', marginBottom: '16px' }}>
+                      <span style={{ fontSize: '1.25rem' }}>📖</span>
+                      <h3 style={{ margin: 0, fontSize: '1.05rem', fontWeight: 900, color: isKids ? '#1e3a8a' : '#10b981' }}>الخطوة الأولى: اقرأ واستمع للشرح الممتع</h3>
+                    </div>
+
+                    {isKids && (
+                      <div style={{ background: '#eff6ff', border: '2px dashed #3b82f6', borderRadius: '12px', padding: '16px', marginBottom: '20px', display: 'flex', alignItems: 'center', gap: '12px' }}>
+                        <span style={{ fontSize: '2.5rem', animation: 'bounce 2s infinite' }}>🤖</span>
+                        <div>
+                          <h4 style={{ margin: '0 0 4px', color: '#1d4ed8', fontWeight: 900 }}>مساعدك الروبوت الذكي SVK يقول:</h4>
+                          <p style={{ margin: 0, fontSize: '0.9rem', color: '#1e3a8a', fontWeight: 700 }}>أهلاً يا بطل! اليوم سنتعلم شيئاً رائعاً جداً! اسمع الشرح الصوتي وسوف تصبح مبرمجاً أسطورياً! ⭐</p>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Dedicated Audio Player at the top of explanation block */}
+                    <div style={{ marginBottom: '24px' }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
+                        <span style={{ fontSize: '1.1rem' }}>💡</span>
+                        <span style={{ fontSize: '0.85rem', fontWeight: 700, color: '#f59e0b' }}>نصيحة ذكية للأبطال: استمع إلى الشرح الصوتي للدرس لتسريع الحفظ والفهم! 🎧</span>
+                      </div>
+                      <PremiumAudioPlayer
+                        src={lesson.audio_url || ''}
+                        title={lesson.title}
+                        textContent={lesson.text_content || ''}
+                      />
+                    </div>
+
+                    {/* TOTAL VIDEO BAN: NO VIDEO RENDERED HERE AT ALL */}
+
+                    <div style={{ marginTop: '8px' }}>
+                      <div dangerouslySetInnerHTML={{ __html: lesson.text_content }} style={{ lineHeight: 1.9, fontSize: '1.05rem' }} />
+                    </div>
+
+                    <div style={{ marginTop: '30px', textAlign: 'center' }}>
+                      <button onClick={() => setActiveWorkspaceTab('syntax')} style={{ background: 'linear-gradient(135deg, #3b82f6, #1d4ed8)', color: '#fff', border: 'none', padding: '12px 32px', borderRadius: '10px', fontWeight: 900, cursor: 'pointer', fontFamily: "'Cairo', sans-serif" }}>
+                        انتقال للخطوة ٢: الفهم التفاعلي وقاموس الأكواد ➡️
+                      </button>
+                    </div>
+                  </section>
                 )}
 
-                {/* 3. Written Explanations below video */}
-                <div style={{ marginTop: '8px' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '12px', borderBottom: '1px solid rgba(255,255,255,0.03)', paddingBottom: '8px' }}>
-                    <span style={{ fontSize: '1.1rem' }}>📝</span>
-                    <span style={{ fontSize: '0.9rem', fontWeight: 800, color: '#e2e8f0' }}>قراءة الدرس والشرح بالتفصيل:</span>
-                  </div>
-                  <div 
-                    className="explanation-content" 
-                    style={{ 
-                      lineHeight: 1.9, 
-                      fontSize: '1.05rem', 
-                      color: '#cbd5e1',
-                      background: 'rgba(255,255,255,0.01)',
-                      border: '1px solid rgba(255,255,255,0.02)',
-                      padding: '20px',
-                      borderRadius: '12px'
-                    }} 
-                    dangerouslySetInnerHTML={{ __html: lesson.text_content }} 
-                  />
-                </div>
-              </section>
+                {/* STEP 2: Guided Learning (Syntax / Dictionary) */}
+                {activeWorkspaceTab === 'syntax' && (
+                  <section style={{ background: isKids ? '#ffffff' : 'rgba(9,10,18,0.7)', border: isKids ? '4px solid #10b981' : '1px solid rgba(255,255,255,0.05)', borderRadius: '16px', padding: '24px', display: 'flex', flexDirection: 'column', boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.03)' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 8, borderBottom: `1px solid ${isKids ? '#e2e8f0' : 'rgba(255,255,255,0.05)'}`, paddingBottom: '12px', marginBottom: '16px' }}>
+                      <span style={{ fontSize: '1.25rem' }}>💡</span>
+                      <h3 style={{ margin: 0, fontSize: '1.05rem', fontWeight: 900, color: isKids ? '#047857' : '#10b981' }}>الخطوة الثانية: بنية الكود البرمجي وشرحه</h3>
+                    </div>
 
-              {/* Panel 2: Code & Syntax Explanation (الكود البرمجي وشرحه) */}
-              <section className={`workspace-panel ${activeWorkspaceTab === 'syntax' ? 'active-panel' : 'hidden-panel'}`} style={{ background: 'rgba(9,10,18,0.7)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '16px', padding: '24px', overflowY: 'auto', display: 'flex', flexDirection: 'column', boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.03)' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 8, borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '12px', marginBottom: '16px' }}>
-                  <span style={{ fontSize: '1.25rem' }}>💡</span>
-                  <h3 style={{ margin: 0, fontSize: '1.05rem', fontWeight: 800, color: '#10b981' }}>بنية الكود البرمجي وشرحه</h3>
-                </div>
-                
-                {(() => {
-                  const referenceCode = lesson.code_example || getCodeExample(course.category, lessonId);
-                  const keywordsFound = Object.keys(SYNTAX_DICTIONARY).filter(keyword => {
-                    if (keyword.includes('.') || keyword.includes('_')) {
-                      return referenceCode.includes(keyword);
-                    }
-                    const regex = new RegExp(`\\b${keyword}\\b`);
-                    return regex.test(referenceCode);
-                  });
+                    {(() => {
+                      const referenceCode = lesson.code_example || getCodeExample(course.category, lessonId);
+                      const keywordsFound = Object.keys(SYNTAX_DICTIONARY).filter(keyword => {
+                        if (keyword.includes('.') || keyword.includes('_')) {
+                          return referenceCode.includes(keyword);
+                        }
+                        const regex = new RegExp(`\\b${keyword}\\b`);
+                        return regex.test(referenceCode);
+                      });
 
-                  return (
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-                      <pre style={{ margin: 0, background: 'rgba(0,0,0,0.4)', padding: '16px', borderRadius: '10px', border: '1px solid rgba(255,255,255,0.03)', fontFamily: 'monospace', fontSize: '0.9rem', color: '#a78bfa', direction: 'ltr', textAlign: 'left', overflowX: 'auto' }}>
-                        {referenceCode}
-                      </pre>
-                      <p style={{ margin: 0, color: '#94a3b8', fontSize: '0.9rem', lineHeight: 1.7 }}>
-                        {lesson.code_explanation || 'يوضح النموذج بالأعلى البنية الأساسية وكيفية استخدام المتغيرات والتعليمات البرمجية لتنفيذ هذا المفهوم بنجاح.'}
-                      </p>
+                      return (
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+                          <pre style={{ margin: 0, background: 'rgba(0,0,0,0.4)', padding: '16px', borderRadius: '10px', border: '1px solid rgba(255,255,255,0.03)', fontFamily: 'monospace', fontSize: '0.9rem', color: '#a78bfa', direction: 'ltr', textAlign: 'left', overflowX: 'auto' }}>
+                            {referenceCode}
+                          </pre>
+                          <p style={{ margin: 0, color: isKids ? '#475569' : '#94a3b8', fontSize: '0.95rem', lineHeight: 1.7 }}>
+                            {lesson.code_explanation || 'يوضح النموذج بالأعلى البنية الأساسية وكيفية استخدام التعليمات البرمجية لتنفيذ المفهوم بنجاح.'}
+                          </p>
 
-                      {/* Qamos Al-Akoad (Interactive Bilingual Syntax Dictionary) */}
-                      {keywordsFound.length > 0 && (
-                        <div style={{ marginTop: '24px', borderTop: '1px solid rgba(16, 185, 129, 0.15)', paddingTop: '20px' }}>
-                          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '16px' }}>
-                            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                              <span style={{ fontSize: '1.4rem' }}>📖</span>
-                              <h4 style={{ margin: 0, fontSize: '1rem', fontWeight: 900, color: '#fff' }}>
-                                قاموس الأكواد التفاعلي (مساعدك الذكي)
-                              </h4>
-                            </div>
-                            <span style={{ fontSize: '0.75rem', background: 'rgba(16, 185, 129, 0.1)', border: '1px solid rgba(16, 185, 129, 0.2)', color: '#10b981', padding: '2px 8px', borderRadius: '20px', fontWeight: 700 }}>
-                              تم العثور على {keywordsFound.length} كلمات برمجية
-                            </span>
-                          </div>
-                          
-                          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-                            {keywordsFound.map(kw => {
-                              const item = SYNTAX_DICTIONARY[kw];
-                              const isSpeakingAr = activeSpeech?.keyword === kw && activeSpeech?.lang === 'ar';
-                              const isSpeakingEn = activeSpeech?.keyword === kw && activeSpeech?.lang === 'en';
-                              const isAnySpeaking = isSpeakingAr || isSpeakingEn;
-                              
-                              return (
-                                <div 
-                                  key={kw}
-                                  style={{
-                                    background: 'rgba(255, 255, 255, 0.01)',
-                                    border: '1px solid rgba(255, 255, 255, 0.04)',
-                                    borderRadius: '16px',
-                                    padding: '20px',
-                                    transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-                                    position: 'relative',
-                                    overflow: 'hidden',
-                                    display: 'flex',
-                                    flexDirection: 'column',
-                                    gap: '14px',
-                                    animation: isAnySpeaking ? 'card-pulse 3s infinite, rainbow-border 3s infinite' : 'none',
-                                    boxShadow: isAnySpeaking 
-                                      ? `0 8px 32px 0 rgba(${isSpeakingAr ? '16, 185, 129' : '139, 92, 246'}, 0.15), 0 0 15px rgba(${isSpeakingAr ? '16, 185, 129' : '139, 92, 246'}, 0.1)` 
-                                      : 'none',
-                                  }}
-                                  className="syntax-card"
-                                >
-                                  {/* Glowing Accent */}
-                                  <div style={{
-                                    position: 'absolute',
-                                    top: 0, right: 0, width: '120px', height: '120px',
-                                    background: `radial-gradient(circle, ${item.color}15 0%, transparent 70%)`,
-                                    pointerEvents: 'none',
-                                    zIndex: 0
-                                  }} />
-
-                                  {/* Card Header */}
-                                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderBottom: '1px solid rgba(255,255,255,0.03)', paddingBottom: '10px', zIndex: 1 }}>
-                                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                                      <span style={{ fontSize: '1.4rem' }}>{item.emoji}</span>
-                                      <span style={{ 
-                                        fontFamily: 'monospace', 
-                                        fontSize: '1rem', 
-                                        fontWeight: 'bold', 
-                                        color: '#fff', 
-                                        background: 'rgba(255,255,255,0.05)',
-                                        padding: '4px 10px',
-                                        borderRadius: '8px',
-                                        border: `1px solid ${item.color}40`,
-                                        boxShadow: `0 0 10px ${item.color}20`
-                                      }}>
-                                        {kw}
-                                      </span>
-                                    </div>
-                                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '2px' }}>
-                                      <span style={{ fontSize: '0.85rem', fontWeight: 800, color: item.color }}>{item.nameAr}</span>
-                                      <span style={{ fontSize: '0.7rem', color: '#64748b', fontWeight: 600 }}>{item.nameEn}</span>
-                                    </div>
-                                  </div>
-
-                                  {/* Explanations Grid */}
-                                  <div className="syntax-grid" style={{ gap: '20px', zIndex: 1 }}>
-                                    {/* Arabic side */}
-                                    <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', borderLeft: '1px solid rgba(255,255,255,0.03)', paddingLeft: '10px' }}>
-                                      <div>
-                                        <div style={{ fontSize: '0.75rem', color: '#10b981', fontWeight: 800, marginBottom: '4px' }}>📋 المعنى والشرح:</div>
-                                        <div style={{ fontSize: '0.85rem', color: '#cbd5e1', lineHeight: 1.6 }}>{item.descAr}</div>
-                                      </div>
-                                      <div>
-                                        <div style={{ fontSize: '0.75rem', color: '#3b82f6', fontWeight: 800, marginBottom: '4px' }}>💡 طريقة الاستخدام:</div>
-                                        <div style={{ fontSize: '0.85rem', color: '#94a3b8', lineHeight: 1.6 }}>{item.howAr}</div>
-                                      </div>
-                                      
-                                      {/* Audio Button */}
-                                      <button
-                                        onClick={() => speakSyntax(kw, `${item.nameAr}. ${item.descAr}. طريقة الاستخدام: ${item.howAr}`, 'ar')}
-                                        style={{
-                                          marginTop: 'auto',
-                                          alignSelf: 'flex-start',
-                                          background: isSpeakingAr ? 'rgba(239,68,68,0.1)' : 'rgba(16,185,129,0.05)',
-                                          border: `1px solid ${isSpeakingAr ? '#ef4444' : '#10b981'}`,
-                                          borderRadius: '30px',
-                                          padding: '6px 14px',
-                                          color: isSpeakingAr ? '#ef4444' : '#10b981',
-                                          fontSize: '0.75rem',
-                                          fontWeight: 800,
-                                          cursor: 'pointer',
-                                          display: 'flex',
-                                          alignItems: 'center',
-                                          gap: '6px',
-                                          transition: 'all 0.2s',
-                                          fontFamily: "'Cairo', sans-serif"
-                                        }}
-                                      >
-                                        {isSpeakingAr ? (
-                                          <>
-                                            <div className="audio-wave">
-                                              <div style={{ animationDelay: '0.1s' }} />
-                                              <div style={{ animationDelay: '0.3s' }} />
-                                              <div style={{ animationDelay: '0.5s' }} />
-                                            </div>
-                                            إيقاف الشرح
-                                          </>
-                                        ) : (
-                                          <>🔊 استمع للشرح بالعربية</>
-                                        )}
-                                      </button>
-                                    </div>
-
-                                    {/* English side */}
-                                    <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', direction: 'ltr', textAlign: 'left' }}>
-                                      <div>
-                                        <div style={{ fontSize: '0.75rem', color: '#a78bfa', fontWeight: 800, marginBottom: '4px' }}>📋 Meaning & Concept:</div>
-                                        <div style={{ fontSize: '0.85rem', color: '#cbd5e1', lineHeight: 1.6 }}>{item.descEn}</div>
-                                      </div>
-                                      <div>
-                                        <div style={{ fontSize: '0.75rem', color: '#60a5fa', fontWeight: 800, marginBottom: '4px' }}>💡 How to use:</div>
-                                        <div style={{ fontSize: '0.85rem', color: '#94a3b8', lineHeight: 1.6 }}>{item.howEn}</div>
-                                      </div>
-
-                                      {/* Audio Button */}
-                                      <button
-                                        onClick={() => speakSyntax(kw, `${item.nameEn}. ${item.descEn}. How to use: ${item.howEn}`, 'en')}
-                                        style={{
-                                          marginTop: 'auto',
-                                          alignSelf: 'flex-start',
-                                          background: isSpeakingEn ? 'rgba(239,68,68,0.1)' : 'rgba(139,92,246,0.05)',
-                                          border: `1px solid ${isSpeakingEn ? '#ef4444' : '#8b5cf6'}`,
-                                          borderRadius: '30px',
-                                          padding: '6px 14px',
-                                          color: isSpeakingEn ? '#ef4444' : '#8b5cf6',
-                                          fontSize: '0.75rem',
-                                          fontWeight: 800,
-                                          cursor: 'pointer',
-                                          display: 'flex',
-                                          alignItems: 'center',
-                                          gap: '6px',
-                                          transition: 'all 0.2s',
-                                          fontFamily: "'Cairo', sans-serif"
-                                        }}
-                                      >
-                                        {isSpeakingEn ? (
-                                          <>
-                                            <div className="audio-wave" style={{ borderColor: '#8b5cf6' }}>
-                                              <div style={{ background: '#8b5cf6', animationDelay: '0.1s' }} />
-                                              <div style={{ background: '#8b5cf6', animationDelay: '0.3s' }} />
-                                              <div style={{ background: '#8b5cf6', animationDelay: '0.5s' }} />
-                                            </div>
-                                            Stop Explanation
-                                          </>
-                                        ) : (
-                                          <>🔊 Listen in English</>
-                                        )}
-                                      </button>
-                                    </div>
-                                  </div>
+                          {/* Dictionary helper */}
+                          {keywordsFound.length > 0 && (
+                            <div style={{ marginTop: '24px', borderTop: '1px solid rgba(16, 185, 129, 0.15)', paddingTop: '20px' }}>
+                              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '16px' }}>
+                                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                                  <span style={{ fontSize: '1.4rem' }}>📖</span>
+                                  <h4 style={{ margin: 0, fontSize: '1rem', fontWeight: 900, color: isKids ? '#0f172a' : '#fff' }}>
+                                    قاموس الأكواد التفاعلي المساعد
+                                  </h4>
                                 </div>
-                              );
-                            })}
+                              </div>
+                              
+                              <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                                {keywordsFound.map(kw => {
+                                  const item = SYNTAX_DICTIONARY[kw];
+                                  const isSpeakingAr = activeSpeech?.keyword === kw && activeSpeech?.lang === 'ar';
+                                  const isSpeakingEn = activeSpeech?.keyword === kw && activeSpeech?.lang === 'en';
+                                  const isAnySpeaking = isSpeakingAr || isSpeakingEn;
+                                  
+                                  return (
+                                    <div 
+                                      key={kw}
+                                      style={{
+                                        background: isKids ? '#f9fafb' : 'rgba(255, 255, 255, 0.01)',
+                                        border: isKids ? '2px solid #cbd5e1' : '1px solid rgba(255, 255, 255, 0.04)',
+                                        borderRadius: '16px',
+                                        padding: '20px',
+                                        display: 'flex',
+                                        flexDirection: 'column',
+                                        gap: '14px',
+                                        color: isKids ? '#1e293b' : '#cbd5e1'
+                                      }}
+                                    >
+                                      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderBottom: '1px solid rgba(255,255,255,0.03)', paddingBottom: '10px' }}>
+                                        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                                          <span style={{ fontSize: '1.4rem' }}>{item.emoji}</span>
+                                          <span style={{ fontFamily: 'monospace', fontSize: '1rem', fontWeight: 'bold', background: 'rgba(0,0,0,0.2)', padding: '4px 10px', borderRadius: '8px' }}>
+                                            {kw}
+                                          </span>
+                                        </div>
+                                        <div style={{ textAlign: 'left' }}>
+                                          <div style={{ fontSize: '0.85rem', fontWeight: 800, color: '#10b981' }}>{item.nameAr}</div>
+                                          <div style={{ fontSize: '0.7rem', color: '#64748b' }}>{item.nameEn}</div>
+                                        </div>
+                                      </div>
+
+                                      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
+                                        <div style={{ borderLeft: '1px solid rgba(255,255,255,0.05)', paddingLeft: '10px' }}>
+                                          <div style={{ fontSize: '0.85rem', lineHeight: 1.6 }}>{item.descAr}</div>
+                                          <div style={{ fontSize: '0.8rem', color: '#64748b', marginTop: '4px' }}>طريقة الاستخدام: {item.howAr}</div>
+                                          <button onClick={() => speakSyntax(kw, `${item.nameAr}. ${item.descAr}. طريقة الاستخدام: ${item.howAr}`, 'ar')} style={{ marginTop: '10px', background: 'transparent', border: '1px solid #10b981', borderRadius: '20px', padding: '4px 12px', color: '#10b981', fontSize: '0.75rem', cursor: 'pointer' }}>
+                                            {isSpeakingAr ? '🔊 جاري التحدث...' : '🔊 استمع بالعربية'}
+                                          </button>
+                                        </div>
+                                        <div style={{ direction: 'ltr', textAlign: 'left' }}>
+                                          <div style={{ fontSize: '0.85rem', lineHeight: 1.6 }}>{item.descEn}</div>
+                                          <div style={{ fontSize: '0.8rem', color: '#64748b', marginTop: '4px' }}>Usage: {item.howEn}</div>
+                                          <button onClick={() => speakSyntax(kw, `${item.nameEn}. ${item.descEn}. How to use: ${item.howEn}`, 'en')} style={{ marginTop: '10px', background: 'transparent', border: '1px solid #8b5cf6', borderRadius: '20px', padding: '4px 12px', color: '#8b5cf6', fontSize: '0.75rem', cursor: 'pointer' }}>
+                                            {isSpeakingEn ? '🔊 Speaking...' : '🔊 Listen in English'}
+                                          </button>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  );
+                                })}
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      );
+                    })()}
+
+                    <div style={{ marginTop: '30px', textAlign: 'center' }}>
+                      <button onClick={() => setActiveWorkspaceTab('editor')} style={{ background: 'linear-gradient(135deg, #10b981, #059669)', color: '#fff', border: 'none', padding: '12px 32px', borderRadius: '10px', fontWeight: 900, cursor: 'pointer', fontFamily: "'Cairo', sans-serif" }}>
+                        انتقال للخطوة ٣: التجربة والتطبيق العملي ➡️
+                      </button>
+                    </div>
+                  </section>
+                )}
+
+                {/* STEP 3: Sandbox Terminal & Instructions */}
+                {activeWorkspaceTab === 'editor' && (
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+                    
+                    {/* Instructions card */}
+                    <div style={{
+                      background: isKids ? '#eff6ff' : 'rgba(9,10,18,0.7)',
+                      border: isKids ? '4px solid #3b82f6' : '1px solid rgba(255,255,255,0.05)',
+                      borderRadius: '16px',
+                      padding: '20px',
+                      boxShadow: '0 4px 10px rgba(0,0,0,0.1)'
+                    }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '8px', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '8px', marginBottom: '12px' }}>
+                        <span style={{ fontSize: '1.2rem' }}>🎯</span>
+                        <h4 style={{ margin: 0, fontWeight: 900, color: isKids ? '#1e3a8a' : '#10b981' }}>إرشادات الهدف والمخرجات المتوقعة</h4>
+                      </div>
+                      <p style={{ margin: '0 0 12px', fontSize: '0.9rem', color: isKids ? '#1e293b' : '#94a3b8' }}>
+                        {lesson.practice_instructions || 'يرجى كتابة وتعديل الكود البرمجي ليعطي المخرج المطلوب بدقة.'}
+                      </p>
+                      <div style={{ background: 'rgba(0,0,0,0.4)', borderRadius: '8px', padding: '10px 14px', border: '1px solid rgba(255,255,255,0.05)' }}>
+                        <div style={{ fontSize: '0.75rem', color: '#64748b', marginBottom: '4px' }}>المخرجات المتوقعة (Expected Output):</div>
+                        <pre style={{ margin: 0, fontFamily: 'monospace', color: '#cbd5e1', fontSize: '0.85rem', direction: 'ltr', textAlign: 'left' }}>
+                          {lesson.practice_expected || 'Hello World'}
+                        </pre>
+                      </div>
+                    </div>
+
+                    {/* Sandbox code editor & terminal */}
+                    <section style={{
+                      background: isKids ? '#ffffff' : 'rgba(9,10,18,0.7)',
+                      border: isKids ? '4px solid #fb7185' : '1px solid rgba(16,185,129,0.2)',
+                      borderRadius: '16px',
+                      overflow: 'hidden',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      height: '420px'
+                    }}>
+                      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 20px', borderBottom: '1px solid rgba(16,185,129,0.1)', background: 'rgba(16,185,129,0.02)' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                          <span style={{ fontSize: '1.25rem' }}>💻</span>
+                          <h3 style={{ margin: 0, fontSize: '1.05rem', fontWeight: 800, color: isKids ? '#e11d48' : '#10b981' }}>بيئة تشغيل الأكواد (Sandbox Editor)</h3>
+                        </div>
+                        <button onClick={handleRunCode} disabled={isRunning} style={{ background: 'linear-gradient(135deg, #10b981, #059669)', border: 'none', color: '#000', padding: '6px 16px', borderRadius: '6px', fontWeight: 700, cursor: 'pointer', fontFamily: "'Cairo', sans-serif", fontSize: '0.85rem' }}>
+                          {isRunning ? 'جاري التشغيل...' : 'تشغيل الكود ▶'}
+                        </button>
+                      </div>
+
+                      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', position: 'relative' }}>
+                        <textarea
+                          value={code}
+                          onChange={e => setCode(e.target.value)}
+                          style={{
+                            flex: 1, width: '100%', background: '#07080e', border: 'none', resize: 'none',
+                            outline: 'none', color: '#10b981', padding: '16px', fontFamily: 'monospace', fontSize: '0.95rem',
+                            direction: 'ltr', textAlign: 'left', lineHeight: 1.5
+                          }}
+                        />
+                        
+                        <div style={{ height: '120px', background: '#020205', borderTop: '1px solid rgba(16,185,129,0.1)', display: 'flex', flexDirection: 'column' }}>
+                          <div style={{ background: 'rgba(255,255,255,0.02)', padding: '4px 16px', fontSize: '0.75rem', color: '#64748b' }}>
+                            شاشة المخرجات (Sandbox Terminal Output)
+                          </div>
+                          <div style={{ flex: 1, padding: '10px 16px', overflowY: 'auto', fontFamily: 'monospace', fontSize: '0.85rem', color: '#e2e8f0', direction: 'ltr', textAlign: 'left' }}>
+                            {consoleOutput.length > 0 ? (
+                              consoleOutput.map((out, idx) => (
+                                <div key={idx} style={{ color: out.startsWith('Error') ? '#ef4444' : '#10b981' }}>{out}</div>
+                              ))
+                            ) : (
+                              <div style={{ color: '#475569' }}>اكتب الكود واضغط تشغيل لمقارنة مخرجاتك...</div>
+                            )}
                           </div>
                         </div>
-                      )}
-                    </div>
-                  );
-                })()}
-              </section>
+                      </div>
+                    </section>
 
-              {/* Panel 3: Interactive Practice Playground (بيئة التطبيق التفاعلية) */}
-              <section className={`workspace-panel ${activeWorkspaceTab === 'editor' ? 'active-panel' : 'hidden-panel'}`} style={{ background: 'rgba(9,10,18,0.7)', border: '1px solid rgba(16,185,129,0.2)', borderRadius: '16px', overflow: 'hidden', display: 'flex', flexDirection: 'column', boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.03)' }}>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 20px', borderBottom: '1px solid rgba(16,185,129,0.1)', background: 'rgba(16,185,129,0.02)' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                    <span style={{ fontSize: '1.25rem' }}>💻</span>
-                    <h3 style={{ margin: 0, fontSize: '1.05rem', fontWeight: 800, color: '#10b981' }}>محرر الأكواد التفاعلي</h3>
+                    {/* Practice Feedback Status & Micro Quiz */}
+                    {practiceStatus !== 'idle' && (
+                      <div style={{
+                        padding: '12px 16px', borderRadius: '10px', border: '1px solid',
+                        background: practiceStatus === 'success' ? 'rgba(16,185,129,0.1)' : 'rgba(239,68,68,0.1)',
+                        color: practiceStatus === 'success' ? '#10b981' : '#f87171',
+                        borderColor: practiceStatus === 'success' ? 'rgba(16,185,129,0.3)' : 'rgba(239,68,68,0.3)',
+                        fontSize: '0.9rem', fontWeight: 700
+                      }}>
+                        {practiceStatus === 'success' ? '✅ ممتاز! لقد تطابقت مخرجات الكود مع المطلوب.' : '❌ لم تتطابق المخرجات تماماً مع المتوقع. راجع المطلوب وحاول ثانيةً.'}
+                      </div>
+                    )}
+
+                    {/* MICRO-QUIZ: Strict client-side single question blocking quiz */}
+                    {practiceStatus === 'success' && microQuizQuestion && (
+                      <div style={{
+                        background: isKids ? '#ffffff' : 'rgba(15,15,25,0.85)',
+                        border: isKids ? '4px solid #3b82f6' : '1px solid rgba(16, 185, 129, 0.3)',
+                        borderRadius: '16px',
+                        padding: '24px',
+                        boxShadow: '0 10px 25px rgba(0,0,0,0.2)'
+                      }}>
+                        <h3 style={{ fontSize: '1.1rem', fontWeight: 900, color: isKids ? '#1d4ed8' : '#10b981', marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                          <span>🧠</span> الاختبار السريع المكمل للدرس (Micro-Quiz) - اختر الإجابة لفتح الدرس القادم!
+                        </h3>
+                        <p style={{ fontWeight: 800, fontSize: '0.95rem', marginBottom: '16px', color: isKids ? '#1e3a8a' : '#fff' }}>
+                          {microQuizQuestion.question}
+                        </p>
+                        
+                        <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '10px' }}>
+                          {microQuizQuestion.options.map((opt: string, i: number) => {
+                            const isSelected = selectedMicroAnswer === i;
+                            const isCorrect = i === microQuizQuestion.correctAnswer;
+                            
+                            let btnBg = isKids ? '#f9fafb' : 'rgba(255,255,255,0.02)';
+                            let btnBorder = isKids ? '1px solid #cbd5e1' : '1px solid rgba(255,255,255,0.1)';
+                            let btnColor = isKids ? '#1f2937' : '#e2e8f0';
+
+                            if (microQuizAnswered) {
+                              if (isCorrect) {
+                                btnBg = '#d1fae5';
+                                btnBorder = '2px solid #10b981';
+                                btnColor = '#065f46';
+                              } else if (isSelected) {
+                                btnBg = '#fee2e2';
+                                btnBorder = '2px solid #ef4444';
+                                btnColor = '#991b1b';
+                              }
+                            } else if (isSelected) {
+                              btnBg = isKids ? '#eff6ff' : 'rgba(59, 130, 246, 0.1)';
+                              btnBorder = '2px solid #3b82f6';
+                              btnColor = '#1d4ed8';
+                            }
+
+                            return (
+                              <button
+                                key={i}
+                                onClick={() => {
+                                  if (microQuizAnswered) return;
+                                  setSelectedMicroAnswer(i);
+                                  setMicroQuizAnswered(true);
+                                  if (i === microQuizQuestion.correctAnswer) {
+                                    setMicroQuizPassed(true);
+                                    setMicroQuizError(false);
+                                    localStorage.setItem(`svk_quiz_passed_${lesson.id}`, 'true');
+                                    
+                                    // complete API call
+                                    fetch('/api/lessons/complete', {
+                                      method: 'POST',
+                                      headers: { 'Content-Type': 'application/json' },
+                                      body: JSON.stringify({
+                                        lessonSlug: String(lesson.id),
+                                        score: 1,
+                                        totalQuestions: 1
+                                      })
+                                    }).catch(e => console.error(e));
+                                  } else {
+                                    setMicroQuizError(true);
+                                  }
+                                }}
+                                disabled={microQuizAnswered}
+                                style={{
+                                  textAlign: 'right', padding: '12px 16px', borderRadius: '10px',
+                                  background: btnBg, border: btnBorder, color: btnColor,
+                                  fontWeight: 700, cursor: microQuizAnswered ? 'default' : 'pointer',
+                                  fontFamily: "'Cairo', sans-serif", fontSize: '0.9rem'
+                                }}
+                              >
+                                {opt}
+                              </button>
+                            );
+                          })}
+                        </div>
+
+                        {microQuizAnswered && (
+                          <div style={{ marginTop: '16px', padding: '12px 16px', background: isKids ? '#f3f4f6' : 'rgba(255,255,255,0.03)', borderRadius: '10px', fontSize: '0.9rem' }}>
+                            <div style={{ fontWeight: 800, color: microQuizPassed ? '#10b981' : '#ef4444', marginBottom: '4px' }}>
+                              {microQuizPassed ? '🎉 إجابة صحيحة! تم تفعيل تقدمك وفتح الباب للدرس التالي.' : '❌ إجابة خاطئة. حاول التركيز والمحاولة ثانيةً!'}
+                            </div>
+                            <p style={{ margin: 0, color: isKids ? '#4b5563' : '#94a3b8' }}>{microQuizQuestion.explanation}</p>
+                            {!microQuizPassed && (
+                              <button
+                                onClick={() => {
+                                  setSelectedMicroAnswer(null);
+                                  setMicroQuizAnswered(false);
+                                  setMicroQuizError(false);
+                                }}
+                                style={{
+                                  marginTop: '10px', background: '#3b82f6', color: '#fff', border: 'none',
+                                  padding: '6px 16px', borderRadius: '6px', cursor: 'pointer',
+                                  fontFamily: "'Cairo', sans-serif", fontWeight: 700
+                                }}
+                              >
+                                إعادة المحاولة 🔄
+                              </button>
+                            )}
+                          </div>
+                        )}
+                      </div>
+                    )}
                   </div>
-                  <button onClick={handleRunCode} disabled={isRunning} style={{ background: 'linear-gradient(135deg, #10b981, #059669)', border: 'none', color: '#000', padding: '6px 16px', borderRadius: '6px', fontWeight: 700, cursor: 'pointer', fontFamily: "'Cairo', sans-serif", fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: 6 }}>
-                    {isRunning ? 'جاري التشغيل...' : 'تشغيل الكود ▶'}
-                  </button>
-                </div>
-
-                <div style={{ flex: 1, display: 'flex', flexDirection: 'column', position: 'relative' }}>
-                  <textarea
-                    value={code}
-                    onChange={e => setCode(e.target.value)}
-                    style={{
-                      flex: 1, width: '100%', background: 'rgba(0,0,0,0.3)', border: 'none', resize: 'none',
-                      outline: 'none', color: '#10b981', padding: '16px', fontFamily: 'monospace', fontSize: '0.95rem',
-                      direction: 'ltr', textAlign: 'left', lineHeight: 1.5
-                    }}
-                  />
-                  
-                  {/* Console output inside editor */}
-                  <div style={{ height: '110px', background: 'rgba(0,0,0,0.6)', borderTop: '1px solid rgba(16,185,129,0.1)', display: 'flex', flexDirection: 'column' }}>
-                    <div style={{ background: 'rgba(255,255,255,0.02)', padding: '4px 16px', fontSize: '0.75rem', color: '#64748b', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
-                      شاشة المخرجات (Console)
-                    </div>
-                    <div style={{ flex: 1, padding: '10px 16px', overflowY: 'auto', fontFamily: 'monospace', fontSize: '0.85rem', color: '#e2e8f0', direction: 'ltr', textAlign: 'left' }}>
-                      {consoleOutput.length > 0 ? (
-                        consoleOutput.map((out, idx) => (
-                          <div key={idx} style={{ color: out.startsWith('Error') ? '#ef4444' : '#10b981' }}>{out}</div>
-                        ))
-                      ) : (
-                        <div style={{ color: '#475569' }}>اضغط على "تشغيل الكود" لعرض النتيجة هنا...</div>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              </section>
-
-              {/* Panel 4: Ready Example & Instructions (إرشادات التطبيق) */}
-              <section className={`workspace-panel ${activeWorkspaceTab === 'instructions' ? 'active-panel' : 'hidden-panel'}`} style={{ background: 'rgba(9,10,18,0.7)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '16px', padding: '24px', overflowY: 'auto', display: 'flex', flexDirection: 'column', boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.03)' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 8, borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '12px', marginBottom: '16px' }}>
-                  <span style={{ fontSize: '1.25rem' }}>🎯</span>
-                  <h3 style={{ margin: 0, fontSize: '1.05rem', fontWeight: 800, color: '#10b981' }}>إرشادات التطبيق والمخرجات</h3>
-                </div>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-                  <div style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '10px', padding: '16px' }}>
-                    <h5 style={{ margin: '0 0 8px', fontSize: '0.9rem', color: '#fff' }}>المطلوب منك:</h5>
-                    <p style={{ margin: 0, fontSize: '0.85rem', color: '#94a3b8', lineHeight: 1.6 }}>{lesson.practice_instructions || 'يرجى كتابة وتعديل الكود البرمجي ليعطي المخرج المطلوب بدقة.'}</p>
-                  </div>
-                  
-                  <div style={{ background: 'rgba(16,185,129,0.03)', border: '1px solid rgba(16,185,129,0.1)', borderRadius: '10px', padding: '16px' }}>
-                    <h5 style={{ margin: '0 0 8px', fontSize: '0.9rem', color: '#10b981' }}>المخرجات المتوقعة (Expected Output):</h5>
-                    <pre style={{ margin: 0, fontFamily: 'monospace', fontSize: '0.85rem', color: '#cbd5e1', direction: 'ltr', textAlign: 'left' }}>
-                      {lesson.practice_expected || 'Hello World'}
-                    </pre>
-                  </div>
-
-                  {/* Practice Feedback Status */}
-                  {practiceStatus !== 'idle' && (
-                    <div style={{ padding: '12px 16px', borderRadius: '8px', border: '1px solid', background: practiceStatus === 'success' ? 'rgba(16,185,129,0.1)' : 'rgba(239,68,68,0.1)', color: practiceStatus === 'success' ? '#10b981' : '#f87171', borderColor: practiceStatus === 'success' ? 'rgba(16,185,129,0.3)' : 'rgba(239,68,68,0.3)', display: 'flex', alignItems: 'center', gap: 8, fontSize: '0.9rem', fontWeight: 700 }}>
-                      {practiceStatus === 'success' ? '✅ عمل رائع! النتيجة مطابقة للمطلوب.' : '❌ النتيجة غير مطابقة. حاول مجدداً.'}
-                    </div>
-                  )}
-                </div>
-              </section>
-
+                )}
+              </div>
             </div>
-          </div>
           ) : (
-            /* Interactive Quiz Panel */
+            /* Interactive Quiz Panel (Legacy Full Exam) */
             <div style={{ padding: '40px', maxWidth: '800px', margin: '0 auto', width: '100%', height: '100%', overflowY: 'auto' }}>
-              <div style={{ background: 'rgba(15,15,25,0.8)', padding: '40px', borderRadius: '20px', border: '1px solid rgba(16,185,129,0.2)', backdropFilter: 'blur(20px)' }}>
+              <div style={{ background: isKids ? '#ffffff' : 'rgba(15,15,25,0.8)', padding: '40px', borderRadius: '20px', border: isKids ? '4px solid #fb7185' : '1px solid rgba(16,185,129,0.2)', backdropFilter: 'blur(20px)' }}>
                 <h2 style={{ fontSize: '1.5rem', fontWeight: 800, color: '#10b981', marginBottom: '30px', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '16px' }}>
                   🧠 {examObj.title}
                 </h2>
@@ -1795,7 +1820,7 @@ export default function LessonPage({ params }: { params: Promise<{ lessonId: str
                   <div>
                     {examObj.questions.map((q: any, qi: number) => (
                       <div key={qi} style={{ marginBottom: '40px' }}>
-                        <h4 style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '16px', color: '#fff' }}>{qi + 1}. {q.question}</h4>
+                        <h4 style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '16px', color: isKids ? '#1e293b' : '#fff' }}>{qi + 1}. {q.question}</h4>
                         <div style={{ display: 'grid', gap: '12px' }}>
                           {q.options.map((opt: string, oi: number) => {
                             const isSelected = answers[qi] === oi;
@@ -1804,7 +1829,7 @@ export default function LessonPage({ params }: { params: Promise<{ lessonId: str
                                 textAlign: 'right', padding: '16px 20px', borderRadius: '12px', cursor: 'pointer',
                                 background: isSelected ? 'rgba(16,185,129,0.15)' : 'rgba(255,255,255,0.02)',
                                 border: isSelected ? '1px solid rgba(16,185,129,0.4)' : '1px solid rgba(255,255,255,0.05)',
-                                color: isSelected ? '#10b981' : '#e2e8f0', fontFamily: "'Cairo', sans-serif", fontSize: '0.95rem', transition: 'all 0.2s'
+                                color: isSelected ? '#10b981' : (isKids ? '#1e293b' : '#e2e8f0'), fontFamily: "'Cairo', sans-serif", fontSize: '0.95rem', transition: 'all 0.2s'
                               }}>
                                 {opt}
                               </button>
@@ -1828,22 +1853,52 @@ export default function LessonPage({ params }: { params: Promise<{ lessonId: str
             </div>
           )}
 
-          {/* Footer Controls */}
-          <footer style={{ borderTop: '1px solid rgba(255,255,255,0.05)', padding: '12px 20px', display: 'flex', justifyContent: 'space-between', background: 'rgba(5,5,10,0.95)', flexShrink: 0 }}>
+          {/* Footer Controls with client side verified unlock */}
+          <footer style={{ borderTop: isKids ? '4px solid #f43f5e' : '1px solid rgba(255,255,255,0.05)', padding: '12px 20px', display: 'flex', justifyContent: 'space-between', background: isKids ? '#ffffff' : 'rgba(5,5,10,0.95)', flexShrink: 0 }}>
             {prevLesson ? (
               <Link href={`/learn/${prevLesson.id}`} style={{ textDecoration: 'none' }}>
-                <button style={{ background: 'rgba(255,255,255,0.03)', color: '#cbd5e1', border: '1px solid rgba(255,255,255,0.05)', padding: '10px 20px', borderRadius: '8px', cursor: 'pointer', fontFamily: "'Cairo', sans-serif", fontSize: '0.85rem' }}>
+                <button style={{ background: isKids ? '#f3f4f6' : 'rgba(255,255,255,0.03)', color: isKids ? '#1e293b' : '#cbd5e1', border: '1px solid #cbd5e1', padding: '10px 20px', borderRadius: '8px', cursor: 'pointer', fontFamily: "'Cairo', sans-serif", fontSize: '0.85rem' }}>
                   ← الدرس السابق: {prevLesson.title.replace(/الدرس \d+:\s*/, '')}
                 </button>
               </Link>
             ) : <div />}
 
             {nextLesson ? (
-              <Link href={`/learn/${nextLesson.id}`} style={{ textDecoration: 'none' }}>
-                <button style={{ background: 'rgba(16,185,129,0.1)', color: '#10b981', border: '1px solid rgba(16,185,129,0.2)', padding: '10px 20px', borderRadius: '8px', cursor: 'pointer', fontFamily: "'Cairo', sans-serif", fontSize: '0.85rem', fontWeight: 700 }}>
-                  الدرس التالي: {nextLesson.title.replace(/الدرس \d+:\s*/, '')} →
-                </button>
-              </Link>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                {!microQuizPassed && (
+                  <span style={{ fontSize: '0.8rem', color: '#fb7185', fontWeight: 800 }}>⚠️ يرجى اجتياز تمرين واختبار الدرس لفتح التالي</span>
+                )}
+                <Link 
+                  href={microQuizPassed ? `/learn/${nextLesson.id}` : '#'} 
+                  onClick={(e) => {
+                    if (!microQuizPassed) {
+                      e.preventDefault();
+                      alert('يرجى حل تمرين الكود واجتياز الاختبار السريع أولاً لفتح الدرس التالي! 🔒');
+                    }
+                  }}
+                  style={{ textDecoration: 'none' }}
+                >
+                  <button 
+                    disabled={!microQuizPassed}
+                    style={{ 
+                      background: microQuizPassed ? '#10b981' : '#e5e7eb', 
+                      color: microQuizPassed ? '#fff' : '#9ca3af', 
+                      border: 'none', 
+                      padding: '10px 24px', 
+                      borderRadius: '8px', 
+                      cursor: microQuizPassed ? 'pointer' : 'not-allowed', 
+                      fontFamily: "'Cairo', sans-serif", 
+                      fontSize: '0.85rem', 
+                      fontWeight: 700,
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '6px'
+                    }}
+                  >
+                    {!microQuizPassed && '🔒'} الدرس التالي: {nextLesson.title.replace(/الدرس \d+:\s*/, '')} →
+                  </button>
+                </Link>
+              </div>
             ) : <div />}
           </footer>
         </main>
