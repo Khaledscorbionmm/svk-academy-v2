@@ -20,76 +20,326 @@ const COURSE_TEMPLATES = [
   { title: 'برمجة وتصميم الألعاب ثنائية الأبعاد Unity', category: 'python', level: 'intermediate', instructor: 'فادي ماهر' }
 ];
 
-// 10 modules for each category, each containing 10 specific topics
-const CURRICULUM = {
-  python: [
-    {
-      moduleName: "أساسيات المدخلات والمخرجات",
-      topics: [
-        { title: "مقدمة إلى بايثون وبرنامج Hello World", functionName: "print()", story: "تخيل أنك تقابل صديقاً آلياً جديداً يتحدث لغة بايثون. أول شيء تفعله هو تحيته بعبارة ترحيبية! دالة print() هي مكبر الصوت للكمبيوتر، نستخدمها لإرسال النصوص إلى الشاشة.", practiceInstructions: "اكتب كود بايثون لطباعة الجملة الشهيرة: Hello World", codeTemplate: "print(\"Hello World\")", practiceExpected: "Hello World" },
-        { title: "دمج النصوص والتحية التفاعلية", functionName: "String Concatenation (+)", story: "صديقك الآلي يريد دمج اسمك مع رسالة التحية. نستخدم علامة (+) مثل الغراء لربط نصين معاً لصنع جملة مفيدة.", practiceInstructions: "اكتب أمراً برمجياً يدمج كلمتي 'مرحباً ' و 'يا مبرمج' ويعرض النتيجة.", codeTemplate: "print(\"مرحباً \" + \"يا مبرمج\")", practiceExpected: "مرحباً يا مبرمج" },
-        { title: "التعليقات البرمجية وتنظيم الكود", functionName: "Comments (#)", story: "تخيل أنك تكتب خريطة كنز لشخص آخر، وتضع ملاحظات على الخريطة لا يقرأها النظام بل يقرأها المبرمج لتنظيم كوده وفهمه مستقبلاً.", practiceInstructions: "اكتب تعليقاً يبدأ بـ # يوضح اسمك، ثم اطبع 'تعليق مفيد'.", codeTemplate: "# تعليق من المبرمج\nprint(\"تعليق مفيد\")", practiceExpected: "تعليق مفيد" },
-        { title: "تعديل نهاية السطر باستخدام معلم end", functionName: "print(..., end)", story: "الافتراضي عند استخدام print هو النزول لسطر جديد. تخيل أنك تبني قطاراً وتريد ربط العربات على نفس السطر؛ هنا نستخدم end لتحديد الفاصل.", practiceInstructions: "اطبع 'SVK' واجعل نهايتها مسافة فارغة باستخدام end=' '.", codeTemplate: "print(\"SVK\", end=\" \")", practiceExpected: "SVK " },
-        { title: "الفصل بين القيم باستخدام معلم sep", functionName: "print(..., sep)", story: "إذا كان لديك عدة هدايا وتريد وضع فاصل معين بين كل هدية وأخرى في نفس الصندوق، نستخدم sep لتحديد الفاصل مثل شرطة أو نجمة.", practiceInstructions: "اطبع القيم 'A' و 'B' مع الفصل بينهما بـ '-' باستخدام sep.", codeTemplate: "print(\"A\", \"B\", sep=\"-\")", practiceExpected: "A-B" },
-        { title: "رموز الهروب والسطر الجديد n\\", functionName: "Escape characters (\\n)", story: "تخيل أنك تضغط على زر Enter في لوحة المفاتيح برمجياً لتجبر النص على النزول لسطر جديد؛ الرمز \\n يقوم بهذا الدور السحري.", practiceInstructions: "اطبع كلمة 'سطر1' ثم سطر جديد ثم 'سطر2' في أمر واحد.", codeTemplate: "print(\"سطر1\\nسطر2\")", practiceExpected: "سطر1\nسطر2" },
-        { title: "إدراج مسافات الجدولة باستخدام t\\", functionName: "Tab space (\\t)", story: "هل تريد تنظيم بياناتك في شكل أعمدة مرتبة؟ رمز \\t يترك مسافة تعادل 4 مسافات أفقية كأنك ضغطت زر Tab.", practiceInstructions: "اطبع الكلمتين 'الاسم' و 'السن' مفصولتين بـ \\t.", codeTemplate: "print(\"الاسم\\tالسن\")", practiceExpected: "الاسم\tالسن" },
-        { title: "التعامل مع النصوص الطويلة متعددة الأسطر", functionName: "Triple Quotes ('''...''')", story: "إذا أردت كتابة قصيدة شعرية أو مقال طويل يحتوي على أسطر كثيرة، نغلف النص بثلاث علامات تنصيص ليحفظ المسافات والأسطر كما هي.", practiceInstructions: "اطبع نصاً متعدد الأسطر يحتوي على 'بايثون' في السطر الأول و 'سهلة' في الثاني.", codeTemplate: "print('''بايثون\nسهلة''')", practiceExpected: "بايثون\nسهلة" },
-        { title: "طباعة علامات التنصيص داخل النص", functionName: "Escape Quotes (\\\")", story: "كيف تخبر بايثون أن علامة التنصيص هي جزء من النص وليست نهاية النص؟ نضع شرطة مائلة (\\) قبلها لتهرب من التفسير.", practiceInstructions: "اطبع الجملة التالية متضمنة علامات التنصيص: قال \"مرحباً\"", codeTemplate: "print(\"قال \\\"مرحباً\\\"\")", practiceExpected: "قال \"مرحباً\"" },
-        { title: "تكرار النصوص برمجياً باستخدام معامل الضرب", functionName: "String Multiplication (*)", story: "هل تريد رسم حائط من النجوم بسرعة؟ في بايثون يمكنك ضرب النص في رقم لتكراره فوراً كأنه آلة نسخ سريعة.", practiceInstructions: "كرر طباعة رمز النجمة '*' خمس مرات بضربه في 5.", codeTemplate: "print(\"*\" * 5)", practiceExpected: "*****" }
-      ]
-    },
-    {
-      moduleName: "المتغيرات وأنواع البيانات",
-      topics: [
-        { title: "مفهوم المتغير وصناديق الذاكرة", functionName: "Variables (=)", story: "المتغير هو صندوق في ذاكرة الكمبيوتر نضع عليه ملصقاً يحمل اسماً لنخزن بداخله قيمة، ونستدعي الاسم لنحصل على القيمة.", practiceInstructions: "قم بتعريف متغير باسم name يحمل القيمة 'خالد' ثم اطبعه.", codeTemplate: "name = \"خالد\"\nprint(name)", practiceExpected: "خالد" },
-        { title: "النوع النصي وتخزين العبارات", functionName: "String Data Type (str)", story: "النوع النصي يحمل الكلمات والجمل والحروف. تخيل أنه قطار من الحروف متراص بجوار بعضه ومغلف بعلامات تنصيص.", practiceInstructions: "عرّف متغير text يحمل 'SVK Academy' ثم اطبعه.", codeTemplate: "text = \"SVK Academy\"\nprint(text)", practiceExpected: "SVK Academy" },
-        { title: "النوع الرقمي الصحيح وتخزين الأعداد", functionName: "Integer Data Type (int)", story: "الأعداد الصحيحة هي الأرقام الكاملة بدون كسور عشري مثل عدد الطلاب في الفصل أو عمرك بالسنوات.", practiceInstructions: "عرّف متغير age قيمته 18 ثم اطبعه.", codeTemplate: "age = 18\nprint(age)", practiceExpected: "18" },
-        { title: "النوع الرقمي العشري للقياسات الدقيقة", functionName: "Float Data Type (float)", story: "الأعداد العشرية تحمل الفاصلة العشرية، وتُستخدم للقياسات الدقيقة مثل درجات الحرارة أو أسعار المنتجات.", practiceInstructions: "عرّف متغير score قيمته 95.5 واطبعه.", codeTemplate: "score = 95.5\nprint(score)", practiceExpected: "95.5" },
-        { title: "النوع المنطقي لاتخاذ القرارات", functionName: "Boolean Data Type (bool)", story: "هذا النوع لا يحمل إلا قيمتين: True (صح) أو False (خطأ). يشبه مفتاح الإضاءة؛ إما مفتوح وإما مغلق.", practiceInstructions: "عرّف متغير is_active يحمل القيمة True واطبعه.", codeTemplate: "is_active = True\nprint(is_active)", practiceExpected: "True" },
-        { title: "فحص نوع المتغير برمجياً", functionName: "type()", story: "إذا أعطاك أحدهم صندوقاً مغلقاً وأردت معرفة ما بداخله؛ دالة type() تفحص الصندوق وتخبرك بنوع البيانات المخزنة.", practiceInstructions: "اطبع نوع المتغير num الذي يحمل القيمة 10.", codeTemplate: "num = 10\nprint(type(num))", practiceExpected: "<class 'int'>" },
-        { title: "التحويل إلى أعداد صحيحة", functionName: "int()", story: "إذا كان لديك نص مكتوب فيه الرقم '25' وتريد إدخاله في عملية حسابية؛ يجب تحويله من نص إلى رقم صحيح باستخدام int().", practiceInstructions: "حوّل النص \"50\" إلى عدد صحيح واطبعه.", codeTemplate: "val = int(\"50\")\nprint(val)", practiceExpected: "50" },
-        { title: "التحويل إلى أعداد عشرية", functionName: "float()", story: "التحويل من عدد صحيح أو نص رقمي إلى عدد عشري لإتاحة الكسور والقياسات العشرية بدقة.", practiceInstructions: "حوّل العدد الصحيح 100 إلى عشري واطبعه.", codeTemplate: "val = float(100)\nprint(val)", practiceExpected: "100.0" },
-        { title: "التحويل إلى نصوص للدمج", functionName: "str()", story: "بايثون تمنع دمج الأرقام مع النصوص مباشرة. للتحايل على هذا، نحول الرقم إلى نص باستخدام str() أولاً.", practiceInstructions: "حوّل الرقم 2026 إلى نص واطبعه.", codeTemplate: "val = str(2026)\nprint(val)", practiceExpected: "2026" },
-        { title: "تحديث قيم المتغيرات وإعادة التعيين", functionName: "Reassigning Variables", story: "المتغير سمي متغيراً لأن قيمته تتغير! يمكنك فتح الصندوق وإلقاء القيمة القديمة ووضع قيمة جديدة في أي وقت.", practiceInstructions: "عرّف x = 5 ثم حدّث قيمته إلى 10 واطبعه.", codeTemplate: "x = 5\nx = 10\nprint(x)", practiceExpected: "10" }
-      ]
-    }
+const COURSE_MODULES = {
+  "أساسيات واحتراف لغة Python": [
+    "أساسيات المدخلات والمخرجات",
+    "المتغيرات وأنواع البيانات",
+    "العمليات الحسابية والمنطقية",
+    "الجمل الشرطية واتخاذ القرار",
+    "حلقات التكرار والدوران",
+    "الدوال وهيكلة الأكواد",
+    "هياكل البيانات المتقدمة والقوائم",
+    "التعامل مع الملفات والأخطاء",
+    "البرمجة كائنية التوجه OOP",
+    "المكتبات وتطبيقات عملية والمشروع"
   ],
-  javascript: [
-    {
-      moduleName: "أساسيات المدخلات والمخرجات للويب",
-      topics: [
-        { title: "مقدمة إلى جافاسكريبت والكونسول", functionName: "console.log()", story: "جافاسكريبت هي لغة الحركة والتفاعل في متصفح الويب. دالة console.log() هي الميكروفون الموجه لكونسول المطورين لعرض النتائج وفحص الأخطاء.", practiceInstructions: "اكتب كود جافاسكريبت لطباعة الجملة الشهيرة: Hello JS", codeTemplate: "console.log(\"Hello JS\");", practiceExpected: "Hello JS" },
-        { title: "دمج النصوص والتحيات المخصصة", functionName: "String Concatenation (+)", story: "لربط النصوص معاً وتجميع العبارات المخصصة، نستخدم علامة الزائد لدمج الكلمات.", practiceInstructions: "اطبع دمج الكلمتين 'SVK ' و 'Academy' للكونسول.", codeTemplate: "console.log(\"SVK \" + \"Academy\");", practiceExpected: "SVK Academy" },
-        { title: "التعليقات البرمجية في جافاسكريبت", functionName: "Comments (//)", story: "لتدوين الملاحظات البرمجية التي يتجاهلها المتصفح، نستخدم الشرطتين المائلتين للتعليق أحادي السطر.", practiceInstructions: "اكتب تعليقاً يبدأ بـ // ثم اطبع كلمة 'نشط'.", codeTemplate: "// تعليق بسيط\nconsole.log(\"نشط\");", practiceExpected: "نشط" },
-        { title: "التعليقات متعددة الأسطر", functionName: "Block Comments (/*...*/)", story: "إذا أردت كتابة شرح طويل يمتد لعدة أسطر، نغلفه برمز البداية والنهاية لحجب كامل الفقرة عن التنفيذ.", practiceInstructions: "ضع تعليقاً متعدد الأسطر واطبع 'اختبار'.", codeTemplate: "/* تعليق\nطويل */\nconsole.log(\"اختبار\");", practiceExpected: "اختبار" },
-        { title: "التحذير المنبثق في المتصفح", functionName: "alert()", story: "تخيل نافذة صغيرة تقفز فجأة في وجه المستخدم لتنبهه لشيء عاجل وخطير؛ دالة alert() تصنع هذا التنبيه المنبثق.", practiceInstructions: "اطبع رسالة تحذيرية تحمل النص 'تنبيه هام' (استخدم console.log لمحاكاتها هنا).", codeTemplate: "console.log(\"تنبيه هام\");", practiceExpected: "تنبيه هام" },
-        { title: "فحص نوع البيانات برمجياً", functionName: "typeof", story: "جافاسكريبت لغة ديناميكية؛ لمعرفة نوع المتغير المخزن نستخدم المعامل typeof ليفحصه ويعود بالنوع.", practiceInstructions: "اطبع نوع القيمة الرقمية 100 للكونسول.", codeTemplate: "console.log(typeof 100);", practiceExpected: "number" },
-        { title: "تحويل النصوص إلى أرقام صحيحة", functionName: "parseInt()", story: "عند استقبال مدخلات نصية من مستخدم مثل '12px' ونحتاج استخراج الرقم الصحيح للعمليات الرياضية.", practiceInstructions: "حوّل النص '45' إلى رقم صحيح واطبعه.", codeTemplate: "console.log(parseInt(\"45\"));", practiceExpected: "45" },
-        { title: "تحويل النصوص إلى أرقام عشرية", functionName: "parseFloat()", story: "لتحويل نص يحتوي على كسور عشرية بدقة عالية مثل '3.14' لاستخدامها رياضياً.", practiceInstructions: "حوّل النص '3.14' لعشري واطبعه للكونسول.", codeTemplate: "console.log(parseFloat(\"3.14\"));", practiceExpected: "3.14" },
-        { title: "التحويل النصي السريع", functionName: "String()", story: "لتحويل أي قيمة رقمية أو منطقية إلى نص صريح لإتاحته للدمج النصي الآمن.", practiceInstructions: "حوّل القيمة true لنص واطبعها.", codeTemplate: "console.log(String(true));", practiceExpected: "true" },
-        { title: "طباعة النصوص المنسقة بالتفصيل", functionName: "Template Literals (`...`)", story: "بدل دمج النصوص المعقد بالزائد، نستخدم علامة Backtick لإدراج المتغيرات مباشرة داخل النص بالرمز ${}.", practiceInstructions: "عرّف متغير x=5 واطبعه داخل نص منسق: 'العدد 5' باستخدام التمبلت.", codeTemplate: "const x = 5;\nconsole.log(`العدد ${x}`);", practiceExpected: "العدد 5" }
-      ]
-    }
+  "تطوير واجهات المستخدم باستخدام React": [
+    "مقدمة لبيئة العمل وتثبيت React",
+    "لغة JSX وعناصر واجهة المستخدم",
+    "المكونات Components الثابتة والديناميكية",
+    "تمرير الخصائص Props بين المكونات",
+    "إدارة الحالة باستخدام useState",
+    "التعامل مع التأثيرات الجانبية useEffect",
+    "إدارة النماذج والمدخلات Forms",
+    "الربط مع الخوادم وجلب البيانات fetch",
+    "مفهوم الـ Routing وإدارة الصفحات",
+    "المشروع المتكامل ونشر تطبيق React"
+  ],
+  "أساسيات لغة JavaScript للمبتدئين": [
+    "أساسيات اللغة والطباعة في الكونسول",
+    "تعريف المتغيرات let و const",
+    "العمليات الرياضية ومعاملات الزيادة والنقصان",
+    "الشروط والجمل الشرطية if و else",
+    "حلقات التكرار for و while",
+    "الدوال العادية ودوال السهم Arrow Functions",
+    "المصفوفات Arrays والعمليات عليها",
+    "الكائنات Objects والتعامل مع الخصائص",
+    "التفاعل مع عناصر الصفحة DOM Manipulation",
+    "الوعود Promises والعمليات غير المتزامنة async"
+  ],
+  "تصميم وإدارة قواعد البيانات لغة SQL": [
+    "مقدمة وقواعد البيانات العلاقية",
+    "إنشاء الجداول والتحكم بالهيكل DDL",
+    "الاستعلامات البسيطة SELECT و AS",
+    "تصفية البيانات باستخدام WHERE والروابط",
+    "الترتيب والحد من النتائج ORDER BY",
+    "الدوال التجميعية GROUP BY و HAVING",
+    "ربط الجداول وإحضار البيانات JOINs",
+    "إضافة وتحديث البيانات INSERT و UPDATE",
+    "حفظ التغييرات وتطهير الجداول DELETE",
+    "المشروع العملي وتصميم مخطط البيانات"
+  ],
+  "مقدمة في الذكاء الاصطناعي Python AI": [
+    "مقدمة للذكاء الاصطناعي ومجالاته",
+    "مكتبة NumPy للعمليات الرياضية والمصفوفات",
+    "مكتبة Pandas لتحليل البيانات والـ DataFrames",
+    "تجهيز وتنظيف البيانات Data Preprocessing",
+    "التمثيل البياني للبيانات Matplotlib",
+    "التعلم الخاضع للإشراف Supervised Learning",
+    "خوارزميات التصنيف والاتحدار Regression",
+    "التعلم غير الخاضع للإشراف Clustering",
+    "مفهوم الشبكات العصبية والتعلم العميق",
+    "المشروع العملي وبناء نموذج توقع متكامل"
+  ],
+  "احتراف نظام التشغيل والتحكم Linux & Bash": [
+    "مقدمة ونظام التشغيل لينكس والطرفية",
+    "أوامر التنقل وإدارة الملفات والمجلدات",
+    "قراءة وعرض الملفات النصية cat و nano",
+    "البحث وتصفية النصوص grep و find",
+    "نظام الصلاحيات وتغيير الملكية chmod",
+    "إدارة العمليات والبرامج في الخلفية",
+    "أساسيات البرمجة النصية Bash Scripting",
+    "المتغيرات والمدخلات في نصوص Bash",
+    "الشروط والتكرار وأتمتة المهام البسيطة",
+    "المشروع العملي وأتمتة النسخ الاحتياطي"
+  ],
+  "إدارة الإصدارات والمشاريع Git & GitHub": [
+    "مقدمة لنظام التحكم بالإصدارات Git",
+    "إعداد الهوية وتهيئة المستودع git init",
+    "تتبع التغييرات والمراحل git add و commit",
+    "مراجعة التاريخ وفروقات الأكواد git log",
+    "إنشاء وإدارة الفروع git branch",
+    "دمج الفروع وحل تداخلات الدمج conflicts",
+    "الربط مع موقع GitHub والمستودعات البعيدة",
+    "رفع وسحب التحديثات git push و pull",
+    "التعاون البرمجي وطلبات الدمج Pull Requests",
+    "المشروع النهائي وإدارة الإصدارات للمشروع"
+  ],
+  "أساسيات لغة C++ للمبتدئين من الصفر": [
+    "مقدمة للغة C++ وتثبيت المترجم compiler",
+    "الهيكل الأساسي للبرنامج وجملة الطباعة cout",
+    "المتغيرات وأنواع البيانات الأساسية int/char",
+    "العمليات الحسابية والمنطقية وأسبقيتها",
+    "الجمل الشرطية واتخاذ القرار if و switch",
+    "حلقات التكرار والدوران for و while",
+    "الدوال وتمرير المعاملات بالقيمة والمرجع",
+    "المصفوفات أحادية وثنائية الأبعاد Arrays",
+    "المؤشرات Pointers والتعامل مع الذاكرة",
+    "المشروع العملي وهيكلة الأكواد البرمجية"
+  ],
+  "تطوير تطبيقات الهواتف الذكية Flutter": [
+    "مقدمة لبيئة عمل Flutter ولغة Dart",
+    "أساسيات Dart والمتغيرات والعمليات",
+    "الدوال والمجموعات Lists في لغة Dart",
+    "مقدمة للـ Widgets وتنسيق النصوص",
+    "تصميم واجهات المستخدم وترتيب العناصر Layout",
+    "الواجهات التفاعلية وحفظ الحالة State",
+    "التنقل بين الصفحات والـ Routing",
+    "جلب البيانات والاتصال بـ APIs الخارجية",
+    "مفهوم إدارة الحالة State Management",
+    "المشروع المتكامل وتصدير التطبيق للمتاجر"
+  ],
+  "برمجة وتصميم الألعاب ثنائية الأبعاد Unity": [
+    "مقدمة لمحرك الألعاب Unity والواجهة",
+    "أساسيات لغة C# وكتابة أول سكريبت لعبة",
+    "التحكم في الكائنات GameObjects ومواقعها",
+    "الفيزياء والتصادمات ثنائية الأبعاد Physics 2D",
+    "الحركة والتحكم باللاعب Player Movement",
+    "تصميم المراحل والخرائط Tilemap 2D",
+    "تصميم القوائم وواجهة المستخدم UI Canvas",
+    "المؤثرات الصوتية والموسيقى Audio Source",
+    "الأنيميشن وتحريك الكائنات والشخصيات",
+    "المشروع المتكامل وتصدير وتشغيل اللعبة"
   ]
 };
 
-// Fallback logic for generating curriculum programmatically if modules/topics are requested beyond index 20
-function getProgrammaticTopic(category, lessonIndex) {
+const MODULE_KEYWORDS = {
+  "أساسيات واحتراف لغة Python": [
+    ["print()", "+", "#", "end", "sep", "\\n", "\\t", "'''", "\\\"", "*"],
+    ["=", "str", "int", "float", "bool", "type()", "int()", "float()", "str()", "Reassignment"],
+    ["+", "-", "*", "/", "//", "%", "**", "==", "!=", "and"],
+    ["if", "else", "elif", "Nested if", "and/or", "not", "in", "not in", "is", "is not"],
+    ["while", "for", "range()", "range(step)", "break", "continue", "loop else", "Nested loops", "pass", "infinite loop"],
+    ["def", "Arguments", "return", "Default args", "Multiple returns", "Local scope", "Global scope", "lambda", "Docstrings", "Recursion"],
+    ["list", "List index", "append()", "remove()", "sort()", "dict", "dict values", "set", "tuple", "len()"],
+    ["open()", "read()", "write()", "close()", "with open", "try/except", "ValueError", "finally", "raise", "custom exception"],
+    ["class", "object", "__init__", "self", "methods", "inheritance", "overriding", "encapsulation", "polymorphism", "isinstance()"],
+    ["import", "math", "random", "datetime", "json", "pip", "PEP 8", "testing", "calculator", "final project"]
+  ],
+  "تطوير واجهات المستخدم باستخدام React": [
+    ["npm init", "npx create-react-app", "JSX", "ReactDOM.render()", "Virtual DOM", "React.createElement()", "index.js", "App.js", "import React", "React.StrictMode"],
+    ["JSX element", "JSX attributes", "className", "inline styles", "JSX curly braces", "fragments", "conditional rendering", "map() in JSX", "key prop", "JSX comments"],
+    ["Function Component", "Class Component", "Nested components", "Component return", "export default", "Reusable component", "Component structure", "import component", "UI rendering", "composition"],
+    ["props", "props.children", "Destructuring props", "Default props", "PropTypes", "Read-only props", "Passing functions", "Callback props", "Object props", "Dynamic props"],
+    ["useState()", "State setter", "Initial state", "Functional update", "State array/object", "Multiple states", "Lifting state up", "Controlled inputs", "Form state", "Reset state"],
+    ["useEffect()", "Dependency array", "Cleanup function", "API call on mount", "State synchronization", "Infinite loops", "Multiple effects", "Custom Hooks intro", "useMemo()", "useCallback()"],
+    ["onClick", "onChange", "onSubmit", "Event object (e)", "preventDefault()", "Event handler", "Binding handlers", "State binding", "Dynamic inputs", "Validation"],
+    ["Input value", "TextArea", "Select option", "Checkbox/Radio", "Form submit", "Form validation", "Formik/React Hook Form", "Multi-step form", "Form reset", "Error feedback"],
+    ["fetch() in React", "Axios", "Loading state", "Error state", "Async-Await", "Data display", "Post request", "Delete request", "JSON placeholder", "Caching data"],
+    ["Production build", "Vercel deploy", "Netlify deploy", "Performance audit", "Code splitting", "Lazy loading", "Suspense", "SEO in React", "PWA React", "Final project"]
+  ],
+  "أساسيات لغة JavaScript للمبتدئين": [
+    ["console.log()", "console.error()", "Comments (//)", "Comments (/* */)", "alert()", "confirm()", "prompt()", "document.write()", "Syntax", "Semicolon"],
+    ["var", "let", "const", "Scope difference", "Hoisting", "Primitive types", "Reference types", "typeof operator", "Null vs Undefined", "Variable update"],
+    ["+", "-", "*", "/", "%", "++ / --", "+= / -=", "==", "===", "!="],
+    ["if", "else", "else if", "Nested if", "Switch case", "Logical &&", "Logical ||", "Logical !", "Ternary operator", "Truthy/Falsy"],
+    ["for loop", "while loop", "do-while loop", "break", "continue", "for...of", "for...in", "Infinite loop", "Nested loop", "Loop counter"],
+    ["function", "Parameters", "return value", "Local variables", "Global variables", "Arrow function", "IIFE", "Callback function", "Rest parameters", "Default values"],
+    ["Array declaration", "Index", "length", "push() / pop()", "shift() / unshift()", "indexOf()", "slice()", "splice()", "concat()", "join()"],
+    ["Object literal", "Properties", "Methods", "this keyword", "Constructor function", "new keyword", "Object.keys()", "Object.values()", "JSON.stringify()", "JSON.parse()"],
+    ["getElementById()", "querySelector()", "textContent", "innerHTML", "style", "addEventListener()", "click event", "input event", "classList.add()", "classList.toggle()"],
+    ["setTimeout()", "setInterval()", "Promise", "resolve/reject", "then/catch", "async / await", "fetch()", "JSON data", "localStorage", "SessionStorage"]
+  ],
+  "تصميم وإدارة قواعد البيانات لغة SQL": [
+    ["RDBMS", "SQL commands", "Tables", "Rows & Columns", "Datatypes", "Primary Key", "Foreign Key", "NULL values", "Constraints", "DB engine"],
+    ["CREATE DATABASE", "DROP DATABASE", "CREATE TABLE", "DROP TABLE", "ALTER TABLE", "ADD COLUMN", "RENAME COLUMN", "NOT NULL constraint", "UNIQUE constraint", "CHECK constraint"],
+    ["SELECT", "SELECT DISTINCT", "AS (Alias)", "SELECT ALL", "Arithmetic in SELECT", "Concatenation", "Constants in SELECT", "Case sensitivity", "SELECT TOP", "LIMIT"],
+    ["WHERE", "AND", "OR", "NOT", "IN", "BETWEEN", "LIKE (Wildcards)", "IS NULL", "IS NOT NULL", "Logical operations"],
+    ["ORDER BY ASC", "ORDER BY DESC", "Multiple ORDER BY", "LIMIT / OFFSET", "Fetch first", "Top rows", "Page sorting", "Nulls sorting", "Case-insensitive order", "Random sorting"],
+    ["COUNT()", "SUM()", "AVG()", "MIN() / MAX()", "GROUP BY", "HAVING", "GROUP BY multiple", "WHERE vs HAVING", "Count distinct", "Aggregate expressions"],
+    ["INNER JOIN", "LEFT JOIN", "RIGHT JOIN", "FULL JOIN", "ON clause", "Self Join", "Cross Join", "Multiple Joins", "Aliases in Joins", "Join condition"],
+    ["INSERT INTO", "INSERT multiple", "INSERT default", "UPDATE", "UPDATE multiple rows", "SET clause", "Safe UPDATE (WHERE)", "Subquery in UPDATE", "Transaction intro", "COMMIT / ROLLBACK"],
+    ["DELETE", "TRUNCATE TABLE", "DELETE vs TRUNCATE", "Safe DELETE (WHERE)", "Subquery in DELETE", "Cascading delete", "Foreign Key violation", "Soft Delete", "Purging logs", "Indexes intro"],
+    ["CREATE INDEX", "DROP INDEX", "Indexes performance", "Views", "CREATE VIEW", "Subqueries intro", "Nested Subqueries", "EXISTS operator", "Database normalization", "Final DB project"]
+  ],
+  "مقدمة في الذكاء الاصطناعي Python AI": [
+    ["AI concepts", "Machine Learning", "Deep Learning", "Data Science", "Python for AI", "SciPy", "Anaconda", "Jupyter Notebook", "Supervised intro", "Unsupervised intro"],
+    ["np.array()", "Array shape", "Array reshape", "np.zeros() / np.ones()", "np.arange()", "Array indexing", "Slicing", "Vector operations", "Dot product", "np.random"],
+    ["pd.DataFrame()", "pd.Series()", "read_csv()", "df.head() / df.tail()", "df.info()", "df.describe()", "df.isnull()", "df.dropna()", "df.fillna()", "df.groupby()"],
+    ["Data cleaning", "Feature scaling", "MinMaxScaler", "StandardScaler", "One-Hot Encoding", "LabelEncoder", "train_test_split", "Features vs Target", "Missing values", "Outliers"],
+    ["plt.plot()", "plt.scatter()", "plt.bar()", "plt.hist()", "plt.xlabel()", "plt.ylabel()", "plt.title()", "plt.legend()", "plt.show()", "Subplots"],
+    ["Regression", "Classification", "Model training", "Model evaluation", "Mean Squared Error", "Accuracy score", "Confusion matrix", "Scikit-Learn", "model.fit()", "model.predict()"],
+    ["Linear Regression", "Logistic Regression", "Decision Trees", "Random Forest", "Support Vector Machines", "K-Nearest Neighbors", "Overfitting", "Underfitting", "Cross-validation", "Hyperparameters"],
+    ["K-Means Clustering", "np.clusters", "Elbow method", "Hierarchical clustering", "Dendrogram", "PCA (Reduction)", "Anomaly detection", "Recommendation system", "Collaborative filtering", "Content-based filtering"],
+    ["Artificial Neurons", "Activation functions", "Sigmoid", "ReLU", "Neural Network layers", "Loss function", "Gradient Descent", "Backpropagation", "Epochs", "Keras / TensorFlow"],
+    ["Model export", "pickle / joblib", "Web deployment intro", "Streamlit", "API inference", "AI Ethics", "Bias in AI", "Future of ML", "Final AI project", "AI certification"]
+  ],
+  "احتراف نظام التشغيل والتحكم Linux & Bash": [
+    ["GNU/Linux", "Kernel vs Shell", "Terminal / Console", "Bash prompt", "ls command", "pwd", "whoami", "hostname", "uname", "clear"],
+    ["mkdir", "rmdir", "touch", "rm", "rm -rf", "cp", "mv", "ln -s (Symlink)", "Absolute path", "Relative path"],
+    ["cat", "less / more", "head / tail", "tail -f (live logs)", "nano editor", "vim editor", "echo", "redirect > (overwrite)", "redirect >> (append)", "pipe |"],
+    ["grep", "grep -i", "grep -r", "find", "locate", "wc (word count)", "sort", "uniq", "awk intro", "sed intro"],
+    ["chmod", "chown", "Read/Write/Execute", "Numeric permissions", "Symbolic permissions", "sudo", "root user", "passwd", "useradd", "groupadd"],
+    ["ps", "top / htop", "kill", "kill -9", "Background job (&)", "jobs", "fg / bg", "systemctl status", "systemctl start/stop", "cron jobs (crontab)"],
+    ["#!/bin/bash", "Execution ./script.sh", "Variables", "User input (read)", "Command line arguments", "$1, $2, $@", "Exit status $?", "Arithmetic in Bash", "expr", "$((...))"],
+    ["if statement", "comparison operators", "-eq, -ne, -gt", "string comparison", "file test operators", "-f, -d", "case statement", "else clause", "fi", "Bash logical AND/OR"],
+    ["while loop", "until loop", "for loop", "looping arrays", "break", "continue", "Infinite loop Bash", "Sleep command", "Logger", "Function definition"],
+    ["Backup script", "rsync", "tar archive", "gzip compression", "Automatic scheduling", "Environment variables", "PATH variable", ".bashrc config", "SSH remote connect", "Final bash project"]
+  ],
+  "إدارة الإصدارات والمشاريع Git & GitHub": [
+    ["VCS (Version Control)", "Centralized vs Distributed", "Git installation", "git --version", "git config global", "username config", "email config", "git help", "local repository", "git architecture"],
+    ["git init", "git status", "Three States", "Working Directory", "Staging Area", "Git Directory", ".git folder", "git config local", "git status short", "git ignore"],
+    ["git add", "git add .", "git commit", "git commit -m", "git commit -am", "Commit hash", "Commit message guidelines", "git diff staging", "git rm", "git mv"],
+    ["git log", "git log oneline", "git log graph", "git diff", "git show", "git checkout file", "git restore", "git reset mixed", "git reset hard", "git revert"],
+    ["git branch", "git checkout branch", "git switch", "git branch -d", "git branch -m", "HEAD pointer", "Feature branching", "git branch list", "git branch merged", "Fast-forward merge"],
+    ["git merge", "Three-way merge", "Merge conflict", "Conflict markers", "Resolving conflict", "git merge abort", "git rebase", "git mergetool", "Merge commit", "git cherry-pick"],
+    ["git remote add", "git remote -v", "git remote rename", "git remote remove", "GitHub account", "SSH keys", "git clone", "git clone depth", "git remote show", "Default branch main"],
+    ["git push", "git push upstream", "git fetch", "git pull", "git pull rebase", "Tracking branches", "Remote branches", "git branch -r", "Stashing (git stash)", "git stash pop"],
+    ["Pull Request", "Code Review", "PR description", "Assignees / Reviewers", "Merging PR", "Forking repository", "Upstream synchronization", "GitHub Issues", "GitHub Projects", "GitHub Pages"],
+    ["Git tags", "Releasing versions", "Git reflog", "Git clean", "Collaborative workflow", "Git Hook intro", "GitHub Actions intro", "Git best practices", "Final Git project", "Git cheat sheet"]
+  ],
+  "أساسيات لغة C++ للمبتدئين من الصفر": [
+    ["C++ compiler", "g++ compiler", "IDE setup", "Main function", "cout <<", "cin >>", "#include <iostream>", "using namespace std", "Comments", "Compilation error"],
+    ["Variables", "int", "double / float", "char", "string C++", "bool", "Constants", "Variable initialization", "Data overflow", "Memory size sizeof"],
+    ["+", "-", "*", "/", "%", "Increment ++", "Decrement --", "Logical Operators", "Relational Operators", "Bitwise Operators"],
+    ["if statement", "else", "else if", "Nested if", "Switch-case", "Ternary operator", "Logical AND &&", "Logical OR ||", "Logical NOT !", "Code blocks"],
+    ["for loop", "while loop", "do-while loop", "break", "continue", "Nested loops", "Infinite loop", "Loop conditions", "Loop iterator", "Loop performance"],
+    ["Function declaration", "Function definition", "Parameters", "Return types", "Call by value", "Call by reference", "Function overloading", "Scope", "Recursion", "Inline functions"],
+    ["Array declaration", "Array indexing", "Array size", "Multi-dimensional array", "String object", "String methods", "Vector container", "Vector methods", "Sorting arrays", "Array loop"],
+    ["Pointers", "Address operator &", "Dereference operator *", "Null pointer", "Pointer arithmetic", "Pointers and arrays", "Dynamic memory", "new / delete", "Memory leaks", "References"],
+    ["class definition", "object creation", "Access specifiers", "public / private", "Constructor", "Destructor", "Inheritance", "Polymorphism", "Encapsulation", "Abstract class"],
+    ["File streams", "ifstream", "ofstream", "Error handling", "Header files", "Templates", "STL containers", "Debugging C++", "Final C++ project", "C++ best practices"]
+  ],
+  "تطوير تطبيقات الهواتف الذكية Flutter": [
+    ["Flutter SDK", "Dart SDK", "Android Studio", "VS Code Flutter", "Flutter doctor", "Simulator / Emulator", "flutter create", "pubspec.yaml", "main.dart", "Hot Reload"],
+    ["Dart syntax", "var / dynamic", "final / const", "Data types Dart", "Numbers / Strings", "Booleans", "List / Map Dart", "String interpolation", "Null safety", "Late variables"],
+    ["Dart Functions", "Named parameters", "Optional parameters", "Arrow syntax", "Dart classes", "Dart constructors", "Dart inheritance", "Dart mixins", "Asynchronous Dart", "Future / async"],
+    ["Widget tree", "StatelessWidget", "StatefulWidget", "build method", "BuildContext", "MaterialApp", "Scaffold", "AppBar", "Center Widget", "Text Widget"],
+    ["Container Widget", "Padding", "Margin", "Row", "Column", "Stack", "ListView", "GridView", "SizedBox", "Align / Positioned"],
+    ["setState()", "TextEditingController", "TextField", "ElevatedButton", "IconButton", "GestureDetector", "InkWell", "Checkbox / Switch", "Slider", "SnackBar"],
+    ["Navigator.push", "Navigator.pop", "Named routes", "Passing arguments", "MaterialPageRoute", "TabController", "TabBar", "Drawer Widget", "BottomNavigationBar", "Hero animation"],
+    ["http package", "get request", "post request", "jsonDecode()", "FutureBuilder", "ListView.builder", "Loading spinner", "Error handling API", "API key security", "Caching API data"],
+    ["State management intro", "Provider package", "ChangeNotifier", "Consumer Widget", "MultiProvider", "BLoC pattern intro", "Riverpod intro", "Global state", "Shared Preferences", "Local DB SQLite"],
+    ["Flutter build apk", "iOS build ipa", "Launcher icons", "Splash screen", "App permissions", "Vercel deploy web", "Play Store setup", "App Store setup", "Final Flutter project", "Flutter best practices"]
+  ],
+  "برمجة وتصميم الألعاب ثنائية الأبعاد Unity": [
+    ["Unity Hub", "Unity Editor", "Scene View", "Game View", "Hierarchy", "Project window", "Inspector", "Console window", "Creating project", "GameObjects"],
+    ["MonoBehaviour", "Start()", "Update()", "FixedUpdate()", "C# classes Unity", "Debug.Log()", "Variables in C#", "Serializefield", "C# functions", "DeltaTime"],
+    ["Transform", "Vector3", "Vector2", "Translate()", "Rotate()", "Position & Rotation", "Scale", "Parenting GameObjects", "Instantiate()", "Destroy()"],
+    ["Rigidbody 2D", "Collider 2D", "BoxCollider 2D", "CircleCollider 2D", "OnCollisionEnter2D", "OnTriggerEnter2D", "Physics Materials 2D", "Gravity Scale", "Forces AddForce", "Is Trigger"],
+    ["Input.GetAxis", "Input.GetKeyDown", "WASD / Arrows input", "Jump logic", "MovePosition", "Velocity", "Flip Sprite", "Clamp position", "Mobile controls", "Keyboard vs Controller"],
+    ["2D Sprite", "Sprite Renderer", "Sorting Layers", "Tilemap", "Grid system", "Tile Palette", "Rule Tiles", "2D Camera", "Cinemachine 2D", "Pixel Perfect Camera"],
+    ["UI Canvas", "UI Image", "UI Text (TMP)", "UI Button", "Button Listeners", "Score manager", "Game Over screen", "Pause Menu", "SceneManager.LoadScene", "UI Scaling"],
+    ["Audio Source", "Audio Clip", "Audio Listener", "PlayOneShot()", "Volume control", "Background music", "Sound effects SFX", "Audio Mixer", "Audio triggers", "Mute toggle"],
+    ["Animator Controller", "Animation Window", "Spritesheet slicing", "Transitions", "Parameters (Trigger/Bool)", "Blend Trees", "State Machine", "Scripting animations", "Flip sprite animator", "Loop animation"],
+    ["Build Settings", "Exporting PC/WebGL", "WebGL hosting", "Game optimization", "Prefabs", "Layer collision matrix", "Game loop manager", "Saving highscores", "Final 2D game project", "Unity best practices"]
+  ]
+};
+
+function getProgrammaticTopic(courseTitle, category, lessonIndex) {
   const moduleIndex = Math.floor((lessonIndex - 1) / 10);
   const topicIndex = (lessonIndex - 1) % 10;
   
-  const categoryModules = CURRICULUM[category] || CURRICULUM['python'];
-  const mod = categoryModules[moduleIndex % categoryModules.length];
-  const top = mod.topics[topicIndex % mod.topics.length];
+  // Find modules for this course, fallback to python
+  const modulesList = COURSE_MODULES[courseTitle] || COURSE_MODULES["أساسيات واحتراف لغة Python"];
+  const moduleName = modulesList[moduleIndex % modulesList.length];
   
-  // Return tailored variation
+  // Find keywords for this course, fallback to python
+  const keywordsList = MODULE_KEYWORDS[courseTitle] || MODULE_KEYWORDS["أساسيات واحتراف لغة Python"];
+  const moduleKeywords = keywordsList[moduleIndex % keywordsList.length];
+  const keyword = moduleKeywords[topicIndex % moduleKeywords.length];
+  
+  // Create beautiful, descriptive and unique titles based on topicIndex
+  let title = "";
+  let story = "";
+  let practiceInstructions = "";
+  let codeTemplate = "";
+  let practiceExpected = "";
+  
+  // Custom templates based on topicIndex (0 to 9) to generate a realistic progression
+  const ArabicTitles = [
+    `الدرس ${lessonIndex}: مدخل ومفهوم (${keyword}) في ${moduleName}`,
+    `الدرس ${lessonIndex}: الخطوات الأولى وتجهيز (${keyword})`,
+    `الدرس ${lessonIndex}: التطبيق العملي الأول لـ (${keyword})`,
+    `الدرس ${lessonIndex}: تفاصيل ومعاملات (${keyword}) الهامة`,
+    `الدرس ${lessonIndex}: إدارة وتمرير البيانات مع (${keyword})`,
+    `الدرس ${lessonIndex}: العمليات البرمجية المرافقة لـ (${keyword})`,
+    `الدرس ${lessonIndex}: فحص الأخطاء الشائعة وحل مشاكل (${keyword})`,
+    `الدرس ${lessonIndex}: الاستخدام المتقدم وتطبيق (${keyword})`,
+    `الدرس ${lessonIndex}: كتابة كود نظيف وتطوير منطق (${keyword})`,
+    `الدرس ${lessonIndex}: التحدي النهائي والتطبيق الشامل لـ (${keyword})`
+  ];
+  
+  title = ArabicTitles[topicIndex];
+  
+  // Story details - customized
+  story = `في هذا الدرس، سنقوم برحلة ممتعة لفهم واستكشاف الأداة <strong>${keyword}</strong> وهي جزء أساسي من محور <em>${moduleName}</em> في كورس ${courseTitle}. تخيل أنك تبني مشروعاً ضخماً، وتحتاج إلى تنظيم عملك بدقة. الأداة ${keyword} تعمل كمساعد ذكي ينجز لك هذه المهمة بأسرع وقت وأقل جهد برميجي!`;
+  
+  // Instructions
+  practiceInstructions = `مطلوب منك كتابة وتعديل الكود البرمجي التالي لتجربة الأداة (${keyword}) والتأكد من ظهور المخرجات بالشكل الصحيح لمطابقة النتيجة المطلوبة.`;
+  
+  // Generate codeTemplate and practiceExpected depending on language
+  const lowerTitle = courseTitle.toLowerCase();
+  const isJS = category === 'javascript' || category === 'react' || lowerTitle.includes('javascript') || lowerTitle.includes('react');
+  const isCPP = lowerTitle.includes('c++') || lowerTitle.includes('cpp');
+  const isDart = lowerTitle.includes('flutter') || lowerTitle.includes('dart');
+  const isSQL = lowerTitle.includes('sql') || lowerTitle.includes('database') || category === 'database';
+  
+  if (isJS) {
+    codeTemplate = `// تطبيق عملي لـ ${keyword}\nconsole.log("تطبيق عملي: " + "${keyword}");`;
+    practiceExpected = `تطبيق عملي: ${keyword}`;
+  } else if (isCPP) {
+    codeTemplate = `#include <iostream>\nusing namespace std;\n\nint main() {\n    cout << "تطبيق عملي: " << "${keyword}" << endl;\n    return 0;\n}`;
+    practiceExpected = `تطبيق عملي: ${keyword}`;
+  } else if (isDart) {
+    codeTemplate = `void main() {\n  print("تطبيق عملي: " + "${keyword}");\n}`;
+    practiceExpected = `تطبيق عملي: ${keyword}`;
+  } else if (isSQL) {
+    codeTemplate = `SELECT 'تطبيق عملي: ' || '${keyword}' AS result;`;
+    practiceExpected = `تطبيق عملي: ${keyword}`;
+  } else {
+    // Default Python syntax
+    codeTemplate = `# تطبيق عملي لـ ${keyword}\nprint("تطبيق عملي: " + "${keyword}")`;
+    practiceExpected = `تطبيق عملي: ${keyword}`;
+  }
+  
   return {
-    title: `الدرس ${lessonIndex}: ${top.title} (مستوى ${lessonIndex})`,
-    functionName: top.functionName,
-    story: top.story + ` (توسيع وتطبيق عملي رقم ${lessonIndex})`,
-    practiceInstructions: top.practiceInstructions + ` (التحدي البرمجي ${lessonIndex})`,
-    codeTemplate: top.codeTemplate.replace(/Lesson \d+/g, `Lesson ${lessonIndex}`).replace(/\d+/g, String(lessonIndex)),
-    practiceExpected: top.practiceExpected.replace(/Lesson \d+/g, `Lesson ${lessonIndex}`).replace(/\d+/g, String(lessonIndex))
+    title,
+    functionName: keyword,
+    story,
+    practiceInstructions,
+    codeTemplate,
+    practiceExpected
   };
 }
 
@@ -99,7 +349,6 @@ async function seed() {
     console.log('Starting DB transaction...');
     await client.query('BEGIN');
 
-    // 1. Fetch existing courses to keep IDs stable if they exist, or clear and rebuild
     console.log('Clearing old lesson access and lessons data...');
     await client.query('DELETE FROM lesson_access');
     await client.query('DELETE FROM enrollments');
@@ -145,7 +394,7 @@ async function seed() {
 
         for (let l = chunkStart; l < chunkStart + chunkSize && l <= 100; l++) {
           const isFree = l === 1; // first lesson free
-          const topic = getProgrammaticTopic(template.category, l);
+          const topic = getProgrammaticTopic(courseTitle, template.category, l);
           
           const lessonTitle = topic.title;
 

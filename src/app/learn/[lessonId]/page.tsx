@@ -668,6 +668,7 @@ export default function LearnPage({ params }: { params: Promise<{ lessonId: stri
   const [data, setData] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [sidebar, setSidebar] = useState(true);
+  const [activeWorkspaceTab, setActiveWorkspaceTab] = useState<'explanation' | 'syntax' | 'editor' | 'instructions'>('explanation');
   
   // Interactive Code Playground States
   const [code, setCode] = useState('');
@@ -748,6 +749,7 @@ export default function LearnPage({ params }: { params: Promise<{ lessonId: stri
           setShowResults(false);
           setAnswers({});
           setActiveTab('workspace');
+          setActiveWorkspaceTab('explanation');
           setRequested(json.hasRequested || false);
         } else {
           router.push('/courses');
@@ -901,8 +903,8 @@ export default function LearnPage({ params }: { params: Promise<{ lessonId: stri
       <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet" />
 
       {/* Header */}
-      <header className="learning-header" style={{ borderBottom: '1px solid rgba(16,185,129,0.1)', padding: '0 20px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', background: 'rgba(5,5,10,0.95)', backdropFilter: 'blur(20px)', height: 70, flexShrink: 0, zIndex: 100 }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+      <header className="learning-header" style={{ borderBottom: '1px solid rgba(16,185,129,0.1)', padding: '0 20px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', background: 'rgba(5,5,10,0.95)', backdropFilter: 'blur(20px)', height: 70, flexShrink: 0, zIndex: 100, flexWrap: 'nowrap' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 16, flexShrink: 0 }}>
           <button onClick={() => setSidebar(!sidebar)} style={{ background: 'rgba(16,185,129,0.1)', border: '1px solid rgba(16,185,129,0.2)', color: '#10b981', width: 40, height: 40, borderRadius: '10px', cursor: 'pointer', fontSize: '1.2rem', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'all 0.2s' }}>☰</button>
           <div className="lesson-header-title">
             <span className="desktop-text" style={{ fontSize: '0.75rem', color: '#64748b' }}>{course.title_ar || course.title}</span>
@@ -911,24 +913,77 @@ export default function LearnPage({ params }: { params: Promise<{ lessonId: stri
         </div>
 
         {/* Tab Controls */}
-        <div style={{ display: 'flex', background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '10px', padding: '4px' }}>
-          <button onClick={() => setActiveTab('workspace')} style={{ background: activeTab === 'workspace' ? 'rgba(16,185,129,0.15)' : 'transparent', border: 'none', color: activeTab === 'workspace' ? '#10b981' : '#94a3b8', padding: '8px 20px', borderRadius: '8px', cursor: 'pointer', fontFamily: "'Cairo', sans-serif", fontSize: '0.9rem', fontWeight: 700, transition: 'all 0.2s' }}>
+        <div style={{ display: 'flex', background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '10px', padding: '4px', flexShrink: 0 }}>
+          <button 
+            className="header-tab-btn"
+            onClick={() => setActiveTab('workspace')} 
+            style={{ 
+              background: activeTab === 'workspace' ? 'rgba(16,185,129,0.15)' : 'transparent', 
+              border: 'none', 
+              color: activeTab === 'workspace' ? '#10b981' : '#94a3b8', 
+              padding: '8px 20px', 
+              borderRadius: '8px', 
+              cursor: 'pointer', 
+              fontFamily: "'Cairo', sans-serif", 
+              fontSize: '0.9rem', 
+              fontWeight: 700, 
+              transition: 'all 0.2s',
+              whiteSpace: 'nowrap'
+            }}
+          >
             <span className="desktop-text">💻 مساحة التطبيق العملي (4 لوحات)</span>
             <span className="mobile-text">💻 التطبيق</span>
           </button>
           {examObj && (
-            <button onClick={() => setActiveTab('quiz')} style={{ background: activeTab === 'quiz' ? 'rgba(16,185,129,0.15)' : 'transparent', border: 'none', color: activeTab === 'quiz' ? '#10b981' : '#94a3b8', padding: '8px 20px', borderRadius: '8px', cursor: 'pointer', fontFamily: "'Cairo', sans-serif", fontSize: '0.9rem', fontWeight: 700, transition: 'all 0.2s', display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <button 
+              className="header-tab-btn"
+              onClick={() => setActiveTab('quiz')} 
+              style={{ 
+                background: activeTab === 'quiz' ? 'rgba(16,185,129,0.15)' : 'transparent', 
+                border: 'none', 
+                color: activeTab === 'quiz' ? '#10b981' : '#94a3b8', 
+                padding: '8px 20px', 
+                borderRadius: '8px', 
+                cursor: 'pointer', 
+                fontFamily: "'Cairo', sans-serif", 
+                fontSize: '0.9rem', 
+                fontWeight: 700, 
+                transition: 'all 0.2s', 
+                display: 'flex', 
+                alignItems: 'center', 
+                gap: '8px',
+                whiteSpace: 'nowrap'
+              }}
+            >
               <span className="desktop-text">🧠 اختبار الدرس 📝</span>
               <span className="mobile-text">🧠 الاختبار</span>
             </button>
           )}
         </div>
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 12, flexShrink: 0 }}>
           <Link href={`/courses/${lesson.course_id}`} style={{ textDecoration: 'none' }}>
-            <button style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', color: '#e2e8f0', padding: '8px 16px', borderRadius: '10px', fontSize: '0.85rem', fontWeight: 600, cursor: 'pointer', fontFamily: "'Cairo', sans-serif", transition: 'all 0.2s' }}>
+            <button 
+              className="exit-button"
+              style={{ 
+                background: 'rgba(239, 68, 68, 0.1)', 
+                border: '1px solid rgba(239, 68, 68, 0.2)', 
+                color: '#f87171', 
+                padding: '8px 16px', 
+                borderRadius: '10px', 
+                fontSize: '0.85rem', 
+                fontWeight: 600, 
+                cursor: 'pointer', 
+                fontFamily: "'Cairo', sans-serif", 
+                transition: 'all 0.2s',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                whiteSpace: 'nowrap'
+              }}
+            >
               <span className="desktop-text">خروج من الدرس</span>
-              <span className="mobile-text">خروج</span>
+              <span className="mobile-text" style={{ fontSize: '1rem', fontWeight: 'bold' }}>✕</span>
             </button>
           </Link>
         </div>
@@ -936,6 +991,23 @@ export default function LearnPage({ params }: { params: Promise<{ lessonId: stri
 
       {/* Main Container */}
       <div style={{ display: 'flex', flex: 1, overflow: 'hidden', position: 'relative' }}>
+        {/* Mobile Sidebar Backdrop */}
+        {sidebar && (
+          <div 
+            className="sidebar-backdrop"
+            onClick={() => setSidebar(false)}
+            style={{
+              display: 'none',
+              position: 'fixed',
+              top: 0, left: 0, right: 0, bottom: 0,
+              background: 'rgba(0, 0, 0, 0.6)',
+              backdropFilter: 'blur(4px)',
+              zIndex: 85,
+              transition: 'opacity 0.3s ease'
+            }}
+          />
+        )}
+
         {/* Navigation Sidebar */}
         {sidebar && (
           <aside className="navigation-sidebar" style={{ width: 320, background: 'rgba(5,5,10,0.85)', borderLeft: '1px solid rgba(16,185,129,0.1)', overflowY: 'auto', display: 'flex', flexDirection: 'column', flexShrink: 0 }}>
@@ -1052,11 +1124,104 @@ export default function LearnPage({ params }: { params: Promise<{ lessonId: stri
               </div>
             </div>
           ) : activeTab === 'workspace' ? (
-            /* 4-Panel Grid Workspace */
-            <div className="workspace-grid" style={{ gap: '12px', padding: '12px', background: '#020205' }}>
+            /* Workspace Container containing switcher and grid */
+            <div className="workspace-container" style={{ display: 'flex', flexDirection: 'column', flex: 1, overflow: 'hidden' }}>
               
-              {/* Panel 1: Written Explanation (الشرح النظري) */}
-              <section style={{ background: 'rgba(5,5,10,0.6)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '14px', padding: '24px', overflowY: 'auto', display: 'flex', flexDirection: 'column' }}>
+              {/* Mobile Workspace Tabs Switcher */}
+              <div className="mobile-workspace-tabs" style={{ display: 'none', background: 'rgba(5,5,10,0.95)', borderBottom: '1px solid rgba(16,185,129,0.1)', padding: '6px', gap: '4px', overflowX: 'auto', flexShrink: 0 }}>
+                <button 
+                  onClick={() => setActiveWorkspaceTab('explanation')} 
+                  style={{
+                    background: activeWorkspaceTab === 'explanation' ? 'rgba(16,185,129,0.15)' : 'transparent',
+                    border: 'none',
+                    color: activeWorkspaceTab === 'explanation' ? '#10b981' : '#94a3b8',
+                    padding: '8px 12px',
+                    borderRadius: '8px',
+                    cursor: 'pointer',
+                    fontFamily: "'Cairo', sans-serif",
+                    fontSize: '0.8rem',
+                    fontWeight: 700,
+                    whiteSpace: 'nowrap',
+                    flex: 1,
+                    textAlign: 'center',
+                    transition: 'all 0.2s'
+                  }}
+                >
+                  📖 الدرس
+                </button>
+                <button 
+                  onClick={() => setActiveWorkspaceTab('syntax')} 
+                  style={{
+                    background: activeWorkspaceTab === 'syntax' ? 'rgba(16,185,129,0.15)' : 'transparent',
+                    border: 'none',
+                    color: activeWorkspaceTab === 'syntax' ? '#10b981' : '#94a3b8',
+                    padding: '8px 12px',
+                    borderRadius: '8px',
+                    cursor: 'pointer',
+                    fontFamily: "'Cairo', sans-serif",
+                    fontSize: '0.8rem',
+                    fontWeight: 700,
+                    whiteSpace: 'nowrap',
+                    flex: 1,
+                    textAlign: 'center',
+                    transition: 'all 0.2s'
+                  }}
+                >
+                  💡 القاموس
+                </button>
+                <button 
+                  onClick={() => setActiveWorkspaceTab('editor')} 
+                  style={{
+                    background: activeWorkspaceTab === 'editor' ? 'rgba(16,185,129,0.15)' : 'transparent',
+                    border: 'none',
+                    color: activeWorkspaceTab === 'editor' ? '#10b981' : '#94a3b8',
+                    padding: '8px 12px',
+                    borderRadius: '8px',
+                    cursor: 'pointer',
+                    fontFamily: "'Cairo', sans-serif",
+                    fontSize: '0.8rem',
+                    fontWeight: 700,
+                    whiteSpace: 'nowrap',
+                    flex: 1,
+                    textAlign: 'center',
+                    transition: 'all 0.2s'
+                  }}
+                >
+                  💻 التجربة
+                </button>
+                <button 
+                  onClick={() => setActiveWorkspaceTab('instructions')} 
+                  style={{
+                    background: activeWorkspaceTab === 'instructions' ? 'rgba(16,185,129,0.15)' : 'transparent',
+                    border: 'none',
+                    color: activeWorkspaceTab === 'instructions' ? '#10b981' : '#94a3b8',
+                    padding: '8px 12px',
+                    borderRadius: '8px',
+                    cursor: 'pointer',
+                    fontFamily: "'Cairo', sans-serif",
+                    fontSize: '0.8rem',
+                    fontWeight: 700,
+                    whiteSpace: 'nowrap',
+                    flex: 1,
+                    textAlign: 'center',
+                    transition: 'all 0.2s'
+                  }}
+                >
+                  🎯 الهدف
+                </button>
+              </div>
+
+              {/* 4-Panel Grid Workspace */}
+              <div className="workspace-grid" style={{ gap: '12px', padding: '12px', background: '#020205', flex: 1, overflow: 'hidden' }}>
+                
+                {/* Panel 1: Written Explanation (الشرح النظري) */}
+                <section className={`workspace-panel ${activeWorkspaceTab === 'explanation' ? 'active-panel' : 'hidden-panel'}`} style={{ background: 'rgba(9,10,18,0.7)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '16px', padding: '24px', overflowY: 'auto', display: 'flex', flexDirection: 'column', boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.03)' }}>
+                  
+                  {/* Lesson title header for mobile/desktop reading anchor */}
+                  <div className="panel-lesson-title" style={{ marginBottom: '20px', padding: '16px', background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.05) 0%, transparent 100%)', borderRadius: '12px', borderRight: '4px solid #10b981' }}>
+                    <div style={{ fontSize: '0.8rem', color: '#64748b', fontWeight: 700, marginBottom: '4px' }}>{course.title_ar || course.title}</div>
+                    <h2 style={{ fontSize: '1.25rem', fontWeight: 900, color: '#fff', margin: 0 }}>{lesson.title}</h2>
+                  </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 8, borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '12px', marginBottom: '16px' }}>
                   <span style={{ fontSize: '1.25rem' }}>📖</span>
                   <h3 style={{ margin: 0, fontSize: '1.05rem', fontWeight: 800, color: '#10b981' }}>الشرح الصوتي والكتابي والعملي للدرس</h3>
@@ -1109,7 +1274,7 @@ export default function LearnPage({ params }: { params: Promise<{ lessonId: stri
               </section>
 
               {/* Panel 2: Code & Syntax Explanation (الكود البرمجي وشرحه) */}
-              <section style={{ background: 'rgba(5,5,10,0.6)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '14px', padding: '24px', overflowY: 'auto', display: 'flex', flexDirection: 'column' }}>
+              <section className={`workspace-panel ${activeWorkspaceTab === 'syntax' ? 'active-panel' : 'hidden-panel'}`} style={{ background: 'rgba(9,10,18,0.7)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '16px', padding: '24px', overflowY: 'auto', display: 'flex', flexDirection: 'column', boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.03)' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 8, borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '12px', marginBottom: '16px' }}>
                   <span style={{ fontSize: '1.25rem' }}>💡</span>
                   <h3 style={{ margin: 0, fontSize: '1.05rem', fontWeight: 800, color: '#10b981' }}>بنية الكود البرمجي وشرحه</h3>
@@ -1318,7 +1483,7 @@ export default function LearnPage({ params }: { params: Promise<{ lessonId: stri
               </section>
 
               {/* Panel 3: Interactive Practice Playground (بيئة التطبيق التفاعلية) */}
-              <section style={{ background: 'rgba(5,5,10,0.6)', border: '1px solid rgba(16,185,129,0.2)', borderRadius: '14px', overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
+              <section className={`workspace-panel ${activeWorkspaceTab === 'editor' ? 'active-panel' : 'hidden-panel'}`} style={{ background: 'rgba(9,10,18,0.7)', border: '1px solid rgba(16,185,129,0.2)', borderRadius: '16px', overflow: 'hidden', display: 'flex', flexDirection: 'column', boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.03)' }}>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 20px', borderBottom: '1px solid rgba(16,185,129,0.1)', background: 'rgba(16,185,129,0.02)' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
                     <span style={{ fontSize: '1.25rem' }}>💻</span>
@@ -1359,7 +1524,7 @@ export default function LearnPage({ params }: { params: Promise<{ lessonId: stri
               </section>
 
               {/* Panel 4: Ready Example & Instructions (إرشادات التطبيق) */}
-              <section style={{ background: 'rgba(5,5,10,0.6)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '14px', padding: '24px', overflowY: 'auto', display: 'flex', flexDirection: 'column' }}>
+              <section className={`workspace-panel ${activeWorkspaceTab === 'instructions' ? 'active-panel' : 'hidden-panel'}`} style={{ background: 'rgba(9,10,18,0.7)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '16px', padding: '24px', overflowY: 'auto', display: 'flex', flexDirection: 'column', boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.03)' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 8, borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '12px', marginBottom: '16px' }}>
                   <span style={{ fontSize: '1.25rem' }}>🎯</span>
                   <h3 style={{ margin: 0, fontSize: '1.05rem', fontWeight: 800, color: '#10b981' }}>إرشادات التطبيق والمخرجات</h3>
@@ -1387,114 +1552,10 @@ export default function LearnPage({ params }: { params: Promise<{ lessonId: stri
               </section>
 
             </div>
+          </div>
           ) : (
             /* Interactive Quiz Panel */
             <div style={{ padding: '40px', maxWidth: '800px', margin: '0 auto', width: '100%', height: '100%', overflowY: 'auto' }}>
-            <style>{`
-        ::-webkit-scrollbar { width: 6px; height: 6px; }
-        ::-webkit-scrollbar-track { background: #020205; }
-        ::-webkit-scrollbar-thumb { background: rgba(16, 185, 129, 0.2); border-radius: 3px; }
-        ::-webkit-scrollbar-thumb:hover { background: rgba(16, 185, 129, 0.4); }
-        
-        @keyframes soundwave {
-          0%, 100% { height: 4px; }
-          50% { height: 14px; }
-        }
-        @keyframes rainbow-border {
-          0% { border-color: rgba(16, 185, 129, 0.2); }
-          50% { border-color: rgba(139, 92, 246, 0.4); }
-          100% { border-color: rgba(16, 185, 129, 0.2); }
-        }
-        @keyframes card-pulse {
-          0% { transform: scale(1); }
-          50% { transform: scale(1.01); }
-          100% { transform: scale(1); }
-        }
-        .audio-wave {
-          display: inline-flex;
-          align-items: flex-end;
-          gap: 2px;
-          height: 14px;
-          margin-left: 6px;
-          margin-right: 6px;
-        }
-        .audio-wave div {
-          width: 2px;
-          height: 4px;
-          background: currentColor;
-          border-radius: 1px;
-          animation: soundwave 0.8s ease-in-out infinite;
-        }
-        .syntax-card:hover {
-          background: rgba(255, 255, 255, 0.03) !important;
-          border-color: rgba(16, 185, 129, 0.2) !important;
-          transform: translateY(-2px);
-          box-shadow: 0 12px 30px rgba(0,0,0,0.4), 0 0 20px rgba(16, 185, 129, 0.05);
-        }
-
-        /* Responsive Learning Layout */
-        .workspace-grid {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          grid-template-rows: 1fr 1fr;
-          height: 100%;
-          overflow: hidden;
-          flex: 1;
-        }
-        .desktop-text { display: inline; }
-        .mobile-text { display: none; }
-        .navigation-sidebar {
-          transition: all 0.3s ease;
-          z-index: 90;
-        }
-
-        @media (max-width: 1024px) {
-          .workspace-grid {
-            grid-template-columns: 1fr !important;
-            grid-template-rows: auto !important;
-            height: auto !important;
-            overflow: visible !important;
-            overflow-x: hidden !important;
-          }
-          .workspace-grid section {
-            min-height: 380px;
-            height: auto !important;
-            overflow: visible !important;
-          }
-          .code-editor-textarea {
-            min-height: 250px !important;
-          }
-          .main-content {
-            overflow-y: auto !important;
-            height: 100% !important;
-          }
-        }
-
-        @media (max-width: 1024px) {
-          .desktop-text { display: none !important; }
-          .mobile-text { display: inline !important; }
-          .navigation-sidebar {
-            position: fixed !important;
-            top: 70px !important;
-            right: 0 !important;
-            bottom: 0 !important;
-            width: 280px !important;
-            box-shadow: -10px 0 30px rgba(0,0,0,0.5);
-            background: rgba(5,5,10,0.98) !important;
-            z-index: 200 !important;
-          }
-          .syntax-grid {
-            grid-template-columns: 1fr !important;
-            gap: 16px !important;
-          }
-          .syntax-grid > div:first-child {
-            border-left: none !important;
-            border-bottom: 1px solid rgba(255,255,255,0.03);
-            padding-left: 0 !important;
-            padding-bottom: 12px;
-          }
-        }
-      `}</style>
               <div style={{ background: 'rgba(15,15,25,0.8)', padding: '40px', borderRadius: '20px', border: '1px solid rgba(16,185,129,0.2)', backdropFilter: 'blur(20px)' }}>
                 <h2 style={{ fontSize: '1.5rem', fontWeight: 800, color: '#10b981', marginBottom: '30px', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '16px' }}>
                   🧠 {examObj.title}
@@ -1574,8 +1635,8 @@ export default function LearnPage({ params }: { params: Promise<{ lessonId: stri
       <style>{`
         ::-webkit-scrollbar { width: 6px; height: 6px; }
         ::-webkit-scrollbar-track { background: #020205; }
-        ::-webkit-scrollbar-thumb { background: rgba(16,185,129,0.2); border-radius: 3px; }
-        ::-webkit-scrollbar-thumb:hover { background: rgba(16,185,129,0.4); }
+        ::-webkit-scrollbar-thumb { background: rgba(16, 185, 129, 0.2); border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: rgba(16, 185, 129, 0.4); }
         
         .lesson-header-title {
           display: flex;
@@ -1584,6 +1645,124 @@ export default function LearnPage({ params }: { params: Promise<{ lessonId: stri
         @media (max-width: 1024px) {
           .lesson-header-title {
             display: none !important;
+          }
+        }
+
+        @keyframes soundwave {
+          0%, 100% { height: 4px; }
+          50% { height: 14px; }
+        }
+        @keyframes rainbow-border {
+          0% { border-color: rgba(16, 185, 129, 0.2); }
+          50% { border-color: rgba(139, 92, 246, 0.4); }
+          100% { border-color: rgba(16, 185, 129, 0.2); }
+        }
+        @keyframes card-pulse {
+          0% { transform: scale(1); }
+          50% { transform: scale(1.01); }
+          100% { transform: scale(1); }
+        }
+        .audio-wave {
+          display: inline-flex;
+          align-items: flex-end;
+          gap: 2px;
+          height: 14px;
+          margin-left: 6px;
+          margin-right: 6px;
+        }
+        .audio-wave div {
+          width: 2px;
+          height: 4px;
+          background: currentColor;
+          border-radius: 1px;
+          animation: soundwave 0.8s ease-in-out infinite;
+        }
+        .syntax-card:hover {
+          background: rgba(255, 255, 255, 0.03) !important;
+          border-color: rgba(16, 185, 129, 0.2) !important;
+          transform: translateY(-2px);
+          box-shadow: 0 12px 30px rgba(0,0,0,0.4), 0 0 20px rgba(16, 185, 129, 0.05);
+        }
+
+        /* Responsive Learning Layout */
+        .workspace-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          grid-template-rows: 1fr 1fr;
+          height: 100%;
+          overflow: hidden;
+          flex: 1;
+        }
+        .desktop-text { display: inline; }
+        .mobile-text { display: none; }
+        .navigation-sidebar {
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+          z-index: 90;
+        }
+
+        @media (max-width: 1024px) {
+          .mobile-workspace-tabs {
+            display: flex !important;
+          }
+          .workspace-grid {
+            display: flex !important;
+            flex-direction: column !important;
+            height: 100% !important;
+            flex: 1 !important;
+            padding: 8px !important;
+            overflow: hidden !important;
+          }
+          .workspace-panel.hidden-panel {
+            display: none !important;
+          }
+          .workspace-panel.active-panel {
+            display: flex !important;
+            flex-direction: column !important;
+            flex: 1 !important;
+            height: 100% !important;
+            overflow-y: auto !important;
+          }
+          .main-content {
+            overflow: hidden !important;
+            height: 100% !important;
+          }
+          .desktop-text { display: none !important; }
+          .mobile-text { display: inline !important; }
+          .navigation-sidebar {
+            position: fixed !important;
+            top: 70px !important;
+            right: 0 !important;
+            bottom: 0 !important;
+            width: 280px !important;
+            box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+            background: rgba(5,5,10,0.98) !important;
+            z-index: 200 !important;
+          }
+          .sidebar-backdrop {
+            display: block !important;
+          }
+          .syntax-grid {
+            grid-template-columns: 1fr !important;
+            gap: 16px !important;
+          }
+          .syntax-grid > div:first-child {
+            border-left: none !important;
+            border-bottom: 1px solid rgba(255,255,255,0.03);
+            padding-left: 0 !important;
+            padding-bottom: 12px;
+          }
+        }
+
+        @media (max-width: 768px) {
+          .header-tab-btn {
+            padding: 8px 12px !important;
+            font-size: 0.8rem !important;
+          }
+          .exit-button {
+            width: 40px !important;
+            height: 40px !important;
+            border-radius: 50% !important;
+            padding: 0 !important;
           }
         }
       `}</style>
