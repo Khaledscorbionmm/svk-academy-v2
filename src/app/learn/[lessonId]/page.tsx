@@ -1585,9 +1585,15 @@ export default function LessonPage({ params }: { params: Promise<{ lessonId: str
                           const premiumData = Array.isArray(parsedContent) ? parsedContent[0] : parsedContent;
                           
                           if (premiumData && premiumData.prototype) {
-                            const { prototype, description, parameters, return_value, example } = premiumData;
+                            const { context, prototype, description, parameters, return_value, example } = premiumData;
                             return (
                               <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+                                {context && (
+                                  <div style={{ background: isKids ? '#fef3c7' : 'rgba(245, 158, 11, 0.1)', borderRight: isKids ? '4px solid #f59e0b' : '4px solid #fbbf24', padding: '20px', borderRadius: '12px' }}>
+                                    <h4 style={{ margin: '0 0 10px', color: isKids ? '#b45309' : '#fcd34d', fontSize: '1rem', fontWeight: 900 }}>💡 السياق التعليمي (Context)</h4>
+                                    <p style={{ margin: 0, color: isKids ? '#451a03' : '#fef3c7', lineHeight: 1.8, fontSize: '1.05rem' }}>{context}</p>
+                                  </div>
+                                )}
                                 <div style={{ background: isKids ? '#f0fdf4' : 'rgba(59, 130, 246, 0.1)', borderRight: isKids ? '4px solid #10b981' : '4px solid #3b82f6', padding: '20px', borderRadius: '12px' }}>
                                   <h4 style={{ margin: '0 0 10px', color: isKids ? '#047857' : '#60a5fa', fontSize: '1rem', textTransform: 'uppercase', letterSpacing: '1px', fontWeight: 900 }}>البنية الأساسية (Prototype)</h4>
                                   <code style={{ fontSize: '1.25rem', color: isKids ? '#1e293b' : '#e2e8f0', fontFamily: 'monospace', fontWeight: 700 }}>{prototype}</code>
@@ -1831,9 +1837,11 @@ export default function LessonPage({ params }: { params: Promise<{ lessonId: str
                         <textarea
                           value={code}
                           onChange={e => setCode(e.target.value)}
-                          className="font-mono text-emerald-400 bg-slate-950 border border-slate-800 p-4 w-full focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                          className="font-mono w-full focus:outline-none"
                           style={{
-                            flex: 1, resize: 'none', direction: 'ltr', textAlign: 'left', lineHeight: 1.5
+                            flex: 1, backgroundColor: '#0f172a', color: '#34d399', border: '1px solid #1e293b', 
+                            padding: '16px', resize: 'none', direction: 'ltr', textAlign: 'left', lineHeight: 1.5,
+                            boxShadow: 'inset 0 2px 4px rgba(0,0,0,0.5)'
                           }}
                         />
                         
