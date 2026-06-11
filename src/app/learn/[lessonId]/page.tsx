@@ -802,8 +802,8 @@ export default function LessonPage({ params }: { params: Promise<{ lessonId: str
   }, [lessonId]);
 
   // Find index of current lesson in sidebar
-  const currentIdx = data ? data.sidebar.findIndex((l: any) => Number(l.id) === Number(lessonId)) : -1;
-  const isMacroExamDue = data && (currentIdx + 1) % 20 === 0;
+  const currentIdx = data ? data.sidebar.findIndex((l: any) => String(l.id) === String(lessonId)) : -1;
+  const isMacroExamDue = data && currentIdx > 0 && (currentIdx + 1) % 20 === 0;
   const milestone = data ? Math.ceil((currentIdx + 1) / 20) * 20 : 0;
   const track = data ? (data.course?.category?.toLowerCase() === 'languages' ? 'languages' : (data.course?.category?.toLowerCase() === 'cybersecurity' ? 'cybersecurity' : 'programming')) : 'programming';
 

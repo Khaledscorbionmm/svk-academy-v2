@@ -816,7 +816,7 @@ export default function LanguageLearningLayout({ data }: { data: any }) {
     setQuizError(false);
   };
 
-  const currentIdx = sideLessons.findIndex((l: any) => Number(l.id) === Number(lesson.id));
+  const currentIdx = sideLessons.findIndex((l: any) => String(l.id) === String(lesson.id));
   const progressPercent = Math.round(((currentIdx + 1) / sideLessons.length) * 100);
   
   const prevLesson = currentIdx > 0 ? sideLessons[currentIdx - 1] : null;
