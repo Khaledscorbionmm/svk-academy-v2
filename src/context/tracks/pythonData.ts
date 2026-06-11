@@ -5,14 +5,14 @@ export const pythonTrackData = [
       {
         "type": "correct",
         "title": "تعريف واستخدام المتغيرات الصحيحة (int)",
-        "code": "player_health = 100\ndamage_taken = 15\ncurrent_health = player_health - damage_taken\nprint(current_health)",
-        "expected_output": "85",
-        "explanation": "الأعداد الصحيحة (int) تستخدم لتخزين القيم الرقمية التي لا تحتوي على كسور. قمنا هنا بتخزين صحة اللاعب وطرح مقدار الضرر المأخوذ."
+        "code": "# تخصيص رقم في متغير (كأننا نضع الرقم في الصندوق)\nplayer_score = 1500\n\n# دالة الطباعة تُخرج النتيجة على الشاشة لكي نراها\nprint(player_score)",
+        "expected_output": "(Output specific to الدرس 1: الأعداد الصحيحة (int) - بداية الرحلة)",
+        "explanation": "هذا مثال عملي يوضح كيفية استخدام (الدرس 1: الأعداد الصحيحة (int) - بداية الرحلة) برمجياً."
       },
       {
         "type": "wrong",
         "title": "دمج الأعداد مع النصوص برمجياً بدون تحويل",
-        "code": "age = 20\nmessage = \"I am \" + age + \" years old\"\nprint(message)",
+        "code": "invalid_var = 10\nprint(Invalid_Var) # الدرس 1: الأعداد الصحيحة (int) - بداية الرحلة context",
         "error_message": "TypeError: can only concatenate str (not \"int\") to str",
         "explanation": "بايثون لغة قوية التنصيص (Strongly Typed). لا يمكنك دمج رقم مباشر مع نص. يجب تحويل الرقم لنص أولاً عبر str(age)."
       },
@@ -29,9 +29,9 @@ export const pythonTrackData = [
       {
         "type": "challenge",
         "title": "حساب عدد الأيام المتبقية للإجازة",
-        "code": "# لديك 30 يوماً في الشهر، وقد مر منها 12 يوماً.\n# احسب الأيام المتبقية واطبع النتيجة.\ntotal_days = 30\npassed_days = 12\n",
-        "expected_output": "18",
-        "explanation": "قم بطرح الأيام المنقضية من الإجمالي باستخدام عملية الطرح (-)."
+        "code": "# قم بتصحيح هذا الكود ليعمل بشكل سليم\n# تخصيص رقم في متغير (كأننا نضع الرقم في الصندوق)\nplayer_score == 1500\n\n# دالة الطباعة تُخرج النتيجة على الشاشة لكي نراها\nprint(player_score)",
+        "expected_output": "Correct execution output",
+        "explanation": "تحدي خاص بدرس: الدرس 1: الأعداد الصحيحة (int) - بداية الرحلة"
       }
     ],
     "title": "الدرس 1: الأعداد الصحيحة (int) - بداية الرحلة",
@@ -58,14 +58,14 @@ export const pythonTrackData = [
       {
         "type": "correct",
         "title": "التعامل مع الكسور العشرية (float)",
-        "code": "item_price = 49.99\ntax_rate = 0.15\ntotal_price = item_price + (item_price * tax_rate)\nprint(total_price)",
-        "expected_output": "57.4885",
-        "explanation": "الأعداد العشرية (float) تستخدم لحساب القيم الدقيقة كالأسعار والضرائب."
+        "code": "# تخزين سعر كورس البرمجة\ncourse_price = 99.5\nprint(course_price)\n\n# عملية حسابية بسيطة\nprint(1.5 + 2.5) # الناتج 4.0",
+        "expected_output": "(Output specific to الدرس 2: الأعداد العشرية (float) - الدقة في الحسابات)",
+        "explanation": "هذا مثال عملي يوضح كيفية استخدام (الدرس 2: الأعداد العشرية (float) - الدقة في الحسابات) برمجياً."
       },
       {
         "type": "wrong",
         "title": "القسمة على الصفر في المعادلات الحسابية",
-        "code": "total_apples = 50\nnumber_of_baskets = 0\napples_per_basket = total_apples / number_of_baskets\nprint(apples_per_basket)",
+        "code": "invalid_var = 10\nprint(Invalid_Var) # الدرس 2: الأعداد العشرية (float) - الدقة في الحسابات context",
         "error_message": "ZeroDivisionError: division by zero",
         "explanation": "مثل الرياضيات، بايثون تمنع القسمة على صفر. سيؤدي هذا لتوقف التطبيق بالكامل إذا لم تقم باختبار المتغيرات مسبقاً."
       },
@@ -82,9 +82,9 @@ export const pythonTrackData = [
       {
         "type": "challenge",
         "title": "تحويل درجات الحرارة",
-        "code": "# قم بتحويل درجة 100 فهرنهايت إلى مئوية (Celsius)\n# المعادلة: (F - 32) * 5/9\nfahrenheit = 100.0\n",
-        "expected_output": "37.77777777777778",
-        "explanation": "استخدم الأقواس لضمان تنفيذ الطرح قبل القسمة والضرب."
+        "code": "# قم بتصحيح هذا الكود ليعمل بشكل سليم\n# تخزين سعر كورس البرمجة\ncourse_price == 99.5\nprint(course_price)\n\n# عملية حسابية بسيطة\nprint(1.5 + 2.5) # الناتج 4.0",
+        "expected_output": "Correct execution output",
+        "explanation": "تحدي خاص بدرس: الدرس 2: الأعداد العشرية (float) - الدقة في الحسابات"
       }
     ],
     "title": "الدرس 2: الأعداد العشرية (float) - الدقة في الحسابات",
@@ -111,14 +111,14 @@ export const pythonTrackData = [
       {
         "type": "correct",
         "title": "دمج النصوص وتنسيقها (String formatting)",
-        "code": "first_name = 'Ahmed'\nrole = 'Developer'\nprofile = f'User: {first_name}, Role: {role}'\nprint(profile)",
-        "expected_output": "User: Ahmed, Role: Developer",
-        "explanation": "أفضل طريقة لدمج المتغيرات مع النصوص هي استخدام حرف f قبل علامة التنصيص (f-strings) وكتابة المتغير بين أقواس معقوفة {}."
+        "code": "# تخزين رسالة ترحيب\nwelcome_msg = \"أهلاً بك في الأكاديمية\"\nprint(welcome_msg)\n\n# دمج النصوص مع بعضها\nprint(\"Hello \" + \"World\")",
+        "expected_output": "(Output specific to الدرس 3: النصوص (str) - لغة التخاطب)",
+        "explanation": "هذا مثال عملي يوضح كيفية استخدام (الدرس 3: النصوص (str) - لغة التخاطب) برمجياً."
       },
       {
         "type": "wrong",
         "title": "خطأ في علامات التنصيص المتداخلة",
-        "code": "message = 'He said, \\'Python is easy!\\'\nprint(message)",
+        "code": "invalid_var = 10\nprint(Invalid_Var) # الدرس 3: النصوص (str) - لغة التخاطب context",
         "error_message": "SyntaxError: invalid syntax",
         "explanation": "لا يمكنك استخدام علامة تنصيص مفردة بداخل تنصيص مفرد دون استخدام \\ (Escape character) أو استخدام تنصيص مزدوج بالخارج."
       },
@@ -135,9 +135,9 @@ export const pythonTrackData = [
       {
         "type": "challenge",
         "title": "إصلاح رسالة الترحيب",
-        "code": "# قم بتعديل السطر التالي ليعمل باستخدام علامات تنصيص مختلفة\nwelcome = 'She said, \"Welcome to the platform\" today'\n",
-        "expected_output": "She said, 'Welcome to the platform' today",
-        "explanation": "استخدم علامة التنصيص المفردة للخارج أو استخدم علامة الهروب."
+        "code": "# قم بتصحيح هذا الكود ليعمل بشكل سليم\n# تخزين رسالة ترحيب\nwelcome_msg == \"أهلاً بك في الأكاديمية\"\nprint(welcome_msg)\n\n# دمج النصوص مع بعضها\nprint(\"Hello \" + \"World\")",
+        "expected_output": "Correct execution output",
+        "explanation": "تحدي خاص بدرس: الدرس 3: النصوص (str) - لغة التخاطب"
       }
     ],
     "title": "الدرس 3: النصوص (str) - لغة التخاطب",
@@ -164,14 +164,14 @@ export const pythonTrackData = [
       {
         "type": "correct",
         "title": "العمليات المنطقية (Booleans)",
-        "code": "is_admin = True\nis_active = False\ncan_access = is_admin and not is_active\nprint(can_access)",
-        "expected_output": "True",
-        "explanation": "المتغيرات المنطقية تأخذ قيمتين فقط: True أو False. نستخدم and و or و not لدمج الشروط ببعضها."
+        "code": "# هل المستخدم مسجل دخول؟\nis_logged_in = True\nprint(is_logged_in)\n\n# سؤال الكمبيوتر: هل 10 أكبر من 5؟\nprint(10 > 5) # النتيجة True",
+        "expected_output": "(Output specific to الدرس 4: المنطق البولياني (bool) - الصح والخطأ)",
+        "explanation": "هذا مثال عملي يوضح كيفية استخدام (الدرس 4: المنطق البولياني (bool) - الصح والخطأ) برمجياً."
       },
       {
         "type": "wrong",
         "title": "كتابة True/False بأحرف صغيرة",
-        "code": "has_premium = true\nprint(has_premium)",
+        "code": "invalid_var = 10\nprint(Invalid_Var) # الدرس 4: المنطق البولياني (bool) - الصح والخطأ context",
         "error_message": "NameError: name 'true' is not defined",
         "explanation": "في بايثون، القيم المنطقية حساسة لحالة الأحرف. يجب أن تبدأ بحرف كبير: True أو False."
       },
@@ -188,9 +188,9 @@ export const pythonTrackData = [
       {
         "type": "challenge",
         "title": "بوابة المرور",
-        "code": "# قم بإنشاء متغير منطقي evaluates to True إذا كان العمر 18 أو أكبر\nage = 20\ncan_enter = \n",
-        "expected_output": "True",
-        "explanation": "استخدم عامل المقارنة >= لمعرفة ما إذا كانت القيمة أكبر من أو تساوي 18."
+        "code": "# قم بتصحيح هذا الكود ليعمل بشكل سليم\n# هل المستخدم مسجل دخول؟\nis_logged_in == True\nprint(is_logged_in)\n\n# سؤال الكمبيوتر: هل 10 أكبر من 5؟\nprint(10 > 5) # النتيجة True",
+        "expected_output": "Correct execution output",
+        "explanation": "تحدي خاص بدرس: الدرس 4: المنطق البولياني (bool) - الصح والخطأ"
       }
     ],
     "title": "الدرس 4: المنطق البولياني (bool) - الصح والخطأ",
@@ -217,14 +217,14 @@ export const pythonTrackData = [
       {
         "type": "correct",
         "title": "الشرط البسيط (if-else)",
-        "code": "score = 85\nif score >= 90:\n    print(\"Grade: A\")\nelse:\n    print(\"Grade: B or lower\")",
-        "expected_output": "Grade: B or lower",
-        "explanation": "جملة if تختبر شرطاً محدداً، إذا تحقق ينفذ الكود التابع لها، وإلا يتم تنفيذ الكود بداخل else."
+        "code": "# حساب العمر بعد 5 سنوات\ncurrent_age = 20\nfuture_age = current_age + 5\nprint(future_age) # 25",
+        "expected_output": "(Output specific to الدرس 5: العمليات الحسابية - الكمبيوتر كآلة حاسبة)",
+        "explanation": "هذا مثال عملي يوضح كيفية استخدام (الدرس 5: العمليات الحسابية - الكمبيوتر كآلة حاسبة) برمجياً."
       },
       {
         "type": "wrong",
         "title": "نسيان النقطتين الرأسيتين (:) وتجاهل المسافات",
-        "code": "weather = \"rainy\"\nif weather == \"rainy\"\nprint(\"Take an umbrella\")",
+        "code": "invalid_var = 10\nprint(Invalid_Var) # الدرس 5: العمليات الحسابية - الكمبيوتر كآلة حاسبة context",
         "error_message": "IndentationError: expected an indented block after 'if' statement",
         "explanation": "القواعد الأساسية لجملة if في بايثون هي النقطتين (:) نهاية السطر والمسافات البادئة (Indentation) في السطر التالي مباشرة."
       },
@@ -241,9 +241,9 @@ export const pythonTrackData = [
       {
         "type": "challenge",
         "title": "نظام نجاح ورسوب",
-        "code": "# استخدم if و else لطباعة \"Pass\" إذا كانت الدرجة فوق 50 و \"Fail\" إذا كانت أقل\ngrade = 45\n",
-        "expected_output": "Fail",
-        "explanation": "تذكر وضع النقطتين (:) ومسافة البادئة للأسطر التي تطبع القيم."
+        "code": "# قم بتصحيح هذا الكود ليعمل بشكل سليم\n# حساب العمر بعد 5 سنوات\ncurrent_age == 20\nfuture_age = current_age + 5\nprint(future_age) # 25",
+        "expected_output": "Correct execution output",
+        "explanation": "تحدي خاص بدرس: الدرس 5: العمليات الحسابية - الكمبيوتر كآلة حاسبة"
       }
     ],
     "title": "الدرس 5: العمليات الحسابية - الكمبيوتر كآلة حاسبة",
@@ -287,20 +287,20 @@ export const pythonTrackData = [
         "type": "correct",
         "title": "تطبيق مباشر: الدرس 6: دمج النصوص - بناء الجمل المترابطة",
         "code": "# الطريقة الحديثة والمفضلة للمبرمجين (f-string)\nname = 'عمر'\nscore = 99\nprint(f'اللاعب {name} حصل على {score} نقطة')",
-        "expected_output": "Output based on the example above",
-        "explanation": "هذا مثال بسيط يوضح كيفية تطبيق المفهوم بشكل سليم دون تعقيد."
+        "expected_output": "(Output specific to الدرس 6: دمج النصوص - بناء الجمل المترابطة)",
+        "explanation": "هذا مثال عملي يوضح كيفية استخدام (الدرس 6: دمج النصوص - بناء الجمل المترابطة) برمجياً."
       },
       {
         "type": "wrong",
         "title": "خطأ صياغة شائع",
         "code": "# الطريقة الحديثة والمفضلة للمبرمجين (f-string\nname = 'عمر'\nscore = 99\nprint(f'اللاعب {name} حصل على {score} نقطة')",
-        "error_message": "SyntaxError: unexpected EOF while parsing",
+        "error_message": "SyntaxError in الدرس 6: دمج النصوص - بناء الجمل المترابطة",
         "explanation": "نسيان إغلاق الأقواس أو علامات التنصيص هو من أكثر الأخطاء شيوعاً للمبتدئين."
       },
       {
         "type": "wrong",
         "title": "استخدام خاطئ للمتغيرات",
-        "code": "invalid_var = 10\nprint(Invalid_Var)",
+        "code": "invalid_var = 10\nprint(Invalid_Var) # الدرس 6: دمج النصوص - بناء الجمل المترابطة context",
         "error_message": "NameError: name 'Invalid_Var' is not defined",
         "explanation": "بايثون لغة حساسة لحالة الأحرف (Case-sensitive). المتغير invalid_var يختلف عن Invalid_Var."
       },
@@ -317,9 +317,9 @@ export const pythonTrackData = [
       {
         "type": "challenge",
         "title": "تحدي: إصلاح الكود",
-        "code": "# الكود التالي يحتوي على خطأ بسيط، حاول إصلاحه ليعمل\n# الطريقة الحديثة والمفضلة للمبرمجين (f-string)\nname == 'عمر'\nscore = 99\nprint(f'اللاعب {name} حصل على {score} نقطة')",
-        "expected_output": "Correct execution",
-        "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
+        "code": "# قم بتصحيح هذا الكود ليعمل بشكل سليم\n# الطريقة الحديثة والمفضلة للمبرمجين (f-string)\nname == 'عمر'\nscore = 99\nprint(f'اللاعب {name} حصل على {score} نقطة')",
+        "expected_output": "Correct execution output",
+        "explanation": "تحدي خاص بدرس: الدرس 6: دمج النصوص - بناء الجمل المترابطة"
       }
     ],
     "lesson_type": "sandbox"
@@ -347,20 +347,20 @@ export const pythonTrackData = [
         "type": "correct",
         "title": "تطبيق مباشر: الدرس 7: أخذ مدخلات المستخدم (input) - التفاعل الأول",
         "code": "# سؤال المستخدم عن اسمه (تخيلي في المحرر)\n# user_name = input('ما هو اسمك؟ ')\n# print('مرحباً ' + user_name)\nprint('مرحباً زائرنا')",
-        "expected_output": "Output based on the example above",
-        "explanation": "هذا مثال بسيط يوضح كيفية تطبيق المفهوم بشكل سليم دون تعقيد."
+        "expected_output": "(Output specific to الدرس 7: أخذ مدخلات المستخدم (input) - التفاعل الأول)",
+        "explanation": "هذا مثال عملي يوضح كيفية استخدام (الدرس 7: أخذ مدخلات المستخدم (input) - التفاعل الأول) برمجياً."
       },
       {
         "type": "wrong",
         "title": "خطأ صياغة شائع",
         "code": "# سؤال المستخدم عن اسمه (تخيلي في المحرر\n# user_name = input('ما هو اسمك؟ ')\n# print('مرحباً ' + user_name)\nprint('مرحباً زائرنا')",
-        "error_message": "SyntaxError: unexpected EOF while parsing",
+        "error_message": "SyntaxError in الدرس 7: أخذ مدخلات المستخدم (input) - التفاعل الأول",
         "explanation": "نسيان إغلاق الأقواس أو علامات التنصيص هو من أكثر الأخطاء شيوعاً للمبتدئين."
       },
       {
         "type": "wrong",
         "title": "استخدام خاطئ للمتغيرات",
-        "code": "invalid_var = 10\nprint(Invalid_Var)",
+        "code": "invalid_var = 10\nprint(Invalid_Var) # الدرس 7: أخذ مدخلات المستخدم (input) - التفاعل الأول context",
         "error_message": "NameError: name 'Invalid_Var' is not defined",
         "explanation": "بايثون لغة حساسة لحالة الأحرف (Case-sensitive). المتغير invalid_var يختلف عن Invalid_Var."
       },
@@ -377,9 +377,9 @@ export const pythonTrackData = [
       {
         "type": "challenge",
         "title": "تحدي: إصلاح الكود",
-        "code": "# الكود التالي يحتوي على خطأ بسيط، حاول إصلاحه ليعمل\n# سؤال المستخدم عن اسمه (تخيلي في المحرر)\n# user_name == input('ما هو اسمك؟ ')\n# print('مرحباً ' + user_name)\nprint('مرحباً زائرنا')",
-        "expected_output": "Correct execution",
-        "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
+        "code": "# قم بتصحيح هذا الكود ليعمل بشكل سليم\n# سؤال المستخدم عن اسمه (تخيلي في المحرر)\n# user_name == input('ما هو اسمك؟ ')\n# print('مرحباً ' + user_name)\nprint('مرحباً زائرنا')",
+        "expected_output": "Correct execution output",
+        "explanation": "تحدي خاص بدرس: الدرس 7: أخذ مدخلات المستخدم (input) - التفاعل الأول"
       }
     ],
     "lesson_type": "debugging"
@@ -407,20 +407,20 @@ export const pythonTrackData = [
         "type": "correct",
         "title": "تطبيق مباشر: الدرس 8: الشروط (if) - جعل الكمبيوتر يتخذ قرارات",
         "code": "# التحقق من السن القانوني\nage = 20\nif age >= 18:\n    print('مسموح لك بالدخول')\n\nprint('انتهى الفحص')",
-        "expected_output": "Output based on the example above",
-        "explanation": "هذا مثال بسيط يوضح كيفية تطبيق المفهوم بشكل سليم دون تعقيد."
+        "expected_output": "(Output specific to الدرس 8: الشروط (if) - جعل الكمبيوتر يتخذ قرارات)",
+        "explanation": "هذا مثال عملي يوضح كيفية استخدام (الدرس 8: الشروط (if) - جعل الكمبيوتر يتخذ قرارات) برمجياً."
       },
       {
         "type": "wrong",
         "title": "خطأ صياغة شائع",
         "code": "# التحقق من السن القانوني\nage = 20\nif age >= 18:\n    print('مسموح لك بالدخول'\n\nprint('انتهى الفحص')",
-        "error_message": "SyntaxError: unexpected EOF while parsing",
+        "error_message": "SyntaxError in الدرس 8: الشروط (if) - جعل الكمبيوتر يتخذ قرارات",
         "explanation": "نسيان إغلاق الأقواس أو علامات التنصيص هو من أكثر الأخطاء شيوعاً للمبتدئين."
       },
       {
         "type": "wrong",
         "title": "استخدام خاطئ للمتغيرات",
-        "code": "invalid_var = 10\nprint(Invalid_Var)",
+        "code": "invalid_var = 10\nprint(Invalid_Var) # الدرس 8: الشروط (if) - جعل الكمبيوتر يتخذ قرارات context",
         "error_message": "NameError: name 'Invalid_Var' is not defined",
         "explanation": "بايثون لغة حساسة لحالة الأحرف (Case-sensitive). المتغير invalid_var يختلف عن Invalid_Var."
       },
@@ -437,9 +437,9 @@ export const pythonTrackData = [
       {
         "type": "challenge",
         "title": "تحدي: إصلاح الكود",
-        "code": "# الكود التالي يحتوي على خطأ بسيط، حاول إصلاحه ليعمل\n# التحقق من السن القانوني\nage == 20\nif age >= 18:\n    print('مسموح لك بالدخول')\n\nprint('انتهى الفحص')",
-        "expected_output": "Correct execution",
-        "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
+        "code": "# قم بتصحيح هذا الكود ليعمل بشكل سليم\n# التحقق من السن القانوني\nage == 20\nif age >= 18:\n    print('مسموح لك بالدخول')\n\nprint('انتهى الفحص')",
+        "expected_output": "Correct execution output",
+        "explanation": "تحدي خاص بدرس: الدرس 8: الشروط (if) - جعل الكمبيوتر يتخذ قرارات"
       }
     ],
     "lesson_type": "scenario"
@@ -467,20 +467,20 @@ export const pythonTrackData = [
         "type": "correct",
         "title": "تطبيق مباشر: الدرس 9: الشروط المعاكسة (else) - ماذا لو لم يتحقق الشرط؟",
         "code": "password = '123'\nif password == 'admin':\n    print('تم الدخول بنجاح')\nelse:\n    print('كلمة المرور خاطئة')",
-        "expected_output": "Output based on the example above",
-        "explanation": "هذا مثال بسيط يوضح كيفية تطبيق المفهوم بشكل سليم دون تعقيد."
+        "expected_output": "(Output specific to الدرس 9: الشروط المعاكسة (else) - ماذا لو لم يتحقق الشرط؟)",
+        "explanation": "هذا مثال عملي يوضح كيفية استخدام (الدرس 9: الشروط المعاكسة (else) - ماذا لو لم يتحقق الشرط؟) برمجياً."
       },
       {
         "type": "wrong",
         "title": "خطأ صياغة شائع",
         "code": "password = '123'\nif password == 'admin':\n    print('تم الدخول بنجاح'\nelse:\n    print('كلمة المرور خاطئة')",
-        "error_message": "SyntaxError: unexpected EOF while parsing",
+        "error_message": "SyntaxError in الدرس 9: الشروط المعاكسة (else) - ماذا لو لم يتحقق الشرط؟",
         "explanation": "نسيان إغلاق الأقواس أو علامات التنصيص هو من أكثر الأخطاء شيوعاً للمبتدئين."
       },
       {
         "type": "wrong",
         "title": "استخدام خاطئ للمتغيرات",
-        "code": "invalid_var = 10\nprint(Invalid_Var)",
+        "code": "invalid_var = 10\nprint(Invalid_Var) # الدرس 9: الشروط المعاكسة (else) - ماذا لو لم يتحقق الشرط؟ context",
         "error_message": "NameError: name 'Invalid_Var' is not defined",
         "explanation": "بايثون لغة حساسة لحالة الأحرف (Case-sensitive). المتغير invalid_var يختلف عن Invalid_Var."
       },
@@ -497,9 +497,9 @@ export const pythonTrackData = [
       {
         "type": "challenge",
         "title": "تحدي: إصلاح الكود",
-        "code": "# الكود التالي يحتوي على خطأ بسيط، حاول إصلاحه ليعمل\npassword == '123'\nif password == 'admin':\n    print('تم الدخول بنجاح')\nelse:\n    print('كلمة المرور خاطئة')",
-        "expected_output": "Correct execution",
-        "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
+        "code": "# قم بتصحيح هذا الكود ليعمل بشكل سليم\npassword == '123'\nif password == 'admin':\n    print('تم الدخول بنجاح')\nelse:\n    print('كلمة المرور خاطئة')",
+        "expected_output": "Correct execution output",
+        "explanation": "تحدي خاص بدرس: الدرس 9: الشروط المعاكسة (else) - ماذا لو لم يتحقق الشرط؟"
       }
     ],
     "lesson_type": "sandbox"
@@ -527,20 +527,20 @@ export const pythonTrackData = [
         "type": "correct",
         "title": "تطبيق مباشر: الدرس 10: الشروط المتعددة (elif) - خيارات لا نهائية",
         "code": "color = 'أصفر'\nif color == 'أحمر':\n    print('توقف')\nelif color == 'أصفر':\n    print('استعد')\nelse:\n    print('انطلق')",
-        "expected_output": "Output based on the example above",
-        "explanation": "هذا مثال بسيط يوضح كيفية تطبيق المفهوم بشكل سليم دون تعقيد."
+        "expected_output": "(Output specific to الدرس 10: الشروط المتعددة (elif) - خيارات لا نهائية)",
+        "explanation": "هذا مثال عملي يوضح كيفية استخدام (الدرس 10: الشروط المتعددة (elif) - خيارات لا نهائية) برمجياً."
       },
       {
         "type": "wrong",
         "title": "خطأ صياغة شائع",
         "code": "color = 'أصفر'\nif color == 'أحمر':\n    print('توقف'\nelif color == 'أصفر':\n    print('استعد')\nelse:\n    print('انطلق')",
-        "error_message": "SyntaxError: unexpected EOF while parsing",
+        "error_message": "SyntaxError in الدرس 10: الشروط المتعددة (elif) - خيارات لا نهائية",
         "explanation": "نسيان إغلاق الأقواس أو علامات التنصيص هو من أكثر الأخطاء شيوعاً للمبتدئين."
       },
       {
         "type": "wrong",
         "title": "استخدام خاطئ للمتغيرات",
-        "code": "invalid_var = 10\nprint(Invalid_Var)",
+        "code": "invalid_var = 10\nprint(Invalid_Var) # الدرس 10: الشروط المتعددة (elif) - خيارات لا نهائية context",
         "error_message": "NameError: name 'Invalid_Var' is not defined",
         "explanation": "بايثون لغة حساسة لحالة الأحرف (Case-sensitive). المتغير invalid_var يختلف عن Invalid_Var."
       },
@@ -557,9 +557,9 @@ export const pythonTrackData = [
       {
         "type": "challenge",
         "title": "تحدي: إصلاح الكود",
-        "code": "# الكود التالي يحتوي على خطأ بسيط، حاول إصلاحه ليعمل\ncolor == 'أصفر'\nif color == 'أحمر':\n    print('توقف')\nelif color == 'أصفر':\n    print('استعد')\nelse:\n    print('انطلق')",
-        "expected_output": "Correct execution",
-        "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
+        "code": "# قم بتصحيح هذا الكود ليعمل بشكل سليم\ncolor == 'أصفر'\nif color == 'أحمر':\n    print('توقف')\nelif color == 'أصفر':\n    print('استعد')\nelse:\n    print('انطلق')",
+        "expected_output": "Correct execution output",
+        "explanation": "تحدي خاص بدرس: الدرس 10: الشروط المتعددة (elif) - خيارات لا نهائية"
       }
     ],
     "lesson_type": "milestone"
@@ -587,20 +587,20 @@ export const pythonTrackData = [
         "type": "correct",
         "title": "تطبيق مباشر: الدرس 11: المعاملات المنطقية (and / or) - شروط معقدة",
         "code": "age = 20\nhas_license = True\n\nif age >= 18 and has_license:\n    print('يمكنك استئجار السيارة')\nelse:\n    print('لا يمكنك ذلك')",
-        "expected_output": "Output based on the example above",
-        "explanation": "هذا مثال بسيط يوضح كيفية تطبيق المفهوم بشكل سليم دون تعقيد."
+        "expected_output": "(Output specific to الدرس 11: المعاملات المنطقية (and / or) - شروط معقدة)",
+        "explanation": "هذا مثال عملي يوضح كيفية استخدام (الدرس 11: المعاملات المنطقية (and / or) - شروط معقدة) برمجياً."
       },
       {
         "type": "wrong",
         "title": "خطأ صياغة شائع",
         "code": "age = 20\nhas_license = True\n\nif age >= 18 and has_license:\n    print('يمكنك استئجار السيارة'\nelse:\n    print('لا يمكنك ذلك')",
-        "error_message": "SyntaxError: unexpected EOF while parsing",
+        "error_message": "SyntaxError in الدرس 11: المعاملات المنطقية (and / or) - شروط معقدة",
         "explanation": "نسيان إغلاق الأقواس أو علامات التنصيص هو من أكثر الأخطاء شيوعاً للمبتدئين."
       },
       {
         "type": "wrong",
         "title": "استخدام خاطئ للمتغيرات",
-        "code": "invalid_var = 10\nprint(Invalid_Var)",
+        "code": "invalid_var = 10\nprint(Invalid_Var) # الدرس 11: المعاملات المنطقية (and / or) - شروط معقدة context",
         "error_message": "NameError: name 'Invalid_Var' is not defined",
         "explanation": "بايثون لغة حساسة لحالة الأحرف (Case-sensitive). المتغير invalid_var يختلف عن Invalid_Var."
       },
@@ -617,9 +617,9 @@ export const pythonTrackData = [
       {
         "type": "challenge",
         "title": "تحدي: إصلاح الكود",
-        "code": "# الكود التالي يحتوي على خطأ بسيط، حاول إصلاحه ليعمل\nage == 20\nhas_license = True\n\nif age >= 18 and has_license:\n    print('يمكنك استئجار السيارة')\nelse:\n    print('لا يمكنك ذلك')",
-        "expected_output": "Correct execution",
-        "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
+        "code": "# قم بتصحيح هذا الكود ليعمل بشكل سليم\nage == 20\nhas_license = True\n\nif age >= 18 and has_license:\n    print('يمكنك استئجار السيارة')\nelse:\n    print('لا يمكنك ذلك')",
+        "expected_output": "Correct execution output",
+        "explanation": "تحدي خاص بدرس: الدرس 11: المعاملات المنطقية (and / or) - شروط معقدة"
       }
     ],
     "lesson_type": "ai_challenge"
@@ -647,20 +647,20 @@ export const pythonTrackData = [
         "type": "correct",
         "title": "تطبيق مباشر: الدرس 12: القوائم (list) - صناديق التخزين العملاقة",
         "code": "# إنشاء قائمة وإضافة عنصر جديد\ncart = ['لابتوب', 'ماوس']\ncart.append('لوحة مفاتيح')\nprint(cart)",
-        "expected_output": "Output based on the example above",
-        "explanation": "هذا مثال بسيط يوضح كيفية تطبيق المفهوم بشكل سليم دون تعقيد."
+        "expected_output": "(Output specific to الدرس 12: القوائم (list) - صناديق التخزين العملاقة)",
+        "explanation": "هذا مثال عملي يوضح كيفية استخدام (الدرس 12: القوائم (list) - صناديق التخزين العملاقة) برمجياً."
       },
       {
         "type": "wrong",
         "title": "خطأ صياغة شائع",
         "code": "# إنشاء قائمة وإضافة عنصر جديد\ncart = ['لابتوب', 'ماوس'\ncart.append('لوحة مفاتيح'\nprint(cart)",
-        "error_message": "SyntaxError: unexpected EOF while parsing",
+        "error_message": "SyntaxError in الدرس 12: القوائم (list) - صناديق التخزين العملاقة",
         "explanation": "نسيان إغلاق الأقواس أو علامات التنصيص هو من أكثر الأخطاء شيوعاً للمبتدئين."
       },
       {
         "type": "wrong",
         "title": "استخدام خاطئ للمتغيرات",
-        "code": "invalid_var = 10\nprint(Invalid_Var)",
+        "code": "invalid_var = 10\nprint(Invalid_Var) # الدرس 12: القوائم (list) - صناديق التخزين العملاقة context",
         "error_message": "NameError: name 'Invalid_Var' is not defined",
         "explanation": "بايثون لغة حساسة لحالة الأحرف (Case-sensitive). المتغير invalid_var يختلف عن Invalid_Var."
       },
@@ -677,9 +677,9 @@ export const pythonTrackData = [
       {
         "type": "challenge",
         "title": "تحدي: إصلاح الكود",
-        "code": "# الكود التالي يحتوي على خطأ بسيط، حاول إصلاحه ليعمل\n# إنشاء قائمة وإضافة عنصر جديد\ncart == ['لابتوب', 'ماوس']\ncart.append('لوحة مفاتيح')\nprint(cart)",
-        "expected_output": "Correct execution",
-        "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
+        "code": "# قم بتصحيح هذا الكود ليعمل بشكل سليم\n# إنشاء قائمة وإضافة عنصر جديد\ncart == ['لابتوب', 'ماوس']\ncart.append('لوحة مفاتيح')\nprint(cart)",
+        "expected_output": "Correct execution output",
+        "explanation": "تحدي خاص بدرس: الدرس 12: القوائم (list) - صناديق التخزين العملاقة"
       }
     ],
     "lesson_type": "mini_mission"
@@ -707,20 +707,20 @@ export const pythonTrackData = [
         "type": "correct",
         "title": "تطبيق مباشر: الدرس 13: الوصول لعناصر القائمة (Indexing)",
         "code": "winners = ['علي', 'سارة', 'فهد']\nprint('المركز الأول:', winners[0])\nprint('المركز الأخير:', winners[-1])",
-        "expected_output": "Output based on the example above",
-        "explanation": "هذا مثال بسيط يوضح كيفية تطبيق المفهوم بشكل سليم دون تعقيد."
+        "expected_output": "(Output specific to الدرس 13: الوصول لعناصر القائمة (Indexing))",
+        "explanation": "هذا مثال عملي يوضح كيفية استخدام (الدرس 13: الوصول لعناصر القائمة (Indexing)) برمجياً."
       },
       {
         "type": "wrong",
         "title": "خطأ صياغة شائع",
         "code": "winners = ['علي', 'سارة', 'فهد'\nprint('المركز الأول:', winners[0]\nprint('المركز الأخير:', winners[-1])",
-        "error_message": "SyntaxError: unexpected EOF while parsing",
+        "error_message": "SyntaxError in الدرس 13: الوصول لعناصر القائمة (Indexing)",
         "explanation": "نسيان إغلاق الأقواس أو علامات التنصيص هو من أكثر الأخطاء شيوعاً للمبتدئين."
       },
       {
         "type": "wrong",
         "title": "استخدام خاطئ للمتغيرات",
-        "code": "invalid_var = 10\nprint(Invalid_Var)",
+        "code": "invalid_var = 10\nprint(Invalid_Var) # الدرس 13: الوصول لعناصر القائمة (Indexing) context",
         "error_message": "NameError: name 'Invalid_Var' is not defined",
         "explanation": "بايثون لغة حساسة لحالة الأحرف (Case-sensitive). المتغير invalid_var يختلف عن Invalid_Var."
       },
@@ -737,9 +737,9 @@ export const pythonTrackData = [
       {
         "type": "challenge",
         "title": "تحدي: إصلاح الكود",
-        "code": "# الكود التالي يحتوي على خطأ بسيط، حاول إصلاحه ليعمل\nwinners == ['علي', 'سارة', 'فهد']\nprint('المركز الأول:', winners[0])\nprint('المركز الأخير:', winners[-1])",
-        "expected_output": "Correct execution",
-        "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
+        "code": "# قم بتصحيح هذا الكود ليعمل بشكل سليم\nwinners == ['علي', 'سارة', 'فهد']\nprint('المركز الأول:', winners[0])\nprint('المركز الأخير:', winners[-1])",
+        "expected_output": "Correct execution output",
+        "explanation": "تحدي خاص بدرس: الدرس 13: الوصول لعناصر القائمة (Indexing)"
       }
     ],
     "lesson_type": "code_reading"
@@ -767,20 +767,20 @@ export const pythonTrackData = [
         "type": "correct",
         "title": "تطبيق مباشر: الدرس 14: تكرار الأوامر بحلقة (for) - المحرك التلقائي",
         "code": "tasks = ['برمجة', 'تصميم', 'تسويق']\nfor task in tasks:\n    print('جاري العمل على:', task)",
-        "expected_output": "Output based on the example above",
-        "explanation": "هذا مثال بسيط يوضح كيفية تطبيق المفهوم بشكل سليم دون تعقيد."
+        "expected_output": "(Output specific to الدرس 14: تكرار الأوامر بحلقة (for) - المحرك التلقائي)",
+        "explanation": "هذا مثال عملي يوضح كيفية استخدام (الدرس 14: تكرار الأوامر بحلقة (for) - المحرك التلقائي) برمجياً."
       },
       {
         "type": "wrong",
         "title": "خطأ صياغة شائع",
         "code": "tasks = ['برمجة', 'تصميم', 'تسويق'\nfor task in tasks:\n    print('جاري العمل على:', task",
-        "error_message": "SyntaxError: unexpected EOF while parsing",
+        "error_message": "SyntaxError in الدرس 14: تكرار الأوامر بحلقة (for) - المحرك التلقائي",
         "explanation": "نسيان إغلاق الأقواس أو علامات التنصيص هو من أكثر الأخطاء شيوعاً للمبتدئين."
       },
       {
         "type": "wrong",
         "title": "استخدام خاطئ للمتغيرات",
-        "code": "invalid_var = 10\nprint(Invalid_Var)",
+        "code": "invalid_var = 10\nprint(Invalid_Var) # الدرس 14: تكرار الأوامر بحلقة (for) - المحرك التلقائي context",
         "error_message": "NameError: name 'Invalid_Var' is not defined",
         "explanation": "بايثون لغة حساسة لحالة الأحرف (Case-sensitive). المتغير invalid_var يختلف عن Invalid_Var."
       },
@@ -797,9 +797,9 @@ export const pythonTrackData = [
       {
         "type": "challenge",
         "title": "تحدي: إصلاح الكود",
-        "code": "# الكود التالي يحتوي على خطأ بسيط، حاول إصلاحه ليعمل\ntasks == ['برمجة', 'تصميم', 'تسويق']\nfor task in tasks:\n    print('جاري العمل على:', task)",
-        "expected_output": "Correct execution",
-        "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
+        "code": "# قم بتصحيح هذا الكود ليعمل بشكل سليم\ntasks == ['برمجة', 'تصميم', 'تسويق']\nfor task in tasks:\n    print('جاري العمل على:', task)",
+        "expected_output": "Correct execution output",
+        "explanation": "تحدي خاص بدرس: الدرس 14: تكرار الأوامر بحلقة (for) - المحرك التلقائي"
       }
     ],
     "lesson_type": "debugging"
@@ -827,20 +827,20 @@ export const pythonTrackData = [
         "type": "correct",
         "title": "تطبيق مباشر: الدرس 15: دالة المدى (range) - توليد الأرقام",
         "code": "# العد من 0 إلى 2\nfor i in range(3):\n    print('التكرار رقم', i)",
-        "expected_output": "Output based on the example above",
-        "explanation": "هذا مثال بسيط يوضح كيفية تطبيق المفهوم بشكل سليم دون تعقيد."
+        "expected_output": "(Output specific to الدرس 15: دالة المدى (range) - توليد الأرقام)",
+        "explanation": "هذا مثال عملي يوضح كيفية استخدام (الدرس 15: دالة المدى (range) - توليد الأرقام) برمجياً."
       },
       {
         "type": "wrong",
         "title": "خطأ صياغة شائع",
         "code": "# العد من 0 إلى 2\nfor i in range(3:\n    print('التكرار رقم', i)",
-        "error_message": "SyntaxError: unexpected EOF while parsing",
+        "error_message": "SyntaxError in الدرس 15: دالة المدى (range) - توليد الأرقام",
         "explanation": "نسيان إغلاق الأقواس أو علامات التنصيص هو من أكثر الأخطاء شيوعاً للمبتدئين."
       },
       {
         "type": "wrong",
         "title": "استخدام خاطئ للمتغيرات",
-        "code": "invalid_var = 10\nprint(Invalid_Var)",
+        "code": "invalid_var = 10\nprint(Invalid_Var) # الدرس 15: دالة المدى (range) - توليد الأرقام context",
         "error_message": "NameError: name 'Invalid_Var' is not defined",
         "explanation": "بايثون لغة حساسة لحالة الأحرف (Case-sensitive). المتغير invalid_var يختلف عن Invalid_Var."
       },
@@ -857,9 +857,9 @@ export const pythonTrackData = [
       {
         "type": "challenge",
         "title": "تحدي: إصلاح الكود",
-        "code": "# الكود التالي يحتوي على خطأ بسيط، حاول إصلاحه ليعمل\n# العد من 0 إلى 2\nfor i in range(3):\n    print('التكرار رقم', i)",
-        "expected_output": "Correct execution",
-        "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
+        "code": "# قم بتصحيح هذا الكود ليعمل بشكل سليم\n# العد من 0 إلى 2\nfor i in range(3):\n    print('التكرار رقم', i)",
+        "expected_output": "Correct execution output",
+        "explanation": "تحدي خاص بدرس: الدرس 15: دالة المدى (range) - توليد الأرقام"
       }
     ],
     "lesson_type": "project"
@@ -887,20 +887,20 @@ export const pythonTrackData = [
         "type": "correct",
         "title": "تطبيق مباشر: الدرس 16: الحلقات المشروطة (while) - الاستمرار طالما..",
         "code": "battery = 3\nwhile battery > 0:\n    print('الجهاز يعمل')\n    battery -= 1  # إنقاص الطاقة تدريجياً\nprint('الجهاز انطفأ')",
-        "expected_output": "Output based on the example above",
-        "explanation": "هذا مثال بسيط يوضح كيفية تطبيق المفهوم بشكل سليم دون تعقيد."
+        "expected_output": "(Output specific to الدرس 16: الحلقات المشروطة (while) - الاستمرار طالما..)",
+        "explanation": "هذا مثال عملي يوضح كيفية استخدام (الدرس 16: الحلقات المشروطة (while) - الاستمرار طالما..) برمجياً."
       },
       {
         "type": "wrong",
         "title": "خطأ صياغة شائع",
         "code": "battery = 3\nwhile battery > 0:\n    print('الجهاز يعمل'\n    battery -= 1  # إنقاص الطاقة تدريجياً\nprint('الجهاز انطفأ')",
-        "error_message": "SyntaxError: unexpected EOF while parsing",
+        "error_message": "SyntaxError in الدرس 16: الحلقات المشروطة (while) - الاستمرار طالما..",
         "explanation": "نسيان إغلاق الأقواس أو علامات التنصيص هو من أكثر الأخطاء شيوعاً للمبتدئين."
       },
       {
         "type": "wrong",
         "title": "استخدام خاطئ للمتغيرات",
-        "code": "invalid_var = 10\nprint(Invalid_Var)",
+        "code": "invalid_var = 10\nprint(Invalid_Var) # الدرس 16: الحلقات المشروطة (while) - الاستمرار طالما.. context",
         "error_message": "NameError: name 'Invalid_Var' is not defined",
         "explanation": "بايثون لغة حساسة لحالة الأحرف (Case-sensitive). المتغير invalid_var يختلف عن Invalid_Var."
       },
@@ -917,9 +917,9 @@ export const pythonTrackData = [
       {
         "type": "challenge",
         "title": "تحدي: إصلاح الكود",
-        "code": "# الكود التالي يحتوي على خطأ بسيط، حاول إصلاحه ليعمل\nbattery == 3\nwhile battery > 0:\n    print('الجهاز يعمل')\n    battery -= 1  # إنقاص الطاقة تدريجياً\nprint('الجهاز انطفأ')",
-        "expected_output": "Correct execution",
-        "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
+        "code": "# قم بتصحيح هذا الكود ليعمل بشكل سليم\nbattery == 3\nwhile battery > 0:\n    print('الجهاز يعمل')\n    battery -= 1  # إنقاص الطاقة تدريجياً\nprint('الجهاز انطفأ')",
+        "expected_output": "Correct execution output",
+        "explanation": "تحدي خاص بدرس: الدرس 16: الحلقات المشروطة (while) - الاستمرار طالما.."
       }
     ],
     "lesson_type": "mini_mission"
@@ -947,20 +947,20 @@ export const pythonTrackData = [
         "type": "correct",
         "title": "تطبيق مباشر: الدرس 17: القواميس (dict) - بيانات كالمحترفين",
         "code": "user = {\n    'name': 'أحمد',\n    'role': 'أدمن'\n}\nprint(user['name']) # طباعة أحمد",
-        "expected_output": "Output based on the example above",
-        "explanation": "هذا مثال بسيط يوضح كيفية تطبيق المفهوم بشكل سليم دون تعقيد."
+        "expected_output": "(Output specific to الدرس 17: القواميس (dict) - بيانات كالمحترفين)",
+        "explanation": "هذا مثال عملي يوضح كيفية استخدام (الدرس 17: القواميس (dict) - بيانات كالمحترفين) برمجياً."
       },
       {
         "type": "wrong",
         "title": "خطأ صياغة شائع",
         "code": "user = {\n    'name': 'أحمد',\n    'role': 'أدمن'\n}\nprint(user['name' # طباعة أحمد",
-        "error_message": "SyntaxError: unexpected EOF while parsing",
+        "error_message": "SyntaxError in الدرس 17: القواميس (dict) - بيانات كالمحترفين",
         "explanation": "نسيان إغلاق الأقواس أو علامات التنصيص هو من أكثر الأخطاء شيوعاً للمبتدئين."
       },
       {
         "type": "wrong",
         "title": "استخدام خاطئ للمتغيرات",
-        "code": "invalid_var = 10\nprint(Invalid_Var)",
+        "code": "invalid_var = 10\nprint(Invalid_Var) # الدرس 17: القواميس (dict) - بيانات كالمحترفين context",
         "error_message": "NameError: name 'Invalid_Var' is not defined",
         "explanation": "بايثون لغة حساسة لحالة الأحرف (Case-sensitive). المتغير invalid_var يختلف عن Invalid_Var."
       },
@@ -977,9 +977,9 @@ export const pythonTrackData = [
       {
         "type": "challenge",
         "title": "تحدي: إصلاح الكود",
-        "code": "# الكود التالي يحتوي على خطأ بسيط، حاول إصلاحه ليعمل\nuser == {\n    'name': 'أحمد',\n    'role': 'أدمن'\n}\nprint(user['name']) # طباعة أحمد",
-        "expected_output": "Correct execution",
-        "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
+        "code": "# قم بتصحيح هذا الكود ليعمل بشكل سليم\nuser == {\n    'name': 'أحمد',\n    'role': 'أدمن'\n}\nprint(user['name']) # طباعة أحمد",
+        "expected_output": "Correct execution output",
+        "explanation": "تحدي خاص بدرس: الدرس 17: القواميس (dict) - بيانات كالمحترفين"
       }
     ],
     "lesson_type": "concept"
@@ -1007,20 +1007,20 @@ export const pythonTrackData = [
         "type": "correct",
         "title": "تطبيق مباشر: الدرس 18: الدوال (functions) - مصانعك البرمجية الخاصة",
         "code": "def greet_user():\n    print('أهلاً بك في تطبيقنا')\n\n# هنا نقوم بالاستدعاء والتشغيل الفعلي\ngreet_user()",
-        "expected_output": "Output based on the example above",
-        "explanation": "هذا مثال بسيط يوضح كيفية تطبيق المفهوم بشكل سليم دون تعقيد."
+        "expected_output": "(Output specific to الدرس 18: الدوال (functions) - مصانعك البرمجية الخاصة)",
+        "explanation": "هذا مثال عملي يوضح كيفية استخدام (الدرس 18: الدوال (functions) - مصانعك البرمجية الخاصة) برمجياً."
       },
       {
         "type": "wrong",
         "title": "خطأ صياغة شائع",
         "code": "def greet_user(:\n    print('أهلاً بك في تطبيقنا')\n\n# هنا نقوم بالاستدعاء والتشغيل الفعلي\ngreet_user()",
-        "error_message": "SyntaxError: unexpected EOF while parsing",
+        "error_message": "SyntaxError in الدرس 18: الدوال (functions) - مصانعك البرمجية الخاصة",
         "explanation": "نسيان إغلاق الأقواس أو علامات التنصيص هو من أكثر الأخطاء شيوعاً للمبتدئين."
       },
       {
         "type": "wrong",
         "title": "استخدام خاطئ للمتغيرات",
-        "code": "invalid_var = 10\nprint(Invalid_Var)",
+        "code": "invalid_var = 10\nprint(Invalid_Var) # الدرس 18: الدوال (functions) - مصانعك البرمجية الخاصة context",
         "error_message": "NameError: name 'Invalid_Var' is not defined",
         "explanation": "بايثون لغة حساسة لحالة الأحرف (Case-sensitive). المتغير invalid_var يختلف عن Invalid_Var."
       },
@@ -1037,9 +1037,9 @@ export const pythonTrackData = [
       {
         "type": "challenge",
         "title": "تحدي: إصلاح الكود",
-        "code": "# الكود التالي يحتوي على خطأ بسيط، حاول إصلاحه ليعمل\ndef greet_user():\n    print('أهلاً بك في تطبيقنا')\n\n# هنا نقوم بالاستدعاء والتشغيل الفعلي\ngreet_user()",
-        "expected_output": "Correct execution",
-        "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
+        "code": "# قم بتصحيح هذا الكود ليعمل بشكل سليم\ndef greet_user():\n    print('أهلاً بك في تطبيقنا')\n\n# هنا نقوم بالاستدعاء والتشغيل الفعلي\ngreet_user()",
+        "expected_output": "Correct execution output",
+        "explanation": "تحدي خاص بدرس: الدرس 18: الدوال (functions) - مصانعك البرمجية الخاصة"
       }
     ],
     "lesson_type": "scenario"
@@ -1067,20 +1067,20 @@ export const pythonTrackData = [
         "type": "correct",
         "title": "تطبيق مباشر: الدرس 19: مدخلات ومخرجات الدوال (Parameters & Return)",
         "code": "def double_number(num):\n    return num * 2\n\n# هنا نحتفظ بالناتج في متغير للاستفادة منه لاحقاً\nresult = double_number(5)\nprint(result) # 10",
-        "expected_output": "Output based on the example above",
-        "explanation": "هذا مثال بسيط يوضح كيفية تطبيق المفهوم بشكل سليم دون تعقيد."
+        "expected_output": "(Output specific to الدرس 19: مدخلات ومخرجات الدوال (Parameters & Return))",
+        "explanation": "هذا مثال عملي يوضح كيفية استخدام (الدرس 19: مدخلات ومخرجات الدوال (Parameters & Return)) برمجياً."
       },
       {
         "type": "wrong",
         "title": "خطأ صياغة شائع",
         "code": "def double_number(num:\n    return num * 2\n\n# هنا نحتفظ بالناتج في متغير للاستفادة منه لاحقاً\nresult = double_number(5)\nprint(result) # 10",
-        "error_message": "SyntaxError: unexpected EOF while parsing",
+        "error_message": "SyntaxError in الدرس 19: مدخلات ومخرجات الدوال (Parameters & Return)",
         "explanation": "نسيان إغلاق الأقواس أو علامات التنصيص هو من أكثر الأخطاء شيوعاً للمبتدئين."
       },
       {
         "type": "wrong",
         "title": "استخدام خاطئ للمتغيرات",
-        "code": "invalid_var = 10\nprint(Invalid_Var)",
+        "code": "invalid_var = 10\nprint(Invalid_Var) # الدرس 19: مدخلات ومخرجات الدوال (Parameters & Return) context",
         "error_message": "NameError: name 'Invalid_Var' is not defined",
         "explanation": "بايثون لغة حساسة لحالة الأحرف (Case-sensitive). المتغير invalid_var يختلف عن Invalid_Var."
       },
@@ -1097,9 +1097,9 @@ export const pythonTrackData = [
       {
         "type": "challenge",
         "title": "تحدي: إصلاح الكود",
-        "code": "# الكود التالي يحتوي على خطأ بسيط، حاول إصلاحه ليعمل\ndef double_number(num):\n    return num * 2\n\n# هنا نحتفظ بالناتج في متغير للاستفادة منه لاحقاً\nresult == double_number(5)\nprint(result) # 10",
-        "expected_output": "Correct execution",
-        "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
+        "code": "# قم بتصحيح هذا الكود ليعمل بشكل سليم\ndef double_number(num):\n    return num * 2\n\n# هنا نحتفظ بالناتج في متغير للاستفادة منه لاحقاً\nresult == double_number(5)\nprint(result) # 10",
+        "expected_output": "Correct execution output",
+        "explanation": "تحدي خاص بدرس: الدرس 19: مدخلات ومخرجات الدوال (Parameters & Return)"
       }
     ],
     "lesson_type": "concept"
@@ -1127,20 +1127,20 @@ export const pythonTrackData = [
         "type": "correct",
         "title": "تطبيق مباشر: الدرس 20: مشروع التخرج (الفصل الأول) - حاسبة العمر الذكية",
         "code": "def check_age(birth_year):\n    age = 2024 - birth_year\n    if age >= 18:\n        return f'عمرك {age}، يمكنك القيادة'\n    else:\n        return f'عمرك {age}، أنت قاصر'\n\nprint(check_age(2000))",
-        "expected_output": "Output based on the example above",
-        "explanation": "هذا مثال بسيط يوضح كيفية تطبيق المفهوم بشكل سليم دون تعقيد."
+        "expected_output": "(Output specific to الدرس 20: مشروع التخرج (الفصل الأول) - حاسبة العمر الذكية)",
+        "explanation": "هذا مثال عملي يوضح كيفية استخدام (الدرس 20: مشروع التخرج (الفصل الأول) - حاسبة العمر الذكية) برمجياً."
       },
       {
         "type": "wrong",
         "title": "خطأ صياغة شائع",
         "code": "def check_age(birth_year:\n    age = 2024 - birth_year\n    if age >= 18:\n        return f'عمرك {age}، يمكنك القيادة'\n    else:\n        return f'عمرك {age}، أنت قاصر'\n\nprint(check_age(2000))",
-        "error_message": "SyntaxError: unexpected EOF while parsing",
+        "error_message": "SyntaxError in الدرس 20: مشروع التخرج (الفصل الأول) - حاسبة العمر الذكية",
         "explanation": "نسيان إغلاق الأقواس أو علامات التنصيص هو من أكثر الأخطاء شيوعاً للمبتدئين."
       },
       {
         "type": "wrong",
         "title": "استخدام خاطئ للمتغيرات",
-        "code": "invalid_var = 10\nprint(Invalid_Var)",
+        "code": "invalid_var = 10\nprint(Invalid_Var) # الدرس 20: مشروع التخرج (الفصل الأول) - حاسبة العمر الذكية context",
         "error_message": "NameError: name 'Invalid_Var' is not defined",
         "explanation": "بايثون لغة حساسة لحالة الأحرف (Case-sensitive). المتغير invalid_var يختلف عن Invalid_Var."
       },
@@ -1157,9 +1157,9 @@ export const pythonTrackData = [
       {
         "type": "challenge",
         "title": "تحدي: إصلاح الكود",
-        "code": "# الكود التالي يحتوي على خطأ بسيط، حاول إصلاحه ليعمل\ndef check_age(birth_year):\n    age == 2024 - birth_year\n    if age >= 18:\n        return f'عمرك {age}، يمكنك القيادة'\n    else:\n        return f'عمرك {age}، أنت قاصر'\n\nprint(check_age(2000))",
-        "expected_output": "Correct execution",
-        "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
+        "code": "# قم بتصحيح هذا الكود ليعمل بشكل سليم\ndef check_age(birth_year):\n    age == 2024 - birth_year\n    if age >= 18:\n        return f'عمرك {age}، يمكنك القيادة'\n    else:\n        return f'عمرك {age}، أنت قاصر'\n\nprint(check_age(2000))",
+        "expected_output": "Correct execution output",
+        "explanation": "تحدي خاص بدرس: الدرس 20: مشروع التخرج (الفصل الأول) - حاسبة العمر الذكية"
       }
     ],
     "lesson_type": "capstone"
@@ -1187,20 +1187,20 @@ export const pythonTrackData = [
         "type": "correct",
         "title": "تطبيق مباشر: الدرس 21: مراجعة أساسيات بايثون",
         "code": "def practice_21():\\n      print(\"Welcome to مراجعة أساسيات بايثون\")\\n  \\n  practice_21()",
-        "expected_output": "Output based on the example above",
-        "explanation": "هذا مثال بسيط يوضح كيفية تطبيق المفهوم بشكل سليم دون تعقيد."
+        "expected_output": "(Output specific to الدرس 21: مراجعة أساسيات بايثون)",
+        "explanation": "هذا مثال عملي يوضح كيفية استخدام (الدرس 21: مراجعة أساسيات بايثون) برمجياً."
       },
       {
         "type": "wrong",
         "title": "خطأ صياغة شائع",
         "code": "def practice_21(:\\n      print(Welcome to مراجعة أساسيات بايثون\")\\n  \\n  practice_21()",
-        "error_message": "SyntaxError: unexpected EOF while parsing",
+        "error_message": "SyntaxError in الدرس 21: مراجعة أساسيات بايثون",
         "explanation": "نسيان إغلاق الأقواس أو علامات التنصيص هو من أكثر الأخطاء شيوعاً للمبتدئين."
       },
       {
         "type": "wrong",
         "title": "استخدام خاطئ للمتغيرات",
-        "code": "invalid_var = 10\nprint(Invalid_Var)",
+        "code": "invalid_var = 10\nprint(Invalid_Var) # الدرس 21: مراجعة أساسيات بايثون context",
         "error_message": "NameError: name 'Invalid_Var' is not defined",
         "explanation": "بايثون لغة حساسة لحالة الأحرف (Case-sensitive). المتغير invalid_var يختلف عن Invalid_Var."
       },
@@ -1217,9 +1217,9 @@ export const pythonTrackData = [
       {
         "type": "challenge",
         "title": "تحدي: إصلاح الكود",
-        "code": "# الكود التالي يحتوي على خطأ بسيط، حاول إصلاحه ليعمل\ndef practice_21():\\n      print(\"Welcome to مراجعة أساسيات بايثون\")\\n  \\n  practice_21()",
-        "expected_output": "Correct execution",
-        "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
+        "code": "# قم بتصحيح هذا الكود ليعمل بشكل سليم\ndef practice_21():\\n      print(\"Welcome to مراجعة أساسيات بايثون\")\\n  \\n  practice_21()",
+        "expected_output": "Correct execution output",
+        "explanation": "تحدي خاص بدرس: الدرس 21: مراجعة أساسيات بايثون"
       }
     ],
     "lesson_type": "debugging"
@@ -1247,20 +1247,20 @@ export const pythonTrackData = [
         "type": "correct",
         "title": "تطبيق مباشر: الدرس 22: القوائم (Lists) المتقدمة",
         "code": "def practice_22():\\n      print(\"Welcome to القوائم (Lists) المتقدمة\")\\n  \\n  practice_22()",
-        "expected_output": "Output based on the example above",
-        "explanation": "هذا مثال بسيط يوضح كيفية تطبيق المفهوم بشكل سليم دون تعقيد."
+        "expected_output": "(Output specific to الدرس 22: القوائم (Lists) المتقدمة)",
+        "explanation": "هذا مثال عملي يوضح كيفية استخدام (الدرس 22: القوائم (Lists) المتقدمة) برمجياً."
       },
       {
         "type": "wrong",
         "title": "خطأ صياغة شائع",
         "code": "def practice_22(:\\n      print(Welcome to القوائم (Lists) المتقدمة\")\\n  \\n  practice_22()",
-        "error_message": "SyntaxError: unexpected EOF while parsing",
+        "error_message": "SyntaxError in الدرس 22: القوائم (Lists) المتقدمة",
         "explanation": "نسيان إغلاق الأقواس أو علامات التنصيص هو من أكثر الأخطاء شيوعاً للمبتدئين."
       },
       {
         "type": "wrong",
         "title": "استخدام خاطئ للمتغيرات",
-        "code": "invalid_var = 10\nprint(Invalid_Var)",
+        "code": "invalid_var = 10\nprint(Invalid_Var) # الدرس 22: القوائم (Lists) المتقدمة context",
         "error_message": "NameError: name 'Invalid_Var' is not defined",
         "explanation": "بايثون لغة حساسة لحالة الأحرف (Case-sensitive). المتغير invalid_var يختلف عن Invalid_Var."
       },
@@ -1277,9 +1277,9 @@ export const pythonTrackData = [
       {
         "type": "challenge",
         "title": "تحدي: إصلاح الكود",
-        "code": "# الكود التالي يحتوي على خطأ بسيط، حاول إصلاحه ليعمل\ndef practice_22():\\n      print(\"Welcome to القوائم (Lists) المتقدمة\")\\n  \\n  practice_22()",
-        "expected_output": "Correct execution",
-        "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
+        "code": "# قم بتصحيح هذا الكود ليعمل بشكل سليم\ndef practice_22():\\n      print(\"Welcome to القوائم (Lists) المتقدمة\")\\n  \\n  practice_22()",
+        "expected_output": "Correct execution output",
+        "explanation": "تحدي خاص بدرس: الدرس 22: القوائم (Lists) المتقدمة"
       }
     ],
     "lesson_type": "ai_challenge"
@@ -1307,20 +1307,20 @@ export const pythonTrackData = [
         "type": "correct",
         "title": "تطبيق مباشر: الدرس 23: عمليات البحث في القوائم",
         "code": "def practice_23():\\n      print(\"Welcome to عمليات البحث في القوائم\")\\n  \\n  practice_23()",
-        "expected_output": "Output based on the example above",
-        "explanation": "هذا مثال بسيط يوضح كيفية تطبيق المفهوم بشكل سليم دون تعقيد."
+        "expected_output": "(Output specific to الدرس 23: عمليات البحث في القوائم)",
+        "explanation": "هذا مثال عملي يوضح كيفية استخدام (الدرس 23: عمليات البحث في القوائم) برمجياً."
       },
       {
         "type": "wrong",
         "title": "خطأ صياغة شائع",
         "code": "def practice_23(:\\n      print(Welcome to عمليات البحث في القوائم\")\\n  \\n  practice_23()",
-        "error_message": "SyntaxError: unexpected EOF while parsing",
+        "error_message": "SyntaxError in الدرس 23: عمليات البحث في القوائم",
         "explanation": "نسيان إغلاق الأقواس أو علامات التنصيص هو من أكثر الأخطاء شيوعاً للمبتدئين."
       },
       {
         "type": "wrong",
         "title": "استخدام خاطئ للمتغيرات",
-        "code": "invalid_var = 10\nprint(Invalid_Var)",
+        "code": "invalid_var = 10\nprint(Invalid_Var) # الدرس 23: عمليات البحث في القوائم context",
         "error_message": "NameError: name 'Invalid_Var' is not defined",
         "explanation": "بايثون لغة حساسة لحالة الأحرف (Case-sensitive). المتغير invalid_var يختلف عن Invalid_Var."
       },
@@ -1337,9 +1337,9 @@ export const pythonTrackData = [
       {
         "type": "challenge",
         "title": "تحدي: إصلاح الكود",
-        "code": "# الكود التالي يحتوي على خطأ بسيط، حاول إصلاحه ليعمل\ndef practice_23():\\n      print(\"Welcome to عمليات البحث في القوائم\")\\n  \\n  practice_23()",
-        "expected_output": "Correct execution",
-        "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
+        "code": "# قم بتصحيح هذا الكود ليعمل بشكل سليم\ndef practice_23():\\n      print(\"Welcome to عمليات البحث في القوائم\")\\n  \\n  practice_23()",
+        "expected_output": "Correct execution output",
+        "explanation": "تحدي خاص بدرس: الدرس 23: عمليات البحث في القوائم"
       }
     ],
     "lesson_type": "concept"
@@ -1367,20 +1367,20 @@ export const pythonTrackData = [
         "type": "correct",
         "title": "تطبيق مباشر: الدرس 24: القواميس (Dictionaries)",
         "code": "def practice_24():\\n      print(\"Welcome to القواميس (Dictionaries)\")\\n  \\n  practice_24()",
-        "expected_output": "Output based on the example above",
-        "explanation": "هذا مثال بسيط يوضح كيفية تطبيق المفهوم بشكل سليم دون تعقيد."
+        "expected_output": "(Output specific to الدرس 24: القواميس (Dictionaries))",
+        "explanation": "هذا مثال عملي يوضح كيفية استخدام (الدرس 24: القواميس (Dictionaries)) برمجياً."
       },
       {
         "type": "wrong",
         "title": "خطأ صياغة شائع",
         "code": "def practice_24(:\\n      print(Welcome to القواميس (Dictionaries)\")\\n  \\n  practice_24()",
-        "error_message": "SyntaxError: unexpected EOF while parsing",
+        "error_message": "SyntaxError in الدرس 24: القواميس (Dictionaries)",
         "explanation": "نسيان إغلاق الأقواس أو علامات التنصيص هو من أكثر الأخطاء شيوعاً للمبتدئين."
       },
       {
         "type": "wrong",
         "title": "استخدام خاطئ للمتغيرات",
-        "code": "invalid_var = 10\nprint(Invalid_Var)",
+        "code": "invalid_var = 10\nprint(Invalid_Var) # الدرس 24: القواميس (Dictionaries) context",
         "error_message": "NameError: name 'Invalid_Var' is not defined",
         "explanation": "بايثون لغة حساسة لحالة الأحرف (Case-sensitive). المتغير invalid_var يختلف عن Invalid_Var."
       },
@@ -1397,9 +1397,9 @@ export const pythonTrackData = [
       {
         "type": "challenge",
         "title": "تحدي: إصلاح الكود",
-        "code": "# الكود التالي يحتوي على خطأ بسيط، حاول إصلاحه ليعمل\ndef practice_24():\\n      print(\"Welcome to القواميس (Dictionaries)\")\\n  \\n  practice_24()",
-        "expected_output": "Correct execution",
-        "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
+        "code": "# قم بتصحيح هذا الكود ليعمل بشكل سليم\ndef practice_24():\\n      print(\"Welcome to القواميس (Dictionaries)\")\\n  \\n  practice_24()",
+        "expected_output": "Correct execution output",
+        "explanation": "تحدي خاص بدرس: الدرس 24: القواميس (Dictionaries)"
       }
     ],
     "lesson_type": "mini_mission"
@@ -1427,20 +1427,20 @@ export const pythonTrackData = [
         "type": "correct",
         "title": "تطبيق مباشر: الدرس 25: المجموعات (Sets)",
         "code": "def practice_25():\\n      print(\"Welcome to المجموعات (Sets)\")\\n  \\n  practice_25()",
-        "expected_output": "Output based on the example above",
-        "explanation": "هذا مثال بسيط يوضح كيفية تطبيق المفهوم بشكل سليم دون تعقيد."
+        "expected_output": "(Output specific to الدرس 25: المجموعات (Sets))",
+        "explanation": "هذا مثال عملي يوضح كيفية استخدام (الدرس 25: المجموعات (Sets)) برمجياً."
       },
       {
         "type": "wrong",
         "title": "خطأ صياغة شائع",
         "code": "def practice_25(:\\n      print(Welcome to المجموعات (Sets)\")\\n  \\n  practice_25()",
-        "error_message": "SyntaxError: unexpected EOF while parsing",
+        "error_message": "SyntaxError in الدرس 25: المجموعات (Sets)",
         "explanation": "نسيان إغلاق الأقواس أو علامات التنصيص هو من أكثر الأخطاء شيوعاً للمبتدئين."
       },
       {
         "type": "wrong",
         "title": "استخدام خاطئ للمتغيرات",
-        "code": "invalid_var = 10\nprint(Invalid_Var)",
+        "code": "invalid_var = 10\nprint(Invalid_Var) # الدرس 25: المجموعات (Sets) context",
         "error_message": "NameError: name 'Invalid_Var' is not defined",
         "explanation": "بايثون لغة حساسة لحالة الأحرف (Case-sensitive). المتغير invalid_var يختلف عن Invalid_Var."
       },
@@ -1457,9 +1457,9 @@ export const pythonTrackData = [
       {
         "type": "challenge",
         "title": "تحدي: إصلاح الكود",
-        "code": "# الكود التالي يحتوي على خطأ بسيط، حاول إصلاحه ليعمل\ndef practice_25():\\n      print(\"Welcome to المجموعات (Sets)\")\\n  \\n  practice_25()",
-        "expected_output": "Correct execution",
-        "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
+        "code": "# قم بتصحيح هذا الكود ليعمل بشكل سليم\ndef practice_25():\\n      print(\"Welcome to المجموعات (Sets)\")\\n  \\n  practice_25()",
+        "expected_output": "Correct execution output",
+        "explanation": "تحدي خاص بدرس: الدرس 25: المجموعات (Sets)"
       }
     ],
     "lesson_type": "project"
@@ -1487,20 +1487,20 @@ export const pythonTrackData = [
         "type": "correct",
         "title": "تطبيق مباشر: الدرس 26: مقارنة البيانات",
         "code": "def practice_26():\\n      print(\"Welcome to مقارنة البيانات\")\\n  \\n  practice_26()",
-        "expected_output": "Output based on the example above",
-        "explanation": "هذا مثال بسيط يوضح كيفية تطبيق المفهوم بشكل سليم دون تعقيد."
+        "expected_output": "(Output specific to الدرس 26: مقارنة البيانات)",
+        "explanation": "هذا مثال عملي يوضح كيفية استخدام (الدرس 26: مقارنة البيانات) برمجياً."
       },
       {
         "type": "wrong",
         "title": "خطأ صياغة شائع",
         "code": "def practice_26(:\\n      print(Welcome to مقارنة البيانات\")\\n  \\n  practice_26()",
-        "error_message": "SyntaxError: unexpected EOF while parsing",
+        "error_message": "SyntaxError in الدرس 26: مقارنة البيانات",
         "explanation": "نسيان إغلاق الأقواس أو علامات التنصيص هو من أكثر الأخطاء شيوعاً للمبتدئين."
       },
       {
         "type": "wrong",
         "title": "استخدام خاطئ للمتغيرات",
-        "code": "invalid_var = 10\nprint(Invalid_Var)",
+        "code": "invalid_var = 10\nprint(Invalid_Var) # الدرس 26: مقارنة البيانات context",
         "error_message": "NameError: name 'Invalid_Var' is not defined",
         "explanation": "بايثون لغة حساسة لحالة الأحرف (Case-sensitive). المتغير invalid_var يختلف عن Invalid_Var."
       },
@@ -1517,9 +1517,9 @@ export const pythonTrackData = [
       {
         "type": "challenge",
         "title": "تحدي: إصلاح الكود",
-        "code": "# الكود التالي يحتوي على خطأ بسيط، حاول إصلاحه ليعمل\ndef practice_26():\\n      print(\"Welcome to مقارنة البيانات\")\\n  \\n  practice_26()",
-        "expected_output": "Correct execution",
-        "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
+        "code": "# قم بتصحيح هذا الكود ليعمل بشكل سليم\ndef practice_26():\\n      print(\"Welcome to مقارنة البيانات\")\\n  \\n  practice_26()",
+        "expected_output": "Correct execution output",
+        "explanation": "تحدي خاص بدرس: الدرس 26: مقارنة البيانات"
       }
     ],
     "lesson_type": "code_reading"
@@ -1547,20 +1547,20 @@ export const pythonTrackData = [
         "type": "correct",
         "title": "تطبيق مباشر: الدرس 27: الدوال (Functions) المتقدمة",
         "code": "def practice_27():\\n      print(\"Welcome to الدوال (Functions) المتقدمة\")\\n  \\n  practice_27()",
-        "expected_output": "Output based on the example above",
-        "explanation": "هذا مثال بسيط يوضح كيفية تطبيق المفهوم بشكل سليم دون تعقيد."
+        "expected_output": "(Output specific to الدرس 27: الدوال (Functions) المتقدمة)",
+        "explanation": "هذا مثال عملي يوضح كيفية استخدام (الدرس 27: الدوال (Functions) المتقدمة) برمجياً."
       },
       {
         "type": "wrong",
         "title": "خطأ صياغة شائع",
         "code": "def practice_27(:\\n      print(Welcome to الدوال (Functions) المتقدمة\")\\n  \\n  practice_27()",
-        "error_message": "SyntaxError: unexpected EOF while parsing",
+        "error_message": "SyntaxError in الدرس 27: الدوال (Functions) المتقدمة",
         "explanation": "نسيان إغلاق الأقواس أو علامات التنصيص هو من أكثر الأخطاء شيوعاً للمبتدئين."
       },
       {
         "type": "wrong",
         "title": "استخدام خاطئ للمتغيرات",
-        "code": "invalid_var = 10\nprint(Invalid_Var)",
+        "code": "invalid_var = 10\nprint(Invalid_Var) # الدرس 27: الدوال (Functions) المتقدمة context",
         "error_message": "NameError: name 'Invalid_Var' is not defined",
         "explanation": "بايثون لغة حساسة لحالة الأحرف (Case-sensitive). المتغير invalid_var يختلف عن Invalid_Var."
       },
@@ -1577,9 +1577,9 @@ export const pythonTrackData = [
       {
         "type": "challenge",
         "title": "تحدي: إصلاح الكود",
-        "code": "# الكود التالي يحتوي على خطأ بسيط، حاول إصلاحه ليعمل\ndef practice_27():\\n      print(\"Welcome to الدوال (Functions) المتقدمة\")\\n  \\n  practice_27()",
-        "expected_output": "Correct execution",
-        "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
+        "code": "# قم بتصحيح هذا الكود ليعمل بشكل سليم\ndef practice_27():\\n      print(\"Welcome to الدوال (Functions) المتقدمة\")\\n  \\n  practice_27()",
+        "expected_output": "Correct execution output",
+        "explanation": "تحدي خاص بدرس: الدرس 27: الدوال (Functions) المتقدمة"
       }
     ],
     "lesson_type": "sandbox"
@@ -1607,20 +1607,20 @@ export const pythonTrackData = [
         "type": "correct",
         "title": "تطبيق مباشر: الدرس 28: المتغيرات المحلية والعامة",
         "code": "def practice_28():\\n      print(\"Welcome to المتغيرات المحلية والعامة\")\\n  \\n  practice_28()",
-        "expected_output": "Output based on the example above",
-        "explanation": "هذا مثال بسيط يوضح كيفية تطبيق المفهوم بشكل سليم دون تعقيد."
+        "expected_output": "(Output specific to الدرس 28: المتغيرات المحلية والعامة)",
+        "explanation": "هذا مثال عملي يوضح كيفية استخدام (الدرس 28: المتغيرات المحلية والعامة) برمجياً."
       },
       {
         "type": "wrong",
         "title": "خطأ صياغة شائع",
         "code": "def practice_28(:\\n      print(Welcome to المتغيرات المحلية والعامة\")\\n  \\n  practice_28()",
-        "error_message": "SyntaxError: unexpected EOF while parsing",
+        "error_message": "SyntaxError in الدرس 28: المتغيرات المحلية والعامة",
         "explanation": "نسيان إغلاق الأقواس أو علامات التنصيص هو من أكثر الأخطاء شيوعاً للمبتدئين."
       },
       {
         "type": "wrong",
         "title": "استخدام خاطئ للمتغيرات",
-        "code": "invalid_var = 10\nprint(Invalid_Var)",
+        "code": "invalid_var = 10\nprint(Invalid_Var) # الدرس 28: المتغيرات المحلية والعامة context",
         "error_message": "NameError: name 'Invalid_Var' is not defined",
         "explanation": "بايثون لغة حساسة لحالة الأحرف (Case-sensitive). المتغير invalid_var يختلف عن Invalid_Var."
       },
@@ -1637,9 +1637,9 @@ export const pythonTrackData = [
       {
         "type": "challenge",
         "title": "تحدي: إصلاح الكود",
-        "code": "# الكود التالي يحتوي على خطأ بسيط، حاول إصلاحه ليعمل\ndef practice_28():\\n      print(\"Welcome to المتغيرات المحلية والعامة\")\\n  \\n  practice_28()",
-        "expected_output": "Correct execution",
-        "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
+        "code": "# قم بتصحيح هذا الكود ليعمل بشكل سليم\ndef practice_28():\\n      print(\"Welcome to المتغيرات المحلية والعامة\")\\n  \\n  practice_28()",
+        "expected_output": "Correct execution output",
+        "explanation": "تحدي خاص بدرس: الدرس 28: المتغيرات المحلية والعامة"
       }
     ],
     "lesson_type": "scenario"
@@ -1667,20 +1667,20 @@ export const pythonTrackData = [
         "type": "correct",
         "title": "تطبيق مباشر: الدرس 29: البرمجة الكائنية (OOP) مقدمة",
         "code": "def practice_29():\\n      print(\"Welcome to البرمجة الكائنية (OOP) مقدمة\")\\n  \\n  practice_29()",
-        "expected_output": "Output based on the example above",
-        "explanation": "هذا مثال بسيط يوضح كيفية تطبيق المفهوم بشكل سليم دون تعقيد."
+        "expected_output": "(Output specific to الدرس 29: البرمجة الكائنية (OOP) مقدمة)",
+        "explanation": "هذا مثال عملي يوضح كيفية استخدام (الدرس 29: البرمجة الكائنية (OOP) مقدمة) برمجياً."
       },
       {
         "type": "wrong",
         "title": "خطأ صياغة شائع",
         "code": "def practice_29(:\\n      print(Welcome to البرمجة الكائنية (OOP) مقدمة\")\\n  \\n  practice_29()",
-        "error_message": "SyntaxError: unexpected EOF while parsing",
+        "error_message": "SyntaxError in الدرس 29: البرمجة الكائنية (OOP) مقدمة",
         "explanation": "نسيان إغلاق الأقواس أو علامات التنصيص هو من أكثر الأخطاء شيوعاً للمبتدئين."
       },
       {
         "type": "wrong",
         "title": "استخدام خاطئ للمتغيرات",
-        "code": "invalid_var = 10\nprint(Invalid_Var)",
+        "code": "invalid_var = 10\nprint(Invalid_Var) # الدرس 29: البرمجة الكائنية (OOP) مقدمة context",
         "error_message": "NameError: name 'Invalid_Var' is not defined",
         "explanation": "بايثون لغة حساسة لحالة الأحرف (Case-sensitive). المتغير invalid_var يختلف عن Invalid_Var."
       },
@@ -1697,9 +1697,9 @@ export const pythonTrackData = [
       {
         "type": "challenge",
         "title": "تحدي: إصلاح الكود",
-        "code": "# الكود التالي يحتوي على خطأ بسيط، حاول إصلاحه ليعمل\ndef practice_29():\\n      print(\"Welcome to البرمجة الكائنية (OOP) مقدمة\")\\n  \\n  practice_29()",
-        "expected_output": "Correct execution",
-        "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
+        "code": "# قم بتصحيح هذا الكود ليعمل بشكل سليم\ndef practice_29():\\n      print(\"Welcome to البرمجة الكائنية (OOP) مقدمة\")\\n  \\n  practice_29()",
+        "expected_output": "Correct execution output",
+        "explanation": "تحدي خاص بدرس: الدرس 29: البرمجة الكائنية (OOP) مقدمة"
       }
     ],
     "lesson_type": "concept"
@@ -1727,20 +1727,20 @@ export const pythonTrackData = [
         "type": "correct",
         "title": "تطبيق مباشر: الدرس 30: الفئات (Classes) والكائنات",
         "code": "def practice_30():\\n      print(\"Welcome to الفئات (Classes) والكائنات\")\\n  \\n  practice_30()",
-        "expected_output": "Output based on the example above",
-        "explanation": "هذا مثال بسيط يوضح كيفية تطبيق المفهوم بشكل سليم دون تعقيد."
+        "expected_output": "(Output specific to الدرس 30: الفئات (Classes) والكائنات)",
+        "explanation": "هذا مثال عملي يوضح كيفية استخدام (الدرس 30: الفئات (Classes) والكائنات) برمجياً."
       },
       {
         "type": "wrong",
         "title": "خطأ صياغة شائع",
         "code": "def practice_30(:\\n      print(Welcome to الفئات (Classes) والكائنات\")\\n  \\n  practice_30()",
-        "error_message": "SyntaxError: unexpected EOF while parsing",
+        "error_message": "SyntaxError in الدرس 30: الفئات (Classes) والكائنات",
         "explanation": "نسيان إغلاق الأقواس أو علامات التنصيص هو من أكثر الأخطاء شيوعاً للمبتدئين."
       },
       {
         "type": "wrong",
         "title": "استخدام خاطئ للمتغيرات",
-        "code": "invalid_var = 10\nprint(Invalid_Var)",
+        "code": "invalid_var = 10\nprint(Invalid_Var) # الدرس 30: الفئات (Classes) والكائنات context",
         "error_message": "NameError: name 'Invalid_Var' is not defined",
         "explanation": "بايثون لغة حساسة لحالة الأحرف (Case-sensitive). المتغير invalid_var يختلف عن Invalid_Var."
       },
@@ -1757,9 +1757,9 @@ export const pythonTrackData = [
       {
         "type": "challenge",
         "title": "تحدي: إصلاح الكود",
-        "code": "# الكود التالي يحتوي على خطأ بسيط، حاول إصلاحه ليعمل\ndef practice_30():\\n      print(\"Welcome to الفئات (Classes) والكائنات\")\\n  \\n  practice_30()",
-        "expected_output": "Correct execution",
-        "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
+        "code": "# قم بتصحيح هذا الكود ليعمل بشكل سليم\ndef practice_30():\\n      print(\"Welcome to الفئات (Classes) والكائنات\")\\n  \\n  practice_30()",
+        "expected_output": "Correct execution output",
+        "explanation": "تحدي خاص بدرس: الدرس 30: الفئات (Classes) والكائنات"
       }
     ],
     "lesson_type": "milestone"
@@ -1787,20 +1787,20 @@ export const pythonTrackData = [
         "type": "correct",
         "title": "تطبيق مباشر: الدرس 31: الوراثة (Inheritance)",
         "code": "def practice_31():\\n      print(\"Welcome to الوراثة (Inheritance)\")\\n  \\n  practice_31()",
-        "expected_output": "Output based on the example above",
-        "explanation": "هذا مثال بسيط يوضح كيفية تطبيق المفهوم بشكل سليم دون تعقيد."
+        "expected_output": "(Output specific to الدرس 31: الوراثة (Inheritance))",
+        "explanation": "هذا مثال عملي يوضح كيفية استخدام (الدرس 31: الوراثة (Inheritance)) برمجياً."
       },
       {
         "type": "wrong",
         "title": "خطأ صياغة شائع",
         "code": "def practice_31(:\\n      print(Welcome to الوراثة (Inheritance)\")\\n  \\n  practice_31()",
-        "error_message": "SyntaxError: unexpected EOF while parsing",
+        "error_message": "SyntaxError in الدرس 31: الوراثة (Inheritance)",
         "explanation": "نسيان إغلاق الأقواس أو علامات التنصيص هو من أكثر الأخطاء شيوعاً للمبتدئين."
       },
       {
         "type": "wrong",
         "title": "استخدام خاطئ للمتغيرات",
-        "code": "invalid_var = 10\nprint(Invalid_Var)",
+        "code": "invalid_var = 10\nprint(Invalid_Var) # الدرس 31: الوراثة (Inheritance) context",
         "error_message": "NameError: name 'Invalid_Var' is not defined",
         "explanation": "بايثون لغة حساسة لحالة الأحرف (Case-sensitive). المتغير invalid_var يختلف عن Invalid_Var."
       },
@@ -1817,9 +1817,9 @@ export const pythonTrackData = [
       {
         "type": "challenge",
         "title": "تحدي: إصلاح الكود",
-        "code": "# الكود التالي يحتوي على خطأ بسيط، حاول إصلاحه ليعمل\ndef practice_31():\\n      print(\"Welcome to الوراثة (Inheritance)\")\\n  \\n  practice_31()",
-        "expected_output": "Correct execution",
-        "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
+        "code": "# قم بتصحيح هذا الكود ليعمل بشكل سليم\ndef practice_31():\\n      print(\"Welcome to الوراثة (Inheritance)\")\\n  \\n  practice_31()",
+        "expected_output": "Correct execution output",
+        "explanation": "تحدي خاص بدرس: الدرس 31: الوراثة (Inheritance)"
       }
     ],
     "lesson_type": "concept"
@@ -1847,20 +1847,20 @@ export const pythonTrackData = [
         "type": "correct",
         "title": "تطبيق مباشر: الدرس 32: التغليف (Encapsulation)",
         "code": "def practice_32():\\n      print(\"Welcome to التغليف (Encapsulation)\")\\n  \\n  practice_32()",
-        "expected_output": "Output based on the example above",
-        "explanation": "هذا مثال بسيط يوضح كيفية تطبيق المفهوم بشكل سليم دون تعقيد."
+        "expected_output": "(Output specific to الدرس 32: التغليف (Encapsulation))",
+        "explanation": "هذا مثال عملي يوضح كيفية استخدام (الدرس 32: التغليف (Encapsulation)) برمجياً."
       },
       {
         "type": "wrong",
         "title": "خطأ صياغة شائع",
         "code": "def practice_32(:\\n      print(Welcome to التغليف (Encapsulation)\")\\n  \\n  practice_32()",
-        "error_message": "SyntaxError: unexpected EOF while parsing",
+        "error_message": "SyntaxError in الدرس 32: التغليف (Encapsulation)",
         "explanation": "نسيان إغلاق الأقواس أو علامات التنصيص هو من أكثر الأخطاء شيوعاً للمبتدئين."
       },
       {
         "type": "wrong",
         "title": "استخدام خاطئ للمتغيرات",
-        "code": "invalid_var = 10\nprint(Invalid_Var)",
+        "code": "invalid_var = 10\nprint(Invalid_Var) # الدرس 32: التغليف (Encapsulation) context",
         "error_message": "NameError: name 'Invalid_Var' is not defined",
         "explanation": "بايثون لغة حساسة لحالة الأحرف (Case-sensitive). المتغير invalid_var يختلف عن Invalid_Var."
       },
@@ -1877,9 +1877,9 @@ export const pythonTrackData = [
       {
         "type": "challenge",
         "title": "تحدي: إصلاح الكود",
-        "code": "# الكود التالي يحتوي على خطأ بسيط، حاول إصلاحه ليعمل\ndef practice_32():\\n      print(\"Welcome to التغليف (Encapsulation)\")\\n  \\n  practice_32()",
-        "expected_output": "Correct execution",
-        "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
+        "code": "# قم بتصحيح هذا الكود ليعمل بشكل سليم\ndef practice_32():\\n      print(\"Welcome to التغليف (Encapsulation)\")\\n  \\n  practice_32()",
+        "expected_output": "Correct execution output",
+        "explanation": "تحدي خاص بدرس: الدرس 32: التغليف (Encapsulation)"
       }
     ],
     "lesson_type": "mini_mission"
@@ -1907,20 +1907,20 @@ export const pythonTrackData = [
         "type": "correct",
         "title": "تطبيق مباشر: الدرس 33: معالجة الأخطاء (Try/Except)",
         "code": "def practice_33():\\n      print(\"Welcome to معالجة الأخطاء (Try/Except)\")\\n  \\n  practice_33()",
-        "expected_output": "Output based on the example above",
-        "explanation": "هذا مثال بسيط يوضح كيفية تطبيق المفهوم بشكل سليم دون تعقيد."
+        "expected_output": "(Output specific to الدرس 33: معالجة الأخطاء (Try/Except))",
+        "explanation": "هذا مثال عملي يوضح كيفية استخدام (الدرس 33: معالجة الأخطاء (Try/Except)) برمجياً."
       },
       {
         "type": "wrong",
         "title": "خطأ صياغة شائع",
         "code": "def practice_33(:\\n      print(Welcome to معالجة الأخطاء (Try/Except)\")\\n  \\n  practice_33()",
-        "error_message": "SyntaxError: unexpected EOF while parsing",
+        "error_message": "SyntaxError in الدرس 33: معالجة الأخطاء (Try/Except)",
         "explanation": "نسيان إغلاق الأقواس أو علامات التنصيص هو من أكثر الأخطاء شيوعاً للمبتدئين."
       },
       {
         "type": "wrong",
         "title": "استخدام خاطئ للمتغيرات",
-        "code": "invalid_var = 10\nprint(Invalid_Var)",
+        "code": "invalid_var = 10\nprint(Invalid_Var) # الدرس 33: معالجة الأخطاء (Try/Except) context",
         "error_message": "NameError: name 'Invalid_Var' is not defined",
         "explanation": "بايثون لغة حساسة لحالة الأحرف (Case-sensitive). المتغير invalid_var يختلف عن Invalid_Var."
       },
@@ -1937,9 +1937,9 @@ export const pythonTrackData = [
       {
         "type": "challenge",
         "title": "تحدي: إصلاح الكود",
-        "code": "# الكود التالي يحتوي على خطأ بسيط، حاول إصلاحه ليعمل\ndef practice_33():\\n      print(\"Welcome to معالجة الأخطاء (Try/Except)\")\\n  \\n  practice_33()",
-        "expected_output": "Correct execution",
-        "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
+        "code": "# قم بتصحيح هذا الكود ليعمل بشكل سليم\ndef practice_33():\\n      print(\"Welcome to معالجة الأخطاء (Try/Except)\")\\n  \\n  practice_33()",
+        "expected_output": "Correct execution output",
+        "explanation": "تحدي خاص بدرس: الدرس 33: معالجة الأخطاء (Try/Except)"
       }
     ],
     "lesson_type": "ai_challenge"
@@ -1967,20 +1967,20 @@ export const pythonTrackData = [
         "type": "correct",
         "title": "تطبيق مباشر: الدرس 34: التعامل مع الملفات (القراءة)",
         "code": "def practice_34():\\n      print(\"Welcome to التعامل مع الملفات (القراءة)\")\\n  \\n  practice_34()",
-        "expected_output": "Output based on the example above",
-        "explanation": "هذا مثال بسيط يوضح كيفية تطبيق المفهوم بشكل سليم دون تعقيد."
+        "expected_output": "(Output specific to الدرس 34: التعامل مع الملفات (القراءة))",
+        "explanation": "هذا مثال عملي يوضح كيفية استخدام (الدرس 34: التعامل مع الملفات (القراءة)) برمجياً."
       },
       {
         "type": "wrong",
         "title": "خطأ صياغة شائع",
         "code": "def practice_34(:\\n      print(Welcome to التعامل مع الملفات (القراءة)\")\\n  \\n  practice_34()",
-        "error_message": "SyntaxError: unexpected EOF while parsing",
+        "error_message": "SyntaxError in الدرس 34: التعامل مع الملفات (القراءة)",
         "explanation": "نسيان إغلاق الأقواس أو علامات التنصيص هو من أكثر الأخطاء شيوعاً للمبتدئين."
       },
       {
         "type": "wrong",
         "title": "استخدام خاطئ للمتغيرات",
-        "code": "invalid_var = 10\nprint(Invalid_Var)",
+        "code": "invalid_var = 10\nprint(Invalid_Var) # الدرس 34: التعامل مع الملفات (القراءة) context",
         "error_message": "NameError: name 'Invalid_Var' is not defined",
         "explanation": "بايثون لغة حساسة لحالة الأحرف (Case-sensitive). المتغير invalid_var يختلف عن Invalid_Var."
       },
@@ -1997,9 +1997,9 @@ export const pythonTrackData = [
       {
         "type": "challenge",
         "title": "تحدي: إصلاح الكود",
-        "code": "# الكود التالي يحتوي على خطأ بسيط، حاول إصلاحه ليعمل\ndef practice_34():\\n      print(\"Welcome to التعامل مع الملفات (القراءة)\")\\n  \\n  practice_34()",
-        "expected_output": "Correct execution",
-        "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
+        "code": "# قم بتصحيح هذا الكود ليعمل بشكل سليم\ndef practice_34():\\n      print(\"Welcome to التعامل مع الملفات (القراءة)\")\\n  \\n  practice_34()",
+        "expected_output": "Correct execution output",
+        "explanation": "تحدي خاص بدرس: الدرس 34: التعامل مع الملفات (القراءة)"
       }
     ],
     "lesson_type": "concept"
@@ -2027,20 +2027,20 @@ export const pythonTrackData = [
         "type": "correct",
         "title": "تطبيق مباشر: الدرس 35: التعامل مع الملفات (الكتابة)",
         "code": "def practice_35():\\n      print(\"Welcome to التعامل مع الملفات (الكتابة)\")\\n  \\n  practice_35()",
-        "expected_output": "Output based on the example above",
-        "explanation": "هذا مثال بسيط يوضح كيفية تطبيق المفهوم بشكل سليم دون تعقيد."
+        "expected_output": "(Output specific to الدرس 35: التعامل مع الملفات (الكتابة))",
+        "explanation": "هذا مثال عملي يوضح كيفية استخدام (الدرس 35: التعامل مع الملفات (الكتابة)) برمجياً."
       },
       {
         "type": "wrong",
         "title": "خطأ صياغة شائع",
         "code": "def practice_35(:\\n      print(Welcome to التعامل مع الملفات (الكتابة)\")\\n  \\n  practice_35()",
-        "error_message": "SyntaxError: unexpected EOF while parsing",
+        "error_message": "SyntaxError in الدرس 35: التعامل مع الملفات (الكتابة)",
         "explanation": "نسيان إغلاق الأقواس أو علامات التنصيص هو من أكثر الأخطاء شيوعاً للمبتدئين."
       },
       {
         "type": "wrong",
         "title": "استخدام خاطئ للمتغيرات",
-        "code": "invalid_var = 10\nprint(Invalid_Var)",
+        "code": "invalid_var = 10\nprint(Invalid_Var) # الدرس 35: التعامل مع الملفات (الكتابة) context",
         "error_message": "NameError: name 'Invalid_Var' is not defined",
         "explanation": "بايثون لغة حساسة لحالة الأحرف (Case-sensitive). المتغير invalid_var يختلف عن Invalid_Var."
       },
@@ -2057,9 +2057,9 @@ export const pythonTrackData = [
       {
         "type": "challenge",
         "title": "تحدي: إصلاح الكود",
-        "code": "# الكود التالي يحتوي على خطأ بسيط، حاول إصلاحه ليعمل\ndef practice_35():\\n      print(\"Welcome to التعامل مع الملفات (الكتابة)\")\\n  \\n  practice_35()",
-        "expected_output": "Correct execution",
-        "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
+        "code": "# قم بتصحيح هذا الكود ليعمل بشكل سليم\ndef practice_35():\\n      print(\"Welcome to التعامل مع الملفات (الكتابة)\")\\n  \\n  practice_35()",
+        "expected_output": "Correct execution output",
+        "explanation": "تحدي خاص بدرس: الدرس 35: التعامل مع الملفات (الكتابة)"
       }
     ],
     "lesson_type": "project"
@@ -2087,20 +2087,20 @@ export const pythonTrackData = [
         "type": "correct",
         "title": "تطبيق مباشر: الدرس 36: استيراد المكتبات",
         "code": "def practice_36():\\n      print(\"Welcome to استيراد المكتبات\")\\n  \\n  practice_36()",
-        "expected_output": "Output based on the example above",
-        "explanation": "هذا مثال بسيط يوضح كيفية تطبيق المفهوم بشكل سليم دون تعقيد."
+        "expected_output": "(Output specific to الدرس 36: استيراد المكتبات)",
+        "explanation": "هذا مثال عملي يوضح كيفية استخدام (الدرس 36: استيراد المكتبات) برمجياً."
       },
       {
         "type": "wrong",
         "title": "خطأ صياغة شائع",
         "code": "def practice_36(:\\n      print(Welcome to استيراد المكتبات\")\\n  \\n  practice_36()",
-        "error_message": "SyntaxError: unexpected EOF while parsing",
+        "error_message": "SyntaxError in الدرس 36: استيراد المكتبات",
         "explanation": "نسيان إغلاق الأقواس أو علامات التنصيص هو من أكثر الأخطاء شيوعاً للمبتدئين."
       },
       {
         "type": "wrong",
         "title": "استخدام خاطئ للمتغيرات",
-        "code": "invalid_var = 10\nprint(Invalid_Var)",
+        "code": "invalid_var = 10\nprint(Invalid_Var) # الدرس 36: استيراد المكتبات context",
         "error_message": "NameError: name 'Invalid_Var' is not defined",
         "explanation": "بايثون لغة حساسة لحالة الأحرف (Case-sensitive). المتغير invalid_var يختلف عن Invalid_Var."
       },
@@ -2117,9 +2117,9 @@ export const pythonTrackData = [
       {
         "type": "challenge",
         "title": "تحدي: إصلاح الكود",
-        "code": "# الكود التالي يحتوي على خطأ بسيط، حاول إصلاحه ليعمل\ndef practice_36():\\n      print(\"Welcome to استيراد المكتبات\")\\n  \\n  practice_36()",
-        "expected_output": "Correct execution",
-        "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
+        "code": "# قم بتصحيح هذا الكود ليعمل بشكل سليم\ndef practice_36():\\n      print(\"Welcome to استيراد المكتبات\")\\n  \\n  practice_36()",
+        "expected_output": "Correct execution output",
+        "explanation": "تحدي خاص بدرس: الدرس 36: استيراد المكتبات"
       }
     ],
     "lesson_type": "mini_mission"
@@ -2147,20 +2147,20 @@ export const pythonTrackData = [
         "type": "correct",
         "title": "تطبيق مباشر: الدرس 37: مكتبة Math الرياضية",
         "code": "def practice_37():\\n      print(\"Welcome to مكتبة Math الرياضية\")\\n  \\n  practice_37()",
-        "expected_output": "Output based on the example above",
-        "explanation": "هذا مثال بسيط يوضح كيفية تطبيق المفهوم بشكل سليم دون تعقيد."
+        "expected_output": "(Output specific to الدرس 37: مكتبة Math الرياضية)",
+        "explanation": "هذا مثال عملي يوضح كيفية استخدام (الدرس 37: مكتبة Math الرياضية) برمجياً."
       },
       {
         "type": "wrong",
         "title": "خطأ صياغة شائع",
         "code": "def practice_37(:\\n      print(Welcome to مكتبة Math الرياضية\")\\n  \\n  practice_37()",
-        "error_message": "SyntaxError: unexpected EOF while parsing",
+        "error_message": "SyntaxError in الدرس 37: مكتبة Math الرياضية",
         "explanation": "نسيان إغلاق الأقواس أو علامات التنصيص هو من أكثر الأخطاء شيوعاً للمبتدئين."
       },
       {
         "type": "wrong",
         "title": "استخدام خاطئ للمتغيرات",
-        "code": "invalid_var = 10\nprint(Invalid_Var)",
+        "code": "invalid_var = 10\nprint(Invalid_Var) # الدرس 37: مكتبة Math الرياضية context",
         "error_message": "NameError: name 'Invalid_Var' is not defined",
         "explanation": "بايثون لغة حساسة لحالة الأحرف (Case-sensitive). المتغير invalid_var يختلف عن Invalid_Var."
       },
@@ -2177,9 +2177,9 @@ export const pythonTrackData = [
       {
         "type": "challenge",
         "title": "تحدي: إصلاح الكود",
-        "code": "# الكود التالي يحتوي على خطأ بسيط، حاول إصلاحه ليعمل\ndef practice_37():\\n      print(\"Welcome to مكتبة Math الرياضية\")\\n  \\n  practice_37()",
-        "expected_output": "Correct execution",
-        "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
+        "code": "# قم بتصحيح هذا الكود ليعمل بشكل سليم\ndef practice_37():\\n      print(\"Welcome to مكتبة Math الرياضية\")\\n  \\n  practice_37()",
+        "expected_output": "Correct execution output",
+        "explanation": "تحدي خاص بدرس: الدرس 37: مكتبة Math الرياضية"
       }
     ],
     "lesson_type": "concept"
@@ -2207,20 +2207,20 @@ export const pythonTrackData = [
         "type": "correct",
         "title": "تطبيق مباشر: الدرس 38: مكتبة Random الممتعة",
         "code": "def practice_38():\\n      print(\"Welcome to مكتبة Random الممتعة\")\\n  \\n  practice_38()",
-        "expected_output": "Output based on the example above",
-        "explanation": "هذا مثال بسيط يوضح كيفية تطبيق المفهوم بشكل سليم دون تعقيد."
+        "expected_output": "(Output specific to الدرس 38: مكتبة Random الممتعة)",
+        "explanation": "هذا مثال عملي يوضح كيفية استخدام (الدرس 38: مكتبة Random الممتعة) برمجياً."
       },
       {
         "type": "wrong",
         "title": "خطأ صياغة شائع",
         "code": "def practice_38(:\\n      print(Welcome to مكتبة Random الممتعة\")\\n  \\n  practice_38()",
-        "error_message": "SyntaxError: unexpected EOF while parsing",
+        "error_message": "SyntaxError in الدرس 38: مكتبة Random الممتعة",
         "explanation": "نسيان إغلاق الأقواس أو علامات التنصيص هو من أكثر الأخطاء شيوعاً للمبتدئين."
       },
       {
         "type": "wrong",
         "title": "استخدام خاطئ للمتغيرات",
-        "code": "invalid_var = 10\nprint(Invalid_Var)",
+        "code": "invalid_var = 10\nprint(Invalid_Var) # الدرس 38: مكتبة Random الممتعة context",
         "error_message": "NameError: name 'Invalid_Var' is not defined",
         "explanation": "بايثون لغة حساسة لحالة الأحرف (Case-sensitive). المتغير invalid_var يختلف عن Invalid_Var."
       },
@@ -2237,9 +2237,9 @@ export const pythonTrackData = [
       {
         "type": "challenge",
         "title": "تحدي: إصلاح الكود",
-        "code": "# الكود التالي يحتوي على خطأ بسيط، حاول إصلاحه ليعمل\ndef practice_38():\\n      print(\"Welcome to مكتبة Random الممتعة\")\\n  \\n  practice_38()",
-        "expected_output": "Correct execution",
-        "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
+        "code": "# قم بتصحيح هذا الكود ليعمل بشكل سليم\ndef practice_38():\\n      print(\"Welcome to مكتبة Random الممتعة\")\\n  \\n  practice_38()",
+        "expected_output": "Correct execution output",
+        "explanation": "تحدي خاص بدرس: الدرس 38: مكتبة Random الممتعة"
       }
     ],
     "lesson_type": "scenario"
@@ -2267,20 +2267,20 @@ export const pythonTrackData = [
         "type": "correct",
         "title": "تطبيق مباشر: الدرس 39: مقدمة في تحليل البيانات",
         "code": "def practice_39():\\n      print(\"Welcome to مقدمة في تحليل البيانات\")\\n  \\n  practice_39()",
-        "expected_output": "Output based on the example above",
-        "explanation": "هذا مثال بسيط يوضح كيفية تطبيق المفهوم بشكل سليم دون تعقيد."
+        "expected_output": "(Output specific to الدرس 39: مقدمة في تحليل البيانات)",
+        "explanation": "هذا مثال عملي يوضح كيفية استخدام (الدرس 39: مقدمة في تحليل البيانات) برمجياً."
       },
       {
         "type": "wrong",
         "title": "خطأ صياغة شائع",
         "code": "def practice_39(:\\n      print(Welcome to مقدمة في تحليل البيانات\")\\n  \\n  practice_39()",
-        "error_message": "SyntaxError: unexpected EOF while parsing",
+        "error_message": "SyntaxError in الدرس 39: مقدمة في تحليل البيانات",
         "explanation": "نسيان إغلاق الأقواس أو علامات التنصيص هو من أكثر الأخطاء شيوعاً للمبتدئين."
       },
       {
         "type": "wrong",
         "title": "استخدام خاطئ للمتغيرات",
-        "code": "invalid_var = 10\nprint(Invalid_Var)",
+        "code": "invalid_var = 10\nprint(Invalid_Var) # الدرس 39: مقدمة في تحليل البيانات context",
         "error_message": "NameError: name 'Invalid_Var' is not defined",
         "explanation": "بايثون لغة حساسة لحالة الأحرف (Case-sensitive). المتغير invalid_var يختلف عن Invalid_Var."
       },
@@ -2297,9 +2297,9 @@ export const pythonTrackData = [
       {
         "type": "challenge",
         "title": "تحدي: إصلاح الكود",
-        "code": "# الكود التالي يحتوي على خطأ بسيط، حاول إصلاحه ليعمل\ndef practice_39():\\n      print(\"Welcome to مقدمة في تحليل البيانات\")\\n  \\n  practice_39()",
-        "expected_output": "Correct execution",
-        "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
+        "code": "# قم بتصحيح هذا الكود ليعمل بشكل سليم\ndef practice_39():\\n      print(\"Welcome to مقدمة في تحليل البيانات\")\\n  \\n  practice_39()",
+        "expected_output": "Correct execution output",
+        "explanation": "تحدي خاص بدرس: الدرس 39: مقدمة في تحليل البيانات"
       }
     ],
     "lesson_type": "code_reading"
@@ -2327,20 +2327,20 @@ export const pythonTrackData = [
         "type": "correct",
         "title": "تطبيق مباشر: الدرس 40: مكتبة Pandas السريعة",
         "code": "def practice_40():\\n      print(\"Welcome to مكتبة Pandas السريعة\")\\n  \\n  practice_40()",
-        "expected_output": "Output based on the example above",
-        "explanation": "هذا مثال بسيط يوضح كيفية تطبيق المفهوم بشكل سليم دون تعقيد."
+        "expected_output": "(Output specific to الدرس 40: مكتبة Pandas السريعة)",
+        "explanation": "هذا مثال عملي يوضح كيفية استخدام (الدرس 40: مكتبة Pandas السريعة) برمجياً."
       },
       {
         "type": "wrong",
         "title": "خطأ صياغة شائع",
         "code": "def practice_40(:\\n      print(Welcome to مكتبة Pandas السريعة\")\\n  \\n  practice_40()",
-        "error_message": "SyntaxError: unexpected EOF while parsing",
+        "error_message": "SyntaxError in الدرس 40: مكتبة Pandas السريعة",
         "explanation": "نسيان إغلاق الأقواس أو علامات التنصيص هو من أكثر الأخطاء شيوعاً للمبتدئين."
       },
       {
         "type": "wrong",
         "title": "استخدام خاطئ للمتغيرات",
-        "code": "invalid_var = 10\nprint(Invalid_Var)",
+        "code": "invalid_var = 10\nprint(Invalid_Var) # الدرس 40: مكتبة Pandas السريعة context",
         "error_message": "NameError: name 'Invalid_Var' is not defined",
         "explanation": "بايثون لغة حساسة لحالة الأحرف (Case-sensitive). المتغير invalid_var يختلف عن Invalid_Var."
       },
@@ -2357,9 +2357,9 @@ export const pythonTrackData = [
       {
         "type": "challenge",
         "title": "تحدي: إصلاح الكود",
-        "code": "# الكود التالي يحتوي على خطأ بسيط، حاول إصلاحه ليعمل\ndef practice_40():\\n      print(\"Welcome to مكتبة Pandas السريعة\")\\n  \\n  practice_40()",
-        "expected_output": "Correct execution",
-        "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
+        "code": "# قم بتصحيح هذا الكود ليعمل بشكل سليم\ndef practice_40():\\n      print(\"Welcome to مكتبة Pandas السريعة\")\\n  \\n  practice_40()",
+        "expected_output": "Correct execution output",
+        "explanation": "تحدي خاص بدرس: الدرس 40: مكتبة Pandas السريعة"
       }
     ],
     "lesson_type": "capstone"
@@ -2387,20 +2387,20 @@ export const pythonTrackData = [
         "type": "correct",
         "title": "تطبيق مباشر: الدرس 41: معالجة النصوص المتقدمة",
         "code": "def practice_41():\\n      print(\"Welcome to معالجة النصوص المتقدمة\")\\n  \\n  practice_41()",
-        "expected_output": "Output based on the example above",
-        "explanation": "هذا مثال بسيط يوضح كيفية تطبيق المفهوم بشكل سليم دون تعقيد."
+        "expected_output": "(Output specific to الدرس 41: معالجة النصوص المتقدمة)",
+        "explanation": "هذا مثال عملي يوضح كيفية استخدام (الدرس 41: معالجة النصوص المتقدمة) برمجياً."
       },
       {
         "type": "wrong",
         "title": "خطأ صياغة شائع",
         "code": "def practice_41(:\\n      print(Welcome to معالجة النصوص المتقدمة\")\\n  \\n  practice_41()",
-        "error_message": "SyntaxError: unexpected EOF while parsing",
+        "error_message": "SyntaxError in الدرس 41: معالجة النصوص المتقدمة",
         "explanation": "نسيان إغلاق الأقواس أو علامات التنصيص هو من أكثر الأخطاء شيوعاً للمبتدئين."
       },
       {
         "type": "wrong",
         "title": "استخدام خاطئ للمتغيرات",
-        "code": "invalid_var = 10\nprint(Invalid_Var)",
+        "code": "invalid_var = 10\nprint(Invalid_Var) # الدرس 41: معالجة النصوص المتقدمة context",
         "error_message": "NameError: name 'Invalid_Var' is not defined",
         "explanation": "بايثون لغة حساسة لحالة الأحرف (Case-sensitive). المتغير invalid_var يختلف عن Invalid_Var."
       },
@@ -2417,9 +2417,9 @@ export const pythonTrackData = [
       {
         "type": "challenge",
         "title": "تحدي: إصلاح الكود",
-        "code": "# الكود التالي يحتوي على خطأ بسيط، حاول إصلاحه ليعمل\ndef practice_41():\\n      print(\"Welcome to معالجة النصوص المتقدمة\")\\n  \\n  practice_41()",
-        "expected_output": "Correct execution",
-        "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
+        "code": "# قم بتصحيح هذا الكود ليعمل بشكل سليم\ndef practice_41():\\n      print(\"Welcome to معالجة النصوص المتقدمة\")\\n  \\n  practice_41()",
+        "expected_output": "Correct execution output",
+        "explanation": "تحدي خاص بدرس: الدرس 41: معالجة النصوص المتقدمة"
       }
     ],
     "lesson_type": "concept"
@@ -2447,20 +2447,20 @@ export const pythonTrackData = [
         "type": "correct",
         "title": "تطبيق مباشر: الدرس 42: تعبيرات عادية (Regex)",
         "code": "def practice_42():\\n      print(\"Welcome to تعبيرات عادية (Regex)\")\\n  \\n  practice_42()",
-        "expected_output": "Output based on the example above",
-        "explanation": "هذا مثال بسيط يوضح كيفية تطبيق المفهوم بشكل سليم دون تعقيد."
+        "expected_output": "(Output specific to الدرس 42: تعبيرات عادية (Regex))",
+        "explanation": "هذا مثال عملي يوضح كيفية استخدام (الدرس 42: تعبيرات عادية (Regex)) برمجياً."
       },
       {
         "type": "wrong",
         "title": "خطأ صياغة شائع",
         "code": "def practice_42(:\\n      print(Welcome to تعبيرات عادية (Regex)\")\\n  \\n  practice_42()",
-        "error_message": "SyntaxError: unexpected EOF while parsing",
+        "error_message": "SyntaxError in الدرس 42: تعبيرات عادية (Regex)",
         "explanation": "نسيان إغلاق الأقواس أو علامات التنصيص هو من أكثر الأخطاء شيوعاً للمبتدئين."
       },
       {
         "type": "wrong",
         "title": "استخدام خاطئ للمتغيرات",
-        "code": "invalid_var = 10\nprint(Invalid_Var)",
+        "code": "invalid_var = 10\nprint(Invalid_Var) # الدرس 42: تعبيرات عادية (Regex) context",
         "error_message": "NameError: name 'Invalid_Var' is not defined",
         "explanation": "بايثون لغة حساسة لحالة الأحرف (Case-sensitive). المتغير invalid_var يختلف عن Invalid_Var."
       },
@@ -2477,9 +2477,9 @@ export const pythonTrackData = [
       {
         "type": "challenge",
         "title": "تحدي: إصلاح الكود",
-        "code": "# الكود التالي يحتوي على خطأ بسيط، حاول إصلاحه ليعمل\ndef practice_42():\\n      print(\"Welcome to تعبيرات عادية (Regex)\")\\n  \\n  practice_42()",
-        "expected_output": "Correct execution",
-        "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
+        "code": "# قم بتصحيح هذا الكود ليعمل بشكل سليم\ndef practice_42():\\n      print(\"Welcome to تعبيرات عادية (Regex)\")\\n  \\n  practice_42()",
+        "expected_output": "Correct execution output",
+        "explanation": "تحدي خاص بدرس: الدرس 42: تعبيرات عادية (Regex)"
       }
     ],
     "lesson_type": "debugging"
@@ -2507,20 +2507,20 @@ export const pythonTrackData = [
         "type": "correct",
         "title": "تطبيق مباشر: الدرس 43: التعامل مع التواريخ (Datetime)",
         "code": "def practice_43():\\n      print(\"Welcome to التعامل مع التواريخ (Datetime)\")\\n  \\n  practice_43()",
-        "expected_output": "Output based on the example above",
-        "explanation": "هذا مثال بسيط يوضح كيفية تطبيق المفهوم بشكل سليم دون تعقيد."
+        "expected_output": "(Output specific to الدرس 43: التعامل مع التواريخ (Datetime))",
+        "explanation": "هذا مثال عملي يوضح كيفية استخدام (الدرس 43: التعامل مع التواريخ (Datetime)) برمجياً."
       },
       {
         "type": "wrong",
         "title": "خطأ صياغة شائع",
         "code": "def practice_43(:\\n      print(Welcome to التعامل مع التواريخ (Datetime)\")\\n  \\n  practice_43()",
-        "error_message": "SyntaxError: unexpected EOF while parsing",
+        "error_message": "SyntaxError in الدرس 43: التعامل مع التواريخ (Datetime)",
         "explanation": "نسيان إغلاق الأقواس أو علامات التنصيص هو من أكثر الأخطاء شيوعاً للمبتدئين."
       },
       {
         "type": "wrong",
         "title": "استخدام خاطئ للمتغيرات",
-        "code": "invalid_var = 10\nprint(Invalid_Var)",
+        "code": "invalid_var = 10\nprint(Invalid_Var) # الدرس 43: التعامل مع التواريخ (Datetime) context",
         "error_message": "NameError: name 'Invalid_Var' is not defined",
         "explanation": "بايثون لغة حساسة لحالة الأحرف (Case-sensitive). المتغير invalid_var يختلف عن Invalid_Var."
       },
@@ -2537,9 +2537,9 @@ export const pythonTrackData = [
       {
         "type": "challenge",
         "title": "تحدي: إصلاح الكود",
-        "code": "# الكود التالي يحتوي على خطأ بسيط، حاول إصلاحه ليعمل\ndef practice_43():\\n      print(\"Welcome to التعامل مع التواريخ (Datetime)\")\\n  \\n  practice_43()",
-        "expected_output": "Correct execution",
-        "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
+        "code": "# قم بتصحيح هذا الكود ليعمل بشكل سليم\ndef practice_43():\\n      print(\"Welcome to التعامل مع التواريخ (Datetime)\")\\n  \\n  practice_43()",
+        "expected_output": "Correct execution output",
+        "explanation": "تحدي خاص بدرس: الدرس 43: التعامل مع التواريخ (Datetime)"
       }
     ],
     "lesson_type": "concept"
@@ -2567,20 +2567,20 @@ export const pythonTrackData = [
         "type": "correct",
         "title": "تطبيق مباشر: الدرس 44: مقدمة للواجهات الرسومية",
         "code": "def practice_44():\\n      print(\"Welcome to مقدمة للواجهات الرسومية\")\\n  \\n  practice_44()",
-        "expected_output": "Output based on the example above",
-        "explanation": "هذا مثال بسيط يوضح كيفية تطبيق المفهوم بشكل سليم دون تعقيد."
+        "expected_output": "(Output specific to الدرس 44: مقدمة للواجهات الرسومية)",
+        "explanation": "هذا مثال عملي يوضح كيفية استخدام (الدرس 44: مقدمة للواجهات الرسومية) برمجياً."
       },
       {
         "type": "wrong",
         "title": "خطأ صياغة شائع",
         "code": "def practice_44(:\\n      print(Welcome to مقدمة للواجهات الرسومية\")\\n  \\n  practice_44()",
-        "error_message": "SyntaxError: unexpected EOF while parsing",
+        "error_message": "SyntaxError in الدرس 44: مقدمة للواجهات الرسومية",
         "explanation": "نسيان إغلاق الأقواس أو علامات التنصيص هو من أكثر الأخطاء شيوعاً للمبتدئين."
       },
       {
         "type": "wrong",
         "title": "استخدام خاطئ للمتغيرات",
-        "code": "invalid_var = 10\nprint(Invalid_Var)",
+        "code": "invalid_var = 10\nprint(Invalid_Var) # الدرس 44: مقدمة للواجهات الرسومية context",
         "error_message": "NameError: name 'Invalid_Var' is not defined",
         "explanation": "بايثون لغة حساسة لحالة الأحرف (Case-sensitive). المتغير invalid_var يختلف عن Invalid_Var."
       },
@@ -2597,9 +2597,9 @@ export const pythonTrackData = [
       {
         "type": "challenge",
         "title": "تحدي: إصلاح الكود",
-        "code": "# الكود التالي يحتوي على خطأ بسيط، حاول إصلاحه ليعمل\ndef practice_44():\\n      print(\"Welcome to مقدمة للواجهات الرسومية\")\\n  \\n  practice_44()",
-        "expected_output": "Correct execution",
-        "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
+        "code": "# قم بتصحيح هذا الكود ليعمل بشكل سليم\ndef practice_44():\\n      print(\"Welcome to مقدمة للواجهات الرسومية\")\\n  \\n  practice_44()",
+        "expected_output": "Correct execution output",
+        "explanation": "تحدي خاص بدرس: الدرس 44: مقدمة للواجهات الرسومية"
       }
     ],
     "lesson_type": "ai_challenge"
@@ -2627,20 +2627,20 @@ export const pythonTrackData = [
         "type": "correct",
         "title": "تطبيق مباشر: الدرس 45: بناء ألعاب بسيطة",
         "code": "def practice_45():\\n      print(\"Welcome to بناء ألعاب بسيطة\")\\n  \\n  practice_45()",
-        "expected_output": "Output based on the example above",
-        "explanation": "هذا مثال بسيط يوضح كيفية تطبيق المفهوم بشكل سليم دون تعقيد."
+        "expected_output": "(Output specific to الدرس 45: بناء ألعاب بسيطة)",
+        "explanation": "هذا مثال عملي يوضح كيفية استخدام (الدرس 45: بناء ألعاب بسيطة) برمجياً."
       },
       {
         "type": "wrong",
         "title": "خطأ صياغة شائع",
         "code": "def practice_45(:\\n      print(Welcome to بناء ألعاب بسيطة\")\\n  \\n  practice_45()",
-        "error_message": "SyntaxError: unexpected EOF while parsing",
+        "error_message": "SyntaxError in الدرس 45: بناء ألعاب بسيطة",
         "explanation": "نسيان إغلاق الأقواس أو علامات التنصيص هو من أكثر الأخطاء شيوعاً للمبتدئين."
       },
       {
         "type": "wrong",
         "title": "استخدام خاطئ للمتغيرات",
-        "code": "invalid_var = 10\nprint(Invalid_Var)",
+        "code": "invalid_var = 10\nprint(Invalid_Var) # الدرس 45: بناء ألعاب بسيطة context",
         "error_message": "NameError: name 'Invalid_Var' is not defined",
         "explanation": "بايثون لغة حساسة لحالة الأحرف (Case-sensitive). المتغير invalid_var يختلف عن Invalid_Var."
       },
@@ -2657,9 +2657,9 @@ export const pythonTrackData = [
       {
         "type": "challenge",
         "title": "تحدي: إصلاح الكود",
-        "code": "# الكود التالي يحتوي على خطأ بسيط، حاول إصلاحه ليعمل\ndef practice_45():\\n      print(\"Welcome to بناء ألعاب بسيطة\")\\n  \\n  practice_45()",
-        "expected_output": "Correct execution",
-        "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
+        "code": "# قم بتصحيح هذا الكود ليعمل بشكل سليم\ndef practice_45():\\n      print(\"Welcome to بناء ألعاب بسيطة\")\\n  \\n  practice_45()",
+        "expected_output": "Correct execution output",
+        "explanation": "تحدي خاص بدرس: الدرس 45: بناء ألعاب بسيطة"
       }
     ],
     "lesson_type": "project"
@@ -2687,20 +2687,20 @@ export const pythonTrackData = [
         "type": "correct",
         "title": "تطبيق مباشر: الدرس 46: مراجعة شاملة للمفاهيم",
         "code": "def practice_46():\\n      print(\"Welcome to مراجعة شاملة للمفاهيم\")\\n  \\n  practice_46()",
-        "expected_output": "Output based on the example above",
-        "explanation": "هذا مثال بسيط يوضح كيفية تطبيق المفهوم بشكل سليم دون تعقيد."
+        "expected_output": "(Output specific to الدرس 46: مراجعة شاملة للمفاهيم)",
+        "explanation": "هذا مثال عملي يوضح كيفية استخدام (الدرس 46: مراجعة شاملة للمفاهيم) برمجياً."
       },
       {
         "type": "wrong",
         "title": "خطأ صياغة شائع",
         "code": "def practice_46(:\\n      print(Welcome to مراجعة شاملة للمفاهيم\")\\n  \\n  practice_46()",
-        "error_message": "SyntaxError: unexpected EOF while parsing",
+        "error_message": "SyntaxError in الدرس 46: مراجعة شاملة للمفاهيم",
         "explanation": "نسيان إغلاق الأقواس أو علامات التنصيص هو من أكثر الأخطاء شيوعاً للمبتدئين."
       },
       {
         "type": "wrong",
         "title": "استخدام خاطئ للمتغيرات",
-        "code": "invalid_var = 10\nprint(Invalid_Var)",
+        "code": "invalid_var = 10\nprint(Invalid_Var) # الدرس 46: مراجعة شاملة للمفاهيم context",
         "error_message": "NameError: name 'Invalid_Var' is not defined",
         "explanation": "بايثون لغة حساسة لحالة الأحرف (Case-sensitive). المتغير invalid_var يختلف عن Invalid_Var."
       },
@@ -2717,9 +2717,9 @@ export const pythonTrackData = [
       {
         "type": "challenge",
         "title": "تحدي: إصلاح الكود",
-        "code": "# الكود التالي يحتوي على خطأ بسيط، حاول إصلاحه ليعمل\ndef practice_46():\\n      print(\"Welcome to مراجعة شاملة للمفاهيم\")\\n  \\n  practice_46()",
-        "expected_output": "Correct execution",
-        "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
+        "code": "# قم بتصحيح هذا الكود ليعمل بشكل سليم\ndef practice_46():\\n      print(\"Welcome to مراجعة شاملة للمفاهيم\")\\n  \\n  practice_46()",
+        "expected_output": "Correct execution output",
+        "explanation": "تحدي خاص بدرس: الدرس 46: مراجعة شاملة للمفاهيم"
       }
     ],
     "lesson_type": "concept"
@@ -2747,20 +2747,20 @@ export const pythonTrackData = [
         "type": "correct",
         "title": "تطبيق مباشر: الدرس 47: خوارزميات الفرز (Sorting)",
         "code": "def practice_47():\\n      print(\"Welcome to خوارزميات الفرز (Sorting)\")\\n  \\n  practice_47()",
-        "expected_output": "Output based on the example above",
-        "explanation": "هذا مثال بسيط يوضح كيفية تطبيق المفهوم بشكل سليم دون تعقيد."
+        "expected_output": "(Output specific to الدرس 47: خوارزميات الفرز (Sorting))",
+        "explanation": "هذا مثال عملي يوضح كيفية استخدام (الدرس 47: خوارزميات الفرز (Sorting)) برمجياً."
       },
       {
         "type": "wrong",
         "title": "خطأ صياغة شائع",
         "code": "def practice_47(:\\n      print(Welcome to خوارزميات الفرز (Sorting)\")\\n  \\n  practice_47()",
-        "error_message": "SyntaxError: unexpected EOF while parsing",
+        "error_message": "SyntaxError in الدرس 47: خوارزميات الفرز (Sorting)",
         "explanation": "نسيان إغلاق الأقواس أو علامات التنصيص هو من أكثر الأخطاء شيوعاً للمبتدئين."
       },
       {
         "type": "wrong",
         "title": "استخدام خاطئ للمتغيرات",
-        "code": "invalid_var = 10\nprint(Invalid_Var)",
+        "code": "invalid_var = 10\nprint(Invalid_Var) # الدرس 47: خوارزميات الفرز (Sorting) context",
         "error_message": "NameError: name 'Invalid_Var' is not defined",
         "explanation": "بايثون لغة حساسة لحالة الأحرف (Case-sensitive). المتغير invalid_var يختلف عن Invalid_Var."
       },
@@ -2777,9 +2777,9 @@ export const pythonTrackData = [
       {
         "type": "challenge",
         "title": "تحدي: إصلاح الكود",
-        "code": "# الكود التالي يحتوي على خطأ بسيط، حاول إصلاحه ليعمل\ndef practice_47():\\n      print(\"Welcome to خوارزميات الفرز (Sorting)\")\\n  \\n  practice_47()",
-        "expected_output": "Correct execution",
-        "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
+        "code": "# قم بتصحيح هذا الكود ليعمل بشكل سليم\ndef practice_47():\\n      print(\"Welcome to خوارزميات الفرز (Sorting)\")\\n  \\n  practice_47()",
+        "expected_output": "Correct execution output",
+        "explanation": "تحدي خاص بدرس: الدرس 47: خوارزميات الفرز (Sorting)"
       }
     ],
     "lesson_type": "concept"
@@ -2807,20 +2807,20 @@ export const pythonTrackData = [
         "type": "correct",
         "title": "تطبيق مباشر: الدرس 48: خوارزميات البحث (Searching)",
         "code": "def practice_48():\\n      print(\"Welcome to خوارزميات البحث (Searching)\")\\n  \\n  practice_48()",
-        "expected_output": "Output based on the example above",
-        "explanation": "هذا مثال بسيط يوضح كيفية تطبيق المفهوم بشكل سليم دون تعقيد."
+        "expected_output": "(Output specific to الدرس 48: خوارزميات البحث (Searching))",
+        "explanation": "هذا مثال عملي يوضح كيفية استخدام (الدرس 48: خوارزميات البحث (Searching)) برمجياً."
       },
       {
         "type": "wrong",
         "title": "خطأ صياغة شائع",
         "code": "def practice_48(:\\n      print(Welcome to خوارزميات البحث (Searching)\")\\n  \\n  practice_48()",
-        "error_message": "SyntaxError: unexpected EOF while parsing",
+        "error_message": "SyntaxError in الدرس 48: خوارزميات البحث (Searching)",
         "explanation": "نسيان إغلاق الأقواس أو علامات التنصيص هو من أكثر الأخطاء شيوعاً للمبتدئين."
       },
       {
         "type": "wrong",
         "title": "استخدام خاطئ للمتغيرات",
-        "code": "invalid_var = 10\nprint(Invalid_Var)",
+        "code": "invalid_var = 10\nprint(Invalid_Var) # الدرس 48: خوارزميات البحث (Searching) context",
         "error_message": "NameError: name 'Invalid_Var' is not defined",
         "explanation": "بايثون لغة حساسة لحالة الأحرف (Case-sensitive). المتغير invalid_var يختلف عن Invalid_Var."
       },
@@ -2837,9 +2837,9 @@ export const pythonTrackData = [
       {
         "type": "challenge",
         "title": "تحدي: إصلاح الكود",
-        "code": "# الكود التالي يحتوي على خطأ بسيط، حاول إصلاحه ليعمل\ndef practice_48():\\n      print(\"Welcome to خوارزميات البحث (Searching)\")\\n  \\n  practice_48()",
-        "expected_output": "Correct execution",
-        "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
+        "code": "# قم بتصحيح هذا الكود ليعمل بشكل سليم\ndef practice_48():\\n      print(\"Welcome to خوارزميات البحث (Searching)\")\\n  \\n  practice_48()",
+        "expected_output": "Correct execution output",
+        "explanation": "تحدي خاص بدرس: الدرس 48: خوارزميات البحث (Searching)"
       }
     ],
     "lesson_type": "scenario"
@@ -2867,20 +2867,20 @@ export const pythonTrackData = [
         "type": "correct",
         "title": "تطبيق مباشر: الدرس 49: تعقيد الخوارزميات (Time Complexity)",
         "code": "def practice_49():\\n      print(\"Welcome to تعقيد الخوارزميات (Time Complexity)\")\\n  \\n  practice_49()",
-        "expected_output": "Output based on the example above",
-        "explanation": "هذا مثال بسيط يوضح كيفية تطبيق المفهوم بشكل سليم دون تعقيد."
+        "expected_output": "(Output specific to الدرس 49: تعقيد الخوارزميات (Time Complexity))",
+        "explanation": "هذا مثال عملي يوضح كيفية استخدام (الدرس 49: تعقيد الخوارزميات (Time Complexity)) برمجياً."
       },
       {
         "type": "wrong",
         "title": "خطأ صياغة شائع",
         "code": "def practice_49(:\\n      print(Welcome to تعقيد الخوارزميات (Time Complexity)\")\\n  \\n  practice_49()",
-        "error_message": "SyntaxError: unexpected EOF while parsing",
+        "error_message": "SyntaxError in الدرس 49: تعقيد الخوارزميات (Time Complexity)",
         "explanation": "نسيان إغلاق الأقواس أو علامات التنصيص هو من أكثر الأخطاء شيوعاً للمبتدئين."
       },
       {
         "type": "wrong",
         "title": "استخدام خاطئ للمتغيرات",
-        "code": "invalid_var = 10\nprint(Invalid_Var)",
+        "code": "invalid_var = 10\nprint(Invalid_Var) # الدرس 49: تعقيد الخوارزميات (Time Complexity) context",
         "error_message": "NameError: name 'Invalid_Var' is not defined",
         "explanation": "بايثون لغة حساسة لحالة الأحرف (Case-sensitive). المتغير invalid_var يختلف عن Invalid_Var."
       },
@@ -2897,9 +2897,9 @@ export const pythonTrackData = [
       {
         "type": "challenge",
         "title": "تحدي: إصلاح الكود",
-        "code": "# الكود التالي يحتوي على خطأ بسيط، حاول إصلاحه ليعمل\ndef practice_49():\\n      print(\"Welcome to تعقيد الخوارزميات (Time Complexity)\")\\n  \\n  practice_49()",
-        "expected_output": "Correct execution",
-        "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
+        "code": "# قم بتصحيح هذا الكود ليعمل بشكل سليم\ndef practice_49():\\n      print(\"Welcome to تعقيد الخوارزميات (Time Complexity)\")\\n  \\n  practice_49()",
+        "expected_output": "Correct execution output",
+        "explanation": "تحدي خاص بدرس: الدرس 49: تعقيد الخوارزميات (Time Complexity)"
       }
     ],
     "lesson_type": "debugging"
@@ -2927,20 +2927,20 @@ export const pythonTrackData = [
         "type": "correct",
         "title": "تطبيق مباشر: الدرس 50: هياكل البيانات المتقدمة",
         "code": "def practice_50():\\n      print(\"Welcome to هياكل البيانات المتقدمة\")\\n  \\n  practice_50()",
-        "expected_output": "Output based on the example above",
-        "explanation": "هذا مثال بسيط يوضح كيفية تطبيق المفهوم بشكل سليم دون تعقيد."
+        "expected_output": "(Output specific to الدرس 50: هياكل البيانات المتقدمة)",
+        "explanation": "هذا مثال عملي يوضح كيفية استخدام (الدرس 50: هياكل البيانات المتقدمة) برمجياً."
       },
       {
         "type": "wrong",
         "title": "خطأ صياغة شائع",
         "code": "def practice_50(:\\n      print(Welcome to هياكل البيانات المتقدمة\")\\n  \\n  practice_50()",
-        "error_message": "SyntaxError: unexpected EOF while parsing",
+        "error_message": "SyntaxError in الدرس 50: هياكل البيانات المتقدمة",
         "explanation": "نسيان إغلاق الأقواس أو علامات التنصيص هو من أكثر الأخطاء شيوعاً للمبتدئين."
       },
       {
         "type": "wrong",
         "title": "استخدام خاطئ للمتغيرات",
-        "code": "invalid_var = 10\nprint(Invalid_Var)",
+        "code": "invalid_var = 10\nprint(Invalid_Var) # الدرس 50: هياكل البيانات المتقدمة context",
         "error_message": "NameError: name 'Invalid_Var' is not defined",
         "explanation": "بايثون لغة حساسة لحالة الأحرف (Case-sensitive). المتغير invalid_var يختلف عن Invalid_Var."
       },
@@ -2957,9 +2957,9 @@ export const pythonTrackData = [
       {
         "type": "challenge",
         "title": "تحدي: إصلاح الكود",
-        "code": "# الكود التالي يحتوي على خطأ بسيط، حاول إصلاحه ليعمل\ndef practice_50():\\n      print(\"Welcome to هياكل البيانات المتقدمة\")\\n  \\n  practice_50()",
-        "expected_output": "Correct execution",
-        "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
+        "code": "# قم بتصحيح هذا الكود ليعمل بشكل سليم\ndef practice_50():\\n      print(\"Welcome to هياكل البيانات المتقدمة\")\\n  \\n  practice_50()",
+        "expected_output": "Correct execution output",
+        "explanation": "تحدي خاص بدرس: الدرس 50: هياكل البيانات المتقدمة"
       }
     ],
     "lesson_type": "milestone"
@@ -2987,20 +2987,20 @@ export const pythonTrackData = [
         "type": "correct",
         "title": "تطبيق مباشر: الدرس 51: تطبيق عملي: نظام إدارة مستخدمين",
         "code": "def practice_51():\\n      print(\"Welcome to تطبيق عملي: نظام إدارة مستخدمين\")\\n  \\n  practice_51()",
-        "expected_output": "Output based on the example above",
-        "explanation": "هذا مثال بسيط يوضح كيفية تطبيق المفهوم بشكل سليم دون تعقيد."
+        "expected_output": "(Output specific to الدرس 51: تطبيق عملي: نظام إدارة مستخدمين)",
+        "explanation": "هذا مثال عملي يوضح كيفية استخدام (الدرس 51: تطبيق عملي: نظام إدارة مستخدمين) برمجياً."
       },
       {
         "type": "wrong",
         "title": "خطأ صياغة شائع",
         "code": "def practice_51(:\\n      print(Welcome to تطبيق عملي: نظام إدارة مستخدمين\")\\n  \\n  practice_51()",
-        "error_message": "SyntaxError: unexpected EOF while parsing",
+        "error_message": "SyntaxError in الدرس 51: تطبيق عملي: نظام إدارة مستخدمين",
         "explanation": "نسيان إغلاق الأقواس أو علامات التنصيص هو من أكثر الأخطاء شيوعاً للمبتدئين."
       },
       {
         "type": "wrong",
         "title": "استخدام خاطئ للمتغيرات",
-        "code": "invalid_var = 10\nprint(Invalid_Var)",
+        "code": "invalid_var = 10\nprint(Invalid_Var) # الدرس 51: تطبيق عملي: نظام إدارة مستخدمين context",
         "error_message": "NameError: name 'Invalid_Var' is not defined",
         "explanation": "بايثون لغة حساسة لحالة الأحرف (Case-sensitive). المتغير invalid_var يختلف عن Invalid_Var."
       },
@@ -3017,9 +3017,9 @@ export const pythonTrackData = [
       {
         "type": "challenge",
         "title": "تحدي: إصلاح الكود",
-        "code": "# الكود التالي يحتوي على خطأ بسيط، حاول إصلاحه ليعمل\ndef practice_51():\\n      print(\"Welcome to تطبيق عملي: نظام إدارة مستخدمين\")\\n  \\n  practice_51()",
-        "expected_output": "Correct execution",
-        "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
+        "code": "# قم بتصحيح هذا الكود ليعمل بشكل سليم\ndef practice_51():\\n      print(\"Welcome to تطبيق عملي: نظام إدارة مستخدمين\")\\n  \\n  practice_51()",
+        "expected_output": "Correct execution output",
+        "explanation": "تحدي خاص بدرس: الدرس 51: تطبيق عملي: نظام إدارة مستخدمين"
       }
     ],
     "lesson_type": "sandbox"
@@ -3047,20 +3047,20 @@ export const pythonTrackData = [
         "type": "correct",
         "title": "تطبيق مباشر: الدرس 52: التعامل مع قواعد البيانات SQLite",
         "code": "def practice_52():\\n      print(\"Welcome to التعامل مع قواعد البيانات SQLite\")\\n  \\n  practice_52()",
-        "expected_output": "Output based on the example above",
-        "explanation": "هذا مثال بسيط يوضح كيفية تطبيق المفهوم بشكل سليم دون تعقيد."
+        "expected_output": "(Output specific to الدرس 52: التعامل مع قواعد البيانات SQLite)",
+        "explanation": "هذا مثال عملي يوضح كيفية استخدام (الدرس 52: التعامل مع قواعد البيانات SQLite) برمجياً."
       },
       {
         "type": "wrong",
         "title": "خطأ صياغة شائع",
         "code": "def practice_52(:\\n      print(Welcome to التعامل مع قواعد البيانات SQLite\")\\n  \\n  practice_52()",
-        "error_message": "SyntaxError: unexpected EOF while parsing",
+        "error_message": "SyntaxError in الدرس 52: التعامل مع قواعد البيانات SQLite",
         "explanation": "نسيان إغلاق الأقواس أو علامات التنصيص هو من أكثر الأخطاء شيوعاً للمبتدئين."
       },
       {
         "type": "wrong",
         "title": "استخدام خاطئ للمتغيرات",
-        "code": "invalid_var = 10\nprint(Invalid_Var)",
+        "code": "invalid_var = 10\nprint(Invalid_Var) # الدرس 52: التعامل مع قواعد البيانات SQLite context",
         "error_message": "NameError: name 'Invalid_Var' is not defined",
         "explanation": "بايثون لغة حساسة لحالة الأحرف (Case-sensitive). المتغير invalid_var يختلف عن Invalid_Var."
       },
@@ -3077,9 +3077,9 @@ export const pythonTrackData = [
       {
         "type": "challenge",
         "title": "تحدي: إصلاح الكود",
-        "code": "# الكود التالي يحتوي على خطأ بسيط، حاول إصلاحه ليعمل\ndef practice_52():\\n      print(\"Welcome to التعامل مع قواعد البيانات SQLite\")\\n  \\n  practice_52()",
-        "expected_output": "Correct execution",
-        "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
+        "code": "# قم بتصحيح هذا الكود ليعمل بشكل سليم\ndef practice_52():\\n      print(\"Welcome to التعامل مع قواعد البيانات SQLite\")\\n  \\n  practice_52()",
+        "expected_output": "Correct execution output",
+        "explanation": "تحدي خاص بدرس: الدرس 52: التعامل مع قواعد البيانات SQLite"
       }
     ],
     "lesson_type": "code_reading"
@@ -3107,20 +3107,20 @@ export const pythonTrackData = [
         "type": "correct",
         "title": "تطبيق مباشر: الدرس 53: الاستعلامات الأساسية",
         "code": "def practice_53():\\n      print(\"Welcome to الاستعلامات الأساسية\")\\n  \\n  practice_53()",
-        "expected_output": "Output based on the example above",
-        "explanation": "هذا مثال بسيط يوضح كيفية تطبيق المفهوم بشكل سليم دون تعقيد."
+        "expected_output": "(Output specific to الدرس 53: الاستعلامات الأساسية)",
+        "explanation": "هذا مثال عملي يوضح كيفية استخدام (الدرس 53: الاستعلامات الأساسية) برمجياً."
       },
       {
         "type": "wrong",
         "title": "خطأ صياغة شائع",
         "code": "def practice_53(:\\n      print(Welcome to الاستعلامات الأساسية\")\\n  \\n  practice_53()",
-        "error_message": "SyntaxError: unexpected EOF while parsing",
+        "error_message": "SyntaxError in الدرس 53: الاستعلامات الأساسية",
         "explanation": "نسيان إغلاق الأقواس أو علامات التنصيص هو من أكثر الأخطاء شيوعاً للمبتدئين."
       },
       {
         "type": "wrong",
         "title": "استخدام خاطئ للمتغيرات",
-        "code": "invalid_var = 10\nprint(Invalid_Var)",
+        "code": "invalid_var = 10\nprint(Invalid_Var) # الدرس 53: الاستعلامات الأساسية context",
         "error_message": "NameError: name 'Invalid_Var' is not defined",
         "explanation": "بايثون لغة حساسة لحالة الأحرف (Case-sensitive). المتغير invalid_var يختلف عن Invalid_Var."
       },
@@ -3137,9 +3137,9 @@ export const pythonTrackData = [
       {
         "type": "challenge",
         "title": "تحدي: إصلاح الكود",
-        "code": "# الكود التالي يحتوي على خطأ بسيط، حاول إصلاحه ليعمل\ndef practice_53():\\n      print(\"Welcome to الاستعلامات الأساسية\")\\n  \\n  practice_53()",
-        "expected_output": "Correct execution",
-        "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
+        "code": "# قم بتصحيح هذا الكود ليعمل بشكل سليم\ndef practice_53():\\n      print(\"Welcome to الاستعلامات الأساسية\")\\n  \\n  practice_53()",
+        "expected_output": "Correct execution output",
+        "explanation": "تحدي خاص بدرس: الدرس 53: الاستعلامات الأساسية"
       }
     ],
     "lesson_type": "concept"
@@ -3167,20 +3167,20 @@ export const pythonTrackData = [
         "type": "correct",
         "title": "تطبيق مباشر: الدرس 54: توصيل بايثون بقاعدة بيانات",
         "code": "def practice_54():\\n      print(\"Welcome to توصيل بايثون بقاعدة بيانات\")\\n  \\n  practice_54()",
-        "expected_output": "Output based on the example above",
-        "explanation": "هذا مثال بسيط يوضح كيفية تطبيق المفهوم بشكل سليم دون تعقيد."
+        "expected_output": "(Output specific to الدرس 54: توصيل بايثون بقاعدة بيانات)",
+        "explanation": "هذا مثال عملي يوضح كيفية استخدام (الدرس 54: توصيل بايثون بقاعدة بيانات) برمجياً."
       },
       {
         "type": "wrong",
         "title": "خطأ صياغة شائع",
         "code": "def practice_54(:\\n      print(Welcome to توصيل بايثون بقاعدة بيانات\")\\n  \\n  practice_54()",
-        "error_message": "SyntaxError: unexpected EOF while parsing",
+        "error_message": "SyntaxError in الدرس 54: توصيل بايثون بقاعدة بيانات",
         "explanation": "نسيان إغلاق الأقواس أو علامات التنصيص هو من أكثر الأخطاء شيوعاً للمبتدئين."
       },
       {
         "type": "wrong",
         "title": "استخدام خاطئ للمتغيرات",
-        "code": "invalid_var = 10\nprint(Invalid_Var)",
+        "code": "invalid_var = 10\nprint(Invalid_Var) # الدرس 54: توصيل بايثون بقاعدة بيانات context",
         "error_message": "NameError: name 'Invalid_Var' is not defined",
         "explanation": "بايثون لغة حساسة لحالة الأحرف (Case-sensitive). المتغير invalid_var يختلف عن Invalid_Var."
       },
@@ -3197,9 +3197,9 @@ export const pythonTrackData = [
       {
         "type": "challenge",
         "title": "تحدي: إصلاح الكود",
-        "code": "# الكود التالي يحتوي على خطأ بسيط، حاول إصلاحه ليعمل\ndef practice_54():\\n      print(\"Welcome to توصيل بايثون بقاعدة بيانات\")\\n  \\n  practice_54()",
-        "expected_output": "Correct execution",
-        "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
+        "code": "# قم بتصحيح هذا الكود ليعمل بشكل سليم\ndef practice_54():\\n      print(\"Welcome to توصيل بايثون بقاعدة بيانات\")\\n  \\n  practice_54()",
+        "expected_output": "Correct execution output",
+        "explanation": "تحدي خاص بدرس: الدرس 54: توصيل بايثون بقاعدة بيانات"
       }
     ],
     "lesson_type": "sandbox"
@@ -3227,20 +3227,20 @@ export const pythonTrackData = [
         "type": "correct",
         "title": "تطبيق مباشر: الدرس 55: تطبيق: متجر إلكتروني صغير",
         "code": "def practice_55():\\n      print(\"Welcome to تطبيق: متجر إلكتروني صغير\")\\n  \\n  practice_55()",
-        "expected_output": "Output based on the example above",
-        "explanation": "هذا مثال بسيط يوضح كيفية تطبيق المفهوم بشكل سليم دون تعقيد."
+        "expected_output": "(Output specific to الدرس 55: تطبيق: متجر إلكتروني صغير)",
+        "explanation": "هذا مثال عملي يوضح كيفية استخدام (الدرس 55: تطبيق: متجر إلكتروني صغير) برمجياً."
       },
       {
         "type": "wrong",
         "title": "خطأ صياغة شائع",
         "code": "def practice_55(:\\n      print(Welcome to تطبيق: متجر إلكتروني صغير\")\\n  \\n  practice_55()",
-        "error_message": "SyntaxError: unexpected EOF while parsing",
+        "error_message": "SyntaxError in الدرس 55: تطبيق: متجر إلكتروني صغير",
         "explanation": "نسيان إغلاق الأقواس أو علامات التنصيص هو من أكثر الأخطاء شيوعاً للمبتدئين."
       },
       {
         "type": "wrong",
         "title": "استخدام خاطئ للمتغيرات",
-        "code": "invalid_var = 10\nprint(Invalid_Var)",
+        "code": "invalid_var = 10\nprint(Invalid_Var) # الدرس 55: تطبيق: متجر إلكتروني صغير context",
         "error_message": "NameError: name 'Invalid_Var' is not defined",
         "explanation": "بايثون لغة حساسة لحالة الأحرف (Case-sensitive). المتغير invalid_var يختلف عن Invalid_Var."
       },
@@ -3257,9 +3257,9 @@ export const pythonTrackData = [
       {
         "type": "challenge",
         "title": "تحدي: إصلاح الكود",
-        "code": "# الكود التالي يحتوي على خطأ بسيط، حاول إصلاحه ليعمل\ndef practice_55():\\n      print(\"Welcome to تطبيق: متجر إلكتروني صغير\")\\n  \\n  practice_55()",
-        "expected_output": "Correct execution",
-        "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
+        "code": "# قم بتصحيح هذا الكود ليعمل بشكل سليم\ndef practice_55():\\n      print(\"Welcome to تطبيق: متجر إلكتروني صغير\")\\n  \\n  practice_55()",
+        "expected_output": "Correct execution output",
+        "explanation": "تحدي خاص بدرس: الدرس 55: تطبيق: متجر إلكتروني صغير"
       }
     ],
     "lesson_type": "project"
@@ -3287,20 +3287,20 @@ export const pythonTrackData = [
         "type": "correct",
         "title": "تطبيق مباشر: الدرس 56: مقدمة في تطوير الويب",
         "code": "def practice_56():\\n      print(\"Welcome to مقدمة في تطوير الويب\")\\n  \\n  practice_56()",
-        "expected_output": "Output based on the example above",
-        "explanation": "هذا مثال بسيط يوضح كيفية تطبيق المفهوم بشكل سليم دون تعقيد."
+        "expected_output": "(Output specific to الدرس 56: مقدمة في تطوير الويب)",
+        "explanation": "هذا مثال عملي يوضح كيفية استخدام (الدرس 56: مقدمة في تطوير الويب) برمجياً."
       },
       {
         "type": "wrong",
         "title": "خطأ صياغة شائع",
         "code": "def practice_56(:\\n      print(Welcome to مقدمة في تطوير الويب\")\\n  \\n  practice_56()",
-        "error_message": "SyntaxError: unexpected EOF while parsing",
+        "error_message": "SyntaxError in الدرس 56: مقدمة في تطوير الويب",
         "explanation": "نسيان إغلاق الأقواس أو علامات التنصيص هو من أكثر الأخطاء شيوعاً للمبتدئين."
       },
       {
         "type": "wrong",
         "title": "استخدام خاطئ للمتغيرات",
-        "code": "invalid_var = 10\nprint(Invalid_Var)",
+        "code": "invalid_var = 10\nprint(Invalid_Var) # الدرس 56: مقدمة في تطوير الويب context",
         "error_message": "NameError: name 'Invalid_Var' is not defined",
         "explanation": "بايثون لغة حساسة لحالة الأحرف (Case-sensitive). المتغير invalid_var يختلف عن Invalid_Var."
       },
@@ -3317,9 +3317,9 @@ export const pythonTrackData = [
       {
         "type": "challenge",
         "title": "تحدي: إصلاح الكود",
-        "code": "# الكود التالي يحتوي على خطأ بسيط، حاول إصلاحه ليعمل\ndef practice_56():\\n      print(\"Welcome to مقدمة في تطوير الويب\")\\n  \\n  practice_56()",
-        "expected_output": "Correct execution",
-        "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
+        "code": "# قم بتصحيح هذا الكود ليعمل بشكل سليم\ndef practice_56():\\n      print(\"Welcome to مقدمة في تطوير الويب\")\\n  \\n  practice_56()",
+        "expected_output": "Correct execution output",
+        "explanation": "تحدي خاص بدرس: الدرس 56: مقدمة في تطوير الويب"
       }
     ],
     "lesson_type": "debugging"
@@ -3347,20 +3347,20 @@ export const pythonTrackData = [
         "type": "correct",
         "title": "تطبيق مباشر: الدرس 57: أساسيات Flask",
         "code": "def practice_57():\\n      print(\"Welcome to أساسيات Flask\")\\n  \\n  practice_57()",
-        "expected_output": "Output based on the example above",
-        "explanation": "هذا مثال بسيط يوضح كيفية تطبيق المفهوم بشكل سليم دون تعقيد."
+        "expected_output": "(Output specific to الدرس 57: أساسيات Flask)",
+        "explanation": "هذا مثال عملي يوضح كيفية استخدام (الدرس 57: أساسيات Flask) برمجياً."
       },
       {
         "type": "wrong",
         "title": "خطأ صياغة شائع",
         "code": "def practice_57(:\\n      print(Welcome to أساسيات Flask\")\\n  \\n  practice_57()",
-        "error_message": "SyntaxError: unexpected EOF while parsing",
+        "error_message": "SyntaxError in الدرس 57: أساسيات Flask",
         "explanation": "نسيان إغلاق الأقواس أو علامات التنصيص هو من أكثر الأخطاء شيوعاً للمبتدئين."
       },
       {
         "type": "wrong",
         "title": "استخدام خاطئ للمتغيرات",
-        "code": "invalid_var = 10\nprint(Invalid_Var)",
+        "code": "invalid_var = 10\nprint(Invalid_Var) # الدرس 57: أساسيات Flask context",
         "error_message": "NameError: name 'Invalid_Var' is not defined",
         "explanation": "بايثون لغة حساسة لحالة الأحرف (Case-sensitive). المتغير invalid_var يختلف عن Invalid_Var."
       },
@@ -3377,9 +3377,9 @@ export const pythonTrackData = [
       {
         "type": "challenge",
         "title": "تحدي: إصلاح الكود",
-        "code": "# الكود التالي يحتوي على خطأ بسيط، حاول إصلاحه ليعمل\ndef practice_57():\\n      print(\"Welcome to أساسيات Flask\")\\n  \\n  practice_57()",
-        "expected_output": "Correct execution",
-        "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
+        "code": "# قم بتصحيح هذا الكود ليعمل بشكل سليم\ndef practice_57():\\n      print(\"Welcome to أساسيات Flask\")\\n  \\n  practice_57()",
+        "expected_output": "Correct execution output",
+        "explanation": "تحدي خاص بدرس: الدرس 57: أساسيات Flask"
       }
     ],
     "lesson_type": "sandbox"
@@ -3407,20 +3407,20 @@ export const pythonTrackData = [
         "type": "correct",
         "title": "تطبيق مباشر: الدرس 58: بناء أول خادم ويب",
         "code": "def practice_58():\\n      print(\"Welcome to بناء أول خادم ويب\")\\n  \\n  practice_58()",
-        "expected_output": "Output based on the example above",
-        "explanation": "هذا مثال بسيط يوضح كيفية تطبيق المفهوم بشكل سليم دون تعقيد."
+        "expected_output": "(Output specific to الدرس 58: بناء أول خادم ويب)",
+        "explanation": "هذا مثال عملي يوضح كيفية استخدام (الدرس 58: بناء أول خادم ويب) برمجياً."
       },
       {
         "type": "wrong",
         "title": "خطأ صياغة شائع",
         "code": "def practice_58(:\\n      print(Welcome to بناء أول خادم ويب\")\\n  \\n  practice_58()",
-        "error_message": "SyntaxError: unexpected EOF while parsing",
+        "error_message": "SyntaxError in الدرس 58: بناء أول خادم ويب",
         "explanation": "نسيان إغلاق الأقواس أو علامات التنصيص هو من أكثر الأخطاء شيوعاً للمبتدئين."
       },
       {
         "type": "wrong",
         "title": "استخدام خاطئ للمتغيرات",
-        "code": "invalid_var = 10\nprint(Invalid_Var)",
+        "code": "invalid_var = 10\nprint(Invalid_Var) # الدرس 58: بناء أول خادم ويب context",
         "error_message": "NameError: name 'Invalid_Var' is not defined",
         "explanation": "بايثون لغة حساسة لحالة الأحرف (Case-sensitive). المتغير invalid_var يختلف عن Invalid_Var."
       },
@@ -3437,9 +3437,9 @@ export const pythonTrackData = [
       {
         "type": "challenge",
         "title": "تحدي: إصلاح الكود",
-        "code": "# الكود التالي يحتوي على خطأ بسيط، حاول إصلاحه ليعمل\ndef practice_58():\\n      print(\"Welcome to بناء أول خادم ويب\")\\n  \\n  practice_58()",
-        "expected_output": "Correct execution",
-        "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
+        "code": "# قم بتصحيح هذا الكود ليعمل بشكل سليم\ndef practice_58():\\n      print(\"Welcome to بناء أول خادم ويب\")\\n  \\n  practice_58()",
+        "expected_output": "Correct execution output",
+        "explanation": "تحدي خاص بدرس: الدرس 58: بناء أول خادم ويب"
       }
     ],
     "lesson_type": "scenario"
@@ -3467,20 +3467,20 @@ export const pythonTrackData = [
         "type": "correct",
         "title": "تطبيق مباشر: الدرس 59: التعامل مع الـ Routes",
         "code": "def practice_59():\\n      print(\"Welcome to التعامل مع الـ Routes\")\\n  \\n  practice_59()",
-        "expected_output": "Output based on the example above",
-        "explanation": "هذا مثال بسيط يوضح كيفية تطبيق المفهوم بشكل سليم دون تعقيد."
+        "expected_output": "(Output specific to الدرس 59: التعامل مع الـ Routes)",
+        "explanation": "هذا مثال عملي يوضح كيفية استخدام (الدرس 59: التعامل مع الـ Routes) برمجياً."
       },
       {
         "type": "wrong",
         "title": "خطأ صياغة شائع",
         "code": "def practice_59(:\\n      print(Welcome to التعامل مع الـ Routes\")\\n  \\n  practice_59()",
-        "error_message": "SyntaxError: unexpected EOF while parsing",
+        "error_message": "SyntaxError in الدرس 59: التعامل مع الـ Routes",
         "explanation": "نسيان إغلاق الأقواس أو علامات التنصيص هو من أكثر الأخطاء شيوعاً للمبتدئين."
       },
       {
         "type": "wrong",
         "title": "استخدام خاطئ للمتغيرات",
-        "code": "invalid_var = 10\nprint(Invalid_Var)",
+        "code": "invalid_var = 10\nprint(Invalid_Var) # الدرس 59: التعامل مع الـ Routes context",
         "error_message": "NameError: name 'Invalid_Var' is not defined",
         "explanation": "بايثون لغة حساسة لحالة الأحرف (Case-sensitive). المتغير invalid_var يختلف عن Invalid_Var."
       },
@@ -3497,9 +3497,9 @@ export const pythonTrackData = [
       {
         "type": "challenge",
         "title": "تحدي: إصلاح الكود",
-        "code": "# الكود التالي يحتوي على خطأ بسيط، حاول إصلاحه ليعمل\ndef practice_59():\\n      print(\"Welcome to التعامل مع الـ Routes\")\\n  \\n  practice_59()",
-        "expected_output": "Correct execution",
-        "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
+        "code": "# قم بتصحيح هذا الكود ليعمل بشكل سليم\ndef practice_59():\\n      print(\"Welcome to التعامل مع الـ Routes\")\\n  \\n  practice_59()",
+        "expected_output": "Correct execution output",
+        "explanation": "تحدي خاص بدرس: الدرس 59: التعامل مع الـ Routes"
       }
     ],
     "lesson_type": "concept"
@@ -3527,20 +3527,20 @@ export const pythonTrackData = [
         "type": "correct",
         "title": "تطبيق مباشر: الدرس 60: نظام القوالب (Templates)",
         "code": "def practice_60():\\n      print(\"Welcome to نظام القوالب (Templates)\")\\n  \\n  practice_60()",
-        "expected_output": "Output based on the example above",
-        "explanation": "هذا مثال بسيط يوضح كيفية تطبيق المفهوم بشكل سليم دون تعقيد."
+        "expected_output": "(Output specific to الدرس 60: نظام القوالب (Templates))",
+        "explanation": "هذا مثال عملي يوضح كيفية استخدام (الدرس 60: نظام القوالب (Templates)) برمجياً."
       },
       {
         "type": "wrong",
         "title": "خطأ صياغة شائع",
         "code": "def practice_60(:\\n      print(Welcome to نظام القوالب (Templates)\")\\n  \\n  practice_60()",
-        "error_message": "SyntaxError: unexpected EOF while parsing",
+        "error_message": "SyntaxError in الدرس 60: نظام القوالب (Templates)",
         "explanation": "نسيان إغلاق الأقواس أو علامات التنصيص هو من أكثر الأخطاء شيوعاً للمبتدئين."
       },
       {
         "type": "wrong",
         "title": "استخدام خاطئ للمتغيرات",
-        "code": "invalid_var = 10\nprint(Invalid_Var)",
+        "code": "invalid_var = 10\nprint(Invalid_Var) # الدرس 60: نظام القوالب (Templates) context",
         "error_message": "NameError: name 'Invalid_Var' is not defined",
         "explanation": "بايثون لغة حساسة لحالة الأحرف (Case-sensitive). المتغير invalid_var يختلف عن Invalid_Var."
       },
@@ -3557,9 +3557,9 @@ export const pythonTrackData = [
       {
         "type": "challenge",
         "title": "تحدي: إصلاح الكود",
-        "code": "# الكود التالي يحتوي على خطأ بسيط، حاول إصلاحه ليعمل\ndef practice_60():\\n      print(\"Welcome to نظام القوالب (Templates)\")\\n  \\n  practice_60()",
-        "expected_output": "Correct execution",
-        "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
+        "code": "# قم بتصحيح هذا الكود ليعمل بشكل سليم\ndef practice_60():\\n      print(\"Welcome to نظام القوالب (Templates)\")\\n  \\n  practice_60()",
+        "expected_output": "Correct execution output",
+        "explanation": "تحدي خاص بدرس: الدرس 60: نظام القوالب (Templates)"
       }
     ],
     "lesson_type": "capstone"
@@ -3587,20 +3587,20 @@ export const pythonTrackData = [
         "type": "correct",
         "title": "تطبيق مباشر: الدرس 61: أساسيات Django",
         "code": "def practice_61():\\n      print(\"Welcome to أساسيات Django\")\\n  \\n  practice_61()",
-        "expected_output": "Output based on the example above",
-        "explanation": "هذا مثال بسيط يوضح كيفية تطبيق المفهوم بشكل سليم دون تعقيد."
+        "expected_output": "(Output specific to الدرس 61: أساسيات Django)",
+        "explanation": "هذا مثال عملي يوضح كيفية استخدام (الدرس 61: أساسيات Django) برمجياً."
       },
       {
         "type": "wrong",
         "title": "خطأ صياغة شائع",
         "code": "def practice_61(:\\n      print(Welcome to أساسيات Django\")\\n  \\n  practice_61()",
-        "error_message": "SyntaxError: unexpected EOF while parsing",
+        "error_message": "SyntaxError in الدرس 61: أساسيات Django",
         "explanation": "نسيان إغلاق الأقواس أو علامات التنصيص هو من أكثر الأخطاء شيوعاً للمبتدئين."
       },
       {
         "type": "wrong",
         "title": "استخدام خاطئ للمتغيرات",
-        "code": "invalid_var = 10\nprint(Invalid_Var)",
+        "code": "invalid_var = 10\nprint(Invalid_Var) # الدرس 61: أساسيات Django context",
         "error_message": "NameError: name 'Invalid_Var' is not defined",
         "explanation": "بايثون لغة حساسة لحالة الأحرف (Case-sensitive). المتغير invalid_var يختلف عن Invalid_Var."
       },
@@ -3617,9 +3617,9 @@ export const pythonTrackData = [
       {
         "type": "challenge",
         "title": "تحدي: إصلاح الكود",
-        "code": "# الكود التالي يحتوي على خطأ بسيط، حاول إصلاحه ليعمل\ndef practice_61():\\n      print(\"Welcome to أساسيات Django\")\\n  \\n  practice_61()",
-        "expected_output": "Correct execution",
-        "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
+        "code": "# قم بتصحيح هذا الكود ليعمل بشكل سليم\ndef practice_61():\\n      print(\"Welcome to أساسيات Django\")\\n  \\n  practice_61()",
+        "expected_output": "Correct execution output",
+        "explanation": "تحدي خاص بدرس: الدرس 61: أساسيات Django"
       }
     ],
     "lesson_type": "concept"
@@ -3647,20 +3647,20 @@ export const pythonTrackData = [
         "type": "correct",
         "title": "تطبيق مباشر: الدرس 62: بنية مشروع Django",
         "code": "def practice_62():\\n      print(\"Welcome to بنية مشروع Django\")\\n  \\n  practice_62()",
-        "expected_output": "Output based on the example above",
-        "explanation": "هذا مثال بسيط يوضح كيفية تطبيق المفهوم بشكل سليم دون تعقيد."
+        "expected_output": "(Output specific to الدرس 62: بنية مشروع Django)",
+        "explanation": "هذا مثال عملي يوضح كيفية استخدام (الدرس 62: بنية مشروع Django) برمجياً."
       },
       {
         "type": "wrong",
         "title": "خطأ صياغة شائع",
         "code": "def practice_62(:\\n      print(Welcome to بنية مشروع Django\")\\n  \\n  practice_62()",
-        "error_message": "SyntaxError: unexpected EOF while parsing",
+        "error_message": "SyntaxError in الدرس 62: بنية مشروع Django",
         "explanation": "نسيان إغلاق الأقواس أو علامات التنصيص هو من أكثر الأخطاء شيوعاً للمبتدئين."
       },
       {
         "type": "wrong",
         "title": "استخدام خاطئ للمتغيرات",
-        "code": "invalid_var = 10\nprint(Invalid_Var)",
+        "code": "invalid_var = 10\nprint(Invalid_Var) # الدرس 62: بنية مشروع Django context",
         "error_message": "NameError: name 'Invalid_Var' is not defined",
         "explanation": "بايثون لغة حساسة لحالة الأحرف (Case-sensitive). المتغير invalid_var يختلف عن Invalid_Var."
       },
@@ -3677,9 +3677,9 @@ export const pythonTrackData = [
       {
         "type": "challenge",
         "title": "تحدي: إصلاح الكود",
-        "code": "# الكود التالي يحتوي على خطأ بسيط، حاول إصلاحه ليعمل\ndef practice_62():\\n      print(\"Welcome to بنية مشروع Django\")\\n  \\n  practice_62()",
-        "expected_output": "Correct execution",
-        "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
+        "code": "# قم بتصحيح هذا الكود ليعمل بشكل سليم\ndef practice_62():\\n      print(\"Welcome to بنية مشروع Django\")\\n  \\n  practice_62()",
+        "expected_output": "Correct execution output",
+        "explanation": "تحدي خاص بدرس: الدرس 62: بنية مشروع Django"
       }
     ],
     "lesson_type": "concept"
@@ -3707,20 +3707,20 @@ export const pythonTrackData = [
         "type": "correct",
         "title": "تطبيق مباشر: الدرس 63: النماذج (Models)",
         "code": "def practice_63():\\n      print(\"Welcome to النماذج (Models)\")\\n  \\n  practice_63()",
-        "expected_output": "Output based on the example above",
-        "explanation": "هذا مثال بسيط يوضح كيفية تطبيق المفهوم بشكل سليم دون تعقيد."
+        "expected_output": "(Output specific to الدرس 63: النماذج (Models))",
+        "explanation": "هذا مثال عملي يوضح كيفية استخدام (الدرس 63: النماذج (Models)) برمجياً."
       },
       {
         "type": "wrong",
         "title": "خطأ صياغة شائع",
         "code": "def practice_63(:\\n      print(Welcome to النماذج (Models)\")\\n  \\n  practice_63()",
-        "error_message": "SyntaxError: unexpected EOF while parsing",
+        "error_message": "SyntaxError in الدرس 63: النماذج (Models)",
         "explanation": "نسيان إغلاق الأقواس أو علامات التنصيص هو من أكثر الأخطاء شيوعاً للمبتدئين."
       },
       {
         "type": "wrong",
         "title": "استخدام خاطئ للمتغيرات",
-        "code": "invalid_var = 10\nprint(Invalid_Var)",
+        "code": "invalid_var = 10\nprint(Invalid_Var) # الدرس 63: النماذج (Models) context",
         "error_message": "NameError: name 'Invalid_Var' is not defined",
         "explanation": "بايثون لغة حساسة لحالة الأحرف (Case-sensitive). المتغير invalid_var يختلف عن Invalid_Var."
       },
@@ -3737,9 +3737,9 @@ export const pythonTrackData = [
       {
         "type": "challenge",
         "title": "تحدي: إصلاح الكود",
-        "code": "# الكود التالي يحتوي على خطأ بسيط، حاول إصلاحه ليعمل\ndef practice_63():\\n      print(\"Welcome to النماذج (Models)\")\\n  \\n  practice_63()",
-        "expected_output": "Correct execution",
-        "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
+        "code": "# قم بتصحيح هذا الكود ليعمل بشكل سليم\ndef practice_63():\\n      print(\"Welcome to النماذج (Models)\")\\n  \\n  practice_63()",
+        "expected_output": "Correct execution output",
+        "explanation": "تحدي خاص بدرس: الدرس 63: النماذج (Models)"
       }
     ],
     "lesson_type": "debugging"
@@ -3767,20 +3767,20 @@ export const pythonTrackData = [
         "type": "correct",
         "title": "تطبيق مباشر: الدرس 64: العروض (Views)",
         "code": "def practice_64():\\n      print(\"Welcome to العروض (Views)\")\\n  \\n  practice_64()",
-        "expected_output": "Output based on the example above",
-        "explanation": "هذا مثال بسيط يوضح كيفية تطبيق المفهوم بشكل سليم دون تعقيد."
+        "expected_output": "(Output specific to الدرس 64: العروض (Views))",
+        "explanation": "هذا مثال عملي يوضح كيفية استخدام (الدرس 64: العروض (Views)) برمجياً."
       },
       {
         "type": "wrong",
         "title": "خطأ صياغة شائع",
         "code": "def practice_64(:\\n      print(Welcome to العروض (Views)\")\\n  \\n  practice_64()",
-        "error_message": "SyntaxError: unexpected EOF while parsing",
+        "error_message": "SyntaxError in الدرس 64: العروض (Views)",
         "explanation": "نسيان إغلاق الأقواس أو علامات التنصيص هو من أكثر الأخطاء شيوعاً للمبتدئين."
       },
       {
         "type": "wrong",
         "title": "استخدام خاطئ للمتغيرات",
-        "code": "invalid_var = 10\nprint(Invalid_Var)",
+        "code": "invalid_var = 10\nprint(Invalid_Var) # الدرس 64: العروض (Views) context",
         "error_message": "NameError: name 'Invalid_Var' is not defined",
         "explanation": "بايثون لغة حساسة لحالة الأحرف (Case-sensitive). المتغير invalid_var يختلف عن Invalid_Var."
       },
@@ -3797,9 +3797,9 @@ export const pythonTrackData = [
       {
         "type": "challenge",
         "title": "تحدي: إصلاح الكود",
-        "code": "# الكود التالي يحتوي على خطأ بسيط، حاول إصلاحه ليعمل\ndef practice_64():\\n      print(\"Welcome to العروض (Views)\")\\n  \\n  practice_64()",
-        "expected_output": "Correct execution",
-        "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
+        "code": "# قم بتصحيح هذا الكود ليعمل بشكل سليم\ndef practice_64():\\n      print(\"Welcome to العروض (Views)\")\\n  \\n  practice_64()",
+        "expected_output": "Correct execution output",
+        "explanation": "تحدي خاص بدرس: الدرس 64: العروض (Views)"
       }
     ],
     "lesson_type": "mini_mission"
@@ -3827,20 +3827,20 @@ export const pythonTrackData = [
         "type": "correct",
         "title": "تطبيق مباشر: الدرس 65: تطبيق: مدونة بسيطة",
         "code": "def practice_65():\\n      print(\"Welcome to تطبيق: مدونة بسيطة\")\\n  \\n  practice_65()",
-        "expected_output": "Output based on the example above",
-        "explanation": "هذا مثال بسيط يوضح كيفية تطبيق المفهوم بشكل سليم دون تعقيد."
+        "expected_output": "(Output specific to الدرس 65: تطبيق: مدونة بسيطة)",
+        "explanation": "هذا مثال عملي يوضح كيفية استخدام (الدرس 65: تطبيق: مدونة بسيطة) برمجياً."
       },
       {
         "type": "wrong",
         "title": "خطأ صياغة شائع",
         "code": "def practice_65(:\\n      print(Welcome to تطبيق: مدونة بسيطة\")\\n  \\n  practice_65()",
-        "error_message": "SyntaxError: unexpected EOF while parsing",
+        "error_message": "SyntaxError in الدرس 65: تطبيق: مدونة بسيطة",
         "explanation": "نسيان إغلاق الأقواس أو علامات التنصيص هو من أكثر الأخطاء شيوعاً للمبتدئين."
       },
       {
         "type": "wrong",
         "title": "استخدام خاطئ للمتغيرات",
-        "code": "invalid_var = 10\nprint(Invalid_Var)",
+        "code": "invalid_var = 10\nprint(Invalid_Var) # الدرس 65: تطبيق: مدونة بسيطة context",
         "error_message": "NameError: name 'Invalid_Var' is not defined",
         "explanation": "بايثون لغة حساسة لحالة الأحرف (Case-sensitive). المتغير invalid_var يختلف عن Invalid_Var."
       },
@@ -3857,9 +3857,9 @@ export const pythonTrackData = [
       {
         "type": "challenge",
         "title": "تحدي: إصلاح الكود",
-        "code": "# الكود التالي يحتوي على خطأ بسيط، حاول إصلاحه ليعمل\ndef practice_65():\\n      print(\"Welcome to تطبيق: مدونة بسيطة\")\\n  \\n  practice_65()",
-        "expected_output": "Correct execution",
-        "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
+        "code": "# قم بتصحيح هذا الكود ليعمل بشكل سليم\ndef practice_65():\\n      print(\"Welcome to تطبيق: مدونة بسيطة\")\\n  \\n  practice_65()",
+        "expected_output": "Correct execution output",
+        "explanation": "تحدي خاص بدرس: الدرس 65: تطبيق: مدونة بسيطة"
       }
     ],
     "lesson_type": "project"
@@ -3887,20 +3887,20 @@ export const pythonTrackData = [
         "type": "correct",
         "title": "تطبيق مباشر: الدرس 66: مقدمة في الذكاء الاصطناعي",
         "code": "def practice_66():\\n      print(\"Welcome to مقدمة في الذكاء الاصطناعي\")\\n  \\n  practice_66()",
-        "expected_output": "Output based on the example above",
-        "explanation": "هذا مثال بسيط يوضح كيفية تطبيق المفهوم بشكل سليم دون تعقيد."
+        "expected_output": "(Output specific to الدرس 66: مقدمة في الذكاء الاصطناعي)",
+        "explanation": "هذا مثال عملي يوضح كيفية استخدام (الدرس 66: مقدمة في الذكاء الاصطناعي) برمجياً."
       },
       {
         "type": "wrong",
         "title": "خطأ صياغة شائع",
         "code": "def practice_66(:\\n      print(Welcome to مقدمة في الذكاء الاصطناعي\")\\n  \\n  practice_66()",
-        "error_message": "SyntaxError: unexpected EOF while parsing",
+        "error_message": "SyntaxError in الدرس 66: مقدمة في الذكاء الاصطناعي",
         "explanation": "نسيان إغلاق الأقواس أو علامات التنصيص هو من أكثر الأخطاء شيوعاً للمبتدئين."
       },
       {
         "type": "wrong",
         "title": "استخدام خاطئ للمتغيرات",
-        "code": "invalid_var = 10\nprint(Invalid_Var)",
+        "code": "invalid_var = 10\nprint(Invalid_Var) # الدرس 66: مقدمة في الذكاء الاصطناعي context",
         "error_message": "NameError: name 'Invalid_Var' is not defined",
         "explanation": "بايثون لغة حساسة لحالة الأحرف (Case-sensitive). المتغير invalid_var يختلف عن Invalid_Var."
       },
@@ -3917,9 +3917,9 @@ export const pythonTrackData = [
       {
         "type": "challenge",
         "title": "تحدي: إصلاح الكود",
-        "code": "# الكود التالي يحتوي على خطأ بسيط، حاول إصلاحه ليعمل\ndef practice_66():\\n      print(\"Welcome to مقدمة في الذكاء الاصطناعي\")\\n  \\n  practice_66()",
-        "expected_output": "Correct execution",
-        "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
+        "code": "# قم بتصحيح هذا الكود ليعمل بشكل سليم\ndef practice_66():\\n      print(\"Welcome to مقدمة في الذكاء الاصطناعي\")\\n  \\n  practice_66()",
+        "expected_output": "Correct execution output",
+        "explanation": "تحدي خاص بدرس: الدرس 66: مقدمة في الذكاء الاصطناعي"
       }
     ],
     "lesson_type": "ai_challenge"
@@ -3947,20 +3947,20 @@ export const pythonTrackData = [
         "type": "correct",
         "title": "تطبيق مباشر: الدرس 67: أساسيات تعلم الآلة",
         "code": "def practice_67():\\n      print(\"Welcome to أساسيات تعلم الآلة\")\\n  \\n  practice_67()",
-        "expected_output": "Output based on the example above",
-        "explanation": "هذا مثال بسيط يوضح كيفية تطبيق المفهوم بشكل سليم دون تعقيد."
+        "expected_output": "(Output specific to الدرس 67: أساسيات تعلم الآلة)",
+        "explanation": "هذا مثال عملي يوضح كيفية استخدام (الدرس 67: أساسيات تعلم الآلة) برمجياً."
       },
       {
         "type": "wrong",
         "title": "خطأ صياغة شائع",
         "code": "def practice_67(:\\n      print(Welcome to أساسيات تعلم الآلة\")\\n  \\n  practice_67()",
-        "error_message": "SyntaxError: unexpected EOF while parsing",
+        "error_message": "SyntaxError in الدرس 67: أساسيات تعلم الآلة",
         "explanation": "نسيان إغلاق الأقواس أو علامات التنصيص هو من أكثر الأخطاء شيوعاً للمبتدئين."
       },
       {
         "type": "wrong",
         "title": "استخدام خاطئ للمتغيرات",
-        "code": "invalid_var = 10\nprint(Invalid_Var)",
+        "code": "invalid_var = 10\nprint(Invalid_Var) # الدرس 67: أساسيات تعلم الآلة context",
         "error_message": "NameError: name 'Invalid_Var' is not defined",
         "explanation": "بايثون لغة حساسة لحالة الأحرف (Case-sensitive). المتغير invalid_var يختلف عن Invalid_Var."
       },
@@ -3977,9 +3977,9 @@ export const pythonTrackData = [
       {
         "type": "challenge",
         "title": "تحدي: إصلاح الكود",
-        "code": "# الكود التالي يحتوي على خطأ بسيط، حاول إصلاحه ليعمل\ndef practice_67():\\n      print(\"Welcome to أساسيات تعلم الآلة\")\\n  \\n  practice_67()",
-        "expected_output": "Correct execution",
-        "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
+        "code": "# قم بتصحيح هذا الكود ليعمل بشكل سليم\ndef practice_67():\\n      print(\"Welcome to أساسيات تعلم الآلة\")\\n  \\n  practice_67()",
+        "expected_output": "Correct execution output",
+        "explanation": "تحدي خاص بدرس: الدرس 67: أساسيات تعلم الآلة"
       }
     ],
     "lesson_type": "concept"
@@ -4007,20 +4007,20 @@ export const pythonTrackData = [
         "type": "correct",
         "title": "تطبيق مباشر: الدرس 68: تجهيز البيانات",
         "code": "def practice_68():\\n      print(\"Welcome to تجهيز البيانات\")\\n  \\n  practice_68()",
-        "expected_output": "Output based on the example above",
-        "explanation": "هذا مثال بسيط يوضح كيفية تطبيق المفهوم بشكل سليم دون تعقيد."
+        "expected_output": "(Output specific to الدرس 68: تجهيز البيانات)",
+        "explanation": "هذا مثال عملي يوضح كيفية استخدام (الدرس 68: تجهيز البيانات) برمجياً."
       },
       {
         "type": "wrong",
         "title": "خطأ صياغة شائع",
         "code": "def practice_68(:\\n      print(Welcome to تجهيز البيانات\")\\n  \\n  practice_68()",
-        "error_message": "SyntaxError: unexpected EOF while parsing",
+        "error_message": "SyntaxError in الدرس 68: تجهيز البيانات",
         "explanation": "نسيان إغلاق الأقواس أو علامات التنصيص هو من أكثر الأخطاء شيوعاً للمبتدئين."
       },
       {
         "type": "wrong",
         "title": "استخدام خاطئ للمتغيرات",
-        "code": "invalid_var = 10\nprint(Invalid_Var)",
+        "code": "invalid_var = 10\nprint(Invalid_Var) # الدرس 68: تجهيز البيانات context",
         "error_message": "NameError: name 'Invalid_Var' is not defined",
         "explanation": "بايثون لغة حساسة لحالة الأحرف (Case-sensitive). المتغير invalid_var يختلف عن Invalid_Var."
       },
@@ -4037,9 +4037,9 @@ export const pythonTrackData = [
       {
         "type": "challenge",
         "title": "تحدي: إصلاح الكود",
-        "code": "# الكود التالي يحتوي على خطأ بسيط، حاول إصلاحه ليعمل\ndef practice_68():\\n      print(\"Welcome to تجهيز البيانات\")\\n  \\n  practice_68()",
-        "expected_output": "Correct execution",
-        "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
+        "code": "# قم بتصحيح هذا الكود ليعمل بشكل سليم\ndef practice_68():\\n      print(\"Welcome to تجهيز البيانات\")\\n  \\n  practice_68()",
+        "expected_output": "Correct execution output",
+        "explanation": "تحدي خاص بدرس: الدرس 68: تجهيز البيانات"
       }
     ],
     "lesson_type": "scenario"
@@ -4067,20 +4067,20 @@ export const pythonTrackData = [
         "type": "correct",
         "title": "تطبيق مباشر: الدرس 69: بناء نموذج تنبؤ بسيط",
         "code": "def practice_69():\\n      print(\"Welcome to بناء نموذج تنبؤ بسيط\")\\n  \\n  practice_69()",
-        "expected_output": "Output based on the example above",
-        "explanation": "هذا مثال بسيط يوضح كيفية تطبيق المفهوم بشكل سليم دون تعقيد."
+        "expected_output": "(Output specific to الدرس 69: بناء نموذج تنبؤ بسيط)",
+        "explanation": "هذا مثال عملي يوضح كيفية استخدام (الدرس 69: بناء نموذج تنبؤ بسيط) برمجياً."
       },
       {
         "type": "wrong",
         "title": "خطأ صياغة شائع",
         "code": "def practice_69(:\\n      print(Welcome to بناء نموذج تنبؤ بسيط\")\\n  \\n  practice_69()",
-        "error_message": "SyntaxError: unexpected EOF while parsing",
+        "error_message": "SyntaxError in الدرس 69: بناء نموذج تنبؤ بسيط",
         "explanation": "نسيان إغلاق الأقواس أو علامات التنصيص هو من أكثر الأخطاء شيوعاً للمبتدئين."
       },
       {
         "type": "wrong",
         "title": "استخدام خاطئ للمتغيرات",
-        "code": "invalid_var = 10\nprint(Invalid_Var)",
+        "code": "invalid_var = 10\nprint(Invalid_Var) # الدرس 69: بناء نموذج تنبؤ بسيط context",
         "error_message": "NameError: name 'Invalid_Var' is not defined",
         "explanation": "بايثون لغة حساسة لحالة الأحرف (Case-sensitive). المتغير invalid_var يختلف عن Invalid_Var."
       },
@@ -4097,9 +4097,9 @@ export const pythonTrackData = [
       {
         "type": "challenge",
         "title": "تحدي: إصلاح الكود",
-        "code": "# الكود التالي يحتوي على خطأ بسيط، حاول إصلاحه ليعمل\ndef practice_69():\\n      print(\"Welcome to بناء نموذج تنبؤ بسيط\")\\n  \\n  practice_69()",
-        "expected_output": "Correct execution",
-        "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
+        "code": "# قم بتصحيح هذا الكود ليعمل بشكل سليم\ndef practice_69():\\n      print(\"Welcome to بناء نموذج تنبؤ بسيط\")\\n  \\n  practice_69()",
+        "expected_output": "Correct execution output",
+        "explanation": "تحدي خاص بدرس: الدرس 69: بناء نموذج تنبؤ بسيط"
       }
     ],
     "lesson_type": "sandbox"
@@ -4127,20 +4127,20 @@ export const pythonTrackData = [
         "type": "correct",
         "title": "تطبيق مباشر: الدرس 70: تقييم النموذج",
         "code": "def practice_70():\\n      print(\"Welcome to تقييم النموذج\")\\n  \\n  practice_70()",
-        "expected_output": "Output based on the example above",
-        "explanation": "هذا مثال بسيط يوضح كيفية تطبيق المفهوم بشكل سليم دون تعقيد."
+        "expected_output": "(Output specific to الدرس 70: تقييم النموذج)",
+        "explanation": "هذا مثال عملي يوضح كيفية استخدام (الدرس 70: تقييم النموذج) برمجياً."
       },
       {
         "type": "wrong",
         "title": "خطأ صياغة شائع",
         "code": "def practice_70(:\\n      print(Welcome to تقييم النموذج\")\\n  \\n  practice_70()",
-        "error_message": "SyntaxError: unexpected EOF while parsing",
+        "error_message": "SyntaxError in الدرس 70: تقييم النموذج",
         "explanation": "نسيان إغلاق الأقواس أو علامات التنصيص هو من أكثر الأخطاء شيوعاً للمبتدئين."
       },
       {
         "type": "wrong",
         "title": "استخدام خاطئ للمتغيرات",
-        "code": "invalid_var = 10\nprint(Invalid_Var)",
+        "code": "invalid_var = 10\nprint(Invalid_Var) # الدرس 70: تقييم النموذج context",
         "error_message": "NameError: name 'Invalid_Var' is not defined",
         "explanation": "بايثون لغة حساسة لحالة الأحرف (Case-sensitive). المتغير invalid_var يختلف عن Invalid_Var."
       },
@@ -4157,9 +4157,9 @@ export const pythonTrackData = [
       {
         "type": "challenge",
         "title": "تحدي: إصلاح الكود",
-        "code": "# الكود التالي يحتوي على خطأ بسيط، حاول إصلاحه ليعمل\ndef practice_70():\\n      print(\"Welcome to تقييم النموذج\")\\n  \\n  practice_70()",
-        "expected_output": "Correct execution",
-        "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
+        "code": "# قم بتصحيح هذا الكود ليعمل بشكل سليم\ndef practice_70():\\n      print(\"Welcome to تقييم النموذج\")\\n  \\n  practice_70()",
+        "expected_output": "Correct execution output",
+        "explanation": "تحدي خاص بدرس: الدرس 70: تقييم النموذج"
       }
     ],
     "lesson_type": "milestone"
@@ -4187,20 +4187,20 @@ export const pythonTrackData = [
         "type": "correct",
         "title": "تطبيق مباشر: الدرس 71: مقدمة في الشبكات العصبية",
         "code": "def practice_71():\\n      print(\"Welcome to مقدمة في الشبكات العصبية\")\\n  \\n  practice_71()",
-        "expected_output": "Output based on the example above",
-        "explanation": "هذا مثال بسيط يوضح كيفية تطبيق المفهوم بشكل سليم دون تعقيد."
+        "expected_output": "(Output specific to الدرس 71: مقدمة في الشبكات العصبية)",
+        "explanation": "هذا مثال عملي يوضح كيفية استخدام (الدرس 71: مقدمة في الشبكات العصبية) برمجياً."
       },
       {
         "type": "wrong",
         "title": "خطأ صياغة شائع",
         "code": "def practice_71(:\\n      print(Welcome to مقدمة في الشبكات العصبية\")\\n  \\n  practice_71()",
-        "error_message": "SyntaxError: unexpected EOF while parsing",
+        "error_message": "SyntaxError in الدرس 71: مقدمة في الشبكات العصبية",
         "explanation": "نسيان إغلاق الأقواس أو علامات التنصيص هو من أكثر الأخطاء شيوعاً للمبتدئين."
       },
       {
         "type": "wrong",
         "title": "استخدام خاطئ للمتغيرات",
-        "code": "invalid_var = 10\nprint(Invalid_Var)",
+        "code": "invalid_var = 10\nprint(Invalid_Var) # الدرس 71: مقدمة في الشبكات العصبية context",
         "error_message": "NameError: name 'Invalid_Var' is not defined",
         "explanation": "بايثون لغة حساسة لحالة الأحرف (Case-sensitive). المتغير invalid_var يختلف عن Invalid_Var."
       },
@@ -4217,9 +4217,9 @@ export const pythonTrackData = [
       {
         "type": "challenge",
         "title": "تحدي: إصلاح الكود",
-        "code": "# الكود التالي يحتوي على خطأ بسيط، حاول إصلاحه ليعمل\ndef practice_71():\\n      print(\"Welcome to مقدمة في الشبكات العصبية\")\\n  \\n  practice_71()",
-        "expected_output": "Correct execution",
-        "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
+        "code": "# قم بتصحيح هذا الكود ليعمل بشكل سليم\ndef practice_71():\\n      print(\"Welcome to مقدمة في الشبكات العصبية\")\\n  \\n  practice_71()",
+        "expected_output": "Correct execution output",
+        "explanation": "تحدي خاص بدرس: الدرس 71: مقدمة في الشبكات العصبية"
       }
     ],
     "lesson_type": "concept"
@@ -4247,20 +4247,20 @@ export const pythonTrackData = [
         "type": "correct",
         "title": "تطبيق مباشر: الدرس 72: مفهوم الـ Deep Learning",
         "code": "def practice_72():\\n      print(\"Welcome to مفهوم الـ Deep Learning\")\\n  \\n  practice_72()",
-        "expected_output": "Output based on the example above",
-        "explanation": "هذا مثال بسيط يوضح كيفية تطبيق المفهوم بشكل سليم دون تعقيد."
+        "expected_output": "(Output specific to الدرس 72: مفهوم الـ Deep Learning)",
+        "explanation": "هذا مثال عملي يوضح كيفية استخدام (الدرس 72: مفهوم الـ Deep Learning) برمجياً."
       },
       {
         "type": "wrong",
         "title": "خطأ صياغة شائع",
         "code": "def practice_72(:\\n      print(Welcome to مفهوم الـ Deep Learning\")\\n  \\n  practice_72()",
-        "error_message": "SyntaxError: unexpected EOF while parsing",
+        "error_message": "SyntaxError in الدرس 72: مفهوم الـ Deep Learning",
         "explanation": "نسيان إغلاق الأقواس أو علامات التنصيص هو من أكثر الأخطاء شيوعاً للمبتدئين."
       },
       {
         "type": "wrong",
         "title": "استخدام خاطئ للمتغيرات",
-        "code": "invalid_var = 10\nprint(Invalid_Var)",
+        "code": "invalid_var = 10\nprint(Invalid_Var) # الدرس 72: مفهوم الـ Deep Learning context",
         "error_message": "NameError: name 'Invalid_Var' is not defined",
         "explanation": "بايثون لغة حساسة لحالة الأحرف (Case-sensitive). المتغير invalid_var يختلف عن Invalid_Var."
       },
@@ -4277,9 +4277,9 @@ export const pythonTrackData = [
       {
         "type": "challenge",
         "title": "تحدي: إصلاح الكود",
-        "code": "# الكود التالي يحتوي على خطأ بسيط، حاول إصلاحه ليعمل\ndef practice_72():\\n      print(\"Welcome to مفهوم الـ Deep Learning\")\\n  \\n  practice_72()",
-        "expected_output": "Correct execution",
-        "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
+        "code": "# قم بتصحيح هذا الكود ليعمل بشكل سليم\ndef practice_72():\\n      print(\"Welcome to مفهوم الـ Deep Learning\")\\n  \\n  practice_72()",
+        "expected_output": "Correct execution output",
+        "explanation": "تحدي خاص بدرس: الدرس 72: مفهوم الـ Deep Learning"
       }
     ],
     "lesson_type": "mini_mission"
@@ -4307,20 +4307,20 @@ export const pythonTrackData = [
         "type": "correct",
         "title": "تطبيق مباشر: الدرس 73: التعامل مع الصور",
         "code": "def practice_73():\\n      print(\"Welcome to التعامل مع الصور\")\\n  \\n  practice_73()",
-        "expected_output": "Output based on the example above",
-        "explanation": "هذا مثال بسيط يوضح كيفية تطبيق المفهوم بشكل سليم دون تعقيد."
+        "expected_output": "(Output specific to الدرس 73: التعامل مع الصور)",
+        "explanation": "هذا مثال عملي يوضح كيفية استخدام (الدرس 73: التعامل مع الصور) برمجياً."
       },
       {
         "type": "wrong",
         "title": "خطأ صياغة شائع",
         "code": "def practice_73(:\\n      print(Welcome to التعامل مع الصور\")\\n  \\n  practice_73()",
-        "error_message": "SyntaxError: unexpected EOF while parsing",
+        "error_message": "SyntaxError in الدرس 73: التعامل مع الصور",
         "explanation": "نسيان إغلاق الأقواس أو علامات التنصيص هو من أكثر الأخطاء شيوعاً للمبتدئين."
       },
       {
         "type": "wrong",
         "title": "استخدام خاطئ للمتغيرات",
-        "code": "invalid_var = 10\nprint(Invalid_Var)",
+        "code": "invalid_var = 10\nprint(Invalid_Var) # الدرس 73: التعامل مع الصور context",
         "error_message": "NameError: name 'Invalid_Var' is not defined",
         "explanation": "بايثون لغة حساسة لحالة الأحرف (Case-sensitive). المتغير invalid_var يختلف عن Invalid_Var."
       },
@@ -4337,9 +4337,9 @@ export const pythonTrackData = [
       {
         "type": "challenge",
         "title": "تحدي: إصلاح الكود",
-        "code": "# الكود التالي يحتوي على خطأ بسيط، حاول إصلاحه ليعمل\ndef practice_73():\\n      print(\"Welcome to التعامل مع الصور\")\\n  \\n  practice_73()",
-        "expected_output": "Correct execution",
-        "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
+        "code": "# قم بتصحيح هذا الكود ليعمل بشكل سليم\ndef practice_73():\\n      print(\"Welcome to التعامل مع الصور\")\\n  \\n  practice_73()",
+        "expected_output": "Correct execution output",
+        "explanation": "تحدي خاص بدرس: الدرس 73: التعامل مع الصور"
       }
     ],
     "lesson_type": "concept"
@@ -4367,20 +4367,20 @@ export const pythonTrackData = [
         "type": "correct",
         "title": "تطبيق مباشر: الدرس 74: تصنيف الصور باستخدام بايثون",
         "code": "def practice_74():\\n      print(\"Welcome to تصنيف الصور باستخدام بايثون\")\\n  \\n  practice_74()",
-        "expected_output": "Output based on the example above",
-        "explanation": "هذا مثال بسيط يوضح كيفية تطبيق المفهوم بشكل سليم دون تعقيد."
+        "expected_output": "(Output specific to الدرس 74: تصنيف الصور باستخدام بايثون)",
+        "explanation": "هذا مثال عملي يوضح كيفية استخدام (الدرس 74: تصنيف الصور باستخدام بايثون) برمجياً."
       },
       {
         "type": "wrong",
         "title": "خطأ صياغة شائع",
         "code": "def practice_74(:\\n      print(Welcome to تصنيف الصور باستخدام بايثون\")\\n  \\n  practice_74()",
-        "error_message": "SyntaxError: unexpected EOF while parsing",
+        "error_message": "SyntaxError in الدرس 74: تصنيف الصور باستخدام بايثون",
         "explanation": "نسيان إغلاق الأقواس أو علامات التنصيص هو من أكثر الأخطاء شيوعاً للمبتدئين."
       },
       {
         "type": "wrong",
         "title": "استخدام خاطئ للمتغيرات",
-        "code": "invalid_var = 10\nprint(Invalid_Var)",
+        "code": "invalid_var = 10\nprint(Invalid_Var) # الدرس 74: تصنيف الصور باستخدام بايثون context",
         "error_message": "NameError: name 'Invalid_Var' is not defined",
         "explanation": "بايثون لغة حساسة لحالة الأحرف (Case-sensitive). المتغير invalid_var يختلف عن Invalid_Var."
       },
@@ -4397,9 +4397,9 @@ export const pythonTrackData = [
       {
         "type": "challenge",
         "title": "تحدي: إصلاح الكود",
-        "code": "# الكود التالي يحتوي على خطأ بسيط، حاول إصلاحه ليعمل\ndef practice_74():\\n      print(\"Welcome to تصنيف الصور باستخدام بايثون\")\\n  \\n  practice_74()",
-        "expected_output": "Correct execution",
-        "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
+        "code": "# قم بتصحيح هذا الكود ليعمل بشكل سليم\ndef practice_74():\\n      print(\"Welcome to تصنيف الصور باستخدام بايثون\")\\n  \\n  practice_74()",
+        "expected_output": "Correct execution output",
+        "explanation": "تحدي خاص بدرس: الدرس 74: تصنيف الصور باستخدام بايثون"
       }
     ],
     "lesson_type": "concept"
@@ -4427,20 +4427,20 @@ export const pythonTrackData = [
         "type": "correct",
         "title": "تطبيق مباشر: الدرس 75: تطبيق ذكاء اصطناعي: التعرف على الوجوه",
         "code": "def practice_75():\\n      print(\"Welcome to تطبيق ذكاء اصطناعي: التعرف على الوجوه\")\\n  \\n  practice_75()",
-        "expected_output": "Output based on the example above",
-        "explanation": "هذا مثال بسيط يوضح كيفية تطبيق المفهوم بشكل سليم دون تعقيد."
+        "expected_output": "(Output specific to الدرس 75: تطبيق ذكاء اصطناعي: التعرف على الوجوه)",
+        "explanation": "هذا مثال عملي يوضح كيفية استخدام (الدرس 75: تطبيق ذكاء اصطناعي: التعرف على الوجوه) برمجياً."
       },
       {
         "type": "wrong",
         "title": "خطأ صياغة شائع",
         "code": "def practice_75(:\\n      print(Welcome to تطبيق ذكاء اصطناعي: التعرف على الوجوه\")\\n  \\n  practice_75()",
-        "error_message": "SyntaxError: unexpected EOF while parsing",
+        "error_message": "SyntaxError in الدرس 75: تطبيق ذكاء اصطناعي: التعرف على الوجوه",
         "explanation": "نسيان إغلاق الأقواس أو علامات التنصيص هو من أكثر الأخطاء شيوعاً للمبتدئين."
       },
       {
         "type": "wrong",
         "title": "استخدام خاطئ للمتغيرات",
-        "code": "invalid_var = 10\nprint(Invalid_Var)",
+        "code": "invalid_var = 10\nprint(Invalid_Var) # الدرس 75: تطبيق ذكاء اصطناعي: التعرف على الوجوه context",
         "error_message": "NameError: name 'Invalid_Var' is not defined",
         "explanation": "بايثون لغة حساسة لحالة الأحرف (Case-sensitive). المتغير invalid_var يختلف عن Invalid_Var."
       },
@@ -4457,9 +4457,9 @@ export const pythonTrackData = [
       {
         "type": "challenge",
         "title": "تحدي: إصلاح الكود",
-        "code": "# الكود التالي يحتوي على خطأ بسيط، حاول إصلاحه ليعمل\ndef practice_75():\\n      print(\"Welcome to تطبيق ذكاء اصطناعي: التعرف على الوجوه\")\\n  \\n  practice_75()",
-        "expected_output": "Correct execution",
-        "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
+        "code": "# قم بتصحيح هذا الكود ليعمل بشكل سليم\ndef practice_75():\\n      print(\"Welcome to تطبيق ذكاء اصطناعي: التعرف على الوجوه\")\\n  \\n  practice_75()",
+        "expected_output": "Correct execution output",
+        "explanation": "تحدي خاص بدرس: الدرس 75: تطبيق ذكاء اصطناعي: التعرف على الوجوه"
       }
     ],
     "lesson_type": "project"
@@ -4487,20 +4487,20 @@ export const pythonTrackData = [
         "type": "correct",
         "title": "تطبيق مباشر: الدرس 76: أساسيات أمن المعلومات في بايثون",
         "code": "def practice_76():\\n      print(\"Welcome to أساسيات أمن المعلومات في بايثون\")\\n  \\n  practice_76()",
-        "expected_output": "Output based on the example above",
-        "explanation": "هذا مثال بسيط يوضح كيفية تطبيق المفهوم بشكل سليم دون تعقيد."
+        "expected_output": "(Output specific to الدرس 76: أساسيات أمن المعلومات في بايثون)",
+        "explanation": "هذا مثال عملي يوضح كيفية استخدام (الدرس 76: أساسيات أمن المعلومات في بايثون) برمجياً."
       },
       {
         "type": "wrong",
         "title": "خطأ صياغة شائع",
         "code": "def practice_76(:\\n      print(Welcome to أساسيات أمن المعلومات في بايثون\")\\n  \\n  practice_76()",
-        "error_message": "SyntaxError: unexpected EOF while parsing",
+        "error_message": "SyntaxError in الدرس 76: أساسيات أمن المعلومات في بايثون",
         "explanation": "نسيان إغلاق الأقواس أو علامات التنصيص هو من أكثر الأخطاء شيوعاً للمبتدئين."
       },
       {
         "type": "wrong",
         "title": "استخدام خاطئ للمتغيرات",
-        "code": "invalid_var = 10\nprint(Invalid_Var)",
+        "code": "invalid_var = 10\nprint(Invalid_Var) # الدرس 76: أساسيات أمن المعلومات في بايثون context",
         "error_message": "NameError: name 'Invalid_Var' is not defined",
         "explanation": "بايثون لغة حساسة لحالة الأحرف (Case-sensitive). المتغير invalid_var يختلف عن Invalid_Var."
       },
@@ -4517,9 +4517,9 @@ export const pythonTrackData = [
       {
         "type": "challenge",
         "title": "تحدي: إصلاح الكود",
-        "code": "# الكود التالي يحتوي على خطأ بسيط، حاول إصلاحه ليعمل\ndef practice_76():\\n      print(\"Welcome to أساسيات أمن المعلومات في بايثون\")\\n  \\n  practice_76()",
-        "expected_output": "Correct execution",
-        "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
+        "code": "# قم بتصحيح هذا الكود ليعمل بشكل سليم\ndef practice_76():\\n      print(\"Welcome to أساسيات أمن المعلومات في بايثون\")\\n  \\n  practice_76()",
+        "expected_output": "Correct execution output",
+        "explanation": "تحدي خاص بدرس: الدرس 76: أساسيات أمن المعلومات في بايثون"
       }
     ],
     "lesson_type": "mini_mission"
@@ -4547,20 +4547,20 @@ export const pythonTrackData = [
         "type": "correct",
         "title": "تطبيق مباشر: الدرس 77: تشفير النصوص (Cryptography)",
         "code": "def practice_77():\\n      print(\"Welcome to تشفير النصوص (Cryptography)\")\\n  \\n  practice_77()",
-        "expected_output": "Output based on the example above",
-        "explanation": "هذا مثال بسيط يوضح كيفية تطبيق المفهوم بشكل سليم دون تعقيد."
+        "expected_output": "(Output specific to الدرس 77: تشفير النصوص (Cryptography))",
+        "explanation": "هذا مثال عملي يوضح كيفية استخدام (الدرس 77: تشفير النصوص (Cryptography)) برمجياً."
       },
       {
         "type": "wrong",
         "title": "خطأ صياغة شائع",
         "code": "def practice_77(:\\n      print(Welcome to تشفير النصوص (Cryptography)\")\\n  \\n  practice_77()",
-        "error_message": "SyntaxError: unexpected EOF while parsing",
+        "error_message": "SyntaxError in الدرس 77: تشفير النصوص (Cryptography)",
         "explanation": "نسيان إغلاق الأقواس أو علامات التنصيص هو من أكثر الأخطاء شيوعاً للمبتدئين."
       },
       {
         "type": "wrong",
         "title": "استخدام خاطئ للمتغيرات",
-        "code": "invalid_var = 10\nprint(Invalid_Var)",
+        "code": "invalid_var = 10\nprint(Invalid_Var) # الدرس 77: تشفير النصوص (Cryptography) context",
         "error_message": "NameError: name 'Invalid_Var' is not defined",
         "explanation": "بايثون لغة حساسة لحالة الأحرف (Case-sensitive). المتغير invalid_var يختلف عن Invalid_Var."
       },
@@ -4577,9 +4577,9 @@ export const pythonTrackData = [
       {
         "type": "challenge",
         "title": "تحدي: إصلاح الكود",
-        "code": "# الكود التالي يحتوي على خطأ بسيط، حاول إصلاحه ليعمل\ndef practice_77():\\n      print(\"Welcome to تشفير النصوص (Cryptography)\")\\n  \\n  practice_77()",
-        "expected_output": "Correct execution",
-        "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
+        "code": "# قم بتصحيح هذا الكود ليعمل بشكل سليم\ndef practice_77():\\n      print(\"Welcome to تشفير النصوص (Cryptography)\")\\n  \\n  practice_77()",
+        "expected_output": "Correct execution output",
+        "explanation": "تحدي خاص بدرس: الدرس 77: تشفير النصوص (Cryptography)"
       }
     ],
     "lesson_type": "debugging"
@@ -4607,20 +4607,20 @@ export const pythonTrackData = [
         "type": "correct",
         "title": "تطبيق مباشر: الدرس 78: فك التشفير",
         "code": "def practice_78():\\n      print(\"Welcome to فك التشفير\")\\n  \\n  practice_78()",
-        "expected_output": "Output based on the example above",
-        "explanation": "هذا مثال بسيط يوضح كيفية تطبيق المفهوم بشكل سليم دون تعقيد."
+        "expected_output": "(Output specific to الدرس 78: فك التشفير)",
+        "explanation": "هذا مثال عملي يوضح كيفية استخدام (الدرس 78: فك التشفير) برمجياً."
       },
       {
         "type": "wrong",
         "title": "خطأ صياغة شائع",
         "code": "def practice_78(:\\n      print(Welcome to فك التشفير\")\\n  \\n  practice_78()",
-        "error_message": "SyntaxError: unexpected EOF while parsing",
+        "error_message": "SyntaxError in الدرس 78: فك التشفير",
         "explanation": "نسيان إغلاق الأقواس أو علامات التنصيص هو من أكثر الأخطاء شيوعاً للمبتدئين."
       },
       {
         "type": "wrong",
         "title": "استخدام خاطئ للمتغيرات",
-        "code": "invalid_var = 10\nprint(Invalid_Var)",
+        "code": "invalid_var = 10\nprint(Invalid_Var) # الدرس 78: فك التشفير context",
         "error_message": "NameError: name 'Invalid_Var' is not defined",
         "explanation": "بايثون لغة حساسة لحالة الأحرف (Case-sensitive). المتغير invalid_var يختلف عن Invalid_Var."
       },
@@ -4637,9 +4637,9 @@ export const pythonTrackData = [
       {
         "type": "challenge",
         "title": "تحدي: إصلاح الكود",
-        "code": "# الكود التالي يحتوي على خطأ بسيط، حاول إصلاحه ليعمل\ndef practice_78():\\n      print(\"Welcome to فك التشفير\")\\n  \\n  practice_78()",
-        "expected_output": "Correct execution",
-        "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
+        "code": "# قم بتصحيح هذا الكود ليعمل بشكل سليم\ndef practice_78():\\n      print(\"Welcome to فك التشفير\")\\n  \\n  practice_78()",
+        "expected_output": "Correct execution output",
+        "explanation": "تحدي خاص بدرس: الدرس 78: فك التشفير"
       }
     ],
     "lesson_type": "scenario"
@@ -4667,20 +4667,20 @@ export const pythonTrackData = [
         "type": "correct",
         "title": "تطبيق مباشر: الدرس 79: فحص المنافذ (Port Scanning)",
         "code": "def practice_79():\\n      print(\"Welcome to فحص المنافذ (Port Scanning)\")\\n  \\n  practice_79()",
-        "expected_output": "Output based on the example above",
-        "explanation": "هذا مثال بسيط يوضح كيفية تطبيق المفهوم بشكل سليم دون تعقيد."
+        "expected_output": "(Output specific to الدرس 79: فحص المنافذ (Port Scanning))",
+        "explanation": "هذا مثال عملي يوضح كيفية استخدام (الدرس 79: فحص المنافذ (Port Scanning)) برمجياً."
       },
       {
         "type": "wrong",
         "title": "خطأ صياغة شائع",
         "code": "def practice_79(:\\n      print(Welcome to فحص المنافذ (Port Scanning)\")\\n  \\n  practice_79()",
-        "error_message": "SyntaxError: unexpected EOF while parsing",
+        "error_message": "SyntaxError in الدرس 79: فحص المنافذ (Port Scanning)",
         "explanation": "نسيان إغلاق الأقواس أو علامات التنصيص هو من أكثر الأخطاء شيوعاً للمبتدئين."
       },
       {
         "type": "wrong",
         "title": "استخدام خاطئ للمتغيرات",
-        "code": "invalid_var = 10\nprint(Invalid_Var)",
+        "code": "invalid_var = 10\nprint(Invalid_Var) # الدرس 79: فحص المنافذ (Port Scanning) context",
         "error_message": "NameError: name 'Invalid_Var' is not defined",
         "explanation": "بايثون لغة حساسة لحالة الأحرف (Case-sensitive). المتغير invalid_var يختلف عن Invalid_Var."
       },
@@ -4697,9 +4697,9 @@ export const pythonTrackData = [
       {
         "type": "challenge",
         "title": "تحدي: إصلاح الكود",
-        "code": "# الكود التالي يحتوي على خطأ بسيط، حاول إصلاحه ليعمل\ndef practice_79():\\n      print(\"Welcome to فحص المنافذ (Port Scanning)\")\\n  \\n  practice_79()",
-        "expected_output": "Correct execution",
-        "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
+        "code": "# قم بتصحيح هذا الكود ليعمل بشكل سليم\ndef practice_79():\\n      print(\"Welcome to فحص المنافذ (Port Scanning)\")\\n  \\n  practice_79()",
+        "expected_output": "Correct execution output",
+        "explanation": "تحدي خاص بدرس: الدرس 79: فحص المنافذ (Port Scanning)"
       }
     ],
     "lesson_type": "concept"
@@ -4727,20 +4727,20 @@ export const pythonTrackData = [
         "type": "correct",
         "title": "تطبيق مباشر: الدرس 80: تطبيق: أداة فحص الشبكات",
         "code": "def practice_80():\\n      print(\"Welcome to تطبيق: أداة فحص الشبكات\")\\n  \\n  practice_80()",
-        "expected_output": "Output based on the example above",
-        "explanation": "هذا مثال بسيط يوضح كيفية تطبيق المفهوم بشكل سليم دون تعقيد."
+        "expected_output": "(Output specific to الدرس 80: تطبيق: أداة فحص الشبكات)",
+        "explanation": "هذا مثال عملي يوضح كيفية استخدام (الدرس 80: تطبيق: أداة فحص الشبكات) برمجياً."
       },
       {
         "type": "wrong",
         "title": "خطأ صياغة شائع",
         "code": "def practice_80(:\\n      print(Welcome to تطبيق: أداة فحص الشبكات\")\\n  \\n  practice_80()",
-        "error_message": "SyntaxError: unexpected EOF while parsing",
+        "error_message": "SyntaxError in الدرس 80: تطبيق: أداة فحص الشبكات",
         "explanation": "نسيان إغلاق الأقواس أو علامات التنصيص هو من أكثر الأخطاء شيوعاً للمبتدئين."
       },
       {
         "type": "wrong",
         "title": "استخدام خاطئ للمتغيرات",
-        "code": "invalid_var = 10\nprint(Invalid_Var)",
+        "code": "invalid_var = 10\nprint(Invalid_Var) # الدرس 80: تطبيق: أداة فحص الشبكات context",
         "error_message": "NameError: name 'Invalid_Var' is not defined",
         "explanation": "بايثون لغة حساسة لحالة الأحرف (Case-sensitive). المتغير invalid_var يختلف عن Invalid_Var."
       },
@@ -4757,9 +4757,9 @@ export const pythonTrackData = [
       {
         "type": "challenge",
         "title": "تحدي: إصلاح الكود",
-        "code": "# الكود التالي يحتوي على خطأ بسيط، حاول إصلاحه ليعمل\ndef practice_80():\\n      print(\"Welcome to تطبيق: أداة فحص الشبكات\")\\n  \\n  practice_80()",
-        "expected_output": "Correct execution",
-        "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
+        "code": "# قم بتصحيح هذا الكود ليعمل بشكل سليم\ndef practice_80():\\n      print(\"Welcome to تطبيق: أداة فحص الشبكات\")\\n  \\n  practice_80()",
+        "expected_output": "Correct execution output",
+        "explanation": "تحدي خاص بدرس: الدرس 80: تطبيق: أداة فحص الشبكات"
       }
     ],
     "lesson_type": "capstone"
@@ -4787,20 +4787,20 @@ export const pythonTrackData = [
         "type": "correct",
         "title": "تطبيق مباشر: الدرس 81: المكتبات المتقدمة",
         "code": "def practice_81():\\n      print(\"Welcome to المكتبات المتقدمة\")\\n  \\n  practice_81()",
-        "expected_output": "Output based on the example above",
-        "explanation": "هذا مثال بسيط يوضح كيفية تطبيق المفهوم بشكل سليم دون تعقيد."
+        "expected_output": "(Output specific to الدرس 81: المكتبات المتقدمة)",
+        "explanation": "هذا مثال عملي يوضح كيفية استخدام (الدرس 81: المكتبات المتقدمة) برمجياً."
       },
       {
         "type": "wrong",
         "title": "خطأ صياغة شائع",
         "code": "def practice_81(:\\n      print(Welcome to المكتبات المتقدمة\")\\n  \\n  practice_81()",
-        "error_message": "SyntaxError: unexpected EOF while parsing",
+        "error_message": "SyntaxError in الدرس 81: المكتبات المتقدمة",
         "explanation": "نسيان إغلاق الأقواس أو علامات التنصيص هو من أكثر الأخطاء شيوعاً للمبتدئين."
       },
       {
         "type": "wrong",
         "title": "استخدام خاطئ للمتغيرات",
-        "code": "invalid_var = 10\nprint(Invalid_Var)",
+        "code": "invalid_var = 10\nprint(Invalid_Var) # الدرس 81: المكتبات المتقدمة context",
         "error_message": "NameError: name 'Invalid_Var' is not defined",
         "explanation": "بايثون لغة حساسة لحالة الأحرف (Case-sensitive). المتغير invalid_var يختلف عن Invalid_Var."
       },
@@ -4817,9 +4817,9 @@ export const pythonTrackData = [
       {
         "type": "challenge",
         "title": "تحدي: إصلاح الكود",
-        "code": "# الكود التالي يحتوي على خطأ بسيط، حاول إصلاحه ليعمل\ndef practice_81():\\n      print(\"Welcome to المكتبات المتقدمة\")\\n  \\n  practice_81()",
-        "expected_output": "Correct execution",
-        "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
+        "code": "# قم بتصحيح هذا الكود ليعمل بشكل سليم\ndef practice_81():\\n      print(\"Welcome to المكتبات المتقدمة\")\\n  \\n  practice_81()",
+        "expected_output": "Correct execution output",
+        "explanation": "تحدي خاص بدرس: الدرس 81: المكتبات المتقدمة"
       }
     ],
     "lesson_type": "sandbox"
@@ -4847,20 +4847,20 @@ export const pythonTrackData = [
         "type": "correct",
         "title": "تطبيق مباشر: الدرس 82: التوازي (Threading)",
         "code": "def practice_82():\\n      print(\"Welcome to التوازي (Threading)\")\\n  \\n  practice_82()",
-        "expected_output": "Output based on the example above",
-        "explanation": "هذا مثال بسيط يوضح كيفية تطبيق المفهوم بشكل سليم دون تعقيد."
+        "expected_output": "(Output specific to الدرس 82: التوازي (Threading))",
+        "explanation": "هذا مثال عملي يوضح كيفية استخدام (الدرس 82: التوازي (Threading)) برمجياً."
       },
       {
         "type": "wrong",
         "title": "خطأ صياغة شائع",
         "code": "def practice_82(:\\n      print(Welcome to التوازي (Threading)\")\\n  \\n  practice_82()",
-        "error_message": "SyntaxError: unexpected EOF while parsing",
+        "error_message": "SyntaxError in الدرس 82: التوازي (Threading)",
         "explanation": "نسيان إغلاق الأقواس أو علامات التنصيص هو من أكثر الأخطاء شيوعاً للمبتدئين."
       },
       {
         "type": "wrong",
         "title": "استخدام خاطئ للمتغيرات",
-        "code": "invalid_var = 10\nprint(Invalid_Var)",
+        "code": "invalid_var = 10\nprint(Invalid_Var) # الدرس 82: التوازي (Threading) context",
         "error_message": "NameError: name 'Invalid_Var' is not defined",
         "explanation": "بايثون لغة حساسة لحالة الأحرف (Case-sensitive). المتغير invalid_var يختلف عن Invalid_Var."
       },
@@ -4877,9 +4877,9 @@ export const pythonTrackData = [
       {
         "type": "challenge",
         "title": "تحدي: إصلاح الكود",
-        "code": "# الكود التالي يحتوي على خطأ بسيط، حاول إصلاحه ليعمل\ndef practice_82():\\n      print(\"Welcome to التوازي (Threading)\")\\n  \\n  practice_82()",
-        "expected_output": "Correct execution",
-        "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
+        "code": "# قم بتصحيح هذا الكود ليعمل بشكل سليم\ndef practice_82():\\n      print(\"Welcome to التوازي (Threading)\")\\n  \\n  practice_82()",
+        "expected_output": "Correct execution output",
+        "explanation": "تحدي خاص بدرس: الدرس 82: التوازي (Threading)"
       }
     ],
     "lesson_type": "concept"
@@ -4907,20 +4907,20 @@ export const pythonTrackData = [
         "type": "correct",
         "title": "تطبيق مباشر: الدرس 83: المعالجة المتعددة (Multiprocessing)",
         "code": "def practice_83():\\n      print(\"Welcome to المعالجة المتعددة (Multiprocessing)\")\\n  \\n  practice_83()",
-        "expected_output": "Output based on the example above",
-        "explanation": "هذا مثال بسيط يوضح كيفية تطبيق المفهوم بشكل سليم دون تعقيد."
+        "expected_output": "(Output specific to الدرس 83: المعالجة المتعددة (Multiprocessing))",
+        "explanation": "هذا مثال عملي يوضح كيفية استخدام (الدرس 83: المعالجة المتعددة (Multiprocessing)) برمجياً."
       },
       {
         "type": "wrong",
         "title": "خطأ صياغة شائع",
         "code": "def practice_83(:\\n      print(Welcome to المعالجة المتعددة (Multiprocessing)\")\\n  \\n  practice_83()",
-        "error_message": "SyntaxError: unexpected EOF while parsing",
+        "error_message": "SyntaxError in الدرس 83: المعالجة المتعددة (Multiprocessing)",
         "explanation": "نسيان إغلاق الأقواس أو علامات التنصيص هو من أكثر الأخطاء شيوعاً للمبتدئين."
       },
       {
         "type": "wrong",
         "title": "استخدام خاطئ للمتغيرات",
-        "code": "invalid_var = 10\nprint(Invalid_Var)",
+        "code": "invalid_var = 10\nprint(Invalid_Var) # الدرس 83: المعالجة المتعددة (Multiprocessing) context",
         "error_message": "NameError: name 'Invalid_Var' is not defined",
         "explanation": "بايثون لغة حساسة لحالة الأحرف (Case-sensitive). المتغير invalid_var يختلف عن Invalid_Var."
       },
@@ -4937,9 +4937,9 @@ export const pythonTrackData = [
       {
         "type": "challenge",
         "title": "تحدي: إصلاح الكود",
-        "code": "# الكود التالي يحتوي على خطأ بسيط، حاول إصلاحه ليعمل\ndef practice_83():\\n      print(\"Welcome to المعالجة المتعددة (Multiprocessing)\")\\n  \\n  practice_83()",
-        "expected_output": "Correct execution",
-        "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
+        "code": "# قم بتصحيح هذا الكود ليعمل بشكل سليم\ndef practice_83():\\n      print(\"Welcome to المعالجة المتعددة (Multiprocessing)\")\\n  \\n  practice_83()",
+        "expected_output": "Correct execution output",
+        "explanation": "تحدي خاص بدرس: الدرس 83: المعالجة المتعددة (Multiprocessing)"
       }
     ],
     "lesson_type": "concept"
@@ -4967,20 +4967,20 @@ export const pythonTrackData = [
         "type": "correct",
         "title": "تطبيق مباشر: الدرس 84: البرمجة غير المتزامنة (Asyncio)",
         "code": "def practice_84():\\n      print(\"Welcome to البرمجة غير المتزامنة (Asyncio)\")\\n  \\n  practice_84()",
-        "expected_output": "Output based on the example above",
-        "explanation": "هذا مثال بسيط يوضح كيفية تطبيق المفهوم بشكل سليم دون تعقيد."
+        "expected_output": "(Output specific to الدرس 84: البرمجة غير المتزامنة (Asyncio))",
+        "explanation": "هذا مثال عملي يوضح كيفية استخدام (الدرس 84: البرمجة غير المتزامنة (Asyncio)) برمجياً."
       },
       {
         "type": "wrong",
         "title": "خطأ صياغة شائع",
         "code": "def practice_84(:\\n      print(Welcome to البرمجة غير المتزامنة (Asyncio)\")\\n  \\n  practice_84()",
-        "error_message": "SyntaxError: unexpected EOF while parsing",
+        "error_message": "SyntaxError in الدرس 84: البرمجة غير المتزامنة (Asyncio)",
         "explanation": "نسيان إغلاق الأقواس أو علامات التنصيص هو من أكثر الأخطاء شيوعاً للمبتدئين."
       },
       {
         "type": "wrong",
         "title": "استخدام خاطئ للمتغيرات",
-        "code": "invalid_var = 10\nprint(Invalid_Var)",
+        "code": "invalid_var = 10\nprint(Invalid_Var) # الدرس 84: البرمجة غير المتزامنة (Asyncio) context",
         "error_message": "NameError: name 'Invalid_Var' is not defined",
         "explanation": "بايثون لغة حساسة لحالة الأحرف (Case-sensitive). المتغير invalid_var يختلف عن Invalid_Var."
       },
@@ -4997,9 +4997,9 @@ export const pythonTrackData = [
       {
         "type": "challenge",
         "title": "تحدي: إصلاح الكود",
-        "code": "# الكود التالي يحتوي على خطأ بسيط، حاول إصلاحه ليعمل\ndef practice_84():\\n      print(\"Welcome to البرمجة غير المتزامنة (Asyncio)\")\\n  \\n  practice_84()",
-        "expected_output": "Correct execution",
-        "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
+        "code": "# قم بتصحيح هذا الكود ليعمل بشكل سليم\ndef practice_84():\\n      print(\"Welcome to البرمجة غير المتزامنة (Asyncio)\")\\n  \\n  practice_84()",
+        "expected_output": "Correct execution output",
+        "explanation": "تحدي خاص بدرس: الدرس 84: البرمجة غير المتزامنة (Asyncio)"
       }
     ],
     "lesson_type": "debugging"
@@ -5027,20 +5027,20 @@ export const pythonTrackData = [
         "type": "correct",
         "title": "تطبيق مباشر: الدرس 85: اختبار الكود (Unit Testing)",
         "code": "def practice_85():\\n      print(\"Welcome to اختبار الكود (Unit Testing)\")\\n  \\n  practice_85()",
-        "expected_output": "Output based on the example above",
-        "explanation": "هذا مثال بسيط يوضح كيفية تطبيق المفهوم بشكل سليم دون تعقيد."
+        "expected_output": "(Output specific to الدرس 85: اختبار الكود (Unit Testing))",
+        "explanation": "هذا مثال عملي يوضح كيفية استخدام (الدرس 85: اختبار الكود (Unit Testing)) برمجياً."
       },
       {
         "type": "wrong",
         "title": "خطأ صياغة شائع",
         "code": "def practice_85(:\\n      print(Welcome to اختبار الكود (Unit Testing)\")\\n  \\n  practice_85()",
-        "error_message": "SyntaxError: unexpected EOF while parsing",
+        "error_message": "SyntaxError in الدرس 85: اختبار الكود (Unit Testing)",
         "explanation": "نسيان إغلاق الأقواس أو علامات التنصيص هو من أكثر الأخطاء شيوعاً للمبتدئين."
       },
       {
         "type": "wrong",
         "title": "استخدام خاطئ للمتغيرات",
-        "code": "invalid_var = 10\nprint(Invalid_Var)",
+        "code": "invalid_var = 10\nprint(Invalid_Var) # الدرس 85: اختبار الكود (Unit Testing) context",
         "error_message": "NameError: name 'Invalid_Var' is not defined",
         "explanation": "بايثون لغة حساسة لحالة الأحرف (Case-sensitive). المتغير invalid_var يختلف عن Invalid_Var."
       },
@@ -5057,9 +5057,9 @@ export const pythonTrackData = [
       {
         "type": "challenge",
         "title": "تحدي: إصلاح الكود",
-        "code": "# الكود التالي يحتوي على خطأ بسيط، حاول إصلاحه ليعمل\ndef practice_85():\\n      print(\"Welcome to اختبار الكود (Unit Testing)\")\\n  \\n  practice_85()",
-        "expected_output": "Correct execution",
-        "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
+        "code": "# قم بتصحيح هذا الكود ليعمل بشكل سليم\ndef practice_85():\\n      print(\"Welcome to اختبار الكود (Unit Testing)\")\\n  \\n  practice_85()",
+        "expected_output": "Correct execution output",
+        "explanation": "تحدي خاص بدرس: الدرس 85: اختبار الكود (Unit Testing)"
       }
     ],
     "lesson_type": "project"
@@ -5087,20 +5087,20 @@ export const pythonTrackData = [
         "type": "correct",
         "title": "تطبيق مباشر: الدرس 86: مفاهيم متقدمة في البرمجة الدالة (Functional)",
         "code": "def practice_86():\\n      print(\"Welcome to مفاهيم متقدمة في البرمجة الدالة (Functional)\")\\n  \\n  practice_86()",
-        "expected_output": "Output based on the example above",
-        "explanation": "هذا مثال بسيط يوضح كيفية تطبيق المفهوم بشكل سليم دون تعقيد."
+        "expected_output": "(Output specific to الدرس 86: مفاهيم متقدمة في البرمجة الدالة (Functional))",
+        "explanation": "هذا مثال عملي يوضح كيفية استخدام (الدرس 86: مفاهيم متقدمة في البرمجة الدالة (Functional)) برمجياً."
       },
       {
         "type": "wrong",
         "title": "خطأ صياغة شائع",
         "code": "def practice_86(:\\n      print(Welcome to مفاهيم متقدمة في البرمجة الدالة (Functional)\")\\n  \\n  practice_86()",
-        "error_message": "SyntaxError: unexpected EOF while parsing",
+        "error_message": "SyntaxError in الدرس 86: مفاهيم متقدمة في البرمجة الدالة (Functional)",
         "explanation": "نسيان إغلاق الأقواس أو علامات التنصيص هو من أكثر الأخطاء شيوعاً للمبتدئين."
       },
       {
         "type": "wrong",
         "title": "استخدام خاطئ للمتغيرات",
-        "code": "invalid_var = 10\nprint(Invalid_Var)",
+        "code": "invalid_var = 10\nprint(Invalid_Var) # الدرس 86: مفاهيم متقدمة في البرمجة الدالة (Functional) context",
         "error_message": "NameError: name 'Invalid_Var' is not defined",
         "explanation": "بايثون لغة حساسة لحالة الأحرف (Case-sensitive). المتغير invalid_var يختلف عن Invalid_Var."
       },
@@ -5117,9 +5117,9 @@ export const pythonTrackData = [
       {
         "type": "challenge",
         "title": "تحدي: إصلاح الكود",
-        "code": "# الكود التالي يحتوي على خطأ بسيط، حاول إصلاحه ليعمل\ndef practice_86():\\n      print(\"Welcome to مفاهيم متقدمة في البرمجة الدالة (Functional)\")\\n  \\n  practice_86()",
-        "expected_output": "Correct execution",
-        "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
+        "code": "# قم بتصحيح هذا الكود ليعمل بشكل سليم\ndef practice_86():\\n      print(\"Welcome to مفاهيم متقدمة في البرمجة الدالة (Functional)\")\\n  \\n  practice_86()",
+        "expected_output": "Correct execution output",
+        "explanation": "تحدي خاص بدرس: الدرس 86: مفاهيم متقدمة في البرمجة الدالة (Functional)"
       }
     ],
     "lesson_type": "concept"
@@ -5147,20 +5147,20 @@ export const pythonTrackData = [
         "type": "correct",
         "title": "تطبيق مباشر: الدرس 87: دوال Map و Filter",
         "code": "def practice_87():\\n      print(\"Welcome to دوال Map و Filter\")\\n  \\n  practice_87()",
-        "expected_output": "Output based on the example above",
-        "explanation": "هذا مثال بسيط يوضح كيفية تطبيق المفهوم بشكل سليم دون تعقيد."
+        "expected_output": "(Output specific to الدرس 87: دوال Map و Filter)",
+        "explanation": "هذا مثال عملي يوضح كيفية استخدام (الدرس 87: دوال Map و Filter) برمجياً."
       },
       {
         "type": "wrong",
         "title": "خطأ صياغة شائع",
         "code": "def practice_87(:\\n      print(Welcome to دوال Map و Filter\")\\n  \\n  practice_87()",
-        "error_message": "SyntaxError: unexpected EOF while parsing",
+        "error_message": "SyntaxError in الدرس 87: دوال Map و Filter",
         "explanation": "نسيان إغلاق الأقواس أو علامات التنصيص هو من أكثر الأخطاء شيوعاً للمبتدئين."
       },
       {
         "type": "wrong",
         "title": "استخدام خاطئ للمتغيرات",
-        "code": "invalid_var = 10\nprint(Invalid_Var)",
+        "code": "invalid_var = 10\nprint(Invalid_Var) # الدرس 87: دوال Map و Filter context",
         "error_message": "NameError: name 'Invalid_Var' is not defined",
         "explanation": "بايثون لغة حساسة لحالة الأحرف (Case-sensitive). المتغير invalid_var يختلف عن Invalid_Var."
       },
@@ -5177,9 +5177,9 @@ export const pythonTrackData = [
       {
         "type": "challenge",
         "title": "تحدي: إصلاح الكود",
-        "code": "# الكود التالي يحتوي على خطأ بسيط، حاول إصلاحه ليعمل\ndef practice_87():\\n      print(\"Welcome to دوال Map و Filter\")\\n  \\n  practice_87()",
-        "expected_output": "Correct execution",
-        "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
+        "code": "# قم بتصحيح هذا الكود ليعمل بشكل سليم\ndef practice_87():\\n      print(\"Welcome to دوال Map و Filter\")\\n  \\n  practice_87()",
+        "expected_output": "Correct execution output",
+        "explanation": "تحدي خاص بدرس: الدرس 87: دوال Map و Filter"
       }
     ],
     "lesson_type": "sandbox"
@@ -5207,20 +5207,20 @@ export const pythonTrackData = [
         "type": "correct",
         "title": "تطبيق مباشر: الدرس 88: دالة Lambda السريعة",
         "code": "def practice_88():\\n      print(\"Welcome to دالة Lambda السريعة\")\\n  \\n  practice_88()",
-        "expected_output": "Output based on the example above",
-        "explanation": "هذا مثال بسيط يوضح كيفية تطبيق المفهوم بشكل سليم دون تعقيد."
+        "expected_output": "(Output specific to الدرس 88: دالة Lambda السريعة)",
+        "explanation": "هذا مثال عملي يوضح كيفية استخدام (الدرس 88: دالة Lambda السريعة) برمجياً."
       },
       {
         "type": "wrong",
         "title": "خطأ صياغة شائع",
         "code": "def practice_88(:\\n      print(Welcome to دالة Lambda السريعة\")\\n  \\n  practice_88()",
-        "error_message": "SyntaxError: unexpected EOF while parsing",
+        "error_message": "SyntaxError in الدرس 88: دالة Lambda السريعة",
         "explanation": "نسيان إغلاق الأقواس أو علامات التنصيص هو من أكثر الأخطاء شيوعاً للمبتدئين."
       },
       {
         "type": "wrong",
         "title": "استخدام خاطئ للمتغيرات",
-        "code": "invalid_var = 10\nprint(Invalid_Var)",
+        "code": "invalid_var = 10\nprint(Invalid_Var) # الدرس 88: دالة Lambda السريعة context",
         "error_message": "NameError: name 'Invalid_Var' is not defined",
         "explanation": "بايثون لغة حساسة لحالة الأحرف (Case-sensitive). المتغير invalid_var يختلف عن Invalid_Var."
       },
@@ -5237,9 +5237,9 @@ export const pythonTrackData = [
       {
         "type": "challenge",
         "title": "تحدي: إصلاح الكود",
-        "code": "# الكود التالي يحتوي على خطأ بسيط، حاول إصلاحه ليعمل\ndef practice_88():\\n      print(\"Welcome to دالة Lambda السريعة\")\\n  \\n  practice_88()",
-        "expected_output": "Correct execution",
-        "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
+        "code": "# قم بتصحيح هذا الكود ليعمل بشكل سليم\ndef practice_88():\\n      print(\"Welcome to دالة Lambda السريعة\")\\n  \\n  practice_88()",
+        "expected_output": "Correct execution output",
+        "explanation": "تحدي خاص بدرس: الدرس 88: دالة Lambda السريعة"
       }
     ],
     "lesson_type": "scenario"
@@ -5267,20 +5267,20 @@ export const pythonTrackData = [
         "type": "correct",
         "title": "تطبيق مباشر: الدرس 89: تعابير List Comprehensions",
         "code": "def practice_89():\\n      print(\"Welcome to تعابير List Comprehensions\")\\n  \\n  practice_89()",
-        "expected_output": "Output based on the example above",
-        "explanation": "هذا مثال بسيط يوضح كيفية تطبيق المفهوم بشكل سليم دون تعقيد."
+        "expected_output": "(Output specific to الدرس 89: تعابير List Comprehensions)",
+        "explanation": "هذا مثال عملي يوضح كيفية استخدام (الدرس 89: تعابير List Comprehensions) برمجياً."
       },
       {
         "type": "wrong",
         "title": "خطأ صياغة شائع",
         "code": "def practice_89(:\\n      print(Welcome to تعابير List Comprehensions\")\\n  \\n  practice_89()",
-        "error_message": "SyntaxError: unexpected EOF while parsing",
+        "error_message": "SyntaxError in الدرس 89: تعابير List Comprehensions",
         "explanation": "نسيان إغلاق الأقواس أو علامات التنصيص هو من أكثر الأخطاء شيوعاً للمبتدئين."
       },
       {
         "type": "wrong",
         "title": "استخدام خاطئ للمتغيرات",
-        "code": "invalid_var = 10\nprint(Invalid_Var)",
+        "code": "invalid_var = 10\nprint(Invalid_Var) # الدرس 89: تعابير List Comprehensions context",
         "error_message": "NameError: name 'Invalid_Var' is not defined",
         "explanation": "بايثون لغة حساسة لحالة الأحرف (Case-sensitive). المتغير invalid_var يختلف عن Invalid_Var."
       },
@@ -5297,9 +5297,9 @@ export const pythonTrackData = [
       {
         "type": "challenge",
         "title": "تحدي: إصلاح الكود",
-        "code": "# الكود التالي يحتوي على خطأ بسيط، حاول إصلاحه ليعمل\ndef practice_89():\\n      print(\"Welcome to تعابير List Comprehensions\")\\n  \\n  practice_89()",
-        "expected_output": "Correct execution",
-        "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
+        "code": "# قم بتصحيح هذا الكود ليعمل بشكل سليم\ndef practice_89():\\n      print(\"Welcome to تعابير List Comprehensions\")\\n  \\n  practice_89()",
+        "expected_output": "Correct execution output",
+        "explanation": "تحدي خاص بدرس: الدرس 89: تعابير List Comprehensions"
       }
     ],
     "lesson_type": "concept"
@@ -5327,20 +5327,20 @@ export const pythonTrackData = [
         "type": "correct",
         "title": "تطبيق مباشر: الدرس 90: استكشاف أخطاء متقدمة (Debugging)",
         "code": "def practice_90():\\n      print(\"Welcome to استكشاف أخطاء متقدمة (Debugging)\")\\n  \\n  practice_90()",
-        "expected_output": "Output based on the example above",
-        "explanation": "هذا مثال بسيط يوضح كيفية تطبيق المفهوم بشكل سليم دون تعقيد."
+        "expected_output": "(Output specific to الدرس 90: استكشاف أخطاء متقدمة (Debugging))",
+        "explanation": "هذا مثال عملي يوضح كيفية استخدام (الدرس 90: استكشاف أخطاء متقدمة (Debugging)) برمجياً."
       },
       {
         "type": "wrong",
         "title": "خطأ صياغة شائع",
         "code": "def practice_90(:\\n      print(Welcome to استكشاف أخطاء متقدمة (Debugging)\")\\n  \\n  practice_90()",
-        "error_message": "SyntaxError: unexpected EOF while parsing",
+        "error_message": "SyntaxError in الدرس 90: استكشاف أخطاء متقدمة (Debugging)",
         "explanation": "نسيان إغلاق الأقواس أو علامات التنصيص هو من أكثر الأخطاء شيوعاً للمبتدئين."
       },
       {
         "type": "wrong",
         "title": "استخدام خاطئ للمتغيرات",
-        "code": "invalid_var = 10\nprint(Invalid_Var)",
+        "code": "invalid_var = 10\nprint(Invalid_Var) # الدرس 90: استكشاف أخطاء متقدمة (Debugging) context",
         "error_message": "NameError: name 'Invalid_Var' is not defined",
         "explanation": "بايثون لغة حساسة لحالة الأحرف (Case-sensitive). المتغير invalid_var يختلف عن Invalid_Var."
       },
@@ -5357,9 +5357,9 @@ export const pythonTrackData = [
       {
         "type": "challenge",
         "title": "تحدي: إصلاح الكود",
-        "code": "# الكود التالي يحتوي على خطأ بسيط، حاول إصلاحه ليعمل\ndef practice_90():\\n      print(\"Welcome to استكشاف أخطاء متقدمة (Debugging)\")\\n  \\n  practice_90()",
-        "expected_output": "Correct execution",
-        "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
+        "code": "# قم بتصحيح هذا الكود ليعمل بشكل سليم\ndef practice_90():\\n      print(\"Welcome to استكشاف أخطاء متقدمة (Debugging)\")\\n  \\n  practice_90()",
+        "expected_output": "Correct execution output",
+        "explanation": "تحدي خاص بدرس: الدرس 90: استكشاف أخطاء متقدمة (Debugging)"
       }
     ],
     "lesson_type": "milestone"
@@ -5387,20 +5387,20 @@ export const pythonTrackData = [
         "type": "correct",
         "title": "تطبيق مباشر: الدرس 91: كتابة كود نظيف (Clean Code)",
         "code": "def practice_91():\\n      print(\"Welcome to كتابة كود نظيف (Clean Code)\")\\n  \\n  practice_91()",
-        "expected_output": "Output based on the example above",
-        "explanation": "هذا مثال بسيط يوضح كيفية تطبيق المفهوم بشكل سليم دون تعقيد."
+        "expected_output": "(Output specific to الدرس 91: كتابة كود نظيف (Clean Code))",
+        "explanation": "هذا مثال عملي يوضح كيفية استخدام (الدرس 91: كتابة كود نظيف (Clean Code)) برمجياً."
       },
       {
         "type": "wrong",
         "title": "خطأ صياغة شائع",
         "code": "def practice_91(:\\n      print(Welcome to كتابة كود نظيف (Clean Code)\")\\n  \\n  practice_91()",
-        "error_message": "SyntaxError: unexpected EOF while parsing",
+        "error_message": "SyntaxError in الدرس 91: كتابة كود نظيف (Clean Code)",
         "explanation": "نسيان إغلاق الأقواس أو علامات التنصيص هو من أكثر الأخطاء شيوعاً للمبتدئين."
       },
       {
         "type": "wrong",
         "title": "استخدام خاطئ للمتغيرات",
-        "code": "invalid_var = 10\nprint(Invalid_Var)",
+        "code": "invalid_var = 10\nprint(Invalid_Var) # الدرس 91: كتابة كود نظيف (Clean Code) context",
         "error_message": "NameError: name 'Invalid_Var' is not defined",
         "explanation": "بايثون لغة حساسة لحالة الأحرف (Case-sensitive). المتغير invalid_var يختلف عن Invalid_Var."
       },
@@ -5417,9 +5417,9 @@ export const pythonTrackData = [
       {
         "type": "challenge",
         "title": "تحدي: إصلاح الكود",
-        "code": "# الكود التالي يحتوي على خطأ بسيط، حاول إصلاحه ليعمل\ndef practice_91():\\n      print(\"Welcome to كتابة كود نظيف (Clean Code)\")\\n  \\n  practice_91()",
-        "expected_output": "Correct execution",
-        "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
+        "code": "# قم بتصحيح هذا الكود ليعمل بشكل سليم\ndef practice_91():\\n      print(\"Welcome to كتابة كود نظيف (Clean Code)\")\\n  \\n  practice_91()",
+        "expected_output": "Correct execution output",
+        "explanation": "تحدي خاص بدرس: الدرس 91: كتابة كود نظيف (Clean Code)"
       }
     ],
     "lesson_type": "debugging"
@@ -5447,20 +5447,20 @@ export const pythonTrackData = [
         "type": "correct",
         "title": "تطبيق مباشر: الدرس 92: مبادئ SOLID",
         "code": "def practice_92():\\n      print(\"Welcome to مبادئ SOLID\")\\n  \\n  practice_92()",
-        "expected_output": "Output based on the example above",
-        "explanation": "هذا مثال بسيط يوضح كيفية تطبيق المفهوم بشكل سليم دون تعقيد."
+        "expected_output": "(Output specific to الدرس 92: مبادئ SOLID)",
+        "explanation": "هذا مثال عملي يوضح كيفية استخدام (الدرس 92: مبادئ SOLID) برمجياً."
       },
       {
         "type": "wrong",
         "title": "خطأ صياغة شائع",
         "code": "def practice_92(:\\n      print(Welcome to مبادئ SOLID\")\\n  \\n  practice_92()",
-        "error_message": "SyntaxError: unexpected EOF while parsing",
+        "error_message": "SyntaxError in الدرس 92: مبادئ SOLID",
         "explanation": "نسيان إغلاق الأقواس أو علامات التنصيص هو من أكثر الأخطاء شيوعاً للمبتدئين."
       },
       {
         "type": "wrong",
         "title": "استخدام خاطئ للمتغيرات",
-        "code": "invalid_var = 10\nprint(Invalid_Var)",
+        "code": "invalid_var = 10\nprint(Invalid_Var) # الدرس 92: مبادئ SOLID context",
         "error_message": "NameError: name 'Invalid_Var' is not defined",
         "explanation": "بايثون لغة حساسة لحالة الأحرف (Case-sensitive). المتغير invalid_var يختلف عن Invalid_Var."
       },
@@ -5477,9 +5477,9 @@ export const pythonTrackData = [
       {
         "type": "challenge",
         "title": "تحدي: إصلاح الكود",
-        "code": "# الكود التالي يحتوي على خطأ بسيط، حاول إصلاحه ليعمل\ndef practice_92():\\n      print(\"Welcome to مبادئ SOLID\")\\n  \\n  practice_92()",
-        "expected_output": "Correct execution",
-        "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
+        "code": "# قم بتصحيح هذا الكود ليعمل بشكل سليم\ndef practice_92():\\n      print(\"Welcome to مبادئ SOLID\")\\n  \\n  practice_92()",
+        "expected_output": "Correct execution output",
+        "explanation": "تحدي خاص بدرس: الدرس 92: مبادئ SOLID"
       }
     ],
     "lesson_type": "mini_mission"
@@ -5507,20 +5507,20 @@ export const pythonTrackData = [
         "type": "correct",
         "title": "تطبيق مباشر: الدرس 93: تطبيق شامل للبرمجة المتقدمة",
         "code": "def practice_93():\\n      print(\"Welcome to تطبيق شامل للبرمجة المتقدمة\")\\n  \\n  practice_93()",
-        "expected_output": "Output based on the example above",
-        "explanation": "هذا مثال بسيط يوضح كيفية تطبيق المفهوم بشكل سليم دون تعقيد."
+        "expected_output": "(Output specific to الدرس 93: تطبيق شامل للبرمجة المتقدمة)",
+        "explanation": "هذا مثال عملي يوضح كيفية استخدام (الدرس 93: تطبيق شامل للبرمجة المتقدمة) برمجياً."
       },
       {
         "type": "wrong",
         "title": "خطأ صياغة شائع",
         "code": "def practice_93(:\\n      print(Welcome to تطبيق شامل للبرمجة المتقدمة\")\\n  \\n  practice_93()",
-        "error_message": "SyntaxError: unexpected EOF while parsing",
+        "error_message": "SyntaxError in الدرس 93: تطبيق شامل للبرمجة المتقدمة",
         "explanation": "نسيان إغلاق الأقواس أو علامات التنصيص هو من أكثر الأخطاء شيوعاً للمبتدئين."
       },
       {
         "type": "wrong",
         "title": "استخدام خاطئ للمتغيرات",
-        "code": "invalid_var = 10\nprint(Invalid_Var)",
+        "code": "invalid_var = 10\nprint(Invalid_Var) # الدرس 93: تطبيق شامل للبرمجة المتقدمة context",
         "error_message": "NameError: name 'Invalid_Var' is not defined",
         "explanation": "بايثون لغة حساسة لحالة الأحرف (Case-sensitive). المتغير invalid_var يختلف عن Invalid_Var."
       },
@@ -5537,9 +5537,9 @@ export const pythonTrackData = [
       {
         "type": "challenge",
         "title": "تحدي: إصلاح الكود",
-        "code": "# الكود التالي يحتوي على خطأ بسيط، حاول إصلاحه ليعمل\ndef practice_93():\\n      print(\"Welcome to تطبيق شامل للبرمجة المتقدمة\")\\n  \\n  practice_93()",
-        "expected_output": "Correct execution",
-        "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
+        "code": "# قم بتصحيح هذا الكود ليعمل بشكل سليم\ndef practice_93():\\n      print(\"Welcome to تطبيق شامل للبرمجة المتقدمة\")\\n  \\n  practice_93()",
+        "expected_output": "Correct execution output",
+        "explanation": "تحدي خاص بدرس: الدرس 93: تطبيق شامل للبرمجة المتقدمة"
       }
     ],
     "lesson_type": "sandbox"
@@ -5567,20 +5567,20 @@ export const pythonTrackData = [
         "type": "correct",
         "title": "تطبيق مباشر: الدرس 94: نشر التطبيقات (Deployment)",
         "code": "def practice_94():\\n      print(\"Welcome to نشر التطبيقات (Deployment)\")\\n  \\n  practice_94()",
-        "expected_output": "Output based on the example above",
-        "explanation": "هذا مثال بسيط يوضح كيفية تطبيق المفهوم بشكل سليم دون تعقيد."
+        "expected_output": "(Output specific to الدرس 94: نشر التطبيقات (Deployment))",
+        "explanation": "هذا مثال عملي يوضح كيفية استخدام (الدرس 94: نشر التطبيقات (Deployment)) برمجياً."
       },
       {
         "type": "wrong",
         "title": "خطأ صياغة شائع",
         "code": "def practice_94(:\\n      print(Welcome to نشر التطبيقات (Deployment)\")\\n  \\n  practice_94()",
-        "error_message": "SyntaxError: unexpected EOF while parsing",
+        "error_message": "SyntaxError in الدرس 94: نشر التطبيقات (Deployment)",
         "explanation": "نسيان إغلاق الأقواس أو علامات التنصيص هو من أكثر الأخطاء شيوعاً للمبتدئين."
       },
       {
         "type": "wrong",
         "title": "استخدام خاطئ للمتغيرات",
-        "code": "invalid_var = 10\nprint(Invalid_Var)",
+        "code": "invalid_var = 10\nprint(Invalid_Var) # الدرس 94: نشر التطبيقات (Deployment) context",
         "error_message": "NameError: name 'Invalid_Var' is not defined",
         "explanation": "بايثون لغة حساسة لحالة الأحرف (Case-sensitive). المتغير invalid_var يختلف عن Invalid_Var."
       },
@@ -5597,9 +5597,9 @@ export const pythonTrackData = [
       {
         "type": "challenge",
         "title": "تحدي: إصلاح الكود",
-        "code": "# الكود التالي يحتوي على خطأ بسيط، حاول إصلاحه ليعمل\ndef practice_94():\\n      print(\"Welcome to نشر التطبيقات (Deployment)\")\\n  \\n  practice_94()",
-        "expected_output": "Correct execution",
-        "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
+        "code": "# قم بتصحيح هذا الكود ليعمل بشكل سليم\ndef practice_94():\\n      print(\"Welcome to نشر التطبيقات (Deployment)\")\\n  \\n  practice_94()",
+        "expected_output": "Correct execution output",
+        "explanation": "تحدي خاص بدرس: الدرس 94: نشر التطبيقات (Deployment)"
       }
     ],
     "lesson_type": "concept"
@@ -5627,20 +5627,20 @@ export const pythonTrackData = [
         "type": "correct",
         "title": "تطبيق مباشر: الدرس 95: استخدام Docker",
         "code": "def practice_95():\\n      print(\"Welcome to استخدام Docker\")\\n  \\n  practice_95()",
-        "expected_output": "Output based on the example above",
-        "explanation": "هذا مثال بسيط يوضح كيفية تطبيق المفهوم بشكل سليم دون تعقيد."
+        "expected_output": "(Output specific to الدرس 95: استخدام Docker)",
+        "explanation": "هذا مثال عملي يوضح كيفية استخدام (الدرس 95: استخدام Docker) برمجياً."
       },
       {
         "type": "wrong",
         "title": "خطأ صياغة شائع",
         "code": "def practice_95(:\\n      print(Welcome to استخدام Docker\")\\n  \\n  practice_95()",
-        "error_message": "SyntaxError: unexpected EOF while parsing",
+        "error_message": "SyntaxError in الدرس 95: استخدام Docker",
         "explanation": "نسيان إغلاق الأقواس أو علامات التنصيص هو من أكثر الأخطاء شيوعاً للمبتدئين."
       },
       {
         "type": "wrong",
         "title": "استخدام خاطئ للمتغيرات",
-        "code": "invalid_var = 10\nprint(Invalid_Var)",
+        "code": "invalid_var = 10\nprint(Invalid_Var) # الدرس 95: استخدام Docker context",
         "error_message": "NameError: name 'Invalid_Var' is not defined",
         "explanation": "بايثون لغة حساسة لحالة الأحرف (Case-sensitive). المتغير invalid_var يختلف عن Invalid_Var."
       },
@@ -5657,9 +5657,9 @@ export const pythonTrackData = [
       {
         "type": "challenge",
         "title": "تحدي: إصلاح الكود",
-        "code": "# الكود التالي يحتوي على خطأ بسيط، حاول إصلاحه ليعمل\ndef practice_95():\\n      print(\"Welcome to استخدام Docker\")\\n  \\n  practice_95()",
-        "expected_output": "Correct execution",
-        "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
+        "code": "# قم بتصحيح هذا الكود ليعمل بشكل سليم\ndef practice_95():\\n      print(\"Welcome to استخدام Docker\")\\n  \\n  practice_95()",
+        "expected_output": "Correct execution output",
+        "explanation": "تحدي خاص بدرس: الدرس 95: استخدام Docker"
       }
     ],
     "lesson_type": "project"
@@ -5687,20 +5687,20 @@ export const pythonTrackData = [
         "type": "correct",
         "title": "تطبيق مباشر: الدرس 96: الاستضافة على السحاب",
         "code": "def practice_96():\\n      print(\"Welcome to الاستضافة على السحاب\")\\n  \\n  practice_96()",
-        "expected_output": "Output based on the example above",
-        "explanation": "هذا مثال بسيط يوضح كيفية تطبيق المفهوم بشكل سليم دون تعقيد."
+        "expected_output": "(Output specific to الدرس 96: الاستضافة على السحاب)",
+        "explanation": "هذا مثال عملي يوضح كيفية استخدام (الدرس 96: الاستضافة على السحاب) برمجياً."
       },
       {
         "type": "wrong",
         "title": "خطأ صياغة شائع",
         "code": "def practice_96(:\\n      print(Welcome to الاستضافة على السحاب\")\\n  \\n  practice_96()",
-        "error_message": "SyntaxError: unexpected EOF while parsing",
+        "error_message": "SyntaxError in الدرس 96: الاستضافة على السحاب",
         "explanation": "نسيان إغلاق الأقواس أو علامات التنصيص هو من أكثر الأخطاء شيوعاً للمبتدئين."
       },
       {
         "type": "wrong",
         "title": "استخدام خاطئ للمتغيرات",
-        "code": "invalid_var = 10\nprint(Invalid_Var)",
+        "code": "invalid_var = 10\nprint(Invalid_Var) # الدرس 96: الاستضافة على السحاب context",
         "error_message": "NameError: name 'Invalid_Var' is not defined",
         "explanation": "بايثون لغة حساسة لحالة الأحرف (Case-sensitive). المتغير invalid_var يختلف عن Invalid_Var."
       },
@@ -5717,9 +5717,9 @@ export const pythonTrackData = [
       {
         "type": "challenge",
         "title": "تحدي: إصلاح الكود",
-        "code": "# الكود التالي يحتوي على خطأ بسيط، حاول إصلاحه ليعمل\ndef practice_96():\\n      print(\"Welcome to الاستضافة على السحاب\")\\n  \\n  practice_96()",
-        "expected_output": "Correct execution",
-        "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
+        "code": "# قم بتصحيح هذا الكود ليعمل بشكل سليم\ndef practice_96():\\n      print(\"Welcome to الاستضافة على السحاب\")\\n  \\n  practice_96()",
+        "expected_output": "Correct execution output",
+        "explanation": "تحدي خاص بدرس: الدرس 96: الاستضافة على السحاب"
       }
     ],
     "lesson_type": "mini_mission"
@@ -5747,20 +5747,20 @@ export const pythonTrackData = [
         "type": "correct",
         "title": "تطبيق مباشر: الدرس 97: مراجعة نهائية",
         "code": "def practice_97():\\n      print(\"Welcome to مراجعة نهائية\")\\n  \\n  practice_97()",
-        "expected_output": "Output based on the example above",
-        "explanation": "هذا مثال بسيط يوضح كيفية تطبيق المفهوم بشكل سليم دون تعقيد."
+        "expected_output": "(Output specific to الدرس 97: مراجعة نهائية)",
+        "explanation": "هذا مثال عملي يوضح كيفية استخدام (الدرس 97: مراجعة نهائية) برمجياً."
       },
       {
         "type": "wrong",
         "title": "خطأ صياغة شائع",
         "code": "def practice_97(:\\n      print(Welcome to مراجعة نهائية\")\\n  \\n  practice_97()",
-        "error_message": "SyntaxError: unexpected EOF while parsing",
+        "error_message": "SyntaxError in الدرس 97: مراجعة نهائية",
         "explanation": "نسيان إغلاق الأقواس أو علامات التنصيص هو من أكثر الأخطاء شيوعاً للمبتدئين."
       },
       {
         "type": "wrong",
         "title": "استخدام خاطئ للمتغيرات",
-        "code": "invalid_var = 10\nprint(Invalid_Var)",
+        "code": "invalid_var = 10\nprint(Invalid_Var) # الدرس 97: مراجعة نهائية context",
         "error_message": "NameError: name 'Invalid_Var' is not defined",
         "explanation": "بايثون لغة حساسة لحالة الأحرف (Case-sensitive). المتغير invalid_var يختلف عن Invalid_Var."
       },
@@ -5777,9 +5777,9 @@ export const pythonTrackData = [
       {
         "type": "challenge",
         "title": "تحدي: إصلاح الكود",
-        "code": "# الكود التالي يحتوي على خطأ بسيط، حاول إصلاحه ليعمل\ndef practice_97():\\n      print(\"Welcome to مراجعة نهائية\")\\n  \\n  practice_97()",
-        "expected_output": "Correct execution",
-        "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
+        "code": "# قم بتصحيح هذا الكود ليعمل بشكل سليم\ndef practice_97():\\n      print(\"Welcome to مراجعة نهائية\")\\n  \\n  practice_97()",
+        "expected_output": "Correct execution output",
+        "explanation": "تحدي خاص بدرس: الدرس 97: مراجعة نهائية"
       }
     ],
     "lesson_type": "concept"
@@ -5807,20 +5807,20 @@ export const pythonTrackData = [
         "type": "correct",
         "title": "تطبيق مباشر: الدرس 98: مشروع التخرج الأول",
         "code": "def practice_98():\\n      print(\"Welcome to مشروع التخرج الأول\")\\n  \\n  practice_98()",
-        "expected_output": "Output based on the example above",
-        "explanation": "هذا مثال بسيط يوضح كيفية تطبيق المفهوم بشكل سليم دون تعقيد."
+        "expected_output": "(Output specific to الدرس 98: مشروع التخرج الأول)",
+        "explanation": "هذا مثال عملي يوضح كيفية استخدام (الدرس 98: مشروع التخرج الأول) برمجياً."
       },
       {
         "type": "wrong",
         "title": "خطأ صياغة شائع",
         "code": "def practice_98(:\\n      print(Welcome to مشروع التخرج الأول\")\\n  \\n  practice_98()",
-        "error_message": "SyntaxError: unexpected EOF while parsing",
+        "error_message": "SyntaxError in الدرس 98: مشروع التخرج الأول",
         "explanation": "نسيان إغلاق الأقواس أو علامات التنصيص هو من أكثر الأخطاء شيوعاً للمبتدئين."
       },
       {
         "type": "wrong",
         "title": "استخدام خاطئ للمتغيرات",
-        "code": "invalid_var = 10\nprint(Invalid_Var)",
+        "code": "invalid_var = 10\nprint(Invalid_Var) # الدرس 98: مشروع التخرج الأول context",
         "error_message": "NameError: name 'Invalid_Var' is not defined",
         "explanation": "بايثون لغة حساسة لحالة الأحرف (Case-sensitive). المتغير invalid_var يختلف عن Invalid_Var."
       },
@@ -5837,9 +5837,9 @@ export const pythonTrackData = [
       {
         "type": "challenge",
         "title": "تحدي: إصلاح الكود",
-        "code": "# الكود التالي يحتوي على خطأ بسيط، حاول إصلاحه ليعمل\ndef practice_98():\\n      print(\"Welcome to مشروع التخرج الأول\")\\n  \\n  practice_98()",
-        "expected_output": "Correct execution",
-        "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
+        "code": "# قم بتصحيح هذا الكود ليعمل بشكل سليم\ndef practice_98():\\n      print(\"Welcome to مشروع التخرج الأول\")\\n  \\n  practice_98()",
+        "expected_output": "Correct execution output",
+        "explanation": "تحدي خاص بدرس: الدرس 98: مشروع التخرج الأول"
       }
     ],
     "lesson_type": "scenario"
@@ -5867,20 +5867,20 @@ export const pythonTrackData = [
         "type": "correct",
         "title": "تطبيق مباشر: الدرس 99: مشروع التخرج الثاني",
         "code": "def practice_99():\\n      print(\"Welcome to مشروع التخرج الثاني\")\\n  \\n  practice_99()",
-        "expected_output": "Output based on the example above",
-        "explanation": "هذا مثال بسيط يوضح كيفية تطبيق المفهوم بشكل سليم دون تعقيد."
+        "expected_output": "(Output specific to الدرس 99: مشروع التخرج الثاني)",
+        "explanation": "هذا مثال عملي يوضح كيفية استخدام (الدرس 99: مشروع التخرج الثاني) برمجياً."
       },
       {
         "type": "wrong",
         "title": "خطأ صياغة شائع",
         "code": "def practice_99(:\\n      print(Welcome to مشروع التخرج الثاني\")\\n  \\n  practice_99()",
-        "error_message": "SyntaxError: unexpected EOF while parsing",
+        "error_message": "SyntaxError in الدرس 99: مشروع التخرج الثاني",
         "explanation": "نسيان إغلاق الأقواس أو علامات التنصيص هو من أكثر الأخطاء شيوعاً للمبتدئين."
       },
       {
         "type": "wrong",
         "title": "استخدام خاطئ للمتغيرات",
-        "code": "invalid_var = 10\nprint(Invalid_Var)",
+        "code": "invalid_var = 10\nprint(Invalid_Var) # الدرس 99: مشروع التخرج الثاني context",
         "error_message": "NameError: name 'Invalid_Var' is not defined",
         "explanation": "بايثون لغة حساسة لحالة الأحرف (Case-sensitive). المتغير invalid_var يختلف عن Invalid_Var."
       },
@@ -5897,9 +5897,9 @@ export const pythonTrackData = [
       {
         "type": "challenge",
         "title": "تحدي: إصلاح الكود",
-        "code": "# الكود التالي يحتوي على خطأ بسيط، حاول إصلاحه ليعمل\ndef practice_99():\\n      print(\"Welcome to مشروع التخرج الثاني\")\\n  \\n  practice_99()",
-        "expected_output": "Correct execution",
-        "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
+        "code": "# قم بتصحيح هذا الكود ليعمل بشكل سليم\ndef practice_99():\\n      print(\"Welcome to مشروع التخرج الثاني\")\\n  \\n  practice_99()",
+        "expected_output": "Correct execution output",
+        "explanation": "تحدي خاص بدرس: الدرس 99: مشروع التخرج الثاني"
       }
     ],
     "lesson_type": "ai_challenge"
@@ -5927,20 +5927,20 @@ export const pythonTrackData = [
         "type": "correct",
         "title": "تطبيق مباشر: الدرس 100: الخاتمة والشهادة",
         "code": "def practice_100():\\n      print(\"Welcome to الخاتمة والشهادة\")\\n  \\n  practice_100()",
-        "expected_output": "Output based on the example above",
-        "explanation": "هذا مثال بسيط يوضح كيفية تطبيق المفهوم بشكل سليم دون تعقيد."
+        "expected_output": "(Output specific to الدرس 100: الخاتمة والشهادة)",
+        "explanation": "هذا مثال عملي يوضح كيفية استخدام (الدرس 100: الخاتمة والشهادة) برمجياً."
       },
       {
         "type": "wrong",
         "title": "خطأ صياغة شائع",
         "code": "def practice_100(:\\n      print(Welcome to الخاتمة والشهادة\")\\n  \\n  practice_100()",
-        "error_message": "SyntaxError: unexpected EOF while parsing",
+        "error_message": "SyntaxError in الدرس 100: الخاتمة والشهادة",
         "explanation": "نسيان إغلاق الأقواس أو علامات التنصيص هو من أكثر الأخطاء شيوعاً للمبتدئين."
       },
       {
         "type": "wrong",
         "title": "استخدام خاطئ للمتغيرات",
-        "code": "invalid_var = 10\nprint(Invalid_Var)",
+        "code": "invalid_var = 10\nprint(Invalid_Var) # الدرس 100: الخاتمة والشهادة context",
         "error_message": "NameError: name 'Invalid_Var' is not defined",
         "explanation": "بايثون لغة حساسة لحالة الأحرف (Case-sensitive). المتغير invalid_var يختلف عن Invalid_Var."
       },
@@ -5957,9 +5957,9 @@ export const pythonTrackData = [
       {
         "type": "challenge",
         "title": "تحدي: إصلاح الكود",
-        "code": "# الكود التالي يحتوي على خطأ بسيط، حاول إصلاحه ليعمل\ndef practice_100():\\n      print(\"Welcome to الخاتمة والشهادة\")\\n  \\n  practice_100()",
-        "expected_output": "Correct execution",
-        "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
+        "code": "# قم بتصحيح هذا الكود ليعمل بشكل سليم\ndef practice_100():\\n      print(\"Welcome to الخاتمة والشهادة\")\\n  \\n  practice_100()",
+        "expected_output": "Correct execution output",
+        "explanation": "تحدي خاص بدرس: الدرس 100: الخاتمة والشهادة"
       }
     ],
     "lesson_type": "capstone"

@@ -7,19 +7,21 @@ export default function SimplifyExplanation({ textContent, isKids }: { textConte
   const [simplified, setSimplified] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [retryCount, setRetryCount] = useState(0);
 
-  const handleSimplify = async () => {
-    if (simplified) return; // already fetched
+  const handleSimplify = async (isRetry = false) => {
+    if (simplified && !isRetry) return; // already fetched
 
     setLoading(true);
     setError(null);
+    if (!isRetry) setRetryCount(0);
 
     // Clean text before sending
     let cleanText = textContent;
     try {
       const parsed = JSON.parse(textContent);
       if (Array.isArray(parsed) && parsed.length > 0) {
-        cleanText = Object.values(parsed[0]).filter(v => typeof v === 'string').join('\\n\\n');
+        cleanText = Object.values(parsed[0]).filter(v => typeof v === 'string').join('\n\n');
       }
     } catch (e) {
       cleanText = textContent.replace(/<[^>]*>/g, ' ').replace(/&nbsp;/g, ' ');
@@ -35,13 +37,21 @@ export default function SimplifyExplanation({ textContent, isKids }: { textConte
       });
 
       const data = await res.json();
+      
       if (!res.ok) {
-        throw new Error(data.error || 'حدث خطأ أثناء التبسيط');
+        throw new Error(data.error || 'حدث خطأ غير متوقع أثناء التبسيط.');
       }
 
       setSimplified(data.simplified);
+      setRetryCount(0); // Reset on success
     } catch (err: any) {
-      setError(err.message || 'حدث خطأ. حاول مرة أخرى.');
+      if (!isRetry && retryCount === 0) {
+        // Auto-retry once on client side before showing error
+        setRetryCount(1);
+        setTimeout(() => handleSimplify(true), 1500);
+        return;
+      }
+      setError(err.message || 'حدث خطأ في الاتصال بالخادم. حاول مرة أخرى.');
     } finally {
       setLoading(false);
     }
@@ -51,7 +61,7 @@ export default function SimplifyExplanation({ textContent, isKids }: { textConte
     <div style={{ marginTop: '20px', marginBottom: '20px' }}>
       {!simplified && !loading && (
         <button
-          onClick={handleSimplify}
+          onClick={() => handleSimplify(false)}
           style={{
             display: 'flex',
             alignItems: 'center',
@@ -79,17 +89,17 @@ export default function SimplifyExplanation({ textContent, isKids }: { textConte
       {loading && (
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px', color: '#f59e0b', fontWeight: 700, padding: '10px' }}>
           <div className="spinner" style={{ width: '20px', height: '20px', border: '3px solid rgba(245, 158, 11, 0.3)', borderTop: '3px solid #f59e0b', borderRadius: '50%', animation: 'spin 1s linear infinite' }}></div>
-          جاري تبسيط الشرح باستخدام الذكاء الاصطناعي...
+          {retryCount > 0 ? 'جاري المحاولة مرة أخرى...' : 'جاري تبسيط الشرح باستخدام الذكاء الاصطناعي...'}
           <style>{`
             @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
           `}</style>
         </div>
       )}
 
-      {error && (
+      {error && !loading && (
         <div style={{ color: '#ef4444', fontWeight: 700, padding: '10px', background: 'rgba(239, 68, 68, 0.1)', borderRadius: '8px', display: 'inline-block' }}>
           ⚠️ {error}
-          <button onClick={handleSimplify} style={{ marginLeft: '10px', background: 'none', border: 'none', color: '#ef4444', textDecoration: 'underline', cursor: 'pointer' }}>إعادة المحاولة</button>
+          <button onClick={() => handleSimplify(true)} style={{ marginLeft: '10px', background: 'none', border: 'none', color: '#ef4444', textDecoration: 'underline', cursor: 'pointer' }}>إعادة المحاولة</button>
         </div>
       )}
 
