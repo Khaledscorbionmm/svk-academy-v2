@@ -1,5 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { query, queryOne, initializeDatabase } from '@/lib/db';
+import { pythonTrackData } from '@/context/tracks/pythonData';
+import { cyberTrackData } from '@/context/tracks/cyberData';
+import { languageTrackData } from '@/context/tracks/languageData';
 
 export async function GET(
   request: NextRequest,
@@ -8,15 +11,31 @@ export async function GET(
   try {
     const { id } = await params;
     await initializeDatabase();
+    
     const course = await queryOne<Record<string, unknown>>(
       'SELECT * FROM courses WHERE id = $1',
       [id]
     );
+    
     if (!course) return NextResponse.json({ error: 'الكورس غير موجود' }, { status: 404 });
-    const lessons = await query<Record<string, unknown>>(
-      'SELECT id, title, order_index, is_free, duration_minutes, audio_url, video_url FROM lessons WHERE course_id = $1 ORDER BY order_index',
-      [id]
-    );
+    
+    // Inject static modular curriculum instead of database lessons
+    let lessons: any[] = [];
+    if (course.category === 'python') lessons = pythonTrackData;
+    else if (course.category === 'cybersecurity') lessons = cyberTrackData;
+    else if (course.category === 'languages') lessons = languageTrackData;
+    
+    // Fallback to database if no static track found (for legacy/other courses)
+    if (lessons.length === 0) {
+      lessons = await query<Record<string, unknown>>(
+        'SELECT id, title, order_index, is_free, duration_minutes, audio_url, video_url FROM lessons WHERE course_id = $1 ORDER BY order_index',
+        [id]
+      );
+    } else {
+      // Map static lessons to have an 'id' property matching their slug so existing components don't break
+      lessons = lessons.map(l => ({ ...l, id: l.lesson_slug, course_id: course.id }));
+    }
+    
     return NextResponse.json({ course, lessons });
   } catch (e) {
     console.error('[Course Detail Error]', e);

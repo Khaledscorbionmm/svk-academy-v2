@@ -15,9 +15,18 @@ function PremiumAudioPlayer({ src, title, textContent }: { src: string; title: s
   
   const isTTS = !src || src.includes('SoundHelix') || src === '';
   
-  // Clean HTML from text content
+  // Clean HTML or parse JSON from text content
   const getCleanText = () => {
     if (!textContent) return '';
+    try {
+      const parsed = JSON.parse(textContent);
+      if (Array.isArray(parsed) && parsed.length > 0) {
+        // Flatten object values into a single readable string
+        const values = Object.values(parsed[0]).filter(v => typeof v === 'string').join('. ');
+        return values;
+      }
+    } catch(e) {}
+    
     return textContent.replace(/<[^>]*>/g, ' ')
       .replace(/&nbsp;/g, ' ')
       .replace(/&lt;/g, '<')

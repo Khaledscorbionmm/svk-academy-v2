@@ -91,6 +91,34 @@ const getMetadata = (foreign: string) => {
 // Parser to extract vocabulary pairs from the Markdown text content
 const parseFlashcards = (textContent: string, courseTitle: string): Flashcard[] => {
   if (!textContent) return [];
+
+  try {
+    const parsedJson = JSON.parse(textContent);
+    if (Array.isArray(parsedJson) && parsedJson.length > 0 && typeof parsedJson[0] === 'object') {
+      return parsedJson.map((item, index) => {
+        // If it's a generic theory object from Python/Cyber
+        if (item.prototype || item.description) {
+          return {
+            id: `fc_${index + 1}`,
+            text_english: item.prototype || item.text_english || "N/A",
+            translation_arabic: item.description || item.translation_arabic || "الوصف",
+            phonetic_guide: item.parameters || item.phonetic_guide || "",
+            situational_context: item.return_value || item.situational_context || ""
+          };
+        }
+        // If it's the strict language schema
+        return {
+          id: `fc_${index + 1}`,
+          text_english: item.text_english,
+          translation_arabic: item.translation_arabic,
+          phonetic_guide: item.phonetic_guide,
+          situational_context: item.situational_context
+        };
+      });
+    }
+  } catch (e) {
+    // Fallback to legacy regex string parsing
+  }
   
   const clean = textContent.replace(/<[^>]*>/g, '\n').replace(/&nbsp;/g, ' ');
   // Flexible regex to capture English (Arabic) [Phonetics] {Context}
