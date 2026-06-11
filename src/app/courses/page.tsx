@@ -389,7 +389,7 @@ export default function CoursesPage() {
         {/* Results Info */}
         {!loading && (
           <div style={{ marginBottom: 30, color: '#94a3b8', fontSize: 16, fontWeight: 700, textAlign: 'center' }}>
-            وجدت لك <span style={{ color: '#ec4899', fontSize: 20 }}>{filtered.length}</span> مغامرة جاهزة! {search && `عن "${search}"`}
+            وجدت لك <span style={{ color: '#ec4899', fontSize: 20 }}>{filtered.length}</span> {filtered.length >= 3 && filtered.length <= 10 ? 'مغامرات جاهزة' : 'مغامرة جاهزة'}! {search && `عن "${search}"`}
           </div>
         )}
 

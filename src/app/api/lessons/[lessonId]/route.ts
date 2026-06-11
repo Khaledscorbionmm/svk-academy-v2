@@ -18,7 +18,7 @@ export async function GET(req: NextRequest, { params }: { params: Promise<{ less
     if (lessonId.startsWith('python-')) {
       isStatic = true; courseCategory = 'python'; allStaticLessons = pythonTrackData;
     } else if (lessonId.startsWith('cyber-')) {
-      isStatic = true; courseCategory = 'cybersecurity'; allStaticLessons = cyberTrackData;
+      isStatic = true; courseCategory = 'security'; allStaticLessons = cyberTrackData;
     } else if (lessonId.startsWith('lang-')) {
       isStatic = true; courseCategory = 'languages'; allStaticLessons = languageTrackData;
     }

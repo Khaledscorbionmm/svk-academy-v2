@@ -9,8 +9,17 @@ const pool = new Pool({
 
 const COURSE_TEMPLATES = [
   { title: 'أساسيات واحتراف لغة Python', category: 'python', level: 'beginner', instructor: 'خالد أحمد' },
-  { title: 'Cybersecurity & Linux Hardening', category: 'cybersecurity', level: 'intermediate', instructor: 'حمزة عمر' },
-  { title: 'اللغات العالمية والمحادثات المتقدمة', category: 'languages', level: 'beginner', instructor: 'يوسف علي' }
+  { title: 'Cybersecurity & Linux Hardening', category: 'security', level: 'intermediate', instructor: 'حمزة عمر' },
+  { title: 'اللغات العالمية والمحادثات المتقدمة', category: 'languages', level: 'beginner', instructor: 'يوسف علي' },
+  { title: 'Web Development Tracks', category: 'javascript', level: 'beginner', instructor: 'سيف الدين' },
+  { title: 'React JS Advanced', category: 'react', level: 'advanced', instructor: 'خالد أحمد' },
+  { title: 'Artificial Intelligence & Data Science', category: 'ai', level: 'advanced', instructor: 'نور الدين' },
+  { title: 'Mobile App Development', category: 'javascript', level: 'intermediate', instructor: 'يوسف علي' },
+  { title: 'احتراف جافا سكريبت الحديثة', category: 'javascript', level: 'intermediate', instructor: 'سيف الدين' },
+  { title: 'بناء واجهات المستخدم بـ Next.js', category: 'react', level: 'intermediate', instructor: 'خالد أحمد' },
+  { title: 'تعلم الآلة (Machine Learning)', category: 'ai', level: 'advanced', instructor: 'نور الدين' },
+  { title: 'تأمين الشبكات واختبار الاختراق', category: 'security', level: 'advanced', instructor: 'حمزة عمر' },
+  { title: 'تطوير الألعاب بـ Python', category: 'python', level: 'intermediate', instructor: 'خالد أحمد' }
 ];
 
 const pythonTools = [

@@ -22,7 +22,7 @@ export async function GET(
     // Inject static modular curriculum instead of database lessons
     let lessons: any[] = [];
     if (course.category === 'python') lessons = pythonTrackData;
-    else if (course.category === 'cybersecurity') lessons = cyberTrackData;
+    else if (course.category === 'security' || course.category === 'cybersecurity') lessons = cyberTrackData;
     else if (course.category === 'languages') lessons = languageTrackData;
     
     // Fallback to database if no static track found (for legacy/other courses)
