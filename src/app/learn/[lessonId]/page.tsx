@@ -252,6 +252,10 @@ interface SyntaxItem {
   howEn: string;
   emoji: string;
   color: string;
+  prototype?: string;
+  parameters?: string;
+  returnValue?: string;
+  blueprint?: string;
 }
 
 const SYNTAX_DICTIONARY: Record<string, SyntaxItem> = {
@@ -263,7 +267,11 @@ const SYNTAX_DICTIONARY: Record<string, SyntaxItem> = {
     howAr: 'نكتب الكلمة متبوعة بقوسين وبداخلهم النص بين علامتي تنصيص، مثل print("أهلاً بك").',
     howEn: 'Write the keyword followed by parentheses containing the text inside quotes, like print("Hello").',
     emoji: '📢',
-    color: '#10b981'
+    color: '#10b981',
+    prototype: 'print(*objects, sep=\' \', end=\'\\n\', file=sys.stdout, flush=False)',
+    parameters: '*objects (any): values to print; sep (str): separator; end (str): trailing end sequence',
+    returnValue: 'None',
+    blueprint: 'print("Hello", "World", sep=" - ")'
   },
   'def': {
     nameAr: 'تعريف الدالة (def)',
@@ -523,7 +531,11 @@ const SYNTAX_DICTIONARY: Record<string, SyntaxItem> = {
     howAr: 'نكتبها مع رسالة توضيحية اختيارية، مثل: name = input("اكتب اسمك: ").',
     howEn: 'Write it with an optional prompt message, like: name = input("Enter name: ").',
     emoji: '⌨️',
-    color: '#eab308'
+    color: '#eab308',
+    prototype: 'input(prompt=\'\')',
+    parameters: 'prompt (str, optional): string to display on the terminal before reading input',
+    returnValue: 'str: the string entered by the user',
+    blueprint: 'user_response = input("Please enter your age: ")'
   },
   'int': {
     nameAr: 'العدد الصحيح (int)',
@@ -533,7 +545,11 @@ const SYNTAX_DICTIONARY: Record<string, SyntaxItem> = {
     howAr: 'نضع القيمة المراد تحويلها بين قوسين، مثل: age = int("15").',
     howEn: 'Place the value to be converted inside parentheses, like: age = int("15").',
     emoji: '🔢',
-    color: '#3b82f6'
+    color: '#3b82f6',
+    prototype: 'int(x=0, base=10)',
+    parameters: 'x (str/number): number or string to convert; base (int): base representation of the number',
+    returnValue: 'int: integer representation of the given input value',
+    blueprint: 'number = int("100")'
   },
   'str': {
     nameAr: 'النص أو السلسلة (str)',
@@ -543,7 +559,11 @@ const SYNTAX_DICTIONARY: Record<string, SyntaxItem> = {
     howAr: 'نمرر القيمة للدالة str، مثل: text_age = str(18).',
     howEn: 'Pass the value to the str function, like: text_age = str(18).',
     emoji: '🔤',
-    color: '#10b981'
+    color: '#10b981',
+    prototype: 'str(object=\'\')',
+    parameters: 'object (any): object whose string representation is to be returned',
+    returnValue: 'str: string representation of the object',
+    blueprint: 'message = "Age is " + str(25)'
   },
   'float': {
     nameAr: 'العدد العشري (float)',
@@ -553,7 +573,11 @@ const SYNTAX_DICTIONARY: Record<string, SyntaxItem> = {
     howAr: 'نستخدمها عند التعامل مع القياسات الدقيقة والأسعار، مثل: price = float("19.99").',
     howEn: 'Use it when dealing with precise measurements and prices, like: price = float("19.99").',
     emoji: '🎯',
-    color: '#06b6d4'
+    color: '#06b6d4',
+    prototype: 'float(x=0.0)',
+    parameters: 'x (str/number): value to convert to a floating point number',
+    returnValue: 'float: floating point representation of the input value',
+    blueprint: 'price = float("9.99")'
   },
   'len': {
     nameAr: 'طول الشيء (len)',
@@ -563,7 +587,11 @@ const SYNTAX_DICTIONARY: Record<string, SyntaxItem> = {
     howAr: 'نضع القائمة أو النص بين قوسين، مثل: count = len("SVK"). سيعود بـ 3.',
     howEn: 'Pass the list or string, like: count = len("SVK"). It evaluates to 3.',
     emoji: '📏',
-    color: '#ec4899'
+    color: '#ec4899',
+    prototype: 'len(s)',
+    parameters: 's (str/list/tuple/dict): container or sequence whose size is measured',
+    returnValue: 'int: number of elements/characters in the container',
+    blueprint: 'count = len([1, 2, 3, 4])'
   },
   'range': {
     nameAr: 'نطاق الأرقام (range)',
@@ -573,7 +601,11 @@ const SYNTAX_DICTIONARY: Record<string, SyntaxItem> = {
     howAr: 'نحدد الرقم الأخير غير الشامل، مثل: range(5) يعطي الأرقام من 0 إلى 4.',
     howEn: 'Pass the end boundary (exclusive), like: range(5) which yields numbers from 0 to 4.',
     emoji: '📈',
-    color: '#6366f1'
+    color: '#6366f1',
+    prototype: 'range(stop) or range(start, stop[, step])',
+    parameters: 'start (int, optional): starting value (default 0); stop (int): end boundary (exclusive); step (int, optional): value increment/decrement steps (default 1)',
+    returnValue: 'range: an immutable sequence object of integers',
+    blueprint: 'for item in range(0, 10, 2):'
   },
   'try': {
     nameAr: 'محاولة التشغيل (try)',
@@ -1073,9 +1105,34 @@ export default function LessonPage({ params }: { params: Promise<{ lessonId: str
 
         setConsoleOutput(outputs);
 
-        // Verify output
+        // Verify output via SandboxTestCases validation matrix
         const expected = (lesson.practice_expected || '').trim();
-        const matched = outputs.some(out => out.trim().includes(expected));
+        
+        // Matrix of automated validation conditions mapping input syntax requirements to output evaluations
+        const SandboxTestCases: Record<string, (codeContent: string, terminalOutputs: string[]) => boolean> = {
+          'python': (codeContent, terminalOutputs) => {
+            const hasExpectedOutput = expected ? terminalOutputs.some(out => out.trim().toLowerCase().includes(expected.toLowerCase())) : true;
+            // Ensure student didn't just print the result, but actually used logic if required
+            if (expected.includes('15') || expected.includes('int')) {
+              return hasExpectedOutput && codeContent.includes('=');
+            }
+            return hasExpectedOutput;
+          },
+          'cybersecurity': (codeContent, terminalOutputs) => {
+            return expected ? terminalOutputs.some(out => out.trim().toLowerCase().includes(expected.toLowerCase())) : true;
+          },
+          'javascript': (codeContent, terminalOutputs) => {
+            return expected ? terminalOutputs.some(out => out.trim().toLowerCase().includes(expected.toLowerCase())) : true;
+          }
+        };
+
+        const categoryKey = course.category?.toLowerCase() || '';
+        let matched = false;
+        if (SandboxTestCases[categoryKey]) {
+          matched = SandboxTestCases[categoryKey](code, outputs);
+        } else {
+          matched = expected ? outputs.some(out => out.trim().toLowerCase().includes(expected.toLowerCase())) : true;
+        }
         
         if (matched) {
           setPracticeStatus('success');
@@ -1595,7 +1652,7 @@ export default function LessonPage({ params }: { params: Promise<{ lessonId: str
                                         </div>
                                       </div>
 
-                                      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
+                                      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }} className="syntax-grid">
                                         <div style={{ borderLeft: '1px solid rgba(255,255,255,0.05)', paddingLeft: '10px' }}>
                                           <div style={{ fontSize: '0.85rem', lineHeight: 1.6 }}>{item.descAr}</div>
                                           <div style={{ fontSize: '0.8rem', color: '#64748b', marginTop: '4px' }}>طريقة الاستخدام: {item.howAr}</div>
@@ -1609,6 +1666,41 @@ export default function LessonPage({ params }: { params: Promise<{ lessonId: str
                                           <button onClick={() => speakSyntax(kw, `${item.nameEn}. ${item.descEn}. How to use: ${item.howEn}`, 'en')} style={{ marginTop: '10px', background: 'transparent', border: '1px solid #8b5cf6', borderRadius: '20px', padding: '4px 12px', color: '#8b5cf6', fontSize: '0.75rem', cursor: 'pointer' }}>
                                             {isSpeakingEn ? '🔊 Speaking...' : '🔊 Listen in English'}
                                           </button>
+                                        </div>
+                                      </div>
+
+                                      {/* Technical Anatomy Details */}
+                                      <div style={{
+                                        marginTop: '12px',
+                                        padding: '16px',
+                                        background: 'rgba(0, 0, 0, 0.2)',
+                                        border: '1px solid rgba(16, 185, 129, 0.15)',
+                                        borderRadius: '12px',
+                                        display: 'flex',
+                                        flexDirection: 'column',
+                                        gap: '10px',
+                                        fontSize: '0.85rem',
+                                        fontFamily: 'monospace'
+                                      }}>
+                                        <div>
+                                          <span style={{ color: '#10b981', fontWeight: 'bold' }}>⚙️ Prototype:</span>{' '}
+                                          <code style={{ background: 'rgba(0,0,0,0.3)', padding: '2px 6px', borderRadius: '4px', color: '#34d399' }}>
+                                            {item.prototype || `${kw}(...)`}
+                                          </code>
+                                        </div>
+                                        <div>
+                                          <span style={{ color: '#3b82f6', fontWeight: 'bold' }}>📥 Parameters & Types:</span>{' '}
+                                          <span style={{ color: '#93c5fd' }}>{item.parameters || 'Accepts arguments matching context.'}</span>
+                                        </div>
+                                        <div>
+                                          <span style={{ color: '#f59e0b', fontWeight: 'bold' }}>📤 Return Value Specification:</span>{' '}
+                                          <span style={{ color: '#fde047' }}>{item.returnValue || 'None or value based on logic.'}</span>
+                                        </div>
+                                        <div style={{ marginTop: '4px' }}>
+                                          <div style={{ color: '#ec4899', fontWeight: 'bold', marginBottom: '4px' }}>💻 Core Syntax Blueprint:</div>
+                                          <pre style={{ margin: 0, padding: '10px', background: 'rgba(0,0,0,0.4)', borderRadius: '6px', overflowX: 'auto', color: '#e2e8f0', direction: 'ltr', textAlign: 'left' }}>
+                                            {item.blueprint || `${kw}()`}
+                                          </pre>
                                         </div>
                                       </div>
                                     </div>

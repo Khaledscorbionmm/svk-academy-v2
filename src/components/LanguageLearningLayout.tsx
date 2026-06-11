@@ -393,6 +393,32 @@ function FlashcardHub({ flashcards, courseTitle, isKids, isDarkMode }: { flashca
           transform: rotateY(180deg);
           border: ${isKids ? '4px solid #10b981' : (isDarkMode ? '1px solid rgba(16, 185, 129, 0.2)' : '1px solid #a7f3d0')};
         }
+        @media (max-width: 1024px) {
+          .learning-dashboard-container {
+            flex-direction: column !important;
+            padding: 16px !important;
+            gap: 16px !important;
+            overflow-y: auto !important;
+          }
+          .learning-dashboard-sidebar {
+            width: 100% !important;
+            height: 250px !important;
+          }
+          .learning-dashboard-aside-right {
+            width: 100% !important;
+          }
+        }
+        @media (max-width: 480px) {
+          .flashcard-wrapper {
+            height: 250px;
+          }
+          .flashcard-front {
+            padding: 16px;
+          }
+          .flashcard-back {
+            padding: 16px;
+          }
+        }
       `}</style>
 
       <div className="flashcard-wrapper" onClick={() => setIsFlipped(!isFlipped)}>
@@ -850,10 +876,10 @@ export default function LanguageLearningLayout({ data }: { data: any }) {
       </header>
 
       {/* DASHBOARD LAYOUT */}
-      <div style={{ display: 'flex', flex: 1, overflow: 'hidden', padding: '24px', gap: '24px', maxWidth: '1600px', margin: '0 auto', width: '100%' }}>
+      <div className="learning-dashboard-container" style={{ display: 'flex', flex: 1, overflow: 'hidden', padding: '24px', gap: '24px', maxWidth: '1600px', margin: '0 auto', width: '100%' }}>
         
         {/* LEFT: PROGRESS TIMELINE */}
-        <aside style={{ width: '280px', background: theme.sidebarBg, borderRadius: '20px', border: theme.cardBorder, display: 'flex', flexDirection: 'column', overflow: 'hidden', flexShrink: 0 }}>
+        <aside className="learning-dashboard-sidebar" style={{ width: '280px', background: theme.sidebarBg, borderRadius: '20px', border: theme.cardBorder, display: 'flex', flexDirection: 'column', overflow: 'hidden', flexShrink: 0 }}>
           <div style={{ background: isKids ? '#fb7185' : '#1e3a8a', padding: '16px', color: '#fff', textAlign: 'center', fontWeight: 800 }}>
             {isKids ? '🗺️ طريق البطل' : 'منهج الكورس'}
           </div>
@@ -1035,7 +1061,7 @@ export default function LanguageLearningLayout({ data }: { data: any }) {
         </main>
 
         {/* RIGHT SIDEBAR: DOWNLOADS & GENERAL INFOS */}
-        <aside style={{ width: '300px', display: 'flex', flexDirection: 'column', gap: '24px', flexShrink: 0 }}>
+        <aside className="learning-dashboard-aside-right" style={{ width: '300px', display: 'flex', flexDirection: 'column', gap: '24px', flexShrink: 0 }}>
           <div style={{ background: theme.cardBg, borderRadius: '20px', padding: '24px', border: theme.cardBorder }}>
             <h3 style={{ fontSize: '1rem', fontWeight: 800, color: theme.textColor, marginBottom: '16px' }}>التقدم الإجمالي</h3>
             <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
