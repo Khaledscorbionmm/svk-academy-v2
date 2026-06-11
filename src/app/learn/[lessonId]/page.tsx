@@ -8,6 +8,7 @@ import SimplifyExplanation from '@/components/SimplifyExplanation';
 import { useTargetGroup } from '@/context/UserTargetGroupContext';
 import SmartExamView from '@/components/SmartExamView';
 import QuickExamplesPanel from '@/components/QuickExamplesPanel';
+import LessonModeHeader from '@/components/lesson-types/LessonModeHeader';
 
 function PremiumAudioPlayer({ src, title, textContent }: { src: string; title: string; textContent: string }) {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -1592,6 +1593,8 @@ export default function LessonPage({ params }: { params: Promise<{ lessonId: str
                       <div style={{ fontSize: '0.8rem', color: isKids ? '#3b82f6' : '#64748b', fontWeight: 800, marginBottom: '4px' }}>{course.title_ar || course.title}</div>
                       <h2 style={{ fontSize: '1.25rem', fontWeight: 900, color: isKids ? '#1e3a8a' : '#fff', margin: 0 }}>{lesson.title}</h2>
                     </div>
+
+                    <LessonModeHeader lessonType={(lesson as any).lesson_type} isKids={isKids} />
 
                     <div style={{ display: 'flex', alignItems: 'center', gap: 8, borderBottom: `1px solid ${isKids ? '#e2e8f0' : 'rgba(255,255,255,0.05)'}`, paddingBottom: '12px', marginBottom: '16px' }}>
                       <span style={{ fontSize: '1.25rem' }}>📖</span>

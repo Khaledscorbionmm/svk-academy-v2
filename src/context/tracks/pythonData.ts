@@ -49,7 +49,8 @@ export const pythonTrackData = [
       "example": "# تخصيص رقم في متغير (كأننا نضع الرقم في الصندوق)\nplayer_score = 1500\n\n# دالة الطباعة تُخرج النتيجة على الشاشة لكي نراها\nprint(player_score)"
     },
     "exercise_instructions": "قم بإنشاء متغير يحمل اسم age وضع بداخله عمرك، ثم اطبعه.",
-    "expected_output": "25"
+    "expected_output": "25",
+    "lesson_type": "concept"
   },
   {
     "lesson_slug": "python-2",
@@ -101,7 +102,8 @@ export const pythonTrackData = [
       "example": "# تخزين سعر كورس البرمجة\ncourse_price = 99.5\nprint(course_price)\n\n# عملية حسابية بسيطة\nprint(1.5 + 2.5) # الناتج 4.0"
     },
     "exercise_instructions": "قم بإنشاء متغير يحمل اسم price وضع بداخله الرقم 99.5 ثم اطبعه.",
-    "expected_output": "99.5"
+    "expected_output": "99.5",
+    "lesson_type": "sandbox"
   },
   {
     "lesson_slug": "python-3",
@@ -153,7 +155,8 @@ export const pythonTrackData = [
       "example": "# تخزين رسالة ترحيب\nwelcome_msg = \"أهلاً بك في الأكاديمية\"\nprint(welcome_msg)\n\n# دمج النصوص مع بعضها\nprint(\"Hello \" + \"World\")"
     },
     "exercise_instructions": "قم بطباعة الجملة التالية تماماً: Hello World",
-    "expected_output": "Hello World"
+    "expected_output": "Hello World",
+    "lesson_type": "debugging"
   },
   {
     "lesson_slug": "python-4",
@@ -205,7 +208,8 @@ export const pythonTrackData = [
       "example": "# هل المستخدم مسجل دخول؟\nis_logged_in = True\nprint(is_logged_in)\n\n# سؤال الكمبيوتر: هل 10 أكبر من 5؟\nprint(10 > 5) # النتيجة True"
     },
     "exercise_instructions": "اطلب من بايثون أن تقارن وتطبع نتيجة: هل 100 أكبر من 50؟ (استخدم 100 > 50).",
-    "expected_output": "True"
+    "expected_output": "True",
+    "lesson_type": "mini_mission"
   },
   {
     "lesson_slug": "python-5",
@@ -257,7 +261,8 @@ export const pythonTrackData = [
       "example": "# حساب العمر بعد 5 سنوات\ncurrent_age = 20\nfuture_age = current_age + 5\nprint(future_age) # 25"
     },
     "exercise_instructions": "قم بضرب الرقم 10 في 5 واطبع الناتج.",
-    "expected_output": "50"
+    "expected_output": "50",
+    "lesson_type": "project"
   },
   {
     "lesson_slug": "python-6",
@@ -316,7 +321,8 @@ export const pythonTrackData = [
         "expected_output": "Correct execution",
         "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
       }
-    ]
+    ],
+    "lesson_type": "sandbox"
   },
   {
     "lesson_slug": "python-7",
@@ -375,7 +381,8 @@ export const pythonTrackData = [
         "expected_output": "Correct execution",
         "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
       }
-    ]
+    ],
+    "lesson_type": "debugging"
   },
   {
     "lesson_slug": "python-8",
@@ -434,7 +441,8 @@ export const pythonTrackData = [
         "expected_output": "Correct execution",
         "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
       }
-    ]
+    ],
+    "lesson_type": "scenario"
   },
   {
     "lesson_slug": "python-9",
@@ -493,7 +501,8 @@ export const pythonTrackData = [
         "expected_output": "Correct execution",
         "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
       }
-    ]
+    ],
+    "lesson_type": "sandbox"
   },
   {
     "lesson_slug": "python-10",
@@ -552,7 +561,8 @@ export const pythonTrackData = [
         "expected_output": "Correct execution",
         "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
       }
-    ]
+    ],
+    "lesson_type": "milestone"
   },
   {
     "lesson_slug": "python-11",
@@ -611,7 +621,8 @@ export const pythonTrackData = [
         "expected_output": "Correct execution",
         "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
       }
-    ]
+    ],
+    "lesson_type": "ai_challenge"
   },
   {
     "lesson_slug": "python-12",
@@ -670,7 +681,8 @@ export const pythonTrackData = [
         "expected_output": "Correct execution",
         "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
       }
-    ]
+    ],
+    "lesson_type": "mini_mission"
   },
   {
     "lesson_slug": "python-13",
@@ -729,7 +741,8 @@ export const pythonTrackData = [
         "expected_output": "Correct execution",
         "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
       }
-    ]
+    ],
+    "lesson_type": "code_reading"
   },
   {
     "lesson_slug": "python-14",
@@ -788,7 +801,8 @@ export const pythonTrackData = [
         "expected_output": "Correct execution",
         "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
       }
-    ]
+    ],
+    "lesson_type": "debugging"
   },
   {
     "lesson_slug": "python-15",
@@ -847,7 +861,8 @@ export const pythonTrackData = [
         "expected_output": "Correct execution",
         "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
       }
-    ]
+    ],
+    "lesson_type": "project"
   },
   {
     "lesson_slug": "python-16",
@@ -906,7 +921,8 @@ export const pythonTrackData = [
         "expected_output": "Correct execution",
         "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
       }
-    ]
+    ],
+    "lesson_type": "mini_mission"
   },
   {
     "lesson_slug": "python-17",
@@ -965,7 +981,8 @@ export const pythonTrackData = [
         "expected_output": "Correct execution",
         "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
       }
-    ]
+    ],
+    "lesson_type": "concept"
   },
   {
     "lesson_slug": "python-18",
@@ -1024,7 +1041,8 @@ export const pythonTrackData = [
         "expected_output": "Correct execution",
         "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
       }
-    ]
+    ],
+    "lesson_type": "scenario"
   },
   {
     "lesson_slug": "python-19",
@@ -1083,7 +1101,8 @@ export const pythonTrackData = [
         "expected_output": "Correct execution",
         "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
       }
-    ]
+    ],
+    "lesson_type": "concept"
   },
   {
     "lesson_slug": "python-20",
@@ -1142,7 +1161,8 @@ export const pythonTrackData = [
         "expected_output": "Correct execution",
         "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
       }
-    ]
+    ],
+    "lesson_type": "capstone"
   },
   {
     "lesson_slug": "python-21",
@@ -1201,7 +1221,8 @@ export const pythonTrackData = [
         "expected_output": "Correct execution",
         "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
       }
-    ]
+    ],
+    "lesson_type": "debugging"
   },
   {
     "lesson_slug": "python-22",
@@ -1260,7 +1281,8 @@ export const pythonTrackData = [
         "expected_output": "Correct execution",
         "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
       }
-    ]
+    ],
+    "lesson_type": "ai_challenge"
   },
   {
     "lesson_slug": "python-23",
@@ -1319,7 +1341,8 @@ export const pythonTrackData = [
         "expected_output": "Correct execution",
         "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
       }
-    ]
+    ],
+    "lesson_type": "concept"
   },
   {
     "lesson_slug": "python-24",
@@ -1378,7 +1401,8 @@ export const pythonTrackData = [
         "expected_output": "Correct execution",
         "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
       }
-    ]
+    ],
+    "lesson_type": "mini_mission"
   },
   {
     "lesson_slug": "python-25",
@@ -1437,7 +1461,8 @@ export const pythonTrackData = [
         "expected_output": "Correct execution",
         "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
       }
-    ]
+    ],
+    "lesson_type": "project"
   },
   {
     "lesson_slug": "python-26",
@@ -1496,7 +1521,8 @@ export const pythonTrackData = [
         "expected_output": "Correct execution",
         "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
       }
-    ]
+    ],
+    "lesson_type": "code_reading"
   },
   {
     "lesson_slug": "python-27",
@@ -1555,7 +1581,8 @@ export const pythonTrackData = [
         "expected_output": "Correct execution",
         "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
       }
-    ]
+    ],
+    "lesson_type": "sandbox"
   },
   {
     "lesson_slug": "python-28",
@@ -1614,7 +1641,8 @@ export const pythonTrackData = [
         "expected_output": "Correct execution",
         "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
       }
-    ]
+    ],
+    "lesson_type": "scenario"
   },
   {
     "lesson_slug": "python-29",
@@ -1673,7 +1701,8 @@ export const pythonTrackData = [
         "expected_output": "Correct execution",
         "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
       }
-    ]
+    ],
+    "lesson_type": "concept"
   },
   {
     "lesson_slug": "python-30",
@@ -1732,7 +1761,8 @@ export const pythonTrackData = [
         "expected_output": "Correct execution",
         "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
       }
-    ]
+    ],
+    "lesson_type": "milestone"
   },
   {
     "lesson_slug": "python-31",
@@ -1791,7 +1821,8 @@ export const pythonTrackData = [
         "expected_output": "Correct execution",
         "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
       }
-    ]
+    ],
+    "lesson_type": "concept"
   },
   {
     "lesson_slug": "python-32",
@@ -1850,7 +1881,8 @@ export const pythonTrackData = [
         "expected_output": "Correct execution",
         "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
       }
-    ]
+    ],
+    "lesson_type": "mini_mission"
   },
   {
     "lesson_slug": "python-33",
@@ -1909,7 +1941,8 @@ export const pythonTrackData = [
         "expected_output": "Correct execution",
         "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
       }
-    ]
+    ],
+    "lesson_type": "ai_challenge"
   },
   {
     "lesson_slug": "python-34",
@@ -1968,7 +2001,8 @@ export const pythonTrackData = [
         "expected_output": "Correct execution",
         "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
       }
-    ]
+    ],
+    "lesson_type": "concept"
   },
   {
     "lesson_slug": "python-35",
@@ -2027,7 +2061,8 @@ export const pythonTrackData = [
         "expected_output": "Correct execution",
         "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
       }
-    ]
+    ],
+    "lesson_type": "project"
   },
   {
     "lesson_slug": "python-36",
@@ -2086,7 +2121,8 @@ export const pythonTrackData = [
         "expected_output": "Correct execution",
         "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
       }
-    ]
+    ],
+    "lesson_type": "mini_mission"
   },
   {
     "lesson_slug": "python-37",
@@ -2145,7 +2181,8 @@ export const pythonTrackData = [
         "expected_output": "Correct execution",
         "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
       }
-    ]
+    ],
+    "lesson_type": "concept"
   },
   {
     "lesson_slug": "python-38",
@@ -2204,7 +2241,8 @@ export const pythonTrackData = [
         "expected_output": "Correct execution",
         "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
       }
-    ]
+    ],
+    "lesson_type": "scenario"
   },
   {
     "lesson_slug": "python-39",
@@ -2263,7 +2301,8 @@ export const pythonTrackData = [
         "expected_output": "Correct execution",
         "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
       }
-    ]
+    ],
+    "lesson_type": "code_reading"
   },
   {
     "lesson_slug": "python-40",
@@ -2322,7 +2361,8 @@ export const pythonTrackData = [
         "expected_output": "Correct execution",
         "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
       }
-    ]
+    ],
+    "lesson_type": "capstone"
   },
   {
     "lesson_slug": "python-41",
@@ -2381,7 +2421,8 @@ export const pythonTrackData = [
         "expected_output": "Correct execution",
         "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
       }
-    ]
+    ],
+    "lesson_type": "concept"
   },
   {
     "lesson_slug": "python-42",
@@ -2440,7 +2481,8 @@ export const pythonTrackData = [
         "expected_output": "Correct execution",
         "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
       }
-    ]
+    ],
+    "lesson_type": "debugging"
   },
   {
     "lesson_slug": "python-43",
@@ -2499,7 +2541,8 @@ export const pythonTrackData = [
         "expected_output": "Correct execution",
         "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
       }
-    ]
+    ],
+    "lesson_type": "concept"
   },
   {
     "lesson_slug": "python-44",
@@ -2558,7 +2601,8 @@ export const pythonTrackData = [
         "expected_output": "Correct execution",
         "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
       }
-    ]
+    ],
+    "lesson_type": "ai_challenge"
   },
   {
     "lesson_slug": "python-45",
@@ -2617,7 +2661,8 @@ export const pythonTrackData = [
         "expected_output": "Correct execution",
         "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
       }
-    ]
+    ],
+    "lesson_type": "project"
   },
   {
     "lesson_slug": "python-46",
@@ -2676,7 +2721,8 @@ export const pythonTrackData = [
         "expected_output": "Correct execution",
         "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
       }
-    ]
+    ],
+    "lesson_type": "concept"
   },
   {
     "lesson_slug": "python-47",
@@ -2735,7 +2781,8 @@ export const pythonTrackData = [
         "expected_output": "Correct execution",
         "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
       }
-    ]
+    ],
+    "lesson_type": "concept"
   },
   {
     "lesson_slug": "python-48",
@@ -2794,7 +2841,8 @@ export const pythonTrackData = [
         "expected_output": "Correct execution",
         "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
       }
-    ]
+    ],
+    "lesson_type": "scenario"
   },
   {
     "lesson_slug": "python-49",
@@ -2853,7 +2901,8 @@ export const pythonTrackData = [
         "expected_output": "Correct execution",
         "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
       }
-    ]
+    ],
+    "lesson_type": "debugging"
   },
   {
     "lesson_slug": "python-50",
@@ -2912,7 +2961,8 @@ export const pythonTrackData = [
         "expected_output": "Correct execution",
         "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
       }
-    ]
+    ],
+    "lesson_type": "milestone"
   },
   {
     "lesson_slug": "python-51",
@@ -2971,7 +3021,8 @@ export const pythonTrackData = [
         "expected_output": "Correct execution",
         "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
       }
-    ]
+    ],
+    "lesson_type": "sandbox"
   },
   {
     "lesson_slug": "python-52",
@@ -3030,7 +3081,8 @@ export const pythonTrackData = [
         "expected_output": "Correct execution",
         "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
       }
-    ]
+    ],
+    "lesson_type": "code_reading"
   },
   {
     "lesson_slug": "python-53",
@@ -3089,7 +3141,8 @@ export const pythonTrackData = [
         "expected_output": "Correct execution",
         "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
       }
-    ]
+    ],
+    "lesson_type": "concept"
   },
   {
     "lesson_slug": "python-54",
@@ -3148,7 +3201,8 @@ export const pythonTrackData = [
         "expected_output": "Correct execution",
         "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
       }
-    ]
+    ],
+    "lesson_type": "sandbox"
   },
   {
     "lesson_slug": "python-55",
@@ -3207,7 +3261,8 @@ export const pythonTrackData = [
         "expected_output": "Correct execution",
         "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
       }
-    ]
+    ],
+    "lesson_type": "project"
   },
   {
     "lesson_slug": "python-56",
@@ -3266,7 +3321,8 @@ export const pythonTrackData = [
         "expected_output": "Correct execution",
         "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
       }
-    ]
+    ],
+    "lesson_type": "debugging"
   },
   {
     "lesson_slug": "python-57",
@@ -3325,7 +3381,8 @@ export const pythonTrackData = [
         "expected_output": "Correct execution",
         "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
       }
-    ]
+    ],
+    "lesson_type": "sandbox"
   },
   {
     "lesson_slug": "python-58",
@@ -3384,7 +3441,8 @@ export const pythonTrackData = [
         "expected_output": "Correct execution",
         "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
       }
-    ]
+    ],
+    "lesson_type": "scenario"
   },
   {
     "lesson_slug": "python-59",
@@ -3443,7 +3501,8 @@ export const pythonTrackData = [
         "expected_output": "Correct execution",
         "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
       }
-    ]
+    ],
+    "lesson_type": "concept"
   },
   {
     "lesson_slug": "python-60",
@@ -3502,7 +3561,8 @@ export const pythonTrackData = [
         "expected_output": "Correct execution",
         "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
       }
-    ]
+    ],
+    "lesson_type": "capstone"
   },
   {
     "lesson_slug": "python-61",
@@ -3561,7 +3621,8 @@ export const pythonTrackData = [
         "expected_output": "Correct execution",
         "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
       }
-    ]
+    ],
+    "lesson_type": "concept"
   },
   {
     "lesson_slug": "python-62",
@@ -3620,7 +3681,8 @@ export const pythonTrackData = [
         "expected_output": "Correct execution",
         "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
       }
-    ]
+    ],
+    "lesson_type": "concept"
   },
   {
     "lesson_slug": "python-63",
@@ -3679,7 +3741,8 @@ export const pythonTrackData = [
         "expected_output": "Correct execution",
         "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
       }
-    ]
+    ],
+    "lesson_type": "debugging"
   },
   {
     "lesson_slug": "python-64",
@@ -3738,7 +3801,8 @@ export const pythonTrackData = [
         "expected_output": "Correct execution",
         "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
       }
-    ]
+    ],
+    "lesson_type": "mini_mission"
   },
   {
     "lesson_slug": "python-65",
@@ -3797,7 +3861,8 @@ export const pythonTrackData = [
         "expected_output": "Correct execution",
         "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
       }
-    ]
+    ],
+    "lesson_type": "project"
   },
   {
     "lesson_slug": "python-66",
@@ -3856,7 +3921,8 @@ export const pythonTrackData = [
         "expected_output": "Correct execution",
         "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
       }
-    ]
+    ],
+    "lesson_type": "ai_challenge"
   },
   {
     "lesson_slug": "python-67",
@@ -3915,7 +3981,8 @@ export const pythonTrackData = [
         "expected_output": "Correct execution",
         "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
       }
-    ]
+    ],
+    "lesson_type": "concept"
   },
   {
     "lesson_slug": "python-68",
@@ -3974,7 +4041,8 @@ export const pythonTrackData = [
         "expected_output": "Correct execution",
         "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
       }
-    ]
+    ],
+    "lesson_type": "scenario"
   },
   {
     "lesson_slug": "python-69",
@@ -4033,7 +4101,8 @@ export const pythonTrackData = [
         "expected_output": "Correct execution",
         "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
       }
-    ]
+    ],
+    "lesson_type": "sandbox"
   },
   {
     "lesson_slug": "python-70",
@@ -4092,7 +4161,8 @@ export const pythonTrackData = [
         "expected_output": "Correct execution",
         "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
       }
-    ]
+    ],
+    "lesson_type": "milestone"
   },
   {
     "lesson_slug": "python-71",
@@ -4151,7 +4221,8 @@ export const pythonTrackData = [
         "expected_output": "Correct execution",
         "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
       }
-    ]
+    ],
+    "lesson_type": "concept"
   },
   {
     "lesson_slug": "python-72",
@@ -4210,7 +4281,8 @@ export const pythonTrackData = [
         "expected_output": "Correct execution",
         "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
       }
-    ]
+    ],
+    "lesson_type": "mini_mission"
   },
   {
     "lesson_slug": "python-73",
@@ -4269,7 +4341,8 @@ export const pythonTrackData = [
         "expected_output": "Correct execution",
         "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
       }
-    ]
+    ],
+    "lesson_type": "concept"
   },
   {
     "lesson_slug": "python-74",
@@ -4328,7 +4401,8 @@ export const pythonTrackData = [
         "expected_output": "Correct execution",
         "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
       }
-    ]
+    ],
+    "lesson_type": "concept"
   },
   {
     "lesson_slug": "python-75",
@@ -4387,7 +4461,8 @@ export const pythonTrackData = [
         "expected_output": "Correct execution",
         "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
       }
-    ]
+    ],
+    "lesson_type": "project"
   },
   {
     "lesson_slug": "python-76",
@@ -4446,7 +4521,8 @@ export const pythonTrackData = [
         "expected_output": "Correct execution",
         "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
       }
-    ]
+    ],
+    "lesson_type": "mini_mission"
   },
   {
     "lesson_slug": "python-77",
@@ -4505,7 +4581,8 @@ export const pythonTrackData = [
         "expected_output": "Correct execution",
         "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
       }
-    ]
+    ],
+    "lesson_type": "debugging"
   },
   {
     "lesson_slug": "python-78",
@@ -4564,7 +4641,8 @@ export const pythonTrackData = [
         "expected_output": "Correct execution",
         "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
       }
-    ]
+    ],
+    "lesson_type": "scenario"
   },
   {
     "lesson_slug": "python-79",
@@ -4623,7 +4701,8 @@ export const pythonTrackData = [
         "expected_output": "Correct execution",
         "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
       }
-    ]
+    ],
+    "lesson_type": "concept"
   },
   {
     "lesson_slug": "python-80",
@@ -4682,7 +4761,8 @@ export const pythonTrackData = [
         "expected_output": "Correct execution",
         "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
       }
-    ]
+    ],
+    "lesson_type": "capstone"
   },
   {
     "lesson_slug": "python-81",
@@ -4741,7 +4821,8 @@ export const pythonTrackData = [
         "expected_output": "Correct execution",
         "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
       }
-    ]
+    ],
+    "lesson_type": "sandbox"
   },
   {
     "lesson_slug": "python-82",
@@ -4800,7 +4881,8 @@ export const pythonTrackData = [
         "expected_output": "Correct execution",
         "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
       }
-    ]
+    ],
+    "lesson_type": "concept"
   },
   {
     "lesson_slug": "python-83",
@@ -4859,7 +4941,8 @@ export const pythonTrackData = [
         "expected_output": "Correct execution",
         "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
       }
-    ]
+    ],
+    "lesson_type": "concept"
   },
   {
     "lesson_slug": "python-84",
@@ -4918,7 +5001,8 @@ export const pythonTrackData = [
         "expected_output": "Correct execution",
         "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
       }
-    ]
+    ],
+    "lesson_type": "debugging"
   },
   {
     "lesson_slug": "python-85",
@@ -4977,7 +5061,8 @@ export const pythonTrackData = [
         "expected_output": "Correct execution",
         "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
       }
-    ]
+    ],
+    "lesson_type": "project"
   },
   {
     "lesson_slug": "python-86",
@@ -5036,7 +5121,8 @@ export const pythonTrackData = [
         "expected_output": "Correct execution",
         "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
       }
-    ]
+    ],
+    "lesson_type": "concept"
   },
   {
     "lesson_slug": "python-87",
@@ -5095,7 +5181,8 @@ export const pythonTrackData = [
         "expected_output": "Correct execution",
         "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
       }
-    ]
+    ],
+    "lesson_type": "sandbox"
   },
   {
     "lesson_slug": "python-88",
@@ -5154,7 +5241,8 @@ export const pythonTrackData = [
         "expected_output": "Correct execution",
         "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
       }
-    ]
+    ],
+    "lesson_type": "scenario"
   },
   {
     "lesson_slug": "python-89",
@@ -5213,7 +5301,8 @@ export const pythonTrackData = [
         "expected_output": "Correct execution",
         "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
       }
-    ]
+    ],
+    "lesson_type": "concept"
   },
   {
     "lesson_slug": "python-90",
@@ -5272,7 +5361,8 @@ export const pythonTrackData = [
         "expected_output": "Correct execution",
         "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
       }
-    ]
+    ],
+    "lesson_type": "milestone"
   },
   {
     "lesson_slug": "python-91",
@@ -5331,7 +5421,8 @@ export const pythonTrackData = [
         "expected_output": "Correct execution",
         "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
       }
-    ]
+    ],
+    "lesson_type": "debugging"
   },
   {
     "lesson_slug": "python-92",
@@ -5390,7 +5481,8 @@ export const pythonTrackData = [
         "expected_output": "Correct execution",
         "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
       }
-    ]
+    ],
+    "lesson_type": "mini_mission"
   },
   {
     "lesson_slug": "python-93",
@@ -5449,7 +5541,8 @@ export const pythonTrackData = [
         "expected_output": "Correct execution",
         "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
       }
-    ]
+    ],
+    "lesson_type": "sandbox"
   },
   {
     "lesson_slug": "python-94",
@@ -5508,7 +5601,8 @@ export const pythonTrackData = [
         "expected_output": "Correct execution",
         "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
       }
-    ]
+    ],
+    "lesson_type": "concept"
   },
   {
     "lesson_slug": "python-95",
@@ -5567,7 +5661,8 @@ export const pythonTrackData = [
         "expected_output": "Correct execution",
         "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
       }
-    ]
+    ],
+    "lesson_type": "project"
   },
   {
     "lesson_slug": "python-96",
@@ -5626,7 +5721,8 @@ export const pythonTrackData = [
         "expected_output": "Correct execution",
         "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
       }
-    ]
+    ],
+    "lesson_type": "mini_mission"
   },
   {
     "lesson_slug": "python-97",
@@ -5685,7 +5781,8 @@ export const pythonTrackData = [
         "expected_output": "Correct execution",
         "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
       }
-    ]
+    ],
+    "lesson_type": "concept"
   },
   {
     "lesson_slug": "python-98",
@@ -5744,7 +5841,8 @@ export const pythonTrackData = [
         "expected_output": "Correct execution",
         "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
       }
-    ]
+    ],
+    "lesson_type": "scenario"
   },
   {
     "lesson_slug": "python-99",
@@ -5803,7 +5901,8 @@ export const pythonTrackData = [
         "expected_output": "Correct execution",
         "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
       }
-    ]
+    ],
+    "lesson_type": "ai_challenge"
   },
   {
     "lesson_slug": "python-100",
@@ -5862,6 +5961,7 @@ export const pythonTrackData = [
         "expected_output": "Correct execution",
         "explanation": "استخدم علامة يساوي واحدة `=` لتعيين القيم، وعلامتين `==` للمقارنة."
       }
-    ]
+    ],
+    "lesson_type": "capstone"
   }
 ];
