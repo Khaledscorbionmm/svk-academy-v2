@@ -1829,11 +1829,9 @@ export default function LessonPage({ params }: { params: Promise<{ lessonId: str
                         <textarea
                           value={code}
                           onChange={e => setCode(e.target.value)}
+                          className="font-mono text-emerald-400 bg-slate-950 border border-slate-800 p-4 w-full focus:outline-none focus:ring-2 focus:ring-emerald-500"
                           style={{
-                            flex: 1, width: '100%', backgroundColor: '#0f172a', border: '1px solid #1e293b', resize: 'none',
-                            outline: 'none', color: '#34d399', padding: '16px', fontFamily: 'monospace', fontSize: '0.95rem',
-                            direction: 'ltr', textAlign: 'left', lineHeight: 1.5,
-                            boxShadow: 'inset 0 2px 4px rgba(0,0,0,0.5)'
+                            flex: 1, resize: 'none', direction: 'ltr', textAlign: 'left', lineHeight: 1.5
                           }}
                         />
                         

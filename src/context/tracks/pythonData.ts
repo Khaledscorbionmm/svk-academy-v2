@@ -14,8 +14,8 @@ export const pythonTrackData = [
       "return_value": "رقم صحيح نقي يمكننا استخدامه في عمليات الجمع والطرح وغيرها.",
       "example": "# لطباعة رقم مباشر على الشاشة نستخدم print\nprint(10)\n\n# تخزين عمرك في متغير (كأنه صندوق) ثم طباعته\nage = 25\nprint(age)\n\n# عملية جمع بسيطة\nprint(10 + 5)"
     },
-    "exercise_instructions": "استخدم أمر الطباعة print لتعرض الرقم 100 على الشاشة. تذكر أن تكتب الرقم داخل الأقواس.",
-    "expected_output": "100"
+    "exercise_instructions": "قم بإنشاء متغير age وضع بداخله عمرك، ثم استخدم print لطباعته.",
+    "expected_output": "25"
   },
   {
     "lesson_slug": "python-2",
