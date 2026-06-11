@@ -3,7 +3,8 @@
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { useTargetGroup } from '@/context/UserTargetGroupContext';
-
+import PremiumAudioPlayer from '@/components/PremiumAudioPlayer';
+import SimplifyExplanation from '@/components/SimplifyExplanation';
 // Helper to clean HTML tags from text
 const cleanHtmlText = (text: string) => {
   if (!text) return '';
@@ -967,7 +968,8 @@ export default function LanguageLearningLayout({ data }: { data: any }) {
               </h2>
               
               {/* Dedicated Audio Player narration block at the top */}
-              <AudioNarrationPlayer textContent={lesson.text_content || ''} isKids={isKids} />
+              <PremiumAudioPlayer src={lesson.audio_url || ''} title={lesson.title} textContent={lesson.text_content || ''} />
+              <SimplifyExplanation textContent={lesson.text_content || ''} isKids={isKids} />
 
               {(() => {
                 try {

@@ -200,14 +200,11 @@ function CourseCard({ course }: { course: Course }) {
         {/* Price + CTA */}
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 24 }}>
           <div>
-            {Number(course.price) === 0 ? (
-              <span style={{ fontSize: 22, fontWeight: 900, color: '#22c55e', textShadow: '0 0 20px rgba(34,197,94,0.4)', animation: 'pulse 2s infinite' }}>مجاني 🎁</span>
-            ) : (
-              <div>
-                <span style={{ fontSize: 24, fontWeight: 900, color: isBeginner ? '#ec4899' : isAdvanced ? '#22c55e' : '#a855f7' }}>{course.price}</span>
-                <span style={{ color: '#64748b', fontSize: 12, marginRight: 4, fontWeight: 700 }}>{course.currency}</span>
-              </div>
-            )}
+            <div>
+              <span style={{ fontSize: 24, fontWeight: 900, color: isBeginner ? '#ec4899' : isAdvanced ? '#22c55e' : '#a855f7' }}>{Number(course.price) === 0 ? 199 : course.price}</span>
+              <span style={{ color: '#64748b', fontSize: 12, marginRight: 4, fontWeight: 700 }}>{course.currency || 'EGP'}</span>
+            </div>
+            <div style={{ fontSize: 11, color: '#22c55e', fontWeight: 800, marginTop: 4 }}>🎁 الدرس الأول مجاني</div>
           </div>
           <span style={{
             display: 'inline-flex', alignItems: 'center', justifyContent: 'center',

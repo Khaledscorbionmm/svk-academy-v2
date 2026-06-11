@@ -54,8 +54,8 @@ export async function verifyTokenEdge(token: string): Promise<AdminPayload | nul
     const isValid = await crypto.subtle.verify(
       'HMAC',
       key,
-      sigBytes as any,
-      data as any
+      sigBytes as BufferSource,
+      data as BufferSource
     );
 
     if (isValid) {

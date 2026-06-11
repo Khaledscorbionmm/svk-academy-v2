@@ -286,14 +286,11 @@ export default function CourseDetailPage({ params }: { params: Promise<{ id: str
           {/* Price Card */}
           <div className="price-card" style={{ background: 'rgba(15,15,30,0.9)', border: '1px solid rgba(99,102,241,0.2)', borderRadius: 20, padding: 28, backdropFilter: 'blur(20px)' }}>
             <div style={{ textAlign: 'center', marginBottom: 20 }}>
-              {course.price === 0 ? (
-                <div style={{ fontSize: 36, fontWeight: 900, color: '#22c55e' }}>مجاني 🎁</div>
-              ) : (
-                <div>
-                  <div style={{ fontSize: 36, fontWeight: 900, color: '#a855f7' }}>{course.price}</div>
-                  <div style={{ color: '#64748b', fontSize: 14 }}>{course.currency}</div>
-                </div>
-              )}
+              <div>
+                <div style={{ fontSize: 36, fontWeight: 900, color: '#a855f7' }}>{Number(course.price) === 0 ? 199 : course.price}</div>
+                <div style={{ color: '#64748b', fontSize: 14 }}>{course.currency || 'EGP'}</div>
+              </div>
+              <div style={{ fontSize: 14, color: '#22c55e', fontWeight: 800, marginTop: 8 }}>🎁 الدرس الأول مجاني</div>
             </div>
             {[
               { icon: '📚', label: `${lessons.length} درس` },
@@ -307,18 +304,25 @@ export default function CourseDetailPage({ params }: { params: Promise<{ id: str
                 <span>{item.label}</span>
               </div>
             ))}
-            {course.price === 0 || isEnrolled ? (
+            {isEnrolled ? (
               <Link href={firstLessonHref} style={{ textDecoration: 'none', display: 'block', marginTop: 20 }}>
                 <button style={{ width: '100%', background: 'linear-gradient(135deg,#6366f1,#a855f7)', border: 'none', color: '#fff', padding: '14px', borderRadius: 12, fontSize: 16, fontWeight: 800, cursor: 'pointer', fontFamily: "'Cairo', sans-serif" }}>
-                  ابدأ المغامرة الآن ←
+                  استكمال الكورس ←
                 </button>
               </Link>
             ) : (
-              <button 
-                onClick={() => setShowPaymentModal(true)}
-                style={{ width: '100%', marginTop: 20, background: 'linear-gradient(135deg,#6366f1,#a855f7)', border: 'none', color: '#fff', padding: '14px', borderRadius: 12, fontSize: 16, fontWeight: 800, cursor: 'pointer', fontFamily: "'Cairo', sans-serif" }}>
-                اشترك الآن ←
-              </button>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginTop: 20 }}>
+                <Link href={firstLessonHref} style={{ textDecoration: 'none', display: 'block' }}>
+                  <button style={{ width: '100%', background: 'rgba(34,197,94,0.1)', border: '1px solid rgba(34,197,94,0.3)', color: '#22c55e', padding: '14px', borderRadius: 12, fontSize: 16, fontWeight: 800, cursor: 'pointer', fontFamily: "'Cairo', sans-serif", transition: 'all 0.3s' }} onMouseOver={e=>e.currentTarget.style.background='rgba(34,197,94,0.2)'} onMouseOut={e=>e.currentTarget.style.background='rgba(34,197,94,0.1)'}>
+                    ▶ ابدأ الدرس الأول مجاناً
+                  </button>
+                </Link>
+                <button 
+                  onClick={() => setShowPaymentModal(true)}
+                  style={{ width: '100%', background: 'linear-gradient(135deg,#6366f1,#a855f7)', border: 'none', color: '#fff', padding: '14px', borderRadius: 12, fontSize: 16, fontWeight: 800, cursor: 'pointer', fontFamily: "'Cairo', sans-serif", boxShadow: '0 4px 15px rgba(99,102,241,0.3)' }}>
+                  اشترك لفتح كامل الكورس 🔓
+                </button>
+              </div>
             )}
           </div>
         </div>

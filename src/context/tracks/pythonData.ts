@@ -380,1523 +380,1523 @@ export const pythonTrackData = [
     "expected_output": "Chap 1 Done"
   },
   {
-    "lesson_slug": "python-21",
-    "title": "الدرس 21: موضوع مخصص",
-    "category": "التحكم في مسار البيانات",
-    "order_index": 21,
-    "is_free": false,
-    "content_type": "theory",
-    "duration_minutes": 10,
-    "content": {
-      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 21) لربط المفاهيم النظرية بالتطبيق العملي.",
-      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: التحكم في مسار البيانات.",
-      "prototype": "def concept_21(): pass",
-      "parameters": "تفاصيل المدخلات للدرس 21.",
-      "return_value": "النتيجة المرجوة من أدوات الدرس 21.",
-      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
-    },
-    "exercise_instructions": "تمرين الدرس 21",
-    "expected_output": "انتظرونا"
-  },
-  {
-    "lesson_slug": "python-22",
-    "title": "الدرس 22: موضوع مخصص",
-    "category": "التحكم في مسار البيانات",
-    "order_index": 22,
-    "is_free": false,
-    "content_type": "theory",
-    "duration_minutes": 10,
-    "content": {
-      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 22) لربط المفاهيم النظرية بالتطبيق العملي.",
-      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: التحكم في مسار البيانات.",
-      "prototype": "def concept_22(): pass",
-      "parameters": "تفاصيل المدخلات للدرس 22.",
-      "return_value": "النتيجة المرجوة من أدوات الدرس 22.",
-      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
-    },
-    "exercise_instructions": "تمرين الدرس 22",
-    "expected_output": "انتظرونا"
-  },
-  {
-    "lesson_slug": "python-23",
-    "title": "الدرس 23: موضوع مخصص",
-    "category": "التحكم في مسار البيانات",
-    "order_index": 23,
-    "is_free": false,
-    "content_type": "theory",
-    "duration_minutes": 10,
-    "content": {
-      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 23) لربط المفاهيم النظرية بالتطبيق العملي.",
-      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: التحكم في مسار البيانات.",
-      "prototype": "def concept_23(): pass",
-      "parameters": "تفاصيل المدخلات للدرس 23.",
-      "return_value": "النتيجة المرجوة من أدوات الدرس 23.",
-      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
-    },
-    "exercise_instructions": "تمرين الدرس 23",
-    "expected_output": "انتظرونا"
-  },
-  {
-    "lesson_slug": "python-24",
-    "title": "الدرس 24: موضوع مخصص",
-    "category": "التحكم في مسار البيانات",
-    "order_index": 24,
-    "is_free": false,
-    "content_type": "theory",
-    "duration_minutes": 10,
-    "content": {
-      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 24) لربط المفاهيم النظرية بالتطبيق العملي.",
-      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: التحكم في مسار البيانات.",
-      "prototype": "def concept_24(): pass",
-      "parameters": "تفاصيل المدخلات للدرس 24.",
-      "return_value": "النتيجة المرجوة من أدوات الدرس 24.",
-      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
-    },
-    "exercise_instructions": "تمرين الدرس 24",
-    "expected_output": "انتظرونا"
-  },
-  {
-    "lesson_slug": "python-25",
-    "title": "الدرس 25: موضوع مخصص",
-    "category": "التحكم في مسار البيانات",
-    "order_index": 25,
-    "is_free": false,
-    "content_type": "theory",
-    "duration_minutes": 10,
-    "content": {
-      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 25) لربط المفاهيم النظرية بالتطبيق العملي.",
-      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: التحكم في مسار البيانات.",
-      "prototype": "def concept_25(): pass",
-      "parameters": "تفاصيل المدخلات للدرس 25.",
-      "return_value": "النتيجة المرجوة من أدوات الدرس 25.",
-      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
-    },
-    "exercise_instructions": "تمرين الدرس 25",
-    "expected_output": "انتظرونا"
-  },
-  {
-    "lesson_slug": "python-26",
-    "title": "الدرس 26: موضوع مخصص",
-    "category": "التحكم في مسار البيانات",
-    "order_index": 26,
-    "is_free": false,
-    "content_type": "theory",
-    "duration_minutes": 10,
-    "content": {
-      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 26) لربط المفاهيم النظرية بالتطبيق العملي.",
-      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: التحكم في مسار البيانات.",
-      "prototype": "def concept_26(): pass",
-      "parameters": "تفاصيل المدخلات للدرس 26.",
-      "return_value": "النتيجة المرجوة من أدوات الدرس 26.",
-      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
-    },
-    "exercise_instructions": "تمرين الدرس 26",
-    "expected_output": "انتظرونا"
-  },
-  {
-    "lesson_slug": "python-27",
-    "title": "الدرس 27: موضوع مخصص",
-    "category": "التحكم في مسار البيانات",
-    "order_index": 27,
-    "is_free": false,
-    "content_type": "theory",
-    "duration_minutes": 10,
-    "content": {
-      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 27) لربط المفاهيم النظرية بالتطبيق العملي.",
-      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: التحكم في مسار البيانات.",
-      "prototype": "def concept_27(): pass",
-      "parameters": "تفاصيل المدخلات للدرس 27.",
-      "return_value": "النتيجة المرجوة من أدوات الدرس 27.",
-      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
-    },
-    "exercise_instructions": "تمرين الدرس 27",
-    "expected_output": "انتظرونا"
-  },
-  {
-    "lesson_slug": "python-28",
-    "title": "الدرس 28: موضوع مخصص",
-    "category": "التحكم في مسار البيانات",
-    "order_index": 28,
-    "is_free": false,
-    "content_type": "theory",
-    "duration_minutes": 10,
-    "content": {
-      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 28) لربط المفاهيم النظرية بالتطبيق العملي.",
-      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: التحكم في مسار البيانات.",
-      "prototype": "def concept_28(): pass",
-      "parameters": "تفاصيل المدخلات للدرس 28.",
-      "return_value": "النتيجة المرجوة من أدوات الدرس 28.",
-      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
-    },
-    "exercise_instructions": "تمرين الدرس 28",
-    "expected_output": "انتظرونا"
-  },
-  {
-    "lesson_slug": "python-29",
-    "title": "الدرس 29: موضوع مخصص",
-    "category": "التحكم في مسار البيانات",
-    "order_index": 29,
-    "is_free": false,
-    "content_type": "theory",
-    "duration_minutes": 10,
-    "content": {
-      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 29) لربط المفاهيم النظرية بالتطبيق العملي.",
-      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: التحكم في مسار البيانات.",
-      "prototype": "def concept_29(): pass",
-      "parameters": "تفاصيل المدخلات للدرس 29.",
-      "return_value": "النتيجة المرجوة من أدوات الدرس 29.",
-      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
-    },
-    "exercise_instructions": "تمرين الدرس 29",
-    "expected_output": "انتظرونا"
-  },
-  {
-    "lesson_slug": "python-30",
-    "title": "الدرس 30: موضوع مخصص",
-    "category": "التحكم في مسار البيانات",
-    "order_index": 30,
-    "is_free": false,
-    "content_type": "theory",
-    "duration_minutes": 10,
-    "content": {
-      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 30) لربط المفاهيم النظرية بالتطبيق العملي.",
-      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: التحكم في مسار البيانات.",
-      "prototype": "def concept_30(): pass",
-      "parameters": "تفاصيل المدخلات للدرس 30.",
-      "return_value": "النتيجة المرجوة من أدوات الدرس 30.",
-      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
-    },
-    "exercise_instructions": "تمرين الدرس 30",
-    "expected_output": "انتظرونا"
-  },
-  {
-    "lesson_slug": "python-31",
-    "title": "الدرس 31: موضوع مخصص",
-    "category": "التحكم في مسار البيانات",
-    "order_index": 31,
-    "is_free": false,
-    "content_type": "theory",
-    "duration_minutes": 10,
-    "content": {
-      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 31) لربط المفاهيم النظرية بالتطبيق العملي.",
-      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: التحكم في مسار البيانات.",
-      "prototype": "def concept_31(): pass",
-      "parameters": "تفاصيل المدخلات للدرس 31.",
-      "return_value": "النتيجة المرجوة من أدوات الدرس 31.",
-      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
-    },
-    "exercise_instructions": "تمرين الدرس 31",
-    "expected_output": "انتظرونا"
-  },
-  {
-    "lesson_slug": "python-32",
-    "title": "الدرس 32: موضوع مخصص",
-    "category": "التحكم في مسار البيانات",
-    "order_index": 32,
-    "is_free": false,
-    "content_type": "theory",
-    "duration_minutes": 10,
-    "content": {
-      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 32) لربط المفاهيم النظرية بالتطبيق العملي.",
-      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: التحكم في مسار البيانات.",
-      "prototype": "def concept_32(): pass",
-      "parameters": "تفاصيل المدخلات للدرس 32.",
-      "return_value": "النتيجة المرجوة من أدوات الدرس 32.",
-      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
-    },
-    "exercise_instructions": "تمرين الدرس 32",
-    "expected_output": "انتظرونا"
-  },
-  {
-    "lesson_slug": "python-33",
-    "title": "الدرس 33: موضوع مخصص",
-    "category": "التحكم في مسار البيانات",
-    "order_index": 33,
-    "is_free": false,
-    "content_type": "theory",
-    "duration_minutes": 10,
-    "content": {
-      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 33) لربط المفاهيم النظرية بالتطبيق العملي.",
-      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: التحكم في مسار البيانات.",
-      "prototype": "def concept_33(): pass",
-      "parameters": "تفاصيل المدخلات للدرس 33.",
-      "return_value": "النتيجة المرجوة من أدوات الدرس 33.",
-      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
-    },
-    "exercise_instructions": "تمرين الدرس 33",
-    "expected_output": "انتظرونا"
-  },
-  {
-    "lesson_slug": "python-34",
-    "title": "الدرس 34: موضوع مخصص",
-    "category": "التحكم في مسار البيانات",
-    "order_index": 34,
-    "is_free": false,
-    "content_type": "theory",
-    "duration_minutes": 10,
-    "content": {
-      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 34) لربط المفاهيم النظرية بالتطبيق العملي.",
-      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: التحكم في مسار البيانات.",
-      "prototype": "def concept_34(): pass",
-      "parameters": "تفاصيل المدخلات للدرس 34.",
-      "return_value": "النتيجة المرجوة من أدوات الدرس 34.",
-      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
-    },
-    "exercise_instructions": "تمرين الدرس 34",
-    "expected_output": "انتظرونا"
-  },
-  {
-    "lesson_slug": "python-35",
-    "title": "الدرس 35: موضوع مخصص",
-    "category": "التحكم في مسار البيانات",
-    "order_index": 35,
-    "is_free": false,
-    "content_type": "theory",
-    "duration_minutes": 10,
-    "content": {
-      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 35) لربط المفاهيم النظرية بالتطبيق العملي.",
-      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: التحكم في مسار البيانات.",
-      "prototype": "def concept_35(): pass",
-      "parameters": "تفاصيل المدخلات للدرس 35.",
-      "return_value": "النتيجة المرجوة من أدوات الدرس 35.",
-      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
-    },
-    "exercise_instructions": "تمرين الدرس 35",
-    "expected_output": "انتظرونا"
-  },
-  {
-    "lesson_slug": "python-36",
-    "title": "الدرس 36: موضوع مخصص",
-    "category": "التحكم في مسار البيانات",
-    "order_index": 36,
-    "is_free": false,
-    "content_type": "theory",
-    "duration_minutes": 10,
-    "content": {
-      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 36) لربط المفاهيم النظرية بالتطبيق العملي.",
-      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: التحكم في مسار البيانات.",
-      "prototype": "def concept_36(): pass",
-      "parameters": "تفاصيل المدخلات للدرس 36.",
-      "return_value": "النتيجة المرجوة من أدوات الدرس 36.",
-      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
-    },
-    "exercise_instructions": "تمرين الدرس 36",
-    "expected_output": "انتظرونا"
-  },
-  {
-    "lesson_slug": "python-37",
-    "title": "الدرس 37: موضوع مخصص",
-    "category": "التحكم في مسار البيانات",
-    "order_index": 37,
-    "is_free": false,
-    "content_type": "theory",
-    "duration_minutes": 10,
-    "content": {
-      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 37) لربط المفاهيم النظرية بالتطبيق العملي.",
-      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: التحكم في مسار البيانات.",
-      "prototype": "def concept_37(): pass",
-      "parameters": "تفاصيل المدخلات للدرس 37.",
-      "return_value": "النتيجة المرجوة من أدوات الدرس 37.",
-      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
-    },
-    "exercise_instructions": "تمرين الدرس 37",
-    "expected_output": "انتظرونا"
-  },
-  {
-    "lesson_slug": "python-38",
-    "title": "الدرس 38: موضوع مخصص",
-    "category": "التحكم في مسار البيانات",
-    "order_index": 38,
-    "is_free": false,
-    "content_type": "theory",
-    "duration_minutes": 10,
-    "content": {
-      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 38) لربط المفاهيم النظرية بالتطبيق العملي.",
-      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: التحكم في مسار البيانات.",
-      "prototype": "def concept_38(): pass",
-      "parameters": "تفاصيل المدخلات للدرس 38.",
-      "return_value": "النتيجة المرجوة من أدوات الدرس 38.",
-      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
-    },
-    "exercise_instructions": "تمرين الدرس 38",
-    "expected_output": "انتظرونا"
-  },
-  {
-    "lesson_slug": "python-39",
-    "title": "الدرس 39: موضوع مخصص",
-    "category": "التحكم في مسار البيانات",
-    "order_index": 39,
-    "is_free": false,
-    "content_type": "theory",
-    "duration_minutes": 10,
-    "content": {
-      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 39) لربط المفاهيم النظرية بالتطبيق العملي.",
-      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: التحكم في مسار البيانات.",
-      "prototype": "def concept_39(): pass",
-      "parameters": "تفاصيل المدخلات للدرس 39.",
-      "return_value": "النتيجة المرجوة من أدوات الدرس 39.",
-      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
-    },
-    "exercise_instructions": "تمرين الدرس 39",
-    "expected_output": "انتظرونا"
-  },
-  {
-    "lesson_slug": "python-40",
-    "title": "الدرس 40: موضوع مخصص",
-    "category": "التحكم في مسار البيانات",
-    "order_index": 40,
-    "is_free": false,
-    "content_type": "theory",
-    "duration_minutes": 10,
-    "content": {
-      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 40) لربط المفاهيم النظرية بالتطبيق العملي.",
-      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: التحكم في مسار البيانات.",
-      "prototype": "def concept_40(): pass",
-      "parameters": "تفاصيل المدخلات للدرس 40.",
-      "return_value": "النتيجة المرجوة من أدوات الدرس 40.",
-      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
-    },
-    "exercise_instructions": "تمرين الدرس 40",
-    "expected_output": "انتظرونا"
-  },
-  {
-    "lesson_slug": "python-41",
-    "title": "الدرس 41: موضوع مخصص",
-    "category": "هياكل البيانات المتقدمة",
-    "order_index": 41,
-    "is_free": false,
-    "content_type": "theory",
-    "duration_minutes": 10,
-    "content": {
-      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 41) لربط المفاهيم النظرية بالتطبيق العملي.",
-      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: هياكل البيانات المتقدمة.",
-      "prototype": "def concept_41(): pass",
-      "parameters": "تفاصيل المدخلات للدرس 41.",
-      "return_value": "النتيجة المرجوة من أدوات الدرس 41.",
-      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
-    },
-    "exercise_instructions": "تمرين الدرس 41",
-    "expected_output": "انتظرونا"
-  },
-  {
-    "lesson_slug": "python-42",
-    "title": "الدرس 42: موضوع مخصص",
-    "category": "هياكل البيانات المتقدمة",
-    "order_index": 42,
-    "is_free": false,
-    "content_type": "theory",
-    "duration_minutes": 10,
-    "content": {
-      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 42) لربط المفاهيم النظرية بالتطبيق العملي.",
-      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: هياكل البيانات المتقدمة.",
-      "prototype": "def concept_42(): pass",
-      "parameters": "تفاصيل المدخلات للدرس 42.",
-      "return_value": "النتيجة المرجوة من أدوات الدرس 42.",
-      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
-    },
-    "exercise_instructions": "تمرين الدرس 42",
-    "expected_output": "انتظرونا"
-  },
-  {
-    "lesson_slug": "python-43",
-    "title": "الدرس 43: موضوع مخصص",
-    "category": "هياكل البيانات المتقدمة",
-    "order_index": 43,
-    "is_free": false,
-    "content_type": "theory",
-    "duration_minutes": 10,
-    "content": {
-      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 43) لربط المفاهيم النظرية بالتطبيق العملي.",
-      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: هياكل البيانات المتقدمة.",
-      "prototype": "def concept_43(): pass",
-      "parameters": "تفاصيل المدخلات للدرس 43.",
-      "return_value": "النتيجة المرجوة من أدوات الدرس 43.",
-      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
-    },
-    "exercise_instructions": "تمرين الدرس 43",
-    "expected_output": "انتظرونا"
-  },
-  {
-    "lesson_slug": "python-44",
-    "title": "الدرس 44: موضوع مخصص",
-    "category": "هياكل البيانات المتقدمة",
-    "order_index": 44,
-    "is_free": false,
-    "content_type": "theory",
-    "duration_minutes": 10,
-    "content": {
-      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 44) لربط المفاهيم النظرية بالتطبيق العملي.",
-      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: هياكل البيانات المتقدمة.",
-      "prototype": "def concept_44(): pass",
-      "parameters": "تفاصيل المدخلات للدرس 44.",
-      "return_value": "النتيجة المرجوة من أدوات الدرس 44.",
-      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
-    },
-    "exercise_instructions": "تمرين الدرس 44",
-    "expected_output": "انتظرونا"
-  },
-  {
-    "lesson_slug": "python-45",
-    "title": "الدرس 45: موضوع مخصص",
-    "category": "هياكل البيانات المتقدمة",
-    "order_index": 45,
-    "is_free": false,
-    "content_type": "theory",
-    "duration_minutes": 10,
-    "content": {
-      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 45) لربط المفاهيم النظرية بالتطبيق العملي.",
-      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: هياكل البيانات المتقدمة.",
-      "prototype": "def concept_45(): pass",
-      "parameters": "تفاصيل المدخلات للدرس 45.",
-      "return_value": "النتيجة المرجوة من أدوات الدرس 45.",
-      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
-    },
-    "exercise_instructions": "تمرين الدرس 45",
-    "expected_output": "انتظرونا"
-  },
-  {
-    "lesson_slug": "python-46",
-    "title": "الدرس 46: موضوع مخصص",
-    "category": "هياكل البيانات المتقدمة",
-    "order_index": 46,
-    "is_free": false,
-    "content_type": "theory",
-    "duration_minutes": 10,
-    "content": {
-      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 46) لربط المفاهيم النظرية بالتطبيق العملي.",
-      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: هياكل البيانات المتقدمة.",
-      "prototype": "def concept_46(): pass",
-      "parameters": "تفاصيل المدخلات للدرس 46.",
-      "return_value": "النتيجة المرجوة من أدوات الدرس 46.",
-      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
-    },
-    "exercise_instructions": "تمرين الدرس 46",
-    "expected_output": "انتظرونا"
-  },
-  {
-    "lesson_slug": "python-47",
-    "title": "الدرس 47: موضوع مخصص",
-    "category": "هياكل البيانات المتقدمة",
-    "order_index": 47,
-    "is_free": false,
-    "content_type": "theory",
-    "duration_minutes": 10,
-    "content": {
-      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 47) لربط المفاهيم النظرية بالتطبيق العملي.",
-      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: هياكل البيانات المتقدمة.",
-      "prototype": "def concept_47(): pass",
-      "parameters": "تفاصيل المدخلات للدرس 47.",
-      "return_value": "النتيجة المرجوة من أدوات الدرس 47.",
-      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
-    },
-    "exercise_instructions": "تمرين الدرس 47",
-    "expected_output": "انتظرونا"
-  },
-  {
-    "lesson_slug": "python-48",
-    "title": "الدرس 48: موضوع مخصص",
-    "category": "هياكل البيانات المتقدمة",
-    "order_index": 48,
-    "is_free": false,
-    "content_type": "theory",
-    "duration_minutes": 10,
-    "content": {
-      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 48) لربط المفاهيم النظرية بالتطبيق العملي.",
-      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: هياكل البيانات المتقدمة.",
-      "prototype": "def concept_48(): pass",
-      "parameters": "تفاصيل المدخلات للدرس 48.",
-      "return_value": "النتيجة المرجوة من أدوات الدرس 48.",
-      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
-    },
-    "exercise_instructions": "تمرين الدرس 48",
-    "expected_output": "انتظرونا"
-  },
-  {
-    "lesson_slug": "python-49",
-    "title": "الدرس 49: موضوع مخصص",
-    "category": "هياكل البيانات المتقدمة",
-    "order_index": 49,
-    "is_free": false,
-    "content_type": "theory",
-    "duration_minutes": 10,
-    "content": {
-      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 49) لربط المفاهيم النظرية بالتطبيق العملي.",
-      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: هياكل البيانات المتقدمة.",
-      "prototype": "def concept_49(): pass",
-      "parameters": "تفاصيل المدخلات للدرس 49.",
-      "return_value": "النتيجة المرجوة من أدوات الدرس 49.",
-      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
-    },
-    "exercise_instructions": "تمرين الدرس 49",
-    "expected_output": "انتظرونا"
-  },
-  {
-    "lesson_slug": "python-50",
-    "title": "الدرس 50: موضوع مخصص",
-    "category": "هياكل البيانات المتقدمة",
-    "order_index": 50,
-    "is_free": false,
-    "content_type": "theory",
-    "duration_minutes": 10,
-    "content": {
-      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 50) لربط المفاهيم النظرية بالتطبيق العملي.",
-      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: هياكل البيانات المتقدمة.",
-      "prototype": "def concept_50(): pass",
-      "parameters": "تفاصيل المدخلات للدرس 50.",
-      "return_value": "النتيجة المرجوة من أدوات الدرس 50.",
-      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
-    },
-    "exercise_instructions": "تمرين الدرس 50",
-    "expected_output": "انتظرونا"
-  },
-  {
-    "lesson_slug": "python-51",
-    "title": "الدرس 51: موضوع مخصص",
-    "category": "هياكل البيانات المتقدمة",
-    "order_index": 51,
-    "is_free": false,
-    "content_type": "theory",
-    "duration_minutes": 10,
-    "content": {
-      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 51) لربط المفاهيم النظرية بالتطبيق العملي.",
-      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: هياكل البيانات المتقدمة.",
-      "prototype": "def concept_51(): pass",
-      "parameters": "تفاصيل المدخلات للدرس 51.",
-      "return_value": "النتيجة المرجوة من أدوات الدرس 51.",
-      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
-    },
-    "exercise_instructions": "تمرين الدرس 51",
-    "expected_output": "انتظرونا"
-  },
-  {
-    "lesson_slug": "python-52",
-    "title": "الدرس 52: موضوع مخصص",
-    "category": "هياكل البيانات المتقدمة",
-    "order_index": 52,
-    "is_free": false,
-    "content_type": "theory",
-    "duration_minutes": 10,
-    "content": {
-      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 52) لربط المفاهيم النظرية بالتطبيق العملي.",
-      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: هياكل البيانات المتقدمة.",
-      "prototype": "def concept_52(): pass",
-      "parameters": "تفاصيل المدخلات للدرس 52.",
-      "return_value": "النتيجة المرجوة من أدوات الدرس 52.",
-      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
-    },
-    "exercise_instructions": "تمرين الدرس 52",
-    "expected_output": "انتظرونا"
-  },
-  {
-    "lesson_slug": "python-53",
-    "title": "الدرس 53: موضوع مخصص",
-    "category": "هياكل البيانات المتقدمة",
-    "order_index": 53,
-    "is_free": false,
-    "content_type": "theory",
-    "duration_minutes": 10,
-    "content": {
-      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 53) لربط المفاهيم النظرية بالتطبيق العملي.",
-      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: هياكل البيانات المتقدمة.",
-      "prototype": "def concept_53(): pass",
-      "parameters": "تفاصيل المدخلات للدرس 53.",
-      "return_value": "النتيجة المرجوة من أدوات الدرس 53.",
-      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
-    },
-    "exercise_instructions": "تمرين الدرس 53",
-    "expected_output": "انتظرونا"
-  },
-  {
-    "lesson_slug": "python-54",
-    "title": "الدرس 54: موضوع مخصص",
-    "category": "هياكل البيانات المتقدمة",
-    "order_index": 54,
-    "is_free": false,
-    "content_type": "theory",
-    "duration_minutes": 10,
-    "content": {
-      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 54) لربط المفاهيم النظرية بالتطبيق العملي.",
-      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: هياكل البيانات المتقدمة.",
-      "prototype": "def concept_54(): pass",
-      "parameters": "تفاصيل المدخلات للدرس 54.",
-      "return_value": "النتيجة المرجوة من أدوات الدرس 54.",
-      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
-    },
-    "exercise_instructions": "تمرين الدرس 54",
-    "expected_output": "انتظرونا"
-  },
-  {
-    "lesson_slug": "python-55",
-    "title": "الدرس 55: موضوع مخصص",
-    "category": "هياكل البيانات المتقدمة",
-    "order_index": 55,
-    "is_free": false,
-    "content_type": "theory",
-    "duration_minutes": 10,
-    "content": {
-      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 55) لربط المفاهيم النظرية بالتطبيق العملي.",
-      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: هياكل البيانات المتقدمة.",
-      "prototype": "def concept_55(): pass",
-      "parameters": "تفاصيل المدخلات للدرس 55.",
-      "return_value": "النتيجة المرجوة من أدوات الدرس 55.",
-      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
-    },
-    "exercise_instructions": "تمرين الدرس 55",
-    "expected_output": "انتظرونا"
-  },
-  {
-    "lesson_slug": "python-56",
-    "title": "الدرس 56: موضوع مخصص",
-    "category": "هياكل البيانات المتقدمة",
-    "order_index": 56,
-    "is_free": false,
-    "content_type": "theory",
-    "duration_minutes": 10,
-    "content": {
-      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 56) لربط المفاهيم النظرية بالتطبيق العملي.",
-      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: هياكل البيانات المتقدمة.",
-      "prototype": "def concept_56(): pass",
-      "parameters": "تفاصيل المدخلات للدرس 56.",
-      "return_value": "النتيجة المرجوة من أدوات الدرس 56.",
-      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
-    },
-    "exercise_instructions": "تمرين الدرس 56",
-    "expected_output": "انتظرونا"
-  },
-  {
-    "lesson_slug": "python-57",
-    "title": "الدرس 57: موضوع مخصص",
-    "category": "هياكل البيانات المتقدمة",
-    "order_index": 57,
-    "is_free": false,
-    "content_type": "theory",
-    "duration_minutes": 10,
-    "content": {
-      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 57) لربط المفاهيم النظرية بالتطبيق العملي.",
-      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: هياكل البيانات المتقدمة.",
-      "prototype": "def concept_57(): pass",
-      "parameters": "تفاصيل المدخلات للدرس 57.",
-      "return_value": "النتيجة المرجوة من أدوات الدرس 57.",
-      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
-    },
-    "exercise_instructions": "تمرين الدرس 57",
-    "expected_output": "انتظرونا"
-  },
-  {
-    "lesson_slug": "python-58",
-    "title": "الدرس 58: موضوع مخصص",
-    "category": "هياكل البيانات المتقدمة",
-    "order_index": 58,
-    "is_free": false,
-    "content_type": "theory",
-    "duration_minutes": 10,
-    "content": {
-      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 58) لربط المفاهيم النظرية بالتطبيق العملي.",
-      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: هياكل البيانات المتقدمة.",
-      "prototype": "def concept_58(): pass",
-      "parameters": "تفاصيل المدخلات للدرس 58.",
-      "return_value": "النتيجة المرجوة من أدوات الدرس 58.",
-      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
-    },
-    "exercise_instructions": "تمرين الدرس 58",
-    "expected_output": "انتظرونا"
-  },
-  {
-    "lesson_slug": "python-59",
-    "title": "الدرس 59: موضوع مخصص",
-    "category": "هياكل البيانات المتقدمة",
-    "order_index": 59,
-    "is_free": false,
-    "content_type": "theory",
-    "duration_minutes": 10,
-    "content": {
-      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 59) لربط المفاهيم النظرية بالتطبيق العملي.",
-      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: هياكل البيانات المتقدمة.",
-      "prototype": "def concept_59(): pass",
-      "parameters": "تفاصيل المدخلات للدرس 59.",
-      "return_value": "النتيجة المرجوة من أدوات الدرس 59.",
-      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
-    },
-    "exercise_instructions": "تمرين الدرس 59",
-    "expected_output": "انتظرونا"
-  },
-  {
-    "lesson_slug": "python-60",
-    "title": "الدرس 60: موضوع مخصص",
-    "category": "هياكل البيانات المتقدمة",
-    "order_index": 60,
-    "is_free": false,
-    "content_type": "theory",
-    "duration_minutes": 10,
-    "content": {
-      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 60) لربط المفاهيم النظرية بالتطبيق العملي.",
-      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: هياكل البيانات المتقدمة.",
-      "prototype": "def concept_60(): pass",
-      "parameters": "تفاصيل المدخلات للدرس 60.",
-      "return_value": "النتيجة المرجوة من أدوات الدرس 60.",
-      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
-    },
-    "exercise_instructions": "تمرين الدرس 60",
-    "expected_output": "انتظرونا"
-  },
-  {
-    "lesson_slug": "python-61",
-    "title": "الدرس 61: موضوع مخصص",
-    "category": "البرمجة الكائنية OOP",
-    "order_index": 61,
-    "is_free": false,
-    "content_type": "theory",
-    "duration_minutes": 10,
-    "content": {
-      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 61) لربط المفاهيم النظرية بالتطبيق العملي.",
-      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: البرمجة الكائنية OOP.",
-      "prototype": "def concept_61(): pass",
-      "parameters": "تفاصيل المدخلات للدرس 61.",
-      "return_value": "النتيجة المرجوة من أدوات الدرس 61.",
-      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
-    },
-    "exercise_instructions": "تمرين الدرس 61",
-    "expected_output": "انتظرونا"
-  },
-  {
-    "lesson_slug": "python-62",
-    "title": "الدرس 62: موضوع مخصص",
-    "category": "البرمجة الكائنية OOP",
-    "order_index": 62,
-    "is_free": false,
-    "content_type": "theory",
-    "duration_minutes": 10,
-    "content": {
-      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 62) لربط المفاهيم النظرية بالتطبيق العملي.",
-      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: البرمجة الكائنية OOP.",
-      "prototype": "def concept_62(): pass",
-      "parameters": "تفاصيل المدخلات للدرس 62.",
-      "return_value": "النتيجة المرجوة من أدوات الدرس 62.",
-      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
-    },
-    "exercise_instructions": "تمرين الدرس 62",
-    "expected_output": "انتظرونا"
-  },
-  {
-    "lesson_slug": "python-63",
-    "title": "الدرس 63: موضوع مخصص",
-    "category": "البرمجة الكائنية OOP",
-    "order_index": 63,
-    "is_free": false,
-    "content_type": "theory",
-    "duration_minutes": 10,
-    "content": {
-      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 63) لربط المفاهيم النظرية بالتطبيق العملي.",
-      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: البرمجة الكائنية OOP.",
-      "prototype": "def concept_63(): pass",
-      "parameters": "تفاصيل المدخلات للدرس 63.",
-      "return_value": "النتيجة المرجوة من أدوات الدرس 63.",
-      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
-    },
-    "exercise_instructions": "تمرين الدرس 63",
-    "expected_output": "انتظرونا"
-  },
-  {
-    "lesson_slug": "python-64",
-    "title": "الدرس 64: موضوع مخصص",
-    "category": "البرمجة الكائنية OOP",
-    "order_index": 64,
-    "is_free": false,
-    "content_type": "theory",
-    "duration_minutes": 10,
-    "content": {
-      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 64) لربط المفاهيم النظرية بالتطبيق العملي.",
-      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: البرمجة الكائنية OOP.",
-      "prototype": "def concept_64(): pass",
-      "parameters": "تفاصيل المدخلات للدرس 64.",
-      "return_value": "النتيجة المرجوة من أدوات الدرس 64.",
-      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
-    },
-    "exercise_instructions": "تمرين الدرس 64",
-    "expected_output": "انتظرونا"
-  },
-  {
-    "lesson_slug": "python-65",
-    "title": "الدرس 65: موضوع مخصص",
-    "category": "البرمجة الكائنية OOP",
-    "order_index": 65,
-    "is_free": false,
-    "content_type": "theory",
-    "duration_minutes": 10,
-    "content": {
-      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 65) لربط المفاهيم النظرية بالتطبيق العملي.",
-      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: البرمجة الكائنية OOP.",
-      "prototype": "def concept_65(): pass",
-      "parameters": "تفاصيل المدخلات للدرس 65.",
-      "return_value": "النتيجة المرجوة من أدوات الدرس 65.",
-      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
-    },
-    "exercise_instructions": "تمرين الدرس 65",
-    "expected_output": "انتظرونا"
-  },
-  {
-    "lesson_slug": "python-66",
-    "title": "الدرس 66: موضوع مخصص",
-    "category": "البرمجة الكائنية OOP",
-    "order_index": 66,
-    "is_free": false,
-    "content_type": "theory",
-    "duration_minutes": 10,
-    "content": {
-      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 66) لربط المفاهيم النظرية بالتطبيق العملي.",
-      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: البرمجة الكائنية OOP.",
-      "prototype": "def concept_66(): pass",
-      "parameters": "تفاصيل المدخلات للدرس 66.",
-      "return_value": "النتيجة المرجوة من أدوات الدرس 66.",
-      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
-    },
-    "exercise_instructions": "تمرين الدرس 66",
-    "expected_output": "انتظرونا"
-  },
-  {
-    "lesson_slug": "python-67",
-    "title": "الدرس 67: موضوع مخصص",
-    "category": "البرمجة الكائنية OOP",
-    "order_index": 67,
-    "is_free": false,
-    "content_type": "theory",
-    "duration_minutes": 10,
-    "content": {
-      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 67) لربط المفاهيم النظرية بالتطبيق العملي.",
-      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: البرمجة الكائنية OOP.",
-      "prototype": "def concept_67(): pass",
-      "parameters": "تفاصيل المدخلات للدرس 67.",
-      "return_value": "النتيجة المرجوة من أدوات الدرس 67.",
-      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
-    },
-    "exercise_instructions": "تمرين الدرس 67",
-    "expected_output": "انتظرونا"
-  },
-  {
-    "lesson_slug": "python-68",
-    "title": "الدرس 68: موضوع مخصص",
-    "category": "البرمجة الكائنية OOP",
-    "order_index": 68,
-    "is_free": false,
-    "content_type": "theory",
-    "duration_minutes": 10,
-    "content": {
-      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 68) لربط المفاهيم النظرية بالتطبيق العملي.",
-      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: البرمجة الكائنية OOP.",
-      "prototype": "def concept_68(): pass",
-      "parameters": "تفاصيل المدخلات للدرس 68.",
-      "return_value": "النتيجة المرجوة من أدوات الدرس 68.",
-      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
-    },
-    "exercise_instructions": "تمرين الدرس 68",
-    "expected_output": "انتظرونا"
-  },
-  {
-    "lesson_slug": "python-69",
-    "title": "الدرس 69: موضوع مخصص",
-    "category": "البرمجة الكائنية OOP",
-    "order_index": 69,
-    "is_free": false,
-    "content_type": "theory",
-    "duration_minutes": 10,
-    "content": {
-      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 69) لربط المفاهيم النظرية بالتطبيق العملي.",
-      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: البرمجة الكائنية OOP.",
-      "prototype": "def concept_69(): pass",
-      "parameters": "تفاصيل المدخلات للدرس 69.",
-      "return_value": "النتيجة المرجوة من أدوات الدرس 69.",
-      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
-    },
-    "exercise_instructions": "تمرين الدرس 69",
-    "expected_output": "انتظرونا"
-  },
-  {
-    "lesson_slug": "python-70",
-    "title": "الدرس 70: موضوع مخصص",
-    "category": "البرمجة الكائنية OOP",
-    "order_index": 70,
-    "is_free": false,
-    "content_type": "theory",
-    "duration_minutes": 10,
-    "content": {
-      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 70) لربط المفاهيم النظرية بالتطبيق العملي.",
-      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: البرمجة الكائنية OOP.",
-      "prototype": "def concept_70(): pass",
-      "parameters": "تفاصيل المدخلات للدرس 70.",
-      "return_value": "النتيجة المرجوة من أدوات الدرس 70.",
-      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
-    },
-    "exercise_instructions": "تمرين الدرس 70",
-    "expected_output": "انتظرونا"
-  },
-  {
-    "lesson_slug": "python-71",
-    "title": "الدرس 71: موضوع مخصص",
-    "category": "البرمجة الكائنية OOP",
-    "order_index": 71,
-    "is_free": false,
-    "content_type": "theory",
-    "duration_minutes": 10,
-    "content": {
-      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 71) لربط المفاهيم النظرية بالتطبيق العملي.",
-      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: البرمجة الكائنية OOP.",
-      "prototype": "def concept_71(): pass",
-      "parameters": "تفاصيل المدخلات للدرس 71.",
-      "return_value": "النتيجة المرجوة من أدوات الدرس 71.",
-      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
-    },
-    "exercise_instructions": "تمرين الدرس 71",
-    "expected_output": "انتظرونا"
-  },
-  {
-    "lesson_slug": "python-72",
-    "title": "الدرس 72: موضوع مخصص",
-    "category": "البرمجة الكائنية OOP",
-    "order_index": 72,
-    "is_free": false,
-    "content_type": "theory",
-    "duration_minutes": 10,
-    "content": {
-      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 72) لربط المفاهيم النظرية بالتطبيق العملي.",
-      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: البرمجة الكائنية OOP.",
-      "prototype": "def concept_72(): pass",
-      "parameters": "تفاصيل المدخلات للدرس 72.",
-      "return_value": "النتيجة المرجوة من أدوات الدرس 72.",
-      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
-    },
-    "exercise_instructions": "تمرين الدرس 72",
-    "expected_output": "انتظرونا"
-  },
-  {
-    "lesson_slug": "python-73",
-    "title": "الدرس 73: موضوع مخصص",
-    "category": "البرمجة الكائنية OOP",
-    "order_index": 73,
-    "is_free": false,
-    "content_type": "theory",
-    "duration_minutes": 10,
-    "content": {
-      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 73) لربط المفاهيم النظرية بالتطبيق العملي.",
-      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: البرمجة الكائنية OOP.",
-      "prototype": "def concept_73(): pass",
-      "parameters": "تفاصيل المدخلات للدرس 73.",
-      "return_value": "النتيجة المرجوة من أدوات الدرس 73.",
-      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
-    },
-    "exercise_instructions": "تمرين الدرس 73",
-    "expected_output": "انتظرونا"
-  },
-  {
-    "lesson_slug": "python-74",
-    "title": "الدرس 74: موضوع مخصص",
-    "category": "البرمجة الكائنية OOP",
-    "order_index": 74,
-    "is_free": false,
-    "content_type": "theory",
-    "duration_minutes": 10,
-    "content": {
-      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 74) لربط المفاهيم النظرية بالتطبيق العملي.",
-      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: البرمجة الكائنية OOP.",
-      "prototype": "def concept_74(): pass",
-      "parameters": "تفاصيل المدخلات للدرس 74.",
-      "return_value": "النتيجة المرجوة من أدوات الدرس 74.",
-      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
-    },
-    "exercise_instructions": "تمرين الدرس 74",
-    "expected_output": "انتظرونا"
-  },
-  {
-    "lesson_slug": "python-75",
-    "title": "الدرس 75: موضوع مخصص",
-    "category": "البرمجة الكائنية OOP",
-    "order_index": 75,
-    "is_free": false,
-    "content_type": "theory",
-    "duration_minutes": 10,
-    "content": {
-      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 75) لربط المفاهيم النظرية بالتطبيق العملي.",
-      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: البرمجة الكائنية OOP.",
-      "prototype": "def concept_75(): pass",
-      "parameters": "تفاصيل المدخلات للدرس 75.",
-      "return_value": "النتيجة المرجوة من أدوات الدرس 75.",
-      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
-    },
-    "exercise_instructions": "تمرين الدرس 75",
-    "expected_output": "انتظرونا"
-  },
-  {
-    "lesson_slug": "python-76",
-    "title": "الدرس 76: موضوع مخصص",
-    "category": "البرمجة الكائنية OOP",
-    "order_index": 76,
-    "is_free": false,
-    "content_type": "theory",
-    "duration_minutes": 10,
-    "content": {
-      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 76) لربط المفاهيم النظرية بالتطبيق العملي.",
-      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: البرمجة الكائنية OOP.",
-      "prototype": "def concept_76(): pass",
-      "parameters": "تفاصيل المدخلات للدرس 76.",
-      "return_value": "النتيجة المرجوة من أدوات الدرس 76.",
-      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
-    },
-    "exercise_instructions": "تمرين الدرس 76",
-    "expected_output": "انتظرونا"
-  },
-  {
-    "lesson_slug": "python-77",
-    "title": "الدرس 77: موضوع مخصص",
-    "category": "البرمجة الكائنية OOP",
-    "order_index": 77,
-    "is_free": false,
-    "content_type": "theory",
-    "duration_minutes": 10,
-    "content": {
-      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 77) لربط المفاهيم النظرية بالتطبيق العملي.",
-      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: البرمجة الكائنية OOP.",
-      "prototype": "def concept_77(): pass",
-      "parameters": "تفاصيل المدخلات للدرس 77.",
-      "return_value": "النتيجة المرجوة من أدوات الدرس 77.",
-      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
-    },
-    "exercise_instructions": "تمرين الدرس 77",
-    "expected_output": "انتظرونا"
-  },
-  {
-    "lesson_slug": "python-78",
-    "title": "الدرس 78: موضوع مخصص",
-    "category": "البرمجة الكائنية OOP",
-    "order_index": 78,
-    "is_free": false,
-    "content_type": "theory",
-    "duration_minutes": 10,
-    "content": {
-      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 78) لربط المفاهيم النظرية بالتطبيق العملي.",
-      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: البرمجة الكائنية OOP.",
-      "prototype": "def concept_78(): pass",
-      "parameters": "تفاصيل المدخلات للدرس 78.",
-      "return_value": "النتيجة المرجوة من أدوات الدرس 78.",
-      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
-    },
-    "exercise_instructions": "تمرين الدرس 78",
-    "expected_output": "انتظرونا"
-  },
-  {
-    "lesson_slug": "python-79",
-    "title": "الدرس 79: موضوع مخصص",
-    "category": "البرمجة الكائنية OOP",
-    "order_index": 79,
-    "is_free": false,
-    "content_type": "theory",
-    "duration_minutes": 10,
-    "content": {
-      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 79) لربط المفاهيم النظرية بالتطبيق العملي.",
-      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: البرمجة الكائنية OOP.",
-      "prototype": "def concept_79(): pass",
-      "parameters": "تفاصيل المدخلات للدرس 79.",
-      "return_value": "النتيجة المرجوة من أدوات الدرس 79.",
-      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
-    },
-    "exercise_instructions": "تمرين الدرس 79",
-    "expected_output": "انتظرونا"
-  },
-  {
-    "lesson_slug": "python-80",
-    "title": "الدرس 80: موضوع مخصص",
-    "category": "البرمجة الكائنية OOP",
-    "order_index": 80,
-    "is_free": false,
-    "content_type": "theory",
-    "duration_minutes": 10,
-    "content": {
-      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 80) لربط المفاهيم النظرية بالتطبيق العملي.",
-      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: البرمجة الكائنية OOP.",
-      "prototype": "def concept_80(): pass",
-      "parameters": "تفاصيل المدخلات للدرس 80.",
-      "return_value": "النتيجة المرجوة من أدوات الدرس 80.",
-      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
-    },
-    "exercise_instructions": "تمرين الدرس 80",
-    "expected_output": "انتظرونا"
-  },
-  {
-    "lesson_slug": "python-81",
-    "title": "الدرس 81: موضوع مخصص",
-    "category": "بناء تطبيقات حقيقية وأتمتة",
-    "order_index": 81,
-    "is_free": false,
-    "content_type": "theory",
-    "duration_minutes": 10,
-    "content": {
-      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 81) لربط المفاهيم النظرية بالتطبيق العملي.",
-      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: بناء تطبيقات حقيقية وأتمتة.",
-      "prototype": "def concept_81(): pass",
-      "parameters": "تفاصيل المدخلات للدرس 81.",
-      "return_value": "النتيجة المرجوة من أدوات الدرس 81.",
-      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
-    },
-    "exercise_instructions": "تمرين الدرس 81",
-    "expected_output": "انتظرونا"
-  },
-  {
-    "lesson_slug": "python-82",
-    "title": "الدرس 82: موضوع مخصص",
-    "category": "بناء تطبيقات حقيقية وأتمتة",
-    "order_index": 82,
-    "is_free": false,
-    "content_type": "theory",
-    "duration_minutes": 10,
-    "content": {
-      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 82) لربط المفاهيم النظرية بالتطبيق العملي.",
-      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: بناء تطبيقات حقيقية وأتمتة.",
-      "prototype": "def concept_82(): pass",
-      "parameters": "تفاصيل المدخلات للدرس 82.",
-      "return_value": "النتيجة المرجوة من أدوات الدرس 82.",
-      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
-    },
-    "exercise_instructions": "تمرين الدرس 82",
-    "expected_output": "انتظرونا"
-  },
-  {
-    "lesson_slug": "python-83",
-    "title": "الدرس 83: موضوع مخصص",
-    "category": "بناء تطبيقات حقيقية وأتمتة",
-    "order_index": 83,
-    "is_free": false,
-    "content_type": "theory",
-    "duration_minutes": 10,
-    "content": {
-      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 83) لربط المفاهيم النظرية بالتطبيق العملي.",
-      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: بناء تطبيقات حقيقية وأتمتة.",
-      "prototype": "def concept_83(): pass",
-      "parameters": "تفاصيل المدخلات للدرس 83.",
-      "return_value": "النتيجة المرجوة من أدوات الدرس 83.",
-      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
-    },
-    "exercise_instructions": "تمرين الدرس 83",
-    "expected_output": "انتظرونا"
-  },
-  {
-    "lesson_slug": "python-84",
-    "title": "الدرس 84: موضوع مخصص",
-    "category": "بناء تطبيقات حقيقية وأتمتة",
-    "order_index": 84,
-    "is_free": false,
-    "content_type": "theory",
-    "duration_minutes": 10,
-    "content": {
-      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 84) لربط المفاهيم النظرية بالتطبيق العملي.",
-      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: بناء تطبيقات حقيقية وأتمتة.",
-      "prototype": "def concept_84(): pass",
-      "parameters": "تفاصيل المدخلات للدرس 84.",
-      "return_value": "النتيجة المرجوة من أدوات الدرس 84.",
-      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
-    },
-    "exercise_instructions": "تمرين الدرس 84",
-    "expected_output": "انتظرونا"
-  },
-  {
-    "lesson_slug": "python-85",
-    "title": "الدرس 85: موضوع مخصص",
-    "category": "بناء تطبيقات حقيقية وأتمتة",
-    "order_index": 85,
-    "is_free": false,
-    "content_type": "theory",
-    "duration_minutes": 10,
-    "content": {
-      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 85) لربط المفاهيم النظرية بالتطبيق العملي.",
-      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: بناء تطبيقات حقيقية وأتمتة.",
-      "prototype": "def concept_85(): pass",
-      "parameters": "تفاصيل المدخلات للدرس 85.",
-      "return_value": "النتيجة المرجوة من أدوات الدرس 85.",
-      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
-    },
-    "exercise_instructions": "تمرين الدرس 85",
-    "expected_output": "انتظرونا"
-  },
-  {
-    "lesson_slug": "python-86",
-    "title": "الدرس 86: موضوع مخصص",
-    "category": "بناء تطبيقات حقيقية وأتمتة",
-    "order_index": 86,
-    "is_free": false,
-    "content_type": "theory",
-    "duration_minutes": 10,
-    "content": {
-      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 86) لربط المفاهيم النظرية بالتطبيق العملي.",
-      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: بناء تطبيقات حقيقية وأتمتة.",
-      "prototype": "def concept_86(): pass",
-      "parameters": "تفاصيل المدخلات للدرس 86.",
-      "return_value": "النتيجة المرجوة من أدوات الدرس 86.",
-      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
-    },
-    "exercise_instructions": "تمرين الدرس 86",
-    "expected_output": "انتظرونا"
-  },
-  {
-    "lesson_slug": "python-87",
-    "title": "الدرس 87: موضوع مخصص",
-    "category": "بناء تطبيقات حقيقية وأتمتة",
-    "order_index": 87,
-    "is_free": false,
-    "content_type": "theory",
-    "duration_minutes": 10,
-    "content": {
-      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 87) لربط المفاهيم النظرية بالتطبيق العملي.",
-      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: بناء تطبيقات حقيقية وأتمتة.",
-      "prototype": "def concept_87(): pass",
-      "parameters": "تفاصيل المدخلات للدرس 87.",
-      "return_value": "النتيجة المرجوة من أدوات الدرس 87.",
-      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
-    },
-    "exercise_instructions": "تمرين الدرس 87",
-    "expected_output": "انتظرونا"
-  },
-  {
-    "lesson_slug": "python-88",
-    "title": "الدرس 88: موضوع مخصص",
-    "category": "بناء تطبيقات حقيقية وأتمتة",
-    "order_index": 88,
-    "is_free": false,
-    "content_type": "theory",
-    "duration_minutes": 10,
-    "content": {
-      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 88) لربط المفاهيم النظرية بالتطبيق العملي.",
-      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: بناء تطبيقات حقيقية وأتمتة.",
-      "prototype": "def concept_88(): pass",
-      "parameters": "تفاصيل المدخلات للدرس 88.",
-      "return_value": "النتيجة المرجوة من أدوات الدرس 88.",
-      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
-    },
-    "exercise_instructions": "تمرين الدرس 88",
-    "expected_output": "انتظرونا"
-  },
-  {
-    "lesson_slug": "python-89",
-    "title": "الدرس 89: موضوع مخصص",
-    "category": "بناء تطبيقات حقيقية وأتمتة",
-    "order_index": 89,
-    "is_free": false,
-    "content_type": "theory",
-    "duration_minutes": 10,
-    "content": {
-      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 89) لربط المفاهيم النظرية بالتطبيق العملي.",
-      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: بناء تطبيقات حقيقية وأتمتة.",
-      "prototype": "def concept_89(): pass",
-      "parameters": "تفاصيل المدخلات للدرس 89.",
-      "return_value": "النتيجة المرجوة من أدوات الدرس 89.",
-      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
-    },
-    "exercise_instructions": "تمرين الدرس 89",
-    "expected_output": "انتظرونا"
-  },
-  {
-    "lesson_slug": "python-90",
-    "title": "الدرس 90: موضوع مخصص",
-    "category": "بناء تطبيقات حقيقية وأتمتة",
-    "order_index": 90,
-    "is_free": false,
-    "content_type": "theory",
-    "duration_minutes": 10,
-    "content": {
-      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 90) لربط المفاهيم النظرية بالتطبيق العملي.",
-      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: بناء تطبيقات حقيقية وأتمتة.",
-      "prototype": "def concept_90(): pass",
-      "parameters": "تفاصيل المدخلات للدرس 90.",
-      "return_value": "النتيجة المرجوة من أدوات الدرس 90.",
-      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
-    },
-    "exercise_instructions": "تمرين الدرس 90",
-    "expected_output": "انتظرونا"
-  },
-  {
-    "lesson_slug": "python-91",
-    "title": "الدرس 91: موضوع مخصص",
-    "category": "بناء تطبيقات حقيقية وأتمتة",
-    "order_index": 91,
-    "is_free": false,
-    "content_type": "theory",
-    "duration_minutes": 10,
-    "content": {
-      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 91) لربط المفاهيم النظرية بالتطبيق العملي.",
-      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: بناء تطبيقات حقيقية وأتمتة.",
-      "prototype": "def concept_91(): pass",
-      "parameters": "تفاصيل المدخلات للدرس 91.",
-      "return_value": "النتيجة المرجوة من أدوات الدرس 91.",
-      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
-    },
-    "exercise_instructions": "تمرين الدرس 91",
-    "expected_output": "انتظرونا"
-  },
-  {
-    "lesson_slug": "python-92",
-    "title": "الدرس 92: موضوع مخصص",
-    "category": "بناء تطبيقات حقيقية وأتمتة",
-    "order_index": 92,
-    "is_free": false,
-    "content_type": "theory",
-    "duration_minutes": 10,
-    "content": {
-      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 92) لربط المفاهيم النظرية بالتطبيق العملي.",
-      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: بناء تطبيقات حقيقية وأتمتة.",
-      "prototype": "def concept_92(): pass",
-      "parameters": "تفاصيل المدخلات للدرس 92.",
-      "return_value": "النتيجة المرجوة من أدوات الدرس 92.",
-      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
-    },
-    "exercise_instructions": "تمرين الدرس 92",
-    "expected_output": "انتظرونا"
-  },
-  {
-    "lesson_slug": "python-93",
-    "title": "الدرس 93: موضوع مخصص",
-    "category": "بناء تطبيقات حقيقية وأتمتة",
-    "order_index": 93,
-    "is_free": false,
-    "content_type": "theory",
-    "duration_minutes": 10,
-    "content": {
-      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 93) لربط المفاهيم النظرية بالتطبيق العملي.",
-      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: بناء تطبيقات حقيقية وأتمتة.",
-      "prototype": "def concept_93(): pass",
-      "parameters": "تفاصيل المدخلات للدرس 93.",
-      "return_value": "النتيجة المرجوة من أدوات الدرس 93.",
-      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
-    },
-    "exercise_instructions": "تمرين الدرس 93",
-    "expected_output": "انتظرونا"
-  },
-  {
-    "lesson_slug": "python-94",
-    "title": "الدرس 94: موضوع مخصص",
-    "category": "بناء تطبيقات حقيقية وأتمتة",
-    "order_index": 94,
-    "is_free": false,
-    "content_type": "theory",
-    "duration_minutes": 10,
-    "content": {
-      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 94) لربط المفاهيم النظرية بالتطبيق العملي.",
-      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: بناء تطبيقات حقيقية وأتمتة.",
-      "prototype": "def concept_94(): pass",
-      "parameters": "تفاصيل المدخلات للدرس 94.",
-      "return_value": "النتيجة المرجوة من أدوات الدرس 94.",
-      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
-    },
-    "exercise_instructions": "تمرين الدرس 94",
-    "expected_output": "انتظرونا"
-  },
-  {
-    "lesson_slug": "python-95",
-    "title": "الدرس 95: موضوع مخصص",
-    "category": "بناء تطبيقات حقيقية وأتمتة",
-    "order_index": 95,
-    "is_free": false,
-    "content_type": "theory",
-    "duration_minutes": 10,
-    "content": {
-      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 95) لربط المفاهيم النظرية بالتطبيق العملي.",
-      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: بناء تطبيقات حقيقية وأتمتة.",
-      "prototype": "def concept_95(): pass",
-      "parameters": "تفاصيل المدخلات للدرس 95.",
-      "return_value": "النتيجة المرجوة من أدوات الدرس 95.",
-      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
-    },
-    "exercise_instructions": "تمرين الدرس 95",
-    "expected_output": "انتظرونا"
-  },
-  {
-    "lesson_slug": "python-96",
-    "title": "الدرس 96: موضوع مخصص",
-    "category": "بناء تطبيقات حقيقية وأتمتة",
-    "order_index": 96,
-    "is_free": false,
-    "content_type": "theory",
-    "duration_minutes": 10,
-    "content": {
-      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 96) لربط المفاهيم النظرية بالتطبيق العملي.",
-      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: بناء تطبيقات حقيقية وأتمتة.",
-      "prototype": "def concept_96(): pass",
-      "parameters": "تفاصيل المدخلات للدرس 96.",
-      "return_value": "النتيجة المرجوة من أدوات الدرس 96.",
-      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
-    },
-    "exercise_instructions": "تمرين الدرس 96",
-    "expected_output": "انتظرونا"
-  },
-  {
-    "lesson_slug": "python-97",
-    "title": "الدرس 97: موضوع مخصص",
-    "category": "بناء تطبيقات حقيقية وأتمتة",
-    "order_index": 97,
-    "is_free": false,
-    "content_type": "theory",
-    "duration_minutes": 10,
-    "content": {
-      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 97) لربط المفاهيم النظرية بالتطبيق العملي.",
-      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: بناء تطبيقات حقيقية وأتمتة.",
-      "prototype": "def concept_97(): pass",
-      "parameters": "تفاصيل المدخلات للدرس 97.",
-      "return_value": "النتيجة المرجوة من أدوات الدرس 97.",
-      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
-    },
-    "exercise_instructions": "تمرين الدرس 97",
-    "expected_output": "انتظرونا"
-  },
-  {
-    "lesson_slug": "python-98",
-    "title": "الدرس 98: موضوع مخصص",
-    "category": "بناء تطبيقات حقيقية وأتمتة",
-    "order_index": 98,
-    "is_free": false,
-    "content_type": "theory",
-    "duration_minutes": 10,
-    "content": {
-      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 98) لربط المفاهيم النظرية بالتطبيق العملي.",
-      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: بناء تطبيقات حقيقية وأتمتة.",
-      "prototype": "def concept_98(): pass",
-      "parameters": "تفاصيل المدخلات للدرس 98.",
-      "return_value": "النتيجة المرجوة من أدوات الدرس 98.",
-      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
-    },
-    "exercise_instructions": "تمرين الدرس 98",
-    "expected_output": "انتظرونا"
-  },
-  {
-    "lesson_slug": "python-99",
-    "title": "الدرس 99: موضوع مخصص",
-    "category": "بناء تطبيقات حقيقية وأتمتة",
-    "order_index": 99,
-    "is_free": false,
-    "content_type": "theory",
-    "duration_minutes": 10,
-    "content": {
-      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 99) لربط المفاهيم النظرية بالتطبيق العملي.",
-      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: بناء تطبيقات حقيقية وأتمتة.",
-      "prototype": "def concept_99(): pass",
-      "parameters": "تفاصيل المدخلات للدرس 99.",
-      "return_value": "النتيجة المرجوة من أدوات الدرس 99.",
-      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
-    },
-    "exercise_instructions": "تمرين الدرس 99",
-    "expected_output": "انتظرونا"
-  },
-  {
-    "lesson_slug": "python-100",
-    "title": "الدرس 100: موضوع مخصص",
-    "category": "بناء تطبيقات حقيقية وأتمتة",
-    "order_index": 100,
-    "is_free": false,
-    "content_type": "theory",
-    "duration_minutes": 10,
-    "content": {
-      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 100) لربط المفاهيم النظرية بالتطبيق العملي.",
-      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: بناء تطبيقات حقيقية وأتمتة.",
-      "prototype": "def concept_100(): pass",
-      "parameters": "تفاصيل المدخلات للدرس 100.",
-      "return_value": "النتيجة المرجوة من أدوات الدرس 100.",
-      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
-    },
-    "exercise_instructions": "تمرين الدرس 100",
-    "expected_output": "انتظرونا"
-  }
+  "lesson_slug": "python-21",
+  "title": "الدرس 21: مراجعة أساسيات بايثون",
+  "category": "المستوى المتوسط",
+  "order_index": 21,
+  "is_free": false,
+  "content_type": "theory",
+  "duration_minutes": 15,
+  "content": {
+    "context": "في هذا الدرس سنناقش \"مراجعة أساسيات بايثون\" بشكل مفصل واحترافي. يعتبر هذا الدرس أساسياً لبناء مهارتك وصقل معرفتك.",
+    "description": "شرح متكامل ومبسط عن مراجعة أساسيات بايثون. سنتعرف على أفضل الممارسات وطرق التطبيق العملية خطوة بخطوة لضمان استيعابك الكامل.",
+    "prototype": "Concept_21() -> Completed",
+    "parameters": "المتغيرات والأدوات الأساسية المرتبطة بـ مراجعة أساسيات بايثون",
+    "return_value": "احتراف وفهم مراجعة أساسيات بايثون وتطبيقه في مشاريعك.",
+    "example": "def practice_21():\\n      print(\"Welcome to مراجعة أساسيات بايثون\")\\n  \\n  practice_21()"
+  },
+  "exercise_instructions": "قم بتطبيق ما تعلمته في درس مراجعة أساسيات بايثون لإنشاء برنامجك الخاص.",
+  "expected_output": "Success"
+},
+  {
+  "lesson_slug": "python-22",
+  "title": "الدرس 22: القوائم (Lists) المتقدمة",
+  "category": "المستوى المتوسط",
+  "order_index": 22,
+  "is_free": false,
+  "content_type": "theory",
+  "duration_minutes": 15,
+  "content": {
+    "context": "في هذا الدرس سنناقش \"القوائم (Lists) المتقدمة\" بشكل مفصل واحترافي. يعتبر هذا الدرس أساسياً لبناء مهارتك وصقل معرفتك.",
+    "description": "شرح متكامل ومبسط عن القوائم (Lists) المتقدمة. سنتعرف على أفضل الممارسات وطرق التطبيق العملية خطوة بخطوة لضمان استيعابك الكامل.",
+    "prototype": "Concept_22() -> Completed",
+    "parameters": "المتغيرات والأدوات الأساسية المرتبطة بـ القوائم (Lists) المتقدمة",
+    "return_value": "احتراف وفهم القوائم (Lists) المتقدمة وتطبيقه في مشاريعك.",
+    "example": "def practice_22():\\n      print(\"Welcome to القوائم (Lists) المتقدمة\")\\n  \\n  practice_22()"
+  },
+  "exercise_instructions": "قم بتطبيق ما تعلمته في درس القوائم (Lists) المتقدمة لإنشاء برنامجك الخاص.",
+  "expected_output": "Success"
+},
+  {
+  "lesson_slug": "python-23",
+  "title": "الدرس 23: عمليات البحث في القوائم",
+  "category": "المستوى المتوسط",
+  "order_index": 23,
+  "is_free": false,
+  "content_type": "theory",
+  "duration_minutes": 15,
+  "content": {
+    "context": "في هذا الدرس سنناقش \"عمليات البحث في القوائم\" بشكل مفصل واحترافي. يعتبر هذا الدرس أساسياً لبناء مهارتك وصقل معرفتك.",
+    "description": "شرح متكامل ومبسط عن عمليات البحث في القوائم. سنتعرف على أفضل الممارسات وطرق التطبيق العملية خطوة بخطوة لضمان استيعابك الكامل.",
+    "prototype": "Concept_23() -> Completed",
+    "parameters": "المتغيرات والأدوات الأساسية المرتبطة بـ عمليات البحث في القوائم",
+    "return_value": "احتراف وفهم عمليات البحث في القوائم وتطبيقه في مشاريعك.",
+    "example": "def practice_23():\\n      print(\"Welcome to عمليات البحث في القوائم\")\\n  \\n  practice_23()"
+  },
+  "exercise_instructions": "قم بتطبيق ما تعلمته في درس عمليات البحث في القوائم لإنشاء برنامجك الخاص.",
+  "expected_output": "Success"
+},
+  {
+  "lesson_slug": "python-24",
+  "title": "الدرس 24: القواميس (Dictionaries)",
+  "category": "المستوى المتوسط",
+  "order_index": 24,
+  "is_free": false,
+  "content_type": "theory",
+  "duration_minutes": 15,
+  "content": {
+    "context": "في هذا الدرس سنناقش \"القواميس (Dictionaries)\" بشكل مفصل واحترافي. يعتبر هذا الدرس أساسياً لبناء مهارتك وصقل معرفتك.",
+    "description": "شرح متكامل ومبسط عن القواميس (Dictionaries). سنتعرف على أفضل الممارسات وطرق التطبيق العملية خطوة بخطوة لضمان استيعابك الكامل.",
+    "prototype": "Concept_24() -> Completed",
+    "parameters": "المتغيرات والأدوات الأساسية المرتبطة بـ القواميس (Dictionaries)",
+    "return_value": "احتراف وفهم القواميس (Dictionaries) وتطبيقه في مشاريعك.",
+    "example": "def practice_24():\\n      print(\"Welcome to القواميس (Dictionaries)\")\\n  \\n  practice_24()"
+  },
+  "exercise_instructions": "قم بتطبيق ما تعلمته في درس القواميس (Dictionaries) لإنشاء برنامجك الخاص.",
+  "expected_output": "Success"
+},
+  {
+  "lesson_slug": "python-25",
+  "title": "الدرس 25: المجموعات (Sets)",
+  "category": "المستوى المتوسط",
+  "order_index": 25,
+  "is_free": false,
+  "content_type": "theory",
+  "duration_minutes": 15,
+  "content": {
+    "context": "في هذا الدرس سنناقش \"المجموعات (Sets)\" بشكل مفصل واحترافي. يعتبر هذا الدرس أساسياً لبناء مهارتك وصقل معرفتك.",
+    "description": "شرح متكامل ومبسط عن المجموعات (Sets). سنتعرف على أفضل الممارسات وطرق التطبيق العملية خطوة بخطوة لضمان استيعابك الكامل.",
+    "prototype": "Concept_25() -> Completed",
+    "parameters": "المتغيرات والأدوات الأساسية المرتبطة بـ المجموعات (Sets)",
+    "return_value": "احتراف وفهم المجموعات (Sets) وتطبيقه في مشاريعك.",
+    "example": "def practice_25():\\n      print(\"Welcome to المجموعات (Sets)\")\\n  \\n  practice_25()"
+  },
+  "exercise_instructions": "قم بتطبيق ما تعلمته في درس المجموعات (Sets) لإنشاء برنامجك الخاص.",
+  "expected_output": "Success"
+},
+  {
+  "lesson_slug": "python-26",
+  "title": "الدرس 26: مقارنة البيانات",
+  "category": "المستوى المتوسط",
+  "order_index": 26,
+  "is_free": false,
+  "content_type": "theory",
+  "duration_minutes": 15,
+  "content": {
+    "context": "في هذا الدرس سنناقش \"مقارنة البيانات\" بشكل مفصل واحترافي. يعتبر هذا الدرس أساسياً لبناء مهارتك وصقل معرفتك.",
+    "description": "شرح متكامل ومبسط عن مقارنة البيانات. سنتعرف على أفضل الممارسات وطرق التطبيق العملية خطوة بخطوة لضمان استيعابك الكامل.",
+    "prototype": "Concept_26() -> Completed",
+    "parameters": "المتغيرات والأدوات الأساسية المرتبطة بـ مقارنة البيانات",
+    "return_value": "احتراف وفهم مقارنة البيانات وتطبيقه في مشاريعك.",
+    "example": "def practice_26():\\n      print(\"Welcome to مقارنة البيانات\")\\n  \\n  practice_26()"
+  },
+  "exercise_instructions": "قم بتطبيق ما تعلمته في درس مقارنة البيانات لإنشاء برنامجك الخاص.",
+  "expected_output": "Success"
+},
+  {
+  "lesson_slug": "python-27",
+  "title": "الدرس 27: الدوال (Functions) المتقدمة",
+  "category": "المستوى المتوسط",
+  "order_index": 27,
+  "is_free": false,
+  "content_type": "theory",
+  "duration_minutes": 15,
+  "content": {
+    "context": "في هذا الدرس سنناقش \"الدوال (Functions) المتقدمة\" بشكل مفصل واحترافي. يعتبر هذا الدرس أساسياً لبناء مهارتك وصقل معرفتك.",
+    "description": "شرح متكامل ومبسط عن الدوال (Functions) المتقدمة. سنتعرف على أفضل الممارسات وطرق التطبيق العملية خطوة بخطوة لضمان استيعابك الكامل.",
+    "prototype": "Concept_27() -> Completed",
+    "parameters": "المتغيرات والأدوات الأساسية المرتبطة بـ الدوال (Functions) المتقدمة",
+    "return_value": "احتراف وفهم الدوال (Functions) المتقدمة وتطبيقه في مشاريعك.",
+    "example": "def practice_27():\\n      print(\"Welcome to الدوال (Functions) المتقدمة\")\\n  \\n  practice_27()"
+  },
+  "exercise_instructions": "قم بتطبيق ما تعلمته في درس الدوال (Functions) المتقدمة لإنشاء برنامجك الخاص.",
+  "expected_output": "Success"
+},
+  {
+  "lesson_slug": "python-28",
+  "title": "الدرس 28: المتغيرات المحلية والعامة",
+  "category": "المستوى المتوسط",
+  "order_index": 28,
+  "is_free": false,
+  "content_type": "theory",
+  "duration_minutes": 15,
+  "content": {
+    "context": "في هذا الدرس سنناقش \"المتغيرات المحلية والعامة\" بشكل مفصل واحترافي. يعتبر هذا الدرس أساسياً لبناء مهارتك وصقل معرفتك.",
+    "description": "شرح متكامل ومبسط عن المتغيرات المحلية والعامة. سنتعرف على أفضل الممارسات وطرق التطبيق العملية خطوة بخطوة لضمان استيعابك الكامل.",
+    "prototype": "Concept_28() -> Completed",
+    "parameters": "المتغيرات والأدوات الأساسية المرتبطة بـ المتغيرات المحلية والعامة",
+    "return_value": "احتراف وفهم المتغيرات المحلية والعامة وتطبيقه في مشاريعك.",
+    "example": "def practice_28():\\n      print(\"Welcome to المتغيرات المحلية والعامة\")\\n  \\n  practice_28()"
+  },
+  "exercise_instructions": "قم بتطبيق ما تعلمته في درس المتغيرات المحلية والعامة لإنشاء برنامجك الخاص.",
+  "expected_output": "Success"
+},
+  {
+  "lesson_slug": "python-29",
+  "title": "الدرس 29: البرمجة الكائنية (OOP) مقدمة",
+  "category": "المستوى المتوسط",
+  "order_index": 29,
+  "is_free": false,
+  "content_type": "theory",
+  "duration_minutes": 15,
+  "content": {
+    "context": "في هذا الدرس سنناقش \"البرمجة الكائنية (OOP) مقدمة\" بشكل مفصل واحترافي. يعتبر هذا الدرس أساسياً لبناء مهارتك وصقل معرفتك.",
+    "description": "شرح متكامل ومبسط عن البرمجة الكائنية (OOP) مقدمة. سنتعرف على أفضل الممارسات وطرق التطبيق العملية خطوة بخطوة لضمان استيعابك الكامل.",
+    "prototype": "Concept_29() -> Completed",
+    "parameters": "المتغيرات والأدوات الأساسية المرتبطة بـ البرمجة الكائنية (OOP) مقدمة",
+    "return_value": "احتراف وفهم البرمجة الكائنية (OOP) مقدمة وتطبيقه في مشاريعك.",
+    "example": "def practice_29():\\n      print(\"Welcome to البرمجة الكائنية (OOP) مقدمة\")\\n  \\n  practice_29()"
+  },
+  "exercise_instructions": "قم بتطبيق ما تعلمته في درس البرمجة الكائنية (OOP) مقدمة لإنشاء برنامجك الخاص.",
+  "expected_output": "Success"
+},
+  {
+  "lesson_slug": "python-30",
+  "title": "الدرس 30: الفئات (Classes) والكائنات",
+  "category": "المستوى المتوسط",
+  "order_index": 30,
+  "is_free": false,
+  "content_type": "theory",
+  "duration_minutes": 15,
+  "content": {
+    "context": "في هذا الدرس سنناقش \"الفئات (Classes) والكائنات\" بشكل مفصل واحترافي. يعتبر هذا الدرس أساسياً لبناء مهارتك وصقل معرفتك.",
+    "description": "شرح متكامل ومبسط عن الفئات (Classes) والكائنات. سنتعرف على أفضل الممارسات وطرق التطبيق العملية خطوة بخطوة لضمان استيعابك الكامل.",
+    "prototype": "Concept_30() -> Completed",
+    "parameters": "المتغيرات والأدوات الأساسية المرتبطة بـ الفئات (Classes) والكائنات",
+    "return_value": "احتراف وفهم الفئات (Classes) والكائنات وتطبيقه في مشاريعك.",
+    "example": "def practice_30():\\n      print(\"Welcome to الفئات (Classes) والكائنات\")\\n  \\n  practice_30()"
+  },
+  "exercise_instructions": "قم بتطبيق ما تعلمته في درس الفئات (Classes) والكائنات لإنشاء برنامجك الخاص.",
+  "expected_output": "Success"
+},
+  {
+  "lesson_slug": "python-31",
+  "title": "الدرس 31: الوراثة (Inheritance)",
+  "category": "المستوى المتوسط",
+  "order_index": 31,
+  "is_free": false,
+  "content_type": "theory",
+  "duration_minutes": 15,
+  "content": {
+    "context": "في هذا الدرس سنناقش \"الوراثة (Inheritance)\" بشكل مفصل واحترافي. يعتبر هذا الدرس أساسياً لبناء مهارتك وصقل معرفتك.",
+    "description": "شرح متكامل ومبسط عن الوراثة (Inheritance). سنتعرف على أفضل الممارسات وطرق التطبيق العملية خطوة بخطوة لضمان استيعابك الكامل.",
+    "prototype": "Concept_31() -> Completed",
+    "parameters": "المتغيرات والأدوات الأساسية المرتبطة بـ الوراثة (Inheritance)",
+    "return_value": "احتراف وفهم الوراثة (Inheritance) وتطبيقه في مشاريعك.",
+    "example": "def practice_31():\\n      print(\"Welcome to الوراثة (Inheritance)\")\\n  \\n  practice_31()"
+  },
+  "exercise_instructions": "قم بتطبيق ما تعلمته في درس الوراثة (Inheritance) لإنشاء برنامجك الخاص.",
+  "expected_output": "Success"
+},
+  {
+  "lesson_slug": "python-32",
+  "title": "الدرس 32: التغليف (Encapsulation)",
+  "category": "المستوى المتوسط",
+  "order_index": 32,
+  "is_free": false,
+  "content_type": "theory",
+  "duration_minutes": 15,
+  "content": {
+    "context": "في هذا الدرس سنناقش \"التغليف (Encapsulation)\" بشكل مفصل واحترافي. يعتبر هذا الدرس أساسياً لبناء مهارتك وصقل معرفتك.",
+    "description": "شرح متكامل ومبسط عن التغليف (Encapsulation). سنتعرف على أفضل الممارسات وطرق التطبيق العملية خطوة بخطوة لضمان استيعابك الكامل.",
+    "prototype": "Concept_32() -> Completed",
+    "parameters": "المتغيرات والأدوات الأساسية المرتبطة بـ التغليف (Encapsulation)",
+    "return_value": "احتراف وفهم التغليف (Encapsulation) وتطبيقه في مشاريعك.",
+    "example": "def practice_32():\\n      print(\"Welcome to التغليف (Encapsulation)\")\\n  \\n  practice_32()"
+  },
+  "exercise_instructions": "قم بتطبيق ما تعلمته في درس التغليف (Encapsulation) لإنشاء برنامجك الخاص.",
+  "expected_output": "Success"
+},
+  {
+  "lesson_slug": "python-33",
+  "title": "الدرس 33: معالجة الأخطاء (Try/Except)",
+  "category": "المستوى المتوسط",
+  "order_index": 33,
+  "is_free": false,
+  "content_type": "theory",
+  "duration_minutes": 15,
+  "content": {
+    "context": "في هذا الدرس سنناقش \"معالجة الأخطاء (Try/Except)\" بشكل مفصل واحترافي. يعتبر هذا الدرس أساسياً لبناء مهارتك وصقل معرفتك.",
+    "description": "شرح متكامل ومبسط عن معالجة الأخطاء (Try/Except). سنتعرف على أفضل الممارسات وطرق التطبيق العملية خطوة بخطوة لضمان استيعابك الكامل.",
+    "prototype": "Concept_33() -> Completed",
+    "parameters": "المتغيرات والأدوات الأساسية المرتبطة بـ معالجة الأخطاء (Try/Except)",
+    "return_value": "احتراف وفهم معالجة الأخطاء (Try/Except) وتطبيقه في مشاريعك.",
+    "example": "def practice_33():\\n      print(\"Welcome to معالجة الأخطاء (Try/Except)\")\\n  \\n  practice_33()"
+  },
+  "exercise_instructions": "قم بتطبيق ما تعلمته في درس معالجة الأخطاء (Try/Except) لإنشاء برنامجك الخاص.",
+  "expected_output": "Success"
+},
+  {
+  "lesson_slug": "python-34",
+  "title": "الدرس 34: التعامل مع الملفات (القراءة)",
+  "category": "المستوى المتوسط",
+  "order_index": 34,
+  "is_free": false,
+  "content_type": "theory",
+  "duration_minutes": 15,
+  "content": {
+    "context": "في هذا الدرس سنناقش \"التعامل مع الملفات (القراءة)\" بشكل مفصل واحترافي. يعتبر هذا الدرس أساسياً لبناء مهارتك وصقل معرفتك.",
+    "description": "شرح متكامل ومبسط عن التعامل مع الملفات (القراءة). سنتعرف على أفضل الممارسات وطرق التطبيق العملية خطوة بخطوة لضمان استيعابك الكامل.",
+    "prototype": "Concept_34() -> Completed",
+    "parameters": "المتغيرات والأدوات الأساسية المرتبطة بـ التعامل مع الملفات (القراءة)",
+    "return_value": "احتراف وفهم التعامل مع الملفات (القراءة) وتطبيقه في مشاريعك.",
+    "example": "def practice_34():\\n      print(\"Welcome to التعامل مع الملفات (القراءة)\")\\n  \\n  practice_34()"
+  },
+  "exercise_instructions": "قم بتطبيق ما تعلمته في درس التعامل مع الملفات (القراءة) لإنشاء برنامجك الخاص.",
+  "expected_output": "Success"
+},
+  {
+  "lesson_slug": "python-35",
+  "title": "الدرس 35: التعامل مع الملفات (الكتابة)",
+  "category": "المستوى المتوسط",
+  "order_index": 35,
+  "is_free": false,
+  "content_type": "theory",
+  "duration_minutes": 15,
+  "content": {
+    "context": "في هذا الدرس سنناقش \"التعامل مع الملفات (الكتابة)\" بشكل مفصل واحترافي. يعتبر هذا الدرس أساسياً لبناء مهارتك وصقل معرفتك.",
+    "description": "شرح متكامل ومبسط عن التعامل مع الملفات (الكتابة). سنتعرف على أفضل الممارسات وطرق التطبيق العملية خطوة بخطوة لضمان استيعابك الكامل.",
+    "prototype": "Concept_35() -> Completed",
+    "parameters": "المتغيرات والأدوات الأساسية المرتبطة بـ التعامل مع الملفات (الكتابة)",
+    "return_value": "احتراف وفهم التعامل مع الملفات (الكتابة) وتطبيقه في مشاريعك.",
+    "example": "def practice_35():\\n      print(\"Welcome to التعامل مع الملفات (الكتابة)\")\\n  \\n  practice_35()"
+  },
+  "exercise_instructions": "قم بتطبيق ما تعلمته في درس التعامل مع الملفات (الكتابة) لإنشاء برنامجك الخاص.",
+  "expected_output": "Success"
+},
+  {
+  "lesson_slug": "python-36",
+  "title": "الدرس 36: استيراد المكتبات",
+  "category": "المستوى المتوسط",
+  "order_index": 36,
+  "is_free": false,
+  "content_type": "theory",
+  "duration_minutes": 15,
+  "content": {
+    "context": "في هذا الدرس سنناقش \"استيراد المكتبات\" بشكل مفصل واحترافي. يعتبر هذا الدرس أساسياً لبناء مهارتك وصقل معرفتك.",
+    "description": "شرح متكامل ومبسط عن استيراد المكتبات. سنتعرف على أفضل الممارسات وطرق التطبيق العملية خطوة بخطوة لضمان استيعابك الكامل.",
+    "prototype": "Concept_36() -> Completed",
+    "parameters": "المتغيرات والأدوات الأساسية المرتبطة بـ استيراد المكتبات",
+    "return_value": "احتراف وفهم استيراد المكتبات وتطبيقه في مشاريعك.",
+    "example": "def practice_36():\\n      print(\"Welcome to استيراد المكتبات\")\\n  \\n  practice_36()"
+  },
+  "exercise_instructions": "قم بتطبيق ما تعلمته في درس استيراد المكتبات لإنشاء برنامجك الخاص.",
+  "expected_output": "Success"
+},
+  {
+  "lesson_slug": "python-37",
+  "title": "الدرس 37: مكتبة Math الرياضية",
+  "category": "المستوى المتوسط",
+  "order_index": 37,
+  "is_free": false,
+  "content_type": "theory",
+  "duration_minutes": 15,
+  "content": {
+    "context": "في هذا الدرس سنناقش \"مكتبة Math الرياضية\" بشكل مفصل واحترافي. يعتبر هذا الدرس أساسياً لبناء مهارتك وصقل معرفتك.",
+    "description": "شرح متكامل ومبسط عن مكتبة Math الرياضية. سنتعرف على أفضل الممارسات وطرق التطبيق العملية خطوة بخطوة لضمان استيعابك الكامل.",
+    "prototype": "Concept_37() -> Completed",
+    "parameters": "المتغيرات والأدوات الأساسية المرتبطة بـ مكتبة Math الرياضية",
+    "return_value": "احتراف وفهم مكتبة Math الرياضية وتطبيقه في مشاريعك.",
+    "example": "def practice_37():\\n      print(\"Welcome to مكتبة Math الرياضية\")\\n  \\n  practice_37()"
+  },
+  "exercise_instructions": "قم بتطبيق ما تعلمته في درس مكتبة Math الرياضية لإنشاء برنامجك الخاص.",
+  "expected_output": "Success"
+},
+  {
+  "lesson_slug": "python-38",
+  "title": "الدرس 38: مكتبة Random الممتعة",
+  "category": "المستوى المتوسط",
+  "order_index": 38,
+  "is_free": false,
+  "content_type": "theory",
+  "duration_minutes": 15,
+  "content": {
+    "context": "في هذا الدرس سنناقش \"مكتبة Random الممتعة\" بشكل مفصل واحترافي. يعتبر هذا الدرس أساسياً لبناء مهارتك وصقل معرفتك.",
+    "description": "شرح متكامل ومبسط عن مكتبة Random الممتعة. سنتعرف على أفضل الممارسات وطرق التطبيق العملية خطوة بخطوة لضمان استيعابك الكامل.",
+    "prototype": "Concept_38() -> Completed",
+    "parameters": "المتغيرات والأدوات الأساسية المرتبطة بـ مكتبة Random الممتعة",
+    "return_value": "احتراف وفهم مكتبة Random الممتعة وتطبيقه في مشاريعك.",
+    "example": "def practice_38():\\n      print(\"Welcome to مكتبة Random الممتعة\")\\n  \\n  practice_38()"
+  },
+  "exercise_instructions": "قم بتطبيق ما تعلمته في درس مكتبة Random الممتعة لإنشاء برنامجك الخاص.",
+  "expected_output": "Success"
+},
+  {
+  "lesson_slug": "python-39",
+  "title": "الدرس 39: مقدمة في تحليل البيانات",
+  "category": "المستوى المتوسط",
+  "order_index": 39,
+  "is_free": false,
+  "content_type": "theory",
+  "duration_minutes": 15,
+  "content": {
+    "context": "في هذا الدرس سنناقش \"مقدمة في تحليل البيانات\" بشكل مفصل واحترافي. يعتبر هذا الدرس أساسياً لبناء مهارتك وصقل معرفتك.",
+    "description": "شرح متكامل ومبسط عن مقدمة في تحليل البيانات. سنتعرف على أفضل الممارسات وطرق التطبيق العملية خطوة بخطوة لضمان استيعابك الكامل.",
+    "prototype": "Concept_39() -> Completed",
+    "parameters": "المتغيرات والأدوات الأساسية المرتبطة بـ مقدمة في تحليل البيانات",
+    "return_value": "احتراف وفهم مقدمة في تحليل البيانات وتطبيقه في مشاريعك.",
+    "example": "def practice_39():\\n      print(\"Welcome to مقدمة في تحليل البيانات\")\\n  \\n  practice_39()"
+  },
+  "exercise_instructions": "قم بتطبيق ما تعلمته في درس مقدمة في تحليل البيانات لإنشاء برنامجك الخاص.",
+  "expected_output": "Success"
+},
+  {
+  "lesson_slug": "python-40",
+  "title": "الدرس 40: مكتبة Pandas السريعة",
+  "category": "المستوى المتقدم",
+  "order_index": 40,
+  "is_free": false,
+  "content_type": "theory",
+  "duration_minutes": 15,
+  "content": {
+    "context": "في هذا الدرس سنناقش \"مكتبة Pandas السريعة\" بشكل مفصل واحترافي. يعتبر هذا الدرس أساسياً لبناء مهارتك وصقل معرفتك.",
+    "description": "شرح متكامل ومبسط عن مكتبة Pandas السريعة. سنتعرف على أفضل الممارسات وطرق التطبيق العملية خطوة بخطوة لضمان استيعابك الكامل.",
+    "prototype": "Concept_40() -> Completed",
+    "parameters": "المتغيرات والأدوات الأساسية المرتبطة بـ مكتبة Pandas السريعة",
+    "return_value": "احتراف وفهم مكتبة Pandas السريعة وتطبيقه في مشاريعك.",
+    "example": "def practice_40():\\n      print(\"Welcome to مكتبة Pandas السريعة\")\\n  \\n  practice_40()"
+  },
+  "exercise_instructions": "قم بتطبيق ما تعلمته في درس مكتبة Pandas السريعة لإنشاء برنامجك الخاص.",
+  "expected_output": "Success"
+},
+  {
+  "lesson_slug": "python-41",
+  "title": "الدرس 41: معالجة النصوص المتقدمة",
+  "category": "المستوى المتقدم",
+  "order_index": 41,
+  "is_free": false,
+  "content_type": "theory",
+  "duration_minutes": 15,
+  "content": {
+    "context": "في هذا الدرس سنناقش \"معالجة النصوص المتقدمة\" بشكل مفصل واحترافي. يعتبر هذا الدرس أساسياً لبناء مهارتك وصقل معرفتك.",
+    "description": "شرح متكامل ومبسط عن معالجة النصوص المتقدمة. سنتعرف على أفضل الممارسات وطرق التطبيق العملية خطوة بخطوة لضمان استيعابك الكامل.",
+    "prototype": "Concept_41() -> Completed",
+    "parameters": "المتغيرات والأدوات الأساسية المرتبطة بـ معالجة النصوص المتقدمة",
+    "return_value": "احتراف وفهم معالجة النصوص المتقدمة وتطبيقه في مشاريعك.",
+    "example": "def practice_41():\\n      print(\"Welcome to معالجة النصوص المتقدمة\")\\n  \\n  practice_41()"
+  },
+  "exercise_instructions": "قم بتطبيق ما تعلمته في درس معالجة النصوص المتقدمة لإنشاء برنامجك الخاص.",
+  "expected_output": "Success"
+},
+  {
+  "lesson_slug": "python-42",
+  "title": "الدرس 42: تعبيرات عادية (Regex)",
+  "category": "المستوى المتقدم",
+  "order_index": 42,
+  "is_free": false,
+  "content_type": "theory",
+  "duration_minutes": 15,
+  "content": {
+    "context": "في هذا الدرس سنناقش \"تعبيرات عادية (Regex)\" بشكل مفصل واحترافي. يعتبر هذا الدرس أساسياً لبناء مهارتك وصقل معرفتك.",
+    "description": "شرح متكامل ومبسط عن تعبيرات عادية (Regex). سنتعرف على أفضل الممارسات وطرق التطبيق العملية خطوة بخطوة لضمان استيعابك الكامل.",
+    "prototype": "Concept_42() -> Completed",
+    "parameters": "المتغيرات والأدوات الأساسية المرتبطة بـ تعبيرات عادية (Regex)",
+    "return_value": "احتراف وفهم تعبيرات عادية (Regex) وتطبيقه في مشاريعك.",
+    "example": "def practice_42():\\n      print(\"Welcome to تعبيرات عادية (Regex)\")\\n  \\n  practice_42()"
+  },
+  "exercise_instructions": "قم بتطبيق ما تعلمته في درس تعبيرات عادية (Regex) لإنشاء برنامجك الخاص.",
+  "expected_output": "Success"
+},
+  {
+  "lesson_slug": "python-43",
+  "title": "الدرس 43: التعامل مع التواريخ (Datetime)",
+  "category": "المستوى المتقدم",
+  "order_index": 43,
+  "is_free": false,
+  "content_type": "theory",
+  "duration_minutes": 15,
+  "content": {
+    "context": "في هذا الدرس سنناقش \"التعامل مع التواريخ (Datetime)\" بشكل مفصل واحترافي. يعتبر هذا الدرس أساسياً لبناء مهارتك وصقل معرفتك.",
+    "description": "شرح متكامل ومبسط عن التعامل مع التواريخ (Datetime). سنتعرف على أفضل الممارسات وطرق التطبيق العملية خطوة بخطوة لضمان استيعابك الكامل.",
+    "prototype": "Concept_43() -> Completed",
+    "parameters": "المتغيرات والأدوات الأساسية المرتبطة بـ التعامل مع التواريخ (Datetime)",
+    "return_value": "احتراف وفهم التعامل مع التواريخ (Datetime) وتطبيقه في مشاريعك.",
+    "example": "def practice_43():\\n      print(\"Welcome to التعامل مع التواريخ (Datetime)\")\\n  \\n  practice_43()"
+  },
+  "exercise_instructions": "قم بتطبيق ما تعلمته في درس التعامل مع التواريخ (Datetime) لإنشاء برنامجك الخاص.",
+  "expected_output": "Success"
+},
+  {
+  "lesson_slug": "python-44",
+  "title": "الدرس 44: مقدمة للواجهات الرسومية",
+  "category": "المستوى المتقدم",
+  "order_index": 44,
+  "is_free": false,
+  "content_type": "theory",
+  "duration_minutes": 15,
+  "content": {
+    "context": "في هذا الدرس سنناقش \"مقدمة للواجهات الرسومية\" بشكل مفصل واحترافي. يعتبر هذا الدرس أساسياً لبناء مهارتك وصقل معرفتك.",
+    "description": "شرح متكامل ومبسط عن مقدمة للواجهات الرسومية. سنتعرف على أفضل الممارسات وطرق التطبيق العملية خطوة بخطوة لضمان استيعابك الكامل.",
+    "prototype": "Concept_44() -> Completed",
+    "parameters": "المتغيرات والأدوات الأساسية المرتبطة بـ مقدمة للواجهات الرسومية",
+    "return_value": "احتراف وفهم مقدمة للواجهات الرسومية وتطبيقه في مشاريعك.",
+    "example": "def practice_44():\\n      print(\"Welcome to مقدمة للواجهات الرسومية\")\\n  \\n  practice_44()"
+  },
+  "exercise_instructions": "قم بتطبيق ما تعلمته في درس مقدمة للواجهات الرسومية لإنشاء برنامجك الخاص.",
+  "expected_output": "Success"
+},
+  {
+  "lesson_slug": "python-45",
+  "title": "الدرس 45: بناء ألعاب بسيطة",
+  "category": "المستوى المتقدم",
+  "order_index": 45,
+  "is_free": false,
+  "content_type": "theory",
+  "duration_minutes": 15,
+  "content": {
+    "context": "في هذا الدرس سنناقش \"بناء ألعاب بسيطة\" بشكل مفصل واحترافي. يعتبر هذا الدرس أساسياً لبناء مهارتك وصقل معرفتك.",
+    "description": "شرح متكامل ومبسط عن بناء ألعاب بسيطة. سنتعرف على أفضل الممارسات وطرق التطبيق العملية خطوة بخطوة لضمان استيعابك الكامل.",
+    "prototype": "Concept_45() -> Completed",
+    "parameters": "المتغيرات والأدوات الأساسية المرتبطة بـ بناء ألعاب بسيطة",
+    "return_value": "احتراف وفهم بناء ألعاب بسيطة وتطبيقه في مشاريعك.",
+    "example": "def practice_45():\\n      print(\"Welcome to بناء ألعاب بسيطة\")\\n  \\n  practice_45()"
+  },
+  "exercise_instructions": "قم بتطبيق ما تعلمته في درس بناء ألعاب بسيطة لإنشاء برنامجك الخاص.",
+  "expected_output": "Success"
+},
+  {
+  "lesson_slug": "python-46",
+  "title": "الدرس 46: مراجعة شاملة للمفاهيم",
+  "category": "المستوى المتقدم",
+  "order_index": 46,
+  "is_free": false,
+  "content_type": "theory",
+  "duration_minutes": 15,
+  "content": {
+    "context": "في هذا الدرس سنناقش \"مراجعة شاملة للمفاهيم\" بشكل مفصل واحترافي. يعتبر هذا الدرس أساسياً لبناء مهارتك وصقل معرفتك.",
+    "description": "شرح متكامل ومبسط عن مراجعة شاملة للمفاهيم. سنتعرف على أفضل الممارسات وطرق التطبيق العملية خطوة بخطوة لضمان استيعابك الكامل.",
+    "prototype": "Concept_46() -> Completed",
+    "parameters": "المتغيرات والأدوات الأساسية المرتبطة بـ مراجعة شاملة للمفاهيم",
+    "return_value": "احتراف وفهم مراجعة شاملة للمفاهيم وتطبيقه في مشاريعك.",
+    "example": "def practice_46():\\n      print(\"Welcome to مراجعة شاملة للمفاهيم\")\\n  \\n  practice_46()"
+  },
+  "exercise_instructions": "قم بتطبيق ما تعلمته في درس مراجعة شاملة للمفاهيم لإنشاء برنامجك الخاص.",
+  "expected_output": "Success"
+},
+  {
+  "lesson_slug": "python-47",
+  "title": "الدرس 47: خوارزميات الفرز (Sorting)",
+  "category": "المستوى المتقدم",
+  "order_index": 47,
+  "is_free": false,
+  "content_type": "theory",
+  "duration_minutes": 15,
+  "content": {
+    "context": "في هذا الدرس سنناقش \"خوارزميات الفرز (Sorting)\" بشكل مفصل واحترافي. يعتبر هذا الدرس أساسياً لبناء مهارتك وصقل معرفتك.",
+    "description": "شرح متكامل ومبسط عن خوارزميات الفرز (Sorting). سنتعرف على أفضل الممارسات وطرق التطبيق العملية خطوة بخطوة لضمان استيعابك الكامل.",
+    "prototype": "Concept_47() -> Completed",
+    "parameters": "المتغيرات والأدوات الأساسية المرتبطة بـ خوارزميات الفرز (Sorting)",
+    "return_value": "احتراف وفهم خوارزميات الفرز (Sorting) وتطبيقه في مشاريعك.",
+    "example": "def practice_47():\\n      print(\"Welcome to خوارزميات الفرز (Sorting)\")\\n  \\n  practice_47()"
+  },
+  "exercise_instructions": "قم بتطبيق ما تعلمته في درس خوارزميات الفرز (Sorting) لإنشاء برنامجك الخاص.",
+  "expected_output": "Success"
+},
+  {
+  "lesson_slug": "python-48",
+  "title": "الدرس 48: خوارزميات البحث (Searching)",
+  "category": "المستوى المتقدم",
+  "order_index": 48,
+  "is_free": false,
+  "content_type": "theory",
+  "duration_minutes": 15,
+  "content": {
+    "context": "في هذا الدرس سنناقش \"خوارزميات البحث (Searching)\" بشكل مفصل واحترافي. يعتبر هذا الدرس أساسياً لبناء مهارتك وصقل معرفتك.",
+    "description": "شرح متكامل ومبسط عن خوارزميات البحث (Searching). سنتعرف على أفضل الممارسات وطرق التطبيق العملية خطوة بخطوة لضمان استيعابك الكامل.",
+    "prototype": "Concept_48() -> Completed",
+    "parameters": "المتغيرات والأدوات الأساسية المرتبطة بـ خوارزميات البحث (Searching)",
+    "return_value": "احتراف وفهم خوارزميات البحث (Searching) وتطبيقه في مشاريعك.",
+    "example": "def practice_48():\\n      print(\"Welcome to خوارزميات البحث (Searching)\")\\n  \\n  practice_48()"
+  },
+  "exercise_instructions": "قم بتطبيق ما تعلمته في درس خوارزميات البحث (Searching) لإنشاء برنامجك الخاص.",
+  "expected_output": "Success"
+},
+  {
+  "lesson_slug": "python-49",
+  "title": "الدرس 49: تعقيد الخوارزميات (Time Complexity)",
+  "category": "المستوى المتقدم",
+  "order_index": 49,
+  "is_free": false,
+  "content_type": "theory",
+  "duration_minutes": 15,
+  "content": {
+    "context": "في هذا الدرس سنناقش \"تعقيد الخوارزميات (Time Complexity)\" بشكل مفصل واحترافي. يعتبر هذا الدرس أساسياً لبناء مهارتك وصقل معرفتك.",
+    "description": "شرح متكامل ومبسط عن تعقيد الخوارزميات (Time Complexity). سنتعرف على أفضل الممارسات وطرق التطبيق العملية خطوة بخطوة لضمان استيعابك الكامل.",
+    "prototype": "Concept_49() -> Completed",
+    "parameters": "المتغيرات والأدوات الأساسية المرتبطة بـ تعقيد الخوارزميات (Time Complexity)",
+    "return_value": "احتراف وفهم تعقيد الخوارزميات (Time Complexity) وتطبيقه في مشاريعك.",
+    "example": "def practice_49():\\n      print(\"Welcome to تعقيد الخوارزميات (Time Complexity)\")\\n  \\n  practice_49()"
+  },
+  "exercise_instructions": "قم بتطبيق ما تعلمته في درس تعقيد الخوارزميات (Time Complexity) لإنشاء برنامجك الخاص.",
+  "expected_output": "Success"
+},
+  {
+  "lesson_slug": "python-50",
+  "title": "الدرس 50: هياكل البيانات المتقدمة",
+  "category": "المستوى المتقدم",
+  "order_index": 50,
+  "is_free": false,
+  "content_type": "theory",
+  "duration_minutes": 15,
+  "content": {
+    "context": "في هذا الدرس سنناقش \"هياكل البيانات المتقدمة\" بشكل مفصل واحترافي. يعتبر هذا الدرس أساسياً لبناء مهارتك وصقل معرفتك.",
+    "description": "شرح متكامل ومبسط عن هياكل البيانات المتقدمة. سنتعرف على أفضل الممارسات وطرق التطبيق العملية خطوة بخطوة لضمان استيعابك الكامل.",
+    "prototype": "Concept_50() -> Completed",
+    "parameters": "المتغيرات والأدوات الأساسية المرتبطة بـ هياكل البيانات المتقدمة",
+    "return_value": "احتراف وفهم هياكل البيانات المتقدمة وتطبيقه في مشاريعك.",
+    "example": "def practice_50():\\n      print(\"Welcome to هياكل البيانات المتقدمة\")\\n  \\n  practice_50()"
+  },
+  "exercise_instructions": "قم بتطبيق ما تعلمته في درس هياكل البيانات المتقدمة لإنشاء برنامجك الخاص.",
+  "expected_output": "Success"
+},
+  {
+  "lesson_slug": "python-51",
+  "title": "الدرس 51: تطبيق عملي: نظام إدارة مستخدمين",
+  "category": "المستوى المتقدم",
+  "order_index": 51,
+  "is_free": false,
+  "content_type": "theory",
+  "duration_minutes": 15,
+  "content": {
+    "context": "في هذا الدرس سنناقش \"تطبيق عملي: نظام إدارة مستخدمين\" بشكل مفصل واحترافي. يعتبر هذا الدرس أساسياً لبناء مهارتك وصقل معرفتك.",
+    "description": "شرح متكامل ومبسط عن تطبيق عملي: نظام إدارة مستخدمين. سنتعرف على أفضل الممارسات وطرق التطبيق العملية خطوة بخطوة لضمان استيعابك الكامل.",
+    "prototype": "Concept_51() -> Completed",
+    "parameters": "المتغيرات والأدوات الأساسية المرتبطة بـ تطبيق عملي: نظام إدارة مستخدمين",
+    "return_value": "احتراف وفهم تطبيق عملي: نظام إدارة مستخدمين وتطبيقه في مشاريعك.",
+    "example": "def practice_51():\\n      print(\"Welcome to تطبيق عملي: نظام إدارة مستخدمين\")\\n  \\n  practice_51()"
+  },
+  "exercise_instructions": "قم بتطبيق ما تعلمته في درس تطبيق عملي: نظام إدارة مستخدمين لإنشاء برنامجك الخاص.",
+  "expected_output": "Success"
+},
+  {
+  "lesson_slug": "python-52",
+  "title": "الدرس 52: التعامل مع قواعد البيانات SQLite",
+  "category": "المستوى المتقدم",
+  "order_index": 52,
+  "is_free": false,
+  "content_type": "theory",
+  "duration_minutes": 15,
+  "content": {
+    "context": "في هذا الدرس سنناقش \"التعامل مع قواعد البيانات SQLite\" بشكل مفصل واحترافي. يعتبر هذا الدرس أساسياً لبناء مهارتك وصقل معرفتك.",
+    "description": "شرح متكامل ومبسط عن التعامل مع قواعد البيانات SQLite. سنتعرف على أفضل الممارسات وطرق التطبيق العملية خطوة بخطوة لضمان استيعابك الكامل.",
+    "prototype": "Concept_52() -> Completed",
+    "parameters": "المتغيرات والأدوات الأساسية المرتبطة بـ التعامل مع قواعد البيانات SQLite",
+    "return_value": "احتراف وفهم التعامل مع قواعد البيانات SQLite وتطبيقه في مشاريعك.",
+    "example": "def practice_52():\\n      print(\"Welcome to التعامل مع قواعد البيانات SQLite\")\\n  \\n  practice_52()"
+  },
+  "exercise_instructions": "قم بتطبيق ما تعلمته في درس التعامل مع قواعد البيانات SQLite لإنشاء برنامجك الخاص.",
+  "expected_output": "Success"
+},
+  {
+  "lesson_slug": "python-53",
+  "title": "الدرس 53: الاستعلامات الأساسية",
+  "category": "المستوى المتقدم",
+  "order_index": 53,
+  "is_free": false,
+  "content_type": "theory",
+  "duration_minutes": 15,
+  "content": {
+    "context": "في هذا الدرس سنناقش \"الاستعلامات الأساسية\" بشكل مفصل واحترافي. يعتبر هذا الدرس أساسياً لبناء مهارتك وصقل معرفتك.",
+    "description": "شرح متكامل ومبسط عن الاستعلامات الأساسية. سنتعرف على أفضل الممارسات وطرق التطبيق العملية خطوة بخطوة لضمان استيعابك الكامل.",
+    "prototype": "Concept_53() -> Completed",
+    "parameters": "المتغيرات والأدوات الأساسية المرتبطة بـ الاستعلامات الأساسية",
+    "return_value": "احتراف وفهم الاستعلامات الأساسية وتطبيقه في مشاريعك.",
+    "example": "def practice_53():\\n      print(\"Welcome to الاستعلامات الأساسية\")\\n  \\n  practice_53()"
+  },
+  "exercise_instructions": "قم بتطبيق ما تعلمته في درس الاستعلامات الأساسية لإنشاء برنامجك الخاص.",
+  "expected_output": "Success"
+},
+  {
+  "lesson_slug": "python-54",
+  "title": "الدرس 54: توصيل بايثون بقاعدة بيانات",
+  "category": "المستوى المتقدم",
+  "order_index": 54,
+  "is_free": false,
+  "content_type": "theory",
+  "duration_minutes": 15,
+  "content": {
+    "context": "في هذا الدرس سنناقش \"توصيل بايثون بقاعدة بيانات\" بشكل مفصل واحترافي. يعتبر هذا الدرس أساسياً لبناء مهارتك وصقل معرفتك.",
+    "description": "شرح متكامل ومبسط عن توصيل بايثون بقاعدة بيانات. سنتعرف على أفضل الممارسات وطرق التطبيق العملية خطوة بخطوة لضمان استيعابك الكامل.",
+    "prototype": "Concept_54() -> Completed",
+    "parameters": "المتغيرات والأدوات الأساسية المرتبطة بـ توصيل بايثون بقاعدة بيانات",
+    "return_value": "احتراف وفهم توصيل بايثون بقاعدة بيانات وتطبيقه في مشاريعك.",
+    "example": "def practice_54():\\n      print(\"Welcome to توصيل بايثون بقاعدة بيانات\")\\n  \\n  practice_54()"
+  },
+  "exercise_instructions": "قم بتطبيق ما تعلمته في درس توصيل بايثون بقاعدة بيانات لإنشاء برنامجك الخاص.",
+  "expected_output": "Success"
+},
+  {
+  "lesson_slug": "python-55",
+  "title": "الدرس 55: تطبيق: متجر إلكتروني صغير",
+  "category": "المستوى المتقدم",
+  "order_index": 55,
+  "is_free": false,
+  "content_type": "theory",
+  "duration_minutes": 15,
+  "content": {
+    "context": "في هذا الدرس سنناقش \"تطبيق: متجر إلكتروني صغير\" بشكل مفصل واحترافي. يعتبر هذا الدرس أساسياً لبناء مهارتك وصقل معرفتك.",
+    "description": "شرح متكامل ومبسط عن تطبيق: متجر إلكتروني صغير. سنتعرف على أفضل الممارسات وطرق التطبيق العملية خطوة بخطوة لضمان استيعابك الكامل.",
+    "prototype": "Concept_55() -> Completed",
+    "parameters": "المتغيرات والأدوات الأساسية المرتبطة بـ تطبيق: متجر إلكتروني صغير",
+    "return_value": "احتراف وفهم تطبيق: متجر إلكتروني صغير وتطبيقه في مشاريعك.",
+    "example": "def practice_55():\\n      print(\"Welcome to تطبيق: متجر إلكتروني صغير\")\\n  \\n  practice_55()"
+  },
+  "exercise_instructions": "قم بتطبيق ما تعلمته في درس تطبيق: متجر إلكتروني صغير لإنشاء برنامجك الخاص.",
+  "expected_output": "Success"
+},
+  {
+  "lesson_slug": "python-56",
+  "title": "الدرس 56: مقدمة في تطوير الويب",
+  "category": "المستوى المتقدم",
+  "order_index": 56,
+  "is_free": false,
+  "content_type": "theory",
+  "duration_minutes": 15,
+  "content": {
+    "context": "في هذا الدرس سنناقش \"مقدمة في تطوير الويب\" بشكل مفصل واحترافي. يعتبر هذا الدرس أساسياً لبناء مهارتك وصقل معرفتك.",
+    "description": "شرح متكامل ومبسط عن مقدمة في تطوير الويب. سنتعرف على أفضل الممارسات وطرق التطبيق العملية خطوة بخطوة لضمان استيعابك الكامل.",
+    "prototype": "Concept_56() -> Completed",
+    "parameters": "المتغيرات والأدوات الأساسية المرتبطة بـ مقدمة في تطوير الويب",
+    "return_value": "احتراف وفهم مقدمة في تطوير الويب وتطبيقه في مشاريعك.",
+    "example": "def practice_56():\\n      print(\"Welcome to مقدمة في تطوير الويب\")\\n  \\n  practice_56()"
+  },
+  "exercise_instructions": "قم بتطبيق ما تعلمته في درس مقدمة في تطوير الويب لإنشاء برنامجك الخاص.",
+  "expected_output": "Success"
+},
+  {
+  "lesson_slug": "python-57",
+  "title": "الدرس 57: أساسيات Flask",
+  "category": "المستوى المتقدم",
+  "order_index": 57,
+  "is_free": false,
+  "content_type": "theory",
+  "duration_minutes": 15,
+  "content": {
+    "context": "في هذا الدرس سنناقش \"أساسيات Flask\" بشكل مفصل واحترافي. يعتبر هذا الدرس أساسياً لبناء مهارتك وصقل معرفتك.",
+    "description": "شرح متكامل ومبسط عن أساسيات Flask. سنتعرف على أفضل الممارسات وطرق التطبيق العملية خطوة بخطوة لضمان استيعابك الكامل.",
+    "prototype": "Concept_57() -> Completed",
+    "parameters": "المتغيرات والأدوات الأساسية المرتبطة بـ أساسيات Flask",
+    "return_value": "احتراف وفهم أساسيات Flask وتطبيقه في مشاريعك.",
+    "example": "def practice_57():\\n      print(\"Welcome to أساسيات Flask\")\\n  \\n  practice_57()"
+  },
+  "exercise_instructions": "قم بتطبيق ما تعلمته في درس أساسيات Flask لإنشاء برنامجك الخاص.",
+  "expected_output": "Success"
+},
+  {
+  "lesson_slug": "python-58",
+  "title": "الدرس 58: بناء أول خادم ويب",
+  "category": "المستوى المتقدم",
+  "order_index": 58,
+  "is_free": false,
+  "content_type": "theory",
+  "duration_minutes": 15,
+  "content": {
+    "context": "في هذا الدرس سنناقش \"بناء أول خادم ويب\" بشكل مفصل واحترافي. يعتبر هذا الدرس أساسياً لبناء مهارتك وصقل معرفتك.",
+    "description": "شرح متكامل ومبسط عن بناء أول خادم ويب. سنتعرف على أفضل الممارسات وطرق التطبيق العملية خطوة بخطوة لضمان استيعابك الكامل.",
+    "prototype": "Concept_58() -> Completed",
+    "parameters": "المتغيرات والأدوات الأساسية المرتبطة بـ بناء أول خادم ويب",
+    "return_value": "احتراف وفهم بناء أول خادم ويب وتطبيقه في مشاريعك.",
+    "example": "def practice_58():\\n      print(\"Welcome to بناء أول خادم ويب\")\\n  \\n  practice_58()"
+  },
+  "exercise_instructions": "قم بتطبيق ما تعلمته في درس بناء أول خادم ويب لإنشاء برنامجك الخاص.",
+  "expected_output": "Success"
+},
+  {
+  "lesson_slug": "python-59",
+  "title": "الدرس 59: التعامل مع الـ Routes",
+  "category": "المستوى المتقدم",
+  "order_index": 59,
+  "is_free": false,
+  "content_type": "theory",
+  "duration_minutes": 15,
+  "content": {
+    "context": "في هذا الدرس سنناقش \"التعامل مع الـ Routes\" بشكل مفصل واحترافي. يعتبر هذا الدرس أساسياً لبناء مهارتك وصقل معرفتك.",
+    "description": "شرح متكامل ومبسط عن التعامل مع الـ Routes. سنتعرف على أفضل الممارسات وطرق التطبيق العملية خطوة بخطوة لضمان استيعابك الكامل.",
+    "prototype": "Concept_59() -> Completed",
+    "parameters": "المتغيرات والأدوات الأساسية المرتبطة بـ التعامل مع الـ Routes",
+    "return_value": "احتراف وفهم التعامل مع الـ Routes وتطبيقه في مشاريعك.",
+    "example": "def practice_59():\\n      print(\"Welcome to التعامل مع الـ Routes\")\\n  \\n  practice_59()"
+  },
+  "exercise_instructions": "قم بتطبيق ما تعلمته في درس التعامل مع الـ Routes لإنشاء برنامجك الخاص.",
+  "expected_output": "Success"
+},
+  {
+  "lesson_slug": "python-60",
+  "title": "الدرس 60: نظام القوالب (Templates)",
+  "category": "المستوى المتقدم",
+  "order_index": 60,
+  "is_free": false,
+  "content_type": "theory",
+  "duration_minutes": 15,
+  "content": {
+    "context": "في هذا الدرس سنناقش \"نظام القوالب (Templates)\" بشكل مفصل واحترافي. يعتبر هذا الدرس أساسياً لبناء مهارتك وصقل معرفتك.",
+    "description": "شرح متكامل ومبسط عن نظام القوالب (Templates). سنتعرف على أفضل الممارسات وطرق التطبيق العملية خطوة بخطوة لضمان استيعابك الكامل.",
+    "prototype": "Concept_60() -> Completed",
+    "parameters": "المتغيرات والأدوات الأساسية المرتبطة بـ نظام القوالب (Templates)",
+    "return_value": "احتراف وفهم نظام القوالب (Templates) وتطبيقه في مشاريعك.",
+    "example": "def practice_60():\\n      print(\"Welcome to نظام القوالب (Templates)\")\\n  \\n  practice_60()"
+  },
+  "exercise_instructions": "قم بتطبيق ما تعلمته في درس نظام القوالب (Templates) لإنشاء برنامجك الخاص.",
+  "expected_output": "Success"
+},
+  {
+  "lesson_slug": "python-61",
+  "title": "الدرس 61: أساسيات Django",
+  "category": "المستوى المتقدم",
+  "order_index": 61,
+  "is_free": false,
+  "content_type": "theory",
+  "duration_minutes": 15,
+  "content": {
+    "context": "في هذا الدرس سنناقش \"أساسيات Django\" بشكل مفصل واحترافي. يعتبر هذا الدرس أساسياً لبناء مهارتك وصقل معرفتك.",
+    "description": "شرح متكامل ومبسط عن أساسيات Django. سنتعرف على أفضل الممارسات وطرق التطبيق العملية خطوة بخطوة لضمان استيعابك الكامل.",
+    "prototype": "Concept_61() -> Completed",
+    "parameters": "المتغيرات والأدوات الأساسية المرتبطة بـ أساسيات Django",
+    "return_value": "احتراف وفهم أساسيات Django وتطبيقه في مشاريعك.",
+    "example": "def practice_61():\\n      print(\"Welcome to أساسيات Django\")\\n  \\n  practice_61()"
+  },
+  "exercise_instructions": "قم بتطبيق ما تعلمته في درس أساسيات Django لإنشاء برنامجك الخاص.",
+  "expected_output": "Success"
+},
+  {
+  "lesson_slug": "python-62",
+  "title": "الدرس 62: بنية مشروع Django",
+  "category": "المستوى المتقدم",
+  "order_index": 62,
+  "is_free": false,
+  "content_type": "theory",
+  "duration_minutes": 15,
+  "content": {
+    "context": "في هذا الدرس سنناقش \"بنية مشروع Django\" بشكل مفصل واحترافي. يعتبر هذا الدرس أساسياً لبناء مهارتك وصقل معرفتك.",
+    "description": "شرح متكامل ومبسط عن بنية مشروع Django. سنتعرف على أفضل الممارسات وطرق التطبيق العملية خطوة بخطوة لضمان استيعابك الكامل.",
+    "prototype": "Concept_62() -> Completed",
+    "parameters": "المتغيرات والأدوات الأساسية المرتبطة بـ بنية مشروع Django",
+    "return_value": "احتراف وفهم بنية مشروع Django وتطبيقه في مشاريعك.",
+    "example": "def practice_62():\\n      print(\"Welcome to بنية مشروع Django\")\\n  \\n  practice_62()"
+  },
+  "exercise_instructions": "قم بتطبيق ما تعلمته في درس بنية مشروع Django لإنشاء برنامجك الخاص.",
+  "expected_output": "Success"
+},
+  {
+  "lesson_slug": "python-63",
+  "title": "الدرس 63: النماذج (Models)",
+  "category": "المستوى المتقدم",
+  "order_index": 63,
+  "is_free": false,
+  "content_type": "theory",
+  "duration_minutes": 15,
+  "content": {
+    "context": "في هذا الدرس سنناقش \"النماذج (Models)\" بشكل مفصل واحترافي. يعتبر هذا الدرس أساسياً لبناء مهارتك وصقل معرفتك.",
+    "description": "شرح متكامل ومبسط عن النماذج (Models). سنتعرف على أفضل الممارسات وطرق التطبيق العملية خطوة بخطوة لضمان استيعابك الكامل.",
+    "prototype": "Concept_63() -> Completed",
+    "parameters": "المتغيرات والأدوات الأساسية المرتبطة بـ النماذج (Models)",
+    "return_value": "احتراف وفهم النماذج (Models) وتطبيقه في مشاريعك.",
+    "example": "def practice_63():\\n      print(\"Welcome to النماذج (Models)\")\\n  \\n  practice_63()"
+  },
+  "exercise_instructions": "قم بتطبيق ما تعلمته في درس النماذج (Models) لإنشاء برنامجك الخاص.",
+  "expected_output": "Success"
+},
+  {
+  "lesson_slug": "python-64",
+  "title": "الدرس 64: العروض (Views)",
+  "category": "المستوى المتقدم",
+  "order_index": 64,
+  "is_free": false,
+  "content_type": "theory",
+  "duration_minutes": 15,
+  "content": {
+    "context": "في هذا الدرس سنناقش \"العروض (Views)\" بشكل مفصل واحترافي. يعتبر هذا الدرس أساسياً لبناء مهارتك وصقل معرفتك.",
+    "description": "شرح متكامل ومبسط عن العروض (Views). سنتعرف على أفضل الممارسات وطرق التطبيق العملية خطوة بخطوة لضمان استيعابك الكامل.",
+    "prototype": "Concept_64() -> Completed",
+    "parameters": "المتغيرات والأدوات الأساسية المرتبطة بـ العروض (Views)",
+    "return_value": "احتراف وفهم العروض (Views) وتطبيقه في مشاريعك.",
+    "example": "def practice_64():\\n      print(\"Welcome to العروض (Views)\")\\n  \\n  practice_64()"
+  },
+  "exercise_instructions": "قم بتطبيق ما تعلمته في درس العروض (Views) لإنشاء برنامجك الخاص.",
+  "expected_output": "Success"
+},
+  {
+  "lesson_slug": "python-65",
+  "title": "الدرس 65: تطبيق: مدونة بسيطة",
+  "category": "المستوى المتقدم",
+  "order_index": 65,
+  "is_free": false,
+  "content_type": "theory",
+  "duration_minutes": 15,
+  "content": {
+    "context": "في هذا الدرس سنناقش \"تطبيق: مدونة بسيطة\" بشكل مفصل واحترافي. يعتبر هذا الدرس أساسياً لبناء مهارتك وصقل معرفتك.",
+    "description": "شرح متكامل ومبسط عن تطبيق: مدونة بسيطة. سنتعرف على أفضل الممارسات وطرق التطبيق العملية خطوة بخطوة لضمان استيعابك الكامل.",
+    "prototype": "Concept_65() -> Completed",
+    "parameters": "المتغيرات والأدوات الأساسية المرتبطة بـ تطبيق: مدونة بسيطة",
+    "return_value": "احتراف وفهم تطبيق: مدونة بسيطة وتطبيقه في مشاريعك.",
+    "example": "def practice_65():\\n      print(\"Welcome to تطبيق: مدونة بسيطة\")\\n  \\n  practice_65()"
+  },
+  "exercise_instructions": "قم بتطبيق ما تعلمته في درس تطبيق: مدونة بسيطة لإنشاء برنامجك الخاص.",
+  "expected_output": "Success"
+},
+  {
+  "lesson_slug": "python-66",
+  "title": "الدرس 66: مقدمة في الذكاء الاصطناعي",
+  "category": "المستوى المتقدم",
+  "order_index": 66,
+  "is_free": false,
+  "content_type": "theory",
+  "duration_minutes": 15,
+  "content": {
+    "context": "في هذا الدرس سنناقش \"مقدمة في الذكاء الاصطناعي\" بشكل مفصل واحترافي. يعتبر هذا الدرس أساسياً لبناء مهارتك وصقل معرفتك.",
+    "description": "شرح متكامل ومبسط عن مقدمة في الذكاء الاصطناعي. سنتعرف على أفضل الممارسات وطرق التطبيق العملية خطوة بخطوة لضمان استيعابك الكامل.",
+    "prototype": "Concept_66() -> Completed",
+    "parameters": "المتغيرات والأدوات الأساسية المرتبطة بـ مقدمة في الذكاء الاصطناعي",
+    "return_value": "احتراف وفهم مقدمة في الذكاء الاصطناعي وتطبيقه في مشاريعك.",
+    "example": "def practice_66():\\n      print(\"Welcome to مقدمة في الذكاء الاصطناعي\")\\n  \\n  practice_66()"
+  },
+  "exercise_instructions": "قم بتطبيق ما تعلمته في درس مقدمة في الذكاء الاصطناعي لإنشاء برنامجك الخاص.",
+  "expected_output": "Success"
+},
+  {
+  "lesson_slug": "python-67",
+  "title": "الدرس 67: أساسيات تعلم الآلة",
+  "category": "المستوى المتقدم",
+  "order_index": 67,
+  "is_free": false,
+  "content_type": "theory",
+  "duration_minutes": 15,
+  "content": {
+    "context": "في هذا الدرس سنناقش \"أساسيات تعلم الآلة\" بشكل مفصل واحترافي. يعتبر هذا الدرس أساسياً لبناء مهارتك وصقل معرفتك.",
+    "description": "شرح متكامل ومبسط عن أساسيات تعلم الآلة. سنتعرف على أفضل الممارسات وطرق التطبيق العملية خطوة بخطوة لضمان استيعابك الكامل.",
+    "prototype": "Concept_67() -> Completed",
+    "parameters": "المتغيرات والأدوات الأساسية المرتبطة بـ أساسيات تعلم الآلة",
+    "return_value": "احتراف وفهم أساسيات تعلم الآلة وتطبيقه في مشاريعك.",
+    "example": "def practice_67():\\n      print(\"Welcome to أساسيات تعلم الآلة\")\\n  \\n  practice_67()"
+  },
+  "exercise_instructions": "قم بتطبيق ما تعلمته في درس أساسيات تعلم الآلة لإنشاء برنامجك الخاص.",
+  "expected_output": "Success"
+},
+  {
+  "lesson_slug": "python-68",
+  "title": "الدرس 68: تجهيز البيانات",
+  "category": "المستوى المتقدم",
+  "order_index": 68,
+  "is_free": false,
+  "content_type": "theory",
+  "duration_minutes": 15,
+  "content": {
+    "context": "في هذا الدرس سنناقش \"تجهيز البيانات\" بشكل مفصل واحترافي. يعتبر هذا الدرس أساسياً لبناء مهارتك وصقل معرفتك.",
+    "description": "شرح متكامل ومبسط عن تجهيز البيانات. سنتعرف على أفضل الممارسات وطرق التطبيق العملية خطوة بخطوة لضمان استيعابك الكامل.",
+    "prototype": "Concept_68() -> Completed",
+    "parameters": "المتغيرات والأدوات الأساسية المرتبطة بـ تجهيز البيانات",
+    "return_value": "احتراف وفهم تجهيز البيانات وتطبيقه في مشاريعك.",
+    "example": "def practice_68():\\n      print(\"Welcome to تجهيز البيانات\")\\n  \\n  practice_68()"
+  },
+  "exercise_instructions": "قم بتطبيق ما تعلمته في درس تجهيز البيانات لإنشاء برنامجك الخاص.",
+  "expected_output": "Success"
+},
+  {
+  "lesson_slug": "python-69",
+  "title": "الدرس 69: بناء نموذج تنبؤ بسيط",
+  "category": "المستوى المتقدم",
+  "order_index": 69,
+  "is_free": false,
+  "content_type": "theory",
+  "duration_minutes": 15,
+  "content": {
+    "context": "في هذا الدرس سنناقش \"بناء نموذج تنبؤ بسيط\" بشكل مفصل واحترافي. يعتبر هذا الدرس أساسياً لبناء مهارتك وصقل معرفتك.",
+    "description": "شرح متكامل ومبسط عن بناء نموذج تنبؤ بسيط. سنتعرف على أفضل الممارسات وطرق التطبيق العملية خطوة بخطوة لضمان استيعابك الكامل.",
+    "prototype": "Concept_69() -> Completed",
+    "parameters": "المتغيرات والأدوات الأساسية المرتبطة بـ بناء نموذج تنبؤ بسيط",
+    "return_value": "احتراف وفهم بناء نموذج تنبؤ بسيط وتطبيقه في مشاريعك.",
+    "example": "def practice_69():\\n      print(\"Welcome to بناء نموذج تنبؤ بسيط\")\\n  \\n  practice_69()"
+  },
+  "exercise_instructions": "قم بتطبيق ما تعلمته في درس بناء نموذج تنبؤ بسيط لإنشاء برنامجك الخاص.",
+  "expected_output": "Success"
+},
+  {
+  "lesson_slug": "python-70",
+  "title": "الدرس 70: تقييم النموذج",
+  "category": "المستوى المتقدم",
+  "order_index": 70,
+  "is_free": false,
+  "content_type": "theory",
+  "duration_minutes": 15,
+  "content": {
+    "context": "في هذا الدرس سنناقش \"تقييم النموذج\" بشكل مفصل واحترافي. يعتبر هذا الدرس أساسياً لبناء مهارتك وصقل معرفتك.",
+    "description": "شرح متكامل ومبسط عن تقييم النموذج. سنتعرف على أفضل الممارسات وطرق التطبيق العملية خطوة بخطوة لضمان استيعابك الكامل.",
+    "prototype": "Concept_70() -> Completed",
+    "parameters": "المتغيرات والأدوات الأساسية المرتبطة بـ تقييم النموذج",
+    "return_value": "احتراف وفهم تقييم النموذج وتطبيقه في مشاريعك.",
+    "example": "def practice_70():\\n      print(\"Welcome to تقييم النموذج\")\\n  \\n  practice_70()"
+  },
+  "exercise_instructions": "قم بتطبيق ما تعلمته في درس تقييم النموذج لإنشاء برنامجك الخاص.",
+  "expected_output": "Success"
+},
+  {
+  "lesson_slug": "python-71",
+  "title": "الدرس 71: مقدمة في الشبكات العصبية",
+  "category": "المستوى المتقدم",
+  "order_index": 71,
+  "is_free": false,
+  "content_type": "theory",
+  "duration_minutes": 15,
+  "content": {
+    "context": "في هذا الدرس سنناقش \"مقدمة في الشبكات العصبية\" بشكل مفصل واحترافي. يعتبر هذا الدرس أساسياً لبناء مهارتك وصقل معرفتك.",
+    "description": "شرح متكامل ومبسط عن مقدمة في الشبكات العصبية. سنتعرف على أفضل الممارسات وطرق التطبيق العملية خطوة بخطوة لضمان استيعابك الكامل.",
+    "prototype": "Concept_71() -> Completed",
+    "parameters": "المتغيرات والأدوات الأساسية المرتبطة بـ مقدمة في الشبكات العصبية",
+    "return_value": "احتراف وفهم مقدمة في الشبكات العصبية وتطبيقه في مشاريعك.",
+    "example": "def practice_71():\\n      print(\"Welcome to مقدمة في الشبكات العصبية\")\\n  \\n  practice_71()"
+  },
+  "exercise_instructions": "قم بتطبيق ما تعلمته في درس مقدمة في الشبكات العصبية لإنشاء برنامجك الخاص.",
+  "expected_output": "Success"
+},
+  {
+  "lesson_slug": "python-72",
+  "title": "الدرس 72: مفهوم الـ Deep Learning",
+  "category": "المستوى المتقدم",
+  "order_index": 72,
+  "is_free": false,
+  "content_type": "theory",
+  "duration_minutes": 15,
+  "content": {
+    "context": "في هذا الدرس سنناقش \"مفهوم الـ Deep Learning\" بشكل مفصل واحترافي. يعتبر هذا الدرس أساسياً لبناء مهارتك وصقل معرفتك.",
+    "description": "شرح متكامل ومبسط عن مفهوم الـ Deep Learning. سنتعرف على أفضل الممارسات وطرق التطبيق العملية خطوة بخطوة لضمان استيعابك الكامل.",
+    "prototype": "Concept_72() -> Completed",
+    "parameters": "المتغيرات والأدوات الأساسية المرتبطة بـ مفهوم الـ Deep Learning",
+    "return_value": "احتراف وفهم مفهوم الـ Deep Learning وتطبيقه في مشاريعك.",
+    "example": "def practice_72():\\n      print(\"Welcome to مفهوم الـ Deep Learning\")\\n  \\n  practice_72()"
+  },
+  "exercise_instructions": "قم بتطبيق ما تعلمته في درس مفهوم الـ Deep Learning لإنشاء برنامجك الخاص.",
+  "expected_output": "Success"
+},
+  {
+  "lesson_slug": "python-73",
+  "title": "الدرس 73: التعامل مع الصور",
+  "category": "المستوى المتقدم",
+  "order_index": 73,
+  "is_free": false,
+  "content_type": "theory",
+  "duration_minutes": 15,
+  "content": {
+    "context": "في هذا الدرس سنناقش \"التعامل مع الصور\" بشكل مفصل واحترافي. يعتبر هذا الدرس أساسياً لبناء مهارتك وصقل معرفتك.",
+    "description": "شرح متكامل ومبسط عن التعامل مع الصور. سنتعرف على أفضل الممارسات وطرق التطبيق العملية خطوة بخطوة لضمان استيعابك الكامل.",
+    "prototype": "Concept_73() -> Completed",
+    "parameters": "المتغيرات والأدوات الأساسية المرتبطة بـ التعامل مع الصور",
+    "return_value": "احتراف وفهم التعامل مع الصور وتطبيقه في مشاريعك.",
+    "example": "def practice_73():\\n      print(\"Welcome to التعامل مع الصور\")\\n  \\n  practice_73()"
+  },
+  "exercise_instructions": "قم بتطبيق ما تعلمته في درس التعامل مع الصور لإنشاء برنامجك الخاص.",
+  "expected_output": "Success"
+},
+  {
+  "lesson_slug": "python-74",
+  "title": "الدرس 74: تصنيف الصور باستخدام بايثون",
+  "category": "المستوى المتقدم",
+  "order_index": 74,
+  "is_free": false,
+  "content_type": "theory",
+  "duration_minutes": 15,
+  "content": {
+    "context": "في هذا الدرس سنناقش \"تصنيف الصور باستخدام بايثون\" بشكل مفصل واحترافي. يعتبر هذا الدرس أساسياً لبناء مهارتك وصقل معرفتك.",
+    "description": "شرح متكامل ومبسط عن تصنيف الصور باستخدام بايثون. سنتعرف على أفضل الممارسات وطرق التطبيق العملية خطوة بخطوة لضمان استيعابك الكامل.",
+    "prototype": "Concept_74() -> Completed",
+    "parameters": "المتغيرات والأدوات الأساسية المرتبطة بـ تصنيف الصور باستخدام بايثون",
+    "return_value": "احتراف وفهم تصنيف الصور باستخدام بايثون وتطبيقه في مشاريعك.",
+    "example": "def practice_74():\\n      print(\"Welcome to تصنيف الصور باستخدام بايثون\")\\n  \\n  practice_74()"
+  },
+  "exercise_instructions": "قم بتطبيق ما تعلمته في درس تصنيف الصور باستخدام بايثون لإنشاء برنامجك الخاص.",
+  "expected_output": "Success"
+},
+  {
+  "lesson_slug": "python-75",
+  "title": "الدرس 75: تطبيق ذكاء اصطناعي: التعرف على الوجوه",
+  "category": "المستوى المتقدم",
+  "order_index": 75,
+  "is_free": false,
+  "content_type": "theory",
+  "duration_minutes": 15,
+  "content": {
+    "context": "في هذا الدرس سنناقش \"تطبيق ذكاء اصطناعي: التعرف على الوجوه\" بشكل مفصل واحترافي. يعتبر هذا الدرس أساسياً لبناء مهارتك وصقل معرفتك.",
+    "description": "شرح متكامل ومبسط عن تطبيق ذكاء اصطناعي: التعرف على الوجوه. سنتعرف على أفضل الممارسات وطرق التطبيق العملية خطوة بخطوة لضمان استيعابك الكامل.",
+    "prototype": "Concept_75() -> Completed",
+    "parameters": "المتغيرات والأدوات الأساسية المرتبطة بـ تطبيق ذكاء اصطناعي: التعرف على الوجوه",
+    "return_value": "احتراف وفهم تطبيق ذكاء اصطناعي: التعرف على الوجوه وتطبيقه في مشاريعك.",
+    "example": "def practice_75():\\n      print(\"Welcome to تطبيق ذكاء اصطناعي: التعرف على الوجوه\")\\n  \\n  practice_75()"
+  },
+  "exercise_instructions": "قم بتطبيق ما تعلمته في درس تطبيق ذكاء اصطناعي: التعرف على الوجوه لإنشاء برنامجك الخاص.",
+  "expected_output": "Success"
+},
+  {
+  "lesson_slug": "python-76",
+  "title": "الدرس 76: أساسيات أمن المعلومات في بايثون",
+  "category": "المستوى المتقدم",
+  "order_index": 76,
+  "is_free": false,
+  "content_type": "theory",
+  "duration_minutes": 15,
+  "content": {
+    "context": "في هذا الدرس سنناقش \"أساسيات أمن المعلومات في بايثون\" بشكل مفصل واحترافي. يعتبر هذا الدرس أساسياً لبناء مهارتك وصقل معرفتك.",
+    "description": "شرح متكامل ومبسط عن أساسيات أمن المعلومات في بايثون. سنتعرف على أفضل الممارسات وطرق التطبيق العملية خطوة بخطوة لضمان استيعابك الكامل.",
+    "prototype": "Concept_76() -> Completed",
+    "parameters": "المتغيرات والأدوات الأساسية المرتبطة بـ أساسيات أمن المعلومات في بايثون",
+    "return_value": "احتراف وفهم أساسيات أمن المعلومات في بايثون وتطبيقه في مشاريعك.",
+    "example": "def practice_76():\\n      print(\"Welcome to أساسيات أمن المعلومات في بايثون\")\\n  \\n  practice_76()"
+  },
+  "exercise_instructions": "قم بتطبيق ما تعلمته في درس أساسيات أمن المعلومات في بايثون لإنشاء برنامجك الخاص.",
+  "expected_output": "Success"
+},
+  {
+  "lesson_slug": "python-77",
+  "title": "الدرس 77: تشفير النصوص (Cryptography)",
+  "category": "المستوى المتقدم",
+  "order_index": 77,
+  "is_free": false,
+  "content_type": "theory",
+  "duration_minutes": 15,
+  "content": {
+    "context": "في هذا الدرس سنناقش \"تشفير النصوص (Cryptography)\" بشكل مفصل واحترافي. يعتبر هذا الدرس أساسياً لبناء مهارتك وصقل معرفتك.",
+    "description": "شرح متكامل ومبسط عن تشفير النصوص (Cryptography). سنتعرف على أفضل الممارسات وطرق التطبيق العملية خطوة بخطوة لضمان استيعابك الكامل.",
+    "prototype": "Concept_77() -> Completed",
+    "parameters": "المتغيرات والأدوات الأساسية المرتبطة بـ تشفير النصوص (Cryptography)",
+    "return_value": "احتراف وفهم تشفير النصوص (Cryptography) وتطبيقه في مشاريعك.",
+    "example": "def practice_77():\\n      print(\"Welcome to تشفير النصوص (Cryptography)\")\\n  \\n  practice_77()"
+  },
+  "exercise_instructions": "قم بتطبيق ما تعلمته في درس تشفير النصوص (Cryptography) لإنشاء برنامجك الخاص.",
+  "expected_output": "Success"
+},
+  {
+  "lesson_slug": "python-78",
+  "title": "الدرس 78: فك التشفير",
+  "category": "المستوى المتقدم",
+  "order_index": 78,
+  "is_free": false,
+  "content_type": "theory",
+  "duration_minutes": 15,
+  "content": {
+    "context": "في هذا الدرس سنناقش \"فك التشفير\" بشكل مفصل واحترافي. يعتبر هذا الدرس أساسياً لبناء مهارتك وصقل معرفتك.",
+    "description": "شرح متكامل ومبسط عن فك التشفير. سنتعرف على أفضل الممارسات وطرق التطبيق العملية خطوة بخطوة لضمان استيعابك الكامل.",
+    "prototype": "Concept_78() -> Completed",
+    "parameters": "المتغيرات والأدوات الأساسية المرتبطة بـ فك التشفير",
+    "return_value": "احتراف وفهم فك التشفير وتطبيقه في مشاريعك.",
+    "example": "def practice_78():\\n      print(\"Welcome to فك التشفير\")\\n  \\n  practice_78()"
+  },
+  "exercise_instructions": "قم بتطبيق ما تعلمته في درس فك التشفير لإنشاء برنامجك الخاص.",
+  "expected_output": "Success"
+},
+  {
+  "lesson_slug": "python-79",
+  "title": "الدرس 79: فحص المنافذ (Port Scanning)",
+  "category": "المستوى المتقدم",
+  "order_index": 79,
+  "is_free": false,
+  "content_type": "theory",
+  "duration_minutes": 15,
+  "content": {
+    "context": "في هذا الدرس سنناقش \"فحص المنافذ (Port Scanning)\" بشكل مفصل واحترافي. يعتبر هذا الدرس أساسياً لبناء مهارتك وصقل معرفتك.",
+    "description": "شرح متكامل ومبسط عن فحص المنافذ (Port Scanning). سنتعرف على أفضل الممارسات وطرق التطبيق العملية خطوة بخطوة لضمان استيعابك الكامل.",
+    "prototype": "Concept_79() -> Completed",
+    "parameters": "المتغيرات والأدوات الأساسية المرتبطة بـ فحص المنافذ (Port Scanning)",
+    "return_value": "احتراف وفهم فحص المنافذ (Port Scanning) وتطبيقه في مشاريعك.",
+    "example": "def practice_79():\\n      print(\"Welcome to فحص المنافذ (Port Scanning)\")\\n  \\n  practice_79()"
+  },
+  "exercise_instructions": "قم بتطبيق ما تعلمته في درس فحص المنافذ (Port Scanning) لإنشاء برنامجك الخاص.",
+  "expected_output": "Success"
+},
+  {
+  "lesson_slug": "python-80",
+  "title": "الدرس 80: تطبيق: أداة فحص الشبكات",
+  "category": "مشاريع وتطبيقات",
+  "order_index": 80,
+  "is_free": false,
+  "content_type": "theory",
+  "duration_minutes": 15,
+  "content": {
+    "context": "في هذا الدرس سنناقش \"تطبيق: أداة فحص الشبكات\" بشكل مفصل واحترافي. يعتبر هذا الدرس أساسياً لبناء مهارتك وصقل معرفتك.",
+    "description": "شرح متكامل ومبسط عن تطبيق: أداة فحص الشبكات. سنتعرف على أفضل الممارسات وطرق التطبيق العملية خطوة بخطوة لضمان استيعابك الكامل.",
+    "prototype": "Concept_80() -> Completed",
+    "parameters": "المتغيرات والأدوات الأساسية المرتبطة بـ تطبيق: أداة فحص الشبكات",
+    "return_value": "احتراف وفهم تطبيق: أداة فحص الشبكات وتطبيقه في مشاريعك.",
+    "example": "def practice_80():\\n      print(\"Welcome to تطبيق: أداة فحص الشبكات\")\\n  \\n  practice_80()"
+  },
+  "exercise_instructions": "قم بتطبيق ما تعلمته في درس تطبيق: أداة فحص الشبكات لإنشاء برنامجك الخاص.",
+  "expected_output": "Success"
+},
+  {
+  "lesson_slug": "python-81",
+  "title": "الدرس 81: المكتبات المتقدمة",
+  "category": "مشاريع وتطبيقات",
+  "order_index": 81,
+  "is_free": false,
+  "content_type": "theory",
+  "duration_minutes": 15,
+  "content": {
+    "context": "في هذا الدرس سنناقش \"المكتبات المتقدمة\" بشكل مفصل واحترافي. يعتبر هذا الدرس أساسياً لبناء مهارتك وصقل معرفتك.",
+    "description": "شرح متكامل ومبسط عن المكتبات المتقدمة. سنتعرف على أفضل الممارسات وطرق التطبيق العملية خطوة بخطوة لضمان استيعابك الكامل.",
+    "prototype": "Concept_81() -> Completed",
+    "parameters": "المتغيرات والأدوات الأساسية المرتبطة بـ المكتبات المتقدمة",
+    "return_value": "احتراف وفهم المكتبات المتقدمة وتطبيقه في مشاريعك.",
+    "example": "def practice_81():\\n      print(\"Welcome to المكتبات المتقدمة\")\\n  \\n  practice_81()"
+  },
+  "exercise_instructions": "قم بتطبيق ما تعلمته في درس المكتبات المتقدمة لإنشاء برنامجك الخاص.",
+  "expected_output": "Success"
+},
+  {
+  "lesson_slug": "python-82",
+  "title": "الدرس 82: التوازي (Threading)",
+  "category": "مشاريع وتطبيقات",
+  "order_index": 82,
+  "is_free": false,
+  "content_type": "theory",
+  "duration_minutes": 15,
+  "content": {
+    "context": "في هذا الدرس سنناقش \"التوازي (Threading)\" بشكل مفصل واحترافي. يعتبر هذا الدرس أساسياً لبناء مهارتك وصقل معرفتك.",
+    "description": "شرح متكامل ومبسط عن التوازي (Threading). سنتعرف على أفضل الممارسات وطرق التطبيق العملية خطوة بخطوة لضمان استيعابك الكامل.",
+    "prototype": "Concept_82() -> Completed",
+    "parameters": "المتغيرات والأدوات الأساسية المرتبطة بـ التوازي (Threading)",
+    "return_value": "احتراف وفهم التوازي (Threading) وتطبيقه في مشاريعك.",
+    "example": "def practice_82():\\n      print(\"Welcome to التوازي (Threading)\")\\n  \\n  practice_82()"
+  },
+  "exercise_instructions": "قم بتطبيق ما تعلمته في درس التوازي (Threading) لإنشاء برنامجك الخاص.",
+  "expected_output": "Success"
+},
+  {
+  "lesson_slug": "python-83",
+  "title": "الدرس 83: المعالجة المتعددة (Multiprocessing)",
+  "category": "مشاريع وتطبيقات",
+  "order_index": 83,
+  "is_free": false,
+  "content_type": "theory",
+  "duration_minutes": 15,
+  "content": {
+    "context": "في هذا الدرس سنناقش \"المعالجة المتعددة (Multiprocessing)\" بشكل مفصل واحترافي. يعتبر هذا الدرس أساسياً لبناء مهارتك وصقل معرفتك.",
+    "description": "شرح متكامل ومبسط عن المعالجة المتعددة (Multiprocessing). سنتعرف على أفضل الممارسات وطرق التطبيق العملية خطوة بخطوة لضمان استيعابك الكامل.",
+    "prototype": "Concept_83() -> Completed",
+    "parameters": "المتغيرات والأدوات الأساسية المرتبطة بـ المعالجة المتعددة (Multiprocessing)",
+    "return_value": "احتراف وفهم المعالجة المتعددة (Multiprocessing) وتطبيقه في مشاريعك.",
+    "example": "def practice_83():\\n      print(\"Welcome to المعالجة المتعددة (Multiprocessing)\")\\n  \\n  practice_83()"
+  },
+  "exercise_instructions": "قم بتطبيق ما تعلمته في درس المعالجة المتعددة (Multiprocessing) لإنشاء برنامجك الخاص.",
+  "expected_output": "Success"
+},
+  {
+  "lesson_slug": "python-84",
+  "title": "الدرس 84: البرمجة غير المتزامنة (Asyncio)",
+  "category": "مشاريع وتطبيقات",
+  "order_index": 84,
+  "is_free": false,
+  "content_type": "theory",
+  "duration_minutes": 15,
+  "content": {
+    "context": "في هذا الدرس سنناقش \"البرمجة غير المتزامنة (Asyncio)\" بشكل مفصل واحترافي. يعتبر هذا الدرس أساسياً لبناء مهارتك وصقل معرفتك.",
+    "description": "شرح متكامل ومبسط عن البرمجة غير المتزامنة (Asyncio). سنتعرف على أفضل الممارسات وطرق التطبيق العملية خطوة بخطوة لضمان استيعابك الكامل.",
+    "prototype": "Concept_84() -> Completed",
+    "parameters": "المتغيرات والأدوات الأساسية المرتبطة بـ البرمجة غير المتزامنة (Asyncio)",
+    "return_value": "احتراف وفهم البرمجة غير المتزامنة (Asyncio) وتطبيقه في مشاريعك.",
+    "example": "def practice_84():\\n      print(\"Welcome to البرمجة غير المتزامنة (Asyncio)\")\\n  \\n  practice_84()"
+  },
+  "exercise_instructions": "قم بتطبيق ما تعلمته في درس البرمجة غير المتزامنة (Asyncio) لإنشاء برنامجك الخاص.",
+  "expected_output": "Success"
+},
+  {
+  "lesson_slug": "python-85",
+  "title": "الدرس 85: اختبار الكود (Unit Testing)",
+  "category": "مشاريع وتطبيقات",
+  "order_index": 85,
+  "is_free": false,
+  "content_type": "theory",
+  "duration_minutes": 15,
+  "content": {
+    "context": "في هذا الدرس سنناقش \"اختبار الكود (Unit Testing)\" بشكل مفصل واحترافي. يعتبر هذا الدرس أساسياً لبناء مهارتك وصقل معرفتك.",
+    "description": "شرح متكامل ومبسط عن اختبار الكود (Unit Testing). سنتعرف على أفضل الممارسات وطرق التطبيق العملية خطوة بخطوة لضمان استيعابك الكامل.",
+    "prototype": "Concept_85() -> Completed",
+    "parameters": "المتغيرات والأدوات الأساسية المرتبطة بـ اختبار الكود (Unit Testing)",
+    "return_value": "احتراف وفهم اختبار الكود (Unit Testing) وتطبيقه في مشاريعك.",
+    "example": "def practice_85():\\n      print(\"Welcome to اختبار الكود (Unit Testing)\")\\n  \\n  practice_85()"
+  },
+  "exercise_instructions": "قم بتطبيق ما تعلمته في درس اختبار الكود (Unit Testing) لإنشاء برنامجك الخاص.",
+  "expected_output": "Success"
+},
+  {
+  "lesson_slug": "python-86",
+  "title": "الدرس 86: مفاهيم متقدمة في البرمجة الدالة (Functional)",
+  "category": "مشاريع وتطبيقات",
+  "order_index": 86,
+  "is_free": false,
+  "content_type": "theory",
+  "duration_minutes": 15,
+  "content": {
+    "context": "في هذا الدرس سنناقش \"مفاهيم متقدمة في البرمجة الدالة (Functional)\" بشكل مفصل واحترافي. يعتبر هذا الدرس أساسياً لبناء مهارتك وصقل معرفتك.",
+    "description": "شرح متكامل ومبسط عن مفاهيم متقدمة في البرمجة الدالة (Functional). سنتعرف على أفضل الممارسات وطرق التطبيق العملية خطوة بخطوة لضمان استيعابك الكامل.",
+    "prototype": "Concept_86() -> Completed",
+    "parameters": "المتغيرات والأدوات الأساسية المرتبطة بـ مفاهيم متقدمة في البرمجة الدالة (Functional)",
+    "return_value": "احتراف وفهم مفاهيم متقدمة في البرمجة الدالة (Functional) وتطبيقه في مشاريعك.",
+    "example": "def practice_86():\\n      print(\"Welcome to مفاهيم متقدمة في البرمجة الدالة (Functional)\")\\n  \\n  practice_86()"
+  },
+  "exercise_instructions": "قم بتطبيق ما تعلمته في درس مفاهيم متقدمة في البرمجة الدالة (Functional) لإنشاء برنامجك الخاص.",
+  "expected_output": "Success"
+},
+  {
+  "lesson_slug": "python-87",
+  "title": "الدرس 87: دوال Map و Filter",
+  "category": "مشاريع وتطبيقات",
+  "order_index": 87,
+  "is_free": false,
+  "content_type": "theory",
+  "duration_minutes": 15,
+  "content": {
+    "context": "في هذا الدرس سنناقش \"دوال Map و Filter\" بشكل مفصل واحترافي. يعتبر هذا الدرس أساسياً لبناء مهارتك وصقل معرفتك.",
+    "description": "شرح متكامل ومبسط عن دوال Map و Filter. سنتعرف على أفضل الممارسات وطرق التطبيق العملية خطوة بخطوة لضمان استيعابك الكامل.",
+    "prototype": "Concept_87() -> Completed",
+    "parameters": "المتغيرات والأدوات الأساسية المرتبطة بـ دوال Map و Filter",
+    "return_value": "احتراف وفهم دوال Map و Filter وتطبيقه في مشاريعك.",
+    "example": "def practice_87():\\n      print(\"Welcome to دوال Map و Filter\")\\n  \\n  practice_87()"
+  },
+  "exercise_instructions": "قم بتطبيق ما تعلمته في درس دوال Map و Filter لإنشاء برنامجك الخاص.",
+  "expected_output": "Success"
+},
+  {
+  "lesson_slug": "python-88",
+  "title": "الدرس 88: دالة Lambda السريعة",
+  "category": "مشاريع وتطبيقات",
+  "order_index": 88,
+  "is_free": false,
+  "content_type": "theory",
+  "duration_minutes": 15,
+  "content": {
+    "context": "في هذا الدرس سنناقش \"دالة Lambda السريعة\" بشكل مفصل واحترافي. يعتبر هذا الدرس أساسياً لبناء مهارتك وصقل معرفتك.",
+    "description": "شرح متكامل ومبسط عن دالة Lambda السريعة. سنتعرف على أفضل الممارسات وطرق التطبيق العملية خطوة بخطوة لضمان استيعابك الكامل.",
+    "prototype": "Concept_88() -> Completed",
+    "parameters": "المتغيرات والأدوات الأساسية المرتبطة بـ دالة Lambda السريعة",
+    "return_value": "احتراف وفهم دالة Lambda السريعة وتطبيقه في مشاريعك.",
+    "example": "def practice_88():\\n      print(\"Welcome to دالة Lambda السريعة\")\\n  \\n  practice_88()"
+  },
+  "exercise_instructions": "قم بتطبيق ما تعلمته في درس دالة Lambda السريعة لإنشاء برنامجك الخاص.",
+  "expected_output": "Success"
+},
+  {
+  "lesson_slug": "python-89",
+  "title": "الدرس 89: تعابير List Comprehensions",
+  "category": "مشاريع وتطبيقات",
+  "order_index": 89,
+  "is_free": false,
+  "content_type": "theory",
+  "duration_minutes": 15,
+  "content": {
+    "context": "في هذا الدرس سنناقش \"تعابير List Comprehensions\" بشكل مفصل واحترافي. يعتبر هذا الدرس أساسياً لبناء مهارتك وصقل معرفتك.",
+    "description": "شرح متكامل ومبسط عن تعابير List Comprehensions. سنتعرف على أفضل الممارسات وطرق التطبيق العملية خطوة بخطوة لضمان استيعابك الكامل.",
+    "prototype": "Concept_89() -> Completed",
+    "parameters": "المتغيرات والأدوات الأساسية المرتبطة بـ تعابير List Comprehensions",
+    "return_value": "احتراف وفهم تعابير List Comprehensions وتطبيقه في مشاريعك.",
+    "example": "def practice_89():\\n      print(\"Welcome to تعابير List Comprehensions\")\\n  \\n  practice_89()"
+  },
+  "exercise_instructions": "قم بتطبيق ما تعلمته في درس تعابير List Comprehensions لإنشاء برنامجك الخاص.",
+  "expected_output": "Success"
+},
+  {
+  "lesson_slug": "python-90",
+  "title": "الدرس 90: استكشاف أخطاء متقدمة (Debugging)",
+  "category": "مشاريع وتطبيقات",
+  "order_index": 90,
+  "is_free": false,
+  "content_type": "theory",
+  "duration_minutes": 15,
+  "content": {
+    "context": "في هذا الدرس سنناقش \"استكشاف أخطاء متقدمة (Debugging)\" بشكل مفصل واحترافي. يعتبر هذا الدرس أساسياً لبناء مهارتك وصقل معرفتك.",
+    "description": "شرح متكامل ومبسط عن استكشاف أخطاء متقدمة (Debugging). سنتعرف على أفضل الممارسات وطرق التطبيق العملية خطوة بخطوة لضمان استيعابك الكامل.",
+    "prototype": "Concept_90() -> Completed",
+    "parameters": "المتغيرات والأدوات الأساسية المرتبطة بـ استكشاف أخطاء متقدمة (Debugging)",
+    "return_value": "احتراف وفهم استكشاف أخطاء متقدمة (Debugging) وتطبيقه في مشاريعك.",
+    "example": "def practice_90():\\n      print(\"Welcome to استكشاف أخطاء متقدمة (Debugging)\")\\n  \\n  practice_90()"
+  },
+  "exercise_instructions": "قم بتطبيق ما تعلمته في درس استكشاف أخطاء متقدمة (Debugging) لإنشاء برنامجك الخاص.",
+  "expected_output": "Success"
+},
+  {
+  "lesson_slug": "python-91",
+  "title": "الدرس 91: كتابة كود نظيف (Clean Code)",
+  "category": "مشاريع وتطبيقات",
+  "order_index": 91,
+  "is_free": false,
+  "content_type": "theory",
+  "duration_minutes": 15,
+  "content": {
+    "context": "في هذا الدرس سنناقش \"كتابة كود نظيف (Clean Code)\" بشكل مفصل واحترافي. يعتبر هذا الدرس أساسياً لبناء مهارتك وصقل معرفتك.",
+    "description": "شرح متكامل ومبسط عن كتابة كود نظيف (Clean Code). سنتعرف على أفضل الممارسات وطرق التطبيق العملية خطوة بخطوة لضمان استيعابك الكامل.",
+    "prototype": "Concept_91() -> Completed",
+    "parameters": "المتغيرات والأدوات الأساسية المرتبطة بـ كتابة كود نظيف (Clean Code)",
+    "return_value": "احتراف وفهم كتابة كود نظيف (Clean Code) وتطبيقه في مشاريعك.",
+    "example": "def practice_91():\\n      print(\"Welcome to كتابة كود نظيف (Clean Code)\")\\n  \\n  practice_91()"
+  },
+  "exercise_instructions": "قم بتطبيق ما تعلمته في درس كتابة كود نظيف (Clean Code) لإنشاء برنامجك الخاص.",
+  "expected_output": "Success"
+},
+  {
+  "lesson_slug": "python-92",
+  "title": "الدرس 92: مبادئ SOLID",
+  "category": "مشاريع وتطبيقات",
+  "order_index": 92,
+  "is_free": false,
+  "content_type": "theory",
+  "duration_minutes": 15,
+  "content": {
+    "context": "في هذا الدرس سنناقش \"مبادئ SOLID\" بشكل مفصل واحترافي. يعتبر هذا الدرس أساسياً لبناء مهارتك وصقل معرفتك.",
+    "description": "شرح متكامل ومبسط عن مبادئ SOLID. سنتعرف على أفضل الممارسات وطرق التطبيق العملية خطوة بخطوة لضمان استيعابك الكامل.",
+    "prototype": "Concept_92() -> Completed",
+    "parameters": "المتغيرات والأدوات الأساسية المرتبطة بـ مبادئ SOLID",
+    "return_value": "احتراف وفهم مبادئ SOLID وتطبيقه في مشاريعك.",
+    "example": "def practice_92():\\n      print(\"Welcome to مبادئ SOLID\")\\n  \\n  practice_92()"
+  },
+  "exercise_instructions": "قم بتطبيق ما تعلمته في درس مبادئ SOLID لإنشاء برنامجك الخاص.",
+  "expected_output": "Success"
+},
+  {
+  "lesson_slug": "python-93",
+  "title": "الدرس 93: تطبيق شامل للبرمجة المتقدمة",
+  "category": "مشاريع وتطبيقات",
+  "order_index": 93,
+  "is_free": false,
+  "content_type": "theory",
+  "duration_minutes": 15,
+  "content": {
+    "context": "في هذا الدرس سنناقش \"تطبيق شامل للبرمجة المتقدمة\" بشكل مفصل واحترافي. يعتبر هذا الدرس أساسياً لبناء مهارتك وصقل معرفتك.",
+    "description": "شرح متكامل ومبسط عن تطبيق شامل للبرمجة المتقدمة. سنتعرف على أفضل الممارسات وطرق التطبيق العملية خطوة بخطوة لضمان استيعابك الكامل.",
+    "prototype": "Concept_93() -> Completed",
+    "parameters": "المتغيرات والأدوات الأساسية المرتبطة بـ تطبيق شامل للبرمجة المتقدمة",
+    "return_value": "احتراف وفهم تطبيق شامل للبرمجة المتقدمة وتطبيقه في مشاريعك.",
+    "example": "def practice_93():\\n      print(\"Welcome to تطبيق شامل للبرمجة المتقدمة\")\\n  \\n  practice_93()"
+  },
+  "exercise_instructions": "قم بتطبيق ما تعلمته في درس تطبيق شامل للبرمجة المتقدمة لإنشاء برنامجك الخاص.",
+  "expected_output": "Success"
+},
+  {
+  "lesson_slug": "python-94",
+  "title": "الدرس 94: نشر التطبيقات (Deployment)",
+  "category": "مشاريع وتطبيقات",
+  "order_index": 94,
+  "is_free": false,
+  "content_type": "theory",
+  "duration_minutes": 15,
+  "content": {
+    "context": "في هذا الدرس سنناقش \"نشر التطبيقات (Deployment)\" بشكل مفصل واحترافي. يعتبر هذا الدرس أساسياً لبناء مهارتك وصقل معرفتك.",
+    "description": "شرح متكامل ومبسط عن نشر التطبيقات (Deployment). سنتعرف على أفضل الممارسات وطرق التطبيق العملية خطوة بخطوة لضمان استيعابك الكامل.",
+    "prototype": "Concept_94() -> Completed",
+    "parameters": "المتغيرات والأدوات الأساسية المرتبطة بـ نشر التطبيقات (Deployment)",
+    "return_value": "احتراف وفهم نشر التطبيقات (Deployment) وتطبيقه في مشاريعك.",
+    "example": "def practice_94():\\n      print(\"Welcome to نشر التطبيقات (Deployment)\")\\n  \\n  practice_94()"
+  },
+  "exercise_instructions": "قم بتطبيق ما تعلمته في درس نشر التطبيقات (Deployment) لإنشاء برنامجك الخاص.",
+  "expected_output": "Success"
+},
+  {
+  "lesson_slug": "python-95",
+  "title": "الدرس 95: استخدام Docker",
+  "category": "مشاريع وتطبيقات",
+  "order_index": 95,
+  "is_free": false,
+  "content_type": "theory",
+  "duration_minutes": 15,
+  "content": {
+    "context": "في هذا الدرس سنناقش \"استخدام Docker\" بشكل مفصل واحترافي. يعتبر هذا الدرس أساسياً لبناء مهارتك وصقل معرفتك.",
+    "description": "شرح متكامل ومبسط عن استخدام Docker. سنتعرف على أفضل الممارسات وطرق التطبيق العملية خطوة بخطوة لضمان استيعابك الكامل.",
+    "prototype": "Concept_95() -> Completed",
+    "parameters": "المتغيرات والأدوات الأساسية المرتبطة بـ استخدام Docker",
+    "return_value": "احتراف وفهم استخدام Docker وتطبيقه في مشاريعك.",
+    "example": "def practice_95():\\n      print(\"Welcome to استخدام Docker\")\\n  \\n  practice_95()"
+  },
+  "exercise_instructions": "قم بتطبيق ما تعلمته في درس استخدام Docker لإنشاء برنامجك الخاص.",
+  "expected_output": "Success"
+},
+  {
+  "lesson_slug": "python-96",
+  "title": "الدرس 96: الاستضافة على السحاب",
+  "category": "مشاريع وتطبيقات",
+  "order_index": 96,
+  "is_free": false,
+  "content_type": "theory",
+  "duration_minutes": 15,
+  "content": {
+    "context": "في هذا الدرس سنناقش \"الاستضافة على السحاب\" بشكل مفصل واحترافي. يعتبر هذا الدرس أساسياً لبناء مهارتك وصقل معرفتك.",
+    "description": "شرح متكامل ومبسط عن الاستضافة على السحاب. سنتعرف على أفضل الممارسات وطرق التطبيق العملية خطوة بخطوة لضمان استيعابك الكامل.",
+    "prototype": "Concept_96() -> Completed",
+    "parameters": "المتغيرات والأدوات الأساسية المرتبطة بـ الاستضافة على السحاب",
+    "return_value": "احتراف وفهم الاستضافة على السحاب وتطبيقه في مشاريعك.",
+    "example": "def practice_96():\\n      print(\"Welcome to الاستضافة على السحاب\")\\n  \\n  practice_96()"
+  },
+  "exercise_instructions": "قم بتطبيق ما تعلمته في درس الاستضافة على السحاب لإنشاء برنامجك الخاص.",
+  "expected_output": "Success"
+},
+  {
+  "lesson_slug": "python-97",
+  "title": "الدرس 97: مراجعة نهائية",
+  "category": "مشاريع وتطبيقات",
+  "order_index": 97,
+  "is_free": false,
+  "content_type": "theory",
+  "duration_minutes": 15,
+  "content": {
+    "context": "في هذا الدرس سنناقش \"مراجعة نهائية\" بشكل مفصل واحترافي. يعتبر هذا الدرس أساسياً لبناء مهارتك وصقل معرفتك.",
+    "description": "شرح متكامل ومبسط عن مراجعة نهائية. سنتعرف على أفضل الممارسات وطرق التطبيق العملية خطوة بخطوة لضمان استيعابك الكامل.",
+    "prototype": "Concept_97() -> Completed",
+    "parameters": "المتغيرات والأدوات الأساسية المرتبطة بـ مراجعة نهائية",
+    "return_value": "احتراف وفهم مراجعة نهائية وتطبيقه في مشاريعك.",
+    "example": "def practice_97():\\n      print(\"Welcome to مراجعة نهائية\")\\n  \\n  practice_97()"
+  },
+  "exercise_instructions": "قم بتطبيق ما تعلمته في درس مراجعة نهائية لإنشاء برنامجك الخاص.",
+  "expected_output": "Success"
+},
+  {
+  "lesson_slug": "python-98",
+  "title": "الدرس 98: مشروع التخرج الأول",
+  "category": "مشاريع وتطبيقات",
+  "order_index": 98,
+  "is_free": false,
+  "content_type": "theory",
+  "duration_minutes": 15,
+  "content": {
+    "context": "في هذا الدرس سنناقش \"مشروع التخرج الأول\" بشكل مفصل واحترافي. يعتبر هذا الدرس أساسياً لبناء مهارتك وصقل معرفتك.",
+    "description": "شرح متكامل ومبسط عن مشروع التخرج الأول. سنتعرف على أفضل الممارسات وطرق التطبيق العملية خطوة بخطوة لضمان استيعابك الكامل.",
+    "prototype": "Concept_98() -> Completed",
+    "parameters": "المتغيرات والأدوات الأساسية المرتبطة بـ مشروع التخرج الأول",
+    "return_value": "احتراف وفهم مشروع التخرج الأول وتطبيقه في مشاريعك.",
+    "example": "def practice_98():\\n      print(\"Welcome to مشروع التخرج الأول\")\\n  \\n  practice_98()"
+  },
+  "exercise_instructions": "قم بتطبيق ما تعلمته في درس مشروع التخرج الأول لإنشاء برنامجك الخاص.",
+  "expected_output": "Success"
+},
+  {
+  "lesson_slug": "python-99",
+  "title": "الدرس 99: مشروع التخرج الثاني",
+  "category": "مشاريع وتطبيقات",
+  "order_index": 99,
+  "is_free": false,
+  "content_type": "theory",
+  "duration_minutes": 15,
+  "content": {
+    "context": "في هذا الدرس سنناقش \"مشروع التخرج الثاني\" بشكل مفصل واحترافي. يعتبر هذا الدرس أساسياً لبناء مهارتك وصقل معرفتك.",
+    "description": "شرح متكامل ومبسط عن مشروع التخرج الثاني. سنتعرف على أفضل الممارسات وطرق التطبيق العملية خطوة بخطوة لضمان استيعابك الكامل.",
+    "prototype": "Concept_99() -> Completed",
+    "parameters": "المتغيرات والأدوات الأساسية المرتبطة بـ مشروع التخرج الثاني",
+    "return_value": "احتراف وفهم مشروع التخرج الثاني وتطبيقه في مشاريعك.",
+    "example": "def practice_99():\\n      print(\"Welcome to مشروع التخرج الثاني\")\\n  \\n  practice_99()"
+  },
+  "exercise_instructions": "قم بتطبيق ما تعلمته في درس مشروع التخرج الثاني لإنشاء برنامجك الخاص.",
+  "expected_output": "Success"
+},
+  {
+  "lesson_slug": "python-100",
+  "title": "الدرس 100: الخاتمة والشهادة",
+  "category": "مشاريع وتطبيقات",
+  "order_index": 100,
+  "is_free": false,
+  "content_type": "theory",
+  "duration_minutes": 15,
+  "content": {
+    "context": "في هذا الدرس سنناقش \"الخاتمة والشهادة\" بشكل مفصل واحترافي. يعتبر هذا الدرس أساسياً لبناء مهارتك وصقل معرفتك.",
+    "description": "شرح متكامل ومبسط عن الخاتمة والشهادة. سنتعرف على أفضل الممارسات وطرق التطبيق العملية خطوة بخطوة لضمان استيعابك الكامل.",
+    "prototype": "Concept_100() -> Completed",
+    "parameters": "المتغيرات والأدوات الأساسية المرتبطة بـ الخاتمة والشهادة",
+    "return_value": "احتراف وفهم الخاتمة والشهادة وتطبيقه في مشاريعك.",
+    "example": "def practice_100():\\n      print(\"Welcome to الخاتمة والشهادة\")\\n  \\n  practice_100()"
+  },
+  "exercise_instructions": "قم بتطبيق ما تعلمته في درس الخاتمة والشهادة لإنشاء برنامجك الخاص.",
+  "expected_output": "Success"
+}
 ];
