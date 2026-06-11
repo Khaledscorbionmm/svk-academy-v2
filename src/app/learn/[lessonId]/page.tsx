@@ -1576,7 +1576,56 @@ export default function LessonPage({ params }: { params: Promise<{ lessonId: str
                     {/* TOTAL VIDEO BAN: NO VIDEO RENDERED HERE AT ALL */}
 
                     <div style={{ marginTop: '8px' }}>
-                      <div dangerouslySetInnerHTML={{ __html: lesson.text_content }} style={{ lineHeight: 1.9, fontSize: '1.05rem' }} />
+                      {(() => {
+                        try {
+                          // Attempt to parse JSON content from static tracks
+                          const parsedContent = JSON.parse(lesson.text_content);
+                          const premiumData = Array.isArray(parsedContent) ? parsedContent[0] : parsedContent;
+                          
+                          if (premiumData && premiumData.prototype) {
+                            const { prototype, description, parameters, return_value, example } = premiumData;
+                            return (
+                              <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+                                <div style={{ background: isKids ? '#f0fdf4' : 'rgba(59, 130, 246, 0.1)', borderRight: isKids ? '4px solid #10b981' : '4px solid #3b82f6', padding: '20px', borderRadius: '12px' }}>
+                                  <h4 style={{ margin: '0 0 10px', color: isKids ? '#047857' : '#60a5fa', fontSize: '1rem', textTransform: 'uppercase', letterSpacing: '1px', fontWeight: 900 }}>البنية الأساسية (Prototype)</h4>
+                                  <code style={{ fontSize: '1.25rem', color: isKids ? '#1e293b' : '#e2e8f0', fontFamily: 'monospace', fontWeight: 700 }}>{prototype}</code>
+                                </div>
+                                
+                                <div>
+                                  <h4 style={{ margin: '0 0 12px', color: isKids ? '#1e3a8a' : '#10b981', fontSize: '1.15rem', fontWeight: 900 }}>الشرح والتفاصيل</h4>
+                                  <p style={{ margin: 0, color: isKids ? '#334155' : '#cbd5e1', lineHeight: 1.9, fontSize: '1.05rem' }}>{description}</p>
+                                </div>
+
+                                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px' }}>
+                                  <div style={{ background: isKids ? '#fffbeb' : 'rgba(255, 255, 255, 0.03)', padding: '20px', borderRadius: '12px', border: isKids ? '2px solid #fcd34d' : '1px solid rgba(255,255,255,0.05)' }}>
+                                    <h4 style={{ margin: '0 0 10px', color: isKids ? '#b45309' : '#f59e0b', fontSize: '1rem', fontWeight: 800 }}>المعاملات (Parameters)</h4>
+                                    <p style={{ margin: 0, color: isKids ? '#475569' : '#94a3b8', fontSize: '1rem', lineHeight: 1.8 }}>{parameters}</p>
+                                  </div>
+                                  <div style={{ background: isKids ? '#faf5ff' : 'rgba(255, 255, 255, 0.03)', padding: '20px', borderRadius: '12px', border: isKids ? '2px solid #d8b4fe' : '1px solid rgba(255,255,255,0.05)' }}>
+                                    <h4 style={{ margin: '0 0 10px', color: isKids ? '#7e22ce' : '#a855f7', fontSize: '1rem', fontWeight: 800 }}>القيمة المرجعة (Return Value)</h4>
+                                    <p style={{ margin: 0, color: isKids ? '#475569' : '#94a3b8', fontSize: '1rem', lineHeight: 1.8 }}>{return_value}</p>
+                                  </div>
+                                </div>
+
+                                <div style={{ background: isKids ? '#f8fafc' : '#0f172a', padding: '20px', borderRadius: '12px', border: isKids ? '2px solid #cbd5e1' : '1px solid #1e293b' }}>
+                                  <h4 style={{ margin: '0 0 16px', color: isKids ? '#334155' : '#e2e8f0', fontSize: '1.05rem', display: 'flex', alignItems: 'center', gap: '8px', fontWeight: 900 }}>
+                                    <span>💻</span> مثال عملي (Example)
+                                  </h4>
+                                  <div style={{ margin: 0, padding: '20px', background: isKids ? '#fff' : '#000', borderRadius: '8px', overflowX: 'auto', border: isKids ? '1px solid #e2e8f0' : 'none' }}>
+                                    <pre style={{ margin: 0, color: isKids ? '#1d4ed8' : '#a5b4fc', fontSize: '1.05rem', fontFamily: 'monospace', whiteSpace: 'pre-wrap' }}>
+                                      {example}
+                                    </pre>
+                                  </div>
+                                </div>
+                              </div>
+                            );
+                          }
+                        } catch (e) {
+                          // Fallback to raw HTML parsing if it's not JSON
+                        }
+                        
+                        return <div dangerouslySetInnerHTML={{ __html: lesson.text_content }} style={{ lineHeight: 1.9, fontSize: '1.05rem' }} />;
+                      })()}
                     </div>
 
                     <div style={{ marginTop: '30px', textAlign: 'center' }}>

@@ -969,7 +969,43 @@ export default function LanguageLearningLayout({ data }: { data: any }) {
               {/* Dedicated Audio Player narration block at the top */}
               <AudioNarrationPlayer textContent={lesson.text_content || ''} isKids={isKids} />
 
-              <div dangerouslySetInnerHTML={{ __html: lesson.text_content }} style={{ lineHeight: 2, fontSize: '1.05rem' }} />
+              {(() => {
+                try {
+                  const parsedContent = JSON.parse(lesson.text_content);
+                  const langData = Array.isArray(parsedContent) ? parsedContent[0] : parsedContent;
+                  
+                  if (langData && langData.text_english) {
+                    const { text_english, translation_arabic, phonetic_guide, situational_context } = langData;
+                    return (
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+                        <div style={{ background: isKids ? '#f0fdf4' : 'rgba(59, 130, 246, 0.1)', borderRight: isKids ? '4px solid #10b981' : '4px solid #3b82f6', padding: '20px', borderRadius: '12px' }}>
+                          <h4 style={{ margin: '0 0 10px', color: isKids ? '#047857' : '#60a5fa', fontSize: '1rem', textTransform: 'uppercase', letterSpacing: '1px', fontWeight: 900 }}>الكلمة الرئيسية</h4>
+                          <code style={{ fontSize: '1.5rem', color: isKids ? '#1e293b' : '#e2e8f0', fontWeight: 700 }}>{text_english}</code>
+                        </div>
+                        
+                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px' }}>
+                          <div style={{ background: isKids ? '#fffbeb' : 'rgba(255, 255, 255, 0.03)', padding: '20px', borderRadius: '12px', border: isKids ? '2px solid #fcd34d' : '1px solid rgba(255,255,255,0.05)' }}>
+                            <h4 style={{ margin: '0 0 10px', color: isKids ? '#b45309' : '#f59e0b', fontSize: '1rem', fontWeight: 800 }}>الترجمة والنطق</h4>
+                            <p style={{ margin: '0 0 8px', color: isKids ? '#475569' : '#94a3b8', fontSize: '1.2rem', fontWeight: 700 }}>{translation_arabic}</p>
+                            <p style={{ margin: 0, color: '#64748b', fontSize: '1rem', fontFamily: 'monospace' }}>{phonetic_guide}</p>
+                          </div>
+                        </div>
+
+                        <div style={{ background: isKids ? '#f8fafc' : '#0f172a', padding: '20px', borderRadius: '12px', border: isKids ? '2px solid #cbd5e1' : '1px solid #1e293b' }}>
+                          <h4 style={{ margin: '0 0 16px', color: isKids ? '#334155' : '#e2e8f0', fontSize: '1.05rem', display: 'flex', alignItems: 'center', gap: '8px', fontWeight: 900 }}>
+                            <span>🗣️</span> السياق والاستخدام (Context)
+                          </h4>
+                          <p style={{ margin: 0, color: isKids ? '#334155' : '#cbd5e1', lineHeight: 1.9, fontSize: '1.05rem' }}>{situational_context}</p>
+                        </div>
+                      </div>
+                    );
+                  }
+                } catch (e) {
+                  // Fallback
+                }
+                
+                return <div dangerouslySetInnerHTML={{ __html: lesson.text_content }} style={{ lineHeight: 2, fontSize: '1.05rem' }} />;
+              })()}
               
               <div style={{ marginTop: '30px', textAlign: 'center' }}>
                 <button
