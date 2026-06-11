@@ -311,7 +311,7 @@ function FlashcardHub({ flashcards, courseTitle, isKids, isDarkMode }: { flashca
     
     const utterance = new SpeechSynthesisUtterance(text);
     utterance.lang = lang;
-    utterance.rate = 0.8;
+    utterance.rate = 0.85;
     
     const voices = window.speechSynthesis.getVoices();
     const voice = voices.find(v => v.lang.startsWith(lang.split('-')[0]));
@@ -346,7 +346,7 @@ function FlashcardHub({ flashcards, courseTitle, isKids, isDarkMode }: { flashca
   };
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', alignItems: 'center', width: '100%' }}>
+    <div className="overflow-x-hidden" style={{ display: 'flex', flexDirection: 'column', gap: '20px', alignItems: 'center', width: '100%' }}>
       <style>{`
         .flashcard-wrapper {
           perspective: 1000px;
@@ -876,7 +876,7 @@ export default function LanguageLearningLayout({ data }: { data: any }) {
       </header>
 
       {/* DASHBOARD LAYOUT */}
-      <div className="learning-dashboard-container" style={{ display: 'flex', flex: 1, overflow: 'hidden', padding: '24px', gap: '24px', maxWidth: '1600px', margin: '0 auto', width: '100%' }}>
+      <div className="learning-dashboard-container w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row" style={{ flex: 1, overflow: 'hidden', gap: '24px', paddingTop: '24px', paddingBottom: '24px' }}>
         
         {/* LEFT: PROGRESS TIMELINE */}
         <aside className="learning-dashboard-sidebar" style={{ width: '280px', background: theme.sidebarBg, borderRadius: '20px', border: theme.cardBorder, display: 'flex', flexDirection: 'column', overflow: 'hidden', flexShrink: 0 }}>
@@ -899,9 +899,9 @@ export default function LanguageLearningLayout({ data }: { data: any }) {
                     }}>
                       {isPast ? '⭐' : idx + 1}
                     </div>
-                    <div style={{ flex: 1, padding: '4px 0' }}>
-                      <div style={{ fontWeight: isActive ? 800 : 600, color: isActive ? theme.textColor : theme.subTextColor, fontSize: '0.9rem' }}>
-                        {l.title}
+                    <div style={{ flex: 1, padding: '4px 0', minWidth: 0 }}>
+                      <div style={{ fontWeight: isActive ? 800 : 600, color: isActive ? theme.textColor : theme.subTextColor, fontSize: '0.9rem', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                        <bdi dir="ltr">{l.title}</bdi>
                       </div>
                     </div>
                   </div>

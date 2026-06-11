@@ -69,13 +69,12 @@ function PremiumAudioPlayer({ src, title, textContent }: { src: string; title: s
           window.speechSynthesis.cancel();
           const cleanText = getCleanText();
           const utterance = new SpeechSynthesisUtterance(cleanText);
-          utterance.lang = 'ar-EG';
-          utterance.rate = 0.95;
+          utterance.lang = 'en-US';
+          utterance.rate = 0.85;
           
-          // Try to select an Arabic voice
           const voices = window.speechSynthesis.getVoices();
-          const arVoice = voices.find(v => v.lang.startsWith('ar'));
-          if (arVoice) utterance.voice = arVoice;
+          const enVoice = voices.find(v => v.lang.startsWith('en'));
+          if (enVoice) utterance.voice = enVoice;
           
           utterance.onend = () => {
             setIsPlaying(false);
