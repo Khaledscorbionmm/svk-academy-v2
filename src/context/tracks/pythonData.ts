@@ -1,1606 +1,1902 @@
 export const pythonTrackData = [
   {
     "lesson_slug": "python-1",
-    "title": "int (الأعداد الصحيحة)",
-    "category": "Core Primitives & Memory",
+    "title": "الدرس 1: الأعداد الصحيحة (int) - بداية الرحلة",
+    "category": "أساسيات بايثون وبناء المنطق",
     "order_index": 1,
     "is_free": true,
     "content_type": "theory",
     "duration_minutes": 8,
     "content": {
-      "prototype": "int(x=0, base=10)",
-      "description": "أهلاً بك في عالم هندسة البرمجيات! الـ `int` في بايثون 3 ليس مجرد رقم، بل هو كائن (Object) ذكي يتعامل مع الذاكرة الديناميكية ببراعة فائقة. على عكس لغات أخرى مقيدة بـ 32-bit أو 64-bit، بايثون تدعم أرقاماً صحيحة ضخمة جداً (Arbitrary-precision) وتتوسع في الذاكرة تلقائياً لاستيعابها. نستخدمها للحسابات الدقيقة، التحويل بين الأنظمة العددية (الثنائي، السداسي عشر)، وإدارة الفهارس.",
-      "parameters": "x (اختياري): القيمة المراد تحويلها لرقم صحيح. base (اختياري): النظام العددي (مثل 2 للثنائي، 16 للسداسي عشر).",
-      "return_value": "يعيد كائناً من نوع Integer نقي وجاهز للعمليات الحسابية أو المنطقية المعقدة.",
-      "example": "# تخصيص رقم في الذاكرة\nusers_count = 104500\n\n# تحويل رقم ثنائي (Binary) إلى عشري\nbinary_str = '1010'\ndecimal_val = int(binary_str, 2) # الناتج: 10\nprint('Decimal:', decimal_val)"
+      "context": "لماذا نتعلم هذا؟ الكمبيوتر يحتاج إلى طريقة لفهم الأرقام لحساب أعمار المستخدمين، رصيد النقاط في لعبة، أو عدد المحاولات المتبقية.",
+      "description": "أهلاً بك في عالم البرمجة! تخيل أن المتغيرات هي عبارة عن صناديق في مستودع ضخم. نوع `int` (اختصار لـ Integer) هو الصندوق المخصص لتخزين (الأعداد الصحيحة) فقط، وهي الأرقام التي لا تحتوي على أي كسور (مثل 5، 100، أو -10). خلف الكواليس، بايثون ذكية جداً وتقوم بتوسيع هذا الصندوق تلقائياً في الذاكرة ليستوعب أرقاماً ضخمة جداً دون أن ينهار البرنامج، على عكس لغات برمجة أخرى.",
+      "prototype": "int(x) أو كتابة الرقم مباشرة",
+      "parameters": "x: الرقم أو النص الذي يحتوي على رقم صحيح لكي نقوم بتحويله وتخزينه.",
+      "return_value": "يعطينا رقماً صحيحاً نقياً وجاهزاً للعمليات الحسابية.",
+      "example": "# تخصيص رقم في متغير (كأننا نضع الرقم في الصندوق)\nplayer_score = 1500\n\n# دالة الطباعة تُخرج النتيجة على الشاشة لكي نراها\nprint(player_score)"
     },
-    "exercise_instructions": "قم بإنشاء متغير age وضع بداخله عمرك، ثم استخدم print لطباعته.",
+    "exercise_instructions": "قم بإنشاء متغير يحمل اسم age وضع بداخله عمرك، ثم اطبعه.",
     "expected_output": "25"
   },
   {
     "lesson_slug": "python-2",
-    "title": "float (الأعداد العائمة)",
-    "category": "Core Primitives & Memory",
+    "title": "الدرس 2: الأعداد العشرية (float) - الدقة في الحسابات",
+    "category": "أساسيات بايثون وبناء المنطق",
     "order_index": 2,
     "is_free": true,
     "content_type": "theory",
     "duration_minutes": 10,
     "content": {
-      "prototype": "float(x=0.0)",
-      "description": "الأرقام العشرية (Floats) في بايثون تعتمد على معيار IEEE 754 (Double-precision) المخزن في 64-bit. هذا المعيار يجعل الحسابات سريعة جداً، ولكنه يسبب دقة تقريبية (Precision limits). لذلك، عملياً 0.1 + 0.2 لا يساوي 0.3 تماماً بل 0.30000000000000004! يستخدم الـ `float` في الذكاء الاصطناعي، الرسوم البيانية، ومقاييس الأداء. كما يتيح تعريف اللانهاية `float('inf')`.",
-      "parameters": "x (اختياري): القيمة النصية أو العددية المراد تحويلها لنظام النقطة العائمة.",
-      "return_value": "يعيد كائناً عشرياً بدقة تصل إلى 15-17 خانة عشرية.",
-      "example": "# مشكلة الدقة الكلاسيكية\nprint(0.1 + 0.2 == 0.3) # False!\n\n# استخدام اللانهاية في خوارزميات البحث\nmin_score = float('-inf')\nmax_score = float('inf')"
+      "context": "لماذا نتعلم هذا؟ ليس كل شيء في الحياة أرقاماً صحيحة! نحتاج لتخزين أسعار المنتجات في المتجر (99.99)، أوزان الأشياء، أو النسبة المئوية للنجاح.",
+      "description": "الـ `float` هو الصندوق المخصص للأرقام التي تحتوي على فاصلة عشرية (النقطة `.`). بايثون تستخدم تقنية قوية جداً في الذاكرة لحفظ هذه الكسور بدقة عالية. تذكر دائماً أننا في البرمجة نستخدم النقطة (.) للكسور وليس الفاصلة العادية. خلف الكواليس، الكمبيوتر يحول هذه الكسور إلى نظام ثنائي، لذا قد تلاحظ أحياناً أن 0.1 + 0.2 لا يعطي 0.3 بالضبط بل رقماً قريباً جداً منه!",
+      "prototype": "float(x) أو كتابة الرقم بنقطة عشرية",
+      "parameters": "x: الرقم المراد تحويله إلى كسر عشري دقيق.",
+      "return_value": "يعطينا رقماً بفاصلة عشرية دقيقة.",
+      "example": "# تخزين سعر كورس البرمجة\ncourse_price = 99.5\nprint(course_price)\n\n# عملية حسابية بسيطة\nprint(1.5 + 2.5) # الناتج 4.0"
     },
-    "exercise_instructions": "قم بإنشاء متغير باسم price وضَع فيه سعر الكورس (مثلاً 99.9) ثم اطبعه.",
-    "expected_output": "99.9"
+    "exercise_instructions": "قم بإنشاء متغير يحمل اسم price وضع بداخله الرقم 99.5 ثم اطبعه.",
+    "expected_output": "99.5"
   },
   {
     "lesson_slug": "python-3",
-    "title": "str (النصوص والسلاسل)",
-    "category": "Core Primitives & Memory",
+    "title": "الدرس 3: النصوص (str) - لغة التخاطب",
+    "category": "أساسيات بايثون وبناء المنطق",
     "order_index": 3,
     "is_free": true,
     "content_type": "theory",
-    "duration_minutes": 12,
+    "duration_minutes": 10,
     "content": {
-      "prototype": "str(object='')",
-      "description": "النصوص `str` في بايثون هي كائنات غير قابلة للتعديل (Immutable). عند تغيير حرف، بايثون تصنع نسخة جديدة كلياً في الذاكرة! لتحسين الأداء، بايثون تستخدم تقنية (String Interning) لتخزين الكلمات القصيرة الشائعة مرة واحدة في الذاكرة لتوفير المساحة. النصوص تدعم ترميز UTF-8 لتشغيل أي لغة عالمية مع تقطيع متقدم (Slicing) فعال جداً.",
-      "parameters": "object (اختياري): الكائن أو البيانات المراد تحويلها وتمثيلها في صيغة نصية.",
-      "return_value": "كائن نصي مشفر بنظام Unicode.",
-      "example": "# تقنية التقطيع المتقدم (Slicing)\ntext = 'SVK Academy'\nprint(text[::-1]) # يعكس النص بالكامل\n\n# الاستفادة من التنسيق الذكي\nuser = 'Ahmed'\nprint(f'Welcome {user} to the system!')"
-    }
+      "context": "لماذا نتعلم هذا؟ لكي يتحدث برنامجك مع البشر! نحتاج لتخزين اسم المستخدم، رسالة ترحيبية، أو حتى محتوى مقال كامل.",
+      "description": "الـ `str` (اختصار لـ String) هو سلسلة من الحروف والكلمات. لكي يفرق الكمبيوتر بين أمر برمجي ونص عادي، يجب أن نضع النصوص داخل علامتي تنصيص مفردة ' ' أو مزدوجة \" \". خلف الكواليس، بمجرد أن تصنع نصاً في بايثون، لا يمكنك تغيير حرف واحد فيه؛ بايثون تقوم بتدمير النص القديم في الذاكرة وبناء واحد جديد تماماً حفاظاً على الاستقرار والأمان!",
+      "prototype": "str(object) أو 'النص' / \"النص\"",
+      "parameters": "النص المطلوب تخزينه محاطاً بعلامات التنصيص.",
+      "return_value": "كلمة أو جملة جاهزة للعرض للمستخدم.",
+      "example": "# تخزين رسالة ترحيب\nwelcome_msg = \"أهلاً بك في الأكاديمية\"\nprint(welcome_msg)\n\n# دمج النصوص مع بعضها\nprint(\"Hello \" + \"World\")"
+    },
+    "exercise_instructions": "قم بطباعة الجملة التالية تماماً: Hello World",
+    "expected_output": "Hello World"
   },
   {
     "lesson_slug": "python-4",
-    "title": "bool (المنطق البولياني)",
-    "category": "Core Primitives & Memory",
+    "title": "الدرس 4: المنطق البولياني (bool) - الصح والخطأ",
+    "category": "أساسيات بايثون وبناء المنطق",
     "order_index": 4,
     "is_free": false,
     "content_type": "theory",
     "duration_minutes": 8,
     "content": {
-      "prototype": "bool(x=False)",
-      "description": "النوع `bool` يمثل المنطق الثنائي (True/False). داخلياً، بايثون تعتبر True كأنها الرقم 1 و False كأنها 0، مما يسمح بعمليات حسابية مباشرة عليها! وتعتمد بايثون على مبدأ (Truthiness) حيث كل كائن فارغ (قائمة فارغة، نص فارغ، 0) يعتبر False. كما تستخدم بايثون تقنية (Short-circuit evaluation) لتسريع الشروط المعقدة بحيث تتوقف بمجرد معرفة النتيجة.",
-      "parameters": "x: الكائن المراد تقييم حالته المنطقية (فارغ أم ممتلئ).",
-      "return_value": "True أو False بناءً على ما إذا كان الكائن يحتوي على بيانات صالحة.",
-      "example": "# تقييم الكائنات الفارغة\nempty_list = []\nif not empty_list:\n    print('القائمة فارغة، لن يتم الاستعلام من قاعدة البيانات')\n\n# Short-circuit\nresult = True or some_heavy_function()"
-    }
+      "context": "لماذا نتعلم هذا؟ لكي نجعل الكمبيوتر يأخذ قرارات! هل المستخدم دفع قيمة الاشتراك؟ هل الرقم السري صحيح؟ الإجابة دائماً نعم أو لا.",
+      "description": "نوع `bool` (البولياني) هو أبسط أنواع البيانات، فهو يمتلك قيمتين فقط: `True` (صحيح) أو `False` (خاطئ). يجب دائماً أن تبدأ بحرف كبير (Capital). خلف الكواليس، بايثون تعتبر True هي الرقم 1، و False هي الرقم 0. كما أنها تعتبر أي صندوق فارغ (مثل نص فارغ أو الرقم صفر) كأنه False، وأي شيء ممتلئ كأنه True.",
+      "prototype": "True أو False",
+      "parameters": "قيمة منطقية صريحة، أو سؤال منطقي مثل (10 > 5).",
+      "return_value": "النتيجة النهائية للسؤال: إما True أو False.",
+      "example": "# هل المستخدم مسجل دخول؟\nis_logged_in = True\nprint(is_logged_in)\n\n# سؤال الكمبيوتر: هل 10 أكبر من 5؟\nprint(10 > 5) # النتيجة True"
+    },
+    "exercise_instructions": "اطلب من بايثون أن تقارن وتطبع نتيجة: هل 100 أكبر من 50؟ (استخدم 100 > 50).",
+    "expected_output": "True"
   },
   {
     "lesson_slug": "python-5",
-    "title": "list (القوائم الديناميكية)",
-    "category": "Collections & Data Structures",
+    "title": "الدرس 5: العمليات الحسابية - الكمبيوتر كآلة حاسبة",
+    "category": "أساسيات بايثون وبناء المنطق",
     "order_index": 5,
     "is_free": false,
     "content_type": "theory",
-    "duration_minutes": 15,
+    "duration_minutes": 10,
     "content": {
-      "prototype": "list(iterable=())",
-      "description": "القوائم `list` هي مصفوفات ديناميكية (Dynamic Arrays). في الذاكرة، بايثون لا تحجز مساحة لعنصر واحد فقط، بل تقوم بـ (Over-allocation)؛ تحجز مساحة إضافية مسبقاً لتسريع عمليات إضافة العناصر (append). القوائم قابلة للتعديل (Mutable)، ويمكنها احتواء أنواع بيانات مختلطة، مما يجعلها مرنة وقوية لبناء الأنظمة، ولكن بطيئة نسبياً عند البحث مقارنة بالقاموس.",
-      "parameters": "iterable (اختياري): تسلسل بيانات كالنصوص أو المجموعات لتحويلها إلى قائمة.",
-      "return_value": "مصفوفة ديناميكية قابلة للتعديل بالكامل.",
-      "example": "# الـ List Comprehension (طريقة احترافية وسريعة)\nsquares = [x**2 for x in range(1, 6)]\nprint(squares) # [1, 4, 9, 16, 25]\n\n# دمج قائمتين\nusers = ['Ali'] + ['Mona']"
-    }
+      "context": "لماذا نتعلم هذا؟ لبناء ألعاب تحسب النقاط، برامج محاسبة تحسب الضرائب، أو خوارزميات الذكاء الاصطناعي التي تعتمد على الرياضيات.",
+      "description": "بايثون تعتبر أقوى آلة حاسبة في العالم. يمكنك استخدام الجمع `+`، الطرح `-`، الضرب `*`، والقسمة `/`. وهناك عمليات سحرية مثل القسمة الصحيحة `//` (التي تتجاهل الكسور) وباقي القسمة `%` (المهمة جداً لمعرفة هل الرقم زوجي أم فردي). خلف الكواليس، وحدة المعالجة المركزية (CPU) تنفذ هذه العمليات بسرعة البرق.",
+      "prototype": "a + b, a - b, a * b, a / b",
+      "parameters": "رقمين أو أكثر لتنفيذ العملية الحسابية بينهما.",
+      "return_value": "النتيجة الرياضية النهائية كعدد صحيح (int) أو عشري (float).",
+      "example": "# حساب العمر بعد 5 سنوات\ncurrent_age = 20\nfuture_age = current_age + 5\nprint(future_age) # 25"
+    },
+    "exercise_instructions": "قم بضرب الرقم 10 في 5 واطبع الناتج.",
+    "expected_output": "50"
   },
   {
     "lesson_slug": "python-6",
-    "title": "dict (القواميس وجداول الهاش)",
-    "category": "Collections & Data Structures",
+    "title": "الدرس 6: دمج النصوص - بناء الجمل المترابطة",
+    "category": "أساسيات بايثون وبناء المنطق",
     "order_index": 6,
     "is_free": false,
     "content_type": "theory",
-    "duration_minutes": 15,
+    "duration_minutes": 12,
     "content": {
-      "prototype": "dict(**kwargs) أو dict(mapping)",
-      "description": "القاموس `dict` هو أقوى هيكل بيانات في بايثون! مبني هندسياً على تقنية (Hash Tables). هذا يعني أن سرعة البحث، إضافة، أو حذف عنصر هي O(1) ثابتة تقريباً، مهما كان القاموس ضخماً. يُستخدم بكثافة في التعامل مع قواعد البيانات (JSON)، إعدادات الأنظمة، وإنشاء فهارس بحث فائقة السرعة للمستخدمين. المفاتيح يجب أن تكون من نوع غير قابل للتعديل (Hashable).",
-      "parameters": "kwargs أو mapping: بيانات مزدوجة (مفتاح وقيمة) لبناء القاموس.",
-      "return_value": "جدول هاش فائق السرعة يعتمد على أزواج المفتاح والقيمة.",
-      "example": "# إنشاء معمارية بيانات مستخدم\nuser_profile = {'id': 101, 'role': 'admin', 'active': True}\n\n# الاستعلام السريع والآمن\nuser_role = user_profile.get('role', 'guest')\nprint(f'Role: {user_role}')"
-    }
+      "context": "لماذا نتعلم هذا؟ عندما تدخل موقعاً ويقول لك 'مرحباً يا أحمد'، فهو يدمج كلمة ثابتة (مرحباً) مع اسمك المتغير (أحمد).",
+      "description": "عملية الدمج (Concatenation) تعني ربط النصوص ببعضها. نستخدم علامة الزائد `+` للصق الكلمات. ولكن بايثون صارمة جداً: لا يمكنك دمج نص (str) مع رقم (int) مباشرة، يجب أن تحول الرقم إلى نص أولاً! لتسهيل هذا، ابتكروا ميزة سحرية تُسمى `f-strings` تتيح لك حقن المتغيرات مباشرة داخل النص بكل أناقة وراحة.",
+      "prototype": "'text1' + 'text2' أو f'text {variable}'",
+      "parameters": "النصوص والمتغيرات المراد ربطها معاً لتكوين جملة مفيدة.",
+      "return_value": "نص واحد طويل يحتوي على كل المعلومات مرتبة.",
+      "example": "# الطريقة الحديثة والمفضلة للمبرمجين (f-string)\nname = 'عمر'\nscore = 99\nprint(f'اللاعب {name} حصل على {score} نقطة')"
+    },
+    "exercise_instructions": "باستخدام ميزة f-string، قم بطباعة الجملة: My age is 20",
+    "expected_output": "My age is 20"
   },
   {
     "lesson_slug": "python-7",
-    "title": "tuple (الصفوف الثابتة)",
-    "category": "Collections & Data Structures",
+    "title": "الدرس 7: أخذ مدخلات المستخدم (input) - التفاعل الأول",
+    "category": "أساسيات بايثون وبناء المنطق",
     "order_index": 7,
     "is_free": false,
     "content_type": "theory",
     "duration_minutes": 10,
     "content": {
-      "prototype": "tuple(iterable=())",
-      "description": "الـ `tuple` تشبه القائمة، لكنها محصنة وغير قابلة للتعديل (Immutable). هندسياً، نظراً لثبات حجمها، بايثون تخزن الـ Tuples بشكل متلاصق في الذاكرة (Contiguous Memory)، مما يجعلها أسرع من الـ Lists وتستهلك مساحة أقل. تُستخدم الـ Tuples لإرجاع أكثر من قيمة من دالة، أو لتمثيل بيانات محمية يجب ألا يتم العبث بها كالأسماء وإحداثيات الخريطة.",
-      "parameters": "iterable (اختياري): تسلسل عناصر لتجميعه في Tuple.",
-      "return_value": "هيكل بيانات متلاصق وثابت للقراءة فقط.",
-      "example": "# دالة ترجع قيمتين معاً عبر Tuple\ndef get_server_status():\n    return ('192.168.1.1', 'Online')\n\n# تفكيك القيم (Unpacking)\nip, status = get_server_status()\nprint(ip, status)"
-    }
+      "context": "لماذا نتعلم هذا؟ البرنامج الذي لا يأخذ بيانات من المستخدم هو برنامج ميت. نحتاج للسماح للمستخدم بإدخال اسمه ورقم حسابه.",
+      "description": "دالة `input()` تفتح قناة اتصال بين البرنامج والمستخدم. عندما يرى الكمبيوتر هذا الأمر، فإنه يتوقف عن العمل تماماً وينتظر بصبر حتى يكتب المستخدم شيئاً ويضغط Enter. المعلومة المهمة هنا: كل ما يكتبه المستخدم سيعتبره الكمبيوتر (نصاً str) حتى لو كان أرقاماً! لذا إذا أردت استخدامه في حسابات، يجب تحويله لـ `int` أولاً.",
+      "prototype": "input('الرسالة التي ستظهر للمستخدم:')",
+      "parameters": "رسالة توضيحية اختيارية لتوجيه المستخدم.",
+      "return_value": "يعيد النص الذي كتبه المستخدم كـ (str).",
+      "example": "# سؤال المستخدم عن اسمه (تخيلي في المحرر)\n# user_name = input('ما هو اسمك؟ ')\n# print('مرحباً ' + user_name)\nprint('مرحباً زائرنا')"
+    },
+    "exercise_instructions": "في هذا التدريب سنطبع رسالة ترحيب ثابتة مباشرة. اطبع: Welcome User",
+    "expected_output": "Welcome User"
   },
   {
     "lesson_slug": "python-8",
-    "title": "set (المجموعات الرياضية)",
-    "category": "Collections & Data Structures",
+    "title": "الدرس 8: الشروط (if) - جعل الكمبيوتر يتخذ قرارات",
+    "category": "أساسيات بايثون وبناء المنطق",
     "order_index": 8,
     "is_free": false,
     "content_type": "theory",
-    "duration_minutes": 12,
+    "duration_minutes": 15,
     "content": {
-      "prototype": "set(iterable=())",
-      "description": "الـ `set` عبارة عن تجميعة فريدة لا تقبل التكرار، مبنية داخلياً باستخدام جداول الهاش (Hash Tables) مثل القاموس تماماً، ولكن للمفاتيح فقط. هذا يجعل عمليات التحقق `in` صاروخية وسرعتها O(1). تُستخدم هندسياً لتنظيف البيانات من التكرار، أو حساب التقاطع والاختلاف (Intersection/Difference) بين المجموعات الضخمة بكفاءة عالية.",
-      "parameters": "iterable (اختياري): بيانات سيتم تفريغها واختيار العناصر غير المكررة فقط.",
-      "return_value": "مجموعة رياضية متقدمة لا تدعم الترتيب أو الفهرسة.",
-      "example": "# إزالة التكرار من قاعدة بيانات مصغرة\nemails = ['a@a.com', 'b@b.com', 'a@a.com']\nunique_emails = set(emails)\n\n# التقاطع: إيجاد أصدقاء مشتركين\nmutual = {'Ali', 'Sara'} & {'Sara', 'Omar'} # {'Sara'}"
-    }
+      "context": "لماذا نتعلم هذا؟ لكي نتحكم في مجرى اللعبة: إذا كانت طاقة اللاعب 0، اعرض رسالة (Game Over).",
+      "description": "الجملة الشرطية `if` (إذا) هي العقل المدبر. تسأل بايثون سؤالاً منطقياً، فإذا كانت الإجابة نعم (True)، يتم تنفيذ الأوامر المتفرعة تحتها. يجب أن تترك مسافة فارغة (Indentation) قبل الأوامر التابعة للشرط لكي تفهم بايثون أنها تابعة له. خلف الكواليس، المعالج يستخدم تقنية (Branch Prediction) ليتوقع مسارك لتسريع التنفيذ!",
+      "prototype": "if condition:\n    أوامر للتنفيذ",
+      "parameters": "شرط أو سؤال منطقي يجب أن تكون نتيجته True.",
+      "return_value": "تنفيذ الأوامر إذا وفقط إذا تحقق الشرط.",
+      "example": "# التحقق من السن القانوني\nage = 20\nif age >= 18:\n    print('مسموح لك بالدخول')\n\nprint('انتهى الفحص')"
+    },
+    "exercise_instructions": "قم بعمل متغير x = 10، واستخدم شرط if ليطبع كلمة 'Big' إذا كان x أكبر من 5.",
+    "expected_output": "Big"
   },
   {
     "lesson_slug": "python-9",
-    "title": "if/elif/else (التفرع المنطقي)",
-    "category": "Control Flow",
+    "title": "الدرس 9: الشروط المعاكسة (else) - ماذا لو لم يتحقق الشرط؟",
+    "category": "أساسيات بايثون وبناء المنطق",
     "order_index": 9,
     "is_free": false,
     "content_type": "theory",
     "duration_minutes": 10,
     "content": {
-      "prototype": "if condition:\n  ...\nelif condition:\n  ...\nelse:\n  ...",
-      "description": "جملة الشرط `if` هي العقل المدبر لتوجيه معمارية الكود (Branching). وحدة المعالجة المركزية (CPU) تستخدم تقنية التنبؤ بالتفرع (Branch Prediction) لتسريع الشروط، لذلك يجب وضع الحالات الأكثر احتمالاً في البداية. في الأنظمة المتقدمة، بايثون الحديثة تدعم هيكل الشروط الجديد `match/case` لمعالجة الأنماط المعقدة بأسلوب أكثر فخامة من `if/elif` المتسلسلة.",
-      "parameters": "condition: أي تعبير منطقي أو متغير يعطي Truthy أو Falsy.",
-      "return_value": "تنفيذ كتلة الكود (Block) الخاصة بأول شرط صحيح يتطابق.",
-      "example": "# التحقق من صلاحيات الأمان\nuser_role = 'admin'\nif user_role == 'admin':\n    print('Full Access Granted')\nelif user_role == 'moderator':\n    print('Partial Access')\nelse:\n    print('Read Only')"
-    }
+      "context": "لماذا نتعلم هذا؟ لتقديم خطة بديلة. إذا كانت كلمة المرور صحيحة ادخل، وإلا (else) أظهر رسالة خطأ.",
+      "description": "كلمة `else` (وإلا) تأتي دائماً مصاحبة للـ `if` لالتقاط أي شيء لم ينجح في الشرط الأول. إنها بمثابة شبكة الأمان؛ تضمن لك أن هناك رداً دائماً على كل الحالات. الميزة الهندسية هنا أن الكود المتواجد في (if) و الكود المتواجد في (else) مستحيل أن يعملا معاً في نفس الوقت، يتم اختيار مسار واحد فقط.",
+      "prototype": "if condition:\n    ... \nelse:\n    ...",
+      "parameters": "لا تأخذ else أي شروط، فهي تقبل كل ما رفضته if.",
+      "return_value": "تنفيذ الخطة البديلة.",
+      "example": "password = '123'\nif password == 'admin':\n    print('تم الدخول بنجاح')\nelse:\n    print('كلمة المرور خاطئة')"
+    },
+    "exercise_instructions": "قم بعمل متغير y = 3. استخدم if/else: إذا كان y أكبر من 5 اطبع 'Yes'، وإلا اطبع 'No'.",
+    "expected_output": "No"
   },
   {
     "lesson_slug": "python-10",
-    "title": "for loop (تكرار العناصر)",
-    "category": "Control Flow",
+    "title": "الدرس 10: الشروط المتعددة (elif) - خيارات لا نهائية",
+    "category": "أساسيات بايثون وبناء المنطق",
     "order_index": 10,
     "is_free": false,
     "content_type": "theory",
     "duration_minutes": 12,
     "content": {
-      "prototype": "for item in iterable:\n    ...",
-      "description": "حلقة `for` في بايثون ليست مجرد حلقة عد (Counting loop) مثل C++، بل هي `Iterator-based loop`. داخلياً، بايثون تطلب من الهيكل (كالقائمة أو القاموس) استدعاء الدالة السحرية `__iter__()` و `__next__()` لجلب العنصر التالي في الذاكرة. هذا يجعلها آمنة تماماً ضد أخطاء تجاوز الحدود (Index Out of Bounds) وقوية جداً في التصفح.",
-      "parameters": "iterable: الهيكل أو مولد البيانات الذي سيتم السير عبر عناصره واحداً تلو الآخر.",
-      "return_value": "لا يرجع قيمة، بل ينفذ تعليمات مكررة على كل عنصر.",
-      "example": "# السير على قاموس مهندس بيانات\nserver_ports = {'HTTP': 80, 'HTTPS': 443}\nfor protocol, port in server_ports.items():\n    print(f'Service {protocol} runs on port {port}')"
-    }
+      "context": "لماذا نتعلم هذا؟ أحياناً يكون لدينا أكثر من مسارين. مثلاً تقدير الطالب: إذا كان 90 فهو امتياز، وإذا كان 80 جيد جداً، وإلا مقبول.",
+      "description": "كلمة `elif` هي اختصار لـ (Else If). تمكننا من اختبار سلسلة من الشروط بالترتيب المكتوب. بايثون ستقرأ الشروط من الأعلى للأسفل، وبمجرد أن تجد شرطاً صحيحاً (True)، ستنفذ أوامره وتتجاهل باقي الشروط تماماً (لتوفير وقت المعالج). يمكنك وضع عدد لا نهائي من الـ `elif` بين الـ `if` الأولى والـ `else` الأخيرة.",
+      "prototype": "if cond1:\n  ...\nelif cond2:\n  ...\nelse:\n  ...",
+      "parameters": "سلسلة من الشروط المنطقية المترابطة.",
+      "return_value": "اختيار مسار واحد فقط بناءً على أول شرط صحيح.",
+      "example": "color = 'أصفر'\nif color == 'أحمر':\n    print('توقف')\nelif color == 'أصفر':\n    print('استعد')\nelse:\n    print('انطلق')"
+    },
+    "exercise_instructions": "اصنع متغيراً score = 85. استخدم if/elif لطباعة 'A' إذا كان >= 90، و 'B' إذا كان >= 80.",
+    "expected_output": "B"
   },
   {
     "lesson_slug": "python-11",
-    "title": "while loop (الحلقات الشرطية)",
-    "category": "Control Flow",
+    "title": "الدرس 11: المعاملات المنطقية (and / or) - شروط معقدة",
+    "category": "أساسيات بايثون وبناء المنطق",
     "order_index": 11,
     "is_free": false,
     "content_type": "theory",
     "duration_minutes": 10,
     "content": {
-      "prototype": "while condition:\n    ...",
-      "description": "حلقة `while` تعمل باستمرار طالما أن الشرط صحيح (True). في الهندسة البرمجية للـ Backend، نستخدم حلقة `while True:` لإنشاء خوادم تستمع للطلبات بلا توقف (Event Loops). لكن يجب التعامل بحذر وإضافة نقطة توقف `break` أو تأخير (sleep) لتجنب حجز طاقة المعالج (CPU Spikes) بالكامل في حلقة لا نهائية.",
-      "parameters": "condition: الشرط الذي يجب أن يظل صحيحاً لكي يستمر التكرار.",
-      "return_value": "لا توجد، يتم تنفيذ البلوك طالما الشرط محقق.",
-      "example": "# نظام محاكاة انتظار استجابة السيرفر\nretries = 3\nwhile retries > 0:\n    print('Trying to connect...')\n    # if success: break\n    retries -= 1\nelse:\n    print('Connection Failed.')"
-    }
+      "context": "لماذا نتعلم هذا؟ للحالات التي تتطلب أكثر من شرط معاً. مثلاً: للحصول على رخصة القيادة يجب أن تكون فوق 18 (و) اجتزت الاختبار.",
+      "description": "أدوات الربط (and) و (or) هي البوابات المنطقية. `and` صارمة جداً، تطلب أن تكون جميع الشروط صحيحة (True) لكي تعمل. أما `or` فهي متساهلة، يكفيها أن يكون شرط واحد فقط صحيحاً لكي تفتح لك الباب! تعتمد بايثون على ذكاء يسمي (Short-Circuit) لتسريع التنفيذ، حيث تتوقف عن قراءة بقية الشروط فور معرفة النتيجة الأولية.",
+      "prototype": "condition1 and condition2\ncondition1 or condition2",
+      "parameters": "مجموعة من الأسئلة المنطقية التي نربطها.",
+      "return_value": "نتيجة نهائية (True / False) بناءً على قواعد البوابات.",
+      "example": "age = 20\nhas_license = True\n\nif age >= 18 and has_license:\n    print('يمكنك استئجار السيارة')\nelse:\n    print('لا يمكنك ذلك')"
+    },
+    "exercise_instructions": "اطبع نتيجة هذا الشرط: True and False (ماذا تتوقع أن يعطيك؟)",
+    "expected_output": "False"
   },
   {
     "lesson_slug": "python-12",
-    "title": "functions (الدوال الأساسية)",
-    "category": "Functions & Scope",
+    "title": "الدرس 12: القوائم (list) - صناديق التخزين العملاقة",
+    "category": "أساسيات بايثون وبناء المنطق",
     "order_index": 12,
     "is_free": false,
     "content_type": "theory",
-    "duration_minutes": 14,
+    "duration_minutes": 15,
     "content": {
-      "prototype": "def function_name(args) -> return_type:\n    ...",
-      "description": "الدوال `def` هي حجر الأساس للتنظيم (Modularity). في بايثون، الدوال تعتبر كائنات من الدرجة الأولى (First-class citizens)، مما يعني أنه يمكنك تخزينها في متغيرات أو تمريرها كمعاملات لدوال أخرى. داخلياً، بايثون تنشئ إطار ذاكرة جديد (Stack Frame) لكل استدعاء، ليحفظ المتغيرات المحلية (Local Variables) التي تنتهي بمجرد عمل `return`.",
-      "parameters": "args: متغيرات الدالة، وتدعم الأنواع التوضيحية (Type Hints) للمشاريع الضخمة.",
-      "return_value": "إرجاع أي كائن (بايثون تعيد None تلقائياً إذا لم تكتب return).",
-      "example": "# دالة هندسية لحساب ضرائب مع Type Hints\ndef calculate_tax(amount: float, tax_rate: float = 0.15) -> float:\n    return amount + (amount * tax_rate)\n\nprint(calculate_tax(100)) # 115.0"
-    }
+      "context": "لماذا نتعلم هذا؟ لحفظ مجموعة ضخمة من البيانات المترابطة معاً (مثل قائمة أصدقائك، أو عناصر سلة المشتريات) بدلاً من إنشاء 100 متغير.",
+      "description": "الـ `list` (القائمة) هي مصفوفة ديناميكية. تبدأ بأقواس مربعة `[]`، وتفصل بين العناصر بفاصلة `,`. المذهل فيها أنها مرنة جداً (Mutable)، يمكنك إضافة عنصر، حذفه، أو ترتيب القائمة في أي وقت. في الذاكرة، بايثون تحجز مساحة إضافية خفية للقائمة لتستعد لأي عناصر قد تضيفها لاحقاً بسرعة فائقة.",
+      "prototype": "[عنصر1, عنصر2, عنصر3]",
+      "parameters": "أي عدد من العناصر (نصوص، أرقام، أو حتى قوائم أخرى بداخلها!).",
+      "return_value": "صندوق واحد مرتب ومفهرس يحتوي على كل العناصر.",
+      "example": "# إنشاء قائمة وإضافة عنصر جديد\ncart = ['لابتوب', 'ماوس']\ncart.append('لوحة مفاتيح')\nprint(cart)"
+    },
+    "exercise_instructions": "قم بإنشاء قائمة تحتوي على [1, 2, 3] واطبعها.",
+    "expected_output": "[1, 2, 3]"
   },
   {
     "lesson_slug": "python-13",
-    "title": "*args & **kwargs (المعاملات المرنة)",
-    "category": "Functions & Scope",
+    "title": "الدرس 13: الوصول لعناصر القائمة (Indexing)",
+    "category": "أساسيات بايثون وبناء المنطق",
     "order_index": 13,
-    "is_free": false,
-    "content_type": "theory",
-    "duration_minutes": 10,
-    "content": {
-      "prototype": "def func(*args, **kwargs):\n    ...",
-      "description": "المعاملات المرنة تجعل كودك كمرونة السحر! `*args` تقوم بتجميع أي عدد غير محدود من القيم العادية داخل `Tuple`. بينما `**kwargs` تقوم بتجميع القيم ذات الأسماء (Keyword arguments) داخل قاموس `dict`. تستخدم هذه الميزة بكثافة شديدة في تطوير إطارات العمل (Frameworks) مثل Django ليسمحوا للمبرمج بتمرير خصائص بلا حدود للدوال.",
-      "parameters": "args: مصفوفة المتغيرات اللامحدودة. kwargs: قاموس المتغيرات اللامحدودة المسمّاة.",
-      "return_value": "مجموعة ديناميكية معبأة في كائنات Python جاهزة للوصول.",
-      "example": "# نظام تسجيل بيانات متقدم\ndef create_user(name, *roles, **details):\n    print(f'User: {name}, Roles: {roles}')\n    for key, val in details.items():\n        print(f'{key} = {val}')\n\ncreate_user('Ali', 'Admin', 'HR', age=30, active=True)"
-    }
-  },
-  {
-    "lesson_slug": "python-14",
-    "title": "Lambda (الدوال المجهولة السريعة)",
-    "category": "Functions & Scope",
-    "order_index": 14,
-    "is_free": false,
-    "content_type": "theory",
-    "duration_minutes": 8,
-    "content": {
-      "prototype": "lambda arguments: expression",
-      "description": "دالة `lambda` هي دالة مجهولة الاسم تُكتب في سطر واحد فقط! تُستخدم للمهام اللحظية والصغيرة، خاصة كعامل فلترة (Filters) أو فرز (Sorting) مخصص. داخلياً، تصبح كائناً من نوع Function لكن بدون اسم رمزي في الذاكرة. مسموح بوضع تعبير برمجي واحد فقط (Expression) بدون استخدام كلمات مفتاحية مثل `return` أو حلقات.",
-      "parameters": "arguments: المدخلات التي تتلقاها الدالة المجهولة.",
-      "return_value": "تقوم الدالة بتقييم التعبير (Expression) وإرجاع نتيجته فورا.",
-      "example": "# ترتيب قاموس مستخدمين حسب العمر باستخدام Lambda\nusers = [{'name': 'A', 'age': 25}, {'name': 'B', 'age': 20}]\nusers.sort(key=lambda u: u['age'])\nprint(users) # سيتم ترتيب B قبل A"
-    }
-  },
-  {
-    "lesson_slug": "python-15",
-    "title": "Scope & LEGB Rule (مجال المتغيرات)",
-    "category": "Functions & Scope",
-    "order_index": 15,
-    "is_free": false,
-    "content_type": "theory",
-    "duration_minutes": 15,
-    "content": {
-      "prototype": "LEGB: Local, Enclosing, Global, Built-in",
-      "description": "كيف تعرف بايثون المتغير المقصود؟ قاعدة (LEGB) هي القانون الهندسي لذلك! أولاً تبحث في الذاكرة المحلية (Local)، ثم المحيطة (Enclosing) للدوال المتداخلة، ثم العالمية (Global)، وأخيراً أوامر بايثون المدمجة (Built-ins). استخدام كلمة `global` داخل دالة يكسر الجدار ويسمح بتعديل متغير خارجي، رغم أن المهندسين يتجنبون ذلك للحفاظ على نظافة الذاكرة وحمايتها.",
-      "parameters": "Local Variables و Global Namespace.",
-      "return_value": "ترابط وتحديد أولوية الوصول للمتغير المسمى.",
-      "example": "# تحديث إحصائيات النظام باستخدام global\ntotal_requests = 0\n\ndef add_request():\n    global total_requests\n    total_requests += 1\n\nadd_request()\nprint(total_requests) # 1"
-    }
-  },
-  {
-    "lesson_slug": "python-16",
-    "title": "Map, Filter, Reduce (البرمجة الوظيفية)",
-    "category": "Functional Programming",
-    "order_index": 16,
-    "is_free": false,
-    "content_type": "theory",
-    "duration_minutes": 15,
-    "content": {
-      "prototype": "map(func, iter), filter(func, iter), reduce(func, iter)",
-      "description": "هذه الأدوات من قلب (البرمجة الوظيفية - Functional Programming). دالة `map` تطبق تعديلاً على كل عنصر بضربة واحدة. دالة `filter` تصفي القوائم بسرعة هائلة محركةً بيانات ضخمة في ثوانٍ. أما `reduce` فتضغط القائمة لقيمة واحدة (مثل الجمع التراكمي). في بايثون 3، تُرجع هذه الدوال كائنات من نوع (Iterator) بدلاً من القوائم لتقليل حرق مساحة الذاكرة.",
-      "parameters": "func: الدالة المراد تطبيقها. iter: مصفوفة البيانات.",
-      "return_value": "كائن مُولد (Iterator) أو القيمة النهائية المدمجة في حالة Reduce.",
-      "example": "from functools import reduce\nnums = [1, 2, 3, 4]\n\n# Map: مضاعفة الأرقام\ndoubled = list(map(lambda x: x*2, nums))\n\n# Filter: الأرقام الزوجية فقط\nevens = list(filter(lambda x: x%2 == 0, nums))\n\n# Reduce: مجموع الأرقام\ntotal = reduce(lambda a, b: a+b, nums)"
-    }
-  },
-  {
-    "lesson_slug": "python-17",
-    "title": "Comprehensions (قوائم المولدات الخاطفة)",
-    "category": "Functional Programming",
-    "order_index": 17,
     "is_free": false,
     "content_type": "theory",
     "duration_minutes": 12,
     "content": {
-      "prototype": "[expr for item in iter if condition]",
-      "description": "الـ `Comprehensions` هي الطريقة الأكثر أناقة (Pythonic) والأسرع لتوليد المصفوفات! بدلاً من استخدام `for` و `append` في عدة أسطر، يتم بناء الهيكل داخلياً بلغة C المحسنة في سطر واحد، ما يجعله أسرع في الأداء وأقل استهلاكاً للمعالج. يمكن استخدامها لإنشاء القوائم (Lists)، القواميس (Dicts)، والمجموعات (Sets).",
-      "parameters": "تعبير الجلب، حلقة الدوران، والشروط المفلترة الاختيارية.",
-      "return_value": "هيكل بيانات جديد مهيأ وممتلئ بالعناصر المحسوبة فوراً.",
-      "example": "# توليد قاموس لمعالجة البيانات\nnames = ['Ali', 'Omar']\nuser_lengths = {name: len(name) for name in names}\nprint(user_lengths) # {'Ali': 3, 'Omar': 4}\n\n# List comprehension مع شرط\nevens = [x for x in range(10) if x % 2 == 0]"
-    }
+      "context": "لماذا نتعلم هذا؟ لكي نتمكن من استخراج بيانات محددة من القائمة، مثل جلب أول لاعب في الترتيب أو آخر رسالة نصية وصلتك.",
+      "description": "عالم البرمجة يبدأ العد من الرقم `0`، وليس 1! فإذا كان لديك قائمة، فإن العنصر الأول موقعه (يُسمى Index) هو 0. والعنصر الثاني موقعه 1 وهكذا. السر الرائع في بايثون هو قدرتها على العد العكسي.. إذا أردت آخر عنصر في القائمة مباشرة، استخدم الموقع `-1` وسيجلب لك بايثون ما تريد فوراً.",
+      "prototype": "list_name[index]",
+      "parameters": "رقم الموقع المراد جلب بياناته (موجب من البداية، أو سالب من النهاية).",
+      "return_value": "العنصر الموجود في ذلك الموقع تماماً.",
+      "example": "winners = ['علي', 'سارة', 'فهد']\nprint('المركز الأول:', winners[0])\nprint('المركز الأخير:', winners[-1])"
+    },
+    "exercise_instructions": "لدينا قائمة nums = [10, 20, 30]. اطبع العنصر الأول (الذي قيمته 10).",
+    "expected_output": "10"
+  },
+  {
+    "lesson_slug": "python-14",
+    "title": "الدرس 14: تكرار الأوامر بحلقة (for) - المحرك التلقائي",
+    "category": "أساسيات بايثون وبناء المنطق",
+    "order_index": 14,
+    "is_free": false,
+    "content_type": "theory",
+    "duration_minutes": 15,
+    "content": {
+      "context": "لماذا نتعلم هذا؟ الأتمتة! بدلاً من طباعة رسالة لـ 100 موظف بكتابة أمر الطباعة 100 مرة، حلقة for ستقوم بالعمل عنك في 3 أسطر.",
+      "description": "حلقة `for` (لأجل كل عنصر) هي المحرك الآلي لبايثون. هي تأخذ مجموعة من العناصر (مثل قائمة) وتمر عليها عنصراً عنصراً بالترتيب، وفي كل مرة تضع العنصر في متغير مؤقت وتنفذ أوامرك عليه. هذه الحلقة محمية وذكية جداً (Iterator-based)، مما يعني أنه مستحيل أن تتخطى حدود القائمة وتسبب أخطاء في الذاكرة.",
+      "prototype": "for item in list:\n    # نفذ الكود هنا",
+      "parameters": "المتغير المؤقت `item`، والقائمة `list` التي نريد المرور عليها.",
+      "return_value": "تنفيذ مجموعة من الأوامر بشكل تلقائي ومتكرر.",
+      "example": "tasks = ['برمجة', 'تصميم', 'تسويق']\nfor task in tasks:\n    print('جاري العمل على:', task)"
+    },
+    "exercise_instructions": "استخدم حلقة for لطباعة الأرقام 1 و 2 و 3 (من قائمة) بحيث يطبع كل رقم في سطر.",
+    "expected_output": "1\n2\n3"
+  },
+  {
+    "lesson_slug": "python-15",
+    "title": "الدرس 15: دالة المدى (range) - توليد الأرقام",
+    "category": "أساسيات بايثون وبناء المنطق",
+    "order_index": 15,
+    "is_free": false,
+    "content_type": "theory",
+    "duration_minutes": 10,
+    "content": {
+      "context": "لماذا نتعلم هذا؟ إذا احتجت أن تكرر شيئاً مليون مرة، لا يعقل أن تكتب قائمة بها مليون رقم يدوياً! دالة range تصنعها لك.",
+      "description": "دالة `range` هي مصنع الأرقام السحري المتوافق تماماً مع حلقة `for`. بمجرد أن تعطيها رقماً (مثلاً 5)، ستولد الأرقام من 0 إلى 4 (الرقم الأخير لا يدخل في الحسبة). العبقرية الهندسية فيها أنها لا تحجز مساحة مليون رقم في الذاكرة! بل تولد الرقم اللحظي الذي تحتاجه فقط (Lazy Evaluation) لتوفير الـ RAM بشكل خيالي.",
+      "prototype": "range(start, stop, step)",
+      "parameters": "بداية العد، نهاية العد (غير مشمولة)، ومقدار القفزة.",
+      "return_value": "كائن مُولد ينتج سلسلة رقمية عند الطلب.",
+      "example": "# العد من 0 إلى 2\nfor i in range(3):\n    print('التكرار رقم', i)"
+    },
+    "exercise_instructions": "استخدم حلقة for مع دالة range(2) لطباعة الأرقام من 0 إلى 1، كل رقم في سطر.",
+    "expected_output": "0\n1"
+  },
+  {
+    "lesson_slug": "python-16",
+    "title": "الدرس 16: الحلقات المشروطة (while) - الاستمرار طالما..",
+    "category": "أساسيات بايثون وبناء المنطق",
+    "order_index": 16,
+    "is_free": false,
+    "content_type": "theory",
+    "duration_minutes": 12,
+    "content": {
+      "context": "لماذا نتعلم هذا؟ لعمل شاشة انتظار للعبة تستمر في العمل (طالما) أن اللاعب لم يضغط زر 'ابدأ'.",
+      "description": "حلقة `while` (طالما) تعتمد على شرط بدلاً من قائمة. هي تسأل نفسها قبل كل جولة: 'هل الشرط لا يزال True؟'، إذا نعم، تستمر في الدوران للأبد! يجب على المهندس دائماً التأكد من وجود كود يغير حالة الشرط إلى False بداخل الحلقة، وإلا ستعلق في (حلقة لا نهائية Infinite Loop) قد تؤدي لتجميد المعالج وتوقف السيرفر.",
+      "prototype": "while condition:\n    # الأوامر\n    # تحديث الشرط",
+      "parameters": "شرط منطقي يتم فحصه قبل بدء أي جولة دوران جديدة.",
+      "return_value": "الاستمرار في التنفيذ طالما أن الشرط متوفر.",
+      "example": "battery = 3\nwhile battery > 0:\n    print('الجهاز يعمل')\n    battery -= 1  # إنقاص الطاقة تدريجياً\nprint('الجهاز انطفأ')"
+    },
+    "exercise_instructions": "قم بعمل متغير n = 1. استخدم while لطباعة n ثم زده بـ 1، طالما أن n أصغر من 3.",
+    "expected_output": "1\n2"
+  },
+  {
+    "lesson_slug": "python-17",
+    "title": "الدرس 17: القواميس (dict) - بيانات كالمحترفين",
+    "category": "أساسيات بايثون وبناء المنطق",
+    "order_index": 17,
+    "is_free": false,
+    "content_type": "theory",
+    "duration_minutes": 15,
+    "content": {
+      "context": "لماذا نتعلم هذا؟ لحفظ بيانات معقدة (ملف شخصي لمستخدم يحتوي على: الاسم، العمر، البريد) بطريقة منظمة يمكن البحث فيها بلمح البصر.",
+      "description": "الـ `dict` (القاموس) هو أهم وأسرع هيكل بيانات في بايثون! يعمل بنظام (المفتاح والقيمة Key-Value). أنت لا تبحث فيه برقم الموقع `0` أو `1`، بل تبحث باسم المفتاح `name` ليعطيك القيمة `Ali`. مبني هندسياً باستخدام تقنية (Hash Tables)، مما يجعله قادراً على البحث في ملايين السجلات في جزء من الثانية O(1).",
+      "prototype": "{'key': 'value'}",
+      "parameters": "أزواج من المفاتيح والقيم بداخل الأقواس المتعرجة {}.",
+      "return_value": "جدول بيانات فائق التنظيم والسرعة.",
+      "example": "user = {\n    'name': 'أحمد',\n    'role': 'أدمن'\n}\nprint(user['name']) # طباعة أحمد"
+    },
+    "exercise_instructions": "أنشئ قاموساً يحتوي على المفتاح 'color' وقيمته 'red'، ثم قم بطباعته.",
+    "expected_output": "{'color': 'red'}"
   },
   {
     "lesson_slug": "python-18",
-    "title": "Decorators (المزخرفات والرقابة الفائقة)",
-    "category": "Functional Programming",
+    "title": "الدرس 18: الدوال (functions) - مصانعك البرمجية الخاصة",
+    "category": "أساسيات بايثون وبناء المنطق",
     "order_index": 18,
     "is_free": false,
     "content_type": "theory",
-    "duration_minutes": 18,
+    "duration_minutes": 15,
     "content": {
-      "prototype": "@decorator_name\ndef func(): ...",
-      "description": "الـ `Decorators` هي كبسولات سحرية تغلف دوالك لتغيير سلوكها دون لمس الكود الأصلي المكتوب بداخلها! تُستعمل بكثرة في عالم الشركات لاختبار الصلاحيات (مثل `@login_required`) أو قياس سرعة أداء المعالج. تعمل بمبدأ إرجاع الدوال (Higher-Order Functions)، بحيث تلف الدالة المستهدفة بدالة أخرى تحيط بها من الأعلى والأسفل.",
-      "parameters": "دالة تستقبل دالة أخرى كمعامل لتقوم بالالتفاف حولها.",
-      "return_value": "الدالة المغلفة المطورة الجاهزة للتنفيذ.",
-      "example": "import time\ndef timer(func):\n    def wrapper(*args, **kwargs):\n        start = time.time()\n        result = func(*args, **kwargs)\n        print(f'Execution Time: {time.time() - start}s')\n        return result\n    return wrapper\n\n@timer\ndef slow_task():\n    time.sleep(1)\n    print('Task Finished!')\nslow_task()"
-    }
+      "context": "لماذا نتعلم هذا؟ لكي لا نعيد اختراع العجلة! إذا كان لديك كود يرسل إيميلاً وتستخدمه كثيراً، ضعه في دالة واستدعه بكلمة واحدة متى شئت.",
+      "description": "كلمة `def` (اختصار لـ Define) تخلق دالة (Function) وهي كبسولة برمجية تحتوي على كود لا يعمل إلا إذا ناديته باسمه! الدوال هي سر التنظيم (Modularity) للمشاريع الكبيرة. بايثون تتعامل مع الدوال كأنها كائنات مميزة (First-class citizens)، يمكن تمريرها لمتغيرات أخرى. الدوال توفر مساحة الذاكرة وتمنع تكرار الأكواد المزعج.",
+      "prototype": "def function_name():\n    # أوامر المصنع",
+      "parameters": "اسم الدالة متبوعاً بأقواس يمكن أن تحتوي على مدخلات (المواد الخام).",
+      "return_value": "القيام بالمهمة بصمت وإعطاء نتيجة نهائية.",
+      "example": "def greet_user():\n    print('أهلاً بك في تطبيقنا')\n\n# هنا نقوم بالاستدعاء والتشغيل الفعلي\ngreet_user()"
+    },
+    "exercise_instructions": "قم بتعريف دالة تسمى say_hi تطبع كلمة 'Hi'، ثم قم باستدعائها لتشتغل.",
+    "expected_output": "Hi"
   },
   {
     "lesson_slug": "python-19",
-    "title": "Generators & Yield (توليد البيانات الموفر)",
-    "category": "Functional Programming",
+    "title": "الدرس 19: مدخلات ومخرجات الدوال (Parameters & Return)",
+    "category": "أساسيات بايثون وبناء المنطق",
     "order_index": 19,
     "is_free": false,
     "content_type": "theory",
     "duration_minutes": 15,
     "content": {
-      "prototype": "def gen(): yield x",
-      "description": "تخيل أن لديك ملف بيانات يحتوي على 10 مليار سطر.. إذا قرأته في قائمة عادية ستنفجر ذاكرة الـ RAM! الحل العبقري هو المولدات `Generators` والكلمة المفتاحية `yield`. المولد لا يحجز المصفوفة بالكامل، بل يصنع آلة تحتفظ بحالتها الحالية في الذاكرة وتولد النتيجة واحدة تلو الأخرى عند الطلب فقط (Lazy Evaluation)، مما يقلل الاستهلاك لنسبة تقارب الصفر.",
-      "parameters": "تُستخدم yield داخل الدالة لإيقاف التنفيذ مؤقتاً وإخراج القيمة.",
-      "return_value": "كائن مُولد (Generator object) يمكنك استدعاء next() عليه.",
-      "example": "# مولد لتدفق البيانات اللانهائي\ndef infinite_numbers():\n    num = 0\n    while True:\n        yield num\n        num += 1\n\ngen = infinite_numbers()\nprint(next(gen)) # 0\nprint(next(gen)) # 1"
-    }
+      "context": "لماذا نتعلم هذا؟ الآلة الحاسبة تحتاج أن نعطيها الأرقام (المدخلات)، وتُظهر لنا الناتج النهائي (المخرجات) لنستخدمه لاحقاً.",
+      "description": "المصنع القوي يحتاج مواد خام (Parameters) لينتج شيئاً، ويحتاج أن يصدر منتجه للخارج (Return). أمر `return` أمر خطير وفعال؛ بمجرد أن تقرأه بايثون، فإنها تقذف النتيجة للخارج، وتُنهي الدالة فوراً وتخرج منها (تدمر الذاكرة المؤقتة للدالة). إذا استخدمت `print` فقط، فلن تتمكن من الاحتفاظ بالناتج في متغير لاستخدامه مرة أخرى.",
+      "prototype": "def add(a, b):\n    return a + b",
+      "parameters": "a, b: متغيرات مؤقتة تعيش داخل الدالة فقط.",
+      "return_value": "كلمة return تُرجع القيمة للمبرمج ليحفظها.",
+      "example": "def double_number(num):\n    return num * 2\n\n# هنا نحتفظ بالناتج في متغير للاستفادة منه لاحقاً\nresult = double_number(5)\nprint(result) # 10"
+    },
+    "exercise_instructions": "اصنع دالة تسمى get_five تعود دائماً بالرقم 5 باستخدام return، ثم اطبع استدعاء الدالة.",
+    "expected_output": "5"
   },
   {
     "lesson_slug": "python-20",
-    "title": "try/except (اقتناص الأخطاء الهندسي)",
-    "category": "Error Handling",
+    "title": "الدرس 20: مشروع التخرج (الفصل الأول) - حاسبة العمر الذكية",
+    "category": "أساسيات بايثون وبناء المنطق",
     "order_index": 20,
     "is_free": false,
     "content_type": "theory",
-    "duration_minutes": 12,
+    "duration_minutes": 20,
     "content": {
-      "prototype": "try:\n  ...\nexcept Exception as e:\n  ...\nfinally:\n  ...",
-      "description": "النظام الذي ينهار عند أول مشكلة هو نظام ضعيف! `try/except` هي آلية الدروع (Exception Handling). بدلاً من تعطل البرنامج (Crash) عند انقطاع الاتصال بقاعدة البيانات أو قسمة رقم على الصفر، نقوم بالتقاط الخطأ ومعالجته برمجياً. بلوك `finally` ينفذ دائماً، وهو إلزامي هندسياً لإغلاق الاتصالات المفتوحة وإرجاع الموارد المحجوزة للذاكرة مهما حدث.",
-      "parameters": "Exception: نوع الخطأ المراد صيده.",
-      "return_value": "تحويل مسار التدفق إلى كتلة Except في حالة الانهيار.",
-      "example": "try:\n    file = open('data.txt', 'r')\n    result = 10 / 0\nexcept ZeroDivisionError:\n    print('خطأ أمني: لا يمكن القسمة على صفر!')\nexcept FileNotFoundError:\n    print('الملف غير موجود')\nfinally:\n    print('تنظيف الذاكرة وإغلاق الموارد...')\n    # file.close()"
-    }
+      "context": "لماذا نتعلم هذا؟ المهندس الحقيقي هو من يدمج جميع الأدوات (متغيرات، شروط، دوال) لبناء منتج برمجي متكامل.",
+      "description": "في هذا الدرس الختامي للفصل الأول، نجمع كل ما تعلمناه. سنستخدم الدوال للتنظيم، والرياضيات (int) لحساب فارق التواريخ، والشروط (if/else) لاتخاذ قرار بناءً على عمر المستخدم، وسندمج النصوص (str) لعرض النتيجة النهائية! البرمجة ليست مجرد حفظ للأوامر، بل هي الفن المعماري لدمج هذه القطع (كأحجار الليجو) لبناء شيء ذكي وقابل للتوسع.",
+      "prototype": "Integrate: def, int, if, return, f-strings",
+      "parameters": "دمج المفاهيم البرمجية المتعددة.",
+      "return_value": "برنامج مصغر يعمل بكفاءة تامة.",
+      "example": "def check_age(birth_year):\n    age = 2024 - birth_year\n    if age >= 18:\n        return f'عمرك {age}، يمكنك القيادة'\n    else:\n        return f'عمرك {age}، أنت قاصر'\n\nprint(check_age(2000))"
+    },
+    "exercise_instructions": "اكتب print('Chap 1 Done') احتفالاً بإنهاء الفصل الأول من الأساسيات!",
+    "expected_output": "Chap 1 Done"
   },
   {
     "lesson_slug": "python-21",
-    "title": "Lesson 21 Placeholder",
-    "category": "Advanced Patterns & Closures",
+    "title": "الدرس 21: موضوع مخصص",
+    "category": "التحكم في مسار البيانات",
     "order_index": 21,
     "is_free": false,
     "content_type": "theory",
     "duration_minutes": 10,
     "content": {
-      "prototype": "module.function() // Lesson 21",
-      "description": "Placeholder content for Lesson 21 regarding Advanced Patterns & Closures. This will be fully hydrated in subsequent batches.",
-      "parameters": "Placeholder parameters for Lesson 21.",
-      "return_value": "Placeholder return value for Lesson 21.",
-      "example": "# Example placeholder 21\nprint(\"Will be hydrated\")"
-    }
+      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 21) لربط المفاهيم النظرية بالتطبيق العملي.",
+      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: التحكم في مسار البيانات.",
+      "prototype": "def concept_21(): pass",
+      "parameters": "تفاصيل المدخلات للدرس 21.",
+      "return_value": "النتيجة المرجوة من أدوات الدرس 21.",
+      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
+    },
+    "exercise_instructions": "تمرين الدرس 21",
+    "expected_output": "انتظرونا"
   },
   {
     "lesson_slug": "python-22",
-    "title": "Lesson 22 Placeholder",
-    "category": "Advanced Patterns & Closures",
+    "title": "الدرس 22: موضوع مخصص",
+    "category": "التحكم في مسار البيانات",
     "order_index": 22,
     "is_free": false,
     "content_type": "theory",
     "duration_minutes": 10,
     "content": {
-      "prototype": "module.function() // Lesson 22",
-      "description": "Placeholder content for Lesson 22 regarding Advanced Patterns & Closures. This will be fully hydrated in subsequent batches.",
-      "parameters": "Placeholder parameters for Lesson 22.",
-      "return_value": "Placeholder return value for Lesson 22.",
-      "example": "# Example placeholder 22\nprint(\"Will be hydrated\")"
-    }
+      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 22) لربط المفاهيم النظرية بالتطبيق العملي.",
+      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: التحكم في مسار البيانات.",
+      "prototype": "def concept_22(): pass",
+      "parameters": "تفاصيل المدخلات للدرس 22.",
+      "return_value": "النتيجة المرجوة من أدوات الدرس 22.",
+      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
+    },
+    "exercise_instructions": "تمرين الدرس 22",
+    "expected_output": "انتظرونا"
   },
   {
     "lesson_slug": "python-23",
-    "title": "Lesson 23 Placeholder",
-    "category": "Advanced Patterns & Closures",
+    "title": "الدرس 23: موضوع مخصص",
+    "category": "التحكم في مسار البيانات",
     "order_index": 23,
     "is_free": false,
     "content_type": "theory",
     "duration_minutes": 10,
     "content": {
-      "prototype": "module.function() // Lesson 23",
-      "description": "Placeholder content for Lesson 23 regarding Advanced Patterns & Closures. This will be fully hydrated in subsequent batches.",
-      "parameters": "Placeholder parameters for Lesson 23.",
-      "return_value": "Placeholder return value for Lesson 23.",
-      "example": "# Example placeholder 23\nprint(\"Will be hydrated\")"
-    }
+      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 23) لربط المفاهيم النظرية بالتطبيق العملي.",
+      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: التحكم في مسار البيانات.",
+      "prototype": "def concept_23(): pass",
+      "parameters": "تفاصيل المدخلات للدرس 23.",
+      "return_value": "النتيجة المرجوة من أدوات الدرس 23.",
+      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
+    },
+    "exercise_instructions": "تمرين الدرس 23",
+    "expected_output": "انتظرونا"
   },
   {
     "lesson_slug": "python-24",
-    "title": "Lesson 24 Placeholder",
-    "category": "Advanced Patterns & Closures",
+    "title": "الدرس 24: موضوع مخصص",
+    "category": "التحكم في مسار البيانات",
     "order_index": 24,
     "is_free": false,
     "content_type": "theory",
     "duration_minutes": 10,
     "content": {
-      "prototype": "module.function() // Lesson 24",
-      "description": "Placeholder content for Lesson 24 regarding Advanced Patterns & Closures. This will be fully hydrated in subsequent batches.",
-      "parameters": "Placeholder parameters for Lesson 24.",
-      "return_value": "Placeholder return value for Lesson 24.",
-      "example": "# Example placeholder 24\nprint(\"Will be hydrated\")"
-    }
+      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 24) لربط المفاهيم النظرية بالتطبيق العملي.",
+      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: التحكم في مسار البيانات.",
+      "prototype": "def concept_24(): pass",
+      "parameters": "تفاصيل المدخلات للدرس 24.",
+      "return_value": "النتيجة المرجوة من أدوات الدرس 24.",
+      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
+    },
+    "exercise_instructions": "تمرين الدرس 24",
+    "expected_output": "انتظرونا"
   },
   {
     "lesson_slug": "python-25",
-    "title": "Lesson 25 Placeholder",
-    "category": "Advanced Patterns & Closures",
+    "title": "الدرس 25: موضوع مخصص",
+    "category": "التحكم في مسار البيانات",
     "order_index": 25,
     "is_free": false,
     "content_type": "theory",
     "duration_minutes": 10,
     "content": {
-      "prototype": "module.function() // Lesson 25",
-      "description": "Placeholder content for Lesson 25 regarding Advanced Patterns & Closures. This will be fully hydrated in subsequent batches.",
-      "parameters": "Placeholder parameters for Lesson 25.",
-      "return_value": "Placeholder return value for Lesson 25.",
-      "example": "# Example placeholder 25\nprint(\"Will be hydrated\")"
-    }
+      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 25) لربط المفاهيم النظرية بالتطبيق العملي.",
+      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: التحكم في مسار البيانات.",
+      "prototype": "def concept_25(): pass",
+      "parameters": "تفاصيل المدخلات للدرس 25.",
+      "return_value": "النتيجة المرجوة من أدوات الدرس 25.",
+      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
+    },
+    "exercise_instructions": "تمرين الدرس 25",
+    "expected_output": "انتظرونا"
   },
   {
     "lesson_slug": "python-26",
-    "title": "Lesson 26 Placeholder",
-    "category": "Advanced Patterns & Closures",
+    "title": "الدرس 26: موضوع مخصص",
+    "category": "التحكم في مسار البيانات",
     "order_index": 26,
     "is_free": false,
     "content_type": "theory",
     "duration_minutes": 10,
     "content": {
-      "prototype": "module.function() // Lesson 26",
-      "description": "Placeholder content for Lesson 26 regarding Advanced Patterns & Closures. This will be fully hydrated in subsequent batches.",
-      "parameters": "Placeholder parameters for Lesson 26.",
-      "return_value": "Placeholder return value for Lesson 26.",
-      "example": "# Example placeholder 26\nprint(\"Will be hydrated\")"
-    }
+      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 26) لربط المفاهيم النظرية بالتطبيق العملي.",
+      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: التحكم في مسار البيانات.",
+      "prototype": "def concept_26(): pass",
+      "parameters": "تفاصيل المدخلات للدرس 26.",
+      "return_value": "النتيجة المرجوة من أدوات الدرس 26.",
+      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
+    },
+    "exercise_instructions": "تمرين الدرس 26",
+    "expected_output": "انتظرونا"
   },
   {
     "lesson_slug": "python-27",
-    "title": "Lesson 27 Placeholder",
-    "category": "Advanced Patterns & Closures",
+    "title": "الدرس 27: موضوع مخصص",
+    "category": "التحكم في مسار البيانات",
     "order_index": 27,
     "is_free": false,
     "content_type": "theory",
     "duration_minutes": 10,
     "content": {
-      "prototype": "module.function() // Lesson 27",
-      "description": "Placeholder content for Lesson 27 regarding Advanced Patterns & Closures. This will be fully hydrated in subsequent batches.",
-      "parameters": "Placeholder parameters for Lesson 27.",
-      "return_value": "Placeholder return value for Lesson 27.",
-      "example": "# Example placeholder 27\nprint(\"Will be hydrated\")"
-    }
+      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 27) لربط المفاهيم النظرية بالتطبيق العملي.",
+      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: التحكم في مسار البيانات.",
+      "prototype": "def concept_27(): pass",
+      "parameters": "تفاصيل المدخلات للدرس 27.",
+      "return_value": "النتيجة المرجوة من أدوات الدرس 27.",
+      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
+    },
+    "exercise_instructions": "تمرين الدرس 27",
+    "expected_output": "انتظرونا"
   },
   {
     "lesson_slug": "python-28",
-    "title": "Lesson 28 Placeholder",
-    "category": "Advanced Patterns & Closures",
+    "title": "الدرس 28: موضوع مخصص",
+    "category": "التحكم في مسار البيانات",
     "order_index": 28,
     "is_free": false,
     "content_type": "theory",
     "duration_minutes": 10,
     "content": {
-      "prototype": "module.function() // Lesson 28",
-      "description": "Placeholder content for Lesson 28 regarding Advanced Patterns & Closures. This will be fully hydrated in subsequent batches.",
-      "parameters": "Placeholder parameters for Lesson 28.",
-      "return_value": "Placeholder return value for Lesson 28.",
-      "example": "# Example placeholder 28\nprint(\"Will be hydrated\")"
-    }
+      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 28) لربط المفاهيم النظرية بالتطبيق العملي.",
+      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: التحكم في مسار البيانات.",
+      "prototype": "def concept_28(): pass",
+      "parameters": "تفاصيل المدخلات للدرس 28.",
+      "return_value": "النتيجة المرجوة من أدوات الدرس 28.",
+      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
+    },
+    "exercise_instructions": "تمرين الدرس 28",
+    "expected_output": "انتظرونا"
   },
   {
     "lesson_slug": "python-29",
-    "title": "Lesson 29 Placeholder",
-    "category": "Advanced Patterns & Closures",
+    "title": "الدرس 29: موضوع مخصص",
+    "category": "التحكم في مسار البيانات",
     "order_index": 29,
     "is_free": false,
     "content_type": "theory",
     "duration_minutes": 10,
     "content": {
-      "prototype": "module.function() // Lesson 29",
-      "description": "Placeholder content for Lesson 29 regarding Advanced Patterns & Closures. This will be fully hydrated in subsequent batches.",
-      "parameters": "Placeholder parameters for Lesson 29.",
-      "return_value": "Placeholder return value for Lesson 29.",
-      "example": "# Example placeholder 29\nprint(\"Will be hydrated\")"
-    }
+      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 29) لربط المفاهيم النظرية بالتطبيق العملي.",
+      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: التحكم في مسار البيانات.",
+      "prototype": "def concept_29(): pass",
+      "parameters": "تفاصيل المدخلات للدرس 29.",
+      "return_value": "النتيجة المرجوة من أدوات الدرس 29.",
+      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
+    },
+    "exercise_instructions": "تمرين الدرس 29",
+    "expected_output": "انتظرونا"
   },
   {
     "lesson_slug": "python-30",
-    "title": "Lesson 30 Placeholder",
-    "category": "Advanced Patterns & Closures",
+    "title": "الدرس 30: موضوع مخصص",
+    "category": "التحكم في مسار البيانات",
     "order_index": 30,
     "is_free": false,
     "content_type": "theory",
     "duration_minutes": 10,
     "content": {
-      "prototype": "module.function() // Lesson 30",
-      "description": "Placeholder content for Lesson 30 regarding Advanced Patterns & Closures. This will be fully hydrated in subsequent batches.",
-      "parameters": "Placeholder parameters for Lesson 30.",
-      "return_value": "Placeholder return value for Lesson 30.",
-      "example": "# Example placeholder 30\nprint(\"Will be hydrated\")"
-    }
+      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 30) لربط المفاهيم النظرية بالتطبيق العملي.",
+      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: التحكم في مسار البيانات.",
+      "prototype": "def concept_30(): pass",
+      "parameters": "تفاصيل المدخلات للدرس 30.",
+      "return_value": "النتيجة المرجوة من أدوات الدرس 30.",
+      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
+    },
+    "exercise_instructions": "تمرين الدرس 30",
+    "expected_output": "انتظرونا"
   },
   {
     "lesson_slug": "python-31",
-    "title": "Lesson 31 Placeholder",
-    "category": "Advanced Patterns & Closures",
+    "title": "الدرس 31: موضوع مخصص",
+    "category": "التحكم في مسار البيانات",
     "order_index": 31,
     "is_free": false,
     "content_type": "theory",
     "duration_minutes": 10,
     "content": {
-      "prototype": "module.function() // Lesson 31",
-      "description": "Placeholder content for Lesson 31 regarding Advanced Patterns & Closures. This will be fully hydrated in subsequent batches.",
-      "parameters": "Placeholder parameters for Lesson 31.",
-      "return_value": "Placeholder return value for Lesson 31.",
-      "example": "# Example placeholder 31\nprint(\"Will be hydrated\")"
-    }
+      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 31) لربط المفاهيم النظرية بالتطبيق العملي.",
+      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: التحكم في مسار البيانات.",
+      "prototype": "def concept_31(): pass",
+      "parameters": "تفاصيل المدخلات للدرس 31.",
+      "return_value": "النتيجة المرجوة من أدوات الدرس 31.",
+      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
+    },
+    "exercise_instructions": "تمرين الدرس 31",
+    "expected_output": "انتظرونا"
   },
   {
     "lesson_slug": "python-32",
-    "title": "Lesson 32 Placeholder",
-    "category": "Advanced Patterns & Closures",
+    "title": "الدرس 32: موضوع مخصص",
+    "category": "التحكم في مسار البيانات",
     "order_index": 32,
     "is_free": false,
     "content_type": "theory",
     "duration_minutes": 10,
     "content": {
-      "prototype": "module.function() // Lesson 32",
-      "description": "Placeholder content for Lesson 32 regarding Advanced Patterns & Closures. This will be fully hydrated in subsequent batches.",
-      "parameters": "Placeholder parameters for Lesson 32.",
-      "return_value": "Placeholder return value for Lesson 32.",
-      "example": "# Example placeholder 32\nprint(\"Will be hydrated\")"
-    }
+      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 32) لربط المفاهيم النظرية بالتطبيق العملي.",
+      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: التحكم في مسار البيانات.",
+      "prototype": "def concept_32(): pass",
+      "parameters": "تفاصيل المدخلات للدرس 32.",
+      "return_value": "النتيجة المرجوة من أدوات الدرس 32.",
+      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
+    },
+    "exercise_instructions": "تمرين الدرس 32",
+    "expected_output": "انتظرونا"
   },
   {
     "lesson_slug": "python-33",
-    "title": "Lesson 33 Placeholder",
-    "category": "Advanced Patterns & Closures",
+    "title": "الدرس 33: موضوع مخصص",
+    "category": "التحكم في مسار البيانات",
     "order_index": 33,
     "is_free": false,
     "content_type": "theory",
     "duration_minutes": 10,
     "content": {
-      "prototype": "module.function() // Lesson 33",
-      "description": "Placeholder content for Lesson 33 regarding Advanced Patterns & Closures. This will be fully hydrated in subsequent batches.",
-      "parameters": "Placeholder parameters for Lesson 33.",
-      "return_value": "Placeholder return value for Lesson 33.",
-      "example": "# Example placeholder 33\nprint(\"Will be hydrated\")"
-    }
+      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 33) لربط المفاهيم النظرية بالتطبيق العملي.",
+      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: التحكم في مسار البيانات.",
+      "prototype": "def concept_33(): pass",
+      "parameters": "تفاصيل المدخلات للدرس 33.",
+      "return_value": "النتيجة المرجوة من أدوات الدرس 33.",
+      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
+    },
+    "exercise_instructions": "تمرين الدرس 33",
+    "expected_output": "انتظرونا"
   },
   {
     "lesson_slug": "python-34",
-    "title": "Lesson 34 Placeholder",
-    "category": "Advanced Patterns & Closures",
+    "title": "الدرس 34: موضوع مخصص",
+    "category": "التحكم في مسار البيانات",
     "order_index": 34,
     "is_free": false,
     "content_type": "theory",
     "duration_minutes": 10,
     "content": {
-      "prototype": "module.function() // Lesson 34",
-      "description": "Placeholder content for Lesson 34 regarding Advanced Patterns & Closures. This will be fully hydrated in subsequent batches.",
-      "parameters": "Placeholder parameters for Lesson 34.",
-      "return_value": "Placeholder return value for Lesson 34.",
-      "example": "# Example placeholder 34\nprint(\"Will be hydrated\")"
-    }
+      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 34) لربط المفاهيم النظرية بالتطبيق العملي.",
+      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: التحكم في مسار البيانات.",
+      "prototype": "def concept_34(): pass",
+      "parameters": "تفاصيل المدخلات للدرس 34.",
+      "return_value": "النتيجة المرجوة من أدوات الدرس 34.",
+      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
+    },
+    "exercise_instructions": "تمرين الدرس 34",
+    "expected_output": "انتظرونا"
   },
   {
     "lesson_slug": "python-35",
-    "title": "Lesson 35 Placeholder",
-    "category": "Advanced Patterns & Closures",
+    "title": "الدرس 35: موضوع مخصص",
+    "category": "التحكم في مسار البيانات",
     "order_index": 35,
     "is_free": false,
     "content_type": "theory",
     "duration_minutes": 10,
     "content": {
-      "prototype": "module.function() // Lesson 35",
-      "description": "Placeholder content for Lesson 35 regarding Advanced Patterns & Closures. This will be fully hydrated in subsequent batches.",
-      "parameters": "Placeholder parameters for Lesson 35.",
-      "return_value": "Placeholder return value for Lesson 35.",
-      "example": "# Example placeholder 35\nprint(\"Will be hydrated\")"
-    }
+      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 35) لربط المفاهيم النظرية بالتطبيق العملي.",
+      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: التحكم في مسار البيانات.",
+      "prototype": "def concept_35(): pass",
+      "parameters": "تفاصيل المدخلات للدرس 35.",
+      "return_value": "النتيجة المرجوة من أدوات الدرس 35.",
+      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
+    },
+    "exercise_instructions": "تمرين الدرس 35",
+    "expected_output": "انتظرونا"
   },
   {
     "lesson_slug": "python-36",
-    "title": "Lesson 36 Placeholder",
-    "category": "Advanced Patterns & Closures",
+    "title": "الدرس 36: موضوع مخصص",
+    "category": "التحكم في مسار البيانات",
     "order_index": 36,
     "is_free": false,
     "content_type": "theory",
     "duration_minutes": 10,
     "content": {
-      "prototype": "module.function() // Lesson 36",
-      "description": "Placeholder content for Lesson 36 regarding Advanced Patterns & Closures. This will be fully hydrated in subsequent batches.",
-      "parameters": "Placeholder parameters for Lesson 36.",
-      "return_value": "Placeholder return value for Lesson 36.",
-      "example": "# Example placeholder 36\nprint(\"Will be hydrated\")"
-    }
+      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 36) لربط المفاهيم النظرية بالتطبيق العملي.",
+      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: التحكم في مسار البيانات.",
+      "prototype": "def concept_36(): pass",
+      "parameters": "تفاصيل المدخلات للدرس 36.",
+      "return_value": "النتيجة المرجوة من أدوات الدرس 36.",
+      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
+    },
+    "exercise_instructions": "تمرين الدرس 36",
+    "expected_output": "انتظرونا"
   },
   {
     "lesson_slug": "python-37",
-    "title": "Lesson 37 Placeholder",
-    "category": "Advanced Patterns & Closures",
+    "title": "الدرس 37: موضوع مخصص",
+    "category": "التحكم في مسار البيانات",
     "order_index": 37,
     "is_free": false,
     "content_type": "theory",
     "duration_minutes": 10,
     "content": {
-      "prototype": "module.function() // Lesson 37",
-      "description": "Placeholder content for Lesson 37 regarding Advanced Patterns & Closures. This will be fully hydrated in subsequent batches.",
-      "parameters": "Placeholder parameters for Lesson 37.",
-      "return_value": "Placeholder return value for Lesson 37.",
-      "example": "# Example placeholder 37\nprint(\"Will be hydrated\")"
-    }
+      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 37) لربط المفاهيم النظرية بالتطبيق العملي.",
+      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: التحكم في مسار البيانات.",
+      "prototype": "def concept_37(): pass",
+      "parameters": "تفاصيل المدخلات للدرس 37.",
+      "return_value": "النتيجة المرجوة من أدوات الدرس 37.",
+      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
+    },
+    "exercise_instructions": "تمرين الدرس 37",
+    "expected_output": "انتظرونا"
   },
   {
     "lesson_slug": "python-38",
-    "title": "Lesson 38 Placeholder",
-    "category": "Advanced Patterns & Closures",
+    "title": "الدرس 38: موضوع مخصص",
+    "category": "التحكم في مسار البيانات",
     "order_index": 38,
     "is_free": false,
     "content_type": "theory",
     "duration_minutes": 10,
     "content": {
-      "prototype": "module.function() // Lesson 38",
-      "description": "Placeholder content for Lesson 38 regarding Advanced Patterns & Closures. This will be fully hydrated in subsequent batches.",
-      "parameters": "Placeholder parameters for Lesson 38.",
-      "return_value": "Placeholder return value for Lesson 38.",
-      "example": "# Example placeholder 38\nprint(\"Will be hydrated\")"
-    }
+      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 38) لربط المفاهيم النظرية بالتطبيق العملي.",
+      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: التحكم في مسار البيانات.",
+      "prototype": "def concept_38(): pass",
+      "parameters": "تفاصيل المدخلات للدرس 38.",
+      "return_value": "النتيجة المرجوة من أدوات الدرس 38.",
+      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
+    },
+    "exercise_instructions": "تمرين الدرس 38",
+    "expected_output": "انتظرونا"
   },
   {
     "lesson_slug": "python-39",
-    "title": "Lesson 39 Placeholder",
-    "category": "Advanced Patterns & Closures",
+    "title": "الدرس 39: موضوع مخصص",
+    "category": "التحكم في مسار البيانات",
     "order_index": 39,
     "is_free": false,
     "content_type": "theory",
     "duration_minutes": 10,
     "content": {
-      "prototype": "module.function() // Lesson 39",
-      "description": "Placeholder content for Lesson 39 regarding Advanced Patterns & Closures. This will be fully hydrated in subsequent batches.",
-      "parameters": "Placeholder parameters for Lesson 39.",
-      "return_value": "Placeholder return value for Lesson 39.",
-      "example": "# Example placeholder 39\nprint(\"Will be hydrated\")"
-    }
+      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 39) لربط المفاهيم النظرية بالتطبيق العملي.",
+      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: التحكم في مسار البيانات.",
+      "prototype": "def concept_39(): pass",
+      "parameters": "تفاصيل المدخلات للدرس 39.",
+      "return_value": "النتيجة المرجوة من أدوات الدرس 39.",
+      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
+    },
+    "exercise_instructions": "تمرين الدرس 39",
+    "expected_output": "انتظرونا"
   },
   {
     "lesson_slug": "python-40",
-    "title": "Lesson 40 Placeholder",
-    "category": "Advanced Patterns & Closures",
+    "title": "الدرس 40: موضوع مخصص",
+    "category": "التحكم في مسار البيانات",
     "order_index": 40,
     "is_free": false,
     "content_type": "theory",
     "duration_minutes": 10,
     "content": {
-      "prototype": "module.function() // Lesson 40",
-      "description": "Placeholder content for Lesson 40 regarding Advanced Patterns & Closures. This will be fully hydrated in subsequent batches.",
-      "parameters": "Placeholder parameters for Lesson 40.",
-      "return_value": "Placeholder return value for Lesson 40.",
-      "example": "# Example placeholder 40\nprint(\"Will be hydrated\")"
-    }
+      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 40) لربط المفاهيم النظرية بالتطبيق العملي.",
+      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: التحكم في مسار البيانات.",
+      "prototype": "def concept_40(): pass",
+      "parameters": "تفاصيل المدخلات للدرس 40.",
+      "return_value": "النتيجة المرجوة من أدوات الدرس 40.",
+      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
+    },
+    "exercise_instructions": "تمرين الدرس 40",
+    "expected_output": "انتظرونا"
   },
   {
     "lesson_slug": "python-41",
-    "title": "Lesson 41 Placeholder",
-    "category": "OOP & Metaprogramming",
+    "title": "الدرس 41: موضوع مخصص",
+    "category": "هياكل البيانات المتقدمة",
     "order_index": 41,
     "is_free": false,
     "content_type": "theory",
     "duration_minutes": 10,
     "content": {
-      "prototype": "module.function() // Lesson 41",
-      "description": "Placeholder content for Lesson 41 regarding OOP & Metaprogramming. This will be fully hydrated in subsequent batches.",
-      "parameters": "Placeholder parameters for Lesson 41.",
-      "return_value": "Placeholder return value for Lesson 41.",
-      "example": "# Example placeholder 41\nprint(\"Will be hydrated\")"
-    }
+      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 41) لربط المفاهيم النظرية بالتطبيق العملي.",
+      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: هياكل البيانات المتقدمة.",
+      "prototype": "def concept_41(): pass",
+      "parameters": "تفاصيل المدخلات للدرس 41.",
+      "return_value": "النتيجة المرجوة من أدوات الدرس 41.",
+      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
+    },
+    "exercise_instructions": "تمرين الدرس 41",
+    "expected_output": "انتظرونا"
   },
   {
     "lesson_slug": "python-42",
-    "title": "Lesson 42 Placeholder",
-    "category": "OOP & Metaprogramming",
+    "title": "الدرس 42: موضوع مخصص",
+    "category": "هياكل البيانات المتقدمة",
     "order_index": 42,
     "is_free": false,
     "content_type": "theory",
     "duration_minutes": 10,
     "content": {
-      "prototype": "module.function() // Lesson 42",
-      "description": "Placeholder content for Lesson 42 regarding OOP & Metaprogramming. This will be fully hydrated in subsequent batches.",
-      "parameters": "Placeholder parameters for Lesson 42.",
-      "return_value": "Placeholder return value for Lesson 42.",
-      "example": "# Example placeholder 42\nprint(\"Will be hydrated\")"
-    }
+      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 42) لربط المفاهيم النظرية بالتطبيق العملي.",
+      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: هياكل البيانات المتقدمة.",
+      "prototype": "def concept_42(): pass",
+      "parameters": "تفاصيل المدخلات للدرس 42.",
+      "return_value": "النتيجة المرجوة من أدوات الدرس 42.",
+      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
+    },
+    "exercise_instructions": "تمرين الدرس 42",
+    "expected_output": "انتظرونا"
   },
   {
     "lesson_slug": "python-43",
-    "title": "Lesson 43 Placeholder",
-    "category": "OOP & Metaprogramming",
+    "title": "الدرس 43: موضوع مخصص",
+    "category": "هياكل البيانات المتقدمة",
     "order_index": 43,
     "is_free": false,
     "content_type": "theory",
     "duration_minutes": 10,
     "content": {
-      "prototype": "module.function() // Lesson 43",
-      "description": "Placeholder content for Lesson 43 regarding OOP & Metaprogramming. This will be fully hydrated in subsequent batches.",
-      "parameters": "Placeholder parameters for Lesson 43.",
-      "return_value": "Placeholder return value for Lesson 43.",
-      "example": "# Example placeholder 43\nprint(\"Will be hydrated\")"
-    }
+      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 43) لربط المفاهيم النظرية بالتطبيق العملي.",
+      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: هياكل البيانات المتقدمة.",
+      "prototype": "def concept_43(): pass",
+      "parameters": "تفاصيل المدخلات للدرس 43.",
+      "return_value": "النتيجة المرجوة من أدوات الدرس 43.",
+      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
+    },
+    "exercise_instructions": "تمرين الدرس 43",
+    "expected_output": "انتظرونا"
   },
   {
     "lesson_slug": "python-44",
-    "title": "Lesson 44 Placeholder",
-    "category": "OOP & Metaprogramming",
+    "title": "الدرس 44: موضوع مخصص",
+    "category": "هياكل البيانات المتقدمة",
     "order_index": 44,
     "is_free": false,
     "content_type": "theory",
     "duration_minutes": 10,
     "content": {
-      "prototype": "module.function() // Lesson 44",
-      "description": "Placeholder content for Lesson 44 regarding OOP & Metaprogramming. This will be fully hydrated in subsequent batches.",
-      "parameters": "Placeholder parameters for Lesson 44.",
-      "return_value": "Placeholder return value for Lesson 44.",
-      "example": "# Example placeholder 44\nprint(\"Will be hydrated\")"
-    }
+      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 44) لربط المفاهيم النظرية بالتطبيق العملي.",
+      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: هياكل البيانات المتقدمة.",
+      "prototype": "def concept_44(): pass",
+      "parameters": "تفاصيل المدخلات للدرس 44.",
+      "return_value": "النتيجة المرجوة من أدوات الدرس 44.",
+      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
+    },
+    "exercise_instructions": "تمرين الدرس 44",
+    "expected_output": "انتظرونا"
   },
   {
     "lesson_slug": "python-45",
-    "title": "Lesson 45 Placeholder",
-    "category": "OOP & Metaprogramming",
+    "title": "الدرس 45: موضوع مخصص",
+    "category": "هياكل البيانات المتقدمة",
     "order_index": 45,
     "is_free": false,
     "content_type": "theory",
     "duration_minutes": 10,
     "content": {
-      "prototype": "module.function() // Lesson 45",
-      "description": "Placeholder content for Lesson 45 regarding OOP & Metaprogramming. This will be fully hydrated in subsequent batches.",
-      "parameters": "Placeholder parameters for Lesson 45.",
-      "return_value": "Placeholder return value for Lesson 45.",
-      "example": "# Example placeholder 45\nprint(\"Will be hydrated\")"
-    }
+      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 45) لربط المفاهيم النظرية بالتطبيق العملي.",
+      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: هياكل البيانات المتقدمة.",
+      "prototype": "def concept_45(): pass",
+      "parameters": "تفاصيل المدخلات للدرس 45.",
+      "return_value": "النتيجة المرجوة من أدوات الدرس 45.",
+      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
+    },
+    "exercise_instructions": "تمرين الدرس 45",
+    "expected_output": "انتظرونا"
   },
   {
     "lesson_slug": "python-46",
-    "title": "Lesson 46 Placeholder",
-    "category": "OOP & Metaprogramming",
+    "title": "الدرس 46: موضوع مخصص",
+    "category": "هياكل البيانات المتقدمة",
     "order_index": 46,
     "is_free": false,
     "content_type": "theory",
     "duration_minutes": 10,
     "content": {
-      "prototype": "module.function() // Lesson 46",
-      "description": "Placeholder content for Lesson 46 regarding OOP & Metaprogramming. This will be fully hydrated in subsequent batches.",
-      "parameters": "Placeholder parameters for Lesson 46.",
-      "return_value": "Placeholder return value for Lesson 46.",
-      "example": "# Example placeholder 46\nprint(\"Will be hydrated\")"
-    }
+      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 46) لربط المفاهيم النظرية بالتطبيق العملي.",
+      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: هياكل البيانات المتقدمة.",
+      "prototype": "def concept_46(): pass",
+      "parameters": "تفاصيل المدخلات للدرس 46.",
+      "return_value": "النتيجة المرجوة من أدوات الدرس 46.",
+      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
+    },
+    "exercise_instructions": "تمرين الدرس 46",
+    "expected_output": "انتظرونا"
   },
   {
     "lesson_slug": "python-47",
-    "title": "Lesson 47 Placeholder",
-    "category": "OOP & Metaprogramming",
+    "title": "الدرس 47: موضوع مخصص",
+    "category": "هياكل البيانات المتقدمة",
     "order_index": 47,
     "is_free": false,
     "content_type": "theory",
     "duration_minutes": 10,
     "content": {
-      "prototype": "module.function() // Lesson 47",
-      "description": "Placeholder content for Lesson 47 regarding OOP & Metaprogramming. This will be fully hydrated in subsequent batches.",
-      "parameters": "Placeholder parameters for Lesson 47.",
-      "return_value": "Placeholder return value for Lesson 47.",
-      "example": "# Example placeholder 47\nprint(\"Will be hydrated\")"
-    }
+      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 47) لربط المفاهيم النظرية بالتطبيق العملي.",
+      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: هياكل البيانات المتقدمة.",
+      "prototype": "def concept_47(): pass",
+      "parameters": "تفاصيل المدخلات للدرس 47.",
+      "return_value": "النتيجة المرجوة من أدوات الدرس 47.",
+      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
+    },
+    "exercise_instructions": "تمرين الدرس 47",
+    "expected_output": "انتظرونا"
   },
   {
     "lesson_slug": "python-48",
-    "title": "Lesson 48 Placeholder",
-    "category": "OOP & Metaprogramming",
+    "title": "الدرس 48: موضوع مخصص",
+    "category": "هياكل البيانات المتقدمة",
     "order_index": 48,
     "is_free": false,
     "content_type": "theory",
     "duration_minutes": 10,
     "content": {
-      "prototype": "module.function() // Lesson 48",
-      "description": "Placeholder content for Lesson 48 regarding OOP & Metaprogramming. This will be fully hydrated in subsequent batches.",
-      "parameters": "Placeholder parameters for Lesson 48.",
-      "return_value": "Placeholder return value for Lesson 48.",
-      "example": "# Example placeholder 48\nprint(\"Will be hydrated\")"
-    }
+      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 48) لربط المفاهيم النظرية بالتطبيق العملي.",
+      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: هياكل البيانات المتقدمة.",
+      "prototype": "def concept_48(): pass",
+      "parameters": "تفاصيل المدخلات للدرس 48.",
+      "return_value": "النتيجة المرجوة من أدوات الدرس 48.",
+      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
+    },
+    "exercise_instructions": "تمرين الدرس 48",
+    "expected_output": "انتظرونا"
   },
   {
     "lesson_slug": "python-49",
-    "title": "Lesson 49 Placeholder",
-    "category": "OOP & Metaprogramming",
+    "title": "الدرس 49: موضوع مخصص",
+    "category": "هياكل البيانات المتقدمة",
     "order_index": 49,
     "is_free": false,
     "content_type": "theory",
     "duration_minutes": 10,
     "content": {
-      "prototype": "module.function() // Lesson 49",
-      "description": "Placeholder content for Lesson 49 regarding OOP & Metaprogramming. This will be fully hydrated in subsequent batches.",
-      "parameters": "Placeholder parameters for Lesson 49.",
-      "return_value": "Placeholder return value for Lesson 49.",
-      "example": "# Example placeholder 49\nprint(\"Will be hydrated\")"
-    }
+      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 49) لربط المفاهيم النظرية بالتطبيق العملي.",
+      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: هياكل البيانات المتقدمة.",
+      "prototype": "def concept_49(): pass",
+      "parameters": "تفاصيل المدخلات للدرس 49.",
+      "return_value": "النتيجة المرجوة من أدوات الدرس 49.",
+      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
+    },
+    "exercise_instructions": "تمرين الدرس 49",
+    "expected_output": "انتظرونا"
   },
   {
     "lesson_slug": "python-50",
-    "title": "Lesson 50 Placeholder",
-    "category": "OOP & Metaprogramming",
+    "title": "الدرس 50: موضوع مخصص",
+    "category": "هياكل البيانات المتقدمة",
     "order_index": 50,
     "is_free": false,
     "content_type": "theory",
     "duration_minutes": 10,
     "content": {
-      "prototype": "module.function() // Lesson 50",
-      "description": "Placeholder content for Lesson 50 regarding OOP & Metaprogramming. This will be fully hydrated in subsequent batches.",
-      "parameters": "Placeholder parameters for Lesson 50.",
-      "return_value": "Placeholder return value for Lesson 50.",
-      "example": "# Example placeholder 50\nprint(\"Will be hydrated\")"
-    }
+      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 50) لربط المفاهيم النظرية بالتطبيق العملي.",
+      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: هياكل البيانات المتقدمة.",
+      "prototype": "def concept_50(): pass",
+      "parameters": "تفاصيل المدخلات للدرس 50.",
+      "return_value": "النتيجة المرجوة من أدوات الدرس 50.",
+      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
+    },
+    "exercise_instructions": "تمرين الدرس 50",
+    "expected_output": "انتظرونا"
   },
   {
     "lesson_slug": "python-51",
-    "title": "Lesson 51 Placeholder",
-    "category": "OOP & Metaprogramming",
+    "title": "الدرس 51: موضوع مخصص",
+    "category": "هياكل البيانات المتقدمة",
     "order_index": 51,
     "is_free": false,
     "content_type": "theory",
     "duration_minutes": 10,
     "content": {
-      "prototype": "module.function() // Lesson 51",
-      "description": "Placeholder content for Lesson 51 regarding OOP & Metaprogramming. This will be fully hydrated in subsequent batches.",
-      "parameters": "Placeholder parameters for Lesson 51.",
-      "return_value": "Placeholder return value for Lesson 51.",
-      "example": "# Example placeholder 51\nprint(\"Will be hydrated\")"
-    }
+      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 51) لربط المفاهيم النظرية بالتطبيق العملي.",
+      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: هياكل البيانات المتقدمة.",
+      "prototype": "def concept_51(): pass",
+      "parameters": "تفاصيل المدخلات للدرس 51.",
+      "return_value": "النتيجة المرجوة من أدوات الدرس 51.",
+      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
+    },
+    "exercise_instructions": "تمرين الدرس 51",
+    "expected_output": "انتظرونا"
   },
   {
     "lesson_slug": "python-52",
-    "title": "Lesson 52 Placeholder",
-    "category": "OOP & Metaprogramming",
+    "title": "الدرس 52: موضوع مخصص",
+    "category": "هياكل البيانات المتقدمة",
     "order_index": 52,
     "is_free": false,
     "content_type": "theory",
     "duration_minutes": 10,
     "content": {
-      "prototype": "module.function() // Lesson 52",
-      "description": "Placeholder content for Lesson 52 regarding OOP & Metaprogramming. This will be fully hydrated in subsequent batches.",
-      "parameters": "Placeholder parameters for Lesson 52.",
-      "return_value": "Placeholder return value for Lesson 52.",
-      "example": "# Example placeholder 52\nprint(\"Will be hydrated\")"
-    }
+      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 52) لربط المفاهيم النظرية بالتطبيق العملي.",
+      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: هياكل البيانات المتقدمة.",
+      "prototype": "def concept_52(): pass",
+      "parameters": "تفاصيل المدخلات للدرس 52.",
+      "return_value": "النتيجة المرجوة من أدوات الدرس 52.",
+      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
+    },
+    "exercise_instructions": "تمرين الدرس 52",
+    "expected_output": "انتظرونا"
   },
   {
     "lesson_slug": "python-53",
-    "title": "Lesson 53 Placeholder",
-    "category": "OOP & Metaprogramming",
+    "title": "الدرس 53: موضوع مخصص",
+    "category": "هياكل البيانات المتقدمة",
     "order_index": 53,
     "is_free": false,
     "content_type": "theory",
     "duration_minutes": 10,
     "content": {
-      "prototype": "module.function() // Lesson 53",
-      "description": "Placeholder content for Lesson 53 regarding OOP & Metaprogramming. This will be fully hydrated in subsequent batches.",
-      "parameters": "Placeholder parameters for Lesson 53.",
-      "return_value": "Placeholder return value for Lesson 53.",
-      "example": "# Example placeholder 53\nprint(\"Will be hydrated\")"
-    }
+      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 53) لربط المفاهيم النظرية بالتطبيق العملي.",
+      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: هياكل البيانات المتقدمة.",
+      "prototype": "def concept_53(): pass",
+      "parameters": "تفاصيل المدخلات للدرس 53.",
+      "return_value": "النتيجة المرجوة من أدوات الدرس 53.",
+      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
+    },
+    "exercise_instructions": "تمرين الدرس 53",
+    "expected_output": "انتظرونا"
   },
   {
     "lesson_slug": "python-54",
-    "title": "Lesson 54 Placeholder",
-    "category": "OOP & Metaprogramming",
+    "title": "الدرس 54: موضوع مخصص",
+    "category": "هياكل البيانات المتقدمة",
     "order_index": 54,
     "is_free": false,
     "content_type": "theory",
     "duration_minutes": 10,
     "content": {
-      "prototype": "module.function() // Lesson 54",
-      "description": "Placeholder content for Lesson 54 regarding OOP & Metaprogramming. This will be fully hydrated in subsequent batches.",
-      "parameters": "Placeholder parameters for Lesson 54.",
-      "return_value": "Placeholder return value for Lesson 54.",
-      "example": "# Example placeholder 54\nprint(\"Will be hydrated\")"
-    }
+      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 54) لربط المفاهيم النظرية بالتطبيق العملي.",
+      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: هياكل البيانات المتقدمة.",
+      "prototype": "def concept_54(): pass",
+      "parameters": "تفاصيل المدخلات للدرس 54.",
+      "return_value": "النتيجة المرجوة من أدوات الدرس 54.",
+      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
+    },
+    "exercise_instructions": "تمرين الدرس 54",
+    "expected_output": "انتظرونا"
   },
   {
     "lesson_slug": "python-55",
-    "title": "Lesson 55 Placeholder",
-    "category": "OOP & Metaprogramming",
+    "title": "الدرس 55: موضوع مخصص",
+    "category": "هياكل البيانات المتقدمة",
     "order_index": 55,
     "is_free": false,
     "content_type": "theory",
     "duration_minutes": 10,
     "content": {
-      "prototype": "module.function() // Lesson 55",
-      "description": "Placeholder content for Lesson 55 regarding OOP & Metaprogramming. This will be fully hydrated in subsequent batches.",
-      "parameters": "Placeholder parameters for Lesson 55.",
-      "return_value": "Placeholder return value for Lesson 55.",
-      "example": "# Example placeholder 55\nprint(\"Will be hydrated\")"
-    }
+      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 55) لربط المفاهيم النظرية بالتطبيق العملي.",
+      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: هياكل البيانات المتقدمة.",
+      "prototype": "def concept_55(): pass",
+      "parameters": "تفاصيل المدخلات للدرس 55.",
+      "return_value": "النتيجة المرجوة من أدوات الدرس 55.",
+      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
+    },
+    "exercise_instructions": "تمرين الدرس 55",
+    "expected_output": "انتظرونا"
   },
   {
     "lesson_slug": "python-56",
-    "title": "Lesson 56 Placeholder",
-    "category": "OOP & Metaprogramming",
+    "title": "الدرس 56: موضوع مخصص",
+    "category": "هياكل البيانات المتقدمة",
     "order_index": 56,
     "is_free": false,
     "content_type": "theory",
     "duration_minutes": 10,
     "content": {
-      "prototype": "module.function() // Lesson 56",
-      "description": "Placeholder content for Lesson 56 regarding OOP & Metaprogramming. This will be fully hydrated in subsequent batches.",
-      "parameters": "Placeholder parameters for Lesson 56.",
-      "return_value": "Placeholder return value for Lesson 56.",
-      "example": "# Example placeholder 56\nprint(\"Will be hydrated\")"
-    }
+      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 56) لربط المفاهيم النظرية بالتطبيق العملي.",
+      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: هياكل البيانات المتقدمة.",
+      "prototype": "def concept_56(): pass",
+      "parameters": "تفاصيل المدخلات للدرس 56.",
+      "return_value": "النتيجة المرجوة من أدوات الدرس 56.",
+      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
+    },
+    "exercise_instructions": "تمرين الدرس 56",
+    "expected_output": "انتظرونا"
   },
   {
     "lesson_slug": "python-57",
-    "title": "Lesson 57 Placeholder",
-    "category": "OOP & Metaprogramming",
+    "title": "الدرس 57: موضوع مخصص",
+    "category": "هياكل البيانات المتقدمة",
     "order_index": 57,
     "is_free": false,
     "content_type": "theory",
     "duration_minutes": 10,
     "content": {
-      "prototype": "module.function() // Lesson 57",
-      "description": "Placeholder content for Lesson 57 regarding OOP & Metaprogramming. This will be fully hydrated in subsequent batches.",
-      "parameters": "Placeholder parameters for Lesson 57.",
-      "return_value": "Placeholder return value for Lesson 57.",
-      "example": "# Example placeholder 57\nprint(\"Will be hydrated\")"
-    }
+      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 57) لربط المفاهيم النظرية بالتطبيق العملي.",
+      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: هياكل البيانات المتقدمة.",
+      "prototype": "def concept_57(): pass",
+      "parameters": "تفاصيل المدخلات للدرس 57.",
+      "return_value": "النتيجة المرجوة من أدوات الدرس 57.",
+      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
+    },
+    "exercise_instructions": "تمرين الدرس 57",
+    "expected_output": "انتظرونا"
   },
   {
     "lesson_slug": "python-58",
-    "title": "Lesson 58 Placeholder",
-    "category": "OOP & Metaprogramming",
+    "title": "الدرس 58: موضوع مخصص",
+    "category": "هياكل البيانات المتقدمة",
     "order_index": 58,
     "is_free": false,
     "content_type": "theory",
     "duration_minutes": 10,
     "content": {
-      "prototype": "module.function() // Lesson 58",
-      "description": "Placeholder content for Lesson 58 regarding OOP & Metaprogramming. This will be fully hydrated in subsequent batches.",
-      "parameters": "Placeholder parameters for Lesson 58.",
-      "return_value": "Placeholder return value for Lesson 58.",
-      "example": "# Example placeholder 58\nprint(\"Will be hydrated\")"
-    }
+      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 58) لربط المفاهيم النظرية بالتطبيق العملي.",
+      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: هياكل البيانات المتقدمة.",
+      "prototype": "def concept_58(): pass",
+      "parameters": "تفاصيل المدخلات للدرس 58.",
+      "return_value": "النتيجة المرجوة من أدوات الدرس 58.",
+      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
+    },
+    "exercise_instructions": "تمرين الدرس 58",
+    "expected_output": "انتظرونا"
   },
   {
     "lesson_slug": "python-59",
-    "title": "Lesson 59 Placeholder",
-    "category": "OOP & Metaprogramming",
+    "title": "الدرس 59: موضوع مخصص",
+    "category": "هياكل البيانات المتقدمة",
     "order_index": 59,
     "is_free": false,
     "content_type": "theory",
     "duration_minutes": 10,
     "content": {
-      "prototype": "module.function() // Lesson 59",
-      "description": "Placeholder content for Lesson 59 regarding OOP & Metaprogramming. This will be fully hydrated in subsequent batches.",
-      "parameters": "Placeholder parameters for Lesson 59.",
-      "return_value": "Placeholder return value for Lesson 59.",
-      "example": "# Example placeholder 59\nprint(\"Will be hydrated\")"
-    }
+      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 59) لربط المفاهيم النظرية بالتطبيق العملي.",
+      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: هياكل البيانات المتقدمة.",
+      "prototype": "def concept_59(): pass",
+      "parameters": "تفاصيل المدخلات للدرس 59.",
+      "return_value": "النتيجة المرجوة من أدوات الدرس 59.",
+      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
+    },
+    "exercise_instructions": "تمرين الدرس 59",
+    "expected_output": "انتظرونا"
   },
   {
     "lesson_slug": "python-60",
-    "title": "Lesson 60 Placeholder",
-    "category": "OOP & Metaprogramming",
+    "title": "الدرس 60: موضوع مخصص",
+    "category": "هياكل البيانات المتقدمة",
     "order_index": 60,
     "is_free": false,
     "content_type": "theory",
     "duration_minutes": 10,
     "content": {
-      "prototype": "module.function() // Lesson 60",
-      "description": "Placeholder content for Lesson 60 regarding OOP & Metaprogramming. This will be fully hydrated in subsequent batches.",
-      "parameters": "Placeholder parameters for Lesson 60.",
-      "return_value": "Placeholder return value for Lesson 60.",
-      "example": "# Example placeholder 60\nprint(\"Will be hydrated\")"
-    }
+      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 60) لربط المفاهيم النظرية بالتطبيق العملي.",
+      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: هياكل البيانات المتقدمة.",
+      "prototype": "def concept_60(): pass",
+      "parameters": "تفاصيل المدخلات للدرس 60.",
+      "return_value": "النتيجة المرجوة من أدوات الدرس 60.",
+      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
+    },
+    "exercise_instructions": "تمرين الدرس 60",
+    "expected_output": "انتظرونا"
   },
   {
     "lesson_slug": "python-61",
-    "title": "Lesson 61 Placeholder",
-    "category": "High-Performance & Concurrency",
+    "title": "الدرس 61: موضوع مخصص",
+    "category": "البرمجة الكائنية OOP",
     "order_index": 61,
     "is_free": false,
     "content_type": "theory",
     "duration_minutes": 10,
     "content": {
-      "prototype": "module.function() // Lesson 61",
-      "description": "Placeholder content for Lesson 61 regarding High-Performance & Concurrency. This will be fully hydrated in subsequent batches.",
-      "parameters": "Placeholder parameters for Lesson 61.",
-      "return_value": "Placeholder return value for Lesson 61.",
-      "example": "# Example placeholder 61\nprint(\"Will be hydrated\")"
-    }
+      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 61) لربط المفاهيم النظرية بالتطبيق العملي.",
+      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: البرمجة الكائنية OOP.",
+      "prototype": "def concept_61(): pass",
+      "parameters": "تفاصيل المدخلات للدرس 61.",
+      "return_value": "النتيجة المرجوة من أدوات الدرس 61.",
+      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
+    },
+    "exercise_instructions": "تمرين الدرس 61",
+    "expected_output": "انتظرونا"
   },
   {
     "lesson_slug": "python-62",
-    "title": "Lesson 62 Placeholder",
-    "category": "High-Performance & Concurrency",
+    "title": "الدرس 62: موضوع مخصص",
+    "category": "البرمجة الكائنية OOP",
     "order_index": 62,
     "is_free": false,
     "content_type": "theory",
     "duration_minutes": 10,
     "content": {
-      "prototype": "module.function() // Lesson 62",
-      "description": "Placeholder content for Lesson 62 regarding High-Performance & Concurrency. This will be fully hydrated in subsequent batches.",
-      "parameters": "Placeholder parameters for Lesson 62.",
-      "return_value": "Placeholder return value for Lesson 62.",
-      "example": "# Example placeholder 62\nprint(\"Will be hydrated\")"
-    }
+      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 62) لربط المفاهيم النظرية بالتطبيق العملي.",
+      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: البرمجة الكائنية OOP.",
+      "prototype": "def concept_62(): pass",
+      "parameters": "تفاصيل المدخلات للدرس 62.",
+      "return_value": "النتيجة المرجوة من أدوات الدرس 62.",
+      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
+    },
+    "exercise_instructions": "تمرين الدرس 62",
+    "expected_output": "انتظرونا"
   },
   {
     "lesson_slug": "python-63",
-    "title": "Lesson 63 Placeholder",
-    "category": "High-Performance & Concurrency",
+    "title": "الدرس 63: موضوع مخصص",
+    "category": "البرمجة الكائنية OOP",
     "order_index": 63,
     "is_free": false,
     "content_type": "theory",
     "duration_minutes": 10,
     "content": {
-      "prototype": "module.function() // Lesson 63",
-      "description": "Placeholder content for Lesson 63 regarding High-Performance & Concurrency. This will be fully hydrated in subsequent batches.",
-      "parameters": "Placeholder parameters for Lesson 63.",
-      "return_value": "Placeholder return value for Lesson 63.",
-      "example": "# Example placeholder 63\nprint(\"Will be hydrated\")"
-    }
+      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 63) لربط المفاهيم النظرية بالتطبيق العملي.",
+      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: البرمجة الكائنية OOP.",
+      "prototype": "def concept_63(): pass",
+      "parameters": "تفاصيل المدخلات للدرس 63.",
+      "return_value": "النتيجة المرجوة من أدوات الدرس 63.",
+      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
+    },
+    "exercise_instructions": "تمرين الدرس 63",
+    "expected_output": "انتظرونا"
   },
   {
     "lesson_slug": "python-64",
-    "title": "Lesson 64 Placeholder",
-    "category": "High-Performance & Concurrency",
+    "title": "الدرس 64: موضوع مخصص",
+    "category": "البرمجة الكائنية OOP",
     "order_index": 64,
     "is_free": false,
     "content_type": "theory",
     "duration_minutes": 10,
     "content": {
-      "prototype": "module.function() // Lesson 64",
-      "description": "Placeholder content for Lesson 64 regarding High-Performance & Concurrency. This will be fully hydrated in subsequent batches.",
-      "parameters": "Placeholder parameters for Lesson 64.",
-      "return_value": "Placeholder return value for Lesson 64.",
-      "example": "# Example placeholder 64\nprint(\"Will be hydrated\")"
-    }
+      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 64) لربط المفاهيم النظرية بالتطبيق العملي.",
+      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: البرمجة الكائنية OOP.",
+      "prototype": "def concept_64(): pass",
+      "parameters": "تفاصيل المدخلات للدرس 64.",
+      "return_value": "النتيجة المرجوة من أدوات الدرس 64.",
+      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
+    },
+    "exercise_instructions": "تمرين الدرس 64",
+    "expected_output": "انتظرونا"
   },
   {
     "lesson_slug": "python-65",
-    "title": "Lesson 65 Placeholder",
-    "category": "High-Performance & Concurrency",
+    "title": "الدرس 65: موضوع مخصص",
+    "category": "البرمجة الكائنية OOP",
     "order_index": 65,
     "is_free": false,
     "content_type": "theory",
     "duration_minutes": 10,
     "content": {
-      "prototype": "module.function() // Lesson 65",
-      "description": "Placeholder content for Lesson 65 regarding High-Performance & Concurrency. This will be fully hydrated in subsequent batches.",
-      "parameters": "Placeholder parameters for Lesson 65.",
-      "return_value": "Placeholder return value for Lesson 65.",
-      "example": "# Example placeholder 65\nprint(\"Will be hydrated\")"
-    }
+      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 65) لربط المفاهيم النظرية بالتطبيق العملي.",
+      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: البرمجة الكائنية OOP.",
+      "prototype": "def concept_65(): pass",
+      "parameters": "تفاصيل المدخلات للدرس 65.",
+      "return_value": "النتيجة المرجوة من أدوات الدرس 65.",
+      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
+    },
+    "exercise_instructions": "تمرين الدرس 65",
+    "expected_output": "انتظرونا"
   },
   {
     "lesson_slug": "python-66",
-    "title": "Lesson 66 Placeholder",
-    "category": "High-Performance & Concurrency",
+    "title": "الدرس 66: موضوع مخصص",
+    "category": "البرمجة الكائنية OOP",
     "order_index": 66,
     "is_free": false,
     "content_type": "theory",
     "duration_minutes": 10,
     "content": {
-      "prototype": "module.function() // Lesson 66",
-      "description": "Placeholder content for Lesson 66 regarding High-Performance & Concurrency. This will be fully hydrated in subsequent batches.",
-      "parameters": "Placeholder parameters for Lesson 66.",
-      "return_value": "Placeholder return value for Lesson 66.",
-      "example": "# Example placeholder 66\nprint(\"Will be hydrated\")"
-    }
+      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 66) لربط المفاهيم النظرية بالتطبيق العملي.",
+      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: البرمجة الكائنية OOP.",
+      "prototype": "def concept_66(): pass",
+      "parameters": "تفاصيل المدخلات للدرس 66.",
+      "return_value": "النتيجة المرجوة من أدوات الدرس 66.",
+      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
+    },
+    "exercise_instructions": "تمرين الدرس 66",
+    "expected_output": "انتظرونا"
   },
   {
     "lesson_slug": "python-67",
-    "title": "Lesson 67 Placeholder",
-    "category": "High-Performance & Concurrency",
+    "title": "الدرس 67: موضوع مخصص",
+    "category": "البرمجة الكائنية OOP",
     "order_index": 67,
     "is_free": false,
     "content_type": "theory",
     "duration_minutes": 10,
     "content": {
-      "prototype": "module.function() // Lesson 67",
-      "description": "Placeholder content for Lesson 67 regarding High-Performance & Concurrency. This will be fully hydrated in subsequent batches.",
-      "parameters": "Placeholder parameters for Lesson 67.",
-      "return_value": "Placeholder return value for Lesson 67.",
-      "example": "# Example placeholder 67\nprint(\"Will be hydrated\")"
-    }
+      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 67) لربط المفاهيم النظرية بالتطبيق العملي.",
+      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: البرمجة الكائنية OOP.",
+      "prototype": "def concept_67(): pass",
+      "parameters": "تفاصيل المدخلات للدرس 67.",
+      "return_value": "النتيجة المرجوة من أدوات الدرس 67.",
+      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
+    },
+    "exercise_instructions": "تمرين الدرس 67",
+    "expected_output": "انتظرونا"
   },
   {
     "lesson_slug": "python-68",
-    "title": "Lesson 68 Placeholder",
-    "category": "High-Performance & Concurrency",
+    "title": "الدرس 68: موضوع مخصص",
+    "category": "البرمجة الكائنية OOP",
     "order_index": 68,
     "is_free": false,
     "content_type": "theory",
     "duration_minutes": 10,
     "content": {
-      "prototype": "module.function() // Lesson 68",
-      "description": "Placeholder content for Lesson 68 regarding High-Performance & Concurrency. This will be fully hydrated in subsequent batches.",
-      "parameters": "Placeholder parameters for Lesson 68.",
-      "return_value": "Placeholder return value for Lesson 68.",
-      "example": "# Example placeholder 68\nprint(\"Will be hydrated\")"
-    }
+      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 68) لربط المفاهيم النظرية بالتطبيق العملي.",
+      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: البرمجة الكائنية OOP.",
+      "prototype": "def concept_68(): pass",
+      "parameters": "تفاصيل المدخلات للدرس 68.",
+      "return_value": "النتيجة المرجوة من أدوات الدرس 68.",
+      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
+    },
+    "exercise_instructions": "تمرين الدرس 68",
+    "expected_output": "انتظرونا"
   },
   {
     "lesson_slug": "python-69",
-    "title": "Lesson 69 Placeholder",
-    "category": "High-Performance & Concurrency",
+    "title": "الدرس 69: موضوع مخصص",
+    "category": "البرمجة الكائنية OOP",
     "order_index": 69,
     "is_free": false,
     "content_type": "theory",
     "duration_minutes": 10,
     "content": {
-      "prototype": "module.function() // Lesson 69",
-      "description": "Placeholder content for Lesson 69 regarding High-Performance & Concurrency. This will be fully hydrated in subsequent batches.",
-      "parameters": "Placeholder parameters for Lesson 69.",
-      "return_value": "Placeholder return value for Lesson 69.",
-      "example": "# Example placeholder 69\nprint(\"Will be hydrated\")"
-    }
+      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 69) لربط المفاهيم النظرية بالتطبيق العملي.",
+      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: البرمجة الكائنية OOP.",
+      "prototype": "def concept_69(): pass",
+      "parameters": "تفاصيل المدخلات للدرس 69.",
+      "return_value": "النتيجة المرجوة من أدوات الدرس 69.",
+      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
+    },
+    "exercise_instructions": "تمرين الدرس 69",
+    "expected_output": "انتظرونا"
   },
   {
     "lesson_slug": "python-70",
-    "title": "Lesson 70 Placeholder",
-    "category": "High-Performance & Concurrency",
+    "title": "الدرس 70: موضوع مخصص",
+    "category": "البرمجة الكائنية OOP",
     "order_index": 70,
     "is_free": false,
     "content_type": "theory",
     "duration_minutes": 10,
     "content": {
-      "prototype": "module.function() // Lesson 70",
-      "description": "Placeholder content for Lesson 70 regarding High-Performance & Concurrency. This will be fully hydrated in subsequent batches.",
-      "parameters": "Placeholder parameters for Lesson 70.",
-      "return_value": "Placeholder return value for Lesson 70.",
-      "example": "# Example placeholder 70\nprint(\"Will be hydrated\")"
-    }
+      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 70) لربط المفاهيم النظرية بالتطبيق العملي.",
+      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: البرمجة الكائنية OOP.",
+      "prototype": "def concept_70(): pass",
+      "parameters": "تفاصيل المدخلات للدرس 70.",
+      "return_value": "النتيجة المرجوة من أدوات الدرس 70.",
+      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
+    },
+    "exercise_instructions": "تمرين الدرس 70",
+    "expected_output": "انتظرونا"
   },
   {
     "lesson_slug": "python-71",
-    "title": "Lesson 71 Placeholder",
-    "category": "High-Performance & Concurrency",
+    "title": "الدرس 71: موضوع مخصص",
+    "category": "البرمجة الكائنية OOP",
     "order_index": 71,
     "is_free": false,
     "content_type": "theory",
     "duration_minutes": 10,
     "content": {
-      "prototype": "module.function() // Lesson 71",
-      "description": "Placeholder content for Lesson 71 regarding High-Performance & Concurrency. This will be fully hydrated in subsequent batches.",
-      "parameters": "Placeholder parameters for Lesson 71.",
-      "return_value": "Placeholder return value for Lesson 71.",
-      "example": "# Example placeholder 71\nprint(\"Will be hydrated\")"
-    }
+      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 71) لربط المفاهيم النظرية بالتطبيق العملي.",
+      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: البرمجة الكائنية OOP.",
+      "prototype": "def concept_71(): pass",
+      "parameters": "تفاصيل المدخلات للدرس 71.",
+      "return_value": "النتيجة المرجوة من أدوات الدرس 71.",
+      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
+    },
+    "exercise_instructions": "تمرين الدرس 71",
+    "expected_output": "انتظرونا"
   },
   {
     "lesson_slug": "python-72",
-    "title": "Lesson 72 Placeholder",
-    "category": "High-Performance & Concurrency",
+    "title": "الدرس 72: موضوع مخصص",
+    "category": "البرمجة الكائنية OOP",
     "order_index": 72,
     "is_free": false,
     "content_type": "theory",
     "duration_minutes": 10,
     "content": {
-      "prototype": "module.function() // Lesson 72",
-      "description": "Placeholder content for Lesson 72 regarding High-Performance & Concurrency. This will be fully hydrated in subsequent batches.",
-      "parameters": "Placeholder parameters for Lesson 72.",
-      "return_value": "Placeholder return value for Lesson 72.",
-      "example": "# Example placeholder 72\nprint(\"Will be hydrated\")"
-    }
+      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 72) لربط المفاهيم النظرية بالتطبيق العملي.",
+      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: البرمجة الكائنية OOP.",
+      "prototype": "def concept_72(): pass",
+      "parameters": "تفاصيل المدخلات للدرس 72.",
+      "return_value": "النتيجة المرجوة من أدوات الدرس 72.",
+      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
+    },
+    "exercise_instructions": "تمرين الدرس 72",
+    "expected_output": "انتظرونا"
   },
   {
     "lesson_slug": "python-73",
-    "title": "Lesson 73 Placeholder",
-    "category": "High-Performance & Concurrency",
+    "title": "الدرس 73: موضوع مخصص",
+    "category": "البرمجة الكائنية OOP",
     "order_index": 73,
     "is_free": false,
     "content_type": "theory",
     "duration_minutes": 10,
     "content": {
-      "prototype": "module.function() // Lesson 73",
-      "description": "Placeholder content for Lesson 73 regarding High-Performance & Concurrency. This will be fully hydrated in subsequent batches.",
-      "parameters": "Placeholder parameters for Lesson 73.",
-      "return_value": "Placeholder return value for Lesson 73.",
-      "example": "# Example placeholder 73\nprint(\"Will be hydrated\")"
-    }
+      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 73) لربط المفاهيم النظرية بالتطبيق العملي.",
+      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: البرمجة الكائنية OOP.",
+      "prototype": "def concept_73(): pass",
+      "parameters": "تفاصيل المدخلات للدرس 73.",
+      "return_value": "النتيجة المرجوة من أدوات الدرس 73.",
+      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
+    },
+    "exercise_instructions": "تمرين الدرس 73",
+    "expected_output": "انتظرونا"
   },
   {
     "lesson_slug": "python-74",
-    "title": "Lesson 74 Placeholder",
-    "category": "High-Performance & Concurrency",
+    "title": "الدرس 74: موضوع مخصص",
+    "category": "البرمجة الكائنية OOP",
     "order_index": 74,
     "is_free": false,
     "content_type": "theory",
     "duration_minutes": 10,
     "content": {
-      "prototype": "module.function() // Lesson 74",
-      "description": "Placeholder content for Lesson 74 regarding High-Performance & Concurrency. This will be fully hydrated in subsequent batches.",
-      "parameters": "Placeholder parameters for Lesson 74.",
-      "return_value": "Placeholder return value for Lesson 74.",
-      "example": "# Example placeholder 74\nprint(\"Will be hydrated\")"
-    }
+      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 74) لربط المفاهيم النظرية بالتطبيق العملي.",
+      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: البرمجة الكائنية OOP.",
+      "prototype": "def concept_74(): pass",
+      "parameters": "تفاصيل المدخلات للدرس 74.",
+      "return_value": "النتيجة المرجوة من أدوات الدرس 74.",
+      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
+    },
+    "exercise_instructions": "تمرين الدرس 74",
+    "expected_output": "انتظرونا"
   },
   {
     "lesson_slug": "python-75",
-    "title": "Lesson 75 Placeholder",
-    "category": "High-Performance & Concurrency",
+    "title": "الدرس 75: موضوع مخصص",
+    "category": "البرمجة الكائنية OOP",
     "order_index": 75,
     "is_free": false,
     "content_type": "theory",
     "duration_minutes": 10,
     "content": {
-      "prototype": "module.function() // Lesson 75",
-      "description": "Placeholder content for Lesson 75 regarding High-Performance & Concurrency. This will be fully hydrated in subsequent batches.",
-      "parameters": "Placeholder parameters for Lesson 75.",
-      "return_value": "Placeholder return value for Lesson 75.",
-      "example": "# Example placeholder 75\nprint(\"Will be hydrated\")"
-    }
+      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 75) لربط المفاهيم النظرية بالتطبيق العملي.",
+      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: البرمجة الكائنية OOP.",
+      "prototype": "def concept_75(): pass",
+      "parameters": "تفاصيل المدخلات للدرس 75.",
+      "return_value": "النتيجة المرجوة من أدوات الدرس 75.",
+      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
+    },
+    "exercise_instructions": "تمرين الدرس 75",
+    "expected_output": "انتظرونا"
   },
   {
     "lesson_slug": "python-76",
-    "title": "Lesson 76 Placeholder",
-    "category": "High-Performance & Concurrency",
+    "title": "الدرس 76: موضوع مخصص",
+    "category": "البرمجة الكائنية OOP",
     "order_index": 76,
     "is_free": false,
     "content_type": "theory",
     "duration_minutes": 10,
     "content": {
-      "prototype": "module.function() // Lesson 76",
-      "description": "Placeholder content for Lesson 76 regarding High-Performance & Concurrency. This will be fully hydrated in subsequent batches.",
-      "parameters": "Placeholder parameters for Lesson 76.",
-      "return_value": "Placeholder return value for Lesson 76.",
-      "example": "# Example placeholder 76\nprint(\"Will be hydrated\")"
-    }
+      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 76) لربط المفاهيم النظرية بالتطبيق العملي.",
+      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: البرمجة الكائنية OOP.",
+      "prototype": "def concept_76(): pass",
+      "parameters": "تفاصيل المدخلات للدرس 76.",
+      "return_value": "النتيجة المرجوة من أدوات الدرس 76.",
+      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
+    },
+    "exercise_instructions": "تمرين الدرس 76",
+    "expected_output": "انتظرونا"
   },
   {
     "lesson_slug": "python-77",
-    "title": "Lesson 77 Placeholder",
-    "category": "High-Performance & Concurrency",
+    "title": "الدرس 77: موضوع مخصص",
+    "category": "البرمجة الكائنية OOP",
     "order_index": 77,
     "is_free": false,
     "content_type": "theory",
     "duration_minutes": 10,
     "content": {
-      "prototype": "module.function() // Lesson 77",
-      "description": "Placeholder content for Lesson 77 regarding High-Performance & Concurrency. This will be fully hydrated in subsequent batches.",
-      "parameters": "Placeholder parameters for Lesson 77.",
-      "return_value": "Placeholder return value for Lesson 77.",
-      "example": "# Example placeholder 77\nprint(\"Will be hydrated\")"
-    }
+      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 77) لربط المفاهيم النظرية بالتطبيق العملي.",
+      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: البرمجة الكائنية OOP.",
+      "prototype": "def concept_77(): pass",
+      "parameters": "تفاصيل المدخلات للدرس 77.",
+      "return_value": "النتيجة المرجوة من أدوات الدرس 77.",
+      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
+    },
+    "exercise_instructions": "تمرين الدرس 77",
+    "expected_output": "انتظرونا"
   },
   {
     "lesson_slug": "python-78",
-    "title": "Lesson 78 Placeholder",
-    "category": "High-Performance & Concurrency",
+    "title": "الدرس 78: موضوع مخصص",
+    "category": "البرمجة الكائنية OOP",
     "order_index": 78,
     "is_free": false,
     "content_type": "theory",
     "duration_minutes": 10,
     "content": {
-      "prototype": "module.function() // Lesson 78",
-      "description": "Placeholder content for Lesson 78 regarding High-Performance & Concurrency. This will be fully hydrated in subsequent batches.",
-      "parameters": "Placeholder parameters for Lesson 78.",
-      "return_value": "Placeholder return value for Lesson 78.",
-      "example": "# Example placeholder 78\nprint(\"Will be hydrated\")"
-    }
+      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 78) لربط المفاهيم النظرية بالتطبيق العملي.",
+      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: البرمجة الكائنية OOP.",
+      "prototype": "def concept_78(): pass",
+      "parameters": "تفاصيل المدخلات للدرس 78.",
+      "return_value": "النتيجة المرجوة من أدوات الدرس 78.",
+      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
+    },
+    "exercise_instructions": "تمرين الدرس 78",
+    "expected_output": "انتظرونا"
   },
   {
     "lesson_slug": "python-79",
-    "title": "Lesson 79 Placeholder",
-    "category": "High-Performance & Concurrency",
+    "title": "الدرس 79: موضوع مخصص",
+    "category": "البرمجة الكائنية OOP",
     "order_index": 79,
     "is_free": false,
     "content_type": "theory",
     "duration_minutes": 10,
     "content": {
-      "prototype": "module.function() // Lesson 79",
-      "description": "Placeholder content for Lesson 79 regarding High-Performance & Concurrency. This will be fully hydrated in subsequent batches.",
-      "parameters": "Placeholder parameters for Lesson 79.",
-      "return_value": "Placeholder return value for Lesson 79.",
-      "example": "# Example placeholder 79\nprint(\"Will be hydrated\")"
-    }
+      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 79) لربط المفاهيم النظرية بالتطبيق العملي.",
+      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: البرمجة الكائنية OOP.",
+      "prototype": "def concept_79(): pass",
+      "parameters": "تفاصيل المدخلات للدرس 79.",
+      "return_value": "النتيجة المرجوة من أدوات الدرس 79.",
+      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
+    },
+    "exercise_instructions": "تمرين الدرس 79",
+    "expected_output": "انتظرونا"
   },
   {
     "lesson_slug": "python-80",
-    "title": "Lesson 80 Placeholder",
-    "category": "High-Performance & Concurrency",
+    "title": "الدرس 80: موضوع مخصص",
+    "category": "البرمجة الكائنية OOP",
     "order_index": 80,
     "is_free": false,
     "content_type": "theory",
     "duration_minutes": 10,
     "content": {
-      "prototype": "module.function() // Lesson 80",
-      "description": "Placeholder content for Lesson 80 regarding High-Performance & Concurrency. This will be fully hydrated in subsequent batches.",
-      "parameters": "Placeholder parameters for Lesson 80.",
-      "return_value": "Placeholder return value for Lesson 80.",
-      "example": "# Example placeholder 80\nprint(\"Will be hydrated\")"
-    }
+      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 80) لربط المفاهيم النظرية بالتطبيق العملي.",
+      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: البرمجة الكائنية OOP.",
+      "prototype": "def concept_80(): pass",
+      "parameters": "تفاصيل المدخلات للدرس 80.",
+      "return_value": "النتيجة المرجوة من أدوات الدرس 80.",
+      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
+    },
+    "exercise_instructions": "تمرين الدرس 80",
+    "expected_output": "انتظرونا"
   },
   {
     "lesson_slug": "python-81",
-    "title": "Lesson 81 Placeholder",
-    "category": "AI Agents & Real-World Engineering",
+    "title": "الدرس 81: موضوع مخصص",
+    "category": "بناء تطبيقات حقيقية وأتمتة",
     "order_index": 81,
     "is_free": false,
     "content_type": "theory",
     "duration_minutes": 10,
     "content": {
-      "prototype": "module.function() // Lesson 81",
-      "description": "Placeholder content for Lesson 81 regarding AI Agents & Real-World Engineering. This will be fully hydrated in subsequent batches.",
-      "parameters": "Placeholder parameters for Lesson 81.",
-      "return_value": "Placeholder return value for Lesson 81.",
-      "example": "# Example placeholder 81\nprint(\"Will be hydrated\")"
-    }
+      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 81) لربط المفاهيم النظرية بالتطبيق العملي.",
+      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: بناء تطبيقات حقيقية وأتمتة.",
+      "prototype": "def concept_81(): pass",
+      "parameters": "تفاصيل المدخلات للدرس 81.",
+      "return_value": "النتيجة المرجوة من أدوات الدرس 81.",
+      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
+    },
+    "exercise_instructions": "تمرين الدرس 81",
+    "expected_output": "انتظرونا"
   },
   {
     "lesson_slug": "python-82",
-    "title": "Lesson 82 Placeholder",
-    "category": "AI Agents & Real-World Engineering",
+    "title": "الدرس 82: موضوع مخصص",
+    "category": "بناء تطبيقات حقيقية وأتمتة",
     "order_index": 82,
     "is_free": false,
     "content_type": "theory",
     "duration_minutes": 10,
     "content": {
-      "prototype": "module.function() // Lesson 82",
-      "description": "Placeholder content for Lesson 82 regarding AI Agents & Real-World Engineering. This will be fully hydrated in subsequent batches.",
-      "parameters": "Placeholder parameters for Lesson 82.",
-      "return_value": "Placeholder return value for Lesson 82.",
-      "example": "# Example placeholder 82\nprint(\"Will be hydrated\")"
-    }
+      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 82) لربط المفاهيم النظرية بالتطبيق العملي.",
+      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: بناء تطبيقات حقيقية وأتمتة.",
+      "prototype": "def concept_82(): pass",
+      "parameters": "تفاصيل المدخلات للدرس 82.",
+      "return_value": "النتيجة المرجوة من أدوات الدرس 82.",
+      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
+    },
+    "exercise_instructions": "تمرين الدرس 82",
+    "expected_output": "انتظرونا"
   },
   {
     "lesson_slug": "python-83",
-    "title": "Lesson 83 Placeholder",
-    "category": "AI Agents & Real-World Engineering",
+    "title": "الدرس 83: موضوع مخصص",
+    "category": "بناء تطبيقات حقيقية وأتمتة",
     "order_index": 83,
     "is_free": false,
     "content_type": "theory",
     "duration_minutes": 10,
     "content": {
-      "prototype": "module.function() // Lesson 83",
-      "description": "Placeholder content for Lesson 83 regarding AI Agents & Real-World Engineering. This will be fully hydrated in subsequent batches.",
-      "parameters": "Placeholder parameters for Lesson 83.",
-      "return_value": "Placeholder return value for Lesson 83.",
-      "example": "# Example placeholder 83\nprint(\"Will be hydrated\")"
-    }
+      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 83) لربط المفاهيم النظرية بالتطبيق العملي.",
+      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: بناء تطبيقات حقيقية وأتمتة.",
+      "prototype": "def concept_83(): pass",
+      "parameters": "تفاصيل المدخلات للدرس 83.",
+      "return_value": "النتيجة المرجوة من أدوات الدرس 83.",
+      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
+    },
+    "exercise_instructions": "تمرين الدرس 83",
+    "expected_output": "انتظرونا"
   },
   {
     "lesson_slug": "python-84",
-    "title": "Lesson 84 Placeholder",
-    "category": "AI Agents & Real-World Engineering",
+    "title": "الدرس 84: موضوع مخصص",
+    "category": "بناء تطبيقات حقيقية وأتمتة",
     "order_index": 84,
     "is_free": false,
     "content_type": "theory",
     "duration_minutes": 10,
     "content": {
-      "prototype": "module.function() // Lesson 84",
-      "description": "Placeholder content for Lesson 84 regarding AI Agents & Real-World Engineering. This will be fully hydrated in subsequent batches.",
-      "parameters": "Placeholder parameters for Lesson 84.",
-      "return_value": "Placeholder return value for Lesson 84.",
-      "example": "# Example placeholder 84\nprint(\"Will be hydrated\")"
-    }
+      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 84) لربط المفاهيم النظرية بالتطبيق العملي.",
+      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: بناء تطبيقات حقيقية وأتمتة.",
+      "prototype": "def concept_84(): pass",
+      "parameters": "تفاصيل المدخلات للدرس 84.",
+      "return_value": "النتيجة المرجوة من أدوات الدرس 84.",
+      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
+    },
+    "exercise_instructions": "تمرين الدرس 84",
+    "expected_output": "انتظرونا"
   },
   {
     "lesson_slug": "python-85",
-    "title": "Lesson 85 Placeholder",
-    "category": "AI Agents & Real-World Engineering",
+    "title": "الدرس 85: موضوع مخصص",
+    "category": "بناء تطبيقات حقيقية وأتمتة",
     "order_index": 85,
     "is_free": false,
     "content_type": "theory",
     "duration_minutes": 10,
     "content": {
-      "prototype": "module.function() // Lesson 85",
-      "description": "Placeholder content for Lesson 85 regarding AI Agents & Real-World Engineering. This will be fully hydrated in subsequent batches.",
-      "parameters": "Placeholder parameters for Lesson 85.",
-      "return_value": "Placeholder return value for Lesson 85.",
-      "example": "# Example placeholder 85\nprint(\"Will be hydrated\")"
-    }
+      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 85) لربط المفاهيم النظرية بالتطبيق العملي.",
+      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: بناء تطبيقات حقيقية وأتمتة.",
+      "prototype": "def concept_85(): pass",
+      "parameters": "تفاصيل المدخلات للدرس 85.",
+      "return_value": "النتيجة المرجوة من أدوات الدرس 85.",
+      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
+    },
+    "exercise_instructions": "تمرين الدرس 85",
+    "expected_output": "انتظرونا"
   },
   {
     "lesson_slug": "python-86",
-    "title": "Lesson 86 Placeholder",
-    "category": "AI Agents & Real-World Engineering",
+    "title": "الدرس 86: موضوع مخصص",
+    "category": "بناء تطبيقات حقيقية وأتمتة",
     "order_index": 86,
     "is_free": false,
     "content_type": "theory",
     "duration_minutes": 10,
     "content": {
-      "prototype": "module.function() // Lesson 86",
-      "description": "Placeholder content for Lesson 86 regarding AI Agents & Real-World Engineering. This will be fully hydrated in subsequent batches.",
-      "parameters": "Placeholder parameters for Lesson 86.",
-      "return_value": "Placeholder return value for Lesson 86.",
-      "example": "# Example placeholder 86\nprint(\"Will be hydrated\")"
-    }
+      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 86) لربط المفاهيم النظرية بالتطبيق العملي.",
+      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: بناء تطبيقات حقيقية وأتمتة.",
+      "prototype": "def concept_86(): pass",
+      "parameters": "تفاصيل المدخلات للدرس 86.",
+      "return_value": "النتيجة المرجوة من أدوات الدرس 86.",
+      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
+    },
+    "exercise_instructions": "تمرين الدرس 86",
+    "expected_output": "انتظرونا"
   },
   {
     "lesson_slug": "python-87",
-    "title": "Lesson 87 Placeholder",
-    "category": "AI Agents & Real-World Engineering",
+    "title": "الدرس 87: موضوع مخصص",
+    "category": "بناء تطبيقات حقيقية وأتمتة",
     "order_index": 87,
     "is_free": false,
     "content_type": "theory",
     "duration_minutes": 10,
     "content": {
-      "prototype": "module.function() // Lesson 87",
-      "description": "Placeholder content for Lesson 87 regarding AI Agents & Real-World Engineering. This will be fully hydrated in subsequent batches.",
-      "parameters": "Placeholder parameters for Lesson 87.",
-      "return_value": "Placeholder return value for Lesson 87.",
-      "example": "# Example placeholder 87\nprint(\"Will be hydrated\")"
-    }
+      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 87) لربط المفاهيم النظرية بالتطبيق العملي.",
+      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: بناء تطبيقات حقيقية وأتمتة.",
+      "prototype": "def concept_87(): pass",
+      "parameters": "تفاصيل المدخلات للدرس 87.",
+      "return_value": "النتيجة المرجوة من أدوات الدرس 87.",
+      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
+    },
+    "exercise_instructions": "تمرين الدرس 87",
+    "expected_output": "انتظرونا"
   },
   {
     "lesson_slug": "python-88",
-    "title": "Lesson 88 Placeholder",
-    "category": "AI Agents & Real-World Engineering",
+    "title": "الدرس 88: موضوع مخصص",
+    "category": "بناء تطبيقات حقيقية وأتمتة",
     "order_index": 88,
     "is_free": false,
     "content_type": "theory",
     "duration_minutes": 10,
     "content": {
-      "prototype": "module.function() // Lesson 88",
-      "description": "Placeholder content for Lesson 88 regarding AI Agents & Real-World Engineering. This will be fully hydrated in subsequent batches.",
-      "parameters": "Placeholder parameters for Lesson 88.",
-      "return_value": "Placeholder return value for Lesson 88.",
-      "example": "# Example placeholder 88\nprint(\"Will be hydrated\")"
-    }
+      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 88) لربط المفاهيم النظرية بالتطبيق العملي.",
+      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: بناء تطبيقات حقيقية وأتمتة.",
+      "prototype": "def concept_88(): pass",
+      "parameters": "تفاصيل المدخلات للدرس 88.",
+      "return_value": "النتيجة المرجوة من أدوات الدرس 88.",
+      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
+    },
+    "exercise_instructions": "تمرين الدرس 88",
+    "expected_output": "انتظرونا"
   },
   {
     "lesson_slug": "python-89",
-    "title": "Lesson 89 Placeholder",
-    "category": "AI Agents & Real-World Engineering",
+    "title": "الدرس 89: موضوع مخصص",
+    "category": "بناء تطبيقات حقيقية وأتمتة",
     "order_index": 89,
     "is_free": false,
     "content_type": "theory",
     "duration_minutes": 10,
     "content": {
-      "prototype": "module.function() // Lesson 89",
-      "description": "Placeholder content for Lesson 89 regarding AI Agents & Real-World Engineering. This will be fully hydrated in subsequent batches.",
-      "parameters": "Placeholder parameters for Lesson 89.",
-      "return_value": "Placeholder return value for Lesson 89.",
-      "example": "# Example placeholder 89\nprint(\"Will be hydrated\")"
-    }
+      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 89) لربط المفاهيم النظرية بالتطبيق العملي.",
+      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: بناء تطبيقات حقيقية وأتمتة.",
+      "prototype": "def concept_89(): pass",
+      "parameters": "تفاصيل المدخلات للدرس 89.",
+      "return_value": "النتيجة المرجوة من أدوات الدرس 89.",
+      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
+    },
+    "exercise_instructions": "تمرين الدرس 89",
+    "expected_output": "انتظرونا"
   },
   {
     "lesson_slug": "python-90",
-    "title": "Lesson 90 Placeholder",
-    "category": "AI Agents & Real-World Engineering",
+    "title": "الدرس 90: موضوع مخصص",
+    "category": "بناء تطبيقات حقيقية وأتمتة",
     "order_index": 90,
     "is_free": false,
     "content_type": "theory",
     "duration_minutes": 10,
     "content": {
-      "prototype": "module.function() // Lesson 90",
-      "description": "Placeholder content for Lesson 90 regarding AI Agents & Real-World Engineering. This will be fully hydrated in subsequent batches.",
-      "parameters": "Placeholder parameters for Lesson 90.",
-      "return_value": "Placeholder return value for Lesson 90.",
-      "example": "# Example placeholder 90\nprint(\"Will be hydrated\")"
-    }
+      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 90) لربط المفاهيم النظرية بالتطبيق العملي.",
+      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: بناء تطبيقات حقيقية وأتمتة.",
+      "prototype": "def concept_90(): pass",
+      "parameters": "تفاصيل المدخلات للدرس 90.",
+      "return_value": "النتيجة المرجوة من أدوات الدرس 90.",
+      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
+    },
+    "exercise_instructions": "تمرين الدرس 90",
+    "expected_output": "انتظرونا"
   },
   {
     "lesson_slug": "python-91",
-    "title": "Lesson 91 Placeholder",
-    "category": "AI Agents & Real-World Engineering",
+    "title": "الدرس 91: موضوع مخصص",
+    "category": "بناء تطبيقات حقيقية وأتمتة",
     "order_index": 91,
     "is_free": false,
     "content_type": "theory",
     "duration_minutes": 10,
     "content": {
-      "prototype": "module.function() // Lesson 91",
-      "description": "Placeholder content for Lesson 91 regarding AI Agents & Real-World Engineering. This will be fully hydrated in subsequent batches.",
-      "parameters": "Placeholder parameters for Lesson 91.",
-      "return_value": "Placeholder return value for Lesson 91.",
-      "example": "# Example placeholder 91\nprint(\"Will be hydrated\")"
-    }
+      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 91) لربط المفاهيم النظرية بالتطبيق العملي.",
+      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: بناء تطبيقات حقيقية وأتمتة.",
+      "prototype": "def concept_91(): pass",
+      "parameters": "تفاصيل المدخلات للدرس 91.",
+      "return_value": "النتيجة المرجوة من أدوات الدرس 91.",
+      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
+    },
+    "exercise_instructions": "تمرين الدرس 91",
+    "expected_output": "انتظرونا"
   },
   {
     "lesson_slug": "python-92",
-    "title": "Lesson 92 Placeholder",
-    "category": "AI Agents & Real-World Engineering",
+    "title": "الدرس 92: موضوع مخصص",
+    "category": "بناء تطبيقات حقيقية وأتمتة",
     "order_index": 92,
     "is_free": false,
     "content_type": "theory",
     "duration_minutes": 10,
     "content": {
-      "prototype": "module.function() // Lesson 92",
-      "description": "Placeholder content for Lesson 92 regarding AI Agents & Real-World Engineering. This will be fully hydrated in subsequent batches.",
-      "parameters": "Placeholder parameters for Lesson 92.",
-      "return_value": "Placeholder return value for Lesson 92.",
-      "example": "# Example placeholder 92\nprint(\"Will be hydrated\")"
-    }
+      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 92) لربط المفاهيم النظرية بالتطبيق العملي.",
+      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: بناء تطبيقات حقيقية وأتمتة.",
+      "prototype": "def concept_92(): pass",
+      "parameters": "تفاصيل المدخلات للدرس 92.",
+      "return_value": "النتيجة المرجوة من أدوات الدرس 92.",
+      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
+    },
+    "exercise_instructions": "تمرين الدرس 92",
+    "expected_output": "انتظرونا"
   },
   {
     "lesson_slug": "python-93",
-    "title": "Lesson 93 Placeholder",
-    "category": "AI Agents & Real-World Engineering",
+    "title": "الدرس 93: موضوع مخصص",
+    "category": "بناء تطبيقات حقيقية وأتمتة",
     "order_index": 93,
     "is_free": false,
     "content_type": "theory",
     "duration_minutes": 10,
     "content": {
-      "prototype": "module.function() // Lesson 93",
-      "description": "Placeholder content for Lesson 93 regarding AI Agents & Real-World Engineering. This will be fully hydrated in subsequent batches.",
-      "parameters": "Placeholder parameters for Lesson 93.",
-      "return_value": "Placeholder return value for Lesson 93.",
-      "example": "# Example placeholder 93\nprint(\"Will be hydrated\")"
-    }
+      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 93) لربط المفاهيم النظرية بالتطبيق العملي.",
+      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: بناء تطبيقات حقيقية وأتمتة.",
+      "prototype": "def concept_93(): pass",
+      "parameters": "تفاصيل المدخلات للدرس 93.",
+      "return_value": "النتيجة المرجوة من أدوات الدرس 93.",
+      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
+    },
+    "exercise_instructions": "تمرين الدرس 93",
+    "expected_output": "انتظرونا"
   },
   {
     "lesson_slug": "python-94",
-    "title": "Lesson 94 Placeholder",
-    "category": "AI Agents & Real-World Engineering",
+    "title": "الدرس 94: موضوع مخصص",
+    "category": "بناء تطبيقات حقيقية وأتمتة",
     "order_index": 94,
     "is_free": false,
     "content_type": "theory",
     "duration_minutes": 10,
     "content": {
-      "prototype": "module.function() // Lesson 94",
-      "description": "Placeholder content for Lesson 94 regarding AI Agents & Real-World Engineering. This will be fully hydrated in subsequent batches.",
-      "parameters": "Placeholder parameters for Lesson 94.",
-      "return_value": "Placeholder return value for Lesson 94.",
-      "example": "# Example placeholder 94\nprint(\"Will be hydrated\")"
-    }
+      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 94) لربط المفاهيم النظرية بالتطبيق العملي.",
+      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: بناء تطبيقات حقيقية وأتمتة.",
+      "prototype": "def concept_94(): pass",
+      "parameters": "تفاصيل المدخلات للدرس 94.",
+      "return_value": "النتيجة المرجوة من أدوات الدرس 94.",
+      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
+    },
+    "exercise_instructions": "تمرين الدرس 94",
+    "expected_output": "انتظرونا"
   },
   {
     "lesson_slug": "python-95",
-    "title": "Lesson 95 Placeholder",
-    "category": "AI Agents & Real-World Engineering",
+    "title": "الدرس 95: موضوع مخصص",
+    "category": "بناء تطبيقات حقيقية وأتمتة",
     "order_index": 95,
     "is_free": false,
     "content_type": "theory",
     "duration_minutes": 10,
     "content": {
-      "prototype": "module.function() // Lesson 95",
-      "description": "Placeholder content for Lesson 95 regarding AI Agents & Real-World Engineering. This will be fully hydrated in subsequent batches.",
-      "parameters": "Placeholder parameters for Lesson 95.",
-      "return_value": "Placeholder return value for Lesson 95.",
-      "example": "# Example placeholder 95\nprint(\"Will be hydrated\")"
-    }
+      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 95) لربط المفاهيم النظرية بالتطبيق العملي.",
+      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: بناء تطبيقات حقيقية وأتمتة.",
+      "prototype": "def concept_95(): pass",
+      "parameters": "تفاصيل المدخلات للدرس 95.",
+      "return_value": "النتيجة المرجوة من أدوات الدرس 95.",
+      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
+    },
+    "exercise_instructions": "تمرين الدرس 95",
+    "expected_output": "انتظرونا"
   },
   {
     "lesson_slug": "python-96",
-    "title": "Lesson 96 Placeholder",
-    "category": "AI Agents & Real-World Engineering",
+    "title": "الدرس 96: موضوع مخصص",
+    "category": "بناء تطبيقات حقيقية وأتمتة",
     "order_index": 96,
     "is_free": false,
     "content_type": "theory",
     "duration_minutes": 10,
     "content": {
-      "prototype": "module.function() // Lesson 96",
-      "description": "Placeholder content for Lesson 96 regarding AI Agents & Real-World Engineering. This will be fully hydrated in subsequent batches.",
-      "parameters": "Placeholder parameters for Lesson 96.",
-      "return_value": "Placeholder return value for Lesson 96.",
-      "example": "# Example placeholder 96\nprint(\"Will be hydrated\")"
-    }
+      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 96) لربط المفاهيم النظرية بالتطبيق العملي.",
+      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: بناء تطبيقات حقيقية وأتمتة.",
+      "prototype": "def concept_96(): pass",
+      "parameters": "تفاصيل المدخلات للدرس 96.",
+      "return_value": "النتيجة المرجوة من أدوات الدرس 96.",
+      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
+    },
+    "exercise_instructions": "تمرين الدرس 96",
+    "expected_output": "انتظرونا"
   },
   {
     "lesson_slug": "python-97",
-    "title": "Lesson 97 Placeholder",
-    "category": "AI Agents & Real-World Engineering",
+    "title": "الدرس 97: موضوع مخصص",
+    "category": "بناء تطبيقات حقيقية وأتمتة",
     "order_index": 97,
     "is_free": false,
     "content_type": "theory",
     "duration_minutes": 10,
     "content": {
-      "prototype": "module.function() // Lesson 97",
-      "description": "Placeholder content for Lesson 97 regarding AI Agents & Real-World Engineering. This will be fully hydrated in subsequent batches.",
-      "parameters": "Placeholder parameters for Lesson 97.",
-      "return_value": "Placeholder return value for Lesson 97.",
-      "example": "# Example placeholder 97\nprint(\"Will be hydrated\")"
-    }
+      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 97) لربط المفاهيم النظرية بالتطبيق العملي.",
+      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: بناء تطبيقات حقيقية وأتمتة.",
+      "prototype": "def concept_97(): pass",
+      "parameters": "تفاصيل المدخلات للدرس 97.",
+      "return_value": "النتيجة المرجوة من أدوات الدرس 97.",
+      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
+    },
+    "exercise_instructions": "تمرين الدرس 97",
+    "expected_output": "انتظرونا"
   },
   {
     "lesson_slug": "python-98",
-    "title": "Lesson 98 Placeholder",
-    "category": "AI Agents & Real-World Engineering",
+    "title": "الدرس 98: موضوع مخصص",
+    "category": "بناء تطبيقات حقيقية وأتمتة",
     "order_index": 98,
     "is_free": false,
     "content_type": "theory",
     "duration_minutes": 10,
     "content": {
-      "prototype": "module.function() // Lesson 98",
-      "description": "Placeholder content for Lesson 98 regarding AI Agents & Real-World Engineering. This will be fully hydrated in subsequent batches.",
-      "parameters": "Placeholder parameters for Lesson 98.",
-      "return_value": "Placeholder return value for Lesson 98.",
-      "example": "# Example placeholder 98\nprint(\"Will be hydrated\")"
-    }
+      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 98) لربط المفاهيم النظرية بالتطبيق العملي.",
+      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: بناء تطبيقات حقيقية وأتمتة.",
+      "prototype": "def concept_98(): pass",
+      "parameters": "تفاصيل المدخلات للدرس 98.",
+      "return_value": "النتيجة المرجوة من أدوات الدرس 98.",
+      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
+    },
+    "exercise_instructions": "تمرين الدرس 98",
+    "expected_output": "انتظرونا"
   },
   {
     "lesson_slug": "python-99",
-    "title": "Lesson 99 Placeholder",
-    "category": "AI Agents & Real-World Engineering",
+    "title": "الدرس 99: موضوع مخصص",
+    "category": "بناء تطبيقات حقيقية وأتمتة",
     "order_index": 99,
     "is_free": false,
     "content_type": "theory",
     "duration_minutes": 10,
     "content": {
-      "prototype": "module.function() // Lesson 99",
-      "description": "Placeholder content for Lesson 99 regarding AI Agents & Real-World Engineering. This will be fully hydrated in subsequent batches.",
-      "parameters": "Placeholder parameters for Lesson 99.",
-      "return_value": "Placeholder return value for Lesson 99.",
-      "example": "# Example placeholder 99\nprint(\"Will be hydrated\")"
-    }
+      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 99) لربط المفاهيم النظرية بالتطبيق العملي.",
+      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: بناء تطبيقات حقيقية وأتمتة.",
+      "prototype": "def concept_99(): pass",
+      "parameters": "تفاصيل المدخلات للدرس 99.",
+      "return_value": "النتيجة المرجوة من أدوات الدرس 99.",
+      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
+    },
+    "exercise_instructions": "تمرين الدرس 99",
+    "expected_output": "انتظرونا"
   },
   {
     "lesson_slug": "python-100",
-    "title": "Lesson 100 Placeholder",
-    "category": "AI Agents & Real-World Engineering",
+    "title": "الدرس 100: موضوع مخصص",
+    "category": "بناء تطبيقات حقيقية وأتمتة",
     "order_index": 100,
     "is_free": false,
     "content_type": "theory",
     "duration_minutes": 10,
     "content": {
-      "prototype": "module.function() // Lesson 100",
-      "description": "Placeholder content for Lesson 100 regarding AI Agents & Real-World Engineering. This will be fully hydrated in subsequent batches.",
-      "parameters": "Placeholder parameters for Lesson 100.",
-      "return_value": "Placeholder return value for Lesson 100.",
-      "example": "# Example placeholder 100\nprint(\"Will be hydrated\")"
-    }
+      "context": "لماذا نتعلم هذا؟ (مساحة مخصصة للدرس 100) لربط المفاهيم النظرية بالتطبيق العملي.",
+      "description": "سيتم إضافة المحتوى التعليمي الاحترافي المخصص لهذا الدرس هنا لاحقاً استكمالاً للفصل: بناء تطبيقات حقيقية وأتمتة.",
+      "prototype": "def concept_100(): pass",
+      "parameters": "تفاصيل المدخلات للدرس 100.",
+      "return_value": "النتيجة المرجوة من أدوات الدرس 100.",
+      "example": "# كود تجريبي\nprint(\"انتظرونا في التحديث القادم\")"
+    },
+    "exercise_instructions": "تمرين الدرس 100",
+    "expected_output": "انتظرونا"
   }
 ];
