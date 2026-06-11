@@ -8,11 +8,11 @@ export const pythonTrackData = [
     "content_type": "theory",
     "duration_minutes": 5,
     "content": {
-      "prototype": "int(...)",
-      "description": "Deep dive into int in Python. This module covers syntax, edge cases, and best practices.",
-      "parameters": "Detailed specifications for int arguments and typing.",
-      "return_value": "Returns corresponding primitive or object depending on input.",
-      "example": "# Example usage of int\nresult = int()\nprint(result)"
+      "prototype": "int(value=0)",
+      "description": "أهلاً بك في عالم البرمجة! أول حاجة لازم تعرفها إن الكمبيوتر بيحتاج يخزن الأرقام عشان يتعامل معاها. الـ `int` اختصار لـ Integer، وده معناه (الأعداد الصحيحة) اللي مفيهاش أي كسور أو فاصلة عشرية. بنستخدمه لما نحب نعد حاجات كاملة، زي: عمرك، عدد الطلاب في الأكاديمية، أو عدد الجوائز اللي هتكسبها معنا! بايثون ذكية جداً، بمجرد ما تكتب رقم صحيح، هي بتعرف لوحدها إنه `int` وبتحفظه في الذاكرة فوراً.",
+      "parameters": "value (اختياري): القيمة أو النص اللي عاوز تحوله لرقم صحيح. لو سبته فاضي، بايثون هتديك 0 تلقائياً.",
+      "return_value": "بترجع لك رقم صحيح نقي (Integer) جاهز للعمليات الحسابية.",
+      "example": "# تعال نجرب نخزن عمر الطالب ونطبعه\nstudent_age = 15\nprint(student_age)\n\n# وتحويل نص جوه علامات تنصيص لرقم حقيقي\nconverted_number = int('20')\nprint(converted_number + 5) # الناتج هيكون 25"
     }
   },
   {
@@ -24,11 +24,11 @@ export const pythonTrackData = [
     "content_type": "theory",
     "duration_minutes": 5,
     "content": {
-      "prototype": "float(...)",
-      "description": "Deep dive into float in Python. This module covers syntax, edge cases, and best practices.",
-      "parameters": "Detailed specifications for float arguments and typing.",
-      "return_value": "Returns corresponding primitive or object depending on input.",
-      "example": "# Example usage of float\nresult = float()\nprint(result)"
+      "prototype": "float(value=0.0)",
+      "description": "بعد ما عرفنا الأرقام الصحيحة، تفتكر إزاي بنخزن أسعار المنتجات أو درجات الامتحان اللي فيها كسور؟ هنا بييجي دور الـ `float` (الأرقام العائمة أو العشرية). الـ `float` هو أي رقم بيحتوي على فاصلة عشرية (نقطة `.`). بنستخدمه في حسابات دقيقة جداً زي: طاقة الروبوت، أسعار الكورسات، أو النِسب المئوية.",
+      "parameters": "value (اختياري): القيمة أو الرقم اللي عاوز تحوله لرقم عشري فيه فاصلة.",
+      "return_value": "بترجع لك رقم عشري واخد صيغة (Float) عشان تقدر تعمل حسابات دقيقة جداً.",
+      "example": "# تخزين سعر الكورس بالكسور\ncourse_price = 199.99\nprint(course_price)\n\n# تحويل رقم صحيح لـ float\nscore = float(50)\nprint(score) # الناتج هيطلع 50.0"
     }
   },
   {
