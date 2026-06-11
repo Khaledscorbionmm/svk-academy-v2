@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { query, queryOne, initializeDatabase } from '@/lib/db';
+import { verifyToken, COOKIE_NAME } from '@/lib/auth';
 import { pythonTrackData } from '@/context/tracks/pythonData';
 import { cyberTrackData } from '@/context/tracks/cyberData';
 import { languageTrackData } from '@/context/tracks/languageData';
@@ -35,8 +36,20 @@ export async function GET(
       // Map static lessons to have an 'id' property matching their slug so existing components don't break
       lessons = lessons.map(l => ({ ...l, id: l.lesson_slug, course_id: course.id }));
     }
-    
-    return NextResponse.json({ course, lessons });
+    let isEnrolled = false;
+    const adminToken = request.cookies.get(COOKIE_NAME)?.value;
+    const studentToken = request.cookies.get('svk_student_token')?.value;
+    let payload = adminToken ? verifyToken(adminToken) : null;
+    if (!payload && studentToken) payload = verifyToken(studentToken);
+
+    if (payload && payload.role === 'student') {
+      const enrollCheck = await query('SELECT id FROM enrollments WHERE student_id = $1 AND course_id = $2', [payload.id, course.id]);
+      if (enrollCheck.length > 0) isEnrolled = true;
+    } else if (payload && payload.role === 'admin') {
+      isEnrolled = true; // Admins have access to everything
+    }
+
+    return NextResponse.json({ course, lessons, isEnrolled });
   } catch (e) {
     console.error('[Course Detail Error]', e);
     return NextResponse.json({ error: 'حدث خطأ في جلب الكورس' }, { status: 500 });

@@ -79,6 +79,7 @@ export default function CourseDetailPage({ params }: { params: Promise<{ id: str
   const { id } = use(params);
   const [course, setCourse] = useState<Course | null>(null);
   const [lessons, setLessons] = useState<Lesson[]>([]);
+  const [isEnrolled, setIsEnrolled] = useState(false);
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState<'overview' | 'curriculum' | 'instructor' | 'reviews'>('overview');
   const [mounted, setMounted] = useState(false);
@@ -96,6 +97,7 @@ export default function CourseDetailPage({ params }: { params: Promise<{ id: str
           const data = await res.json();
           setCourse(data.course);
           setLessons(data.lessons || []);
+          setIsEnrolled(data.isEnrolled || false);
         } else {
           const fallback = FALLBACK_COURSES[id];
           if (fallback) { setCourse(fallback.course); setLessons(fallback.lessons); }
@@ -305,10 +307,10 @@ export default function CourseDetailPage({ params }: { params: Promise<{ id: str
                 <span>{item.label}</span>
               </div>
             ))}
-            {course.price === 0 ? (
+            {course.price === 0 || isEnrolled ? (
               <Link href={firstLessonHref} style={{ textDecoration: 'none', display: 'block', marginTop: 20 }}>
                 <button style={{ width: '100%', background: 'linear-gradient(135deg,#6366f1,#a855f7)', border: 'none', color: '#fff', padding: '14px', borderRadius: 12, fontSize: 16, fontWeight: 800, cursor: 'pointer', fontFamily: "'Cairo', sans-serif" }}>
-                  ابدأ الآن ←
+                  ابدأ المغامرة الآن ←
                 </button>
               </Link>
             ) : (

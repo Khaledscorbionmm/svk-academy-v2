@@ -1,6 +1,9 @@
 import { NextResponse, NextRequest } from 'next/server';
 import { query, initDb } from '@/lib/db';
 import { verifyToken } from '@/lib/auth';
+import { pythonTrackData } from '@/context/tracks/pythonData';
+import { cyberTrackData } from '@/context/tracks/cyberData';
+import { languageTrackData } from '@/context/tracks/languageData';
 
 export async function GET(req: NextRequest) {
   try {
@@ -73,7 +76,13 @@ export async function GET(req: NextRequest) {
 
     // Calculate progress percentage for each course
     const coursesWithProgress = coursesRows.map((course: any) => {
-      const total = parseInt(course.total_lessons || '0', 10);
+      let total = parseInt(course.total_lessons || '0', 10);
+      
+      // Inject static track lengths
+      if (course.category === 'python') total = pythonTrackData.length;
+      else if (course.category === 'security' || course.category === 'cybersecurity') total = cyberTrackData.length;
+      else if (course.category === 'languages') total = languageTrackData.length;
+
       const completed = parseInt(course.completed_lessons || '0', 10);
       const progress = total > 0 ? Math.round((completed / total) * 100) : 0;
       return {

@@ -27,11 +27,11 @@ export async function POST(request: NextRequest) {
         WHERE student_id = $1 AND course_id = $2
       `, [studentId, courseId]);
 
-      // 2. Insert into enrollments
+      // 2. Insert into enrollments with global fallback permission indicator
       await query(`
-        INSERT INTO enrollments (student_id, course_id, enrolled_at)
-        VALUES ($1, $2, NOW())
-        ON CONFLICT (student_id, course_id) DO NOTHING
+        INSERT INTO enrollments (student_id, course_id, enrolled_at, status, access_level)
+        VALUES ($1, $2, NOW(), 'active', 'full')
+        ON CONFLICT (student_id, course_id) DO UPDATE SET status = 'active', access_level = 'full'
       `, [studentId, courseId]);
 
       // 3. Also grant full lesson access for backward compatibility with older pages

@@ -100,6 +100,8 @@ export async function initializeDatabase(): Promise<void> {
       enrolled_at TIMESTAMPTZ DEFAULT NOW(),
       progress_percent INTEGER DEFAULT 0,
       completed_at TIMESTAMPTZ,
+      status VARCHAR(50) DEFAULT 'active',
+      access_level VARCHAR(50) DEFAULT 'full',
       UNIQUE(student_id, course_id)
     )
   `);
