@@ -1,0 +1,19 @@
+{
+  "total_lessons": 100,
+  "classification": {
+    "concept": 100,
+    "explanation": 0,
+    "practical": 100,
+    "challenge": 0,
+    "quiz": 0
+  },
+  "weak_explanations": [],
+  "missing_practical": [],
+  "mostly_quizzes": [],
+  "repetitive_content": [],
+  "metrics": {
+    "contentDensityScore": 56,
+    "learningProgressionScore": 100,
+    "educationalBalanceScore": 65
+  }
+}

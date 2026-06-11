@@ -7,6 +7,7 @@ import LanguageLearningLayout from '@/components/LanguageLearningLayout';
 import SimplifyExplanation from '@/components/SimplifyExplanation';
 import { useTargetGroup } from '@/context/UserTargetGroupContext';
 import SmartExamView from '@/components/SmartExamView';
+import QuickExamplesPanel from '@/components/QuickExamplesPanel';
 
 function PremiumAudioPlayer({ src, title, textContent }: { src: string; title: string; textContent: string }) {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -1622,6 +1623,19 @@ export default function LessonPage({ params }: { params: Promise<{ lessonId: str
                     </div>
 
                     {/* TOTAL VIDEO BAN: NO VIDEO RENDERED HERE AT ALL */}
+
+                    <QuickExamplesPanel 
+                      examples={lesson.quick_practical_examples || []}
+                      onRunCode={(c) => {
+                        setCode(c);
+                        setActiveWorkspaceTab('editor');
+                        setTimeout(() => handleRunCode(), 200);
+                      }}
+                      onFixError={(c) => {
+                        setCode(c);
+                        setActiveWorkspaceTab('editor');
+                      }}
+                    />
 
                     <div style={{ marginTop: '8px' }}>
                       {(() => {
