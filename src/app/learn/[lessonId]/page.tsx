@@ -1794,13 +1794,13 @@ export default function LessonPage({ params }: { params: Promise<{ lessonId: str
                         <span style={{ fontSize: '1.2rem' }}>🎯</span>
                         <h4 style={{ margin: 0, fontWeight: 900, color: isKids ? '#1e3a8a' : '#10b981' }}>إرشادات الهدف والمخرجات المتوقعة</h4>
                       </div>
-                      <p style={{ margin: '0 0 12px', fontSize: '0.9rem', color: isKids ? '#1e293b' : '#94a3b8' }}>
-                        {lesson.practice_instructions || 'يرجى كتابة وتعديل الكود البرمجي ليعطي المخرج المطلوب بدقة.'}
+                      <p style={{ margin: '0 0 12px', fontSize: '0.9rem', color: isKids ? '#1e293b' : '#94a3b8', lineHeight: 1.6 }}>
+                        {lesson.exercise_instructions || lesson.practice_instructions || 'يرجى كتابة وتعديل الكود البرمجي ليعطي المخرج المطلوب بدقة.'}
                       </p>
                       <div style={{ background: 'rgba(0,0,0,0.4)', borderRadius: '8px', padding: '10px 14px', border: '1px solid rgba(255,255,255,0.05)' }}>
                         <div style={{ fontSize: '0.75rem', color: '#64748b', marginBottom: '4px' }}>المخرجات المتوقعة (Expected Output):</div>
                         <pre style={{ margin: 0, fontFamily: 'monospace', color: '#cbd5e1', fontSize: '0.85rem', direction: 'ltr', textAlign: 'left' }}>
-                          {lesson.practice_expected || 'Hello World'}
+                          {lesson.expected_output || lesson.practice_expected || 'Hello World'}
                         </pre>
                       </div>
                     </div>
@@ -1829,10 +1829,9 @@ export default function LessonPage({ params }: { params: Promise<{ lessonId: str
                         <textarea
                           value={code}
                           onChange={e => setCode(e.target.value)}
+                          className="font-mono text-emerald-400 bg-slate-950 border border-slate-800 p-4 w-full focus:outline-none focus:ring-2 focus:ring-emerald-500"
                           style={{
-                            flex: 1, width: '100%', background: '#07080e', border: 'none', resize: 'none',
-                            outline: 'none', color: '#10b981', padding: '16px', fontFamily: 'monospace', fontSize: '0.95rem',
-                            direction: 'ltr', textAlign: 'left', lineHeight: 1.5
+                            flex: 1, resize: 'none', direction: 'ltr', textAlign: 'left', lineHeight: 1.5
                           }}
                         />
                         

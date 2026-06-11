@@ -13,7 +13,9 @@ export const pythonTrackData = [
       "parameters": "x (اختياري): القيمة المراد تحويلها لرقم صحيح. base (اختياري): النظام العددي (مثل 2 للثنائي، 16 للسداسي عشر).",
       "return_value": "يعيد كائناً من نوع Integer نقي وجاهز للعمليات الحسابية أو المنطقية المعقدة.",
       "example": "# تخصيص رقم في الذاكرة\nusers_count = 104500\n\n# تحويل رقم ثنائي (Binary) إلى عشري\nbinary_str = '1010'\ndecimal_val = int(binary_str, 2) # الناتج: 10\nprint('Decimal:', decimal_val)"
-    }
+    },
+    "exercise_instructions": "قم بإنشاء متغير يحمل اسم age وضع بداخله عمرك كرقم صحيح (مثلاً 25)، ثم استخدم أمر الطباعة print لعرض المتغير.",
+    "expected_output": "25"
   },
   {
     "lesson_slug": "python-2",
@@ -29,7 +31,9 @@ export const pythonTrackData = [
       "parameters": "x (اختياري): القيمة النصية أو العددية المراد تحويلها لنظام النقطة العائمة.",
       "return_value": "يعيد كائناً عشرياً بدقة تصل إلى 15-17 خانة عشرية.",
       "example": "# مشكلة الدقة الكلاسيكية\nprint(0.1 + 0.2 == 0.3) # False!\n\n# استخدام اللانهاية في خوارزميات البحث\nmin_score = float('-inf')\nmax_score = float('inf')"
-    }
+    },
+    "exercise_instructions": "قم بإنشاء متغير باسم price وضَع فيه سعر الكورس (مثلاً 99.9) ثم اطبعه.",
+    "expected_output": "99.9"
   },
   {
     "lesson_slug": "python-3",
