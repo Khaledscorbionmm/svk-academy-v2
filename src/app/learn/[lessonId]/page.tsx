@@ -950,10 +950,10 @@ export default function LessonPage({ params }: { params: Promise<{ lessonId: str
                   return String(arg);
                 }).join(' '));
               },
-              str: (v: unknown) => String(v),
-              int: (v: unknown) => parseInt(v),
-              float: (v: unknown) => parseFloat(v),
-              type: (v: unknown) => {
+              str: (v: any) => String(v),
+              int: (v: any) => parseInt(v),
+              float: (v: any) => parseFloat(v),
+              type: (v: any) => {
                 if (typeof v === 'number') {
                   return Number.isInteger(v) ? "<class 'int'>" : "<class 'float'>";
                 }
@@ -962,7 +962,7 @@ export default function LessonPage({ params }: { params: Promise<{ lessonId: str
                 if (Array.isArray(v)) return "<class 'list'>";
                 return `<class '${typeof v}'>`;
               },
-              len: (v: unknown) => v ? v.length : 0,
+              len: (v: any) => v ? v.length : 0,
               range: (start: number, end?: number, step?: number) => {
                 let s = start;
                 let e = end;

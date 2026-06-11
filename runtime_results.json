@@ -1,0 +1,83 @@
+[
+  {
+    "test": "Registration UI",
+    "route": "/register",
+    "status": 200,
+    "pass": true,
+    "durationMs": 702,
+    "evidence": "SVK Academy - الأكاديمية الأولى عربياً للبرمجة",
+    "networkError": null
+  },
+  {
+    "test": "Login UI",
+    "route": "/login",
+    "status": 200,
+    "pass": true,
+    "durationMs": 101,
+    "evidence": "SVK Academy - الأكاديمية الأولى عربياً للبرمجة",
+    "networkError": null
+  },
+  {
+    "test": "Course Browsing UI",
+    "route": "/courses",
+    "status": 200,
+    "pass": true,
+    "durationMs": 41,
+    "evidence": "SVK Academy - الأكاديمية الأولى عربياً للبرمجة",
+    "networkError": null
+  },
+  {
+    "test": "Lesson Opening UI",
+    "route": "/learn/python-0",
+    "status": 200,
+    "pass": true,
+    "durationMs": 49,
+    "evidence": "SVK Academy - الأكاديمية الأولى عربياً للبرمجة",
+    "networkError": null
+  },
+  {
+    "test": "Quiz Submission API",
+    "route": "/api/ai/grade-exam",
+    "status": 400,
+    "pass": false,
+    "durationMs": 60,
+    "evidence": "{\"error\":\"Practical answers array required\"}...",
+    "networkError": null
+  },
+  {
+    "test": "Child Mode Emulation",
+    "route": "/learn/python-0",
+    "status": 200,
+    "pass": true,
+    "durationMs": 44,
+    "evidence": "SVK Academy - الأكاديمية الأولى عربياً للبرمجة",
+    "networkError": null
+  },
+  {
+    "test": "Professional Mode Emulation",
+    "route": "/learn/python-0",
+    "status": 200,
+    "pass": true,
+    "durationMs": 38,
+    "evidence": "SVK Academy - الأكاديمية الأولى عربياً للبرمجة",
+    "networkError": null
+  },
+  {
+    "test": "MAEIS Dashboard UI",
+    "route": "/admin/maeis",
+    "status": 200,
+    "pass": true,
+    "durationMs": 49,
+    "evidence": "SVK Academy - الأكاديمية الأولى عربياً للبرمجة",
+    "networkError": null
+  },
+  {
+    "test": "Certificate UI",
+    "route": "/courses/python/certificate",
+    "status": 200,
+    "pass": true,
+    "durationMs": 41,
+    "evidence": "SVK Academy - الأكاديمية الأولى عربياً للبرمجة",
+    "networkError": null
+  }
+]

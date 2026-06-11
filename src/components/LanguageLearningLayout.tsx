@@ -5,6 +5,15 @@ import Link from 'next/link';
 import { useTargetGroup } from '@/context/UserTargetGroupContext';
 import PremiumAudioPlayer from '@/components/PremiumAudioPlayer';
 import SimplifyExplanation from '@/components/SimplifyExplanation';
+
+export interface Flashcard {
+  id: string;
+  text_english: string;
+  translation_arabic: string;
+  phonetic_guide?: string;
+  situational_context?: string;
+}
+
 // Helper to clean HTML tags from text
 const cleanHtmlText = (text: string) => {
   if (!text) return '';
