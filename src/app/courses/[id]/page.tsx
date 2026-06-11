@@ -83,6 +83,9 @@ export default function CourseDetailPage({ params }: { params: Promise<{ id: str
   const [activeTab, setActiveTab] = useState<'overview' | 'curriculum' | 'instructor' | 'reviews'>('overview');
   const [mounted, setMounted] = useState(false);
   const [user, setUser] = useState<any>(null);
+  const [showPaymentModal, setShowPaymentModal] = useState(false);
+  const [activationRequested, setActivationRequested] = useState(false);
+  const [activationLoading, setActivationLoading] = useState(false);
 
   useEffect(() => {
     setMounted(true);
@@ -119,6 +122,31 @@ export default function CourseDetailPage({ params }: { params: Promise<{ id: str
       }
     } catch (e) {
       console.error(e);
+    }
+  }
+
+  async function handleRequestActivation() {
+    if (!user) {
+      alert('يرجى تسجيل الدخول أولاً');
+      return;
+    }
+    setActivationLoading(true);
+    try {
+      const res = await fetch('/api/courses/request-activation', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ courseId: course?.id }),
+      });
+      if (res.ok) {
+        setActivationRequested(true);
+      } else {
+        const err = await res.json();
+        alert(err.error || 'حدث خطأ');
+      }
+    } catch (e) {
+      alert('حدث خطأ');
+    } finally {
+      setActivationLoading(false);
     }
   }
 
@@ -277,14 +305,66 @@ export default function CourseDetailPage({ params }: { params: Promise<{ id: str
                 <span>{item.label}</span>
               </div>
             ))}
-            <Link href={firstLessonHref} style={{ textDecoration: 'none', display: 'block', marginTop: 20 }}>
-              <button style={{ width: '100%', background: 'linear-gradient(135deg,#6366f1,#a855f7)', border: 'none', color: '#fff', padding: '14px', borderRadius: 12, fontSize: 16, fontWeight: 800, cursor: 'pointer', fontFamily: "'Cairo', sans-serif" }}>
-                ابدأ الآن ←
+            {course.price === 0 ? (
+              <Link href={firstLessonHref} style={{ textDecoration: 'none', display: 'block', marginTop: 20 }}>
+                <button style={{ width: '100%', background: 'linear-gradient(135deg,#6366f1,#a855f7)', border: 'none', color: '#fff', padding: '14px', borderRadius: 12, fontSize: 16, fontWeight: 800, cursor: 'pointer', fontFamily: "'Cairo', sans-serif" }}>
+                  ابدأ الآن ←
+                </button>
+              </Link>
+            ) : (
+              <button 
+                onClick={() => setShowPaymentModal(true)}
+                style={{ width: '100%', marginTop: 20, background: 'linear-gradient(135deg,#6366f1,#a855f7)', border: 'none', color: '#fff', padding: '14px', borderRadius: 12, fontSize: 16, fontWeight: 800, cursor: 'pointer', fontFamily: "'Cairo', sans-serif" }}>
+                اشترك الآن ←
               </button>
-            </Link>
+            )}
           </div>
         </div>
       </div>
+
+      {showPaymentModal && (
+        <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(0,0,0,0.8)', zIndex: 1000, display: 'flex', alignItems: 'center', justifyContent: 'center', backdropFilter: 'blur(5px)', padding: 20 }}>
+          <div style={{ background: '#0f172a', border: '1px solid #334155', borderRadius: 20, padding: 30, maxWidth: 500, width: '100%', position: 'relative' }}>
+            <button onClick={() => setShowPaymentModal(false)} style={{ position: 'absolute', top: 15, right: 15, background: 'none', border: 'none', color: '#64748b', fontSize: 24, cursor: 'pointer' }}>×</button>
+            <h2 style={{ fontSize: 24, margin: '0 0 16px', color: '#fff' }}>تأكيد الاشتراك والدفع</h2>
+            <p style={{ color: '#94a3b8', fontSize: 15, marginBottom: 20 }}>
+              لإتمام اشتراكك في هذا الكورس، يرجى تحويل مبلغ <strong style={{color: '#a855f7'}}>{course.price} {course.currency}</strong> عبر إحدى الطرق التالية:
+            </p>
+            
+            <div style={{ background: 'rgba(255,255,255,0.03)', padding: 16, borderRadius: 12, marginBottom: 12, border: '1px solid rgba(255,255,255,0.05)' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 8 }}>
+                <span style={{ fontSize: 24 }}>🔴</span>
+                <span style={{ fontWeight: 700, fontSize: 16, color: '#fff' }}>فودافون كاش</span>
+              </div>
+              <div style={{ fontSize: 20, color: '#a855f7', fontWeight: 900, direction: 'ltr', textAlign: 'right' }}>01069593097</div>
+            </div>
+
+            <div style={{ background: 'rgba(255,255,255,0.03)', padding: 16, borderRadius: 12, marginBottom: 24, border: '1px solid rgba(255,255,255,0.05)' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 8 }}>
+                <span style={{ fontSize: 24 }}>🟣</span>
+                <span style={{ fontWeight: 700, fontSize: 16, color: '#fff' }}>انستا باي (InstaPay)</span>
+              </div>
+              <div style={{ fontSize: 20, color: '#a855f7', fontWeight: 900, direction: 'ltr', textAlign: 'right' }}>01069593097</div>
+            </div>
+
+            {activationRequested ? (
+              <div style={{ background: 'rgba(34,197,94,0.1)', color: '#22c55e', padding: 16, borderRadius: 12, textAlign: 'center', fontWeight: 700 }}>
+                تم إرسال طلب التفعيل للإدارة. سيتم تفعيل الكورس فور مراجعة التحويل.
+              </div>
+            ) : (
+              <div>
+                <p style={{ color: '#f87171', fontSize: 13, marginBottom: 16 }}>* بعد إجراء التحويل، اضغط على الزر أدناه لإرسال طلب التفعيل للإدارة.</p>
+                <button 
+                  onClick={handleRequestActivation}
+                  disabled={activationLoading}
+                  style={{ width: '100%', background: '#a855f7', color: '#fff', border: 'none', padding: 16, borderRadius: 12, fontSize: 16, fontWeight: 700, cursor: activationLoading ? 'not-allowed' : 'pointer', opacity: activationLoading ? 0.7 : 1 }}>
+                  {activationLoading ? 'جاري الإرسال...' : 'قمت بالتحويل، أرسل طلب التفعيل'}
+                </button>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
 
       {/* Tabs */}
       <div className="tabs-container" style={{ borderBottom: '1px solid rgba(255,255,255,0.06)', padding: '0 40px', display: 'flex', gap: 0, position: 'sticky', top: 61, zIndex: 99, background: 'rgba(6,6,18,0.95)', backdropFilter: 'blur(20px)' }}>

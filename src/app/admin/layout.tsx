@@ -15,6 +15,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
   const links = [
     { href: '/admin/dashboard', label: '📊 لوحة التحكم' },
+    { href: '/admin/requests', label: '📥 طلبات التفعيل' },
     { href: '/admin/courses', label: '📚 الكورسات والدروس' },
     { href: '/admin/students', label: '👥 الطلاب' },
     { href: '/admin/payments', label: '💳 المدفوعات' },

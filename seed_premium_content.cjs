@@ -14,7 +14,7 @@ const COURSE_TEMPLATES = [
 ];
 
 const pythonTools = [
-  { name: 'print', params: '(*objects, sep=" ", end="\\n", file=sys.stdout, flush=False)', desc: 'Prints objects to the text stream file.' },
+  { name: 'print', params: '(*objects, sep=" ", end="n", file=sys.stdout, flush=False)', desc: 'Prints objects to the text stream file.' },
   { name: 'len', params: '(s)', desc: 'Return the length (the number of items) of an object.' },
   { name: 'type', params: '(object)', desc: 'Return the type of an object.' },
   { name: 'int', params: '(x=0, base=10)', desc: 'Return an integer object constructed from a number or string x.' },
@@ -131,7 +131,7 @@ const cyberTools = [
   { name: 'netstat -tuln', desc: 'List all listening ports and their associated TCP/UDP protocols.' },
   { name: 'tcpdump -i eth0', desc: 'Capture and analyze network packets on the eth0 interface.' },
   { name: 'wireshark', desc: 'Graphical network protocol analyzer for deep packet inspection.' },
-  { name: 'hashcat -m 0', desc: 'Crack MD5 hashes using the world\\'s fastest password recovery tool.' },
+  { name: 'hashcat -m 0', desc: "Crack MD5 hashes using the world's fastest password recovery tool." },
   { name: 'john --wordlist', desc: 'John the Ripper password cracker using a dictionary list.' },
   { name: 'hydra -l admin', desc: 'Fast network logon cracker for brute-forcing services.' },
   { name: 'sqlmap -u', desc: 'Automatic SQL injection and database takeover tool.' },
@@ -174,8 +174,8 @@ async function seed() {
     
     for (const course of COURSE_TEMPLATES) {
       const courseRes = await client.query(
-        'INSERT INTO courses (title, category, level, instructor) VALUES ($1, $2, $3, $4) RETURNING id',
-        [course.title, course.category, course.level, course.instructor]
+        'INSERT INTO courses (title, category, level) VALUES ($1, $2, $3) RETURNING id',
+        [course.title, course.category, course.level]
       );
       const courseId = courseRes.rows[0].id;
       
@@ -195,70 +195,70 @@ async function seed() {
         if (course.category === 'python') {
           const t = pythonTools[i];
           lessonTitle = "الدرس " + (i+1) + ": استخدام " + t.name;
-          textContent = \`
+          textContent = `
             <div class="lesson-content-box" style="padding: 24px;">
-              <h3 style="color: #10b981;">شرح الدالة والتطبيق: \${t.name}</h3>
-              <p>في هذا الدرس سنتعرف على وظيفة <strong>\${t.name}</strong> وميكانيكية عملها.</p>
+              <h3 style="color: #10b981;">شرح الدالة والتطبيق: ${t.name}</h3>
+              <p>في هذا الدرس سنتعرف على وظيفة <strong>${t.name}</strong> وميكانيكية عملها.</p>
               <div class="parameter-spec" style="background: rgba(16,185,129,0.1); padding: 16px; border-radius: 8px; margin: 16px 0; border: 1px solid rgba(16,185,129,0.2);">
                 <h4 style="color: #34d399; margin: 0 0 8px 0; display:flex; align-items:center; gap:8px;">
                   <span>⚙️</span> Parameter Specification
                 </h4>
-                <code style="color: #6ee7b7; font-family: monospace; font-size: 1.1em; display:block;" dir="ltr">\${t.name}\${t.params}</code>
+                <code style="color: #6ee7b7; font-family: monospace; font-size: 1.1em; display:block;" dir="ltr">${t.name}${t.params}</code>
               </div>
-              <p style="color: #94a3b8; font-size: 0.95em;">\${t.desc}</p>
+              <p style="color: #94a3b8; font-size: 0.95em;">${t.desc}</p>
             </div>
-          \`;
-          codeTemplate = \`print("\${t.name} executed successfully")\`;
-          practiceExpected = \`\${t.name} executed successfully\`;
-          practiceInstructions = \`قم بتشغيل الأداة \${t.name} واطبع رسالة التأكيد.\`;
-          codeExplanation = \`هذا الكود يستخدم لبيان نجاح تنفيذ الدالة.\`;
-          quizQuestions = [{ question: \`What does \${t.name} do?\`, options: [t.desc, "Deletes files", "Crashes OS", "Nothing"], correctAnswer: 0 }];
+          `;
+          codeTemplate = `print("${t.name} executed successfully")`;
+          practiceExpected = `${t.name} executed successfully`;
+          practiceInstructions = `قم بتشغيل الأداة ${t.name} واطبع رسالة التأكيد.`;
+          codeExplanation = `هذا الكود يستخدم لبيان نجاح تنفيذ الدالة.`;
+          quizQuestions = [{ question: `What does ${t.name} do?`, options: [t.desc, "Deletes files", "Crashes OS", "Nothing"], correctAnswer: 0 }];
         } 
         else if (course.category === 'cybersecurity') {
           const c = cyberTools[i];
           lessonTitle = "الدرس " + (i+1) + ": الأمر " + c.name;
-          textContent = \`
+          textContent = `
             <div class="lesson-content-box" style="padding: 24px;">
-              <h3 style="color: #3b82f6;">أوامر الدفاع السيبراني: \${c.name}</h3>
-              <p style="color: #94a3b8; font-size: 0.95em;">\${c.desc}</p>
+              <h3 style="color: #3b82f6;">أوامر الدفاع السيبراني: ${c.name}</h3>
+              <p style="color: #94a3b8; font-size: 0.95em;">${c.desc}</p>
               <div style="background: rgba(0,0,0,0.5); padding: 16px; border-radius: 8px; border: 1px solid #1e3a8a; margin-top: 16px;">
-                <code style="color: #60a5fa;" dir="ltr">root@linux:~# \${c.name}</code>
+                <code style="color: #60a5fa;" dir="ltr">root@linux:~# ${c.name}</code>
               </div>
             </div>
-          \`;
-          codeTemplate = \`\${c.name}\`;
-          practiceExpected = \`Executed command\`;
-          practiceInstructions = \`اكتب الأمر \${c.name} في موجه الأوامر للحماية السيبرانية.\`;
-          codeExplanation = \`تنفيذ الأوامر في البيئة الآمنة.\`;
-          quizQuestions = [{ question: \`ما فائدة \${c.name}؟\`, options: [c.desc, "لتشغيل الألعاب", "اختراق المواقع", "لا شيء"], correctAnswer: 0 }];
+          `;
+          codeTemplate = `${c.name}`;
+          practiceExpected = `Executed command`;
+          practiceInstructions = `اكتب الأمر ${c.name} في موجه الأوامر للحماية السيبرانية.`;
+          codeExplanation = `تنفيذ الأوامر في البيئة الآمنة.`;
+          quizQuestions = [{ question: `ما فائدة ${c.name}؟`, options: [c.desc, "لتشغيل الألعاب", "اختراق المواقع", "لا شيء"], correctAnswer: 0 }];
         }
         else if (course.category === 'languages') {
           const l = languagePhrases[i];
           lessonTitle = "الدرس " + (i+1) + ": " + l.en;
-          textContent = \`
+          textContent = `
             <div class="lesson-content-box" style="padding: 24px;">
               <h3 style="color: #ec4899;">محادثة سياقية متقدمة</h3>
               <div class="lang-card" style="background: rgba(236,72,153,0.1); padding: 20px; border-radius: 12px; border: 1px solid rgba(236,72,153,0.2);">
                 <div style="margin-bottom: 16px;">
                   <span style="color: #fbcfe8; font-size: 0.8em; text-transform: uppercase; letter-spacing: 1px;">English</span>
-                  <div style="font-size: 1.5em; font-weight: bold; color: #fff;" dir="ltr">\${l.en}</div>
+                  <div style="font-size: 1.5em; font-weight: bold; color: #fff;" dir="ltr">${l.en}</div>
                 </div>
                 <div style="margin-bottom: 16px;">
                   <span style="color: #fbcfe8; font-size: 0.8em; text-transform: uppercase; letter-spacing: 1px;">Phonetic Guide</span>
-                  <div style="font-size: 1.1em; color: #f472b6; font-family: monospace;" dir="ltr">\${l.phon}</div>
+                  <div style="font-size: 1.1em; color: #f472b6; font-family: monospace;" dir="ltr">${l.phon}</div>
                 </div>
                 <div>
                   <span style="color: #fbcfe8; font-size: 0.8em; text-transform: uppercase; letter-spacing: 1px;">Arabic Translation</span>
-                  <div style="font-size: 1.3em; color: #cbd5e1; font-weight: bold;">\${l.ar}</div>
+                  <div style="font-size: 1.3em; color: #cbd5e1; font-weight: bold;">${l.ar}</div>
                 </div>
               </div>
             </div>
-          \`;
-          codeTemplate = \`\`;
-          practiceExpected = \`\`;
-          practiceInstructions = \`استمع للعبارة باللغة الإنجليزية وحاول تكرارها بناءً على الدليل الصوتي.\`;
-          codeExplanation = \`تطبيق المحادثات الواقعية.\`;
-          quizQuestions = [{ question: \`ما معنى '\${l.en}'؟\`, options: [l.ar, "شيء آخر", "مختلف", "لا أدري"], correctAnswer: 0 }];
+          `;
+          codeTemplate = ``;
+          practiceExpected = ``;
+          practiceInstructions = `استمع للعبارة باللغة الإنجليزية وحاول تكرارها بناءً على الدليل الصوتي.`;
+          codeExplanation = `تطبيق المحادثات الواقعية.`;
+          quizQuestions = [{ question: `ما معنى '${l.en}'؟`, options: [l.ar, "شيء آخر", "مختلف", "لا أدري"], correctAnswer: 0 }];
         }
 
         const examData = JSON.stringify({
@@ -281,22 +281,22 @@ async function seed() {
           codeTemplate         
         );
 
-        queryPlaceholderStrings.push(\`(
-          $\${valIdx}, $\${valIdx+1}, $\${valIdx+2}, $\${valIdx+3}, $\${valIdx+4}, 
-          $\${valIdx+5}, $\${valIdx+6}, $\${valIdx+7}, $\${valIdx+8}, $\${valIdx+9},
-          $\${valIdx+10}, $\${valIdx+11}
-        )\`);
+        queryPlaceholderStrings.push(`(
+          $${valIdx}, $${valIdx+1}, $${valIdx+2}, $${valIdx+3}, $${valIdx+4}, 
+          $${valIdx+5}, $${valIdx+6}, $${valIdx+7}, $${valIdx+8}, $${valIdx+9},
+          $${valIdx+10}, $${valIdx+11}
+        )`);
         
         valIdx += 12;
       }
 
-      const insertQuery = \`
+      const insertQuery = `
         INSERT INTO lessons (
           course_id, title, is_free, order_index, content_type, text_content, 
           exam_data, code_explanation, code_template, practice_instructions, 
           practice_expected, code_example
-        ) VALUES \${queryPlaceholderStrings.join(', ')}
-      \`;
+        ) VALUES ${queryPlaceholderStrings.join(', ')}
+      `;
 
       await client.query(insertQuery, queryValues);
     }
