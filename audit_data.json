@@ -1,0 +1,6402 @@
+[
+  {
+    "id": 8564,
+    "slug": 8564,
+    "title": "الدرس 20: مشروع التخرج (الفصل الأول) - حاسبة العمر الذكية",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8565,
+    "slug": 8565,
+    "title": "الدرس 21: مراجعة أساسيات بايثون",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8566,
+    "slug": 8566,
+    "title": "الدرس 22: القوائم (Lists) المتقدمة",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8567,
+    "slug": 8567,
+    "title": "الدرس 23: عمليات البحث في القوائم",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8568,
+    "slug": 8568,
+    "title": "الدرس 24: القواميس (Dictionaries)",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8569,
+    "slug": 8569,
+    "title": "الدرس 25: المجموعات (Sets)",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8570,
+    "slug": 8570,
+    "title": "الدرس 26: مقارنة البيانات",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8571,
+    "slug": 8571,
+    "title": "الدرس 27: الدوال (Functions) المتقدمة",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8572,
+    "slug": 8572,
+    "title": "الدرس 28: المتغيرات المحلية والعامة",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8573,
+    "slug": 8573,
+    "title": "الدرس 29: البرمجة الكائنية (OOP) مقدمة",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8574,
+    "slug": 8574,
+    "title": "الدرس 30: الفئات (Classes) والكائنات",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8575,
+    "slug": 8575,
+    "title": "الدرس 31: الوراثة (Inheritance)",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8576,
+    "slug": 8576,
+    "title": "الدرس 32: التغليف (Encapsulation)",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8577,
+    "slug": 8577,
+    "title": "الدرس 33: معالجة الأخطاء (Try/Except)",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8578,
+    "slug": 8578,
+    "title": "الدرس 34: التعامل مع الملفات (القراءة)",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8579,
+    "slug": 8579,
+    "title": "الدرس 35: التعامل مع الملفات (الكتابة)",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8580,
+    "slug": 8580,
+    "title": "الدرس 36: استيراد المكتبات",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8581,
+    "slug": 8581,
+    "title": "الدرس 37: مكتبة Math الرياضية",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8582,
+    "slug": 8582,
+    "title": "الدرس 38: مكتبة Random الممتعة",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8583,
+    "slug": 8583,
+    "title": "الدرس 39: مقدمة في تحليل البيانات",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8584,
+    "slug": 8584,
+    "title": "الدرس 40: مكتبة Pandas السريعة",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8585,
+    "slug": 8585,
+    "title": "الدرس 41: معالجة النصوص المتقدمة",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8586,
+    "slug": 8586,
+    "title": "الدرس 42: تعبيرات عادية (Regex)",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8587,
+    "slug": 8587,
+    "title": "الدرس 43: التعامل مع التواريخ (Datetime)",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8588,
+    "slug": 8588,
+    "title": "الدرس 44: مقدمة للواجهات الرسومية",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8589,
+    "slug": 8589,
+    "title": "الدرس 45: بناء ألعاب بسيطة",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8590,
+    "slug": 8590,
+    "title": "الدرس 46: مراجعة شاملة للمفاهيم",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8591,
+    "slug": 8591,
+    "title": "الدرس 47: خوارزميات الفرز (Sorting)",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8592,
+    "slug": 8592,
+    "title": "الدرس 48: خوارزميات البحث (Searching)",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8593,
+    "slug": 8593,
+    "title": "الدرس 49: تعقيد الخوارزميات (Time Complexity)",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8594,
+    "slug": 8594,
+    "title": "الدرس 50: هياكل البيانات المتقدمة",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8595,
+    "slug": 8595,
+    "title": "الدرس 51: تطبيق عملي: نظام إدارة مستخدمين",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8596,
+    "slug": 8596,
+    "title": "الدرس 52: التعامل مع قواعد البيانات SQLite",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8597,
+    "slug": 8597,
+    "title": "الدرس 53: الاستعلامات الأساسية",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8598,
+    "slug": 8598,
+    "title": "الدرس 54: توصيل بايثون بقاعدة بيانات",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8599,
+    "slug": 8599,
+    "title": "الدرس 55: تطبيق: متجر إلكتروني صغير",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8600,
+    "slug": 8600,
+    "title": "الدرس 56: مقدمة في تطوير الويب",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8601,
+    "slug": 8601,
+    "title": "الدرس 57: أساسيات Flask",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8602,
+    "slug": 8602,
+    "title": "الدرس 58: بناء أول خادم ويب",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8603,
+    "slug": 8603,
+    "title": "الدرس 59: التعامل مع الـ Routes",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8604,
+    "slug": 8604,
+    "title": "الدرس 60: نظام القوالب (Templates)",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8605,
+    "slug": 8605,
+    "title": "الدرس 61: أساسيات Django",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8606,
+    "slug": 8606,
+    "title": "الدرس 62: بنية مشروع Django",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8607,
+    "slug": 8607,
+    "title": "الدرس 63: النماذج (Models)",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8608,
+    "slug": 8608,
+    "title": "الدرس 64: العروض (Views)",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8609,
+    "slug": 8609,
+    "title": "الدرس 65: تطبيق: مدونة بسيطة",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8610,
+    "slug": 8610,
+    "title": "الدرس 66: مقدمة في الذكاء الاصطناعي",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8611,
+    "slug": 8611,
+    "title": "الدرس 67: أساسيات تعلم الآلة",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8612,
+    "slug": 8612,
+    "title": "الدرس 68: تجهيز البيانات",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8613,
+    "slug": 8613,
+    "title": "الدرس 69: بناء نموذج تنبؤ بسيط",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8614,
+    "slug": 8614,
+    "title": "الدرس 70: تقييم النموذج",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8615,
+    "slug": 8615,
+    "title": "الدرس 71: مقدمة في الشبكات العصبية",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8616,
+    "slug": 8616,
+    "title": "الدرس 72: مفهوم الـ Deep Learning",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8617,
+    "slug": 8617,
+    "title": "الدرس 73: التعامل مع الصور",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8618,
+    "slug": 8618,
+    "title": "الدرس 74: تصنيف الصور باستخدام بايثون",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8619,
+    "slug": 8619,
+    "title": "الدرس 75: تطبيق ذكاء اصطناعي: التعرف على الوجوه",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8620,
+    "slug": 8620,
+    "title": "الدرس 76: أساسيات أمن المعلومات في بايثون",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8621,
+    "slug": 8621,
+    "title": "الدرس 77: تشفير النصوص (Cryptography)",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8622,
+    "slug": 8622,
+    "title": "الدرس 78: فك التشفير",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8623,
+    "slug": 8623,
+    "title": "الدرس 79: فحص المنافذ (Port Scanning)",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8624,
+    "slug": 8624,
+    "title": "الدرس 80: تطبيق: أداة فحص الشبكات",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8625,
+    "slug": 8625,
+    "title": "الدرس 81: المكتبات المتقدمة",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8626,
+    "slug": 8626,
+    "title": "الدرس 82: التوازي (Threading)",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8627,
+    "slug": 8627,
+    "title": "الدرس 83: المعالجة المتعددة (Multiprocessing)",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8628,
+    "slug": 8628,
+    "title": "الدرس 84: البرمجة غير المتزامنة (Asyncio)",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8629,
+    "slug": 8629,
+    "title": "الدرس 85: اختبار الكود (Unit Testing)",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8630,
+    "slug": 8630,
+    "title": "الدرس 86: مفاهيم متقدمة في البرمجة الدالة (Functional)",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8631,
+    "slug": 8631,
+    "title": "الدرس 87: دوال Map و Filter",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8632,
+    "slug": 8632,
+    "title": "الدرس 88: دالة Lambda السريعة",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8633,
+    "slug": 8633,
+    "title": "الدرس 89: تعابير List Comprehensions",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8634,
+    "slug": 8634,
+    "title": "الدرس 90: استكشاف أخطاء متقدمة (Debugging)",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8635,
+    "slug": 8635,
+    "title": "الدرس 91: كتابة كود نظيف (Clean Code)",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8636,
+    "slug": 8636,
+    "title": "الدرس 92: مبادئ SOLID",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8637,
+    "slug": 8637,
+    "title": "الدرس 93: تطبيق شامل للبرمجة المتقدمة",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8638,
+    "slug": 8638,
+    "title": "الدرس 94: نشر التطبيقات (Deployment)",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8639,
+    "slug": 8639,
+    "title": "الدرس 95: استخدام Docker",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8640,
+    "slug": 8640,
+    "title": "الدرس 96: الاستضافة على السحاب",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8641,
+    "slug": 8641,
+    "title": "الدرس 97: مراجعة نهائية",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8642,
+    "slug": 8642,
+    "title": "الدرس 98: مشروع التخرج الأول",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8643,
+    "slug": 8643,
+    "title": "الدرس 99: مشروع التخرج الثاني",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8644,
+    "slug": 8644,
+    "title": "الدرس 100: الخاتمة والشهادة",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8545,
+    "slug": 8545,
+    "title": "الدرس 1: الأعداد الصحيحة (int) - بداية الرحلة",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8546,
+    "slug": 8546,
+    "title": "الدرس 2: الأعداد العشرية (float) - الدقة في الحسابات",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8547,
+    "slug": 8547,
+    "title": "الدرس 3: النصوص (str) - لغة التخاطب",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8548,
+    "slug": 8548,
+    "title": "الدرس 4: المنطق البولياني (bool) - الصح والخطأ",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8549,
+    "slug": 8549,
+    "title": "الدرس 5: العمليات الحسابية - الكمبيوتر كآلة حاسبة",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8550,
+    "slug": 8550,
+    "title": "الدرس 6: دمج النصوص - بناء الجمل المترابطة",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8551,
+    "slug": 8551,
+    "title": "الدرس 7: أخذ مدخلات المستخدم (input) - التفاعل الأول",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8552,
+    "slug": 8552,
+    "title": "الدرس 8: الشروط (if) - جعل الكمبيوتر يتخذ قرارات",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8553,
+    "slug": 8553,
+    "title": "الدرس 9: الشروط المعاكسة (else) - ماذا لو لم يتحقق الشرط؟",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8554,
+    "slug": 8554,
+    "title": "الدرس 10: الشروط المتعددة (elif) - خيارات لا نهائية",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8555,
+    "slug": 8555,
+    "title": "الدرس 11: المعاملات المنطقية (and / or) - شروط معقدة",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8556,
+    "slug": 8556,
+    "title": "الدرس 12: القوائم (list) - صناديق التخزين العملاقة",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8557,
+    "slug": 8557,
+    "title": "الدرس 13: الوصول لعناصر القائمة (Indexing)",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8558,
+    "slug": 8558,
+    "title": "الدرس 14: تكرار الأوامر بحلقة (for) - المحرك التلقائي",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8559,
+    "slug": 8559,
+    "title": "الدرس 15: دالة المدى (range) - توليد الأرقام",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8560,
+    "slug": 8560,
+    "title": "الدرس 16: الحلقات المشروطة (while) - الاستمرار طالما..",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8561,
+    "slug": 8561,
+    "title": "الدرس 17: القواميس (dict) - بيانات كالمحترفين",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8562,
+    "slug": 8562,
+    "title": "الدرس 18: الدوال (functions) - مصانعك البرمجية الخاصة",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8563,
+    "slug": 8563,
+    "title": "الدرس 19: مدخلات ومخرجات الدوال (Parameters & Return)",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8845,
+    "slug": 8845,
+    "title": "الدرس 1: الأعداد الصحيحة (int) - بداية الرحلة",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8846,
+    "slug": 8846,
+    "title": "الدرس 2: الأعداد العشرية (float) - الدقة في الحسابات",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8847,
+    "slug": 8847,
+    "title": "الدرس 3: النصوص (str) - لغة التخاطب",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8848,
+    "slug": 8848,
+    "title": "الدرس 4: المنطق البولياني (bool) - الصح والخطأ",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8849,
+    "slug": 8849,
+    "title": "الدرس 5: العمليات الحسابية - الكمبيوتر كآلة حاسبة",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8850,
+    "slug": 8850,
+    "title": "الدرس 6: دمج النصوص - بناء الجمل المترابطة",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8851,
+    "slug": 8851,
+    "title": "الدرس 7: أخذ مدخلات المستخدم (input) - التفاعل الأول",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8852,
+    "slug": 8852,
+    "title": "الدرس 8: الشروط (if) - جعل الكمبيوتر يتخذ قرارات",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8853,
+    "slug": 8853,
+    "title": "الدرس 9: الشروط المعاكسة (else) - ماذا لو لم يتحقق الشرط؟",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8854,
+    "slug": 8854,
+    "title": "الدرس 10: الشروط المتعددة (elif) - خيارات لا نهائية",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8855,
+    "slug": 8855,
+    "title": "الدرس 11: المعاملات المنطقية (and / or) - شروط معقدة",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8856,
+    "slug": 8856,
+    "title": "الدرس 12: القوائم (list) - صناديق التخزين العملاقة",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8857,
+    "slug": 8857,
+    "title": "الدرس 13: الوصول لعناصر القائمة (Indexing)",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8858,
+    "slug": 8858,
+    "title": "الدرس 14: تكرار الأوامر بحلقة (for) - المحرك التلقائي",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8859,
+    "slug": 8859,
+    "title": "الدرس 15: دالة المدى (range) - توليد الأرقام",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8860,
+    "slug": 8860,
+    "title": "الدرس 16: الحلقات المشروطة (while) - الاستمرار طالما..",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8861,
+    "slug": 8861,
+    "title": "الدرس 17: القواميس (dict) - بيانات كالمحترفين",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8862,
+    "slug": 8862,
+    "title": "الدرس 18: الدوال (functions) - مصانعك البرمجية الخاصة",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8863,
+    "slug": 8863,
+    "title": "الدرس 19: مدخلات ومخرجات الدوال (Parameters & Return)",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8864,
+    "slug": 8864,
+    "title": "الدرس 20: مشروع التخرج (الفصل الأول) - حاسبة العمر الذكية",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8865,
+    "slug": 8865,
+    "title": "الدرس 21: مراجعة أساسيات بايثون",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8866,
+    "slug": 8866,
+    "title": "الدرس 22: القوائم (Lists) المتقدمة",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8867,
+    "slug": 8867,
+    "title": "الدرس 23: عمليات البحث في القوائم",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8868,
+    "slug": 8868,
+    "title": "الدرس 24: القواميس (Dictionaries)",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8869,
+    "slug": 8869,
+    "title": "الدرس 25: المجموعات (Sets)",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8870,
+    "slug": 8870,
+    "title": "الدرس 26: مقارنة البيانات",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8871,
+    "slug": 8871,
+    "title": "الدرس 27: الدوال (Functions) المتقدمة",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8872,
+    "slug": 8872,
+    "title": "الدرس 28: المتغيرات المحلية والعامة",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8873,
+    "slug": 8873,
+    "title": "الدرس 29: البرمجة الكائنية (OOP) مقدمة",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8874,
+    "slug": 8874,
+    "title": "الدرس 30: الفئات (Classes) والكائنات",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8875,
+    "slug": 8875,
+    "title": "الدرس 31: الوراثة (Inheritance)",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8876,
+    "slug": 8876,
+    "title": "الدرس 32: التغليف (Encapsulation)",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8877,
+    "slug": 8877,
+    "title": "الدرس 33: معالجة الأخطاء (Try/Except)",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8878,
+    "slug": 8878,
+    "title": "الدرس 34: التعامل مع الملفات (القراءة)",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8879,
+    "slug": 8879,
+    "title": "الدرس 35: التعامل مع الملفات (الكتابة)",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8880,
+    "slug": 8880,
+    "title": "الدرس 36: استيراد المكتبات",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8881,
+    "slug": 8881,
+    "title": "الدرس 37: مكتبة Math الرياضية",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8882,
+    "slug": 8882,
+    "title": "الدرس 38: مكتبة Random الممتعة",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8883,
+    "slug": 8883,
+    "title": "الدرس 39: مقدمة في تحليل البيانات",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8884,
+    "slug": 8884,
+    "title": "الدرس 40: مكتبة Pandas السريعة",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8885,
+    "slug": 8885,
+    "title": "الدرس 41: معالجة النصوص المتقدمة",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8886,
+    "slug": 8886,
+    "title": "الدرس 42: تعبيرات عادية (Regex)",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8887,
+    "slug": 8887,
+    "title": "الدرس 43: التعامل مع التواريخ (Datetime)",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8888,
+    "slug": 8888,
+    "title": "الدرس 44: مقدمة للواجهات الرسومية",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8889,
+    "slug": 8889,
+    "title": "الدرس 45: بناء ألعاب بسيطة",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8890,
+    "slug": 8890,
+    "title": "الدرس 46: مراجعة شاملة للمفاهيم",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8891,
+    "slug": 8891,
+    "title": "الدرس 47: خوارزميات الفرز (Sorting)",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8892,
+    "slug": 8892,
+    "title": "الدرس 48: خوارزميات البحث (Searching)",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8893,
+    "slug": 8893,
+    "title": "الدرس 49: تعقيد الخوارزميات (Time Complexity)",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8894,
+    "slug": 8894,
+    "title": "الدرس 50: هياكل البيانات المتقدمة",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8895,
+    "slug": 8895,
+    "title": "الدرس 51: تطبيق عملي: نظام إدارة مستخدمين",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8896,
+    "slug": 8896,
+    "title": "الدرس 52: التعامل مع قواعد البيانات SQLite",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8897,
+    "slug": 8897,
+    "title": "الدرس 53: الاستعلامات الأساسية",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8898,
+    "slug": 8898,
+    "title": "الدرس 54: توصيل بايثون بقاعدة بيانات",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8899,
+    "slug": 8899,
+    "title": "الدرس 55: تطبيق: متجر إلكتروني صغير",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8900,
+    "slug": 8900,
+    "title": "الدرس 56: مقدمة في تطوير الويب",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8901,
+    "slug": 8901,
+    "title": "الدرس 57: أساسيات Flask",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8902,
+    "slug": 8902,
+    "title": "الدرس 58: بناء أول خادم ويب",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8903,
+    "slug": 8903,
+    "title": "الدرس 59: التعامل مع الـ Routes",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8904,
+    "slug": 8904,
+    "title": "الدرس 60: نظام القوالب (Templates)",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8905,
+    "slug": 8905,
+    "title": "الدرس 61: أساسيات Django",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8906,
+    "slug": 8906,
+    "title": "الدرس 62: بنية مشروع Django",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8907,
+    "slug": 8907,
+    "title": "الدرس 63: النماذج (Models)",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8908,
+    "slug": 8908,
+    "title": "الدرس 64: العروض (Views)",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8909,
+    "slug": 8909,
+    "title": "الدرس 65: تطبيق: مدونة بسيطة",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8910,
+    "slug": 8910,
+    "title": "الدرس 66: مقدمة في الذكاء الاصطناعي",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8911,
+    "slug": 8911,
+    "title": "الدرس 67: أساسيات تعلم الآلة",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8912,
+    "slug": 8912,
+    "title": "الدرس 68: تجهيز البيانات",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8913,
+    "slug": 8913,
+    "title": "الدرس 69: بناء نموذج تنبؤ بسيط",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8914,
+    "slug": 8914,
+    "title": "الدرس 70: تقييم النموذج",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8915,
+    "slug": 8915,
+    "title": "الدرس 71: مقدمة في الشبكات العصبية",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8916,
+    "slug": 8916,
+    "title": "الدرس 72: مفهوم الـ Deep Learning",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8917,
+    "slug": 8917,
+    "title": "الدرس 73: التعامل مع الصور",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8918,
+    "slug": 8918,
+    "title": "الدرس 74: تصنيف الصور باستخدام بايثون",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8919,
+    "slug": 8919,
+    "title": "الدرس 75: تطبيق ذكاء اصطناعي: التعرف على الوجوه",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8920,
+    "slug": 8920,
+    "title": "الدرس 76: أساسيات أمن المعلومات في بايثون",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8921,
+    "slug": 8921,
+    "title": "الدرس 77: تشفير النصوص (Cryptography)",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8922,
+    "slug": 8922,
+    "title": "الدرس 78: فك التشفير",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8923,
+    "slug": 8923,
+    "title": "الدرس 79: فحص المنافذ (Port Scanning)",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8924,
+    "slug": 8924,
+    "title": "الدرس 80: تطبيق: أداة فحص الشبكات",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8925,
+    "slug": 8925,
+    "title": "الدرس 81: المكتبات المتقدمة",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8926,
+    "slug": 8926,
+    "title": "الدرس 82: التوازي (Threading)",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8927,
+    "slug": 8927,
+    "title": "الدرس 83: المعالجة المتعددة (Multiprocessing)",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8928,
+    "slug": 8928,
+    "title": "الدرس 84: البرمجة غير المتزامنة (Asyncio)",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8929,
+    "slug": 8929,
+    "title": "الدرس 85: اختبار الكود (Unit Testing)",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8930,
+    "slug": 8930,
+    "title": "الدرس 86: مفاهيم متقدمة في البرمجة الدالة (Functional)",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8931,
+    "slug": 8931,
+    "title": "الدرس 87: دوال Map و Filter",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8932,
+    "slug": 8932,
+    "title": "الدرس 88: دالة Lambda السريعة",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8933,
+    "slug": 8933,
+    "title": "الدرس 89: تعابير List Comprehensions",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8934,
+    "slug": 8934,
+    "title": "الدرس 90: استكشاف أخطاء متقدمة (Debugging)",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8935,
+    "slug": 8935,
+    "title": "الدرس 91: كتابة كود نظيف (Clean Code)",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8936,
+    "slug": 8936,
+    "title": "الدرس 92: مبادئ SOLID",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8937,
+    "slug": 8937,
+    "title": "الدرس 93: تطبيق شامل للبرمجة المتقدمة",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8938,
+    "slug": 8938,
+    "title": "الدرس 94: نشر التطبيقات (Deployment)",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8939,
+    "slug": 8939,
+    "title": "الدرس 95: استخدام Docker",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8940,
+    "slug": 8940,
+    "title": "الدرس 96: الاستضافة على السحاب",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8941,
+    "slug": 8941,
+    "title": "الدرس 97: مراجعة نهائية",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8942,
+    "slug": 8942,
+    "title": "الدرس 98: مشروع التخرج الأول",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8943,
+    "slug": 8943,
+    "title": "الدرس 99: مشروع التخرج الثاني",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8944,
+    "slug": 8944,
+    "title": "الدرس 100: الخاتمة والشهادة",
+    "course": "python",
+    "score": 90,
+    "relevanceScore": 70,
+    "categoryRank": "No changes",
+    "issues": [
+      "Low Python relevance"
+    ]
+  },
+  {
+    "id": 8645,
+    "slug": 8645,
+    "title": "الدرس 1: استعراض الملفات (ls)",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8646,
+    "slug": 8646,
+    "title": "الدرس 2: التنقل بين المجلدات (cd)",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8647,
+    "slug": 8647,
+    "title": "الدرس 3: معرفة المسار الحالي (pwd)",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8648,
+    "slug": 8648,
+    "title": "الدرس 4: إنشاء مجلدات (mkdir)",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8649,
+    "slug": 8649,
+    "title": "الدرس 5: حذف الملفات (rm)",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8650,
+    "slug": 8650,
+    "title": "الدرس 6: نسخ الملفات (cp)",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8651,
+    "slug": 8651,
+    "title": "الدرس 7: نقل وإعادة تسمية (mv)",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8652,
+    "slug": 8652,
+    "title": "الدرس 8: إنشاء ملف فارغ وتحديث الوقت (touch)",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8653,
+    "slug": 8653,
+    "title": "الدرس 9: قراءة الملفات (cat)",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8654,
+    "slug": 8654,
+    "title": "الدرس 10: التصفح المتقدم (less)",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8655,
+    "slug": 8655,
+    "title": "الدرس 11: تعديل الصلاحيات (chmod)",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8656,
+    "slug": 8656,
+    "title": "الدرس 12: تغيير المالك (chown)",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8657,
+    "slug": 8657,
+    "title": "الدرس 13: تغيير المجموعة (chgrp)",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8658,
+    "slug": 8658,
+    "title": "الدرس 14: قناع الصلاحيات (umask)",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8659,
+    "slug": 8659,
+    "title": "الدرس 15: تغيير كلمة المرور (passwd)",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8660,
+    "slug": 8660,
+    "title": "الدرس 16: تبديل المستخدم (su)",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8661,
+    "slug": 8661,
+    "title": "الدرس 17: التنفيذ كجذر (sudo)",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8662,
+    "slug": 8662,
+    "title": "الدرس 18: تعديل ملف sudoers بـ (visudo)",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8663,
+    "slug": 8663,
+    "title": "الدرس 19: بت المستخدم المؤقت (SetUID)",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8664,
+    "slug": 8664,
+    "title": "الدرس 20: بت المجموعة المؤقت (SetGID)",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8665,
+    "slug": 8665,
+    "title": "الدرس 21: أساسيات الشبكات",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8666,
+    "slug": 8666,
+    "title": "الدرس 22: نموذج OSI",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8667,
+    "slug": 8667,
+    "title": "الدرس 23: بروتوكول TCP/IP",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8668,
+    "slug": 8668,
+    "title": "الدرس 24: مقدمة للينكس",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8669,
+    "slug": 8669,
+    "title": "الدرس 25: صلاحيات الملفات",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8670,
+    "slug": 8670,
+    "title": "الدرس 26: الشبكات اللاسلكية",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8671,
+    "slug": 8671,
+    "title": "الدرس 27: مفهوم التشفير",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8672,
+    "slug": 8672,
+    "title": "الدرس 28: الهندسة الاجتماعية",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8673,
+    "slug": 8673,
+    "title": "الدرس 29: جمع المعلومات (Reconnaissance)",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8674,
+    "slug": 8674,
+    "title": "الدرس 30: فحص الثغرات (Scanning)",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8675,
+    "slug": 8675,
+    "title": "الدرس 31: نظام Kali Linux",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8676,
+    "slug": 8676,
+    "title": "الدرس 32: أدوات الشبكة (Nmap)",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8677,
+    "slug": 8677,
+    "title": "الدرس 33: تحليل الحزم (Wireshark)",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8678,
+    "slug": 8678,
+    "title": "الدرس 34: مقدمة لاختراق الويب",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8679,
+    "slug": 8679,
+    "title": "الدرس 35: ثغرة XSS",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8680,
+    "slug": 8680,
+    "title": "الدرس 36: ثغرة SQL Injection",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8681,
+    "slug": 8681,
+    "title": "الدرس 37: تخطي أنظمة الحماية",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8682,
+    "slug": 8682,
+    "title": "الدرس 38: صلاحيات الوصول (Privilege Escalation)",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8683,
+    "slug": 8683,
+    "title": "الدرس 39: التشفير المتناظر",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8684,
+    "slug": 8684,
+    "title": "الدرس 40: التشفير غير المتناظر",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8685,
+    "slug": 8685,
+    "title": "الدرس 41: شهادات SSL/TLS",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8686,
+    "slug": 8686,
+    "title": "الدرس 42: الجدران النارية (Firewalls)",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8687,
+    "slug": 8687,
+    "title": "الدرس 43: نظم كشف التسلل (IDS)",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8688,
+    "slug": 8688,
+    "title": "الدرس 44: أنظمة الحماية المتقدمة",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8689,
+    "slug": 8689,
+    "title": "الدرس 45: البرمجيات الخبيثة (Malware)",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8690,
+    "slug": 8690,
+    "title": "الدرس 46: الفيروسات والديدان",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8691,
+    "slug": 8691,
+    "title": "الدرس 47: برامج الفدية (Ransomware)",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8692,
+    "slug": 8692,
+    "title": "الدرس 48: تحليل البرمجيات",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8693,
+    "slug": 8693,
+    "title": "الدرس 49: الأمن في السحابة (Cloud Security)",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8694,
+    "slug": 8694,
+    "title": "الدرس 50: أمن الموبايل",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8695,
+    "slug": 8695,
+    "title": "الدرس 51: استغلال ثغرات أندرويد",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8696,
+    "slug": 8696,
+    "title": "الدرس 52: تشفير الهواتف",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8697,
+    "slug": 8697,
+    "title": "الدرس 53: اختبار اختراق الشبكات",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9056,
+    "slug": 9056,
+    "title": "Lesson 12: Hotel (الفندق)",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8698,
+    "slug": 8698,
+    "title": "الدرس 54: هجمات حجب الخدمة (DDoS)",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8699,
+    "slug": 8699,
+    "title": "الدرس 55: اختطاف الجلسات (Session Hijacking)",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8700,
+    "slug": 8700,
+    "title": "الدرس 56: الرد على الحوادث (Incident Response)",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8701,
+    "slug": 8701,
+    "title": "الدرس 57: التحليل الجنائي الرقمي (Forensics)",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8702,
+    "slug": 8702,
+    "title": "الدرس 58: استعادة البيانات",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8703,
+    "slug": 8703,
+    "title": "الدرس 59: الأدلة الرقمية",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8704,
+    "slug": 8704,
+    "title": "الدرس 60: الأمن المادي",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8705,
+    "slug": 8705,
+    "title": "الدرس 61: أمن البيانات",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8706,
+    "slug": 8706,
+    "title": "الدرس 62: معيار ISO 27001",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8707,
+    "slug": 8707,
+    "title": "الدرس 63: أمن إنترنت الأشياء (IoT)",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8708,
+    "slug": 8708,
+    "title": "الدرس 64: التهديدات المتقدمة (APT)",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8709,
+    "slug": 8709,
+    "title": "الدرس 65: تأمين الشبكات المنزلية",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8710,
+    "slug": 8710,
+    "title": "الدرس 66: تطبيق: جدار ناري صغير",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8711,
+    "slug": 8711,
+    "title": "الدرس 67: تطبيق: أداة فحص ثغرات",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9051,
+    "slug": 9051,
+    "title": "Lesson 7: Excuse me (عذراً)",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8712,
+    "slug": 8712,
+    "title": "الدرس 68: القرصنة الأخلاقية (Ethical Hacking)",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8713,
+    "slug": 8713,
+    "title": "الدرس 69: تجاوز الـ Antivirus",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8714,
+    "slug": 8714,
+    "title": "الدرس 70: مفاهيم الهندسة العكسية",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8952,
+    "slug": 8952,
+    "title": "الدرس 8: إنشاء ملف فارغ وتحديث الوقت (touch)",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8715,
+    "slug": 8715,
+    "title": "الدرس 71: استغلال الذاكرة (Buffer Overflow)",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8716,
+    "slug": 8716,
+    "title": "الدرس 72: أمن قواعد البيانات",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8717,
+    "slug": 8717,
+    "title": "الدرس 73: تأمين الخوادم",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8953,
+    "slug": 8953,
+    "title": "الدرس 9: قراءة الملفات (cat)",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8718,
+    "slug": 8718,
+    "title": "الدرس 74: بروتوكولات الأمان",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8719,
+    "slug": 8719,
+    "title": "الدرس 75: VPN و Proxy",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8720,
+    "slug": 8720,
+    "title": "الدرس 76: الهوية وإدارة الوصول (IAM)",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8954,
+    "slug": 8954,
+    "title": "الدرس 10: التصفح المتقدم (less)",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8721,
+    "slug": 8721,
+    "title": "الدرس 77: التحقق الثنائي (2FA)",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8722,
+    "slug": 8722,
+    "title": "الدرس 78: البصمة الرقمية",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8723,
+    "slug": 8723,
+    "title": "الدرس 79: أمن التطبيقات",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8955,
+    "slug": 8955,
+    "title": "الدرس 11: تعديل الصلاحيات (chmod)",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8724,
+    "slug": 8724,
+    "title": "الدرس 80: ممارسات الكود الآمن",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8725,
+    "slug": 8725,
+    "title": "الدرس 81: إدارة كلمات المرور",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8726,
+    "slug": 8726,
+    "title": "الدرس 82: التشفير بـ PGP",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9062,
+    "slug": 9062,
+    "title": "Lesson 18: Luggage (الأمتعة)",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8727,
+    "slug": 8727,
+    "title": "الدرس 83: الأمن في بيئة العمل",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8728,
+    "slug": 8728,
+    "title": "الدرس 84: سياسات الأمان",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8729,
+    "slug": 8729,
+    "title": "الدرس 85: تدريب العاملين",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8956,
+    "slug": 8956,
+    "title": "الدرس 12: تغيير المالك (chown)",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8730,
+    "slug": 8730,
+    "title": "الدرس 86: أمن البريد الإلكتروني",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8731,
+    "slug": 8731,
+    "title": "الدرس 87: هجمات Phishing",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8732,
+    "slug": 8732,
+    "title": "الدرس 88: استخبارات التهديدات",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8957,
+    "slug": 8957,
+    "title": "الدرس 13: تغيير المجموعة (chgrp)",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8733,
+    "slug": 8733,
+    "title": "الدرس 89: أمان المتصفحات",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8734,
+    "slug": 8734,
+    "title": "الدرس 90: الخصوصية على الإنترنت",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8735,
+    "slug": 8735,
+    "title": "الدرس 91: أدوات التخفي",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8958,
+    "slug": 8958,
+    "title": "الدرس 14: قناع الصلاحيات (umask)",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8736,
+    "slug": 8736,
+    "title": "الدرس 92: شبكة Tor",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8737,
+    "slug": 8737,
+    "title": "الدرس 93: تطبيق عملي: حماية جهازك",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8738,
+    "slug": 8738,
+    "title": "الدرس 94: تشفير الملفات الحساسة",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8959,
+    "slug": 8959,
+    "title": "الدرس 15: تغيير كلمة المرور (passwd)",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8739,
+    "slug": 8739,
+    "title": "الدرس 95: المستقبل والأمن السيبراني",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8740,
+    "slug": 8740,
+    "title": "الدرس 96: الذكاء الاصطناعي في الأمن",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8741,
+    "slug": 8741,
+    "title": "الدرس 97: تحديات الاختراق (CTF)",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8960,
+    "slug": 8960,
+    "title": "الدرس 16: تبديل المستخدم (su)",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8742,
+    "slug": 8742,
+    "title": "الدرس 98: مراجعة شاملة للمفاهيم",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8743,
+    "slug": 8743,
+    "title": "الدرس 99: مشروع التخرج",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8744,
+    "slug": 8744,
+    "title": "الدرس 100: الخاتمة",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8745,
+    "slug": 8745,
+    "title": "Lesson 1: Hello (مرحباً)",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8746,
+    "slug": 8746,
+    "title": "Lesson 2: Goodbye (إلى اللقاء)",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8747,
+    "slug": 8747,
+    "title": "Lesson 3: Please (من فضلك)",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8748,
+    "slug": 8748,
+    "title": "Lesson 4: Thank you (شكراً لك)",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8749,
+    "slug": 8749,
+    "title": "Lesson 5: Yes (نعم)",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8750,
+    "slug": 8750,
+    "title": "Lesson 6: No (لا)",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8751,
+    "slug": 8751,
+    "title": "Lesson 7: Excuse me (عذراً)",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8752,
+    "slug": 8752,
+    "title": "Lesson 8: Sorry (آسف)",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8753,
+    "slug": 8753,
+    "title": "Lesson 9: Good morning (صباح الخير)",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8754,
+    "slug": 8754,
+    "title": "Lesson 10: Good night (تصبح على خير)",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8755,
+    "slug": 8755,
+    "title": "Lesson 11: Airport (المطار)",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8756,
+    "slug": 8756,
+    "title": "Lesson 12: Hotel (الفندق)",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8757,
+    "slug": 8757,
+    "title": "Lesson 13: Taxi (سيارة الأجرة)",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8758,
+    "slug": 8758,
+    "title": "Lesson 14: Train (القطار)",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8759,
+    "slug": 8759,
+    "title": "Lesson 15: Bus (الحافلة)",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8760,
+    "slug": 8760,
+    "title": "Lesson 16: Map (الخريطة)",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8761,
+    "slug": 8761,
+    "title": "Lesson 17: Ticket (التذكرة)",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8762,
+    "slug": 8762,
+    "title": "Lesson 18: Luggage (الأمتعة)",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8763,
+    "slug": 8763,
+    "title": "Lesson 19: Passport (جواز السفر)",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8764,
+    "slug": 8764,
+    "title": "Lesson 20: Direction (الاتجاهات)",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8765,
+    "slug": 8765,
+    "title": "الدرس 21: التحيات الأساسية",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8766,
+    "slug": 8766,
+    "title": "الدرس 22: الأرقام والألوان",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8767,
+    "slug": 8767,
+    "title": "الدرس 23: العائلة والأقارب",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8768,
+    "slug": 8768,
+    "title": "الدرس 24: الوقت والساعة",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8769,
+    "slug": 8769,
+    "title": "الدرس 25: الأيام والشهور",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9052,
+    "slug": 9052,
+    "title": "Lesson 8: Sorry (آسف)",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8770,
+    "slug": 8770,
+    "title": "الدرس 26: الطعام والشراب",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8771,
+    "slug": 8771,
+    "title": "الدرس 27: في المطعم",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8772,
+    "slug": 8772,
+    "title": "الدرس 28: في المطار",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9053,
+    "slug": 9053,
+    "title": "Lesson 9: Good morning (صباح الخير)",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8773,
+    "slug": 8773,
+    "title": "الدرس 29: السفر والسياحة",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8774,
+    "slug": 8774,
+    "title": "الدرس 30: حجز فندق",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8775,
+    "slug": 8775,
+    "title": "الدرس 31: التسوق والملابس",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9054,
+    "slug": 9054,
+    "title": "Lesson 10: Good night (تصبح على خير)",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8776,
+    "slug": 8776,
+    "title": "الدرس 32: السؤال عن الاتجاهات",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8777,
+    "slug": 8777,
+    "title": "الدرس 33: في المستشفى",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8778,
+    "slug": 8778,
+    "title": "الدرس 34: أجزاء الجسم",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8779,
+    "slug": 8779,
+    "title": "الدرس 35: الطقس والفصول",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8780,
+    "slug": 8780,
+    "title": "الدرس 36: المهن والوظائف",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8781,
+    "slug": 8781,
+    "title": "الدرس 37: في العمل",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8782,
+    "slug": 8782,
+    "title": "الدرس 38: مقابلة شخصية",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8783,
+    "slug": 8783,
+    "title": "الدرس 39: الأفعال الأساسية",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8784,
+    "slug": 8784,
+    "title": "الدرس 40: المضارع البسيط",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8785,
+    "slug": 8785,
+    "title": "الدرس 41: الماضي البسيط",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8786,
+    "slug": 8786,
+    "title": "الدرس 42: المستقبل",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8787,
+    "slug": 8787,
+    "title": "الدرس 43: السؤال والنفي",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8788,
+    "slug": 8788,
+    "title": "الدرس 44: حروف الجر",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8789,
+    "slug": 8789,
+    "title": "الدرس 45: الصفات وعكسها",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8790,
+    "slug": 8790,
+    "title": "الدرس 46: المقارنة والتفضيل",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8791,
+    "slug": 8791,
+    "title": "الدرس 47: الضمائر الشخصية",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8792,
+    "slug": 8792,
+    "title": "الدرس 48: ضمائر الملكية",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8793,
+    "slug": 8793,
+    "title": "الدرس 49: الجمل المعقدة",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8794,
+    "slug": 8794,
+    "title": "الدرس 50: أدوات الربط",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8795,
+    "slug": 8795,
+    "title": "الدرس 51: الهوايات والرياضة",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8796,
+    "slug": 8796,
+    "title": "الدرس 52: في صالة الألعاب",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8797,
+    "slug": 8797,
+    "title": "الدرس 53: الفنون والموسيقى",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8798,
+    "slug": 8798,
+    "title": "الدرس 54: التكنولوجيا والانترنت",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8799,
+    "slug": 8799,
+    "title": "الدرس 55: وسائل التواصل",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8800,
+    "slug": 8800,
+    "title": "الدرس 56: التعليم والمدرسة",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8801,
+    "slug": 8801,
+    "title": "الدرس 57: الجامعة والتخصصات",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8802,
+    "slug": 8802,
+    "title": "الدرس 58: الأدب والكتب",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8803,
+    "slug": 8803,
+    "title": "الدرس 59: الأفلام والسينما",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8804,
+    "slug": 8804,
+    "title": "الدرس 60: الثقافة والتقاليد",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8805,
+    "slug": 8805,
+    "title": "الدرس 61: الاحتفالات والأعياد",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8806,
+    "slug": 8806,
+    "title": "الدرس 62: الطبيعة والحيوانات",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8807,
+    "slug": 8807,
+    "title": "الدرس 63: البيئة والمناخ",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8808,
+    "slug": 8808,
+    "title": "الدرس 64: المواصلات العامة",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8809,
+    "slug": 8809,
+    "title": "الدرس 65: السيارة والقيادة",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8810,
+    "slug": 8810,
+    "title": "الدرس 66: المشاعر والأحاسيس",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8811,
+    "slug": 8811,
+    "title": "الدرس 67: إبداء الرأي",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8812,
+    "slug": 8812,
+    "title": "الدرس 68: الموافقة والرفض",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8813,
+    "slug": 8813,
+    "title": "الدرس 69: الاعتذار والشكر",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8814,
+    "slug": 8814,
+    "title": "الدرس 70: التعبير عن الدهشة",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8815,
+    "slug": 8815,
+    "title": "الدرس 71: الوصف الجسدي",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8816,
+    "slug": 8816,
+    "title": "الدرس 72: وصف الشخصيات",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8817,
+    "slug": 8817,
+    "title": "الدرس 73: المظهر الخارجي",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8818,
+    "slug": 8818,
+    "title": "الدرس 74: الألعاب المنزلية",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8819,
+    "slug": 8819,
+    "title": "الدرس 75: الأثاث والغرف",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8820,
+    "slug": 8820,
+    "title": "الدرس 76: في المطبخ",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8821,
+    "slug": 8821,
+    "title": "الدرس 77: الطبخ والوصفات",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8822,
+    "slug": 8822,
+    "title": "الدرس 78: التسوق في السوبرماركت",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8823,
+    "slug": 8823,
+    "title": "الدرس 79: الأموال والبنوك",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8824,
+    "slug": 8824,
+    "title": "الدرس 80: الاقتصاد والأعمال",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8825,
+    "slug": 8825,
+    "title": "الدرس 81: السياسة والمجتمع",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8826,
+    "slug": 8826,
+    "title": "الدرس 82: الأخبار والصحافة",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8827,
+    "slug": 8827,
+    "title": "الدرس 83: التاريخ والجغرافيا",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8828,
+    "slug": 8828,
+    "title": "الدرس 84: الفضاء والكون",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8829,
+    "slug": 8829,
+    "title": "الدرس 85: العلوم والاختراعات",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8830,
+    "slug": 8830,
+    "title": "الدرس 86: المستقبل والتوقعات",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8831,
+    "slug": 8831,
+    "title": "الدرس 87: الأهداف والطموحات",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8832,
+    "slug": 8832,
+    "title": "الدرس 88: نصائح وارشادات",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8833,
+    "slug": 8833,
+    "title": "الدرس 89: حوارات يومية",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8834,
+    "slug": 8834,
+    "title": "الدرس 90: محادثات هاتفية",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8835,
+    "slug": 8835,
+    "title": "الدرس 91: كتابة رسالة إلكترونية",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8836,
+    "slug": 8836,
+    "title": "الدرس 92: كتابة سيرة ذاتية",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8837,
+    "slug": 8837,
+    "title": "الدرس 93: الخطابات الرسمية",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8838,
+    "slug": 8838,
+    "title": "الدرس 94: المفردات المتقدمة",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8839,
+    "slug": 8839,
+    "title": "الدرس 95: المصطلحات الشعبية (Idioms)",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8840,
+    "slug": 8840,
+    "title": "الدرس 96: الأمثال والحكم",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8841,
+    "slug": 8841,
+    "title": "الدرس 97: النطق الصحيح (Pronunciation)",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8842,
+    "slug": 8842,
+    "title": "الدرس 98: الاستماع المتقدم",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8843,
+    "slug": 8843,
+    "title": "الدرس 99: القراءة والفهم",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8844,
+    "slug": 8844,
+    "title": "الدرس 100: التحدث بطلاقة",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8961,
+    "slug": 8961,
+    "title": "الدرس 17: التنفيذ كجذر (sudo)",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8962,
+    "slug": 8962,
+    "title": "الدرس 18: تعديل ملف sudoers بـ (visudo)",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8963,
+    "slug": 8963,
+    "title": "الدرس 19: بت المستخدم المؤقت (SetUID)",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9049,
+    "slug": 9049,
+    "title": "Lesson 5: Yes (نعم)",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8945,
+    "slug": 8945,
+    "title": "الدرس 1: استعراض الملفات (ls)",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9050,
+    "slug": 9050,
+    "title": "Lesson 6: No (لا)",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8946,
+    "slug": 8946,
+    "title": "الدرس 2: التنقل بين المجلدات (cd)",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9055,
+    "slug": 9055,
+    "title": "Lesson 11: Airport (المطار)",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8947,
+    "slug": 8947,
+    "title": "الدرس 3: معرفة المسار الحالي (pwd)",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8948,
+    "slug": 8948,
+    "title": "الدرس 4: إنشاء مجلدات (mkdir)",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8949,
+    "slug": 8949,
+    "title": "الدرس 5: حذف الملفات (rm)",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8950,
+    "slug": 8950,
+    "title": "الدرس 6: نسخ الملفات (cp)",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8951,
+    "slug": 8951,
+    "title": "الدرس 7: نقل وإعادة تسمية (mv)",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8964,
+    "slug": 8964,
+    "title": "الدرس 20: بت المجموعة المؤقت (SetGID)",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8965,
+    "slug": 8965,
+    "title": "الدرس 21: أساسيات الشبكات",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8966,
+    "slug": 8966,
+    "title": "الدرس 22: نموذج OSI",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8967,
+    "slug": 8967,
+    "title": "الدرس 23: بروتوكول TCP/IP",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8968,
+    "slug": 8968,
+    "title": "الدرس 24: مقدمة للينكس",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8969,
+    "slug": 8969,
+    "title": "الدرس 25: صلاحيات الملفات",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8970,
+    "slug": 8970,
+    "title": "الدرس 26: الشبكات اللاسلكية",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8971,
+    "slug": 8971,
+    "title": "الدرس 27: مفهوم التشفير",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8972,
+    "slug": 8972,
+    "title": "الدرس 28: الهندسة الاجتماعية",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8973,
+    "slug": 8973,
+    "title": "الدرس 29: جمع المعلومات (Reconnaissance)",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8974,
+    "slug": 8974,
+    "title": "الدرس 30: فحص الثغرات (Scanning)",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8975,
+    "slug": 8975,
+    "title": "الدرس 31: نظام Kali Linux",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8976,
+    "slug": 8976,
+    "title": "الدرس 32: أدوات الشبكة (Nmap)",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8977,
+    "slug": 8977,
+    "title": "الدرس 33: تحليل الحزم (Wireshark)",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8978,
+    "slug": 8978,
+    "title": "الدرس 34: مقدمة لاختراق الويب",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8979,
+    "slug": 8979,
+    "title": "الدرس 35: ثغرة XSS",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8980,
+    "slug": 8980,
+    "title": "الدرس 36: ثغرة SQL Injection",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8981,
+    "slug": 8981,
+    "title": "الدرس 37: تخطي أنظمة الحماية",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8982,
+    "slug": 8982,
+    "title": "الدرس 38: صلاحيات الوصول (Privilege Escalation)",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8983,
+    "slug": 8983,
+    "title": "الدرس 39: التشفير المتناظر",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8984,
+    "slug": 8984,
+    "title": "الدرس 40: التشفير غير المتناظر",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8985,
+    "slug": 8985,
+    "title": "الدرس 41: شهادات SSL/TLS",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8986,
+    "slug": 8986,
+    "title": "الدرس 42: الجدران النارية (Firewalls)",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8987,
+    "slug": 8987,
+    "title": "الدرس 43: نظم كشف التسلل (IDS)",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8988,
+    "slug": 8988,
+    "title": "الدرس 44: أنظمة الحماية المتقدمة",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8989,
+    "slug": 8989,
+    "title": "الدرس 45: البرمجيات الخبيثة (Malware)",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8990,
+    "slug": 8990,
+    "title": "الدرس 46: الفيروسات والديدان",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8991,
+    "slug": 8991,
+    "title": "الدرس 47: برامج الفدية (Ransomware)",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8992,
+    "slug": 8992,
+    "title": "الدرس 48: تحليل البرمجيات",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8993,
+    "slug": 8993,
+    "title": "الدرس 49: الأمن في السحابة (Cloud Security)",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8994,
+    "slug": 8994,
+    "title": "الدرس 50: أمن الموبايل",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8995,
+    "slug": 8995,
+    "title": "الدرس 51: استغلال ثغرات أندرويد",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8996,
+    "slug": 8996,
+    "title": "الدرس 52: تشفير الهواتف",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8997,
+    "slug": 8997,
+    "title": "الدرس 53: اختبار اختراق الشبكات",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8998,
+    "slug": 8998,
+    "title": "الدرس 54: هجمات حجب الخدمة (DDoS)",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 8999,
+    "slug": 8999,
+    "title": "الدرس 55: اختطاف الجلسات (Session Hijacking)",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9000,
+    "slug": 9000,
+    "title": "الدرس 56: الرد على الحوادث (Incident Response)",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9001,
+    "slug": 9001,
+    "title": "الدرس 57: التحليل الجنائي الرقمي (Forensics)",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9002,
+    "slug": 9002,
+    "title": "الدرس 58: استعادة البيانات",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9003,
+    "slug": 9003,
+    "title": "الدرس 59: الأدلة الرقمية",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9004,
+    "slug": 9004,
+    "title": "الدرس 60: الأمن المادي",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9005,
+    "slug": 9005,
+    "title": "الدرس 61: أمن البيانات",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9006,
+    "slug": 9006,
+    "title": "الدرس 62: معيار ISO 27001",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9007,
+    "slug": 9007,
+    "title": "الدرس 63: أمن إنترنت الأشياء (IoT)",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9008,
+    "slug": 9008,
+    "title": "الدرس 64: التهديدات المتقدمة (APT)",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9009,
+    "slug": 9009,
+    "title": "الدرس 65: تأمين الشبكات المنزلية",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9010,
+    "slug": 9010,
+    "title": "الدرس 66: تطبيق: جدار ناري صغير",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9011,
+    "slug": 9011,
+    "title": "الدرس 67: تطبيق: أداة فحص ثغرات",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9012,
+    "slug": 9012,
+    "title": "الدرس 68: القرصنة الأخلاقية (Ethical Hacking)",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9013,
+    "slug": 9013,
+    "title": "الدرس 69: تجاوز الـ Antivirus",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9014,
+    "slug": 9014,
+    "title": "الدرس 70: مفاهيم الهندسة العكسية",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9015,
+    "slug": 9015,
+    "title": "الدرس 71: استغلال الذاكرة (Buffer Overflow)",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9016,
+    "slug": 9016,
+    "title": "الدرس 72: أمن قواعد البيانات",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9017,
+    "slug": 9017,
+    "title": "الدرس 73: تأمين الخوادم",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9018,
+    "slug": 9018,
+    "title": "الدرس 74: بروتوكولات الأمان",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9019,
+    "slug": 9019,
+    "title": "الدرس 75: VPN و Proxy",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9020,
+    "slug": 9020,
+    "title": "الدرس 76: الهوية وإدارة الوصول (IAM)",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9021,
+    "slug": 9021,
+    "title": "الدرس 77: التحقق الثنائي (2FA)",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9022,
+    "slug": 9022,
+    "title": "الدرس 78: البصمة الرقمية",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9023,
+    "slug": 9023,
+    "title": "الدرس 79: أمن التطبيقات",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9024,
+    "slug": 9024,
+    "title": "الدرس 80: ممارسات الكود الآمن",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9025,
+    "slug": 9025,
+    "title": "الدرس 81: إدارة كلمات المرور",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9026,
+    "slug": 9026,
+    "title": "الدرس 82: التشفير بـ PGP",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9027,
+    "slug": 9027,
+    "title": "الدرس 83: الأمن في بيئة العمل",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9028,
+    "slug": 9028,
+    "title": "الدرس 84: سياسات الأمان",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9029,
+    "slug": 9029,
+    "title": "الدرس 85: تدريب العاملين",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9030,
+    "slug": 9030,
+    "title": "الدرس 86: أمن البريد الإلكتروني",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9031,
+    "slug": 9031,
+    "title": "الدرس 87: هجمات Phishing",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9032,
+    "slug": 9032,
+    "title": "الدرس 88: استخبارات التهديدات",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9033,
+    "slug": 9033,
+    "title": "الدرس 89: أمان المتصفحات",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9034,
+    "slug": 9034,
+    "title": "الدرس 90: الخصوصية على الإنترنت",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9035,
+    "slug": 9035,
+    "title": "الدرس 91: أدوات التخفي",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9036,
+    "slug": 9036,
+    "title": "الدرس 92: شبكة Tor",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9037,
+    "slug": 9037,
+    "title": "الدرس 93: تطبيق عملي: حماية جهازك",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9038,
+    "slug": 9038,
+    "title": "الدرس 94: تشفير الملفات الحساسة",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9039,
+    "slug": 9039,
+    "title": "الدرس 95: المستقبل والأمن السيبراني",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9040,
+    "slug": 9040,
+    "title": "الدرس 96: الذكاء الاصطناعي في الأمن",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9041,
+    "slug": 9041,
+    "title": "الدرس 97: تحديات الاختراق (CTF)",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9042,
+    "slug": 9042,
+    "title": "الدرس 98: مراجعة شاملة للمفاهيم",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9043,
+    "slug": 9043,
+    "title": "الدرس 99: مشروع التخرج",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9044,
+    "slug": 9044,
+    "title": "الدرس 100: الخاتمة",
+    "course": "cyber",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9045,
+    "slug": 9045,
+    "title": "Lesson 1: Hello (مرحباً)",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9046,
+    "slug": 9046,
+    "title": "Lesson 2: Goodbye (إلى اللقاء)",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9047,
+    "slug": 9047,
+    "title": "Lesson 3: Please (من فضلك)",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9048,
+    "slug": 9048,
+    "title": "Lesson 4: Thank you (شكراً لك)",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9057,
+    "slug": 9057,
+    "title": "Lesson 13: Taxi (سيارة الأجرة)",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9058,
+    "slug": 9058,
+    "title": "Lesson 14: Train (القطار)",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9059,
+    "slug": 9059,
+    "title": "Lesson 15: Bus (الحافلة)",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9060,
+    "slug": 9060,
+    "title": "Lesson 16: Map (الخريطة)",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9061,
+    "slug": 9061,
+    "title": "Lesson 17: Ticket (التذكرة)",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9063,
+    "slug": 9063,
+    "title": "Lesson 19: Passport (جواز السفر)",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9064,
+    "slug": 9064,
+    "title": "Lesson 20: Direction (الاتجاهات)",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9065,
+    "slug": 9065,
+    "title": "الدرس 21: التحيات الأساسية",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9066,
+    "slug": 9066,
+    "title": "الدرس 22: الأرقام والألوان",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9067,
+    "slug": 9067,
+    "title": "الدرس 23: العائلة والأقارب",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9068,
+    "slug": 9068,
+    "title": "الدرس 24: الوقت والساعة",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9069,
+    "slug": 9069,
+    "title": "الدرس 25: الأيام والشهور",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9070,
+    "slug": 9070,
+    "title": "الدرس 26: الطعام والشراب",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9071,
+    "slug": 9071,
+    "title": "الدرس 27: في المطعم",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9072,
+    "slug": 9072,
+    "title": "الدرس 28: في المطار",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9073,
+    "slug": 9073,
+    "title": "الدرس 29: السفر والسياحة",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9074,
+    "slug": 9074,
+    "title": "الدرس 30: حجز فندق",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9075,
+    "slug": 9075,
+    "title": "الدرس 31: التسوق والملابس",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9076,
+    "slug": 9076,
+    "title": "الدرس 32: السؤال عن الاتجاهات",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9077,
+    "slug": 9077,
+    "title": "الدرس 33: في المستشفى",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9078,
+    "slug": 9078,
+    "title": "الدرس 34: أجزاء الجسم",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9079,
+    "slug": 9079,
+    "title": "الدرس 35: الطقس والفصول",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9080,
+    "slug": 9080,
+    "title": "الدرس 36: المهن والوظائف",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9081,
+    "slug": 9081,
+    "title": "الدرس 37: في العمل",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9082,
+    "slug": 9082,
+    "title": "الدرس 38: مقابلة شخصية",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9083,
+    "slug": 9083,
+    "title": "الدرس 39: الأفعال الأساسية",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9084,
+    "slug": 9084,
+    "title": "الدرس 40: المضارع البسيط",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9085,
+    "slug": 9085,
+    "title": "الدرس 41: الماضي البسيط",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9086,
+    "slug": 9086,
+    "title": "الدرس 42: المستقبل",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9087,
+    "slug": 9087,
+    "title": "الدرس 43: السؤال والنفي",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9088,
+    "slug": 9088,
+    "title": "الدرس 44: حروف الجر",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9089,
+    "slug": 9089,
+    "title": "الدرس 45: الصفات وعكسها",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9090,
+    "slug": 9090,
+    "title": "الدرس 46: المقارنة والتفضيل",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9091,
+    "slug": 9091,
+    "title": "الدرس 47: الضمائر الشخصية",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9092,
+    "slug": 9092,
+    "title": "الدرس 48: ضمائر الملكية",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9093,
+    "slug": 9093,
+    "title": "الدرس 49: الجمل المعقدة",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9094,
+    "slug": 9094,
+    "title": "الدرس 50: أدوات الربط",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9095,
+    "slug": 9095,
+    "title": "الدرس 51: الهوايات والرياضة",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9096,
+    "slug": 9096,
+    "title": "الدرس 52: في صالة الألعاب",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9097,
+    "slug": 9097,
+    "title": "الدرس 53: الفنون والموسيقى",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9098,
+    "slug": 9098,
+    "title": "الدرس 54: التكنولوجيا والانترنت",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9099,
+    "slug": 9099,
+    "title": "الدرس 55: وسائل التواصل",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9100,
+    "slug": 9100,
+    "title": "الدرس 56: التعليم والمدرسة",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9101,
+    "slug": 9101,
+    "title": "الدرس 57: الجامعة والتخصصات",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9102,
+    "slug": 9102,
+    "title": "الدرس 58: الأدب والكتب",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9103,
+    "slug": 9103,
+    "title": "الدرس 59: الأفلام والسينما",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9104,
+    "slug": 9104,
+    "title": "الدرس 60: الثقافة والتقاليد",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9105,
+    "slug": 9105,
+    "title": "الدرس 61: الاحتفالات والأعياد",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9106,
+    "slug": 9106,
+    "title": "الدرس 62: الطبيعة والحيوانات",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9107,
+    "slug": 9107,
+    "title": "الدرس 63: البيئة والمناخ",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9108,
+    "slug": 9108,
+    "title": "الدرس 64: المواصلات العامة",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9109,
+    "slug": 9109,
+    "title": "الدرس 65: السيارة والقيادة",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9110,
+    "slug": 9110,
+    "title": "الدرس 66: المشاعر والأحاسيس",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9111,
+    "slug": 9111,
+    "title": "الدرس 67: إبداء الرأي",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9112,
+    "slug": 9112,
+    "title": "الدرس 68: الموافقة والرفض",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9113,
+    "slug": 9113,
+    "title": "الدرس 69: الاعتذار والشكر",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9114,
+    "slug": 9114,
+    "title": "الدرس 70: التعبير عن الدهشة",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9115,
+    "slug": 9115,
+    "title": "الدرس 71: الوصف الجسدي",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9116,
+    "slug": 9116,
+    "title": "الدرس 72: وصف الشخصيات",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9117,
+    "slug": 9117,
+    "title": "الدرس 73: المظهر الخارجي",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9118,
+    "slug": 9118,
+    "title": "الدرس 74: الألعاب المنزلية",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9119,
+    "slug": 9119,
+    "title": "الدرس 75: الأثاث والغرف",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9120,
+    "slug": 9120,
+    "title": "الدرس 76: في المطبخ",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9121,
+    "slug": 9121,
+    "title": "الدرس 77: الطبخ والوصفات",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9122,
+    "slug": 9122,
+    "title": "الدرس 78: التسوق في السوبرماركت",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9123,
+    "slug": 9123,
+    "title": "الدرس 79: الأموال والبنوك",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9124,
+    "slug": 9124,
+    "title": "الدرس 80: الاقتصاد والأعمال",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9125,
+    "slug": 9125,
+    "title": "الدرس 81: السياسة والمجتمع",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9126,
+    "slug": 9126,
+    "title": "الدرس 82: الأخبار والصحافة",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9127,
+    "slug": 9127,
+    "title": "الدرس 83: التاريخ والجغرافيا",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9128,
+    "slug": 9128,
+    "title": "الدرس 84: الفضاء والكون",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9129,
+    "slug": 9129,
+    "title": "الدرس 85: العلوم والاختراعات",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9130,
+    "slug": 9130,
+    "title": "الدرس 86: المستقبل والتوقعات",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9131,
+    "slug": 9131,
+    "title": "الدرس 87: الأهداف والطموحات",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9132,
+    "slug": 9132,
+    "title": "الدرس 88: نصائح وارشادات",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9133,
+    "slug": 9133,
+    "title": "الدرس 89: حوارات يومية",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9134,
+    "slug": 9134,
+    "title": "الدرس 90: محادثات هاتفية",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9135,
+    "slug": 9135,
+    "title": "الدرس 91: كتابة رسالة إلكترونية",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9136,
+    "slug": 9136,
+    "title": "الدرس 92: كتابة سيرة ذاتية",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9137,
+    "slug": 9137,
+    "title": "الدرس 93: الخطابات الرسمية",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9138,
+    "slug": 9138,
+    "title": "الدرس 94: المفردات المتقدمة",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9139,
+    "slug": 9139,
+    "title": "الدرس 95: المصطلحات الشعبية (Idioms)",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9140,
+    "slug": 9140,
+    "title": "الدرس 96: الأمثال والحكم",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9141,
+    "slug": 9141,
+    "title": "الدرس 97: النطق الصحيح (Pronunciation)",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9142,
+    "slug": 9142,
+    "title": "الدرس 98: الاستماع المتقدم",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9143,
+    "slug": 9143,
+    "title": "الدرس 99: القراءة والفهم",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  },
+  {
+    "id": 9144,
+    "slug": 9144,
+    "title": "الدرس 100: التحدث بطلاقة",
+    "course": "language",
+    "score": 100,
+    "relevanceScore": 100,
+    "categoryRank": "No changes",
+    "issues": []
+  }
+]
