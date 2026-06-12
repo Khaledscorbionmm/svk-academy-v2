@@ -18,12 +18,19 @@ export async function GET(req: NextRequest, { params }: { params: Promise<{ less
     
     // 1. DUAL-READ ARCHITECTURE: Try Database First
     try {
-        const dbLessons = await prisma.lessons.findMany({
-            where: {
+        let whereClause: any = {};
+        if (!isNaN(Number(lessonId))) {
+            whereClause = { id: Number(lessonId) };
+        } else {
+            whereClause = {
                 content: {
                     contains: `"lesson_slug":"${lessonId}"` // Very fast subset matching
                 }
-            },
+            };
+        }
+
+        const dbLessons = await prisma.lessons.findMany({
+            where: whereClause,
             include: { courses: true },
             take: 1
         });
@@ -33,7 +40,7 @@ export async function GET(req: NextRequest, { params }: { params: Promise<{ less
             course = dbLesson.courses;
             // Parse our beautiful JSON 9-Component structure that we imported into the string content field
             lesson = JSON.parse(dbLesson.content as string);
-            lesson.id = lesson.lesson_slug; // Map back to slug for UI
+            lesson.id = dbLesson.id; // Map to DB ID for consistent URL routing
             
             // Fetch sidebar
             const sidebarData = await prisma.lessons.findMany({
@@ -43,7 +50,7 @@ export async function GET(req: NextRequest, { params }: { params: Promise<{ less
             
             allLessons = sidebarData.map(l => {
                 const p = JSON.parse(l.content as string);
-                return { id: p.lesson_slug, title: p.title, is_free: p.is_free, duration_minutes: p.duration_minutes, content_type: p.content_type, lesson_slug: p.lesson_slug };
+                return { id: l.id, title: p.title, is_free: p.is_free, duration_minutes: p.duration_minutes, content_type: p.content_type, lesson_slug: p.lesson_slug };
             });
         }
     } catch (e) {
