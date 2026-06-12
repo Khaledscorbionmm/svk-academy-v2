@@ -14,14 +14,14 @@ export default function StudentLoginPage() {
 
   useEffect(() => {
     // Check if already logged in
-    fetch('/api/auth/session', { cache: 'no-store' })
+    fetch('/api/auth/me', { cache: 'no-store' })
       .then(res => {
         if (res.ok) return res.json();
         throw new Error('Not logged in');
       })
       .then(data => {
         if (data.user) {
-          if ((data.user as any).role === 'admin') {
+          if (data.user.role === 'admin') {
             router.push('/admin/dashboard');
           } else {
             router.push('/dashboard');
@@ -37,129 +37,117 @@ export default function StudentLoginPage() {
     e.preventDefault();
     setError('');
     
-    if (!identifier.trim()) { setError('يرجى إدخال البريد الإلكتروني أو رقم الهاتف'); return; }
-    if (!password.trim()) { setError('يرجى إدخال كلمة المرور'); return; }
+    if (!identifier.trim()) { setError('???? ????? ?????? ?????????? ?? ??? ??????'); return; }
+    if (!password.trim()) { setError('???? ????? ???? ??????'); return; }
     
     setLoading(true);
     try {
-      const { signIn } = await import('next-auth/react');
-      const res = await signIn('credentials', {
-        redirect: false,
-        email: identifier,
-        password,
+      const res = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ identifier: identifier.trim(), password })
       });
+      
+      const data = await res.json();
 
-      if (res?.ok) {
-        // Session check will handle redirection
-        fetch('/api/auth/session').then(r => r.json()).then(data => {
-            if (data?.user?.role === 'admin') router.push('/admin/dashboard');
-            else router.push('/dashboard');
-        });
+      if (res.ok && data.success) {
+        if (data.user?.role === 'admin') {
+           router.push('/admin/dashboard');
+        } else {
+           router.push('/dashboard');
+        }
       } else {
-        setError(res?.error || 'البيانات غير صحيحة');
+        setError(data.error || '???????? ??? ?????');
       }
     } catch {
-      setError('حدث خطأ في الاتصال. يرجى المحاولة مرة أخرى');
+      setError('??? ??? ?? ???????. ???? ???????? ??? ????');
     } finally {
       setLoading(false);
     }
   }, [identifier, password, router]);
 
   return (
-    <div style={{
-      minHeight: '100vh', display: 'flex',
-      background: '#020205', fontFamily: "'Cairo', sans-serif", direction: 'rtl', color: '#e2e8f0', overflow: 'hidden'
+    <div className="min-h-screen flex items-center justify-center p-4 sm:p-8" dir="rtl" style={{
+      background: 'radial-gradient(circle at 50% 50%, #0a0a0a 0%, #000000 100%)',
     }}>
-      <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet" />
-
-      {/* Right Side: Form Area (Login) */}
-      <div className="form-side" style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '2rem', position: 'relative' }}>
-        <div style={{ width: '100%', maxWidth: '440px', position: 'relative', zIndex: 10 }}>
-          <div style={{ marginBottom: '2.5rem' }}>
-            <h2 style={{ fontSize: '2.2rem', fontWeight: 900, color: '#fff', marginBottom: '0.5rem' }}>مرحباً بعودتك 👋</h2>
-            <p style={{ color: '#94a3b8', fontSize: '1rem' }}>سجل دخولك لاستكمال مسيرتك التعليمية</p>
+      <div className="w-full max-w-md relative">
+        <div className="absolute inset-0 bg-blue-500/10 blur-[100px] rounded-full pointer-events-none" />
+        
+        <div className="bg-[#111]/80 backdrop-blur-2xl p-8 sm:p-10 rounded-3xl border border-white/5 shadow-2xl relative z-10">
+          <div className="text-center mb-10">
+            <h1 className="text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400 mb-3 tracking-tight">?????? ??????</h1>
+            <p className="text-gray-400 text-sm font-medium">??? ????? ??????? ???? ??????</p>
           </div>
 
           {error && (
-            <div style={{ padding: '1rem', background: 'rgba(239,68,68,0.1)', border: '1px solid rgba(239,68,68,0.3)', borderRadius: '12px', color: '#fca5a5', fontSize: '0.9rem', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-              <span>⚠️</span><span>{error}</span>
+            <div className="mb-6 p-4 rounded-2xl bg-red-500/10 border border-red-500/20 flex items-start gap-3">
+              <svg className="w-5 h-5 text-red-400 mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <p className="text-sm text-red-200 font-medium leading-relaxed">{error}</p>
             </div>
           )}
 
-          <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-            {/* Identifier (Email or Phone) */}
-            <div>
-              <label style={{ display: 'block', fontSize: '0.9rem', fontWeight: 700, color: '#cbd5e1', marginBottom: '0.5rem' }}>البريد الإلكتروني أو رقم الهاتف</label>
-              <div style={{ position: 'relative' }}>
-                <span style={{ position: 'absolute', right: '1rem', top: '50%', transform: 'translateY(-50%)', fontSize: '1.1rem', color: focused === 'identifier' ? '#06b6d4' : '#64748b' }}>👤</span>
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <div className="space-y-2 relative">
+              <label className={`block text-xs font-bold uppercase tracking-wider transition-colors duration-300 ${focused === 'identifier' ? 'text-blue-400' : 'text-gray-400'}`}>?????? ?? ??????</label>
+              <div className="relative group">
                 <input
-                  type="text" value={identifier} onChange={e => setIdentifier(e.target.value)}
-                  onFocus={() => setFocused('identifier')} onBlur={() => setFocused(null)}
-                  placeholder="رقم الهاتف أو الإيميل" disabled={loading}
-                  style={{ width: '100%', padding: '1.2rem 3rem 1.2rem 1.2rem', background: focused === 'identifier' ? 'rgba(6,182,212,0.08)' : 'rgba(255,255,255,0.03)', border: `1px solid ${focused === 'identifier' ? '#06b6d4' : 'rgba(255,255,255,0.1)'}`, borderRadius: '12px', color: '#fff', fontSize: '1rem', outline: 'none', transition: 'all 0.3s', fontFamily: "'Cairo', sans-serif", direction: 'ltr', textAlign: 'left' }}
+                  type="text"
+                  value={identifier}
+                  onChange={(e) => setIdentifier(e.target.value)}
+                  onFocus={() => setFocused('identifier')}
+                  onBlur={() => setFocused(null)}
+                  className="w-full bg-[#1a1a1a] border border-white/10 rounded-2xl px-5 py-4 text-white placeholder-gray-600 focus:outline-none focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/50 transition-all duration-300 text-left font-sans"
+                  placeholder="name@example.com"
+                  dir="ltr"
                 />
               </div>
             </div>
 
-            {/* Password */}
-            <div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
-                <label style={{ fontSize: '0.9rem', fontWeight: 700, color: '#cbd5e1', margin: 0 }}>كلمة المرور</label>
-                <Link href="/forgot-password" style={{ color: '#06b6d4', fontSize: '0.85rem', fontWeight: 600, textDecoration: 'none' }}>نسيت كلمة المرور؟</Link>
+            <div className="space-y-2 relative">
+              <div className="flex items-center justify-between">
+                <label className={`block text-xs font-bold uppercase tracking-wider transition-colors duration-300 ${focused === 'password' ? 'text-blue-400' : 'text-gray-400'}`}>???? ??????</label>
+                <Link href="/forgot-password" className="text-xs text-blue-400 hover:text-blue-300 transition-colors">???? ???? ???????</Link>
               </div>
-              <div style={{ position: 'relative' }}>
-                <span style={{ position: 'absolute', right: '1rem', top: '50%', transform: 'translateY(-50%)', fontSize: '1.1rem', color: focused === 'password' ? '#06b6d4' : '#64748b' }}>🔑</span>
+              <div className="relative group">
                 <input
-                  type="password" value={password} onChange={e => setPassword(e.target.value)}
-                  onFocus={() => setFocused('password')} onBlur={() => setFocused(null)}
-                  placeholder="••••••••••••" disabled={loading}
-                  style={{ width: '100%', padding: '1.2rem 3rem 1.2rem 1.2rem', background: focused === 'password' ? 'rgba(6,182,212,0.08)' : 'rgba(255,255,255,0.03)', border: `1px solid ${focused === 'password' ? '#06b6d4' : 'rgba(255,255,255,0.1)'}`, borderRadius: '12px', color: '#fff', fontSize: '1rem', outline: 'none', transition: 'all 0.3s', fontFamily: "'Cairo', sans-serif", direction: 'ltr', textAlign: 'left' }}
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  onFocus={() => setFocused('password')}
+                  onBlur={() => setFocused(null)}
+                  className="w-full bg-[#1a1a1a] border border-white/10 rounded-2xl px-5 py-4 text-white placeholder-gray-600 focus:outline-none focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/50 transition-all duration-300 text-left font-sans"
+                  placeholder="��������"
+                  dir="ltr"
                 />
               </div>
             </div>
 
-            <button type="submit" disabled={loading} style={{
-              width: '100%', padding: '1.2rem', marginTop: '0.5rem',
-              background: loading ? 'rgba(6,182,212,0.4)' : 'linear-gradient(135deg, #06b6d4, #6366f1)',
-              border: 'none', borderRadius: '12px', color: '#fff', fontSize: '1.1rem', fontWeight: 800,
-              cursor: loading ? 'not-allowed' : 'pointer', transition: 'all 0.3s',
-              boxShadow: loading ? 'none' : '0 10px 25px rgba(6,182,212,0.3)', fontFamily: "'Cairo', sans-serif"
-            }}>
-              {loading ? 'جاري التحقق...' : 'تسجيل الدخول 🚀'}
+            <button
+              type="submit"
+              disabled={loading}
+              className="w-full bg-white text-black font-bold text-lg py-4 rounded-2xl hover:bg-gray-200 focus:outline-none focus:ring-4 focus:ring-white/20 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed mt-4 shadow-xl shadow-white/5 active:scale-[0.98]"
+            >
+              {loading ? (
+                <div className="flex items-center justify-center gap-2">
+                  <div className="w-5 h-5 border-2 border-black/20 border-t-black rounded-full animate-spin" />
+                  <span>???? ??????...</span>
+                </div>
+              ) : '????? ??????'}
             </button>
           </form>
 
-          <div style={{ marginTop: '2.5rem', textAlign: 'center' }}>
-            <p style={{ color: '#94a3b8', fontSize: '0.95rem' }}>
-              ليس لديك حساب؟{' '}
-              <Link href="/register" style={{ color: '#06b6d4', fontWeight: 800, textDecoration: 'none' }}>سجّل الآن مجاناً</Link>
+          <div className="mt-8 text-center">
+            <p className="text-gray-400 text-sm">
+              ??? ???? ?????{' '}
+              <Link href="/register" className="text-white hover:text-blue-400 font-medium transition-colors">
+                ???? ????? ????
+              </Link>
             </p>
           </div>
         </div>
       </div>
-
-      {/* Left Side: Animated Brand Area */}
-      <div className="brand-side" style={{
-        flex: 1, position: 'relative', overflow: 'hidden', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
-        background: 'linear-gradient(135deg, #050508 0%, #0a0718 100%)', borderRight: '1px solid rgba(6,182,212,0.2)'
-      }}>
-        <div style={{ position: 'absolute', width: '800px', height: '800px', borderRadius: '50%', background: 'radial-gradient(circle, rgba(6,182,212,0.15) 0%, transparent 60%)', filter: 'blur(50px)', animation: 'pulse 8s infinite alternate' }} />
-        <div style={{ position: 'absolute', width: '600px', height: '600px', borderRadius: '50%', background: 'radial-gradient(circle, rgba(99,102,241,0.15) 0%, transparent 60%)', filter: 'blur(50px)', animation: 'pulse 10s infinite alternate-reverse' }} />
-        
-        <div style={{ position: 'relative', zIndex: 10, textAlign: 'center', padding: '2rem' }}>
-          <div style={{ width: '100px', height: '100px', borderRadius: '24px', background: 'linear-gradient(135deg, #06b6d4, #6366f1)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 2rem', boxShadow: '0 0 40px rgba(6,182,212,0.4)', fontSize: '3rem' }}>🎓</div>
-          <h1 style={{ fontSize: '3rem', fontWeight: 900, marginBottom: '1rem', background: 'linear-gradient(135deg, #fff, #a5f3fc)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>SVK Academy</h1>
-          <p style={{ fontSize: '1.2rem', color: '#94a3b8', maxWidth: '400px', margin: '0 auto', lineHeight: 1.6 }}>مرحباً بعودتك إلى المكان الذي تُصنع فيه العقول الرقمية الخارقة.</p>
-        </div>
-      </div>
-
-      <style>{`
-        * { box-sizing: border-box; }
-        @keyframes pulse { 0%, 100% { opacity: 0.5; transform: scale(1); } 50% { opacity: 1; transform: scale(1.1); } }
-        @media (max-width: 900px) {
-          .brand-side { display: none !important; }
-        }
-      `}</style>
     </div>
   );
 }

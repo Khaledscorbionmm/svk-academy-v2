@@ -30,15 +30,15 @@ export default function RegisterPage() {
       const data = await res.json();
       
       if (res.ok) {
-        // Sign in via NextAuth using the registered credentials
-        const { signIn } = await import('next-auth/react');
-        const loginRes = await signIn('credentials', {
-          redirect: false,
-          email: formData.email,
-          password: formData.password,
+        // Sign in via custom JWT API
+        const loginRes = await fetch('/api/auth/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ identifier: formData.email, password: formData.password })
         });
+        const loginData = await loginRes.json();
 
-        if (loginRes?.ok) {
+        if (loginRes.ok && loginData.success) {
           router.push('/dashboard');
           router.refresh();
         } else {

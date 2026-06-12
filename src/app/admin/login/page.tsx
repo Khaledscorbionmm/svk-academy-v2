@@ -45,15 +45,15 @@ export default function AdminLoginPage() {
     setParticles(generateParticles(30));
     
     // Check if already logged in
-    fetch('/api/auth/session', { cache: 'no-store' })
+    fetch('/api/auth/me', { cache: 'no-store' })
       .then(res => {
         if (res.ok) return res.json();
         throw new Error('Not logged in');
       })
       .then(data => {
-        if (data.user && (data.user as any).role === 'admin') {
+        if (data.user && data.user.role === 'admin') {
           router.push('/admin/dashboard');
-        } else if (data.user && (data.user as any).role === 'student') {
+        } else if (data.user && data.user.role === 'student') {
           router.push('/dashboard');
         }
       })
@@ -76,18 +76,22 @@ export default function AdminLoginPage() {
     setLoading(true);
 
     try {
-      const { signIn } = await import('next-auth/react');
-      const res = await signIn('credentials', {
-        redirect: false,
-        email,
-        password,
+      const res = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ identifier: email, password })
       });
+      const data = await res.json();
 
-      if (res?.ok) {
-        router.push('/admin/dashboard');
-        router.refresh();
+      if (res.ok && data.success) {
+        if (data.user?.role === 'admin') {
+          router.push('/admin/dashboard');
+          router.refresh();
+        } else {
+          setError('هذا الحساب ليس لديه صلاحيات الإدارة');
+        }
       } else {
-        setError(res?.error || 'البريد الإلكتروني أو كلمة المرور غير صحيحة');
+        setError(data.error || 'البريد الإلكتروني أو كلمة المرور غير صحيحة');
       }
     } catch {
       setError('حدث خطأ في الاتصال. يرجى المحاولة مرة أخرى');
