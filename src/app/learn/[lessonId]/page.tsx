@@ -52,12 +52,10 @@ function PremiumAudioPlayer({ src, title, textContent }: { src: string; title: s
       setCharIndex(0);
       setWordLength(0);
       if (typeof window !== 'undefined' && window.speechSynthesis) {
-        window.speechSynthesis.cancel();
+        typeof window !== 'undefined' && window.speechSynthesis && window.speechSynthesis.cancel();
       }
     } else if (audioRef.current) {
-      audioRef.current.src = src;
-      setIsPlaying(false);
-      setCurrentTime(0);
+      setIsPlaying(false); setCurrentTime(0);
     }
   }, [src, textContent, cleanText]);
 
@@ -65,7 +63,7 @@ function PremiumAudioPlayer({ src, title, textContent }: { src: string; title: s
   useEffect(() => {
     return () => {
       if (typeof window !== 'undefined' && window.speechSynthesis) {
-        window.speechSynthesis.cancel();
+        typeof window !== 'undefined' && window.speechSynthesis && window.speechSynthesis.cancel();
       }
     };
   }, []);
@@ -78,20 +76,20 @@ function PremiumAudioPlayer({ src, title, textContent }: { src: string; title: s
       }
 
       if (isPlaying) {
-        window.speechSynthesis.pause();
+        typeof window !== 'undefined' && window.speechSynthesis && window.speechSynthesis.pause();
         setIsPlaying(false);
       } else {
-        if (window.speechSynthesis.paused) {
-          window.speechSynthesis.resume();
+        if (typeof window !== 'undefined' && window.speechSynthesis && window.speechSynthesis.paused) {
+          typeof window !== 'undefined' && window.speechSynthesis && window.speechSynthesis.resume();
           setIsPlaying(true);
         } else {
-          window.speechSynthesis.cancel();
+          typeof window !== 'undefined' && window.speechSynthesis && window.speechSynthesis.cancel();
           const utterance = new SpeechSynthesisUtterance(cleanText);
           const hasArabic = /[\u0600-\u06FF]/.test(cleanText);
           utterance.lang = hasArabic ? 'ar-EG' : 'en-US';
           utterance.rate = 0.85 * playbackRate; // base speed adjusted by user rate
           
-          const voices = window.speechSynthesis.getVoices();
+          const voices = typeof window !== 'undefined' && window.speechSynthesis ? window.speechSynthesis.getVoices : () => []();
           const targetLangPrefix = hasArabic ? 'ar' : 'en';
           const voice = voices.find(v => v.lang.startsWith(targetLangPrefix));
           if (voice) utterance.voice = voice;
@@ -121,7 +119,7 @@ function PremiumAudioPlayer({ src, title, textContent }: { src: string; title: s
           };
           
           setIsPlaying(true);
-          window.speechSynthesis.speak(utterance);
+          typeof window !== 'undefined' && window.speechSynthesis && window.speechSynthesis.speak(utterance);
         }
       }
     } else {
@@ -145,7 +143,7 @@ function PremiumAudioPlayer({ src, title, textContent }: { src: string; title: s
       // Re-trigger TTS with new rate from current position if possible, 
       // but standard Web Speech API doesn't allow changing rate on the fly easily without restarting.
       // So we just restart from beginning for simplicity, or just apply for next play.
-      window.speechSynthesis.cancel();
+      typeof window !== 'undefined' && window.speechSynthesis && window.speechSynthesis.cancel();
       setIsPlaying(false);
       setCharIndex(0);
       setWordLength(0);
@@ -744,19 +742,19 @@ export default function LessonPage({ params }: { params: Promise<{ lessonId: str
     }
 
     if (activeSpeech?.keyword === keyword && activeSpeech?.lang === lang) {
-      window.speechSynthesis.cancel();
+      typeof window !== 'undefined' && window.speechSynthesis && window.speechSynthesis.cancel();
       setActiveSpeech(null);
       return;
     }
 
-    window.speechSynthesis.cancel();
+    typeof window !== 'undefined' && window.speechSynthesis && window.speechSynthesis.cancel();
     
     const langTag = lang === 'ar' ? 'ar-EG' : 'en-US';
     const utterance = new SpeechSynthesisUtterance(text);
     utterance.lang = langTag;
     utterance.rate = 0.9;
 
-    const voices = window.speechSynthesis.getVoices();
+    const voices = typeof window !== 'undefined' && window.speechSynthesis ? window.speechSynthesis.getVoices : () => []();
     const targetVoice = voices.find(v => v.lang.startsWith(lang === 'ar' ? 'ar' : 'en'));
     if (targetVoice) {
       utterance.voice = targetVoice;
@@ -771,7 +769,7 @@ export default function LessonPage({ params }: { params: Promise<{ lessonId: str
     };
 
     setActiveSpeech({ keyword, lang });
-    window.speechSynthesis.speak(utterance);
+    typeof window !== 'undefined' && window.speechSynthesis && window.speechSynthesis.speak(utterance);
   };
 
   useEffect(() => {
@@ -780,7 +778,7 @@ export default function LessonPage({ params }: { params: Promise<{ lessonId: str
     }
     return () => {
       if (typeof window !== 'undefined' && window.speechSynthesis) {
-        window.speechSynthesis.cancel();
+        typeof window !== 'undefined' && window.speechSynthesis && window.speechSynthesis.cancel();
       }
     };
   }, []);
@@ -802,7 +800,7 @@ export default function LessonPage({ params }: { params: Promise<{ lessonId: str
           setRequested(json.hasRequested || false);
 
           // Micro quiz reset and generation
-          const previouslyQuizPassed = localStorage.getItem(`svk_quiz_passed_${json.lesson.id}`) === 'true';
+          const previouslyQuizPassed = typeof window !== 'undefined' && localStorage.getItem(`svk_quiz_passed_${json.lesson.id}`) === 'true';
           setMicroQuizPassed(previouslyQuizPassed);
           setSelectedMicroAnswer(null);
           setMicroQuizAnswered(false);
@@ -858,7 +856,7 @@ export default function LessonPage({ params }: { params: Promise<{ lessonId: str
 
   useEffect(() => {
     if (data && currentIdx !== -1) {
-      const passed = localStorage.getItem(`svk_macro_exam_${track}_${milestone}`) === 'passed';
+      const passed = typeof window !== 'undefined' && localStorage.getItem(`svk_macro_exam_${track}_${milestone}`) === 'passed';
       setMacroExamPassed(passed);
     }
   }, [data, currentIdx, track, milestone]);
@@ -1942,7 +1940,7 @@ export default function LessonPage({ params }: { params: Promise<{ lessonId: str
                         <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '10px' }}>
                           {microQuizQuestion.options.map((opt: string, i: number) => {
                             const isSelected = selectedMicroAnswer === i;
-                            const isCorrect = i === microQuizQuestion.correctAnswer;
+                            const isCorrect = typeof microQuizQuestion.correct_answer !== \'undefined\' ? (i === microQuizQuestion.options.findIndex(opt => opt == microQuizQuestion.correct_answer)) : (i === microQuizQuestion.correctAnswer);
                             
                             let btnBg = isKids ? '#f9fafb' : 'rgba(255,255,255,0.02)';
                             let btnBorder = isKids ? '1px solid #cbd5e1' : '1px solid rgba(255,255,255,0.1)';
@@ -1971,7 +1969,7 @@ export default function LessonPage({ params }: { params: Promise<{ lessonId: str
                                   if (microQuizAnswered) return;
                                   setSelectedMicroAnswer(i);
                                   setMicroQuizAnswered(true);
-                                  if (i === microQuizQuestion.correctAnswer) {
+                                  if (typeof microQuizQuestion.correct_answer !== \'undefined\' ? (i === microQuizQuestion.options.findIndex(opt => opt == microQuizQuestion.correct_answer)) : (i === microQuizQuestion.correctAnswer)) {
                                     setMicroQuizPassed(true);
                                     setMicroQuizError(false);
                                     localStorage.setItem(`svk_quiz_passed_${lesson.id}`, 'true');

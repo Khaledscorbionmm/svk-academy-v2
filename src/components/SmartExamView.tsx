@@ -73,7 +73,14 @@ export default function SmartExamView({ track, milestone, onPass, onExit }: Smar
     questions.forEach((q, idx) => {
       if (q.type === 'mcq' || q.type === 'tf') {
         totalObjective++;
-        if (answers[idx] === q.correctAnswer) {
+        let isCorrect = false;
+        if (typeof q.correct_answer !== 'undefined') {
+          const correctIdx = q.options.findIndex(opt => opt == q.correct_answer);
+          isCorrect = (answers[idx] === correctIdx);
+        } else {
+          isCorrect = (answers[idx] === q.correctAnswer);
+        }
+        if (isCorrect) {
           objectiveScore++;
         }
       } else if (q.type === 'practical') {

@@ -18,6 +18,7 @@ export function UserTargetGroupProvider({ children }: { children: React.ReactNod
   useEffect(() => {
     const saved = localStorage.getItem('svk_target_group');
     if (saved === 'kids' || saved === 'adults') {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setTargetGroupState(saved);
     }
   }, []);

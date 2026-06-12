@@ -38,18 +38,17 @@ export default function PremiumAudioPlayer({ src, title, textContent }: { src: s
     if (isTTS) {
       // Estimate duration based on word count (130 words per minute)
       const words = cleanText.trim().split(/\s+/).length;
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setDuration(Math.max(10, Math.round((words / 130) * 60)));
       setIsPlaying(false);
       setCurrentTime(0);
       setCharIndex(0);
       setWordLength(0);
       if (typeof window !== 'undefined' && window.speechSynthesis) {
-        window.speechSynthesis.cancel();
+        typeof window !== 'undefined' && window.speechSynthesis && window.speechSynthesis.cancel();
       }
     } else if (audioRef.current) {
-      audioRef.current.src = src;
-      setIsPlaying(false);
-      setCurrentTime(0);
+      setIsPlaying(false); setCurrentTime(0);
     }
   }, [src, textContent, cleanText, isTTS]);
 
@@ -57,7 +56,7 @@ export default function PremiumAudioPlayer({ src, title, textContent }: { src: s
   useEffect(() => {
     return () => {
       if (typeof window !== 'undefined' && window.speechSynthesis) {
-        window.speechSynthesis.cancel();
+        typeof window !== 'undefined' && window.speechSynthesis && window.speechSynthesis.cancel();
       }
     };
   }, []);
@@ -70,20 +69,20 @@ export default function PremiumAudioPlayer({ src, title, textContent }: { src: s
       }
 
       if (isPlaying) {
-        window.speechSynthesis.pause();
+        typeof window !== 'undefined' && window.speechSynthesis && window.speechSynthesis.pause();
         setIsPlaying(false);
       } else {
-        if (window.speechSynthesis.paused) {
-          window.speechSynthesis.resume();
+        if (typeof window !== 'undefined' && window.speechSynthesis && window.speechSynthesis.paused) {
+          typeof window !== 'undefined' && window.speechSynthesis && window.speechSynthesis.resume();
           setIsPlaying(true);
         } else {
-          window.speechSynthesis.cancel();
+          typeof window !== 'undefined' && window.speechSynthesis && window.speechSynthesis.cancel();
           const utterance = new SpeechSynthesisUtterance(cleanText);
           const hasArabic = /[\\u0600-\\u06FF]/.test(cleanText);
           utterance.lang = hasArabic ? 'ar-EG' : 'en-US';
           utterance.rate = 0.85 * playbackRate; // base speed adjusted by user rate
           
-          const voices = window.speechSynthesis.getVoices();
+          const voices = typeof window !== 'undefined' && window.speechSynthesis ? window.speechSynthesis.getVoices : () => []();
           const targetLangPrefix = hasArabic ? 'ar' : 'en';
           const voice = voices.find(v => v.lang.startsWith(targetLangPrefix));
           if (voice) utterance.voice = voice;
@@ -113,7 +112,7 @@ export default function PremiumAudioPlayer({ src, title, textContent }: { src: s
           };
           
           setIsPlaying(true);
-          window.speechSynthesis.speak(utterance);
+          typeof window !== 'undefined' && window.speechSynthesis && window.speechSynthesis.speak(utterance);
         }
       }
     } else {
@@ -134,7 +133,7 @@ export default function PremiumAudioPlayer({ src, title, textContent }: { src: s
     if (!isTTS && audioRef.current) {
       audioRef.current.playbackRate = nextRate;
     } else if (isTTS && isPlaying) {
-      window.speechSynthesis.cancel();
+      typeof window !== 'undefined' && window.speechSynthesis && window.speechSynthesis.cancel();
       setIsPlaying(false);
       setCharIndex(0);
       setWordLength(0);
