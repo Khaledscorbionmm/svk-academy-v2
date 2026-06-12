@@ -1,6 +1,7 @@
+import { verifyToken, COOKIE_NAME } from '@/lib/auth';
 import { NextResponse, NextRequest } from 'next/server';
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+
+
 import { query, initializeDatabase } from '@/lib/db';
 import { pythonTrackData } from '@/context/tracks/pythonData';
 import { cyberTrackData } from '@/context/tracks/cyberData';
@@ -50,9 +51,10 @@ function analyzeTrack(courseName: string, trackData: any[]) {
 }
 
 export async function GET(request: NextRequest) {
-  const session = await getServerSession(authOptions);
+  const token = request.cookies.get(COOKIE_NAME)?.value;
+    const decoded = token ? verifyToken(token) : null;
 
-  if (!session || !session.user || (session.user as any).role !== 'admin') {
+  if (!decoded || decoded.role !== 'admin') {
     return NextResponse.json({ error: 'غير مصرح لك' }, { status: 403 });
   }
 

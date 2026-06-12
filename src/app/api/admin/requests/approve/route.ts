@@ -1,15 +1,17 @@
+import { verifyToken, COOKIE_NAME } from '@/lib/auth';
 import { NextRequest, NextResponse } from 'next/server';
 import { query, initializeDatabase } from '@/lib/db';
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+
+
 
 export async function POST(request: NextRequest) {
   try {
     await initializeDatabase();
     
-    const session = await getServerSession(authOptions);
+    const token = request.cookies.get(COOKIE_NAME)?.value;
+    const decoded = token ? verifyToken(token) : null;
     
-    if (!session || !session.user || (session.user as any).role !== 'admin') {
+    if (!decoded || decoded.role !== 'admin') {
       return NextResponse.json({ error: 'غير مصرح لك' }, { status: 403 });
     }
     
