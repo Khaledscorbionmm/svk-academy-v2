@@ -74,8 +74,8 @@ export async function GET(
     }
 
     return NextResponse.json({ course, lessons, isEnrolled });
-  } catch (e) {
+  } catch (e: any) {
     console.error('[Course Detail Error]', e);
-    return NextResponse.json({ error: 'حدث خطأ في جلب الكورس' }, { status: 500 });
+    return NextResponse.json({ error: 'حدث خطأ في جلب الكورس', message: e.message, stack: e.stack }, { status: 500 });
   }
 }
