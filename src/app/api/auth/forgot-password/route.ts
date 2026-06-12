@@ -32,11 +32,12 @@ export async function POST(req: NextRequest) {
     const admin = await prisma.admins.findUnique({ where: { email: lowerEmail } });
 
     if (!student && !admin) {
-      // Return 200 to prevent email enumeration, but log the failure
+      // Log the failure
       await prisma.password_reset_logs.create({
         data: { email: lowerEmail, ip_address: ip, status: 'FAILED_ATTEMPT_NOT_FOUND' }
       });
-      return NextResponse.json({ success: true, message: 'If the email exists, a code was sent.' });
+      // Return explicit 404 to inform the user
+      return NextResponse.json({ error: 'هذا البريد الإلكتروني غير مسجل لدينا' }, { status: 404 });
     }
 
     // Generate secure 6-digit code
