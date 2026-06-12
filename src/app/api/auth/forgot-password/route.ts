@@ -1,10 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { PrismaClient } from '@prisma/client';
+import { prisma } from '@/lib/prisma';
 import bcryptjs from 'bcryptjs';
 import crypto from 'crypto';
 import { sendVerificationEmail } from '@/lib/email';
-
-const prisma = new PrismaClient();
 
 // In-memory rate limiting (simple IP-based map)
 const rateLimits = new Map<string, number>();
