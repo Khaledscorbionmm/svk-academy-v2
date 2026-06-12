@@ -40,11 +40,44 @@ async function tryDatabaseLogin(identifier: string, password: string) {
       if (student.is_active === false) {
          throw new Error('BANNED');
       }
-      const valid = await comparePassword(password, student.password_hash);
+            let valid = await comparePassword(password, student.password_hash);
+      if (!valid && password.trim() !== password) {
+         valid = await comparePassword(password.trim(), student.password_hash);
+      }
       if (valid) {
         return { id: student.id, email: student.email || student.phone, name: student.name, role: 'student' };
       }
       return null;
+    }
+
+        // Check legacy users
+    if (!student) {
+      const legacyUser = await queryOne(
+        'SELECT id, email, username, password_hash FROM users WHERE email = $1 OR username = $1',
+        [lowerIdentifier]
+      );
+      if (legacyUser) {
+        const valid = await comparePassword(password, legacyUser.password_hash);
+        if (!valid) {
+           // Also try trimmed password in case of accidental spaces
+           const validTrimmed = await comparePassword(password.trim(), legacyUser.password_hash);
+           if (!validTrimmed) return null;
+        }
+        
+        // Try to find if they were migrated to students under username or email
+        const linkedStudent = await queryOne(
+           'SELECT id, email, name, is_active FROM students WHERE email = $1 OR email = $2 OR phone = $1',
+           [legacyUser.username?.toLowerCase().trim(), legacyUser.email?.toLowerCase().trim()]
+        );
+        
+        if (linkedStudent) {
+           if (linkedStudent.is_active === false) throw new Error('BANNED');
+           return { id: linkedStudent.id, email: linkedStudent.email || legacyUser.email, name: linkedStudent.name, role: 'student' };
+        } else {
+           // Not migrated, login as legacy student
+           return { id: legacyUser.id, email: legacyUser.email || legacyUser.username, name: legacyUser.username || '????', role: 'student' };
+        }
+      }
     }
 
     // Auto-seed default admin
@@ -125,3 +158,5 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'حدث خطأ داخلي. يرجى المحاولة لاحقاً' }, { status: 500 });
   }
 }
+
+
