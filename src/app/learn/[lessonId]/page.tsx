@@ -1940,7 +1940,7 @@ export default function LessonPage({ params }: { params: Promise<{ lessonId: str
                         <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '10px' }}>
                           {microQuizQuestion.options.map((opt: string, i: number) => {
                             const isSelected = selectedMicroAnswer === i;
-                            const isCorrect = typeof microQuizQuestion.correct_answer !== \'undefined\' ? (i === microQuizQuestion.options.findIndex(opt => opt == microQuizQuestion.correct_answer)) : (i === microQuizQuestion.correctAnswer);
+                            const isCorrect = typeof microQuizQuestion.correct_answer !== 'undefined' ? (i === microQuizQuestion.options.findIndex(opt => opt == microQuizQuestion.correct_answer)) : (i === microQuizQuestion.correctAnswer);
                             
                             let btnBg = isKids ? '#f9fafb' : 'rgba(255,255,255,0.02)';
                             let btnBorder = isKids ? '1px solid #cbd5e1' : '1px solid rgba(255,255,255,0.1)';
@@ -1969,7 +1969,7 @@ export default function LessonPage({ params }: { params: Promise<{ lessonId: str
                                   if (microQuizAnswered) return;
                                   setSelectedMicroAnswer(i);
                                   setMicroQuizAnswered(true);
-                                  if (typeof microQuizQuestion.correct_answer !== \'undefined\' ? (i === microQuizQuestion.options.findIndex(opt => opt == microQuizQuestion.correct_answer)) : (i === microQuizQuestion.correctAnswer)) {
+                                  if (typeof microQuizQuestion.correct_answer !== 'undefined' ? (i === microQuizQuestion.options.findIndex(opt => opt == microQuizQuestion.correct_answer)) : (i === microQuizQuestion.correctAnswer)) {
                                     setMicroQuizPassed(true);
                                     setMicroQuizError(false);
                                     localStorage.setItem(`svk_quiz_passed_${lesson.id}`, 'true');

@@ -287,7 +287,7 @@ export default function CourseDetailPage({ params }: { params: Promise<{ id: str
           <div className="price-card" style={{ background: 'rgba(15,15,30,0.9)', border: '1px solid rgba(99,102,241,0.2)', borderRadius: 20, padding: 28, backdropFilter: 'blur(20px)' }}>
             <div style={{ textAlign: 'center', marginBottom: 20 }}>
               <div>
-                <div style={{ fontSize: 36, fontWeight: 900, color: '#a855f7' }}>{Number(course.price) === 0 ? 199 : course.price}</div>
+                <div style={{ fontSize: 36, fontWeight: 900, color: '#a855f7' }}>{course.price}</div>
                 <div style={{ color: '#64748b', fontSize: 14 }}>{course.currency || 'EGP'}</div>
               </div>
               <div style={{ fontSize: 14, color: '#22c55e', fontWeight: 800, marginTop: 8 }}>🎁 الدرس الأول مجاني</div>

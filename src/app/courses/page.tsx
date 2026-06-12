@@ -201,7 +201,7 @@ function CourseCard({ course }: { course: Course }) {
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 24 }}>
           <div>
             <div>
-              <span style={{ fontSize: 24, fontWeight: 900, color: isBeginner ? '#ec4899' : isAdvanced ? '#22c55e' : '#a855f7' }}>{Number(course.price) === 0 ? 199 : course.price}</span>
+              <span style={{ fontSize: 24, fontWeight: 900, color: isBeginner ? '#ec4899' : isAdvanced ? '#22c55e' : '#a855f7' }}>{course.price}</span>
               <span style={{ color: '#64748b', fontSize: 12, marginRight: 4, fontWeight: 700 }}>{course.currency || 'EGP'}</span>
             </div>
             <div style={{ fontSize: 11, color: '#22c55e', fontWeight: 800, marginTop: 4 }}>🎁 الدرس الأول مجاني</div>

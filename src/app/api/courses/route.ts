@@ -9,7 +9,7 @@ const FALLBACK_COURSES = [
   {
     id: 1, title: 'Python للمبتدئين من الصفر', title_ar: 'Python للمبتدئين من الصفر',
     description: 'تعلم البرمجة بالبايثون من الصفر حتى الاحتراف', description_ar: 'تعلم البرمجة بالبايثون من الصفر حتى الاحتراف',
-    thumbnail_url: null, price: 0, currency: 'EGP',
+    thumbnail_url: null, price: 369, currency: 'EGP',
     instructor_name: 'خالد أحمد', category: 'python',
     level: 'beginner', duration_hours: 20,
     is_published: true, is_featured: true,
