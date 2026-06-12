@@ -103,7 +103,10 @@ export default function StudentLoginPage() {
 
             {/* Password */}
             <div>
-              <label style={{ display: 'block', fontSize: '0.9rem', fontWeight: 700, color: '#cbd5e1', marginBottom: '0.5rem' }}>كلمة المرور</label>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
+                <label style={{ fontSize: '0.9rem', fontWeight: 700, color: '#cbd5e1', margin: 0 }}>كلمة المرور</label>
+                <Link href="/forgot-password" style={{ color: '#06b6d4', fontSize: '0.85rem', fontWeight: 600, textDecoration: 'none' }}>نسيت كلمة المرور؟</Link>
+              </div>
               <div style={{ position: 'relative' }}>
                 <span style={{ position: 'absolute', right: '1rem', top: '50%', transform: 'translateY(-50%)', fontSize: '1.1rem', color: focused === 'password' ? '#06b6d4' : '#64748b' }}>🔑</span>
                 <input
@@ -130,10 +133,6 @@ export default function StudentLoginPage() {
             <p style={{ color: '#94a3b8', fontSize: '0.95rem' }}>
               ليس لديك حساب؟{' '}
               <Link href="/register" style={{ color: '#06b6d4', fontWeight: 800, textDecoration: 'none' }}>سجّل الآن مجاناً</Link>
-            </p>
-            <p style={{ color: '#94a3b8', fontSize: '0.95rem', marginTop: '0.75rem' }}>
-              هل نسيت كلمة المرور؟{' '}
-              <Link href="/forgot-password" style={{ color: '#06b6d4', fontWeight: 600, textDecoration: 'none' }}>استعادة كلمة المرور</Link>
             </p>
           </div>
         </div>
