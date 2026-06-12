@@ -14,6 +14,8 @@ const nextConfig: NextConfig = {
   },
   env: {
     NEXT_PUBLIC_APP_VERSION: buildId,
+    NEXTAUTH_URL: process.env.NEXTAUTH_URL || 'https://www.smartvenomk.xyz',
+    NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET || "5487ede9a335f50c980b739873f612dde2d7010b78ce6793bf3c2dfbfa696136",
   },
   async headers() {
     return [

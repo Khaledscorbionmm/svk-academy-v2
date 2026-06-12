@@ -93,7 +93,7 @@ export const authOptions: NextAuthOptions = {
     signIn: "/login",
     error: "/login",
   },
-  secret: process.env.NEXTAUTH_SECRET || process.env.JWT_SECRET || "fallback_secret_must_change",
+  secret: process.env.NEXTAUTH_SECRET || process.env.JWT_SECRET || "5487ede9a335f50c980b739873f612dde2d7010b78ce6793bf3c2dfbfa696136",
 };
 
 const handler = NextAuth(authOptions);
