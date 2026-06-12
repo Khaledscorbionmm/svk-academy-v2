@@ -1,6 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { query, queryOne, initializeDatabase } from '@/lib/db';
-import { verifyToken, COOKIE_NAME } from '@/lib/auth';
+import { PrismaClient } from '@prisma/client';
+import { getServerSession } from "next-auth/next";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+
+const prisma = new PrismaClient();
 import { pythonTrackData } from '@/context/tracks/pythonData';
 import { cyberTrackData } from '@/context/tracks/cyberData';
 import { languageTrackData } from '@/context/tracks/languageData';
@@ -11,12 +14,14 @@ export async function GET(
 ) {
   try {
     const { id } = await params;
-    await initializeDatabase();
     
-    const course = await queryOne<Record<string, unknown>>(
-      'SELECT * FROM courses WHERE id = $1',
-      [id]
-    );
+    // Support querying by category string (e.g. "python") or integer ID
+    let course;
+    if (isNaN(Number(id))) {
+        course = await prisma.courses.findFirst({ where: { category: id } });
+    } else {
+        course = await prisma.courses.findUnique({ where: { id: Number(id) } });
+    }
     
     if (!course) return NextResponse.json({ error: 'الكورس غير موجود' }, { status: 404 });
     
@@ -28,25 +33,28 @@ export async function GET(
     
     // Fallback to database if no static track found (for legacy/other courses)
     if (lessons.length === 0) {
-      lessons = await query<Record<string, unknown>>(
-        'SELECT id, title, order_index, is_free, duration_minutes, audio_url, video_url FROM lessons WHERE course_id = $1 ORDER BY order_index',
-        [id]
-      );
+      const dbLessons = await prisma.lessons.findMany({
+          where: { course_id: course.id },
+          orderBy: { order_index: 'asc' },
+          select: { id: true, title: true, order_index: true, is_free: true, duration_minutes: true, audio_url: true, video_url: true }
+      });
+      lessons = dbLessons;
     } else {
       // Map static lessons to have an 'id' property matching their slug so existing components don't break
-      lessons = lessons.map(l => ({ ...l, id: l.lesson_slug, course_id: course.id }));
+      lessons = lessons.map(l => ({ ...l, id: l.lesson_slug, course_id: course?.id }));
     }
     let isEnrolled = false;
-    const adminToken = request.cookies.get(COOKIE_NAME)?.value;
-    const studentToken = request.cookies.get('svk_student_token')?.value;
-    let payload = adminToken ? verifyToken(adminToken) : null;
-    if (!payload && studentToken) payload = verifyToken(studentToken);
+    const session = await getServerSession(authOptions);
 
-    if (payload && payload.role === 'student') {
-      const enrollCheck = await query('SELECT id FROM enrollments WHERE student_id = $1 AND course_id = $2', [payload.id, course.id]);
-      if (enrollCheck.length > 0) isEnrolled = true;
-    } else if (payload && payload.role === 'admin') {
-      isEnrolled = true; // Admins have access to everything
+    if (session && session.user) {
+      if (session.user.role === 'admin') {
+        isEnrolled = true;
+      } else if (session.user.role === 'student') {
+        const enrollCheck = await prisma.enrollments.findFirst({
+            where: { student_id: Number(session.user.id), course_id: course.id }
+        });
+        if (enrollCheck) isEnrolled = true;
+      }
     }
 
     return NextResponse.json({ course, lessons, isEnrolled });

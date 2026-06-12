@@ -1,0 +1,552 @@
+[
+  {
+    "lesson_slug": "python-81",
+    "content": {
+      "context": "لماذا نتعلم المكتبات المتقدمة في بايثون؟ لكي لا نعيد اختراع العجلة. بايثون تحتوي على مكتبات مدمجة قوية مثل collections و itertools توفر هياكل بيانات متقدمة وطرق سريعة للتعامل مع المجموعات بطرق احترافية.",
+      "description": "المكتبات المتقدمة تتيح لك كتابة كود أكثر كفاءة وقابلية للقراءة. توفر وحدة collections أدوات مثل Counter و defaultdict، بينما تقدم itertools أدوات قوية للتعامل مع التكرار وتوليد التباديل والتوافيق.",
+      "prototype": "import collections\nimport itertools\n\n# مثال:\ncounter_obj = collections.Counter(iterable)",
+      "parameters": "iterable: أي كائن يمكن التكرار عليه (مثل قائمة أو نص). يمكن تمريره لأدوات مثل Counter لتحليله.",
+      "return_value": "تختلف النتيجة حسب الأداة المستخدمة؛ فمثلاً Counter يرجع هيكلاً شبيهاً بالقاموس يحتوي على العناصر وتكراراتها.",
+      "example": "from collections import Counter\n\nwords = ['apple', 'banana', 'apple']\nword_counts = Counter(words)\nprint(word_counts['apple'])  # يطبع: 2"
+    },
+    "quick_practical_examples": [
+      {
+        "type": "correct",
+        "title": "استخدام defaultdict",
+        "code": "from collections import defaultdict\n\nd = defaultdict(int)\nd['a'] += 1\nprint(d['a'], d['b'])",
+        "expected_output": "1 0",
+        "explanation": "defaultdict(int) يجعل القيمة الافتراضية لأي مفتاح غير موجود 0، مما يبسط عمليات العد والجمع بدون التحقق من وجود المفتاح أولاً."
+      },
+      {
+        "type": "wrong",
+        "title": "محاولة تعديل مفتاح غير موجود",
+        "code": "d = {}\nd['a'] += 1",
+        "error_message": "KeyError: 'a'",
+        "explanation": "القاموس العادي يرمي خطأ KeyError عند استدعاء مفتاح غير مسجل، استخدم defaultdict أو تابع get() لتفادي ذلك."
+      },
+      {
+        "type": "mistake",
+        "title": "استخدام حلقات التكرار للعد",
+        "explanation": "المبرمجون المبتدئون يكتبون حلقات for معقدة لحساب عدد مرات تكرار العناصر، بينما Counter صُمم خصيصاً لإنجاز هذه المهمة بسطر واحد وبكفاءة أعلى."
+      },
+      {
+        "type": "use_case",
+        "title": "تحليل البيانات النصية",
+        "explanation": "تستخدم هذه المكتبات في استخراج أكثر الكلمات شيوعاً في مقالات الأخبار أو تحليل ردود الأفعال بناءً على تكرار الكلمات."
+      },
+      {
+        "type": "challenge",
+        "title": "استخراج أكثر عنصر تكراراً",
+        "code": "from collections import Counter\ndata = ['x', 'y', 'x', 'z', 'x', 'y']\n# أكمل الكود للحصول على العنصر الأكثر تكراراً مع عدده\ntop_item = ___\nprint(top_item)",
+        "expected_output": "[('x', 3)]",
+        "explanation": "استخدم التابع Counter(data).most_common(1) للحصول على أكثر عنصر تكراراً كقائمة من الـ tuples."
+      }
+    ],
+    "exam_data": {
+      "title": "اختبار المكتبات المتقدمة",
+      "questions": [
+        {
+          "question": "أي وحدة مدمجة تستخدم بشكل أساسي للتعامل المتقدم مع التكرارات الرياضية مثل التباديل؟",
+          "options": ["collections", "itertools", "math", "functools"],
+          "correct_answer": "itertools",
+          "explanation": "وحدة itertools تحتوي على دوال مثل permutations و combinations التي تنشئ التباديل الرياضية بكفاءة."
+        }
+      ]
+    }
+  },
+  {
+    "lesson_slug": "python-82",
+    "content": {
+      "context": "لماذا نحتاج التوازي (Threading)؟ عندما يكون لدينا مهام تتطلب انتظاراً طويلاً (مثل تحميل ملفات من الإنترنت)، يمكن للتوازي أن ينفذ هذه المهام في وقت واحد تقريباً دون تجميد البرنامج الأساسي.",
+      "description": "التوازي (Threading) يسمح بتشغيل عدة أجزاء من الكود بشكل متزامن داخل نفس العملية (Process). هو مفيد جداً للمهام المعتمدة على المدخلات والمخرجات (I/O-bound) مثل الشبكات أو قراءة الملفات.",
+      "prototype": "import threading\n\nthread = threading.Thread(target=my_function, args=(arg1,))\nthread.start()\nthread.join()",
+      "parameters": "target: الدالة المراد تشغيلها في المسار المستقل.\nargs: القيم الممررة للدالة كـ tuple.",
+      "return_value": "تابع start() يبدأ التشغيل فوراً، وتابع join() يجبر البرنامج الأساسي على الانتظار حتى ينتهي المسار (Thread) من عمله.",
+      "example": "import threading\nimport time\n\ndef print_numbers():\n    time.sleep(1)\n    print('تم التنفيذ')\n\nt = threading.Thread(target=print_numbers)\nt.start()\nprint('في الانتظار...')\nt.join()"
+    },
+    "quick_practical_examples": [
+      {
+        "type": "correct",
+        "title": "تشغيل مسارين معاً",
+        "code": "import threading\ndef task(name): print(f'Hello {name}')\n\nt1 = threading.Thread(target=task, args=('A',))\nt2 = threading.Thread(target=task, args=('B',))\nt1.start(); t2.start()\nt1.join(); t2.join()",
+        "expected_output": "Hello A\nHello B",
+        "explanation": "تم تشغيل المسارين في وقت متقارب جداً، ثم استخدمنا join للتأكد من انتهائهما قبل استكمال البرنامج."
+      },
+      {
+        "type": "wrong",
+        "title": "نسيان استدعاء الدالة بشكل خاطئ",
+        "code": "t = threading.Thread(target=task()) # خطأ",
+        "error_message": "يتم تنفيذ الدالة فورا في المسار الرئيسي",
+        "explanation": "يجب تمرير اسم الدالة بدون الأقواس المزدوجة target=task، وإلا سيتم استدعاؤها في المسار الأساسي (Main thread) قبل إنشاء المسار الجديد."
+      },
+      {
+        "type": "mistake",
+        "title": "استخدام Threading لتسريع العمليات الحسابية",
+        "explanation": "يعتقد البعض أن Threading يسرّع العمليات الحسابية الثقيلة، ولكن بسبب قفل المترجم العالمي (GIL) في بايثون، لا تستفيد العمليات الحسابية (CPU-bound) منه، ويفضل استخدام Multiprocessing."
+      },
+      {
+        "type": "use_case",
+        "title": "تطبيقات الويب وسحب البيانات",
+        "explanation": "عند بناء أداة Web Scraper لجلب بيانات من 100 موقع، يمكن استخدام Threading لتحميل الصفحات بالتزامن بدلاً من انتظار كل صفحة على حدة."
+      },
+      {
+        "type": "challenge",
+        "title": "تشغيل المسار",
+        "code": "import threading\ndef work(): print('Working')\nt = threading.Thread(target=work)\n# ابدأ تشغيل المسار هنا\n___",
+        "expected_output": "Working",
+        "explanation": "يجب استخدام التابع start() لبدء عمل الكائن t."
+      }
+    ],
+    "exam_data": {
+      "title": "اختبار Threading",
+      "questions": [
+        {
+          "question": "أي نوع من المهام يكون فيه استخدام Threading أكثر فاعلية في بايثون؟",
+          "options": ["العمليات الحسابية المعقدة", "مهام الإدخال والإخراج (I/O) كالشبكات", "تشفير البيانات", "التعامل مع المصفوفات الضخمة"],
+          "correct_answer": "مهام الإدخال والإخراج (I/O) كالشبكات",
+          "explanation": "بسبب قفل GIL، يعد الـ Threading مناسباً للمهام المعتمدة على الانتظار (I/O-bound) مثل طلبات الشبكة، وليس العمليات الحسابية."
+        }
+      ]
+    }
+  },
+  {
+    "lesson_slug": "python-83",
+    "content": {
+      "context": "لماذا نتعلم المعالجة المتعددة (Multiprocessing)؟ لتجاوز قيود بايثون مع الـ GIL وتشغيل العمليات الحسابية الثقيلة في نفس الوقت باستخدام جميع أنوية المعالج المتاحة.",
+      "description": "تسمح وحدة multiprocessing بإنشاء عمليات (Processes) منفصلة بالكامل، لكل منها مساحة ذاكرة خاصة وقفل GIL منفصل. هذا يجعلها الخيار المثالي للبرامج التي تتطلب استخداماً كثيفاً للمعالج (CPU-bound) مثل معالجة الصور وتحليل البيانات.",
+      "prototype": "import multiprocessing\n\np = multiprocessing.Process(target=my_func, args=(arg1,))\np.start()\np.join()",
+      "parameters": "target: الدالة المستهدفة للتنفيذ.\nargs: المعاملات المرسلة إليها كـ tuple.",
+      "return_value": "تُنفذ العملية في معالج منفصل، ولا تعيد قيم مباشرة للعملية الأم إلا باستخدام أدوات مشاركة مثل Queue أو Pipe.",
+      "example": "import multiprocessing\n\ndef calc_square(n):\n    print(n * n)\n\nif __name__ == '__main__':\n    p = multiprocessing.Process(target=calc_square, args=(5,))\n    p.start()\n    p.join()"
+    },
+    "quick_practical_examples": [
+      {
+        "type": "correct",
+        "title": "استخدام Pool للمعالجة",
+        "code": "import multiprocessing\ndef square(x): return x * x\nif __name__ == '__main__':\n    with multiprocessing.Pool(processes=2) as pool:\n        res = pool.map(square, [1, 2, 3])\n        print(res)",
+        "expected_output": "[1, 4, 9]",
+        "explanation": "استخدام Pool يسهل توزيع قائمة من البيانات على مجموعة محددة من العمليات (Workers) وجمع نتائجها في قائمة."
+      },
+      {
+        "type": "wrong",
+        "title": "عدم استخدام كتلة الحماية __main__",
+        "code": "import multiprocessing\np = multiprocessing.Process(target=print)\np.start()",
+        "error_message": "RuntimeError: An attempt has been made to start a new process...",
+        "explanation": "في نظام ويندوز خصوصاً، يجب دائماً وضع كود إنشاء العمليات داخل if __name__ == '__main__': لتفادي الاستدعاء اللانهائي عند إنشاء عمليات جديدة."
+      },
+      {
+        "type": "mistake",
+        "title": "مشاركة المتغيرات العامة",
+        "explanation": "يعتقد البعض أن تغيير متغير عام داخل العملية سينعكس على باقي العمليات، ولكن كل عملية لها مساحة ذاكرة مستقلة؛ يجب استخدام Shared Memory أو Queues."
+      },
+      {
+        "type": "use_case",
+        "title": "معالجة الفيديو والصور",
+        "explanation": "عند تحويل آلاف الصور إلى صيغة أخرى، يمكن توزيع الصور على أنوية المعالج المختلفة لتسريع العملية بشكل هائل."
+      },
+      {
+        "type": "challenge",
+        "title": "إنشاء Process",
+        "code": "import multiprocessing\ndef say_hi(name):\n    print('Hi', name)\n\nif __name__ == '__main__':\n    # مرر المتغير كـ tuple بفاصلة في النهاية\n    p = multiprocessing.Process(target=say_hi, args=___)\n    p.start()\n    p.join()",
+        "expected_output": "Hi Ali",
+        "explanation": "تذكر أن المعامل args يجب أن يكون tuple، وبالتالي لتمرير عنصر واحد يجب كتابته هكذا: ('Ali',)"
+      }
+    ],
+    "exam_data": {
+      "title": "اختبار Multiprocessing",
+      "questions": [
+        {
+          "question": "لماذا يُفضل استخدام Multiprocessing بدلاً من Threading في العمليات الحسابية المعقدة؟",
+          "options": ["لأنه يتخطى مشكلة قفل المترجم GIL بإنشاء عملية مستقلة تماماً", "لأنه أسهل في كتابة الكود", "لأنه يستهلك ذاكرة أقل بكثير", "لأنه يعمل على متصفح الويب"],
+          "correct_answer": "لأنه يتخطى مشكلة قفل المترجم GIL بإنشاء عملية مستقلة تماماً",
+          "explanation": "قفل GIL يمنع تشغيل أكثر من خيط برمجي (Thread) واحد لتعليمات بايثون بنفس الوقت، بينما الـ Process الجديد يملك GIL خاصاً به ومعالجاً منفرداً."
+        }
+      ]
+    }
+  },
+  {
+    "lesson_slug": "python-84",
+    "content": {
+      "context": "لماذا البرمجة غير المتزامنة (Asyncio)؟ تخيل أن طاهياً ينتظر نضج الكعكة ولا يفعل شيئاً! Asyncio يسمح للكود بالانتقال للعمل على مهام أخرى أثناء فترات الانتظار بدلاً من تجميد البرنامج.",
+      "description": "وحدة asyncio هي مكتبة مبنية لكتابة كود متزامن باستخدام التركيبات اللغوية async و await. تدير حلقة الأحداث (Event Loop) المهام وتقوم بالتبديل بينها بكفاءة عالية، مما يجعلها مثالية لتطبيقات الشبكات وواجهات برمجة التطبيقات (APIs) العالية الأداء.",
+      "prototype": "import asyncio\n\nasync def my_task():\n    await asyncio.sleep(1)\n    return 'Done'\n\nasyncio.run(my_task())",
+      "parameters": "async def: لتعريف دالة غير متزامنة (Coroutine).\nawait: تعليق التنفيذ حتى تنتهي العملية المنتظرة.",
+      "return_value": "الدالة المعرفة بـ async ترجع كائن Coroutine لا يتم تنفيذه فعلياً حتى يتم انتظاره بـ await أو إدخاله في الـ Event loop بـ asyncio.run.",
+      "example": "import asyncio\n\nasync def greet():\n    print('Hello')\n    await asyncio.sleep(1)\n    print('World')\n\nasyncio.run(greet())"
+    },
+    "quick_practical_examples": [
+      {
+        "type": "correct",
+        "title": "تشغيل مهام بالتوازي",
+        "code": "import asyncio\nasync def delay(n):\n    await asyncio.sleep(n)\n    return n\n\nasync def main():\n    res = await asyncio.gather(delay(2), delay(1))\n    print(res)\nasyncio.run(main())",
+        "expected_output": "[2, 1]",
+        "explanation": "باستخدام asyncio.gather يمكننا تشغيل عدة مهام (Coroutines) في نفس الوقت والانتظار حتى تنتهي جميعها."
+      },
+      {
+        "type": "wrong",
+        "title": "استدعاء Coroutine مباشرة",
+        "code": "async def say_hi(): print('Hi')\nsay_hi()",
+        "error_message": "RuntimeWarning: coroutine 'say_hi' was never awaited",
+        "explanation": "الدوال غير المتزامنة لا يمكن تنفيذها باستدعاء عادي، بل يجب استخدام await داخل دالة async أخرى، أو تمريرها إلى asyncio.run()."
+      },
+      {
+        "type": "mistake",
+        "title": "استخدام time.sleep مع async",
+        "explanation": "استخدام time.sleep() العادي سيجمد حلقة الأحداث بأكملها ويوقف باقي المهام. يجب استخدام asyncio.sleep() لكي تتنازل المهمة عن التحكم وتسمح لغيرها بالعمل."
+      },
+      {
+        "type": "use_case",
+        "title": "خوادم الويب (Web Servers)",
+        "explanation": "أطر العمل الحديثة مثل FastAPI تستخدم asyncio للرد على آلاف الطلبات في نفس الوقت دون حجز موارد النظام."
+      },
+      {
+        "type": "challenge",
+        "title": "تطبيق الدالة بشكل غير متزامن",
+        "code": "import asyncio\nasync def task():\n    # انتظر ثانية واحدة بطريقة صحيحة\n    ___ asyncio.sleep(1)\n    print('Done')\nasyncio.run(task())",
+        "expected_output": "Done",
+        "explanation": "تحتاج الكلمة المفتاحية await للانتظار على الدالة غير المتزامنة."
+      }
+    ],
+    "exam_data": {
+      "title": "اختبار Asyncio",
+      "questions": [
+        {
+          "question": "ما هي الكلمة المفتاحية المستخدمة لإيقاف تنفيذ كوروتين مؤقتاً حتى تكتمل مهمة أخرى غير متزامنة؟",
+          "options": ["yield", "await", "wait", "pause"],
+          "correct_answer": "await",
+          "explanation": "الكلمة المفتاحية await تُستخدم لتعليق الكوروتين الحالي والسماح لحلقة الأحداث بالانتقال لمهمة أخرى حتى تكتمل العملية المطلوبة."
+        }
+      ]
+    }
+  },
+  {
+    "lesson_slug": "python-85",
+    "content": {
+      "context": "لماذا يجب علينا اختبار الكود (Unit Testing)؟ لضمان أن الدوال الخاصة بنا تعمل كما هو متوقع، وتجنب ظهور أخطاء غير مرغوبة عند إضافة ميزات جديدة لاحقاً في المشروع.",
+      "description": "مكتبة unittest هي مكتبة مدمجة توفر إطار عمل لتنظيم وكتابة وتشغيل اختبارات الوحدة. تمكنك من وضع افتراضات (Assertions) للتأكد من أن مخرجات الكود تطابق المخرجات المتوقعة في حالات الاستخدام المختلفة، مما يبني الثقة في متانة التطبيق.",
+      "prototype": "import unittest\n\nclass TestMyFunction(unittest.TestCase):\n    def test_case(self):\n        self.assertEqual(my_func(), expected_result)",
+      "parameters": "unittest.TestCase: الفئة الأساسية التي ترث منها لإنشاء حالات اختبار.\nassertEqual(a, b): أداة تأكيد تتحقق من أن القيمة a تساوي القيمة b.",
+      "return_value": "عند تشغيل الاختبارات عبر unittest.main()، يظهر تقرير يوضح الاختبارات الناجحة بحرف (OK) أو النقاط (.) والراسية بكلمة (FAIL).",
+      "example": "import unittest\n\ndef add(a, b): return a + b\n\nclass TestMath(unittest.TestCase):\n    def test_add(self):\n        self.assertEqual(add(2, 3), 5)\n\n# لتشغيل الاختبارات\n# unittest.main()"
+    },
+    "quick_practical_examples": [
+      {
+        "type": "correct",
+        "title": "اختبار القيم المنطقية والاستثناءات",
+        "code": "import unittest\nclass TestLogic(unittest.TestCase):\n    def test_bool(self):\n        self.assertTrue('a' in 'abc')\n    def test_error(self):\n        with self.assertRaises(ZeroDivisionError):\n            x = 1 / 0",
+        "expected_output": "OK",
+        "explanation": "توفر مكتبة unittest أدوات متعددة مثل assertTrue للتحقق من القيم المنطقية و assertRaises للتحقق من إطلاق الأخطاء."
+      },
+      {
+        "type": "wrong",
+        "title": "نسيان كلمة test_ في اسم الدالة",
+        "code": "class MyTest(unittest.TestCase):\n    def check_value(self):\n        self.assertEqual(1, 1)",
+        "error_message": "لا يتم تنفيذ هذا الاختبار بتاتاً.",
+        "explanation": "إطار عمل unittest يبحث تلقائياً عن الدوال التي يبدأ اسمها بكلمة test_ فقط لتشغيلها. الدالة check_value سيتم تجاهلها."
+      },
+      {
+        "type": "mistake",
+        "title": "كتابة اختبار معتمد على بيانات حية",
+        "explanation": "من الأخطاء الشائعة استدعاء API أو قاعدة بيانات حقيقية داخل الـ Unit test. يجب أن تكون اختبارات الوحدة سريعة ومستقلة، وعادة ما نستخدم تقنية Mocking للبيانات الخارجية."
+      },
+      {
+        "type": "use_case",
+        "title": "تطوير التطبيقات المدفوع بالاختبار (TDD)",
+        "explanation": "في بيئات العمل الاحترافية، تُكتب اختبارات unittest قبل كتابة الكود الفعلي نفسه لضمان أن كل سطر برمجي يُلبي متطلبات المشروع بدقة."
+      },
+      {
+        "type": "challenge",
+        "title": "تأكيد النتيجة",
+        "code": "import unittest\ndef mul(x, y): return x * y\nclass TestMul(unittest.TestCase):\n    def test_mul(self):\n        # تأكد أن حاصل ضرب 3 و 4 هو 12\n        ___.assertEqual(mul(3, 4), 12)",
+        "expected_output": "OK",
+        "explanation": "يجب استخدام self لاستدعاء التابع assertEqual من الكلاس الموروث TestCase."
+      }
+    ],
+    "exam_data": {
+      "title": "اختبار Unit Testing",
+      "questions": [
+        {
+          "question": "ما هو التابع المستخدم في unittest للتحقق من أن استدعاء دالة معينة سيؤدي إلى حدوث خطأ (Exception) محدد؟",
+          "options": ["assertError", "assertRaises", "assertException", "catchError"],
+          "correct_answer": "assertRaises",
+          "explanation": "التابع self.assertRaises يستخدم مع كتلة with للتحقق من رفع استثناء معين من الكود المختبر."
+        }
+      ]
+    }
+  },
+  {
+    "lesson_slug": "python-86",
+    "content": {
+      "context": "لماذا نستكشف البرمجة الدالة (Functional)؟ لأنها تساعدنا في كتابة كود نظيف (Clean Code) خالٍ من الآثار الجانبية، مما يجعله أسهل في الفهم والاختبار والتطوير.",
+      "description": "البرمجة الدالة هي أسلوب (Paradigm) يعتمد على استخدام الدوال النقية (Pure Functions) وتجنب تغيير حالة المتغيرات (Mutability). يوفر بايثون أدوات لدعم هذا الأسلوب عبر مكتبات مثل functools وتقديم مفاهيم الدوال ذات المراتب العليا (Higher-Order Functions) التي تقبل أو ترجع دوالاً أخرى.",
+      "prototype": "from functools import reduce\n\n# دالة ذات مرتبة عليا تقبل دالة كمُعامل\ndef apply_func(func, value):\n    return func(value)",
+      "parameters": "func: مرجع لدالة أخرى يتم تمريره.\nreduce: أداة تطبق دالة تراكمية على عناصر القائمة لترجع قيمة وحيدة.",
+      "return_value": "تُرجع الدوال النقية دائماً نفس النتيجة عند إعطائها نفس المدخلات ولا تؤثر على أي متغيرات خارج نطاقها.",
+      "example": "from functools import reduce\n\nnumbers = [1, 2, 3, 4]\nresult = reduce(lambda x, y: x * y, numbers)\nprint(result)  # حاصل ضرب جميع الأعداد: 24"
+    },
+    "quick_practical_examples": [
+      {
+        "type": "correct",
+        "title": "الدوال ذات المراتب العليا (Higher-Order)",
+        "code": "def shout(text): return text.upper()\n\ndef process_text(func, text):\n    return func(text)\n\nprint(process_text(shout, 'hello'))",
+        "expected_output": "HELLO",
+        "explanation": "مررنا الدالة shout كمُعامل (Argument) لدالة process_text بدون الأقواس المزدوجة، فتم استدعاؤها في الداخل بنجاح."
+      },
+      {
+        "type": "wrong",
+        "title": "تغيير حالة كائن خارجي (Side Effects)",
+        "code": "total = 0\ndef add_to_total(x):\n    global total\n    total += x\n    return total",
+        "error_message": "ليس خطأ برمجيا، لكنه خطأ تصميمي.",
+        "explanation": "البرمجة الدالة تتجنب الاعتماد على المتغيرات العامة وتغييرها (Global State). يجب أن تعتمد الدالة حصراً على مدخلاتها وترجع قيمة جديدة دون التأثير بالخارج."
+      },
+      {
+        "type": "mistake",
+        "title": "الخلط بين reduce و map",
+        "explanation": "البعض يحاول استخدام reduce لتحويل كل عنصر في القائمة إلى شيء آخر. الصحيح أن map مخصصة لتحويل كل عنصر، بينما reduce تستخدم لدمج وتقليص القائمة إلى نتيجة تراكمية واحدة."
+      },
+      {
+        "type": "use_case",
+        "title": "معالجة تدفقات البيانات (Data Pipelines)",
+        "explanation": "في إطارات عمل البيانات الكبيرة مثل PySpark، الاعتماد الكلي يكون على البرمجة الدالة (Map-Reduce) لتوزيع المهام واستخراج النتائج بأمان وسرعة."
+      },
+      {
+        "type": "challenge",
+        "title": "تطبيق دالة تقليص",
+        "code": "from functools import reduce\n# استخدم reduce لجمع الأعداد\nres = reduce(lambda x, y: ___, [10, 20, 30])\nprint(res)",
+        "expected_output": "60",
+        "explanation": "الدالة التراكمية في reduce يجب أن ترجع ناتج العملية بين العنصرين لكي يُمرر للخطوة التالية. الجواب هو x + y."
+      }
+    ],
+    "exam_data": {
+      "title": "اختبار مفاهيم Functional",
+      "questions": [
+        {
+          "question": "ما هي الميزة الأساسية للدالة النقية (Pure Function)؟",
+          "options": ["تعمل بسرعة أكبر في كل الحالات", "دائما ترجع نفس النتيجة للمدخلات ذاتها ولا تُحدث أثراً جانبياً", "تُخزن في الذاكرة الدائمة", "تسمح بتعديل المتغيرات العامة بحرية"],
+          "correct_answer": "دائما ترجع نفس النتيجة للمدخلات ذاتها ولا تُحدث أثراً جانبياً",
+          "explanation": "غياب الآثار الجانبية واستقرار المخرجات هو ما يجعل الدالة نقية ومناسبة لمفاهيم البرمجة الدالة التجريدية."
+        }
+      ]
+    }
+  },
+  {
+    "lesson_slug": "python-87",
+    "content": {
+      "context": "لماذا نستخدم Map و Filter؟ بدلاً من كتابة حلقات for طويلة لتحويل عناصر مصفوفة أو فلترتها، يوفران طريقة أنيقة ومدمجة لتنفيذ هذه العمليات بسطر واحد وتحسين الأداء.",
+      "description": "تعد دالة map() وسيلة لتطبيق دالة محددة على كل عنصر من عناصر مجموعة (كالقائمة) وإرجاع مجموعة جديدة. أما دالة filter() فتُستخدم للتحقق من شرط معين وتصفية العناصر التي ترجع True فقط عند تطبيق الدالة عليها.",
+      "prototype": "map(function, iterable)\nfilter(function, iterable)",
+      "parameters": "function: الدالة المراد تطبيقها.\niterable: القائمة أو السلسلة النصية المراد التكرار عليها.",
+      "return_value": "ترجع هاتان الدالتان كائنات تكرارية (Iterators) في بايثون 3 لتقليل استهلاك الذاكرة. للحصول على قائمة يجب تمرير النتيجة إلى list().",
+      "example": "nums = [1, 2, 3, 4]\n\n# استخدام map\nsquares = list(map(lambda x: x**2, nums))\nprint(squares)  # [1, 4, 9, 16]\n\n# استخدام filter\nevens = list(filter(lambda x: x % 2 == 0, nums))\nprint(evens)  # [2, 4]"
+    },
+    "quick_practical_examples": [
+      {
+        "type": "correct",
+        "title": "استخدام دوال مدمجة مع Map",
+        "code": "words = ['10', '20', '30']\nnumbers = list(map(int, words))\nprint(numbers)",
+        "expected_output": "[10, 20, 30]",
+        "explanation": "قمنا بتمرير الدالة المدمجة int كمعامل لدالة map لتحويل كل النصوص في القائمة إلى أرقام صحيحة بفعالية."
+      },
+      {
+        "type": "wrong",
+        "title": "نسيان تحويل النتيجة إلى List",
+        "code": "res = map(str.upper, ['a', 'b'])\nprint(res)",
+        "error_message": "<map object at 0x...>",
+        "explanation": "دالة map في بايثون 3 ترجع كائن Map Object وليس قائمة جاهزة وذلك لاستهلاك ذاكرة أقل (Lazy evaluation). لرؤية العناصر يجب تحويله باستخدام list(res)."
+      },
+      {
+        "type": "mistake",
+        "title": "استخدام Map عندما يكون For Loop أوضح",
+        "explanation": "في حال كانت العملية داخل Map معقدة جداً ومتعددة الأسطر، يصبح استخدام Map سيئاً لقابلية القراءة. List Comprehension أو For loop تكون أفضل في تلك الحالات."
+      },
+      {
+        "type": "use_case",
+        "title": "تنظيف البيانات",
+        "explanation": "عند جلب بيانات من واجهة برمجية وتكون فيها مسافات زائدة وقيم فارغة، يمكن دمج map(str.strip, data) مع filter(None, data) لتنظيف القائمة بالكامل بصورة مبسطة."
+      },
+      {
+        "type": "challenge",
+        "title": "تصفية الأطوال",
+        "code": "names = ['Ali', 'Abdullah', 'Mona', 'Omar']\n# فلترة الأسماء المكونة من 4 حروف أو أقل\nshort_names = list(___(lambda x: len(x) <= 4, names))\nprint(short_names)",
+        "expected_output": "['Ali', 'Mona', 'Omar']",
+        "explanation": "نحتاج إلى التصفية بناء على شرط، لذلك فإن الأداة المناسبة هنا هي دالة filter."
+      }
+    ],
+    "exam_data": {
+      "title": "اختبار Map و Filter",
+      "questions": [
+        {
+          "question": "إذا كان لدينا قائمة [1, 2, 3] وأردنا تحويلها إلى [2, 4, 6]، ما هي الدالة الأنسب؟",
+          "options": ["filter", "map", "reduce", "sort"],
+          "correct_answer": "map",
+          "explanation": "دالة map تستخدم لتحويل أو تعديل كل عنصر في القائمة بإجراء عملية رياضية معينة عليه وإرجاع العناصر محولة بنفس الترتيب."
+        }
+      ]
+    }
+  },
+  {
+    "lesson_slug": "python-88",
+    "content": {
+      "context": "لماذا نتعلم دالة Lambda؟ في أحيان كثيرة نحتاج لدالة صغيرة جداً نستخدمها لمرة واحدة فقط كمعامل تمرير. كتابة دالة كاملة بكلمة def لهذه المهمة يعتبر إهداراً للوقت والمساحة.",
+      "description": "دالة Lambda في بايثون هي دالة غير مسماة (Anonymous Function) يتم كتابتها في سطر واحد. تحتوي دائماً على تعبير (Expression) واحد فقط يتم إرجاع نتيجته تلقائياً، وتُستخدم بكثرة بجوار map، filter، والترتيب.",
+      "prototype": "lambda arguments: expression",
+      "parameters": "arguments: معامل أو أكثر مفصولة بفواصل (يمكن أن تكون بدون معاملات أيضاً).\nexpression: عملية برمجية بسيطة يتم إرجاع قيمتها كـ return ضمني.",
+      "return_value": "ترجع كائن دالة يمكن استدعاؤه فوراً أو حفظه في متغير، أو تمريره كمدخل لدالة أخرى.",
+      "example": "multiply = lambda x, y: x * y\nprint(multiply(3, 4))  # 12\n\n# الاستخدام الشائع مع Sort\npoints = [(1, 2), (3, 1), (5, 0)]\npoints.sort(key=lambda item: item[1])\nprint(points)  # الفرز عبر العنصر الثاني"
+    },
+    "quick_practical_examples": [
+      {
+        "type": "correct",
+        "title": "استخدام Lambda في الفلترة",
+        "code": "nums = [10, -5, 2, -1]\npositives = list(filter(lambda x: x > 0, nums))\nprint(positives)",
+        "expected_output": "[10, 2]",
+        "explanation": "دالة lambda هنا تعمل كشرط سريع للتحقق من كل عنصر بدون الحاجة لتعريف دالة مستقلة كاملة خارج السياق."
+      },
+      {
+        "type": "wrong",
+        "title": "محاولة إضافة أوامر متعددة",
+        "code": "f = lambda x: print(x); return x * 2",
+        "error_message": "SyntaxError",
+        "explanation": "لا يمكن لـ Lambda أن تحتوي على أوامر (Statements) متعددة أو حلقات تكرار صريحة. يجب أن تكون تعبيراً وحيداً (Expression)."
+      },
+      {
+        "type": "mistake",
+        "title": "إسناد Lambda لمتغير بشكل دائم",
+        "explanation": "بحسب الدليل القياسي لبايثون (PEP 8)، إذا أردت إعطاء الدالة اسماً فاستخدم def. الهدف من lambda هو استخدامها كدالة مجهولة ورميها فورا."
+      },
+      {
+        "type": "use_case",
+        "title": "الفرز المخصص (Custom Sorting)",
+        "explanation": "عند استخدام الواجهات لترتيب قوائم المستخدمين بناء على العمر أو الرصيد الموجود بداخل قاموس، تمرير lambda كـ parameter للـ key في دالة sorted هو الحل النموذجي."
+      },
+      {
+        "type": "challenge",
+        "title": "كتابة Lambda لحساب التربيع",
+        "code": "# قم بتعريف lambda تستقبل x وتعيد x تربيع\nsquare = ___\nprint(square(5))",
+        "expected_output": "25",
+        "explanation": "استخدم كلمة lambda تليها x، ثم النقطتين : ثم عملية التربيع x ** 2."
+      }
+    ],
+    "exam_data": {
+      "title": "اختبار Lambda",
+      "questions": [
+        {
+          "question": "ما هو القيد الأساسي عند كتابة دالة Lambda في بايثون؟",
+          "options": ["لا تستطيع استقبال أكثر من معامل واحد", "تسمح بكتابة تعبير برمجي (Expression) واحد فقط", "لا يمكنها إرجاع قيم", "يجب تسميتها بأحرف إنجليزية كبيرة"],
+          "correct_answer": "تسمح بكتابة تعبير برمجي (Expression) واحد فقط",
+          "explanation": "صممت Lambda لتبقى بسيطة وسطراً واحداً، لذا تمنع بايثون وضع شروط معقدة أو أوامر متعددة أو عبارات العودة (return) بشكل صريح داخلها."
+        }
+      ]
+    }
+  },
+  {
+    "lesson_slug": "python-89",
+    "content": {
+      "context": "لماذا تعد تعابير List Comprehensions مهمة؟ تعكس هذه الميزة روح بايثون. إنها توفر طريقة واضحة جداً، ومقروءة، وأسرع من الحلقات التقليدية لبناء القوائم.",
+      "description": "تعابير استيعاب القوائم (List Comprehensions) هي طريقة مختصرة لإنشاء قائمة جديدة بناءً على قائمة موجودة بسطر واحد. تدمج هذه الطريقة حلقة for مع الجمل الشرطية if لتكون بديلاً ممتازاً ومحسناً برمجياً لعمليات append العادية.",
+      "prototype": "[expression for item in iterable if condition]",
+      "parameters": "expression: ما سيتم إضافته للقائمة الجديدة (مثلاً ضرب العنصر بـ 2).\niterable: المجموعة التي يتم الدوران حولها.\ncondition: (اختياري) شرط لتصفية العناصر.",
+      "return_value": "ترجع دائماً قائمة (List) جديدة محتوية على ناتج التعبير الذي وافق الشرط.",
+      "example": "nums = [1, 2, 3, 4, 5]\n\n# تربيع الأعداد الزوجية فقط باستخدام List Comprehension\nresult = [x**2 for x in nums if x % 2 == 0]\nprint(result)  # [4, 16]"
+    },
+    "quick_practical_examples": [
+      {
+        "type": "correct",
+        "title": "تحويل نصوص في قائمة",
+        "code": "words = ['hello', 'world', 'python']\nupper_words = [w.upper() for w in words]\nprint(upper_words)",
+        "expected_output": "['HELLO', 'WORLD', 'PYTHON']",
+        "explanation": "قمنا بالمرور على كل كلمة، وحولناها للأحرف الكبيرة، ووضعنا الناتج في قائمة جديدة بسطر واحد بديهي."
+      },
+      {
+        "type": "wrong",
+        "title": "تركيب شروط معقدة تضر القراءة",
+        "code": "res = [x if x % 2 == 0 else y for x in a for y in b if x > 5 if y < 2]",
+        "error_message": "ليس خطأ قواعدي ولكنه 'كود سيء'.",
+        "explanation": "بالرغم من صحته برمجياً، التعقيد الشديد في List Comprehension يجعله غير مفهوم. في هذه الحالات، العودة للـ for loops التقليدية أفضل بكثير."
+      },
+      {
+        "type": "mistake",
+        "title": "وضع if و else بشكل خاطئ",
+        "explanation": "البعض يحاول كتابة شرط if في النهاية مع else وهذا يسبب خطأ قواعدي. إذا أردت if/else للتحويل توضع قبل حلقة الـ for، أما إذا كان للفلترة فقط فتوضع في النهاية (بدون else)."
+      },
+      {
+        "type": "use_case",
+        "title": "استخراج البيانات من القواميس",
+        "explanation": "عند امتلاك قائمة من القواميس (مثال: موظفين)، يمكن بسهولة إنشاء قائمة بجميع أسماء الموظفين النشطين `[emp['name'] for emp in employees if emp['is_active']]`."
+      },
+      {
+        "type": "challenge",
+        "title": "تكوين قائمة زوجية",
+        "code": "numbers = [1, 2, 3, 4, 5, 6]\n# قم بإنشاء قائمة جديدة تحتوي فقط على الأعداد الأكبر من 3\nres = [x ___ x in numbers ___ x > 3]\nprint(res)",
+        "expected_output": "[4, 5, 6]",
+        "explanation": "الهيكل هو for متبوعة بالمجموعة، ثم if للشرط."
+      }
+    ],
+    "exam_data": {
+      "title": "اختبار List Comprehensions",
+      "questions": [
+        {
+          "question": "ما هي ميزة استخدام List Comprehensions مقارنة بإنشاء قائمة فارغة ثم استخدام حلقة for ودالة append()؟",
+          "options": ["تمتلك أداء أسرع وكوداً أكثر نظافة", "تسمح بإيقاف التنفيذ باستخدام break", "لا تتطلب استهلاك ذاكرة إطلاقاً", "تُعتبر أسهل للمكتبات الخارجية للتعرف عليها"],
+          "correct_answer": "تمتلك أداء أسرع وكوداً أكثر نظافة",
+          "explanation": "عملية الاستيعاب أسرع داخلياً في لغة C-Python مقارنة باستدعاء دالة append() في كل لفة، وهي تعتبر الطريقة الأكثر شيوعاً في مجتمع بايثون."
+        }
+      ]
+    }
+  },
+  {
+    "lesson_slug": "python-90",
+    "content": {
+      "context": "لماذا يجب أن نتعلم استكشاف الأخطاء المتقدم (Debugging)؟ لأن الطباعة باستخدام print() غير كافية عندما يكبر المشروع. يجب أن نتعلم كيف نوقف البرنامج، ونفحص المتغيرات، ونكتشف الخطأ بسرعة.",
+      "description": "يوفر بايثون طرقاً متقدمة للـ Debugging. الأداة المدمجة pdb (Python Debugger) تتيح وضع نقاط توقف للبرنامج وتتبع سطر تلو الآخر. حديثاً في بايثون 3.7+ تم إضافة دالة breakpoint() المدمجة التي تفعل نفس الشيء بمرونة أكبر.",
+      "prototype": "import pdb\npdb.set_trace()\n\n# أو بشكل أحدث:\nbreakpoint()",
+      "parameters": "لا تستقبل دالة breakpoint معاملات بشكل عام. عند استدعائها، يتوقف البرنامج وتظهر واجهة الأوامر التفاعلية.",
+      "return_value": "لا تُرجع قيم بل تنقل التحكم للواجهة الطرفية (Console) لتبدأ بكتابة أوامر التصحيح مثل c للاستمرار أو n للسطر التالي.",
+      "example": "def calculate_price(price, discount):\n    final_price = price - discount\n    breakpoint()  # يتوقف البرنامج هنا لكي تفحص المتغيرات\n    return final_price\n\ncalculate_price(100, 20)"
+    },
+    "quick_practical_examples": [
+      {
+        "type": "correct",
+        "title": "التتبع خطوة بخطوة باستخدام logging",
+        "code": "import logging\nlogging.basicConfig(level=logging.DEBUG)\n\nx = 10\nlogging.debug(f'القيمة الحالية هي {x}')",
+        "expected_output": "DEBUG:root:القيمة الحالية هي 10",
+        "explanation": "مكتبة logging هي البديل الاحترافي لطباعة print، حيث يمكن تفعيلها أو تعطيلها وتوجيه مخرجاتها لملف بدلاً من الشاشة."
+      },
+      {
+        "type": "wrong",
+        "title": "ترك breakpoint في كود الإنتاج (Production)",
+        "code": "def process_payment():\n    breakpoint()\n    # ...",
+        "error_message": "سيتوقف الخادم عند انتظار تدخل بشري",
+        "explanation": "نسيان إزالة نقطة التوقف سيجعل التطبيق معلقاً عند تشغيله الحقيقي. يجب التأكد من إزالتها أو تشغيل سكريبت بايثون بمتغير البيئة PYTHONBREAKPOINT=0 لتخطيها."
+      },
+      {
+        "type": "mistake",
+        "title": "الاعتماد المفرط على Print",
+        "explanation": "استخدام print() بكثرة يخلق كوداً فوضوياً وصعب الحذف لاحقاً، بينما أوامر التصحيح (Debuggers) توفر تحكماً دقيقاً برؤية كل جزء في الذاكرة دون تلويث الكود."
+      },
+      {
+        "type": "use_case",
+        "title": "فحص بيانات واجهات برمجة التطبيقات API",
+        "explanation": "عند استلام استجابة JSON معقدة وغير مفهومة من API، وضع نقطة توقف breakpoint() يتيح لك فحص القاموس والتنقل فيه قبل استكمال كود الاستخراج."
+      },
+      {
+        "type": "challenge",
+        "title": "أمر الاستمرار في واجهة التنقيح",
+        "code": "# عندما تتوقف الشاشة عند واجهة PDB وتريد استكمال البرنامج للنهاية، أي حرف تكتب؟\n# الخيارات: (n, s, c, q)\nanswer = '___'",
+        "expected_output": "c",
+        "explanation": "الحرف c اختصار لـ continue والذي يأمر المنقح بمواصلة تشغيل البرنامج حتى النهاية أو نقطة التوقف التالية."
+      }
+    ],
+    "exam_data": {
+      "title": "اختبار Debugging",
+      "questions": [
+        {
+          "question": "ما هي الميزة الرئيسية لاستخدام مكتبة logging بدلاً من دالة print()؟",
+          "options": ["أنها تطبع الخط بلون أحمر", "إمكانية إيقاف ظهور رسائل التتبع بسهولة وحفظها في ملف سجلات", "أنها أسرع بحوالي 100 مرة في التنفيذ", "أنها تنشئ واجهة رسومية لإصلاح الخطأ"],
+          "correct_answer": "إمكانية إيقاف ظهور رسائل التتبع بسهولة وحفظها في ملف سجلات",
+          "explanation": "الـ Logging يسمح بتعريف مستويات للرسائل (مثل INFO, DEBUG, ERROR) وتوجيهها للملفات أو إخفائها في بيئة الإنتاج بسطر كود واحد، بينما print تطبع دائماً."
+        }
+      ]
+    }
+  }
+]

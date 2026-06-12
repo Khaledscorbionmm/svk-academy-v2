@@ -1,0 +1,602 @@
+[
+  {
+    "lesson_slug": "python-31",
+    "content": {
+      "context": "لماذا نحتاج إلى الوراثة؟ عندما نقوم بكتابة تطبيقات كبيرة، غالباً ما نجد أننا نكرر كتابة نفس الخصائص والوظائف في عدة كائنات. الوراثة تسمح لنا بإنشاء صنف (Class) جديد يرث جميع الخصائص والدوال من صنف آخر، مما يقلل من تكرار الكود ويسهل صيانته.",
+      "description": "الوراثة (Inheritance) هي إحدى ركائز البرمجة الكائنية التوجه (OOP). تسمح للصنف الجديد (الابن) بأن يأخذ (يرث) الخصائص والدوال من الصنف الموجود مسبقاً (الأب). يمكن للصنف الابن استخدام هذه الدوال أو تعديلها (Overriding) وكذلك إضافة دوال جديدة خاصة به.",
+      "prototype": "class ChildClass(ParentClass):\n    pass",
+      "parameters": "ParentClass: اسم الصنف الأب الذي نريد الوراثة منه.",
+      "return_value": "الكود لا يُرجع قيمة بحد ذاته، بل يُنشئ بنية هيكلية لتعريف الأصناف.",
+      "example": "class Animal:\n    def speak(self):\n        return \"صوت الحيوان\"\n\nclass Dog(Animal):\n    def speak(self):\n        return \"نباح\"\n\nmy_dog = Dog()\nprint(my_dog.speak())"
+    },
+    "quick_practical_examples": [
+      {
+        "type": "correct",
+        "title": "تطبيق مباشر",
+        "code": "class Person:\n    def __init__(self, name):\n        self.name = name\n\nclass Student(Person):\n    def __init__(self, name, grade):\n        super().__init__(name)\n        self.grade = grade\n\ns = Student(\"أحمد\", \"ممتاز\")\nprint(s.name, s.grade)",
+        "expected_output": "أحمد ممتاز",
+        "explanation": "هنا قمنا بإنشاء صنف Student يرث من صنف Person، واستخدمنا دالة super() لاستدعاء المُنشئ الخاص بالصنف الأب لتمرير الاسم."
+      },
+      {
+        "type": "wrong",
+        "title": "خطأ برمجي شائع",
+        "code": "class Bird:\n    def fly(self):\n        print(\"يطير\")\n\nclass Penguin(Bird):\n    def swim(self):\n        print(\"يسبح\")\n\np = Penguin()\np.fly() # لا خطأ برمجي، ولكن البطريق لا يطير!",
+        "error_message": "ليس خطأ برمجي صريح (Exception)، ولكنه خطأ منطقي (Logical Error).",
+        "explanation": "لإصلاح الخطأ المنطقي، يجب إعادة تعريف الدالة fly في صنف البطريق (Overriding) لتوضح أنه لا يستطيع الطيران."
+      },
+      {
+        "type": "mistake",
+        "title": "مفهوم خاطئ",
+        "explanation": "البعض يعتقد أن الوراثة تعني نسخ الكود بالكامل، في حين أنها تعني إعادة الاستخدام وإمكانية التوسع على سلوكيات موجودة مسبقاً بدلاً من نسخها نصياً."
+      },
+      {
+        "type": "use_case",
+        "title": "الاستخدام في الواقع",
+        "explanation": "في تطوير ألعاب الفيديو، يمكن أن يكون لدينا صنف Character (شخصية) يحتوي على الصحة والسرعة، ونرث منه أصناف مثل Player (اللاعب) و Enemy (العدو)."
+      },
+      {
+        "type": "challenge",
+        "title": "تحدي: إصلاح الكود",
+        "code": "class Vehicle:\n    def __init__(self):\n        self.wheels = 4\n\nclass Motorcycle(Vehicle):\n    def __init__(self):\n        # ينقص هنا استدعاء الأب لتعيين عدد العجلات\n        self.wheels = 2\n\nm = Motorcycle()\nprint(m.wheels)",
+        "expected_output": "2",
+        "explanation": "لا حاجة لاستدعاء الأب إذا كنت تريد استبدال القيمة بالكامل، ولكن إذا أردت جلب خصائص أخرى يجب استخدام super().__init__(). في هذا التحدي، التعيين المباشر صحيح لكن ينقصه استدعاء super() إذا كانت هناك خصائص أخرى."
+      }
+    ],
+    "exam_data": {
+      "title": "اختبار سريع",
+      "questions": [
+        {
+          "question": "ما هي الكلمة المفتاحية أو الدالة المستخدمة داخل الصنف الابن للوصول إلى دوال الصنف الأب؟",
+          "options": [
+            "parent()",
+            "super()",
+            "base()",
+            "this()"
+          ],
+          "correct_answer": "super()",
+          "explanation": "دالة super() تستخدم للوصول إلى المتغيرات والدوال الموجودة في الصنف الأب بسهولة دون الحاجة لتكرار اسم الأب."
+        }
+      ]
+    }
+  },
+  {
+    "lesson_slug": "python-32",
+    "content": {
+      "context": "لماذا نتعلم التغليف (Encapsulation)؟ في البرامج المعقدة، من الخطر ترك جميع البيانات متاحة للتعديل المباشر من أي مكان، فقد يتم تغييرها بشكل خاطئ. التغليف يتيح لنا إخفاء البيانات الحساسة وحمايتها، وتوفير طرق محددة وآمنة للوصول إليها أو تعديلها.",
+      "description": "التغليف هو مبدأ من مبادئ الـ OOP يعتمد على إخفاء التفاصيل الداخلية للكائن (حالة الكائن) ومنع الوصول المباشر إليها من الخارج. في بايثون، نستخدم الشرطة السفلية المزدوجة __ قبل اسم المتغير لجعله خاصاً (Private)، مما يعني أنه لا يمكن الوصول إليه إلا من داخل الصنف نفسه.",
+      "prototype": "class MyClass:\n    def __init__(self):\n        self.__private_var = 10",
+      "parameters": "__private_var: متغير خاص لا يُمكن الوصول إليه من خارج الصنف.",
+      "return_value": "حماية البيانات من التعديل الخارجي العشوائي.",
+      "example": "class BankAccount:\n    def __init__(self, balance):\n        self.__balance = balance\n\n    def get_balance(self):\n        return self.__balance\n\naccount = BankAccount(1000)\nprint(account.get_balance())"
+    },
+    "quick_practical_examples": [
+      {
+        "type": "correct",
+        "title": "تطبيق مباشر",
+        "code": "class User:\n    def __init__(self, password):\n        self.__password = password\n\n    def check_password(self, attempt):\n        return self.__password == attempt\n\nu = User(\"secret123\")\nprint(u.check_password(\"secret123\"))",
+        "expected_output": "True",
+        "explanation": "في هذا المثال، الرقم السري محمي، ولا يمكن معرفته أو قراءته مباشرة، بل نتحقق منه عبر دالة خاصة بذلك."
+      },
+      {
+        "type": "wrong",
+        "title": "خطأ برمجي شائع",
+        "code": "class Car:\n    def __init__(self):\n        self.__speed = 200\n\nmy_car = Car()\nprint(my_car.__speed)",
+        "error_message": "AttributeError: 'Car' object has no attribute '__speed'",
+        "explanation": "المتغير __speed هو متغير خاص ولا يمكن طباعته أو الوصول إليه مباشرة من خارج الصنف. للوصول إليه يجب توفير دالة Getter تعيده."
+      },
+      {
+        "type": "mistake",
+        "title": "مفهوم خاطئ",
+        "explanation": "يعتقد البعض أن التغليف في بايثون يقدم أماناً تاماً ولا يمكن اختراقه. الحقيقة أن بايثون تقوم بتبديل الاسم (Name Mangling)، ويمكن الوصول للمتغير عبر _ClassName__variableName."
+      },
+      {
+        "type": "use_case",
+        "title": "الاستخدام في الواقع",
+        "explanation": "يستخدم بكثرة في قواعد البيانات وتطبيقات البنوك لحماية بيانات الحسابات كالأرصدة بحيث يتم تعديلها فقط عبر إيداع وسحب مدروس."
+      },
+      {
+        "type": "challenge",
+        "title": "تحدي: إصلاح الكود",
+        "code": "class Wallet:\n    def __init__(self):\n        self.__money = 0\n    # أضف دالة لزيادة المال هنا\n\nw = Wallet()\n# w.__money += 50",
+        "expected_output": "لا شيء يطبع، لكن يجب أن تزيد القيمة 50",
+        "explanation": "يجب عليك إنشاء دالة مثل def add_money(self, amount): self.__money += amount واستدعائها بدلاً من الوصول المباشر."
+      }
+    ],
+    "exam_data": {
+      "title": "اختبار سريع",
+      "questions": [
+        {
+          "question": "كيف يتم تعريف المتغير كمتغير خاص (Private) في بايثون داخل الصنف؟",
+          "options": [
+            "بوضع كلمة private قبل المتغير",
+            "باستخدام علامة #",
+            "بوضع شرطتين سفليتين __ قبل اسم المتغير",
+            "بوضع علامة $ قبل الاسم"
+          ],
+          "correct_answer": "بوضع شرطتين سفليتين __ قبل اسم المتغير",
+          "explanation": "في بايثون، التغليف يعتمد على البادئة __ لإعلام المترجم بأن هذا المتغير هو للاستخدام الداخلي فقط."
+        }
+      ]
+    }
+  },
+  {
+    "lesson_slug": "python-33",
+    "content": {
+      "context": "لماذا نتعلم معالجة الأخطاء؟ في كثير من الأحيان، قد يتوقف البرنامج عن العمل (Crash) بسبب مدخلات خاطئة من المستخدم أو ملف غير موجود. لتجنب توقف البرنامج بالكامل، نستخدم معالجة الأخطاء للتعامل معها بهدوء وإعلام المستخدم بالمشكلة.",
+      "description": "يستخدم مصطلح Try/Except في بايثون لاختبار كود قد يحتوي على خطأ. نضع الكود المشكوك فيه داخل كتلة try. إذا حدث خطأ، بدلاً من إيقاف البرنامج، ينتقل التنفيذ إلى كتلة except حيث يمكننا كتابة رسالة توضيحية أو اتخاذ إجراء بديل.",
+      "prototype": "try:\n    # كود قد يسبب خطأ\nexcept ExceptionType:\n    # كود يُنفذ عند حدوث الخطأ",
+      "parameters": "ExceptionType: نوع الخطأ المتوقع (مثل ValueError, ZeroDivisionError).",
+      "return_value": "لا توجد قيمة مرجعة، بل تغيير في مسار تنفيذ البرنامج.",
+      "example": "try:\n    result = 10 / 0\nexcept ZeroDivisionError:\n    print(\"لا يمكن القسمة على صفر!\")"
+    },
+    "quick_practical_examples": [
+      {
+        "type": "correct",
+        "title": "تطبيق مباشر",
+        "code": "try:\n    num = int(\"abc\")\nexcept ValueError:\n    print(\"يرجى إدخال أرقام فقط.\")",
+        "expected_output": "يرجى إدخال أرقام فقط.",
+        "explanation": "حاولنا تحويل نص غير رقمي إلى عدد صحيح، مما تسبب في ValueError. تم التقاط الخطأ بنجاح وطباعة رسالة مناسبة."
+      },
+      {
+        "type": "wrong",
+        "title": "خطأ برمجي شائع",
+        "code": "try:\n    print(1 / 0)\nexcept:\n    pass",
+        "error_message": "لا تظهر رسالة خطأ، وهذا بحد ذاته مشكلة (صمت الأخطاء).",
+        "explanation": "استخدام except بدون تحديد نوع الخطأ يسمى (Bare Except) وهو سيء لأنه يخفي جميع الأخطاء بما في ذلك التي لا تتوقعها. حدد نوع الخطأ دائماً."
+      },
+      {
+        "type": "mistake",
+        "title": "مفهوم خاطئ",
+        "explanation": "يعتقد البعض أن try/except تبطئ البرنامج بشكل كبير ويجب تجنبها. الحقيقة أن تأثيرها على الأداء شبه معدوم عند عدم حدوث خطأ، وهي أساسية لبرامج مستقرة."
+      },
+      {
+        "type": "use_case",
+        "title": "الاستخدام في الواقع",
+        "explanation": "التعامل مع طلبات الويب (APIs)؛ إذا انقطع الإنترنت، نتوقع خطأ اتصال ConnectionError ونعرض للمستخدم رسالة 'لا يوجد اتصال' بدلاً من إغلاق التطبيق."
+      },
+      {
+        "type": "challenge",
+        "title": "تحدي: إصلاح الكود",
+        "code": "my_list = [1, 2, 3]\ntry:\n    print(my_list[5])\nexcept ValueError:\n    print(\"حدث خطأ في القيمة\")",
+        "expected_output": "IndexError: list index out of range",
+        "explanation": "الخطأ في الكود أنه يحاول التقاط ValueError، بينما الوصول لعنصر خارج حدود القائمة يُنتج IndexError. يجب تغيير ValueError إلى IndexError."
+      }
+    ],
+    "exam_data": {
+      "title": "اختبار سريع",
+      "questions": [
+        {
+          "question": "ما هي الكتلة التي يتم تنفيذها دائماً في نهاية try/except سواء حدث خطأ أم لا؟",
+          "options": [
+            "finally",
+            "else",
+            "always",
+            "catch"
+          ],
+          "correct_answer": "finally",
+          "explanation": "كتلة finally مفيدة جداً لتنظيف الموارد كإغلاق الملفات أو قواعد البيانات، لأنها تتنفذ في جميع الأحوال."
+        }
+      ]
+    }
+  },
+  {
+    "lesson_slug": "python-34",
+    "content": {
+      "context": "لماذا نتعلم قراءة الملفات؟ البيانات في البرامج تُفقد بمجرد إغلاق البرنامج. لحفظ البيانات والعودة إليها، يتم تخزينها في ملفات خارجية. في هذا الدرس نتعلم كيف نجعل بايثون يقرأ محتوى ملف نصي لاستخراج البيانات منه.",
+      "description": "للتعامل مع الملفات في بايثون نستخدم الدالة المدمجة open(). نمرر لها اسم الملف ووضع الفتح (Mode)، حيث نستخدم الوضع 'r' (Read) للقراءة. يُنصح دائماً باستخدام with open(...) لأنها تقوم بإغلاق الملف تلقائياً بعد الانتهاء منه، حتى لو حدث خطأ.",
+      "prototype": "with open('filename.txt', 'r') as file:\n    content = file.read()",
+      "parameters": "'r': يدل على وضع القراءة (Read). file: هو المتغير الذي يمثل الملف.",
+      "return_value": "دالة read() ترجع نص (String) يحتوي على كافة بيانات الملف.",
+      "example": "with open('example.txt', 'r') as f:\n    text = f.read()\n    print(text)"
+    },
+    "quick_practical_examples": [
+      {
+        "type": "correct",
+        "title": "تطبيق مباشر",
+        "code": "with open('data.txt', 'r') as file:\n    for line in file:\n        print(line.strip())",
+        "expected_output": "يتم طباعة كل سطر في الملف منسقاً بدون مسافات إضافية.",
+        "explanation": "هذه أفضل طريقة لقراءة ملف كبير جداً. بدلاً من قراءة كل شيء مرة واحدة، نقرأ الملف سطراً بسطر في حلقة التكرار for."
+      },
+      {
+        "type": "wrong",
+        "title": "خطأ برمجي شائع",
+        "code": "file = open('non_existent.txt', 'r')\nprint(file.read())\nfile.close()",
+        "error_message": "FileNotFoundError: [Errno 2] No such file or directory",
+        "explanation": "محاولة قراءة ملف غير موجود تؤدي إلى خطأ. يجب وضعها بداخل try/except للتعامل مع هذا الخطأ."
+      },
+      {
+        "type": "mistake",
+        "title": "مفهوم خاطئ",
+        "explanation": "يعتقد الكثيرون أنه يجب قراءة محتوى الملف بالكامل بدالة read() دائماً. هذا خطأ فادح مع الملفات الضخمة (جيجابايت) لأنه يستهلك الذاكرة (RAM) بأكملها."
+      },
+      {
+        "type": "use_case",
+        "title": "الاستخدام في الواقع",
+        "explanation": "قراءة ملفات السجلات (Logs) الخاصة بالخوادم للبحث عن أخطاء معينة حدثت في النظام وتحليلها."
+      },
+      {
+        "type": "challenge",
+        "title": "تحدي: إصلاح الكود",
+        "code": "f = open('hello.txt', 'r')\ntext = f.read()\n# ينقص هنا شيء مهم جداً",
+        "expected_output": "الملف يجب أن يُغلق",
+        "explanation": "إذا لم تستخدم كلمة with، يجب عليك دائماً استدعاء f.close() في النهاية لتحرير الموارد."
+      }
+    ],
+    "exam_data": {
+      "title": "اختبار سريع",
+      "questions": [
+        {
+          "question": "ما هي الفائدة الأساسية من استخدام كلمة with عند فتح الملفات؟",
+          "options": [
+            "تجعل قراءة الملف أسرع",
+            "تقوم بإغلاق الملف تلقائياً",
+            "تسمح بقراءة الملفات المشفرة",
+            "تمنع حدوث الأخطاء تماماً"
+          ],
+          "correct_answer": "تقوم بإغلاق الملف تلقائياً",
+          "explanation": "توفر with ما يسمى بـ Context Manager والذي يضمن إغلاق الملف عند الانتهاء من الكتلة البرمجية."
+        }
+      ]
+    }
+  },
+  {
+    "lesson_slug": "python-35",
+    "content": {
+      "context": "لماذا نحتاج للكتابة على الملفات؟ إذا قمت بإنشاء برنامج يسجل درجات الطلاب، فإنك تريد حفظ هذه البيانات بشكل دائم لتكون موجودة في المرة القادمة التي تفتح فيها البرنامج. الكتابة على الملفات هي الوسيلة لحفظ المخرجات.",
+      "description": "للكتابة داخل ملف نستخدم الدالة open() ولكن بوضع 'w' (Write) أو 'a' (Append). الوضع 'w' يمسح كل شيء في الملف القديم ويكتب من جديد، بينما الوضع 'a' يضيف النصوص الجديدة في نهاية الملف دون مسح محتوياته السابقة.",
+      "prototype": "with open('file.txt', 'w') as f:\n    f.write('نص')",
+      "parameters": "'w' للكتابة ومسح السابق. 'a' للإضافة في نهاية الملف.",
+      "return_value": "ترجع عدد الأحرف التي تمت كتابتها في الملف.",
+      "example": "with open('log.txt', 'a') as f:\n    f.write('تم تسجيل الدخول بنجاح\\n')"
+    },
+    "quick_practical_examples": [
+      {
+        "type": "correct",
+        "title": "تطبيق مباشر",
+        "code": "lines = ['السطر الأول\\n', 'السطر الثاني\\n']\nwith open('notes.txt', 'w') as f:\n    f.writelines(lines)",
+        "expected_output": "يتم إنشاء أو تعديل ملف notes.txt وبداخله السطرين المحددين.",
+        "explanation": "استخدمنا الدالة writelines لكتابة قائمة من النصوص دفعة واحدة بدلاً من كتابتها سطراً بسطر."
+      },
+      {
+        "type": "wrong",
+        "title": "خطأ برمجي شائع",
+        "code": "with open('data.txt', 'r') as f:\n    f.write('أريد إضافة هذا النص')",
+        "error_message": "io.UnsupportedOperation: not writable",
+        "explanation": "لقد فتحنا الملف في وضع القراءة 'r' ثم حاولنا الكتابة عليه. يجب تغييره إلى 'w' أو 'a'."
+      },
+      {
+        "type": "mistake",
+        "title": "مفهوم خاطئ",
+        "explanation": "يظن المبتدئ أن 'w' سيضيف الكلمات إلى نهاية الملف. في الواقع 'w' سيمحو الملف بأكمله ثم يكتب. للإضافة يجب استخدام 'a'."
+      },
+      {
+        "type": "use_case",
+        "title": "الاستخدام في الواقع",
+        "explanation": "حفظ إعدادات المستخدم (Settings) في ملف نصي أو JSON لتطبيق الإعدادات في كل مرة يتم تشغيل التطبيق."
+      },
+      {
+        "type": "challenge",
+        "title": "تحدي: إصلاح الكود",
+        "code": "with open('test.txt', 'w') as f:\n    f.write('مرحبا')\n    f.write('بايثون')",
+        "expected_output": "مرحبابايثون",
+        "explanation": "الخطأ هنا ليس برمجياً بل تنسيقي، فالكلمتان ستلتصقان ببعضهما. يجب إضافة رمز النزول لسطر جديد '\\n' في نهاية كلمة مرحبا."
+      }
+    ],
+    "exam_data": {
+      "title": "اختبار سريع",
+      "questions": [
+        {
+          "question": "إذا كان الملف يحتوي مسبقاً على 5 أسطر، واستخدمت الدالة open بوضع 'w' لكتابة سطر واحد، كم سيصبح عدد الأسطر؟",
+          "options": [
+            "6 أسطر",
+            "5 أسطر",
+            "سطر واحد",
+            "سيحدث خطأ"
+          ],
+          "correct_answer": "سطر واحد",
+          "explanation": "لأن الوضع 'w' يقوم بحذف محتويات الملف السابقة بالكامل وكتابة المحتوى الجديد فقط."
+        }
+      ]
+    }
+  },
+  {
+    "lesson_slug": "python-36",
+    "content": {
+      "context": "لماذا نستورد المكتبات؟ بايثون تحتوي على أوامر أساسية، لكن من المستحيل أن تضم كل شيء بشكل افتراضي وإلا ستصبح ضخمة وبطيئة. لذلك، تم تقسيم الأدوات المتقدمة (مثل الرياضيات، الوقت، الويب) إلى 'مكتبات'. يمكنك استيراد ما تحتاجه فقط متى ما احتجته.",
+      "description": "الاستيراد (Import) يسمح لك بجلب أكواد ووظائف كتبها مبرمجون آخرون واستخدامها في برنامجك. المكتبة (Module) هي ببساطة ملف بايثون يحتوي على دوال جاهزة. يمكنك استيراد المكتبة بالكامل، أو استيراد دالة محددة منها.",
+      "prototype": "import module_name\nfrom module_name import function_name",
+      "parameters": "module_name: اسم المكتبة. function_name: الدالة المحددة المراد استيرادها.",
+      "return_value": "لا تُرجع قيمة، ولكنها تجعل الوظائف متاحة في الذاكرة لتنفيذها.",
+      "example": "import datetime\ncurrent_time = datetime.datetime.now()\nprint(current_time)"
+    },
+    "quick_practical_examples": [
+      {
+        "type": "correct",
+        "title": "تطبيق مباشر",
+        "code": "import sys\nprint(sys.version)",
+        "expected_output": "سيطبع إصدار بايثون المُثبت على جهازك.",
+        "explanation": "مكتبة sys هي مكتبة مدمجة توفر وظائف للتعامل مع نظام بايثون نفسه، استوردناها لمعرفة نسخة لغة بايثون المستخدمة."
+      },
+      {
+        "type": "wrong",
+        "title": "خطأ برمجي شائع",
+        "code": "import time\ntime.sleep(1)\nsleep(1)",
+        "error_message": "NameError: name 'sleep' is not defined",
+        "explanation": "عند استيراد المكتبة باستخدام import time، يجب استدعاء الدالة مسبوقة باسم المكتبة time.sleep. إذا أردت كتابة sleep مباشرة يجب استخدام from time import sleep."
+      },
+      {
+        "type": "mistake",
+        "title": "مفهوم خاطئ",
+        "explanation": "استخدام from module import * لاستيراد كل شيء مرة واحدة يعتبر ممارسة سيئة جداً لأنه قد يتسبب في تضارب أسماء الدوال مع الدوال الخاصة بك."
+      },
+      {
+        "type": "use_case",
+        "title": "الاستخدام في الواقع",
+        "explanation": "استيراد مكتبة requests (الخارجية) لجلب بيانات من موقع ويب، أو استيراد مكتبة os للتعامل مع ملفات النظام وإنشاء مجلدات."
+      },
+      {
+        "type": "challenge",
+        "title": "تحدي: إصلاح الكود",
+        "code": "import math as m\nprint(math.pi)",
+        "expected_output": "NameError: name 'math' is not defined",
+        "explanation": "بما أننا استخدمنا اسماً مستعاراً (as m)، لا يمكننا استخدام الاسم القديم math، بل يجب استخدام m.pi."
+      }
+    ],
+    "exam_data": {
+      "title": "اختبار سريع",
+      "questions": [
+        {
+          "question": "كيف نقوم باستيراد دالة معينة فقط تسمى sqrt من مكتبة math؟",
+          "options": [
+            "import sqrt from math",
+            "from math import sqrt",
+            "import math.sqrt",
+            "load math.sqrt"
+          ],
+          "correct_answer": "from math import sqrt",
+          "explanation": "الصيغة from ... import تستخدم لتحديد جزء معين من المكتبة المراد استيراده فقط بدلاً من المكتبة كاملة."
+        }
+      ]
+    }
+  },
+  {
+    "lesson_slug": "python-37",
+    "content": {
+      "context": "لماذا نتعلم مكتبة Math؟ العمليات الحسابية الأساسية (+، -، *، /) مفيدة، لكن ماذا لو أردت حساب الجذور التربيعية، الزوايا، اللوغاريتمات أو التعامل مع ثوابت رياضية مثل Pi؟ هنا يأتي دور المكتبة الرياضية الجاهزة Math.",
+      "description": "مكتبة math هي مكتبة مدمجة (Built-in) في بايثون، توفر العشرات من الدوال الرياضية المتقدمة التي تعمل على الأرقام. يجب استيرادها قبل استخدامها. وهي لا تدعم الأرقام المركبة (Complex Numbers).",
+      "prototype": "import math\nresult = math.function_name(number)",
+      "parameters": "number: الرقم الذي ستُطبق عليه العملية الرياضية.",
+      "return_value": "ترجع ناتج العملية الرياضية كعدد صحيح (int) أو عشري (float).",
+      "example": "import math\nprint(math.sqrt(16)) # يطبع 4.0\nprint(math.pi) # يطبع 3.14159..."
+    },
+    "quick_practical_examples": [
+      {
+        "type": "correct",
+        "title": "تطبيق مباشر",
+        "code": "import math\nnum = 4.3\nprint(math.ceil(num)) # التقريب للأعلى\nprint(math.floor(num)) # التقريب للأسفل",
+        "expected_output": "5\n4",
+        "explanation": "دالة ceil تقرب الرقم العشري إلى أقرب عدد صحيح للأعلى، بينما floor تقربه لأقرب عدد صحيح للأسفل بغض النظر عن قيمة الكسر."
+      },
+      {
+        "type": "wrong",
+        "title": "خطأ برمجي شائع",
+        "code": "import math\nprint(math.sqrt(-9))",
+        "error_message": "ValueError: math domain error",
+        "explanation": "لا يمكن حساب الجذر التربيعي لعدد سالب باستخدام مكتبة math الأساسية. لهذا الغرض، يجب استخدام مكتبة cmath الخاصة بالأعداد المركبة."
+      },
+      {
+        "type": "mistake",
+        "title": "مفهوم خاطئ",
+        "explanation": "البعض يستخدم دالة القوة math.pow(2, 3) دائماً. على الرغم من صحتها، إلا أن بايثون يدعم عملية القوة محلياً عبر 2 ** 3 وهي أسرع وأبسط."
+      },
+      {
+        "type": "use_case",
+        "title": "الاستخدام في الواقع",
+        "explanation": "تُستخدم في برمجة الرسوميات والألعاب لحساب الزوايا والمسافات (Trigonometry) باستخدام دوال مثل sin و cos."
+      },
+      {
+        "type": "challenge",
+        "title": "تحدي: إصلاح الكود",
+        "code": "import math\nradius = 5\narea = pi * math.pow(radius, 2)\nprint(area)",
+        "expected_output": "NameError: name 'pi' is not defined",
+        "explanation": "الثابت pi ينتمي لمكتبة math، لذلك يجب كتابته هكذا: math.pi وليس pi فقط (إلا إذا استخدمت from math import pi)."
+      }
+    ],
+    "exam_data": {
+      "title": "اختبار سريع",
+      "questions": [
+        {
+          "question": "ما هي الدالة المستخدمة في مكتبة math لحساب المضروب (Factorial) لعدد ما؟",
+          "options": [
+            "math.fact()",
+            "math.factorial()",
+            "math.multiply()",
+            "math.f()"
+          ],
+          "correct_answer": "math.factorial()",
+          "explanation": "دالة factorial تأخذ عدداً صحيحاً وترجع حاصل ضرب جميع الأعداد الصحيحة من 1 وحتى هذا العدد."
+        }
+      ]
+    }
+  },
+  {
+    "lesson_slug": "python-38",
+    "content": {
+      "context": "لماذا نتعلم مكتبة Random؟ في الألعاب، نحتاج إلى رمي نرد عشوائي. في المواقع، نحتاج لتوليد كلمة مرور عشوائية أو اختيار فائز بمسابقة. العشوائية جزء مهم من البرمجة وتوفره لنا مكتبة Random.",
+      "description": "مكتبة random المدمجة تستخدم لتوليد أرقام واختيارات شبه عشوائية. تسمى شبه عشوائية (Pseudo-random) لأنها تعتمد على خوارزميات رياضية وليست عشوائية فيزيائية 100%. توفر دوال لاختيار عناصر، خلط القوائم، وتوليد الأرقام.",
+      "prototype": "import random\nrandom.randint(min, max)",
+      "parameters": "min: الحد الأدنى. max: الحد الأقصى (مشمول).",
+      "return_value": "تُرجع قيمة عشوائية بحسب الدالة المستخدمة (رقم أو عنصر).",
+      "example": "import random\ndice_roll = random.randint(1, 6)\nprint(\"لقد رميت نرد وحصلت على:\", dice_roll)"
+    },
+    "quick_practical_examples": [
+      {
+        "type": "correct",
+        "title": "تطبيق مباشر",
+        "code": "import random\ncolors = [\"أحمر\", \"أخضر\", \"أزرق\", \"أصفر\"]\nwinner = random.choice(colors)\nprint(\"اللون الفائز هو:\", winner)",
+        "expected_output": "أحد الألوان الأربعة بشكل عشوائي.",
+        "explanation": "الدالة choice تأخذ قائمة وتختار منها عنصراً واحداً عشوائياً، وهي ممتازة للسحوبات والمسابقات."
+      },
+      {
+        "type": "wrong",
+        "title": "خطأ برمجي شائع",
+        "code": "import random\nnum = random.randint(10, 5)\nprint(num)",
+        "error_message": "ValueError: empty range for randrange()",
+        "explanation": "في دالة randint يجب أن يكون الحد الأدنى هو المتغير الأول والحد الأقصى هو الثاني. لا يمكن وضع الأكبر قبل الأصغر."
+      },
+      {
+        "type": "mistake",
+        "title": "مفهوم خاطئ",
+        "explanation": "استخدام مكتبة random في توليد رموز الأمان أو التشفير هو خطأ فادح؛ لأنها غير آمنة تشفيرياً ويمكن التنبؤ بها. للتشفير يجب استخدام مكتبة secrets."
+      },
+      {
+        "type": "use_case",
+        "title": "الاستخدام في الواقع",
+        "explanation": "في ألعاب البطاقات الورقية، نستخدم الدالة random.shuffle(cards) لخلط البطاقات عشوائياً قبل توزيعها على اللاعبين."
+      },
+      {
+        "type": "challenge",
+        "title": "تحدي: إصلاح الكود",
+        "code": "import random\nnames = [\"علي\", \"عمر\", \"سارة\"]\nchosen = random.randint(names)\nprint(chosen)",
+        "expected_output": "TypeError...",
+        "explanation": "دالة randint تتعامل مع الأرقام فقط. لاختيار عنصر من قائمة، يجب استخدام الدالة random.choice() بدلاً منها."
+      }
+    ],
+    "exam_data": {
+      "title": "اختبار سريع",
+      "questions": [
+        {
+          "question": "أي دالة من مكتبة random تستخدم لترتيب عناصر القائمة عشوائياً (خلطها) بحيث تتغير القائمة الأصلية؟",
+          "options": [
+            "random.mix()",
+            "random.scramble()",
+            "random.shuffle()",
+            "random.sort()"
+          ],
+          "correct_answer": "random.shuffle()",
+          "explanation": "الدالة shuffle تقوم بتعديل القائمة الممررة لها مباشرة بتغيير ترتيب عناصرها بشكل عشوائي."
+        }
+      ]
+    }
+  },
+  {
+    "lesson_slug": "python-39",
+    "content": {
+      "context": "لماذا نتعلم تحليل البيانات؟ في العصر الحديث، البيانات هي 'النفط الجديد'. الشركات تمتلك ملايين السجلات (مبيعات، مستخدمين، درجات طلاب). تحليل البيانات ببايثون يمكننا من استخراج معلومات مفيدة ورؤى استراتيجية من هذه الأرقام المجردة.",
+      "description": "مقدمة في تحليل البيانات (Data Analysis). يعتمد تحليل البيانات في بايثون على استيراد البيانات من ملفات (مثل CSV أو Excel)، ثم تنظيفها (إزالة القيم المفقودة)، ثم استكشافها إحصائياً، وأخيراً رسمها لفهمها بشكل أفضل.",
+      "prototype": "لا يوجد صيغة واحدة، بل هي عملية (Process). تبدأ بالقراءة، فالتنظيف، ثم التحليل.",
+      "parameters": "البيانات المدخلة عادة تكون جداول ثنائية الأبعاد (صفوف وأعمدة).",
+      "return_value": "الناتج يكون رؤية تحليلية، رسوم بيانية، أو مقاييس إحصائية (كمتوسط المبيعات).",
+      "example": "import csv\nwith open('data.csv', 'r') as file:\n    reader = csv.reader(file)\n    for row in reader:\n        print(row)"
+    },
+    "quick_practical_examples": [
+      {
+        "type": "correct",
+        "title": "تطبيق مباشر",
+        "code": "data = [10, 20, 30, 40, 50]\naverage = sum(data) / len(data)\nprint(\"المتوسط الحسابي:\", average)",
+        "expected_output": "المتوسط الحسابي: 30.0",
+        "explanation": "هذا أبسط مثال لتحليل البيانات: استخراج المتوسط الحسابي لقائمة من الأرقام باستخدام الدوال المدمجة في بايثون."
+      },
+      {
+        "type": "wrong",
+        "title": "خطأ برمجي شائع",
+        "code": "data = [\"10\", \"20\", \"30\"]\ntotal = sum(data)\nprint(total)",
+        "error_message": "TypeError: unsupported operand type(s) for +: 'int' and 'str'",
+        "explanation": "عند قراءة البيانات من ملفات نصية كـ CSV، يتم قراءتها كنصوص. يجب تحويلها إلى أرقام (int أو float) قبل إجراء عمليات رياضية كدالة sum."
+      },
+      {
+        "type": "mistake",
+        "title": "مفهوم خاطئ",
+        "explanation": "يظن المبتدئ أن تحليل البيانات يعني الذكاء الاصطناعي (AI). الذكاء الاصطناعي هو مرحلة متقدمة جداً، أما تحليل البيانات فهو الفهم الإحصائي والرياضي للمعلومات الحالية."
+      },
+      {
+        "type": "use_case",
+        "title": "الاستخدام في الواقع",
+        "explanation": "تحليل أداء متجر إلكتروني: قراءة مبيعات عام كامل لمعرفة أكثر الأشهر التي زادت فيها المبيعات لتوجيه الحملات الإعلانية المستقبلية."
+      },
+      {
+        "type": "challenge",
+        "title": "تحدي: إصلاح الكود",
+        "code": "data = [15, 20, None, 30]\n# لا يمكنك جمع القائمة بوجود None\nprint(sum(data))",
+        "expected_output": "TypeError",
+        "explanation": "في تحليل البيانات، غالباً ما توجد بيانات مفقودة (Missing Data). قبل الجمع يجب عليك تنظيف القائمة أو تصفيتها، مثلاً عبر list comprehension: [x for x in data if x is not None]."
+      }
+    ],
+    "exam_data": {
+      "title": "اختبار سريع",
+      "questions": [
+        {
+          "question": "ما هي الخطوة الأهم والأولى قبل تطبيق العمليات الإحصائية على مجموعة بيانات خام (Raw Data) تم جمعها من الإنترنت؟",
+          "options": [
+            "طباعتها بالكامل على الشاشة",
+            "رسمها كشكل بياني ثلاثي الأبعاد",
+            "تنظيف البيانات (Data Cleaning) ومعالجة القيم المفقودة",
+            "مشاركتها مع فريق العمل"
+          ],
+          "correct_answer": "تنظيف البيانات (Data Cleaning) ومعالجة القيم المفقودة",
+          "explanation": "البيانات الخام غالباً ما تحتوي أخطاء وقيماً فارغة أو نصوصاً بدلاً من أرقام، لذلك تنظيفها هو الخطوة الأساسية الأولى."
+        }
+      ]
+    }
+  },
+  {
+    "lesson_slug": "python-40",
+    "content": {
+      "context": "لماذا نتعلم مكتبة Pandas؟ بايثون الأساسي يواجه صعوبة وبطئاً في التعامل مع ملفات ضخمة جداً (مئات الآلاف من الصفوف). مكتبة Pandas توفر هيكل بيانات شبيه ببرنامج Excel، سريع جداً وقوي، مما جعلها المعيار الأول لتحليل البيانات في العالم.",
+      "description": "مكتبة Pandas (مكتبة خارجية يجب تثبيتها عبر pip install pandas). توفر هياكل بيانات متقدمة أهمها DataFrame وهو عبارة عن جدول مكون من صفوف وأعمدة. تتيح لك قراءة ملفات CSV و Excel بأسطر قليلة، وإجراء عمليات بحث، تصفية، وترتيب بسرعات فائقة.",
+      "prototype": "import pandas as pd\ndf = pd.read_csv('filename.csv')\nprint(df.head())",
+      "parameters": "df: يرمز لـ DataFrame. read_csv: دالة لقراءة ملفات البيانات.",
+      "return_value": "كائن من نوع DataFrame يحتوي على البيانات المهيكلة.",
+      "example": "import pandas as pd\ndata = {'Name': ['Ahmad', 'Omar'], 'Age': [20, 22]}\ndf = pd.DataFrame(data)\nprint(df)"
+    },
+    "quick_practical_examples": [
+      {
+        "type": "correct",
+        "title": "تطبيق مباشر",
+        "code": "import pandas as pd\ndata = {'City': ['Riyadh', 'Jeddah', 'Cairo'], 'Population': [7, 4, 10]}\ndf = pd.DataFrame(data)\nprint(df[df['Population'] > 5])",
+        "expected_output": "يُطبع الجدول ولكن فقط للمدن التي يتجاوز عدد سكانها 5.",
+        "explanation": "تصفية البيانات (Filtering) في Pandas سهلة جداً. الكود يعرض الصفوف التي يتحقق فيها شرط أن عمود السكان أكبر من 5."
+      },
+      {
+        "type": "wrong",
+        "title": "خطأ برمجي شائع",
+        "code": "import pandas\ndf = pandas.read_csv('data.csv')\nprint(df.head)",
+        "error_message": "<bound method NDFrame.head of ...>",
+        "explanation": "دالة head() تستخدم لعرض أول 5 صفوف. نسيان الأقواس في النهاية () لن يعرض البيانات بل سيطبع معلومات عن الدالة نفسها في الذاكرة."
+      },
+      {
+        "type": "mistake",
+        "title": "مفهوم خاطئ",
+        "explanation": "يعتقد البعض أن Pandas هي قاعدة بيانات. Pandas تعمل على الذاكرة العشوائية (RAM) المؤقتة، ولا تصلح لتخزين البيانات بشكل دائم وتحديثها بشكل متزامن مثل SQL."
+      },
+      {
+        "type": "use_case",
+        "title": "الاستخدام في الواقع",
+        "explanation": "قراءة ملف Excel يحتوي على بيانات موظفي شركة مكون من 10 آلاف صف، واستخراج متوسط الرواتب لكل قسم (Group By) في ثوانٍ معدودة."
+      },
+      {
+        "type": "challenge",
+        "title": "تحدي: إصلاح الكود",
+        "code": "import pandas as pd\ndf = pd.DataFrame({'A': [1, 2], 'B': [3, 4]})\n# كيف تطبع عمود 'A' فقط؟\nprint(df.'A')",
+        "expected_output": "SyntaxError",
+        "explanation": "للوصول إلى عمود محدد في DataFrame لا نستخدم النقطة مع نص، بل نستخدم الأقواس المربعة كالقواميس: print(df['A']) أو المباشر print(df.A) بدون علامات التنصيص."
+      }
+    ],
+    "exam_data": {
+      "title": "اختبار سريع",
+      "questions": [
+        {
+          "question": "ما هو الاسم المتعارف عليه والمستخدم بشكل شبه دائم لاختصار مكتبة pandas عند استيرادها في مجتمع بايثون؟",
+          "options": [
+            "import pandas as p",
+            "import pandas as pan",
+            "import pandas as pd",
+            "import pandas as df"
+          ],
+          "correct_answer": "import pandas as pd",
+          "explanation": "الاختصار pd هو المعيار (Standard Convention) لتقليل الكتابة وجعل الكود مقروءاً ومألوفاً للمبرمجين الآخرين."
+        }
+      ]
+    }
+  }
+]

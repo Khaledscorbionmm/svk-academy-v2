@@ -1,0 +1,1 @@
+import { PrismaClient } from '@prisma/client'; const prisma = new PrismaClient(); async function main() { console.log('Courses:', await prisma.courses.findMany({take: 2})); console.log('Lessons:', await prisma.lessons.findMany({take: 2})); } main().finally(() => prisma.$disconnect());

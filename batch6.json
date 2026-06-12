@@ -1,0 +1,602 @@
+[
+  {
+    "lesson_slug": "python-71",
+    "content": {
+      "context": "لنتعلم كيف تبدأ رحلة الذكاء الاصطناعي من خلال فهم الشبكات العصبية (Neural Networks) وكيفية محاكاتها للخلايا العصبية البشرية مبسطاً في بايثون.",
+      "description": "الشبكات العصبية هي نموذج حسابي مستوحى من الدماغ البشري، يتكون من عقد مترابطة (الخلايا العصبية). في هذا الدرس المبدئي، سنقوم ببناء خلية عصبية واحدة (Perceptron) لفهم كيف تتخذ الحواسيب قرارات مبنية على المدخلات، الأوزان، والانحياز، قبل الانتقال لمكتبات ضخمة مثل Keras.",
+      "prototype": "def neuron(inputs, weights, bias):\n    # 1. حساب المجموع المرجح\n    # 2. تمرير المجموع عبر دالة تنشيط (Activation Function)",
+      "parameters": "inputs: قائمة أو مصفوفة من الأرقام تمثل البيانات المدخلة. weights: الأوزان المقابلة لكل مدخل، تحدد أهميته. bias: قيمة الانحياز للمساعدة في ضبط المخرج.",
+      "return_value": "ترجع الخلية العصبية رقما نهائيا (غالبا 0 أو 1، أو قيمة مستمرة) يمثل قرارها أو توقعها.",
+      "example": "def step_function(x):\n    return 1 if x >= 0 else 0\n\ndef simple_neuron(inputs, weights, bias):\n    total = sum(i * w for i, w in zip(inputs, weights)) + bias\n    return step_function(total)"
+    },
+    "quick_practical_examples": [
+      {
+        "type": "correct",
+        "title": "تطبيق مباشر لخلية عصبية بسيطة",
+        "code": "print(simple_neuron([1.5, 2.0], [0.8, -0.5], 0.2))",
+        "expected_output": "1",
+        "explanation": "تم ضرب كل مدخل بوزنه وجمعهما (1.5*0.8 + 2.0*-0.5) ليصبح 0.2، ثم أضيف الانحياز 0.2 ليكون المجموع 0.4. وبما أنه موجب، أرجعت الدالة 1."
+      },
+      {
+        "type": "wrong",
+        "title": "اختلاف عدد الأوزان والمدخلات",
+        "code": "simple_neuron([1.0], [0.5, 0.5], 0.1)",
+        "error_message": "لا يظهر خطأ برمجي واضح ولكن النتيجة غير دقيقة.",
+        "explanation": "يجب التأكد من أن أبعاد المدخلات مساوية دائما لأبعاد الأوزان حتى تكون الحسابات دقيقة ولا نفقد بيانات."
+      },
+      {
+        "type": "mistake",
+        "title": "نسيان قيمة الانحياز (Bias)",
+        "explanation": "يهمل البعض قيمة الانحياز، وهو ما يعادل محاولة رسم خط مستقيم يمر دائما بنقطة الأصل فقط، مما يقلل من قدرة الخلية على التعلم."
+      },
+      {
+        "type": "use_case",
+        "title": "حجر الأساس في تعلم الآلة",
+        "explanation": "الخلية العصبية التي قمنا ببنائها هي أصغر لبنة في بناء نماذج الذكاء الاصطناعي التي تقود السيارات وتتعرف على الوجوه."
+      },
+      {
+        "type": "challenge",
+        "title": "تحدي: استخدام دالة التنشيط ReLU",
+        "code": "def relu(x):\n    return max(0, x)\n# استخدم هذه الدالة بدلا من step_function",
+        "expected_output": "القيمة نفسها إذا كانت موجبة، أو 0 إذا كانت سالبة.",
+        "explanation": "دالة ReLU أسرع وأكثر استخداما في الشبكات العميقة لأنها تتجنب مشاكل اختفاء التدرج (Vanishing Gradient)."
+      }
+    ],
+    "exam_data": {
+      "title": "اختبار أساسيات الشبكات العصبية",
+      "questions": [
+        {
+          "question": "ما هو الهدف الأساسي من استخدام الأوزان (Weights) في الخلية العصبية؟",
+          "options": [
+            "تحديد مقدار أهمية كل مدخل للتأثير على النتيجة",
+            "تخزين البيانات المدخلة لفترة أطول",
+            "إيقاف الخلية العصبية عن العمل",
+            "تغيير شكل المخرجات لتكون نصوصا"
+          ],
+          "correct_answer": "تحديد مقدار أهمية كل مدخل للتأثير على النتيجة",
+          "explanation": "الأوزان تُضرب في المدخلات لزيادة أو تقليل تأثير مدخلات معينة على النتيجة النهائية."
+        }
+      ]
+    }
+  },
+  {
+    "lesson_slug": "python-72",
+    "content": {
+      "context": "لنتعمق في عالم التعلم العميق (Deep Learning) ونفهم كيف تتكامل طبقات متعددة من الشبكات العصبية لحل المشاكل المعقدة.",
+      "description": "التعلم العميق هو فرع من التعلم الآلي يعتمد على شبكات عصبية اصطناعية ذات طبقات متعددة (Multi-layer). الطبقات الخفية (Hidden Layers) بين المدخلات والمخرجات تسمح للنموذج باكتشاف الأنماط المعقدة تلقائيا (مثل تمييز الحواف ثم الأشكال ثم الوجوه في الصور).",
+      "prototype": "import tensorflow as tf\nmodel = tf.keras.models.Sequential([\n    # الطبقات توضع هنا\n])",
+      "parameters": "Dense(units, activation): تستخدم لإضافة طبقة. units: عدد الخلايا، activation: نوع دالة التنشيط.",
+      "return_value": "يرجع كائن نموذج جاهز لعمليات التدريب (fit) والتوقع (predict).",
+      "example": "import tensorflow as tf\nmodel = tf.keras.Sequential([\n    tf.keras.layers.Dense(16, activation='relu', input_shape=(10,)),\n    tf.keras.layers.Dense(1, activation='sigmoid')\n])\nmodel.compile(optimizer='adam', loss='binary_crossentropy')"
+    },
+    "quick_practical_examples": [
+      {
+        "type": "correct",
+        "title": "بناء شبكة عصبية بسيطة من طبقتين",
+        "code": "print(model.summary())",
+        "expected_output": "طباعة ملخص تفصيلي للنموذج يشمل عدد الطبقات وعدد المعلمات.",
+        "explanation": "الدالة summary توضح هيكل الشبكة العصبية والأوزان القابلة للتدريب في كل طبقة."
+      },
+      {
+        "type": "wrong",
+        "title": "تخطي تحديد شكل المدخلات (input_shape)",
+        "code": "tf.keras.layers.Dense(16, activation='relu') # بدون input_shape للطبقة الأولى",
+        "error_message": "ValueError: The model needs to know the input shape.",
+        "explanation": "الطبقة الأولى في النماذج المتسلسلة تحتاج دائما لمعرفة أبعاد البيانات التي ستستقبلها لتهيئة الأوزان."
+      },
+      {
+        "type": "mistake",
+        "title": "استخدام دالة تنشيط خطية في كل الطبقات",
+        "explanation": "استخدام دوال خطية فقط يجعل الشبكة العميقة تعمل كأنها طبقة واحدة، مما يفقد التعلم العميق قدرته على حل المشاكل غير الخطية."
+      },
+      {
+        "type": "use_case",
+        "title": "التعرف على الصوت والنصوص",
+        "explanation": "التعلم العميق هو التقنية الأساسية وراء مساعدات مثل Siri والمترجمات المتقدمة ونماذج الذكاء الاصطناعي التوليدي كـ ChatGPT."
+      },
+      {
+        "type": "challenge",
+        "title": "تحدي: إضافة طبقة خفية إضافية",
+        "code": "model.add(tf.keras.layers.Dense(32, activation='relu'))",
+        "expected_output": "تتوسع الشبكة لتصبح أعمق وتزداد قدرتها الاستيعابية.",
+        "explanation": "إضافة طبقات خفية (Hidden Layers) يجعل النموذج أعمق (Deep)، ومن هنا جاءت تسمية التعلم العميق."
+      }
+    ],
+    "exam_data": {
+      "title": "اختبار مفهوم التعلم العميق",
+      "questions": [
+        {
+          "question": "ما الذي يجعل الشبكة العصبية تُصنف على أنها (عميقة) Deep؟",
+          "options": [
+            "احتوائها على طبقات خفية متعددة (Multiple Hidden Layers)",
+            "أنها تأخذ وقتا طويلا في التدريب",
+            "استخدامها للبيانات الكبيرة فقط",
+            "كتابتها بأسطر كود طويلة"
+          ],
+          "correct_answer": "احتوائها على طبقات خفية متعددة (Multiple Hidden Layers)",
+          "explanation": "العمق في التعلم العميق يشير حرفيا إلى عدد الطبقات الموجودة بين طبقة الإدخال والإخراج."
+        }
+      ]
+    }
+  },
+  {
+    "lesson_slug": "python-73",
+    "content": {
+      "context": "سنتعلم كيفية قراءة ومعالجة الصور كبيانات رقمية في بايثون لتهيئتها كنماذج ذكاء اصطناعي.",
+      "description": "الصور بالنسبة للحاسوب ليست سوى مصفوفات من الأرقام (Pixels). في بايثون، نستخدم مكتبات مثل OpenCV أو Pillow (PIL) لفتح الصور، تغيير حجمها، وتعديل ألوانها استعدادا لإدخالها إلى خوارزميات تعلم الآلة.",
+      "prototype": "import cv2\nimage = cv2.imread(filepath)\nresized = cv2.resize(image, (width, height))",
+      "parameters": "filepath: مسار الصورة على الجهاز. (width, height): الأبعاد الجديدة المطلوبة للصورة.",
+      "return_value": "مصفوفة (NumPy Array) تمثل قيم الألوان في الصورة (مثلا BGR في مكتبة OpenCV).",
+      "example": "import cv2\nimg = cv2.imread('cat.jpg')\nif img is not None:\n    img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)\n    cv2.imwrite('cat_gray.jpg', img_gray)"
+    },
+    "quick_practical_examples": [
+      {
+        "type": "correct",
+        "title": "تحويل صورة إلى تدرج الرمادي (Grayscale)",
+        "code": "img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)",
+        "expected_output": "تصبح الصورة بلون رمادي.",
+        "explanation": "التحويل للون الرمادي يقلل من حجم البيانات ويسرع عملية التدريب في العديد من الخوارزميات."
+      },
+      {
+        "type": "wrong",
+        "title": "قراءة صورة غير موجودة",
+        "code": "cv2.imread('does_not_exist.jpg')",
+        "error_message": "لا يرمي خطأ مباشر بل يعود بـ None",
+        "explanation": "دالة imread لا ترمي خطأ إذا لم تجد الصورة بل ترجع None، لذا يجب دائما التحقق من النتيجة قبل التعديل عليها."
+      },
+      {
+        "type": "mistake",
+        "title": "اختلاف نظام الألوان بين المكتبات",
+        "explanation": "تقرأ OpenCV الصور بنظام BGR، بينما تستخدم Matplotlib و PIL نظام RGB. يجب تغيير الترتيب عند عرض صورة بـ matplotlib."
+      },
+      {
+        "type": "use_case",
+        "title": "التجهيز المسبق للذكاء الاصطناعي",
+        "explanation": "الشبكات العصبية تتطلب مدخلات بأبعاد ثابتة، لذا خطوة تغيير حجم الصور أساسية قبل التدريب."
+      },
+      {
+        "type": "challenge",
+        "title": "تحدي: اقتصاص (Crop) جزء من الصورة",
+        "code": "cropped = img[50:200, 100:300]",
+        "expected_output": "مصفوفة جزئية تحتوي على الجزء المقطوع من الصورة.",
+        "explanation": "بما أن الصورة في النهاية مصفوفة Numpy، فإن تقنيات تقطيع المصفوفات (Slicing) تعمل معها مباشرة."
+      }
+    ],
+    "exam_data": {
+      "title": "اختبار التعامل مع الصور",
+      "questions": [
+        {
+          "question": "ما هو الترتيب الافتراضي للألوان الذي تستخدمه مكتبة OpenCV عند قراءة صورة ملونة؟",
+          "options": [
+            "RGB (أحمر أخضر أزرق)",
+            "BGR (أزرق أخضر أحمر)",
+            "Grayscale (رمادي)",
+            "CMYK"
+          ],
+          "correct_answer": "BGR (أزرق أخضر أحمر)",
+          "explanation": "OpenCV تستخدم ترتيب الألوان BGR لأسباب تاريخية تعود لتصاميم الكاميرات القديمة."
+        }
+      ]
+    }
+  },
+  {
+    "lesson_slug": "python-74",
+    "content": {
+      "context": "الآن بعد أن فهمنا كيفية التعامل مع الصور، حان الوقت لتدريب الحاسوب على تصنيفها.",
+      "description": "تصنيف الصور هو عملية إعطاء اسم للصورة. نستخدم في بايثون النماذج الجاهزة أو الشبكات العصبية الالتفافية (CNNs) عبر مكتبة Keras والتي تعتبر المعيار الذهبي لتحديد السمات تلقائيا في البيانات البصرية.",
+      "prototype": "model.predict(image_batch)\n# أو النماذج مسبقة التدريب:\nfrom tensorflow.keras.applications import MobileNetV2",
+      "parameters": "image_batch: مجموعة صور تم تجهيزها لتناسب مدخلات النموذج، (عدد الصور، العرض، الطول، الألوان).",
+      "return_value": "مصفوفة احتمالات توضح نسبة مطابقة الصورة لكل فئة تدرب عليها النموذج.",
+      "example": "import numpy as np\nfrom tensorflow.keras.applications.mobilenet_v2 import MobileNetV2, preprocess_input, decode_predictions\nmodel = MobileNetV2(weights='imagenet')\nimg_array = preprocess_input(np.expand_dims(resized_img, axis=0))\npreds = model.predict(img_array)\nprint(decode_predictions(preds, top=1)[0])"
+    },
+    "quick_practical_examples": [
+      {
+        "type": "correct",
+        "title": "التصنيف بنموذج مسبق التدريب",
+        "code": "preds = model.predict(img_array)\ndecode_predictions(preds, top=3)",
+        "expected_output": "طباعة أعلى 3 توقعات للصورة.",
+        "explanation": "النماذج الجاهزة مثل MobileNet مُدربة مسبقاً ويمكنها التعرف على الكائنات فوريا."
+      },
+      {
+        "type": "wrong",
+        "title": "تمرير صورة واحدة دون تحويلها لـ Batch",
+        "code": "model.predict(resized_img)",
+        "error_message": "ValueError: expected shape (None, 224, 224, 3)",
+        "explanation": "النماذج تتوقع حزمة من الصور، يجب استخدام np.expand_dims لإضافة بُعد العدد."
+      },
+      {
+        "type": "mistake",
+        "title": "إهمال دالة التجهيز (preprocess_input)",
+        "explanation": "كل نموذج جاهز يملك طريقته الخاصة لتجهيز الأرقام. إهمال هذه الدالة يعطي تنبؤات عشوائية."
+      },
+      {
+        "type": "use_case",
+        "title": "التعرف على المنتجات والمحاصيل",
+        "explanation": "يستخدم تصنيف الصور في الطب لتصنيف صور الأشعة، وفي الزراعة لمعرفة المحاصيل."
+      },
+      {
+        "type": "challenge",
+        "title": "تحدي: بناء طبقات CNN من الصفر",
+        "code": "tf.keras.layers.Conv2D(32, (3, 3), activation='relu')",
+        "expected_output": "طبقة التفافية لاستخراج سمات الصورة.",
+        "explanation": "طبقات Conv2D تتعرف على الحواف والأنماط المكانية في الصور."
+      }
+    ],
+    "exam_data": {
+      "title": "اختبار تصنيف الصور",
+      "questions": [
+        {
+          "question": "ما الهدف من عملية np.expand_dims عند إدخال صورة لنموذج Keras؟",
+          "options": [
+            "تغيير ألوان الصورة",
+            "إضافة بُعد جديد لتمثيل حزمة (Batch)",
+            "تكبير الصورة",
+            "خطوة اختيارية للسرعة"
+          ],
+          "correct_answer": "إضافة بُعد جديد لتمثيل حزمة (Batch)",
+          "explanation": "النماذج تقبل البيانات في شكل (Batch Size, Height, Width, Channels)."
+        }
+      ]
+    }
+  },
+  {
+    "lesson_slug": "python-75",
+    "content": {
+      "context": "سنتوج خبراتنا ببناء تطبيق مدهش للتعرف على الوجوه (Face Recognition).",
+      "description": "التعرف على الوجوه يحدد من هو صاحب الوجه. مكتبة face_recognition هي من أسهل المكتبات في بايثون والمبنية على Dlib لتقديم دقة عالية بأقل عدد من الأسطر.",
+      "prototype": "import face_recognition\nencodings = face_recognition.face_encodings(image)\nmatches = face_recognition.compare_faces(known_encodings, unknown_encoding)",
+      "parameters": "image: صورة كـ مصفوفة، known_encodings: بصمات معروفة، unknown_encoding: البصمة المجهولة.",
+      "return_value": "قائمة منطقية تحتوي True أو False.",
+      "example": "import face_recognition\nknown_img = face_recognition.load_image_file('me.jpg')\nknown_enc = face_recognition.face_encodings(known_img)[0]\nunk_img = face_recognition.load_image_file('test.jpg')\nunk_enc = face_recognition.face_encodings(unk_img)[0]\nresult = face_recognition.compare_faces([known_enc], unk_enc)\nprint('Match?', result[0])"
+    },
+    "quick_practical_examples": [
+      {
+        "type": "correct",
+        "title": "تحديد أماكن الوجوه",
+        "code": "face_locations = face_recognition.face_locations(image)",
+        "expected_output": "إحداثيات الصناديق المحيطة بالوجوه.",
+        "explanation": "قبل التعرف على الشخص، يجب إيجاد موقع الوجوه في الصورة."
+      },
+      {
+        "type": "wrong",
+        "title": "استخراج بصمة من صورة بلا وجوه",
+        "code": "encodings = face_recognition.face_encodings(empty_image)[0]",
+        "error_message": "IndexError: list index out of range",
+        "explanation": "محاولة الوصول للعنصر الأول لقائمة فارغة (لا وجوه) سيسبب خطأ."
+      },
+      {
+        "type": "mistake",
+        "title": "عدم تقليل حجم صورة الفيديو",
+        "explanation": "معالجة الفيديو بالحجم الكامل بطيء، تصغير الإطار يزيد سرعة المعالجة المباشرة."
+      },
+      {
+        "type": "use_case",
+        "title": "الحضور والانصراف الذكي",
+        "explanation": "تسجيل حضور الموظفين بالتعرف على الوجه عبر الكاميرا."
+      },
+      {
+        "type": "challenge",
+        "title": "تحدي: تعديل التسامح (Tolerance)",
+        "code": "matches = face_recognition.compare_faces([known], unknown, tolerance=0.5)",
+        "expected_output": "تطابق أكثر صرامة.",
+        "explanation": "تقليل نسبة التسامح يقلل الخطأ، مفيد للأنظمة الأمنية."
+      }
+    ],
+    "exam_data": {
+      "title": "اختبار التعرف على الوجوه",
+      "questions": [
+        {
+          "question": "ما الناتج من دالة face_encodings() لوجه واحد؟",
+          "options": [
+            "صورة مقصوصة للوجه",
+            "مصفوفة من 128 رقماً تمثل الخصائص (البصمة)",
+            "اسم الشخص",
+            "متغير True/False"
+          ],
+          "correct_answer": "مصفوفة من 128 رقماً تمثل الخصائص (البصمة)",
+          "explanation": "الدالة تحول الوجه لمتجه رياضي ليسهل مقارنته."
+        }
+      ]
+    }
+  },
+  {
+    "lesson_slug": "python-76",
+    "content": {
+      "context": "ننتقل لمجال حيوي آخر: أمن المعلومات (Cybersecurity)، ونستكشف دور بايثون فيه.",
+      "description": "أمن المعلومات يعنى بحماية الأنظمة. بايثون هي اللغة المفضلة للخبراء والقراصنة الأخلاقيين بفضل مكتباتها القوية للشبكات وتشفير البيانات وأتمتة المهام.",
+      "prototype": "import hashlib\nimport socket",
+      "parameters": "مدخلات مثل البورتات أو النصوص، وتتنوع المخرجات حسب الأداة الأمنية.",
+      "return_value": "بيانات حالة الشبكة أو نصوص مشفرة.",
+      "example": "import hashlib\npwd = 'my_secure_password'.encode()\nhashed = hashlib.sha256(pwd).hexdigest()\nprint('Hash:', hashed)"
+    },
+    "quick_practical_examples": [
+      {
+        "type": "correct",
+        "title": "توليد بصمة نصية (Hash)",
+        "code": "hashlib.md5(b'hello').hexdigest()",
+        "expected_output": "سلسلة الهاش للحرفين.",
+        "explanation": "تستخدم الهاش للتحقق من سلامة البيانات كونه لا يعكس للنص الأصلي."
+      },
+      {
+        "type": "wrong",
+        "title": "إرسال نصوص للهاش بلا تحويل",
+        "code": "hashlib.sha256('hello')",
+        "error_message": "TypeError: Unicode-objects must be encoded",
+        "explanation": "خوارزميات الهاش تتعامل مع البايتات (Bytes)، فيجب استخدام encode()."
+      },
+      {
+        "type": "mistake",
+        "title": "استخدام MD5 لحفظ كلمات المرور",
+        "explanation": "خوارزمية MD5 ضعيفة، وينصح بـ SHA-256 أو bcrypt لزيادة الأمان."
+      },
+      {
+        "type": "use_case",
+        "title": "التحقق من سلامة الملفات",
+        "explanation": "مواقع التحميل توفر كود Hash للتأكد أن الملف لم يتم التلاعب به."
+      },
+      {
+        "type": "challenge",
+        "title": "تحدي: أداة تحقق لكلمة المرور",
+        "code": "if hashlib.sha256(pwd.encode()).hexdigest() == stored_hash:\n    print('مسموح')",
+        "expected_output": "تحقق آمن.",
+        "explanation": "يتم فحص الهاش المدخل مع الهاش المخزن بدلا من مقارنة النص الصريح."
+      }
+    ],
+    "exam_data": {
+      "title": "اختبار أساسيات أمن المعلومات",
+      "questions": [
+        {
+          "question": "لماذا بايثون شائعة في الأمن السيبراني؟",
+          "options": [
+            "لا تتعرض للاختراق",
+            "تسهل أتمتة السكريبتات وتوفر مكتبات ضخمة",
+            "تعمل فقط على لينكس",
+            "كودها مشفر دائما"
+          ],
+          "correct_answer": "تسهل أتمتة السكريبتات وتوفر مكتبات ضخمة",
+          "explanation": "بايثون تمكن المحترفين من أتمتة الفحوصات الأمنية بسرعة."
+        }
+      ]
+    }
+  },
+  {
+    "lesson_slug": "python-77",
+    "content": {
+      "context": "سنتعلم فن التشفير (Cryptography) لإخفاء المعلومات الحساسة.",
+      "description": "التشفير هو تحويل نص مقروء لغير مفهوم. مكتبة cryptography قوية لاستخدام التشفير المتماثل.",
+      "prototype": "from cryptography.fernet import Fernet\nkey = Fernet.generate_key()\ncipher_suite = Fernet(key)",
+      "parameters": "key: المفتاح السري كبايتات. data: البايتات المراد تشفيرها.",
+      "return_value": "نص مشفر غير مقروء.",
+      "example": "from cryptography.fernet import Fernet\nkey = Fernet.generate_key()\nfernet = Fernet(key)\nmsg = 'سر خطير'.encode()\nencrypted = fernet.encrypt(msg)\nprint(encrypted)"
+    },
+    "quick_practical_examples": [
+      {
+        "type": "correct",
+        "title": "توليد مفتاح تشفير",
+        "code": "key = Fernet.generate_key()",
+        "expected_output": "سلسلة عشوائية طويلة كبايتات.",
+        "explanation": "المفتاح هو السر، بدونه لا يمكن فك التشفير."
+      },
+      {
+        "type": "wrong",
+        "title": "تشفير نص بدون Bytes",
+        "code": "fernet.encrypt('secret')",
+        "error_message": "TypeError: data must be bytes.",
+        "explanation": "يجب تحويل النص بـ encode() قبل التشفير."
+      },
+      {
+        "type": "mistake",
+        "title": "توليد مفتاح جديد دائماً",
+        "explanation": "توليد مفتاح جديد يمنعك من قراءة بياناتك المشفرة بالمفتاح القديم."
+      },
+      {
+        "type": "use_case",
+        "title": "تأمين الرسائل",
+        "explanation": "التشفير يضمن عدم قراءة البيانات إلا للمرسل والمستقبل المتفقين."
+      },
+      {
+        "type": "challenge",
+        "title": "تحدي: حفظ المفتاح في ملف",
+        "code": "with open('key.key', 'wb') as f:\n    f.write(key)",
+        "expected_output": "إنشاء ملف آمن.",
+        "explanation": "تخزن المفاتيح غالباً في ملفات لتستخدم لاحقاً."
+      }
+    ],
+    "exam_data": {
+      "title": "اختبار التشفير",
+      "questions": [
+        {
+          "question": "ما الذي يمثله المتغير Key في نظام Fernet؟",
+          "options": [
+            "النص المشفر النهائي",
+            "كلمة مرور نصية",
+            "مفتاح عشوائي لتشفير وفك البيانات",
+            "دالة التشفير"
+          ],
+          "correct_answer": "مفتاح عشوائي لتشفير وفك البيانات",
+          "explanation": "يستخدم للعمليتين، التشفير وفك التشفير."
+        }
+      ]
+    }
+  },
+  {
+    "lesson_slug": "python-78",
+    "content": {
+      "context": "بعد التشفير، نتعلم فك التشفير لاستعادة النص.",
+      "description": "استرجاع النص باستخدام المفتاح ذاته الذي تم استخدامه في التشفير.",
+      "prototype": "fernet = Fernet(key)\ndata = fernet.decrypt(token)\ntext = data.decode()",
+      "parameters": "key: المفتاح الأصلي. token: النص المشفر.",
+      "return_value": "النص المقروء الأصلي.",
+      "example": "fernet = Fernet(key)\ndecrypted = fernet.decrypt(encrypted)\nprint('Original:', decrypted.decode())"
+    },
+    "quick_practical_examples": [
+      {
+        "type": "correct",
+        "title": "فك التشفير وإظهار النص",
+        "code": "plain = fernet.decrypt(token).decode()",
+        "expected_output": "النص الأصلي.",
+        "explanation": "بالمفتاح الصحيح نعود للنص المفهوم."
+      },
+      {
+        "type": "wrong",
+        "title": "استخدام مفتاح خاطئ",
+        "code": "wrong_fernet.decrypt(encrypted)",
+        "error_message": "InvalidToken",
+        "explanation": "يرمي هذا الخطأ ليدل على تلاعب أو مفتاح خطأ."
+      },
+      {
+        "type": "mistake",
+        "title": "نسيان decode()",
+        "explanation": "البيانات تفك كـ Bytes ويجب تحويلها لنص بنهاية المطاف."
+      },
+      {
+        "type": "use_case",
+        "title": "قواعد البيانات الآمنة",
+        "explanation": "تفك تشفير البيانات بالذاكرة لبرهة لاستخدامها ثم تحذف."
+      },
+      {
+        "type": "challenge",
+        "title": "تحدي: التقاط محاولة الفشل",
+        "code": "try:\n    fernet.decrypt(token)\nexcept InvalidToken:\n    print('خطأ بالمفتاح')",
+        "expected_output": "تنبيه بدلاً من انهيار البرنامج.",
+        "explanation": "التطبيقات تستخدم try-except لتجنب توقف البرنامج عند فشل المفتاح."
+      }
+    ],
+    "exam_data": {
+      "title": "اختبار فك التشفير",
+      "questions": [
+        {
+          "question": "ما الخطأ الذي يعود إذا فشل التشفير بمفتاح Fernet؟",
+          "options": [
+            "ValueError",
+            "InvalidToken",
+            "TypeError",
+            "DecryptionError"
+          ],
+          "correct_answer": "InvalidToken",
+          "explanation": "للتأكيد على عدم موثوقية المفتاح أو النص."
+        }
+      ]
+    }
+  },
+  {
+    "lesson_slug": "python-79",
+    "content": {
+      "context": "سندخل إلى عالم الشبكات، لنتعلم كيفية فحص المنافذ والتعرف على الخدمات المفتوحة.",
+      "description": "فحص المنافذ هو تقنية لمعرفة المنافذ المفتوحة بخادم معين. نستخدم مكتبة socket لمحاولة الاتصال، إن نجح الاتصال فالمنفذ مفتوح.",
+      "prototype": "import socket\ns = socket.socket()\nres = s.connect_ex((ip, port))",
+      "parameters": "ip: الهدف، port: المنفذ. AF_INET: للـ IPv4. SOCK_STREAM: للـ TCP.",
+      "return_value": "الرقم 0 للنجاح (مفتوح)، أو رقم آخر للخطأ (مغلق).",
+      "example": "import socket\ndef scan(ip, port):\n    s = socket.socket()\n    s.settimeout(1)\n    res = s.connect_ex((ip, port))\n    s.close()\n    return res == 0\nprint('Port 80 open?', scan('google.com', 80))"
+    },
+    "quick_practical_examples": [
+      {
+        "type": "correct",
+        "title": "فحص منفذ ويب",
+        "code": "scan('google.com', 80)",
+        "expected_output": "True",
+        "explanation": "منفذ الويب 80 دائماً مفتوح بمواقع الإنترنت."
+      },
+      {
+        "type": "wrong",
+        "title": "استخدام connect بدلاً من connect_ex",
+        "code": "s.connect((ip, port))",
+        "error_message": "ConnectionRefusedError",
+        "explanation": "connect_ex تعود برمز صامت بينما connect ترمي خطأ وتنهي البرنامج."
+      },
+      {
+        "type": "mistake",
+        "title": "نسيان s.close()",
+        "explanation": "عدم إغلاق المنافذ يستهلك النظام ويسبب حظراً من المستهدف."
+      },
+      {
+        "type": "use_case",
+        "title": "اكتشاف الثغرات",
+        "explanation": "البداية للمخترق أو الخبير الأمني هي إيجاد المنافذ واستغلالها."
+      },
+      {
+        "type": "challenge",
+        "title": "تحدي: تحديد Timeout",
+        "code": "s.settimeout(0.5)",
+        "expected_output": "فحص أسرع بكثير.",
+        "explanation": "مهلة الانتظار تسرّع الفحص لئلا يعلق طويلاً بمنافذ مسدودة."
+      }
+    ],
+    "exam_data": {
+      "title": "اختبار فحص المنافذ",
+      "questions": [
+        {
+          "question": "ما معنى إرجاع 0 من connect_ex؟",
+          "options": [
+            "فشل الاتصال",
+            "الاتصال تم بنجاح والمنفذ مفتوح",
+            "الآي بي غير موجود",
+            "خطأ برمجي"
+          ],
+          "correct_answer": "الاتصال تم بنجاح والمنفذ مفتوح",
+          "explanation": "الرقم الصفر يعبر عن النتيجة الإيجابية بدون أخطاء بالأنظمة الشبيهة بـ C."
+        }
+      ]
+    }
+  },
+  {
+    "lesson_slug": "python-80",
+    "content": {
+      "context": "تحويل مفهوم فحص المنافذ إلى أداة متكاملة وسريعة باستخدام البرمجة المتزامنة.",
+      "description": "سنبني Port Scanner. فحص 65535 منفذ بالترتيب بطيء، لذا نستخدم الخيوط (Threading) والطوابير لفحص المنافذ بالتزامن كأداة Nmap.",
+      "prototype": "import threading\nimport queue\nq = queue.Queue()",
+      "parameters": "Queue للطابور، و Threads للعمال المنفذين.",
+      "return_value": "تقرير بالمنافذ المفتوحة بفترة زمنية قصيرة.",
+      "example": "import socket, threading, queue\nq = queue.Queue()\nfor p in range(1, 100): q.put(p)\n\ndef worker():\n    while not q.empty():\n        port = q.get()\n        s = socket.socket()\n        s.settimeout(0.5)\n        if s.connect_ex(('127.0.0.1', port)) == 0:\n            print(f'Port {port} Open')\n        s.close()\n        q.task_done()\n\nfor i in range(10):\n    threading.Thread(target=worker, daemon=True).start()\nq.join()"
+    },
+    "quick_practical_examples": [
+      {
+        "type": "correct",
+        "title": "توزيع العمل عبر الطابور",
+        "code": "port = q.get()",
+        "expected_output": "كل عامل يأخذ مهمته بسلام دون التداخل.",
+        "explanation": "الطابور آمن للمتعدد ليضمن عدم تكرار الفحص."
+      },
+      {
+        "type": "wrong",
+        "title": "إنشاء Thread لكل منفذ",
+        "code": "for i in range(65535): Thread(target=scan).start()",
+        "error_message": "RuntimeError",
+        "explanation": "إنشاء آلاف الخيوط يرهق النظام."
+      },
+      {
+        "type": "mistake",
+        "title": "نسيان q.join()",
+        "explanation": "سينتهي البرنامج فوراً دون انتظار إنهاء الفحص من قبل العمال."
+      },
+      {
+        "type": "use_case",
+        "title": "تدقيق الخوادم",
+        "explanation": "تشغيل يومي للتأكد من أمن شبكة الشركة."
+      },
+      {
+        "type": "challenge",
+        "title": "تحدي: جلب اسم الخدمة",
+        "code": "print(socket.getservbyport(80))",
+        "expected_output": "http",
+        "explanation": "إعطاء اسم الخدمة للمنفذ لزيادة فائدة الأداة."
+      }
+    ],
+    "exam_data": {
+      "title": "اختبار فحص الشبكات والأدوات",
+      "questions": [
+        {
+          "question": "لماذا نستخدم Threading بدلا من حلقة For للمنافذ؟",
+          "options": [
+            "لأن For ممنوعة في الشبكات",
+            "لجعل فحص مئات المنافذ أسرع بالتعامل معها بالتزامن",
+            "لأنها طلب مكتبة Socket الأساسي",
+            "لإخفاء الاتصال"
+          ],
+          "correct_answer": "لجعل فحص مئات المنافذ أسرع بالتعامل معها بالتزامن",
+          "explanation": "يقلص الوقت من ساعات لثوانٍ بموازاة فترة الانتظار."
+        }
+      ]
+    }
+  }
+]

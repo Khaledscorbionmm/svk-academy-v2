@@ -1,100 +1,104 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { query } from '@/lib/db';
-import { verifyToken, COOKIE_NAME } from '@/lib/auth';
+import { getServerSession } from "next-auth/next";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { PrismaClient } from '@prisma/client';
 import { pythonTrackData } from '@/context/tracks/pythonData';
 import { cyberTrackData } from '@/context/tracks/cyberData';
 import { languageTrackData } from '@/context/tracks/languageData';
+
+const prisma = new PrismaClient();
 
 export async function GET(req: NextRequest, { params }: { params: Promise<{ lessonId: string }> }) {
   try {
     const { lessonId } = await params;
     
-    let isStatic = false;
     let lesson: any = null;
-    let courseCategory = '';
-    let allStaticLessons: any[] = [];
-    
-    // Check static modular arrays first (lessonId acts as lesson_slug)
-    if (lessonId.startsWith('python-')) {
-      isStatic = true; courseCategory = 'python'; allStaticLessons = pythonTrackData;
-    } else if (lessonId.startsWith('cyber-')) {
-      isStatic = true; courseCategory = 'security'; allStaticLessons = cyberTrackData;
-    } else if (lessonId.startsWith('lang-')) {
-      isStatic = true; courseCategory = 'languages'; allStaticLessons = languageTrackData;
-    }
-    
-    if (isStatic) {
-      lesson = allStaticLessons.find(l => l.lesson_slug === lessonId);
-    } else {
-      if (isNaN(Number(lessonId))) return NextResponse.json({ error: 'Invalid lesson ID' }, { status: 400 });
-      const result = await query('SELECT * FROM lessons WHERE id = $1', [lessonId]);
-      if (result.length > 0) lesson = result[0];
-    }
-    
-    if (!lesson) return NextResponse.json({ error: 'Lesson not found' }, { status: 404 });
-    
-    // Find the course
     let course: any = null;
-    if (isStatic) {
-      const courseRes = await query('SELECT id, title, title_ar, category FROM courses WHERE category = $1 LIMIT 1', [courseCategory]);
-      if (courseRes.length > 0) {
-        course = courseRes[0];
-        lesson.course_id = course.id;
-        lesson.id = lesson.lesson_slug; // Map id to slug for frontend compatibility
-      }
-    } else {
-      const courseRes = await query('SELECT id, title, title_ar, category FROM courses WHERE id = $1', [lesson.course_id]);
-      if (courseRes.length > 0) course = courseRes[0];
-    }
-    
-    if (!course) return NextResponse.json({ error: 'Course not found' }, { status: 404 });
-
-    // Sidebar Lessons
     let allLessons: any[] = [];
-    if (isStatic) {
-      allLessons = allStaticLessons.map(l => ({ id: l.lesson_slug, title: l.title, is_free: l.is_free, duration_minutes: l.duration_minutes, content_type: l.content_type, lesson_slug: l.lesson_slug }));
-    } else {
-      allLessons = await query('SELECT id, title, is_free, duration_minutes, content_type, lesson_slug FROM lessons WHERE course_id = $1 ORDER BY order_index ASC', [course.id]);
+    
+    // 1. DUAL-READ ARCHITECTURE: Try Database First
+    try {
+        const dbLessons = await prisma.lessons.findMany({
+            where: {
+                content: {
+                    contains: `"lesson_slug":"${lessonId}"` // Very fast subset matching
+                }
+            },
+            include: { courses: true },
+            take: 1
+        });
+        
+        if (dbLessons.length > 0) {
+            const dbLesson = dbLessons[0];
+            course = dbLesson.courses;
+            // Parse our beautiful JSON 9-Component structure that we imported into the string content field
+            lesson = JSON.parse(dbLesson.content as string);
+            lesson.id = lesson.lesson_slug; // Map back to slug for UI
+            
+            // Fetch sidebar
+            const sidebarData = await prisma.lessons.findMany({
+                where: { course_id: course.id },
+                orderBy: { order_index: 'asc' }
+            });
+            
+            allLessons = sidebarData.map(l => {
+                const p = JSON.parse(l.content as string);
+                return { id: p.lesson_slug, title: p.title, is_free: p.is_free, duration_minutes: p.duration_minutes, content_type: p.content_type, lesson_slug: p.lesson_slug };
+            });
+        }
+    } catch (e) {
+        console.error("DB Fetch Error. Falling back to local files.", e);
+    }
+    
+    // 2. FALLBACK ARCHITECTURE: Local Files (If DB failed or not found)
+    if (!lesson) {
+        console.log(`[Fallback Triggered] Serving lesson ${lessonId} from local .ts files.`);
+        let courseCategory = '';
+        let allStaticLessons: any[] = [];
+        
+        if (lessonId.startsWith('python-')) { courseCategory = 'python'; allStaticLessons = pythonTrackData; } 
+        else if (lessonId.startsWith('cyber-')) { courseCategory = 'security'; allStaticLessons = cyberTrackData; } 
+        else if (lessonId.startsWith('lang-')) { courseCategory = 'languages'; allStaticLessons = languageTrackData; }
+        
+        lesson = allStaticLessons.find(l => l.lesson_slug === lessonId);
+        
+        if (!lesson) return NextResponse.json({ error: 'Lesson not found' }, { status: 404 });
+        
+        // Mock the course for file fallback
+        course = await prisma.courses.findFirst({ where: { category: courseCategory } });
+        if (!course) course = { id: 999, title: courseCategory + ' Track', category: courseCategory };
+        
+        allLessons = allStaticLessons.map(l => ({ id: l.lesson_slug, title: l.title, is_free: l.is_free, duration_minutes: l.duration_minutes, content_type: l.content_type, lesson_slug: l.lesson_slug }));
     }
 
-    // Access Check Logic
+    // 3. NextAuth Protection Logic
     let accessStatus = 'locked';
-    const adminToken = req.cookies.get(COOKIE_NAME)?.value;
-    const studentToken = req.cookies.get('svk_student_token')?.value;
+    const session = await getServerSession(authOptions);
     
-    let payload = adminToken ? verifyToken(adminToken) : null;
-    if (!payload && studentToken) payload = verifyToken(studentToken);
+    const isFree = lesson.is_free || Number(lesson.order_index || 0) <= 1 || lesson.lesson_slug?.endsWith('-1') || lesson.lesson_slug?.endsWith('-2');
 
-    const isFree = lesson.is_free || Number(lesson.order_index) === 1;
-
-    if (payload) {
-      if (payload.role === 'admin') {
+    if (session) {
+      if (session.user?.role === 'admin') {
         accessStatus = 'approved';
-      } else if (payload.role === 'student') {
+      } else if (session.user?.role === 'student') {
         if (isFree) accessStatus = 'approved';
         else {
-          const enrollCheck = await query('SELECT id FROM enrollments WHERE student_id = $1 AND course_id = $2', [payload.id, course.id]);
-          if (enrollCheck.length > 0) accessStatus = 'approved';
+          // Check DB Enrollments if the user is a student
+          const isEnrolled = await prisma.enrollments.findFirst({
+              where: {
+                  student_id: Number(session.user.id),
+                  course_id: course.id
+              }
+          });
+          if (isEnrolled) accessStatus = 'approved';
         }
       }
     } else {
       if (isFree) accessStatus = 'approved';
     }
 
-    const studentInfo = payload && payload.role === 'student' ? { name: payload.name || '', email: payload.email || '', phone: (payload as any).phone || '' } : null;
-
-    let hasRequested = false;
-    if (payload && payload.role === 'student') {
-      const requestCheck = await query("SELECT id FROM course_requests WHERE student_id = $1 AND course_id = $2 AND status = 'pending'", [payload.id, course.id]);
-      if (requestCheck.length > 0) hasRequested = true;
-    }
-
-    // Transform content JSON to text_content string to fit old API schema if static
-    if (isStatic && accessStatus === 'approved') {
-      lesson.text_content = JSON.stringify([lesson.content]); 
-      // The frontend flashcards parser expects text_content string or stringified JSON if it's language track.
-      // We will adjust LanguageLearningLayout to parse the exact schema.
-    }
+    const studentInfo = session?.user?.role === 'student' ? { name: session.user.name || '', email: session.user.email || '', phone: '' } : null;
+    const hasRequested = false; // Mocking this for now as it's legacy
 
     return NextResponse.json({
       lesson: accessStatus === 'approved' ? lesson : { id: lesson.id || lesson.lesson_slug, course_id: course.id, title: lesson.title, is_free: false, content_type: lesson.content_type },

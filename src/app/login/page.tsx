@@ -14,14 +14,14 @@ export default function StudentLoginPage() {
 
   useEffect(() => {
     // Check if already logged in
-    fetch('/api/auth/me', { cache: 'no-store' })
+    fetch('/api/auth/session', { cache: 'no-store' })
       .then(res => {
         if (res.ok) return res.json();
         throw new Error('Not logged in');
       })
       .then(data => {
         if (data.user) {
-          if (data.user.role === 'admin') {
+          if ((data.user as any).role === 'admin') {
             router.push('/admin/dashboard');
           } else {
             router.push('/dashboard');
@@ -42,21 +42,21 @@ export default function StudentLoginPage() {
     
     setLoading(true);
     try {
-      const res = await fetch('/api/auth/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ identifier, password }),
+      const { signIn } = await import('next-auth/react');
+      const res = await signIn('credentials', {
+        redirect: false,
+        email: identifier,
+        password,
       });
-      const data = await res.json();
-      if (res.ok) {
-        if (data.user?.role === 'admin') {
-          router.push('/admin/dashboard');
-        } else {
-          router.push('/dashboard');
-        }
-        router.refresh();
+
+      if (res?.ok) {
+        // Session check will handle redirection
+        fetch('/api/auth/session').then(r => r.json()).then(data => {
+            if (data?.user?.role === 'admin') router.push('/admin/dashboard');
+            else router.push('/dashboard');
+        });
       } else {
-        setError(data.error || 'البيانات غير صحيحة');
+        setError(res?.error || 'البيانات غير صحيحة');
       }
     } catch {
       setError('حدث خطأ في الاتصال. يرجى المحاولة مرة أخرى');

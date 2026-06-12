@@ -1,0 +1,281 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model achievements {
+  id                Int                 @id @default(autoincrement())
+  name_ar           String
+  name_en           String
+  description_ar    String
+  description_en    String
+  icon              String              @default("🏆")
+  xp_required       Int                 @default(0)
+  sort_order        Int                 @default(0)
+  user_achievements user_achievements[]
+}
+
+model activity_log {
+  id             Int      @id @default(autoincrement())
+  user_id        Int
+  type           String
+  description_ar String
+  description_en String
+  xp_earned      Int      @default(0)
+  created_at     DateTime @default(now()) @db.Timestamp(6)
+  users          users    @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+}
+
+model admins {
+  id            Int       @id @default(autoincrement())
+  email         String    @unique @db.VarChar(255)
+  password_hash String    @db.VarChar(255)
+  name          String?   @default("Admin") @db.VarChar(255)
+  role          String?   @default("admin") @db.VarChar(50)
+  created_at    DateTime? @default(now()) @db.Timestamptz(6)
+  last_login    DateTime? @db.Timestamptz(6)
+}
+
+model chapters {
+  id             Int     @id @default(autoincrement())
+  course_id      Int
+  title_ar       String
+  title_en       String
+  description_ar String?
+  description_en String?
+  order          Int     @default(0)
+}
+
+model coupons {
+  id               Int       @id @default(autoincrement())
+  code             String    @unique
+  discount_percent Int
+  description_ar   String    @default("")
+  description_en   String    @default("")
+  max_uses         Int?
+  used_count       Int       @default(0)
+  expires_at       DateTime? @db.Timestamp(6)
+  is_active        Boolean   @default(true)
+  created_by       Int?
+  created_at       DateTime  @default(now()) @db.Timestamp(6)
+  users            users?    @relation(fields: [created_by], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model course_requests {
+  id           Int       @id @default(autoincrement())
+  student_id   Int?
+  course_id    Int?
+  status       String?   @default("pending") @db.VarChar(50)
+  requested_at DateTime? @default(now()) @db.Timestamptz(6)
+  courses      courses?  @relation(fields: [course_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  students     students? @relation(fields: [student_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@unique([student_id, course_id])
+}
+
+model courses {
+  id               Int               @id @default(autoincrement())
+  title            String            @db.VarChar(500)
+  description      String?
+  instructor_name  String?           @db.VarChar(255)
+  category         String?           @db.VarChar(100)
+  level            String?           @default("beginner") @db.VarChar(50)
+  price            Decimal?          @default(0) @db.Decimal(10, 2)
+  currency         String?           @default("EGP") @db.VarChar(10)
+  duration_hours   Int?              @default(0)
+  thumbnail_url    String?           @db.VarChar(1000)
+  is_published     Boolean?          @default(false)
+  is_featured      Boolean?          @default(false)
+  enrollment_count Int?              @default(0)
+  rating           Decimal?          @default(0) @db.Decimal(3, 2)
+  created_at       DateTime?         @default(now()) @db.Timestamptz(6)
+  updated_at       DateTime?         @default(now()) @db.Timestamptz(6)
+  title_ar         String?           @db.VarChar(500)
+  description_ar   String?
+  course_requests  course_requests[]
+  enrollments      enrollments[]
+  lesson_access    lesson_access[]
+  lessons          lessons[]
+}
+
+model email_verifications {
+  id         Int       @id @default(autoincrement())
+  email      String    @db.VarChar(255)
+  code       String    @db.VarChar(6)
+  expires_at DateTime  @db.Timestamptz(6)
+  created_at DateTime? @default(now()) @db.Timestamptz(6)
+}
+
+model enrollments {
+  id               Int       @id @default(autoincrement())
+  student_id       Int?
+  course_id        Int?
+  enrolled_at      DateTime? @default(now()) @db.Timestamptz(6)
+  progress_percent Int?      @default(0)
+  completed_at     DateTime? @db.Timestamptz(6)
+  courses          courses?  @relation(fields: [course_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@unique([student_id, course_id])
+}
+
+model lesson_access {
+  id              Int       @id @default(autoincrement())
+  student_id      Int?
+  course_id       Int?
+  lesson_slug     String    @db.VarChar(255)
+  status          String?   @default("requested") @db.VarChar(50)
+  requested_at    DateTime? @default(now()) @db.Timestamptz(6)
+  approved_at     DateTime? @db.Timestamptz(6)
+  completed_at    DateTime? @db.Timestamptz(6)
+  score           Int?
+  total_questions Int?
+  courses         courses?  @relation(fields: [course_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  students        students? @relation(fields: [student_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@unique([student_id, lesson_slug])
+}
+
+model lessons {
+  id                    Int       @id @default(autoincrement())
+  course_id             Int?
+  title                 String    @db.VarChar(500)
+  content               String?
+  video_url             String?   @db.VarChar(1000)
+  duration_minutes      Int?      @default(0)
+  order_index           Int?      @default(0)
+  is_free               Boolean?  @default(false)
+  created_at            DateTime? @default(now()) @db.Timestamptz(6)
+  content_type          String?   @default("video") @db.VarChar(50)
+  text_content          String?
+  exam_data             Json?
+  code_explanation      String?
+  code_template         String?
+  practice_instructions String?
+  practice_expected     String?
+  code_example          String?
+  audio_url             String?   @db.VarChar(1000)
+  courses               courses?  @relation(fields: [course_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+}
+
+model quiz_questions {
+  id                Int     @id @default(autoincrement())
+  lesson_id         Int
+  question_ar       String
+  question_en       String
+  options           Json    @db.Json
+  correct_option_id String
+  explanation_ar    String?
+  explanation_en    String?
+  xp_reward         Int     @default(20)
+  order             Int     @default(0)
+}
+
+model session {
+  sid    String   @id @db.VarChar
+  sess   Json     @db.Json
+  expire DateTime @db.Timestamp(6)
+
+  @@index([expire], map: "IDX_session_expire")
+}
+
+model students {
+  id                  Int               @id @default(autoincrement())
+  email               String            @unique @db.VarChar(255)
+  name                String            @db.VarChar(255)
+  phone               String?           @db.VarChar(50)
+  country             String?           @default("Egypt") @db.VarChar(100)
+  avatar_url          String?           @db.VarChar(1000)
+  is_active           Boolean?          @default(true)
+  subscription_status String?           @default("none") @db.VarChar(50)
+  subscription_end    DateTime?         @db.Timestamptz(6)
+  created_at          DateTime?         @default(now()) @db.Timestamptz(6)
+  password_hash       String?           @db.VarChar(255)
+  xp                  Int?              @default(0)
+  age                 Int?
+  course_requests     course_requests[]
+  lesson_access       lesson_access[]
+}
+
+model subscriptions {
+  id                Int       @id @default(autoincrement())
+  user_id           Int
+  course_id         Int
+  status            String    @default("pending")
+  plan_type         String    @default("single")
+  price_egp         Decimal   @default(369) @db.Decimal(10, 2)
+  payment_proof_url String?
+  rejection_reason  String?
+  expires_at        DateTime? @db.Timestamp(6)
+  notes             String?
+  coupon_code       String?
+  payment_ref       String?
+  approved_at       DateTime? @db.Timestamp(6)
+  approved_by       Int?
+  created_at        DateTime  @default(now()) @db.Timestamp(6)
+  updated_at        DateTime  @default(now()) @db.Timestamp(6)
+  users             users     @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+}
+
+model user_achievements {
+  id             Int          @id @default(autoincrement())
+  user_id        Int
+  achievement_id Int
+  earned_at      DateTime     @default(now()) @db.Timestamp(6)
+  achievements   achievements @relation(fields: [achievement_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  users          users        @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@unique([user_id, achievement_id])
+}
+
+model user_logins {
+  id         Int      @id @default(autoincrement())
+  user_id    Int
+  ip_address String?
+  location   String?
+  user_agent String?
+  created_at DateTime @default(now()) @db.Timestamp(6)
+  users      users    @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+}
+
+model user_progress {
+  id           Int      @id @default(autoincrement())
+  user_id      Int
+  lesson_id    Int
+  xp_earned    Int      @default(0)
+  completed_at DateTime @default(now()) @db.Timestamp(6)
+  users        users    @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@unique([user_id, lesson_id])
+}
+
+model users {
+  id                  Int                 @id @default(autoincrement())
+  username            String              @unique
+  email               String              @unique
+  password_hash       String
+  role                String              @default("student")
+  xp                  Int                 @default(0)
+  level               Int                 @default(1)
+  streak              Int                 @default(0)
+  longest_streak      Int                 @default(0)
+  last_activity_date  String?
+  last_login_at       DateTime?           @db.Timestamp(6)
+  last_login_ip       String?
+  login_location      String?
+  language_preference String              @default("ar")
+  avatar_url          String?
+  is_suspended        Boolean             @default(false)
+  is_approved         Boolean             @default(true)
+  created_at          DateTime            @default(now()) @db.Timestamp(6)
+  updated_at          DateTime            @default(now()) @db.Timestamp(6)
+  activity_log        activity_log[]
+  coupons             coupons[]
+  subscriptions       subscriptions[]
+  user_achievements   user_achievements[]
+  user_logins         user_logins[]
+  user_progress       user_progress[]
+}

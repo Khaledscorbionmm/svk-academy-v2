@@ -1,0 +1,552 @@
+[
+  {
+    "lesson_slug": "python-61",
+    "content": {
+      "context": "لماذا نتعلم إطار عمل Django في بايثون؟",
+      "description": "جانغو (Django) هو إطار عمل (Framework) مجاني ومفتوح المصدر لتطوير تطبيقات الويب بلغة بايثون. يتبع نمط التصميم MVT (Model-View-Template). صُمم جانغو لمساعدة المطورين على بناء تطبيقات ويب آمنة، سريعة، وقابلة للتوسع بأقل قدر من كتابة الكود.",
+      "prototype": "django-admin startproject project_name",
+      "parameters": "project_name: اسم المشروع المراد إنشاؤه.",
+      "return_value": "ينشئ مجلد المشروع بهيكل الملفات الأساسي لجانغو.",
+      "example": "django-admin startproject my_website\ncd my_website\npython manage.py runserver"
+    },
+    "quick_practical_examples": [
+      {
+        "type": "correct",
+        "title": "بدء خادم التطوير",
+        "code": "python manage.py runserver",
+        "expected_output": "Starting development server at http://127.0.0.1:8000/",
+        "explanation": "تشغيل الخادم المحلي لتجربة الموقع."
+      },
+      {
+        "type": "wrong",
+        "title": "تشغيل الأمر في مسار خاطئ",
+        "code": "python manage.py runserver",
+        "error_message": "can't open file 'manage.py': [Errno 2] No such file or directory",
+        "explanation": "تأكد من أنك داخل المجلد الذي يحتوي على ملف manage.py."
+      },
+      {
+        "type": "mistake",
+        "title": "الخلط بين المشروع والتطبيق",
+        "explanation": "المشروع هو الموقع بأكمله، والتطبيق هو وحدة وظيفية صغيرة داخله (مثل المدونة)."
+      },
+      {
+        "type": "use_case",
+        "title": "الاستخدام في الواقع",
+        "explanation": "تطوير أنظمة إدارة محتوى (CMS)، ومنصات تواصل اجتماعي ضخمة كإنستجرام."
+      },
+      {
+        "type": "challenge",
+        "title": "تحدي: إنشاء تطبيق",
+        "code": "# أمر لإنشاء تطبيق باسم 'blog'\n# اكتب الأمر الصحيح باستخدام manage.py",
+        "expected_output": "مجلد جديد باسم 'blog'",
+        "explanation": "استخدم الأمر startapp لإنشاء تطبيق."
+      }
+    ],
+    "exam_data": {
+      "title": "اختبار سريع في أساسيات Django",
+      "questions": [
+        {
+          "question": "ما هو نمط التصميم في Django؟",
+          "options": ["MVC", "MVT", "MVVM", "MVP"],
+          "correct_answer": "MVT",
+          "explanation": "جانغو يستخدم Model-View-Template."
+        }
+      ]
+    }
+  },
+  {
+    "lesson_slug": "python-62",
+    "content": {
+      "context": "كيف يفهم جانغو هيكل الملفات؟",
+      "description": "عند إنشاء المشروع، يتكون هيكل أساسي من الملفات. `settings.py` يحتوي على التكوينات الرئيسية، و `urls.py` يدير الروابط (التوجيه). أما `manage.py` فهو الواجهة لأوامر التشغيل.",
+      "prototype": "myproject/\n  manage.py\n  myproject/\n    settings.py\n    urls.py\n    wsgi.py",
+      "parameters": "لا يوجد متغيرات كودية هنا، بل شرح بنية مجلد.",
+      "return_value": "هيكلية جاهزة للعمل وفصل الاهتمامات.",
+      "example": "# settings.py\nINSTALLED_APPS = [\n    'django.contrib.admin',\n    # تطبيقات أخرى\n]"
+    },
+    "quick_practical_examples": [
+      {
+        "type": "correct",
+        "title": "تعديل إعدادات اللغة",
+        "code": "LANGUAGE_CODE = 'ar'",
+        "expected_output": "واجهة جانغو الإدارية باللغة العربية",
+        "explanation": "تغيير إعداد LANGUAGE_CODE في settings.py يؤثر على الترجمة."
+      },
+      {
+        "type": "wrong",
+        "title": "خطأ في تسجيل التطبيق",
+        "code": "INSTALLED_APPS = ['blog'] # بدون فاصلة إذا كان هناك تطبيقات أسفله",
+        "error_message": "SyntaxError: invalid syntax",
+        "explanation": "احرص على كتابة الفواصل في نهاية كل عنصر في القائمة."
+      },
+      {
+        "type": "mistake",
+        "title": "تجاهل ملف urls.py",
+        "explanation": "البعض يحاول إضافة دوال عرض دون ربطها برابط في urls.py، مما يظهر صفحة خطأ 404."
+      },
+      {
+        "type": "use_case",
+        "title": "تطبيق فعلي لـ settings.py",
+        "explanation": "ضبط إعدادات قواعد بيانات PostgreSQL بدلاً من SQLite لمشاريع الإنتاج الحقيقية."
+      },
+      {
+        "type": "challenge",
+        "title": "تحدي: تعديل المنطقة الزمنية",
+        "code": "TIME_ZONE = '...' # قم بتعيينها لتوقيت السعودية",
+        "expected_output": "TIME_ZONE = 'Asia/Riyadh'",
+        "explanation": "ابحث عن صيغة المناطق الزمنية القياسية."
+      }
+    ],
+    "exam_data": {
+      "title": "اختبار سريع",
+      "questions": [
+        {
+          "question": "أين يتم تسجيل التطبيقات الجديدة في جانغو؟",
+          "options": ["urls.py", "manage.py", "settings.py", "wsgi.py"],
+          "correct_answer": "settings.py",
+          "explanation": "يتم تسجيل التطبيقات في قائمة INSTALLED_APPS داخل ملف settings.py."
+        }
+      ]
+    }
+  },
+  {
+    "lesson_slug": "python-63",
+    "content": {
+      "context": "كيف نتعامل مع قواعد البيانات في جانغو دون كتابة SQL؟ (النماذج - Models)",
+      "description": "النماذج (Models) تمثل البيانات وشكلها. يقرأ جانغو النموذج وينشئ الجدول المقابل له في قاعدة البيانات باستخدام نظام ORM مما يغنيك عن كتابة استعلامات SQL معقدة.",
+      "prototype": "class ModelName(models.Model):\n    field_name = models.FieldType()",
+      "parameters": "ModelName: اسم الجدول. FieldType: نوع البيانات (مثل CharField, IntegerField).",
+      "return_value": "صنف بايثون يمثل جدولاً في قاعدة البيانات.",
+      "example": "from django.db import models\n\nclass Post(models.Model):\n    title = models.CharField(max_length=200)\n    content = models.TextField()"
+    },
+    "quick_practical_examples": [
+      {
+        "type": "correct",
+        "title": "إنشاء جدول للمستخدمين",
+        "code": "class Employee(models.Model):\n    name = models.CharField(max_length=100)\n    salary = models.IntegerField()",
+        "expected_output": "جدول Employee بحقلي name و salary.",
+        "explanation": "هكذا تُبنى الهياكل الأساسية للبيانات بسهولة."
+      },
+      {
+        "type": "wrong",
+        "title": "نسيان تحديد max_length",
+        "code": "title = models.CharField()",
+        "error_message": "CharFields must define a 'max_length' attribute.",
+        "explanation": "يجب دائماً تمرير حد أقصى للحروف مع CharField."
+      },
+      {
+        "type": "mistake",
+        "title": "عدم عمل Migrations",
+        "explanation": "البعض يظن أن كتابة الكود كافية لإنشاء الجدول، ويجب دائماً تنفيذ python manage.py makemigrations ثم migrate."
+      },
+      {
+        "type": "use_case",
+        "title": "الاستخدام في الواقع",
+        "explanation": "استخدام النماذج لتعريف هياكل الفواتير، الطلبات، المنتجات في متجر إلكتروني."
+      },
+      {
+        "type": "challenge",
+        "title": "تحدي: إضافة تاريخ الانضمام",
+        "code": "class User(models.Model):\n    name = models.CharField(max_length=50)\n    # اضف حقلاً لتاريخ الانضمام تلقائيا",
+        "expected_output": "joined_at = models.DateTimeField(auto_now_add=True)",
+        "explanation": "استخدم DateTimeField."
+      }
+    ],
+    "exam_data": {
+      "title": "اختبار سريع",
+      "questions": [
+        {
+          "question": "ما هو الأمر المستخدم لتطبيق التغييرات على قاعدة البيانات؟",
+          "options": ["runserver", "makemigrations", "migrate", "startapp"],
+          "correct_answer": "migrate",
+          "explanation": "الأمر migrate هو الذي يترجم ملفات الهجرة لتغييرات فعلية بقاعدة البيانات."
+        }
+      ]
+    }
+  },
+  {
+    "lesson_slug": "python-64",
+    "content": {
+      "context": "كيف نعالج طلبات المستخدمين ونرسل الرد؟ (العروض - Views)",
+      "description": "العروض (Views) هي الدوال (أو الأصناف) التي تأخذ طلب الويب (Request) وتعيد استجابة (Response). هي المكان الذي يتم فيه معالجة المنطق (Business Logic) وجلب البيانات من النماذج لتمريرها للقوالب.",
+      "prototype": "def view_name(request):\n    return HttpResponse('Response')",
+      "parameters": "request: كائن يمثل الطلب القادم من متصفح المستخدم.",
+      "return_value": "استجابة (مثل صفحة HTML، أو بيانات JSON).",
+      "example": "from django.http import HttpResponse\n\ndef hello(request):\n    return HttpResponse('مرحباً بك في موقعي')"
+    },
+    "quick_practical_examples": [
+      {
+        "type": "correct",
+        "title": "عرض رسالة بسيطة",
+        "code": "def about(request):\n    return HttpResponse('صفحة من نحن')",
+        "expected_output": "تظهر جملة 'صفحة من نحن' على المتصفح.",
+        "explanation": "أبسط شكل لدالة عرض في جانغو."
+      },
+      {
+        "type": "wrong",
+        "title": "نسيان تمرير request",
+        "code": "def home():\n    return HttpResponse('Home')",
+        "error_message": "TypeError: home() takes 0 positional arguments but 1 was given",
+        "explanation": "يجب دائماً أن تقبل دالة العرض المتغير request كأول معامل."
+      },
+      {
+        "type": "mistake",
+        "title": "عكس الأدوار بين النماذج والعروض",
+        "explanation": "يعتقد البعض أن الاستعلام من قاعدة البيانات يجب أن يُكتب بالـ SQL يدوياً في العرض، والصحيح استخدام ORM الخاص بالنماذج."
+      },
+      {
+        "type": "use_case",
+        "title": "الاستخدام في الواقع",
+        "explanation": "استخراج معلومات المستخدم من الطلب والتحقق مما إذا كان مسجلاً للدخول قبل عرض الصفحة الحساسة."
+      },
+      {
+        "type": "challenge",
+        "title": "تحدي: إرجاع صفحة HTML معقدة (استخدام render)",
+        "code": "def my_view(request):\n    # استخدم الدالة render لعرض القالب template.html",
+        "expected_output": "return render(request, 'template.html')",
+        "explanation": "دالة render هي الأكثر استخداماً لدمج القوالب مع البيانات."
+      }
+    ],
+    "exam_data": {
+      "title": "اختبار سريع",
+      "questions": [
+        {
+          "question": "ما هو المعامل الأول الأساسي في دالة العرض (View) في جانغو؟",
+          "options": ["response", "context", "request", "model"],
+          "correct_answer": "request",
+          "explanation": "كل دالة عرض يجب أن تتلقى طلب HTTP (request)."
+        }
+      ]
+    }
+  },
+  {
+    "lesson_slug": "python-65",
+    "content": {
+      "context": "تطبيق عملي: كيف نجمع النماذج والعروض لإنشاء مدونة؟",
+      "description": "في هذا التطبيق نربط كل المفاهيم. ننشئ نموذج للمقالة، ثم نكتب دالة عرض (View) تجلب جميع المقالات، ونمررها لصفحة HTML باستخدام قالب (Template).",
+      "prototype": "posts = Post.objects.all()\nreturn render(request, 'blog/index.html', {'posts': posts})",
+      "parameters": "Post.objects.all(): يجلب كافة السجلات. القاموس {'posts': posts}: يمرر البيانات للقالب.",
+      "return_value": "صفحة ويب تحتوي على قائمة بجميع مقالات المدونة.",
+      "example": "from django.shortcuts import render\nfrom .models import Post\n\ndef post_list(request):\n    posts = Post.objects.all()\n    return render(request, 'blog/post_list.html', {'posts': posts})"
+    },
+    "quick_practical_examples": [
+      {
+        "type": "correct",
+        "title": "جلب البيانات",
+        "code": "def get_recent(request):\n    recent = Post.objects.order_by('-id')[:5]\n    return render(request, 'recent.html', {'recent': recent})",
+        "expected_output": "صفحة بآخر 5 مقالات مقروءة.",
+        "explanation": "استخدام ORM لجلب المقالات مرتبة تنازلياً وتمريرها."
+      },
+      {
+        "type": "wrong",
+        "title": "تمرير بيانات بدون قاموس",
+        "code": "return render(request, 'template.html', posts)",
+        "error_message": "context must be a dict rather than QuerySet.",
+        "explanation": "يجب دائماً أن يكون المتغير الثالث (context) في الدالة render عبارة عن قاموس."
+      },
+      {
+        "type": "mistake",
+        "title": "الخلط بين مسارات القوالب",
+        "explanation": "يحدث خطأ TemplateDoesNotExist عندما يتم وضع ملف HTML في مجلد خاطئ. جانغو يبحث افتراضياً في مجلد templates داخل التطبيق."
+      },
+      {
+        "type": "use_case",
+        "title": "الاستخدام في الواقع",
+        "explanation": "بناء أي تطبيق عرض بيانات فعلي كالمتاجر والمقالات والإعلانات."
+      },
+      {
+        "type": "challenge",
+        "title": "تحدي: تصفية المقالات",
+        "code": "# قم بجلب المقالات المنشورة فقط، مفترضا وجود حقل is_published\nposts = Post.objects.______(is_published=True)",
+        "expected_output": "filter",
+        "explanation": "استخدم filter للبحث المشروط في جداول قاعدة البيانات."
+      }
+    ],
+    "exam_data": {
+      "title": "اختبار سريع",
+      "questions": [
+        {
+          "question": "كيف نقوم بجلب كافة البيانات من جدول Product عبر نموذج جانغو؟",
+          "options": ["Product.get_all()", "Product.objects.all()", "Product.select()", "Product.all()"],
+          "correct_answer": "Product.objects.all()",
+          "explanation": "الطريقة الصحيحة في ORM لجانغو هي objects.all()."
+        }
+      ]
+    }
+  },
+  {
+    "lesson_slug": "python-66",
+    "content": {
+      "context": "لماذا نستكشف الذكاء الاصطناعي (AI) بلغة بايثون؟",
+      "description": "بايثون تعتبر اللغة الأولى عالمياً في مجال الذكاء الاصطناعي. الذكاء الاصطناعي هو فرع من علوم الحاسوب يهدف لإنشاء أنظمة قادرة على محاكاة الذكاء البشري مثل التعرف على الصور، ترجمة النصوص، واتخاذ القرارات.",
+      "prototype": "import ai_library\nmodel = ai_library.Model()\nmodel.predict(data)",
+      "parameters": "data: البيانات التي نريد للنموذج أن يعمل عليها.",
+      "return_value": "تنبؤ (Prediction) مثل تحديد هل الصورة لقطة أو كلب.",
+      "example": "# مثال رمزي يوضح المفهوم\n# الذكاء الاصطناعي يعتمد على بيانات ضخمة ومكتبات مثل TensorFlow و PyTorch\nprint('الذكاء الاصطناعي هو محاكاة ذكاء البشر عبر تعلم الآلة والتطوير العميق.')"
+    },
+    "quick_practical_examples": [
+      {
+        "type": "correct",
+        "title": "مفهوم استيراد المكتبات الأساسية",
+        "code": "import numpy as np\nimport pandas as pd",
+        "expected_output": "تهيئة البيئة للعمل مع البيانات",
+        "explanation": "أول خطوة في مشاريع الذكاء الاصطناعي هي استدعاء المكتبات المسؤولة عن معالجة البيانات."
+      },
+      {
+        "type": "wrong",
+        "title": "الاعتقاد بأن الذكاء الاصطناعي هو سحر",
+        "code": "model.think_like_human()",
+        "error_message": "AttributeError: 'Model' has no attribute 'think_like_human'",
+        "explanation": "الذكاء الاصطناعي يعتمد على الإحصاء والرياضيات وليس سحراً أو وعياً حقيقياً."
+      },
+      {
+        "type": "mistake",
+        "title": "الخلط بين AI و Machine Learning",
+        "explanation": "الذكاء الاصطناعي هو المظلة الكبيرة، بينما تعلم الآلة (Machine Learning) هو تطبيق محدد داخل الـ AI يعتمد على تعلم الأنماط من البيانات."
+      },
+      {
+        "type": "use_case",
+        "title": "الاستخدام في الواقع",
+        "explanation": "المساعدات الشخصية كـ Siri و Alexa، وأنظمة التوصيات في يوتيوب ونتفليكس."
+      },
+      {
+        "type": "challenge",
+        "title": "تحدي: استيراد مكتبة",
+        "code": "# استورد مكتبة scikit-learn والتي يشار لها بـ sklearn\n___ sklearn",
+        "expected_output": "import",
+        "explanation": "استخدم كلمة import."
+      }
+    ],
+    "exam_data": {
+      "title": "اختبار سريع",
+      "questions": [
+        {
+          "question": "أي من اللغات التالية هي الأكثر شعبية في تطوير الذكاء الاصطناعي؟",
+          "options": ["Java", "C++", "Python", "Ruby"],
+          "correct_answer": "Python",
+          "explanation": "بايثون تتصدر بفضل مكتباتها الضخمة والسهلة الاستخدام مثل Scikit-learn و TensorFlow."
+        }
+      ]
+    }
+  },
+  {
+    "lesson_slug": "python-67",
+    "content": {
+      "context": "ما هو تعلم الآلة (Machine Learning) وكيف تفهم الآلة البيانات؟",
+      "description": "تعلم الآلة هو تدريب الخوارزميات على مجموعات بيانات تاريخية لاكتشاف الأنماط بدلاً من برمجتها قواعد ثابتة. الخوارزمية تأخذ البيانات والنتائج السابقة، وتستنتج القواعد التي تمكنها من التنبؤ بالحالات الجديدة.",
+      "prototype": "from sklearn.model_family import ModelName\nmodel = ModelName()\nmodel.fit(X_train, y_train)",
+      "parameters": "X_train: البيانات المدخلة (الميزات). y_train: النتائج (الأهداف). fit: عملية التعلم أو التدريب.",
+      "return_value": "نموذج مُدرَّب (Trained Model) قادر على إجراء تنبؤات.",
+      "example": "from sklearn.linear_model import LinearRegression\nmodel = LinearRegression()\n# تدريب بسيط (مجرد توضيح للمفهوم)\n# model.fit(X, y)"
+    },
+    "quick_practical_examples": [
+      {
+        "type": "correct",
+        "title": "استدعاء خوارزمية الانحدار الخطي",
+        "code": "from sklearn.linear_model import LinearRegression\nmodel = LinearRegression()",
+        "expected_output": "نموذج جاهز للتدريب.",
+        "explanation": "الانحدار الخطي هي واحدة من أشهر وأبسط خوارزميات تعلم الآلة للتنبؤ بالقيم الرقمية."
+      },
+      {
+        "type": "wrong",
+        "title": "توقع التنبؤ بدون تدريب",
+        "code": "model = LinearRegression()\nmodel.predict([[1, 2]])",
+        "error_message": "NotFittedError: This LinearRegression instance is not fitted yet.",
+        "explanation": "لا يمكن للنموذج التنبؤ قبل أن تقوم بتدريبه أولاً باستخدام الدالة fit()."
+      },
+      {
+        "type": "mistake",
+        "title": "البيانات القليلة",
+        "explanation": "يعتقد البعض أن بضعة أسطر من البيانات كافية لتدريب نموذج. في الواقع، تعلم الآلة يتطلب مئات أو آلاف الأمثلة ليكون دقيقاً."
+      },
+      {
+        "type": "use_case",
+        "title": "الاستخدام في الواقع",
+        "explanation": "توقع أسعار العقارات بناءً على المساحة والموقع وعدد الغرف."
+      },
+      {
+        "type": "challenge",
+        "title": "تحدي: دالة التدريب",
+        "code": "model = LinearRegression()\n# ما هي الدالة المستخدمة للتدريب؟\nmodel.___(X, y)",
+        "expected_output": "fit",
+        "explanation": "دالة التدريب الشهيرة هي fit."
+      }
+    ],
+    "exam_data": {
+      "title": "اختبار سريع",
+      "questions": [
+        {
+          "question": "ما هي الوظيفة الأساسية للدالة fit() في مكتبات تعلم الآلة؟",
+          "options": ["تقييم النموذج", "التنبؤ ببيانات جديدة", "تدريب النموذج على البيانات", "حفظ النموذج"],
+          "correct_answer": "تدريب النموذج على البيانات",
+          "explanation": "الدالة fit تستخدم لتطبيق عملية التعلم على البيانات المتاحة."
+        }
+      ]
+    }
+  },
+  {
+    "lesson_slug": "python-68",
+    "content": {
+      "context": "لماذا يجب علينا تنظيف وتجهيز البيانات قبل تدريب النموذج؟",
+      "description": "في الواقع، البيانات تكون فوضوية وتحتوي على قيم مفقودة ونصوص غير قابلة للحساب. الآلة تفهم الأرقام فقط! خطوة تجهيز البيانات (Data Preprocessing) تشمل سد الثغرات وتحويل النصوص لأرقام وضبط المقياس لضمان دقة النموذج.",
+      "prototype": "df.fillna(value)\ndf.dropna()\nLabelEncoder()",
+      "parameters": "fillna: تملأ القيم الفارغة. dropna: تحذف الصفوف الفارغة.",
+      "return_value": "بيانات نظيفة ومصفوفات رقمية جاهزة للإدخال في النموذج.",
+      "example": "import pandas as pd\n\ndata = {'Age': [25, None, 30], 'City': ['Cairo', 'Riyadh', 'Cairo']}\ndf = pd.DataFrame(data)\n\n# معالجة القيم المفقودة\ndf['Age'].fillna(df['Age'].mean(), inplace=True)"
+    },
+    "quick_practical_examples": [
+      {
+        "type": "correct",
+        "title": "ملء القيم المفقودة بالمتوسط",
+        "code": "df['salary'].fillna(df['salary'].mean(), inplace=True)",
+        "expected_output": "يتم تبديل القيم الفارغة بمتوسط الرواتب.",
+        "explanation": "طريقة آمنة لعدم خسارة صفوف كاملة من البيانات."
+      },
+      {
+        "type": "wrong",
+        "title": "إدخال نصوص للنموذج مباشرة",
+        "code": "model.fit(df[['City']], y)",
+        "error_message": "ValueError: could not convert string to float: 'Cairo'",
+        "explanation": "النماذج الرياضية لا تتعامل مع النصوص المباشرة. يجب تحويلها باستخدام تقنيات مثل One-Hot Encoding."
+      },
+      {
+        "type": "mistake",
+        "title": "حذف جميع القيم المفقودة",
+        "explanation": "قد تلجأ لحذف أي صف به قيمة فارغة، وهذا خطأ لأنه قد يؤدي لفقدان كمية هائلة من البيانات. يُفضل التعويض (Imputation) إذا أمكن."
+      },
+      {
+        "type": "use_case",
+        "title": "الاستخدام في الواقع",
+        "explanation": "في السجلات الطبية، قد يتم تسجيل بيانات مريض دون وزنه. يتم تقدير الوزن لتفادي إتلاف السجل كاملًا."
+      },
+      {
+        "type": "challenge",
+        "title": "تحدي: حذف الصفوف",
+        "code": "# كيف نحذف أي صف به قيمة فارغة تماماً؟\ndf.____()",
+        "expected_output": "dropna",
+        "explanation": "استخدم dropna للتخلص من الصفوف المفقودة."
+      }
+    ],
+    "exam_data": {
+      "title": "اختبار سريع",
+      "questions": [
+        {
+          "question": "لماذا يجب تحويل الكلمات إلى أرقام في تجهيز البيانات؟",
+          "options": ["لتصغير حجم الملف", "لأن الخوارزميات عبارة عن عمليات حسابية ورياضية", "لأنه شكل جمالي", "حتى لا تُسرق البيانات"],
+          "correct_answer": "لأن الخوارزميات عبارة عن عمليات حسابية ورياضية",
+          "explanation": "تعلم الآلة يعتمد على المعادلات الرياضية، والمعادلات لا تقبل الكلمات مباشرة."
+        }
+      ]
+    }
+  },
+  {
+    "lesson_slug": "python-69",
+    "content": {
+      "context": "كيف نقوم ببناء النموذج الأول لنا وتدريبه؟",
+      "description": "بعد تجهيز البيانات، نقوم بتقسيمها إلى قسمين: بيانات للتدريب (Training) ليتعلم منها النموذج، وبيانات للاختبار (Testing) لنرى مدى كفاءته، ثم نمرر بيانات التدريب للنموذج.",
+      "prototype": "from sklearn.model_selection import train_test_split\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)",
+      "parameters": "X: الخصائص. y: المتغير المستهدف. test_size: نسبة البيانات المخصصة للاختبار (غالبا 20%).",
+      "return_value": "4 مجموعات من البيانات مفصولة عشوائيا.",
+      "example": "from sklearn.model_selection import train_test_split\nfrom sklearn.linear_model import LinearRegression\n\nX = [[1], [2], [3], [4], [5]]\ny = [2, 4, 6, 8, 10]\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)\n\nmodel = LinearRegression()\nmodel.fit(X_train, y_train)"
+    },
+    "quick_practical_examples": [
+      {
+        "type": "correct",
+        "title": "التنبؤ ببيانات جديدة",
+        "code": "prediction = model.predict([[6]])\nprint(prediction)",
+        "expected_output": "[12.]",
+        "explanation": "بما أن النمط هو ضرب الرقم في 2، فالنموذج يتوقع 12 عند إدخال 6."
+      },
+      {
+        "type": "wrong",
+        "title": "التنبؤ بشكل خاطئ للمصفوفات",
+        "code": "model.predict(6)",
+        "error_message": "ValueError: Expected 2D array, got scalar array instead.",
+        "explanation": "الدالة predict تتوقع مصفوفة ثنائية الأبعاد (قائمة داخل قائمة) وليس رقماً مفرداً."
+      },
+      {
+        "type": "mistake",
+        "title": "التدريب والاختبار على نفس البيانات",
+        "explanation": "البعض يختبر النموذج على البيانات التي تدرّب عليها. هذا يعطي نسبة نجاح وهمية (Overfitting) ولا يعكس كفاءة النموذج في العالم الحقيقي."
+      },
+      {
+        "type": "use_case",
+        "title": "الاستخدام في الواقع",
+        "explanation": "تنبؤ مبيعات المتجر للشهر القادم بناءً على أشهر المبيعات السابقة."
+      },
+      {
+        "type": "challenge",
+        "title": "تحدي: تحديد حجم الاختبار",
+        "code": "# اجعل نسبة الاختبار 30%\ntrain_test_split(X, y, test_size=___)",
+        "expected_output": "0.3",
+        "explanation": "تُكتب النسبة المئوية ككسر عشري."
+      }
+    ],
+    "exam_data": {
+      "title": "اختبار سريع",
+      "questions": [
+        {
+          "question": "لماذا نفصل البيانات إلى قسم تدريب وقسم اختبار؟",
+          "options": ["لتصغير حجم البيانات", "للتأكد من أداء النموذج على بيانات لم يرها من قبل", "لزيادة سرعة التدريب", "لأن الخوارزمية تتطلب ذلك وجوباً"],
+          "correct_answer": "للتأكد من أداء النموذج على بيانات لم يرها من قبل",
+          "explanation": "اختبار النموذج ببيانات لم يراها من قبل هو المقياس الحقيقي لجودة تعلمه."
+        }
+      ]
+    }
+  },
+  {
+    "lesson_slug": "python-70",
+    "content": {
+      "context": "كيف نعرف أن نموذجنا دقيق وجيد؟ (تقييم النموذج)",
+      "description": "بعد تدريب النموذج التنبئي، يجب قياس مستوى أدائه. للمشاكل الرقمية (الانحدار - Regression) نستخدم مقاييس مثل متوسط الخطأ التربيعي (MSE) أو مقياس R2. أما لمشاكل التصنيف (Classification) نستخدم مقاييس مثل الدقة (Accuracy).",
+      "prototype": "from sklearn.metrics import accuracy_score, mean_squared_error\naccuracy = accuracy_score(y_true, y_pred)",
+      "parameters": "y_true: النتائج الحقيقية من بيانات الاختبار. y_pred: توقعات النموذج.",
+      "return_value": "رقم يعكس مدى جودة أو دقة النموذج.",
+      "example": "from sklearn.metrics import mean_squared_error\n\ny_true = [3, -0.5, 2, 7]\ny_pred = [2.5, 0.0, 2, 8]\n\nmse = mean_squared_error(y_true, y_pred)\nprint(f'Mean Squared Error: {mse}')"
+    },
+    "quick_practical_examples": [
+      {
+        "type": "correct",
+        "title": "قياس الدقة للتصنيف",
+        "code": "from sklearn.metrics import accuracy_score\nprint(accuracy_score([1, 0, 1], [1, 1, 1]))",
+        "expected_output": "0.666",
+        "explanation": "توقع إجابتين صحيحتين من أصل 3، فالدقة 66%."
+      },
+      {
+        "type": "wrong",
+        "title": "عكس ترتيب المعاملات",
+        "code": "accuracy_score(y_pred, y_true)",
+        "error_message": "لا يوجد خطأ برمجي، لكنها ممارسة خاطئة.",
+        "explanation": "يفضل وضع النتائج الحقيقية (y_true) كأول معامل لتتوافق مع معايير مكتبة sklearn وضمان دقة بعض الدوال المعقدة."
+      },
+      {
+        "type": "mistake",
+        "title": "الاعتماد على Accuracy في البيانات غير المتوازنة",
+        "explanation": "إذا كان 99% من البيانات لمرضى أصحاء و1% لمصابين، فالنموذج الذي يتوقع أن الجميع أصحاء سيحقق دقة 99% رغم فشله تماماً! هنا نستخدم مقاييس أخرى كـ F1-Score."
+      },
+      {
+        "type": "use_case",
+        "title": "الاستخدام في الواقع",
+        "explanation": "استخدام المصفوفة المربكة (Confusion Matrix) لمعرفة كم عدد الرسائل السليمة التي تم تصنيفها كـ Spam بالخطأ."
+      },
+      {
+        "type": "challenge",
+        "title": "تحدي: مقياس R2",
+        "code": "from sklearn.metrics import r2_score\n# ما اسم الدالة لقياس R2؟\nscore = ___(y_test, predictions)",
+        "expected_output": "r2_score",
+        "explanation": "استخدم الدالة r2_score المحملة من sklearn."
+      }
+    ],
+    "exam_data": {
+      "title": "اختبار سريع",
+      "questions": [
+        {
+          "question": "أي مقياس يستخدم عادة لتقييم خوارزمية تصنيف (مثل تحديد هل الصورة لقطة أم كلب)؟",
+          "options": ["Mean Squared Error (MSE)", "Accuracy (الدقة)", "R2 Score", "Mean Absolute Error"],
+          "correct_answer": "Accuracy (الدقة)",
+          "explanation": "في مهام التصنيف نستخدم الدقة و F1 Score، بينما MSE يستخدم لمهام الانحدار (القيم الرقمية)."
+        }
+      ]
+    }
+  }
+]

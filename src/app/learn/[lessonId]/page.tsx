@@ -728,7 +728,7 @@ export default function LessonPage({ params }: { params: Promise<{ lessonId: str
   const [answers, setAnswers] = useState<Record<number, number>>({});
   const [showResults, setShowResults] = useState(false);
   const [score, setScore] = useState(0);
-  const [activeTab, setActiveTab] = useState<'workspace' | 'quiz'>('workspace');
+  const [activeTab, setActiveTab] = useState<'workspace' | 'quiz' | 'macro_exam'>('workspace');
 
   // Activation Request States
   const [requested, setRequested] = useState(false);
@@ -1264,37 +1264,7 @@ export default function LessonPage({ params }: { params: Promise<{ lessonId: str
     }
   }
 
-  if (lockedMilestone > 0) {
-    return (
-      <SmartExamView 
-        track={track} 
-        milestone={lockedMilestone} 
-        onPass={() => {
-          if (typeof window !== 'undefined') {
-            localStorage.setItem(`svk_macro_exam_${track}_${lockedMilestone}`, 'passed');
-            window.location.reload();
-          }
-        }} 
-        onExit={() => router.push('/courses')} 
-      />
-    );
-  }
 
-  if (isMacroExamDue && !macroExamPassed) {
-    return (
-      <SmartExamView 
-        track={track} 
-        milestone={milestone} 
-        onPass={() => {
-          if (typeof window !== 'undefined') {
-            localStorage.setItem(`svk_macro_exam_${track}_${milestone}`, 'passed');
-          }
-          setMacroExamPassed(true);
-        }} 
-        onExit={() => router.push('/courses')} 
-      />
-    );
-  }
 
   if (isLanguage) {
     return (
@@ -1552,6 +1522,21 @@ export default function LessonPage({ params }: { params: Promise<{ lessonId: str
                   </button>
                 </a>
               </div>
+            </div>
+          ) : activeTab === 'macro_exam' ? (
+            <div style={{ flex: 1, overflowY: 'auto' }}>
+              <SmartExamView 
+                track={track} 
+                milestone={milestone} 
+                onPass={() => {
+                  if (typeof window !== 'undefined') {
+                    localStorage.setItem(`svk_macro_exam_${track}_${milestone}`, 'passed');
+                  }
+                  setMacroExamPassed(true);
+                  setActiveTab('workspace');
+                }} 
+                onExit={() => setActiveTab('workspace')} 
+              />
             </div>
           ) : activeTab === 'workspace' ? (
             /* Workspace Container containing stepper and active panel */
