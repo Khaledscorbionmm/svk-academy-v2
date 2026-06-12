@@ -131,6 +131,10 @@ export default function StudentLoginPage() {
               ليس لديك حساب؟{' '}
               <Link href="/register" style={{ color: '#06b6d4', fontWeight: 800, textDecoration: 'none' }}>سجّل الآن مجاناً</Link>
             </p>
+            <p style={{ color: '#94a3b8', fontSize: '0.95rem', marginTop: '0.75rem' }}>
+              هل نسيت كلمة المرور؟{' '}
+              <Link href="/forgot-password" style={{ color: '#06b6d4', fontWeight: 600, textDecoration: 'none' }}>استعادة كلمة المرور</Link>
+            </p>
           </div>
         </div>
       </div>
