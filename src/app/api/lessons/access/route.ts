@@ -1,29 +1,25 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { query, queryOne, initializeDatabase } from '@/lib/db';
-import { verifyToken } from '@/lib/auth';
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
 export async function GET(request: NextRequest) {
   try {
     await initializeDatabase();
+    const session = await getServerSession(authOptions);
     const { searchParams } = new URL(request.url);
     const studentIdParam = searchParams.get('studentId');
     
-    // Check if admin is requesting a specific student's access
-    const adminToken = request.cookies.get('svk_admin_token')?.value;
-    const adminPayload = adminToken ? verifyToken(adminToken) : null;
-    
     let targetStudentId: number | null = null;
     
-    if (adminPayload && adminPayload.role === 'admin' && studentIdParam) {
+    if (session?.user && (session.user as any).role === 'admin' && studentIdParam) {
       targetStudentId = parseInt(studentIdParam, 10);
     } else {
-      // Otherwise, get from student token
-      const studentToken = request.cookies.get('svk_student_token')?.value;
-      const studentPayload = studentToken ? verifyToken(studentToken) : null;
-      if (!studentPayload) {
+      // Otherwise, get from student session
+      if (!session || !session.user) {
         return NextResponse.json({ error: 'غير مصرح لك' }, { status: 401 });
       }
-      targetStudentId = studentPayload.id;
+      targetStudentId = parseInt((session.user as any).id, 10);
     }
     
     if (!targetStudentId) {
@@ -45,10 +41,9 @@ export async function GET(request: NextRequest) {
 export async function POST(request: NextRequest) {
   try {
     await initializeDatabase();
-    const studentToken = request.cookies.get('svk_student_token')?.value;
-    const studentPayload = studentToken ? verifyToken(studentToken) : null;
+    const session = await getServerSession(authOptions);
     
-    if (!studentPayload) {
+    if (!session || !session.user || (session.user as any).role !== 'student') {
       return NextResponse.json({ error: 'يرجى تسجيل الدخول كطالب أولاً' }, { status: 401 });
     }
     
@@ -63,7 +58,7 @@ export async function POST(request: NextRequest) {
       `INSERT INTO lesson_access (student_id, course_id, lesson_slug, status) 
        VALUES ($1, $2, $3, 'requested') 
        ON CONFLICT (student_id, lesson_slug) DO UPDATE SET status = 'requested', requested_at = NOW()`,
-      [studentPayload.id, courseId, lessonSlug]
+      [parseInt((session.user as any).id, 10), courseId, lessonSlug]
     );
     
     return NextResponse.json({ success: true, status: 'requested' });
@@ -76,10 +71,9 @@ export async function POST(request: NextRequest) {
 export async function PUT(request: NextRequest) {
   try {
     await initializeDatabase();
-    const adminToken = request.cookies.get('svk_admin_token')?.value;
-    const adminPayload = adminToken ? verifyToken(adminToken) : null;
+    const session = await getServerSession(authOptions);
     
-    if (!adminPayload || adminPayload.role !== 'admin') {
+    if (!session || !session.user || (session.user as any).role !== 'admin') {
       return NextResponse.json({ error: 'غير مصرح لك للقيام بهذا الإجراء' }, { status: 403 });
     }
     

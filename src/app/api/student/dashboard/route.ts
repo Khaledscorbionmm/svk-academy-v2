@@ -1,6 +1,7 @@
 import { NextResponse, NextRequest } from 'next/server';
 import { query, initDb } from '@/lib/db';
-import { verifyToken } from '@/lib/auth';
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { pythonTrackData } from '@/context/tracks/pythonData';
 import { cyberTrackData } from '@/context/tracks/cyberData';
 import { languageTrackData } from '@/context/tracks/languageData';
@@ -9,14 +10,14 @@ export async function GET(req: NextRequest) {
   try {
     await initDb();
 
-    // Get student from JWT cookie
-    const token = req.cookies.get('svk_student_token')?.value;
-    const payload = token ? verifyToken(token) : null;
+    // Get student from NextAuth session
+    const session = await getServerSession(authOptions);
 
-    if (!payload) {
+    if (!session || !session.user || (session.user as any).role !== 'student') {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
-
+    
+    const payload = session.user as any;
     const studentEmail = payload.email;
 
     // Get the student record

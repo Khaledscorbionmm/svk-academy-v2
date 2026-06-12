@@ -5,7 +5,7 @@ const port = parseInt(process.env.SMTP_PORT || '465', 10);
 const transporter = nodemailer.createTransport({
   host: process.env.SMTP_HOST || 'smtp.gmail.com',
   port: port,
-  secure: port === 465, // true for 465, false for other ports
+  secure: port === 465,
   auth: {
     user: process.env.SMTP_USER,
     pass: process.env.SMTP_PASS,
@@ -40,5 +40,34 @@ export async function sendVerificationEmail(email: string, code: string) {
     `,
   };
 
-  await transporter.sendMail(mailOptions);
+  try {
+    const info = await transporter.sendMail(mailOptions);
+    console.log('Message sent: %s', info.messageId);
+    
+    await import('@/lib/prisma').then(({ prisma }) => {
+      prisma.email_delivery_logs.create({
+        data: {
+          recipient_email: email,
+          email_type: 'PASSWORD_RESET',
+          status: 'DELIVERED',
+          smtp_response: info.response,
+          message_id: info.messageId
+        }
+      }).catch(err => console.error('Failed to log email delivery', err));
+    });
+
+  } catch (error: any) {
+    console.error('Failed to send email:', error);
+    await import('@/lib/prisma').then(({ prisma }) => {
+      prisma.email_delivery_logs.create({
+        data: {
+          recipient_email: email,
+          email_type: 'PASSWORD_RESET',
+          status: 'FAILED',
+          smtp_response: error.message || 'Unknown error',
+        }
+      }).catch(err => console.error('Failed to log email failure', err));
+    });
+    throw error;
+  }
 }

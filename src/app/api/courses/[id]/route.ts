@@ -31,9 +31,9 @@ export async function GET(
             const dbLessons = await prisma.lessons.findMany({
                 where: { course_id: course.id },
                 orderBy: { order_index: 'asc' },
-                select: { id: true, title: true, order_index: true, is_free: true, duration_minutes: true, audio_url: true, video_url: true, lesson_slug: true }
+                select: { id: true, title: true, order_index: true, is_free: true, duration_minutes: true, audio_url: true, video_url: true }
             });
-            lessons = dbLessons.map(l => ({ ...l, id: l.lesson_slug }));
+            lessons = dbLessons;
         }
     } catch (e) {
         console.error("[Fallback Triggered] Prisma DB connection failed for course route:", e);

@@ -1,0 +1,54 @@
+{
+  "passCount": 12,
+  "failCount": 0,
+  "results": [
+    {
+      "test": "Existing admin account login",
+      "status": "PASS"
+    },
+    {
+      "test": "New account registration",
+      "status": "PASS"
+    },
+    {
+      "test": "New student account login",
+      "status": "PASS"
+    },
+    {
+      "test": "Audit Log Creation",
+      "status": "PASS"
+    },
+    {
+      "test": "Forgot password email trigger",
+      "status": "PASS"
+    },
+    {
+      "test": "Email delivery logged",
+      "status": "PASS"
+    },
+    {
+      "test": "Reset code generated in DB",
+      "status": "PASS"
+    },
+    {
+      "test": "Password reset with valid code",
+      "status": "PASS"
+    },
+    {
+      "test": "Login with new reset password",
+      "status": "PASS"
+    },
+    {
+      "test": "Change password endpoint is protected",
+      "status": "PASS"
+    },
+    {
+      "test": "Legacy user login fallback",
+      "status": "PASS"
+    },
+    {
+      "test": "Legacy user automatic migration",
+      "status": "PASS"
+    }
+  ]
+}

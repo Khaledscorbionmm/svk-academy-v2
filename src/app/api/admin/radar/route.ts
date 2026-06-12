@@ -1,16 +1,15 @@
 import { NextResponse, NextRequest } from 'next/server';
 import { query, initDb } from '@/lib/db';
-import { verifyToken, COOKIE_NAME } from '@/lib/auth';
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
 export async function GET(req: NextRequest) {
   try {
     await initDb();
 
-    // Verify admin via JWT cookie
-    const token = req.cookies.get(COOKIE_NAME)?.value;
-    const payload = token ? verifyToken(token) : null;
-
-    if (!payload || payload.role !== 'admin') {
+    // Verify admin
+    const session = await getServerSession(authOptions);
+    if (!session || !session.user || (session.user as any).role !== 'admin') {
       return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
     }
 

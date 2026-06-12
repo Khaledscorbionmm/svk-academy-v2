@@ -1,0 +1,288 @@
+{
+  "students": [
+    {
+      "id": 1,
+      "email": "student@test.com",
+      "name": "طالب تجريبي",
+      "phone": null,
+      "country": "Egypt",
+      "avatar_url": null,
+      "is_active": true,
+      "subscription_status": "none",
+      "subscription_end": null,
+      "created_at": "2026-06-10T01:02:09.436Z",
+      "password_hash": "$2b$12$GFLbmhpKJp4HO5xGBvx1COJ2a5GjcMM8x9PnadINKWau77CJzgS9O",
+      "xp": 50,
+      "age": null
+    },
+    {
+      "id": 2,
+      "email": "khaled@smartvenomk.xyz",
+      "name": "khaledelpaz",
+      "phone": null,
+      "country": "Egypt",
+      "avatar_url": null,
+      "is_active": true,
+      "subscription_status": "none",
+      "subscription_end": null,
+      "created_at": "2026-06-10T02:06:30.132Z",
+      "password_hash": "$2b$12$o3SEBxbGes0oCjFfFawb1eZ7xd197onl/WGty8/UbFg7JZOPP.hFC",
+      "xp": 0,
+      "age": 22
+    },
+    {
+      "id": 3,
+      "email": "mohamedelshafay31@gmail.com",
+      "name": "Mohamedmokhtar",
+      "phone": "01123553961",
+      "country": "Egypt",
+      "avatar_url": null,
+      "is_active": true,
+      "subscription_status": "none",
+      "subscription_end": null,
+      "created_at": "2026-06-10T08:53:24.846Z",
+      "password_hash": "$2b$12$Ybh5.pO4vVXPE.ySFwNVieQW7yr47y9QR5AYY7yk2IyVzHgGJQmWK",
+      "xp": 0,
+      "age": 28
+    },
+    {
+      "id": 4,
+      "email": "nawal@gmail.com",
+      "name": "نوال ",
+      "phone": null,
+      "country": "Egypt",
+      "avatar_url": null,
+      "is_active": true,
+      "subscription_status": "none",
+      "subscription_end": null,
+      "created_at": "2026-06-10T09:46:07.780Z",
+      "password_hash": "$2b$12$RsvIioV5bQLgZjm41ZmyTeVtSDsiCcj5R2pfvR5mkmPDidw1s/pEa",
+      "xp": 0,
+      "age": 28
+    },
+    {
+      "id": 7,
+      "email": "test_student_81646@gmail.com",
+      "name": "طالب تجريبي 81646",
+      "phone": "01000081646",
+      "country": "Egypt",
+      "avatar_url": null,
+      "is_active": true,
+      "subscription_status": "none",
+      "subscription_end": null,
+      "created_at": "2026-06-10T12:38:55.284Z",
+      "password_hash": "$2b$12$x6ZlE8ENvcKpCgNF5u9hd.72AhpxWuFl4n9YWCztuFXxgcUQK2yUa",
+      "xp": 0,
+      "age": 15
+    },
+    {
+      "id": 8,
+      "email": "salma@gmail.com",
+      "name": "salma",
+      "phone": null,
+      "country": "Egypt",
+      "avatar_url": null,
+      "is_active": true,
+      "subscription_status": "none",
+      "subscription_end": null,
+      "created_at": "2026-06-10T22:42:54.360Z",
+      "password_hash": "$2b$12$DlyP2qVlidRd/xxG.Ti.uuQAC8R6zmPxX0fefVzB2x5iWLWy8LPMK",
+      "xp": 0,
+      "age": 19
+    },
+    {
+      "id": 6,
+      "email": "sabry@gmail.com",
+      "name": "سشلاقغ",
+      "phone": "010696945646",
+      "country": "Egypt",
+      "avatar_url": null,
+      "is_active": true,
+      "subscription_status": "none",
+      "subscription_end": null,
+      "created_at": "2026-06-10T12:32:50.891Z",
+      "password_hash": "$2b$12$qzYsTGFQHZu3DOuFtk8n0ek/bl.weObKBB6mjGggFDtvpV.DmZ2ya",
+      "xp": 50,
+      "age": 22
+    },
+    {
+      "id": 9,
+      "email": "sofia@gmail.com",
+      "name": "Sofia",
+      "phone": null,
+      "country": "Egypt",
+      "avatar_url": null,
+      "is_active": true,
+      "subscription_status": "none",
+      "subscription_end": null,
+      "created_at": "2026-06-11T15:26:55.765Z",
+      "password_hash": "$2b$12$1NCAjJ3Fv8MDiswkEY/sG.y.7B3mSuyDDTVa6H0FWZijKSXDc5hgK",
+      "xp": 0,
+      "age": 38
+    },
+    {
+      "id": 11,
+      "email": "khaledelmasry9700@gmail.com",
+      "name": "khalkfgdg",
+      "phone": null,
+      "country": "Egypt",
+      "avatar_url": null,
+      "is_active": true,
+      "subscription_status": "none",
+      "subscription_end": null,
+      "created_at": "2026-06-12T15:32:55.721Z",
+      "password_hash": "$2b$10$XNIyL6X7ztY8gY.ahTIjZuhedKkqCIdQHmQwKyGYicR8EALTjt/U6",
+      "xp": 0,
+      "age": 33
+    },
+    {
+      "id": 12,
+      "email": "test_e2e_forensic@gmail.com",
+      "name": "Test Forensic",
+      "phone": "1234567890",
+      "country": "Egypt",
+      "avatar_url": null,
+      "is_active": true,
+      "subscription_status": "none",
+      "subscription_end": null,
+      "created_at": "2026-06-12T16:14:32.606Z",
+      "password_hash": "$2b$10$.ga2o1LOZ3hZTnVPd4lmzOhUPkU8capL9ie9Y87Vp7R/iFsOk2kR6",
+      "xp": 0,
+      "age": null
+    },
+    {
+      "id": 14,
+      "email": "test_e2e_prod@gmail.com",
+      "name": "E2E Tester",
+      "phone": null,
+      "country": "Egypt",
+      "avatar_url": null,
+      "is_active": true,
+      "subscription_status": "none",
+      "subscription_end": null,
+      "created_at": "2026-06-12T16:27:11.354Z",
+      "password_hash": "$2b$10$5UsTSS0irBYGCf4z1zeSmuDN0s67Uhs1KbZ9IF7i/.SrMbqysbv6a",
+      "xp": 0,
+      "age": null
+    }
+  ],
+  "admins": [
+    {
+      "id": 1,
+      "email": "admin@smartvenom.com",
+      "password_hash": "$2b$12$uOKUhRpkJ5ADJUYoyG.RW.9CLEq4kQiqKbROmPTJdaXd8Px6VBrr.",
+      "name": "مشرف النظام - خالد",
+      "role": "admin",
+      "created_at": "2026-06-09T19:41:00.378Z",
+      "last_login": "2026-06-12T13:40:16.817Z"
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "username": "admin",
+      "email": "admin@smartvenom.com",
+      "password_hash": "$2b$12$5HZollNc4p2u6BrW7eJBCO2vBUGfL3M7NU.gZSNViNk31LfDIL/a2",
+      "role": "admin",
+      "xp": 9999,
+      "level": 99,
+      "streak": 0,
+      "longest_streak": 0,
+      "last_activity_date": null,
+      "last_login_at": null,
+      "last_login_ip": null,
+      "login_location": null,
+      "language_preference": "ar",
+      "avatar_url": null,
+      "is_suspended": false,
+      "is_approved": true,
+      "created_at": "2026-06-09T15:20:46.264Z",
+      "updated_at": "2026-06-09T15:20:46.264Z"
+    }
+  ],
+  "password_resets": [
+    {
+      "id": 16,
+      "email": "khaledelmasry9700@gmail.com",
+      "hashed_code": "$2b$10$8lhhYJVxAF45hEPAKZyOXeiMfMw5yIilfTz2GdXndJK630i29w4ay",
+      "expires_at": "2026-06-12T16:49:09.151Z",
+      "created_at": "2026-06-12T16:34:09.343Z",
+      "attempts": 0
+    }
+  ],
+  "password_reset_logs": [
+    {
+      "id": 1,
+      "email": "khaledelmasry9700@gmail.com",
+      "ip_address": "::1",
+      "user_agent": null,
+      "status": "FAILED_ATTEMPT_NOT_FOUND",
+      "created_at": "2026-06-12T14:43:02.544Z"
+    },
+    {
+      "id": 2,
+      "email": "khaledelmasry9700@gmail.com",
+      "ip_address": "197.63.144.173",
+      "user_agent": null,
+      "status": "FAILED_ATTEMPT_NOT_FOUND",
+      "created_at": "2026-06-12T15:26:05.125Z"
+    },
+    {
+      "id": 3,
+      "email": "test@gmail.com",
+      "ip_address": "1.1.1.1",
+      "user_agent": null,
+      "status": "FAILED_ATTEMPT_NOT_FOUND",
+      "created_at": "2026-06-12T15:44:51.549Z"
+    },
+    {
+      "id": 4,
+      "email": "khaledelmasry9700@gmail.com",
+      "ip_address": "197.63.144.173",
+      "user_agent": null,
+      "status": "REQUESTED",
+      "created_at": "2026-06-12T16:06:32.764Z"
+    },
+    {
+      "id": 5,
+      "email": "khaledelmasry9700@gmail.com",
+      "ip_address": "197.63.144.173",
+      "user_agent": null,
+      "status": "SUCCESS",
+      "created_at": "2026-06-12T16:07:05.329Z"
+    },
+    {
+      "id": 6,
+      "email": "khaledelmasry9700@gmail.com",
+      "ip_address": "197.63.144.173",
+      "user_agent": null,
+      "status": "REQUESTED",
+      "created_at": "2026-06-12T16:09:06.959Z"
+    },
+    {
+      "id": 9,
+      "email": "test_e2e_prod@gmail.com",
+      "ip_address": "197.63.144.173",
+      "user_agent": null,
+      "status": "REQUESTED",
+      "created_at": "2026-06-12T16:27:13.796Z"
+    },
+    {
+      "id": 10,
+      "email": "test_e2e_prod@gmail.com",
+      "ip_address": "197.63.144.173",
+      "user_agent": null,
+      "status": "SUCCESS",
+      "created_at": "2026-06-12T16:27:14.965Z"
+    },
+    {
+      "id": 11,
+      "email": "khaledelmasry9700@gmail.com",
+      "ip_address": "197.63.144.173",
+      "user_agent": null,
+      "status": "REQUESTED",
+      "created_at": "2026-06-12T16:34:10.263Z"
+    }
+  ],
+  "user_logins": []
+}

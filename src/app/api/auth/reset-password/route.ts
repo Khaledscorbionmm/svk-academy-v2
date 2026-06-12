@@ -54,21 +54,40 @@ export async function POST(req: NextRequest) {
     // Code is valid! Hash new password.
     const newHashedPassword = await bcryptjs.hash(newPassword, 10);
 
-    // Update in either students or admins
-    const student = await prisma.students.findUnique({ where: { email: lowerEmail } });
-    if (student) {
-      await prisma.students.update({
+    // Update in all relevant tables to ensure synchronization
+    let updated = false;
+
+    const adminResult = await prisma.admins.updateMany({
+      where: { email: lowerEmail },
+      data: { password_hash: newHashedPassword }
+    });
+    if (adminResult.count > 0) updated = true;
+
+    const studentResult = await prisma.students.updateMany({
+      where: { email: lowerEmail },
+      data: { password_hash: newHashedPassword }
+    });
+    if (studentResult.count > 0) updated = true;
+
+    const legacyUser = await prisma.users.findUnique({ where: { email: lowerEmail } });
+    if (legacyUser) {
+      await prisma.users.updateMany({
         where: { email: lowerEmail },
         data: { password_hash: newHashedPassword }
       });
-    } else {
-      const admin = await prisma.admins.findUnique({ where: { email: lowerEmail } });
-      if (admin) {
-        await prisma.admins.update({
-          where: { email: lowerEmail },
+      updated = true;
+
+      // Crucial Fix: If this legacy user migrated, their student record might use their username as the email field
+      if (legacyUser.username) {
+        await prisma.students.updateMany({
+          where: { email: legacyUser.username.toLowerCase().trim() },
           data: { password_hash: newHashedPassword }
         });
       }
+    }
+
+    if (!updated) {
+       return NextResponse.json({ error: 'User not found in database to update' }, { status: 404 });
     }
 
     // Delete token after single use

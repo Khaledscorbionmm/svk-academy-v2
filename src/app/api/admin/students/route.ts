@@ -1,12 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { query, initializeDatabase } from '@/lib/db';
-import { verifyToken, COOKIE_NAME } from '@/lib/auth';
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
 export async function GET(request: NextRequest) {
-  const token = request.cookies.get(COOKIE_NAME)?.value;
-  const payload = token ? verifyToken(token) : null;
+  const session = await getServerSession(authOptions);
 
-  if (!payload || payload.role !== 'admin') {
+  if (!session || !session.user || (session.user as any).role !== 'admin') {
     return NextResponse.json({ error: 'غير مصرح لك' }, { status: 403 });
   }
 
@@ -37,10 +37,9 @@ export async function GET(request: NextRequest) {
 
 // Toggle student status (active/inactive)
 export async function POST(request: NextRequest) {
-  const token = request.cookies.get(COOKIE_NAME)?.value;
-  const payload = token ? verifyToken(token) : null;
+  const session = await getServerSession(authOptions);
 
-  if (!payload || payload.role !== 'admin') {
+  if (!session || !session.user || (session.user as any).role !== 'admin') {
     return NextResponse.json({ error: 'غير مصرح لك' }, { status: 403 });
   }
 
@@ -66,10 +65,9 @@ export async function POST(request: NextRequest) {
 
 // Reset student password
 export async function PUT(request: NextRequest) {
-  const token = request.cookies.get(COOKIE_NAME)?.value;
-  const payload = token ? verifyToken(token) : null;
+  const session = await getServerSession(authOptions);
 
-  if (!payload || payload.role !== 'admin') {
+  if (!session || !session.user || (session.user as any).role !== 'admin') {
     return NextResponse.json({ error: 'غير مصرح لك' }, { status: 403 });
   }
 

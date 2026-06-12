@@ -96,7 +96,7 @@ export async function GET(request: NextRequest) {
               instructor_name, category, level, duration_hours, is_published,
               is_featured, enrollment_count, rating, created_at
        FROM courses ${whereClause}
-       ORDER BY created_at DESC
+       ORDER BY is_featured DESC, created_at DESC
        LIMIT $${paramIndex++} OFFSET $${paramIndex}`,
       [...params, limit, offset]
     );

@@ -1,16 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { query, initializeDatabase } from '@/lib/db';
-import { verifyToken } from '@/lib/auth';
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
 export async function GET(request: NextRequest) {
   try {
     await initializeDatabase();
     
-    // Fallback: the system uses COOKIE_NAME sometimes, but here we check svk_admin_token explicitly
-    const adminToken = request.cookies.get('svk_admin_token')?.value || request.cookies.get('svk_token')?.value;
-    const adminPayload = adminToken ? verifyToken(adminToken) : null;
+    const session = await getServerSession(authOptions);
     
-    if (!adminPayload || adminPayload.role !== 'admin') {
+    if (!session || !session.user || (session.user as any).role !== 'admin') {
       return NextResponse.json({ error: 'غير مصرح لك للوصول إلى هذه البيانات' }, { status: 403 });
     }
     

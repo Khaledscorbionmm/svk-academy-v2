@@ -1,5 +1,6 @@
 import { NextResponse, NextRequest } from 'next/server';
-import { verifyToken, COOKIE_NAME } from '@/lib/auth';
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { query, initializeDatabase } from '@/lib/db';
 import { pythonTrackData } from '@/context/tracks/pythonData';
 import { cyberTrackData } from '@/context/tracks/cyberData';
@@ -49,10 +50,9 @@ function analyzeTrack(courseName: string, trackData: any[]) {
 }
 
 export async function GET(request: NextRequest) {
-  const token = request.cookies.get(COOKIE_NAME)?.value;
-  const payload = token ? verifyToken(token) : null;
+  const session = await getServerSession(authOptions);
 
-  if (!payload || payload.role !== 'admin') {
+  if (!session || !session.user || (session.user as any).role !== 'admin') {
     return NextResponse.json({ error: 'غير مصرح لك' }, { status: 403 });
   }
 
@@ -63,18 +63,23 @@ export async function GET(request: NextRequest) {
       analyzeTrack('Languages (مسار اللغات)', languageTrackData),
     ];
 
-    // Optional: Fetch DB courses to show their status
+    // Fetch DB courses and their lesson counts
     await initializeDatabase();
-    const dbCourses = await query(`SELECT id, title FROM courses`, []);
+    const dbCourses = await query(`
+      SELECT c.id, c.title, c.is_published, COUNT(l.id) as lesson_count
+      FROM courses c
+      LEFT JOIN lessons l ON c.id = l.course_id
+      GROUP BY c.id, c.title, c.is_published
+    `, []);
     
-    // We can just add dummy QA for DB courses since they are managed via admin panel
     dbCourses.forEach((c: any) => {
+      const totalLessons = parseInt(c.lesson_count) || 0;
       qaData.push({
         courseName: c.title + ' (قاعدة البيانات)',
-        totalLessons: 0,
-        validLessons: 0,
+        totalLessons: totalLessons,
+        validLessons: totalLessons, // Assuming generated lessons are valid
         incompleteLessons: 0,
-        readinessScore: c.is_published ? 100 : 50,
+        readinessScore: c.is_published ? 100 : (totalLessons > 0 ? 100 : 50),
         qualityScore: 100,
         status: c.is_published ? 'ممتاز' : 'يحتاج مراجعة'
       });

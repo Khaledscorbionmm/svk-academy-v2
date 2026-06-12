@@ -196,6 +196,7 @@ model students {
   password_hash       String?           @db.VarChar(255)
   xp                  Int?              @default(0)
   age                 Int?
+  last_login          DateTime?         @db.Timestamptz(6)
   course_requests     course_requests[]
   lesson_access       lesson_access[]
 }
@@ -297,3 +298,23 @@ model password_reset_logs {
   status     String   @db.VarChar(50)
   created_at DateTime @default(now()) @db.Timestamptz(6)
 }
+
+model login_logs {
+  id         Int      @id @default(autoincrement())
+  email      String   @db.VarChar(255)
+  ip_address String?  @db.VarChar(45)
+  user_agent String?
+  status     String   @db.VarChar(50) // SUCCESS, INVALID_PASSWORD, NOT_FOUND, BANNED
+  created_at DateTime @default(now()) @db.Timestamptz(6)
+}
+
+model email_delivery_logs {
+  id              Int      @id @default(autoincrement())
+  recipient_email String   @db.VarChar(255)
+  email_type      String   @db.VarChar(50) // PASSWORD_RESET, WELCOME, etc.
+  status          String   @db.VarChar(50) // DELIVERED, FAILED, BOUNCED
+  smtp_response   String?
+  message_id      String?
+  created_at      DateTime @default(now()) @db.Timestamptz(6)
+}
+

@@ -11,12 +11,31 @@ export const authOptions: NextAuthOptions = {
         email: { label: "Email", type: "email" },
         password: { label: "Password", type: "password" },
       },
-      async authorize(credentials) {
+      async authorize(credentials, req) {
+        let ip = "unknown";
+        let userAgent = "unknown";
+        try {
+          const { headers } = await import("next/headers");
+          const reqHeaders = headers();
+          ip = reqHeaders.get("x-forwarded-for") || reqHeaders.get("x-real-ip") || "unknown";
+          userAgent = reqHeaders.get("user-agent") || "unknown";
+        } catch (e) {
+          // ignore headers error if any
+        }
+
         if (!credentials?.email || !credentials?.password) {
           throw new Error("Missing email or password");
         }
         
         const lowerEmail = credentials.email.toLowerCase().trim();
+
+        const logAttempt = async (status: string) => {
+          try {
+            await prisma.login_logs.create({
+              data: { email: lowerEmail, ip_address: ip, user_agent: userAgent, status }
+            });
+          } catch (e) { console.error("Audit log failed", e); }
+        };
 
         // 1. Check Admins
         const admin = await prisma.admins.findUnique({
@@ -30,6 +49,7 @@ export const authOptions: NextAuthOptions = {
               where: { id: admin.id },
               data: { last_login: new Date() }
             });
+            await logAttempt("SUCCESS_ADMIN");
             return {
               id: admin.id.toString(),
               email: admin.email,
@@ -37,21 +57,33 @@ export const authOptions: NextAuthOptions = {
               role: admin.role || "admin",
             };
           }
+          await logAttempt("INVALID_PASSWORD");
           throw new Error("Invalid password");
         }
 
         // 2. Check Students
-        const student = await prisma.students.findUnique({
-          where: { email: lowerEmail },
+        const student = await prisma.students.findFirst({
+          where: { 
+            OR: [
+              { email: lowerEmail },
+              { phone: lowerEmail }
+            ]
+          },
         });
 
         if (student) {
-          if (!student.is_active) {
+          if (student.is_active === false) {
+             await logAttempt("BANNED");
              throw new Error("BANNED");
           }
           if (student.password_hash) {
             const isValid = await bcryptjs.compare(credentials.password, student.password_hash);
             if (isValid) {
+              await prisma.students.update({
+                where: { id: student.id },
+                data: { last_login: new Date() }
+              });
+              await logAttempt("SUCCESS_STUDENT");
               return {
                 id: student.id.toString(),
                 email: student.email,
@@ -60,9 +92,54 @@ export const authOptions: NextAuthOptions = {
               };
             }
           }
+          await logAttempt("INVALID_PASSWORD");
           throw new Error("Invalid password");
         }
 
+        // 3. Fallback to legacy "users" table (Migration path)
+        const legacyUser = await prisma.users.findFirst({
+          where: { 
+            OR: [
+              { email: lowerEmail },
+              { username: lowerEmail }
+            ]
+          },
+        });
+
+        if (legacyUser) {
+          if (legacyUser.is_suspended === true) {
+            await logAttempt("BANNED_LEGACY");
+            throw new Error("BANNED");
+          }
+          const isValid = await bcryptjs.compare(credentials.password, legacyUser.password_hash);
+          if (isValid) {
+            // Migrate to students table!
+            let newStudent = await prisma.students.findUnique({ where: { email: lowerEmail } });
+            if (!newStudent) {
+              newStudent = await prisma.students.create({
+                data: {
+                  email: lowerEmail,
+                  name: legacyUser.username || "Legacy User",
+                  password_hash: legacyUser.password_hash,
+                  xp: legacyUser.xp,
+                  is_active: legacyUser.is_suspended === true ? false : true,
+                  last_login: new Date(),
+                }
+              });
+            }
+            await logAttempt("SUCCESS_LEGACY_MIGRATED");
+            return {
+              id: newStudent.id.toString(),
+              email: newStudent.email,
+              name: newStudent.name,
+              role: "student",
+            };
+          }
+          await logAttempt("INVALID_PASSWORD");
+          throw new Error("Invalid password");
+        }
+
+        await logAttempt("NOT_FOUND");
         throw new Error("User not found");
       },
     }),

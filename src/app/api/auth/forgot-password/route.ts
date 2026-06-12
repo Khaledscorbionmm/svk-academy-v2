@@ -25,11 +25,12 @@ export async function POST(req: NextRequest) {
 
     const lowerEmail = email.toLowerCase().trim();
 
-    // Check if email exists in students or admins
+    // Check if email exists in students or admins or users
     const student = await prisma.students.findUnique({ where: { email: lowerEmail } });
     const admin = await prisma.admins.findUnique({ where: { email: lowerEmail } });
+    const legacyUser = await prisma.users.findUnique({ where: { email: lowerEmail } });
 
-    if (!student && !admin) {
+    if (!student && !admin && !legacyUser) {
       // Log the failure
       await prisma.password_reset_logs.create({
         data: { email: lowerEmail, ip_address: ip, status: 'FAILED_ATTEMPT_NOT_FOUND' }

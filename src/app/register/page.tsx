@@ -30,8 +30,20 @@ export default function RegisterPage() {
       const data = await res.json();
       
       if (res.ok) {
-        router.push('/dashboard');
-        router.refresh();
+        // Sign in via NextAuth using the registered credentials
+        const { signIn } = await import('next-auth/react');
+        const loginRes = await signIn('credentials', {
+          redirect: false,
+          email: formData.email,
+          password: formData.password,
+        });
+
+        if (loginRes?.ok) {
+          router.push('/dashboard');
+          router.refresh();
+        } else {
+          router.push('/login?registered=true');
+        }
       } else {
         setError(data.error || 'حدث خطأ أثناء التسجيل');
       }

@@ -1,14 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { query, initializeDatabase } from '@/lib/db';
-import { verifyToken, COOKIE_NAME } from '@/lib/auth';
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
 export async function GET(request: NextRequest) {
   try {
-    const token = request.cookies.get(COOKIE_NAME)?.value;
-    if (!token) return NextResponse.json({ error: 'غير مصرح' }, { status: 401 });
-
-    const payload = verifyToken(token);
-    if (!payload || payload.role !== 'admin') {
+    const session = await getServerSession(authOptions);
+    if (!session || !session.user || (session.user as any).role !== 'admin') {
       return NextResponse.json({ error: 'غير مسموح' }, { status: 403 });
     }
 

@@ -3,6 +3,13 @@ import { NextResponse } from "next/server";
 
 export default withAuth(
   function middleware(req) {
+    const hostname = req.headers.get("host") || "";
+    if (hostname === "smartvenomk.xyz") {
+      const newUrl = req.nextUrl.clone();
+      newUrl.host = "www.smartvenomk.xyz";
+      return NextResponse.redirect(newUrl, 301);
+    }
+
     const { pathname } = req.nextUrl;
     const role = req.nextauth.token?.role;
 

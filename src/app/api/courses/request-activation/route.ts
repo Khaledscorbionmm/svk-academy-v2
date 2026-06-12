@@ -1,20 +1,21 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { query, initializeDatabase } from '@/lib/db';
-import { verifyToken } from '@/lib/auth';
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
 export async function POST(request: NextRequest) {
   try {
     await initializeDatabase();
     
-    // Check student token
-    const token = request.cookies.get('svk_student_token')?.value;
-    if (!token) {
+    // Check student session
+    const session = await getServerSession(authOptions);
+    if (!session || !session.user) {
       return NextResponse.json({ error: 'يرجى تسجيل الدخول أولاً' }, { status: 401 });
     }
 
-    const payload = verifyToken(token);
-    if (!payload) {
-      return NextResponse.json({ error: 'جلسة منتهية الصلاحية، يرجى تسجيل الدخول مجدداً' }, { status: 401 });
+    const payload = session.user as any;
+    if (payload.role !== 'student') {
+      return NextResponse.json({ error: 'صلاحيات غير كافية' }, { status: 403 });
     }
 
     const { courseId } = await request.json();
@@ -34,7 +35,7 @@ export async function POST(request: NextRequest) {
       VALUES ($1, $2, 'pending')
       ON CONFLICT (student_id, course_id) 
       DO UPDATE SET status = 'pending', requested_at = NOW()
-    `, [payload.id, courseId]);
+    `, [parseInt(payload.id, 10), courseId]);
 
     return NextResponse.json({ success: true, message: 'تم إرسال طلب تفعيل الكورس بنجاح' });
   } catch (error) {
