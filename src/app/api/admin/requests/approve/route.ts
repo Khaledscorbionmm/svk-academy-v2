@@ -31,20 +31,19 @@ export async function POST(request: NextRequest) {
 
       // 2. Insert into enrollments with global fallback permission indicator
       await query(`
-        INSERT INTO enrollments (student_id, course_id, enrolled_at, status, access_level)
-        VALUES ($1, $2, NOW(), 'active', 'full')
-        ON CONFLICT (student_id, course_id) DO UPDATE SET status = 'active', access_level = 'full'
+        INSERT INTO enrollments (student_id, course_id, enrolled_at)
+        VALUES ($1, $2, NOW())
+        ON CONFLICT (student_id, course_id) DO NOTHING
       `, [studentId, courseId]);
 
       // 3. Also grant full lesson access for backward compatibility with older pages
-      const lessons = await query(`SELECT id, lesson_slug FROM lessons WHERE course_id = $1`, [courseId]) as any[];
+      const lessons = await query(`SELECT id FROM lessons WHERE course_id = $1`, [courseId]) as any[];
       for (const lesson of lessons) {
-        if (!lesson.lesson_slug) continue;
         await query(`
           INSERT INTO lesson_access (student_id, course_id, lesson_slug, status, approved_at)
           VALUES ($1, $2, $3, 'approved', NOW())
-          ON CONFLICT (student_id, course_id, lesson_slug) DO UPDATE SET status = 'approved', approved_at = NOW()
-        `, [studentId, courseId, lesson.lesson_slug]);
+          ON CONFLICT (student_id, lesson_slug) DO UPDATE SET status = 'approved', approved_at = NOW()
+        `, [studentId, courseId, lesson.id.toString()]);
       }
 
       return NextResponse.json({ success: true, message: 'تم تفعيل الكورس بنجاح للطالب' });
