@@ -306,6 +306,11 @@ export default function CoursesPage() {
     const matchCat = activeCategory === 'all' || normalizedCat === activeCategory || c.category === activeCategory;
     const matchSearch = !search || (c.title_ar || c.title || '').toLowerCase().includes(search.toLowerCase()) || (c.description_ar || c.description || '').includes(search);
     return matchCat && matchSearch;
+  }).sort((a, b) => {
+    const aSoon = COMING_SOON_COURSE_IDS.includes(a.id);
+    const bSoon = COMING_SOON_COURSE_IDS.includes(b.id);
+    if (aSoon === bSoon) return a.id - b.id; // Keep their original order relative to each other if both have same status
+    return aSoon ? 1 : -1; // Active ones (-1) come before Coming Soon (1)
   });
 
   if (!mounted) {
