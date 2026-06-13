@@ -42,6 +42,10 @@ export async function GET(req: NextRequest, { params }: { params: Promise<{ less
             lesson = JSON.parse(dbLesson.content as string);
             lesson.id = dbLesson.id; // Map to DB ID for consistent URL routing
             
+            // Map text_content and audio_url from db columns if they exist
+            if (dbLesson.text_content) lesson.text_content = dbLesson.text_content;
+            if (dbLesson.audio_url) lesson.audio_url = dbLesson.audio_url;
+            
             // Fetch sidebar
             const sidebarData = await prisma.lessons.findMany({
                 where: { course_id: course.id },
