@@ -199,6 +199,7 @@ function PremiumAudioPlayer({ src, title, textContent }: { src: string; title: s
       {!isTTS && (
         <audio
           ref={audioRef}
+          src={src}
           onTimeUpdate={handleTimeUpdate}
           onLoadedMetadata={handleLoadedMetadata}
           onEnded={() => setIsPlaying(false)}

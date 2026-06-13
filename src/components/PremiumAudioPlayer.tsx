@@ -189,6 +189,7 @@ export default function PremiumAudioPlayer({ src, title, textContent }: { src: s
       {!isTTS && (
         <audio
           ref={audioRef}
+          src={src}
           onTimeUpdate={handleTimeUpdate}
           onLoadedMetadata={handleLoadedMetadata}
           onEnded={() => setIsPlaying(false)}
