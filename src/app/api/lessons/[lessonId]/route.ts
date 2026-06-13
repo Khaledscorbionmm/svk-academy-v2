@@ -84,17 +84,7 @@ export async function GET(req: NextRequest, { params }: { params: Promise<{ less
 
     // 3. NextAuth Protection Logic
     let accessStatus = 'locked';
-    let session: any = await getServerSession(authOptions);
-    if (!session) {
-      const cookieStore = cookies();
-      const customToken = cookieStore.get('svk_student_token')?.value || cookieStore.get('svk_admin_token')?.value || cookieStore.get('svk_token')?.value;
-      if (customToken) {
-        const payload = verifyToken(customToken) as any;
-        if (payload) {
-          session = { user: { id: payload.id, name: payload.name, email: payload.email, role: payload.role || 'student' } };
-        }
-      }
-    }
+    const session = await getCombinedSession();
     
     const isFree = lesson.is_free || Number(lesson.order_index || 0) <= 1 || lesson.lesson_slug?.endsWith('-1') || lesson.lesson_slug?.endsWith('-2');
 
