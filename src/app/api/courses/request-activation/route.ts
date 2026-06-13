@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { query, initializeDatabase } from '@/lib/db';
 import { getServerSession } from "next-auth";
+import { cookies } from "next/headers";
+import { verifyToken } from "@/lib/auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
 export async function POST(request: NextRequest) {
@@ -8,7 +10,17 @@ export async function POST(request: NextRequest) {
     await initializeDatabase();
     
     // Check student session
-    const session = await getServerSession(authOptions);
+    let session: any = await getServerSession(authOptions);
+    if (!session) {
+      const cookieStore = cookies();
+      const customToken = cookieStore.get('svk_student_token')?.value || cookieStore.get('svk_admin_token')?.value || cookieStore.get('svk_token')?.value;
+      if (customToken) {
+        const payload = verifyToken(customToken) as any;
+        if (payload) {
+          session = { user: { id: payload.id, name: payload.name, email: payload.email, role: payload.role || 'student' } };
+        }
+      }
+    }
     if (!session || !session.user) {
       return NextResponse.json({ error: 'يرجى تسجيل الدخول أولاً' }, { status: 401 });
     }
