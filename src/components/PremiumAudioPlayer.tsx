@@ -82,7 +82,7 @@ export default function PremiumAudioPlayer({ src, title, textContent }: { src: s
           utterance.lang = hasArabic ? 'ar-EG' : 'en-US';
           utterance.rate = 0.85 * playbackRate; // base speed adjusted by user rate
           
-          const voices = typeof window !== 'undefined' && window.speechSynthesis ? window.speechSynthesis.getVoices : () => []();
+          const voices = typeof window !== 'undefined' && window.speechSynthesis ? window.speechSynthesis.getVoices() : [];
           const targetLangPrefix = hasArabic ? 'ar' : 'en';
           const voice = voices.find(v => v.lang.startsWith(targetLangPrefix));
           if (voice) utterance.voice = voice;
