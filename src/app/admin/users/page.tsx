@@ -20,10 +20,6 @@ export default function AdminAccountManagement() {
   const [search, setSearch] = useState('');
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    fetchData();
-  }, []);
-
   const fetchData = async () => {
     setLoading(true);
     try {
@@ -40,6 +36,10 @@ export default function AdminAccountManagement() {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();

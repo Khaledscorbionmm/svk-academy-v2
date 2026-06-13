@@ -52,7 +52,7 @@ async function tryDatabaseLogin(identifier: string, password: string) {
 
         // Check legacy users
     if (!student) {
-      const legacyUser = await queryOne(
+      const legacyUser = await queryOne<any>(
         'SELECT id, email, username, password_hash FROM users WHERE email = $1 OR username = $1',
         [lowerIdentifier]
       );

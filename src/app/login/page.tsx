@@ -96,7 +96,7 @@ export default function StudentLoginPage() {
               <div style={{ position: 'relative' }}>
                 <span style={{ position: 'absolute', right: '1rem', top: '50%', transform: 'translateY(-50%)', fontSize: '1.1rem', color: focused === 'identifier' ? '#06b6d4' : '#64748b' }}>👤</span>
                 <input
-                  type="text" value={identifier} onChange={e => setIdentifier(e.target.value)}
+                  type="text" name="identifier" autoComplete="email" value={identifier} onChange={e => setIdentifier(e.target.value)}
                   onFocus={() => setFocused('identifier')} onBlur={() => setFocused(null)}
                   placeholder="رقم الهاتف أو الإيميل" disabled={loading}
                   style={{ width: '100%', padding: '1.2rem 3rem 1.2rem 1.2rem', background: focused === 'identifier' ? 'rgba(6,182,212,0.08)' : 'rgba(255,255,255,0.03)', border: `1px solid ${focused === 'identifier' ? '#06b6d4' : 'rgba(255,255,255,0.1)'}`, borderRadius: '12px', color: '#fff', fontSize: '1rem', outline: 'none', transition: 'all 0.3s', fontFamily: "'Cairo', sans-serif", direction: 'ltr', textAlign: 'left' }}
@@ -113,7 +113,7 @@ export default function StudentLoginPage() {
               <div style={{ position: 'relative' }}>
                 <span style={{ position: 'absolute', right: '1rem', top: '50%', transform: 'translateY(-50%)', fontSize: '1.1rem', color: focused === 'password' ? '#06b6d4' : '#64748b' }}>🔑</span>
                 <input
-                  type="password" value={password} onChange={e => setPassword(e.target.value)}
+                  type="password" name="password" autoComplete="current-password" value={password} onChange={e => setPassword(e.target.value)}
                   onFocus={() => setFocused('password')} onBlur={() => setFocused(null)}
                   placeholder="••••••••••••" disabled={loading}
                   style={{ width: '100%', padding: '1.2rem 3rem 1.2rem 1.2rem', background: focused === 'password' ? 'rgba(6,182,212,0.08)' : 'rgba(255,255,255,0.03)', border: `1px solid ${focused === 'password' ? '#06b6d4' : 'rgba(255,255,255,0.1)'}`, borderRadius: '12px', color: '#fff', fontSize: '1rem', outline: 'none', transition: 'all 0.3s', fontFamily: "'Cairo', sans-serif", direction: 'ltr', textAlign: 'left' }}

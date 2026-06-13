@@ -12,6 +12,7 @@ interface SmartQuestion {
   question: string;
   options?: string[];
   correctAnswer?: number;
+  correct_answer?: any;
   placeholder?: string;
 }
 
@@ -68,14 +69,14 @@ export default function SmartExamView({ track, milestone, onPass, onExit }: Smar
     // 1. Grade Objective Questions
     let objectiveScore = 0;
     let totalObjective = 0;
-    const practicalAnswers: any[] = [];
+    const practicalAnswers: { question: string; answer: string }[] = [];
 
     questions.forEach((q, idx) => {
       if (q.type === 'mcq' || q.type === 'tf') {
         totalObjective++;
         let isCorrect = false;
         if (typeof q.correct_answer !== 'undefined') {
-          const correctIdx = q.options.findIndex(opt => opt == q.correct_answer);
+          const correctIdx = q.options ? q.options.findIndex(opt => opt == q.correct_answer) : -1;
           isCorrect = (answers[idx] === correctIdx);
         } else {
           isCorrect = (answers[idx] === q.correctAnswer);

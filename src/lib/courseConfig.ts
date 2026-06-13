@@ -1,0 +1,1 @@
+export const COMING_SOON_COURSE_IDS = [87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 104, 105, 106];

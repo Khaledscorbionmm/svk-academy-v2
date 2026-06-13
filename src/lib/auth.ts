@@ -42,9 +42,19 @@ export const COOKIE_OPTIONS = {
 
 export { COOKIE_NAME };
 
-import { getServerSession } from "next-auth";
+import { getServerSession, DefaultSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { cookies } from "next/headers";
+
+declare module "next-auth" {
+  interface Session {
+    user: {
+      id?: string | number;
+      role?: string;
+    } & DefaultSession["user"];
+  }
+}
+
 
 export async function getCombinedSession() {
   let session = await getServerSession(authOptions);
@@ -54,7 +64,10 @@ export async function getCombinedSession() {
     if (customToken) {
       const payload = verifyToken(customToken) as any;
       if (payload) {
-        session = { user: { id: payload.id, name: payload.name, email: payload.email, role: payload.role || 'student' } };
+        session = { 
+          user: { id: payload.id, name: payload.name, email: payload.email, role: payload.role || 'student' },
+          expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString()
+        };
       }
     }
   }

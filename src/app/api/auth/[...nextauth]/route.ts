@@ -16,7 +16,7 @@ export const authOptions: NextAuthOptions = {
         let userAgent = "unknown";
         try {
           const { headers } = await import("next/headers");
-          const reqHeaders = headers();
+          const reqHeaders = await headers();
           ip = reqHeaders.get("x-forwarded-for") || reqHeaders.get("x-real-ip") || "unknown";
           userAgent = reqHeaders.get("user-agent") || "unknown";
         } catch (e) {
@@ -122,7 +122,7 @@ export const authOptions: NextAuthOptions = {
                   name: legacyUser.username || "Legacy User",
                   password_hash: legacyUser.password_hash,
                   xp: legacyUser.xp,
-                  is_active: legacyUser.is_suspended === true ? false : true,
+                  is_active: true,
                   last_login: new Date(),
                 }
               });

@@ -66,6 +66,6 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ success: true, message: 'Verification code sent successfully.' });
   } catch (error: any) {
     console.error('Forgot Password Error:', error);
-    return NextResponse.json({ error: error.message || 'Internal Server Error', stack: error.stack }, { status: 500 });
+    return NextResponse.json({ error: 'حدث خطأ داخلي. يرجى المحاولة لاحقاً.' }, { status: 500 });
   }
 }

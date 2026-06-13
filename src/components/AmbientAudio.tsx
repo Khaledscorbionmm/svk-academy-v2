@@ -19,59 +19,6 @@ export default function AmbientAudio() {
   // Track explicit user pause to avoid auto-resuming
   const isExplicitlyPausedRef = useRef<boolean>(false);
 
-  useEffect(() => {
-    // Check localStorage for prior preference
-    let explicitlyPaused = null;
-    try {
-      const saved = localStorage.getItem('svk_music_enabled');
-      explicitlyPaused = localStorage.getItem('svk_music_explicitly_paused');
-    } catch (e) {
-      console.warn('LocalStorage not supported:', e);
-    }
-    
-    if (explicitlyPaused === 'true') {
-      isExplicitlyPausedRef.current = true;
-    }
-
-    // Try to auto-start on first click/touchstart if not explicitly paused
-    const handleAutoPlay = () => {
-      setHasInteracted(true);
-      if (!isExplicitlyPausedRef.current && !isPlaying) {
-        startAmbient();
-      }
-      // Clean up listeners
-      window.removeEventListener('click', handleAutoPlay);
-      window.removeEventListener('touchstart', handleAutoPlay);
-    };
-
-    window.addEventListener('click', handleAutoPlay);
-    window.addEventListener('touchstart', handleAutoPlay);
-
-    return () => {
-      window.removeEventListener('click', handleAutoPlay);
-      window.removeEventListener('touchstart', handleAutoPlay);
-      stopAmbientImmediate();
-    };
-  }, []);
-
-  // Resume audio context on tab visibility change if it was active
-  useEffect(() => {
-    const handleVisibilityChange = () => {
-      if (document.visibilityState === 'visible' && isPlaying) {
-        if (audioCtxRef.current && audioCtxRef.current.state === 'suspended') {
-          audioCtxRef.current.resume().catch(e => console.log('Auto-resume failed:', e));
-        }
-        if (silentAudioRef.current) {
-          silentAudioRef.current.play().catch(e => console.log('Silent audio resume failed:', e));
-        }
-      }
-    };
-    document.addEventListener('visibilitychange', handleVisibilityChange);
-    return () => {
-      document.removeEventListener('visibilitychange', handleVisibilityChange);
-    };
-  }, [isPlaying]);
-
   const startAmbient = () => {
     try {
       // Unmute iOS silent switch by playing a silent WAV in HTML5 audio (switches to media channel)
@@ -238,6 +185,59 @@ export default function AmbientAudio() {
       startAmbient();
     }
   };
+
+  useEffect(() => {
+    // Check localStorage for prior preference
+    let explicitlyPaused = null;
+    try {
+      const saved = localStorage.getItem('svk_music_enabled');
+      explicitlyPaused = localStorage.getItem('svk_music_explicitly_paused');
+    } catch (e) {
+      console.warn('LocalStorage not supported:', e);
+    }
+    
+    if (explicitlyPaused === 'true') {
+      isExplicitlyPausedRef.current = true;
+    }
+
+    // Try to auto-start on first click/touchstart if not explicitly paused
+    const handleAutoPlay = () => {
+      setHasInteracted(true);
+      if (!isExplicitlyPausedRef.current && !isPlaying) {
+        startAmbient();
+      }
+      // Clean up listeners
+      window.removeEventListener('click', handleAutoPlay);
+      window.removeEventListener('touchstart', handleAutoPlay);
+    };
+
+    window.addEventListener('click', handleAutoPlay);
+    window.addEventListener('touchstart', handleAutoPlay);
+
+    return () => {
+      window.removeEventListener('click', handleAutoPlay);
+      window.removeEventListener('touchstart', handleAutoPlay);
+      stopAmbientImmediate();
+    };
+  }, []);
+
+  // Resume audio context on tab visibility change if it was active
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'visible' && isPlaying) {
+        if (audioCtxRef.current && audioCtxRef.current.state === 'suspended') {
+          audioCtxRef.current.resume().catch(e => console.log('Auto-resume failed:', e));
+        }
+        if (silentAudioRef.current) {
+          silentAudioRef.current.play().catch(e => console.log('Silent audio resume failed:', e));
+        }
+      }
+    };
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
+  }, [isPlaying]);
 
   return (
     <>

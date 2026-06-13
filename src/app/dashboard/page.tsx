@@ -129,6 +129,7 @@ export default function StudentDashboardPage() {
   const [lang, setLang] = useState<'ar' | 'en'>('ar');
   const [student, setStudent] = useState<{ name: string; email: string; xp: number; level: number; avatar: string } | null>(null);
   const [loading, setLoading] = useState(true);
+  const [loadError, setLoadError] = useState(false);
   const [loggingOut, setLoggingOut] = useState(false);
   const [dashData, setDashData] = useState<DashboardData | null>(null);
 
@@ -162,11 +163,17 @@ export default function StudentDashboardPage() {
   }, []);
 
   async function fetchStudentProfile() {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => {
+      controller.abort();
+    }, 12000); // 12-second hard timeout
+
     try {
       const [meRes, dashRes] = await Promise.all([
-        fetch('/api/auth/me', { cache: 'no-store' }),
-        fetch('/api/student/dashboard', { cache: 'no-store' }),
+        fetch('/api/auth/me', { cache: 'no-store', signal: controller.signal }),
+        fetch('/api/student/dashboard', { cache: 'no-store', signal: controller.signal }),
       ]);
+      clearTimeout(timeoutId);
 
       let dashDataResult = null;
       if (dashRes.ok) {
@@ -186,21 +193,28 @@ export default function StudentDashboardPage() {
           });
         } else {
           router.push('/login');
+          return;
         }
       } else {
         router.push('/login');
+        return;
       }
 
       if (dashDataResult) {
         setDashData(dashDataResult);
-        // Update student XP from dashboard
         if (dashDataResult.student) {
           setStudent(prev => prev ? { ...prev, xp: dashDataResult.student.xp, level: Math.floor(dashDataResult.student.xp / 100) + 1 } : prev);
         }
       }
-    } catch (err) {
-      console.error('Failed to load profile:', err);
-      router.push('/login');
+    } catch (err: any) {
+      clearTimeout(timeoutId);
+      if (err.name === 'AbortError') {
+        console.error('[Dashboard] Load timeout after 12s — redirecting to login');
+        setLoadError(true);
+      } else {
+        console.error('Failed to load profile:', err);
+        router.push('/login');
+      }
     } finally {
       setLoading(false);
     }
@@ -222,6 +236,25 @@ export default function StudentDashboardPage() {
     router.push('/login');
     router.refresh();
   };
+
+  if (loadError) {
+    return (
+      <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#060612', color: '#fff', fontFamily: "'Cairo', sans-serif", direction: 'rtl' }}>
+        <div style={{ textAlign: 'center', padding: '2rem' }}>
+          <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>⚠️</div>
+          <h2 style={{ marginBottom: '1rem', color: '#f87171' }}>تعذّر تحميل لوحة التحكم</h2>
+          <p style={{ color: '#94a3b8', marginBottom: '1.5rem' }}>يبدو أن هناك مشكلة في الاتصال. يرجى المحاولة مرة أخرى.</p>
+          <button onClick={() => { setLoadError(false); setLoading(true); fetchStudentProfile(); }} style={{ background: 'linear-gradient(135deg,#6366f1,#a855f7)', border: 'none', color: '#fff', padding: '12px 24px', borderRadius: '12px', cursor: 'pointer', fontSize: '1rem', fontFamily: "'Cairo', sans-serif", fontWeight: 700, marginLeft: '1rem' }}>
+            إعادة المحاولة
+          </button>
+          <button onClick={() => router.push('/login')} style={{ background: 'rgba(239,68,68,0.15)', border: '1px solid rgba(239,68,68,0.3)', color: '#f87171', padding: '12px 24px', borderRadius: '12px', cursor: 'pointer', fontSize: '1rem', fontFamily: "'Cairo', sans-serif", fontWeight: 700 }}>
+            تسجيل الدخول مجدداً
+          </button>
+        </div>
+        <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
+      </div>
+    );
+  }
 
   if (loading) {
     return (

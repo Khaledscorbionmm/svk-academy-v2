@@ -6,6 +6,7 @@ import { PrismaClient } from '@prisma/client';
 import { pythonTrackData } from '@/context/tracks/pythonData';
 import { cyberTrackData } from '@/context/tracks/cyberData';
 import { languageTrackData } from '@/context/tracks/languageData';
+import { COMING_SOON_COURSE_IDS } from '@/lib/courseConfig';
 
 const prisma = new PrismaClient();
 
@@ -88,25 +89,27 @@ export async function GET(req: NextRequest, { params }: { params: Promise<{ less
     const session = await getCombinedSession();
     
     const isFree = lesson.is_free || Number(lesson.order_index || 0) <= 1 || lesson.lesson_slug?.endsWith('-1') || lesson.lesson_slug?.endsWith('-2');
+    const isComingSoon = course ? COMING_SOON_COURSE_IDS.includes(course.id) : false;
 
     if (session) {
       if (session.user?.role === 'admin') {
         accessStatus = 'approved';
       } else if (session.user?.role === 'student') {
-        if (isFree) accessStatus = 'approved';
-        else {
-          // Check DB Enrollments if the user is a student
-          const isEnrolled = await prisma.enrollments.findFirst({
-              where: {
-                  student_id: Number(session.user.id),
-                  course_id: course.id
-              }
-          });
-          if (isEnrolled) accessStatus = 'approved';
+        // Check DB Enrollments if the user is a student
+        const isEnrolled = await prisma.enrollments.findFirst({
+            where: {
+                student_id: Number(session.user.id),
+                course_id: course.id
+            }
+        });
+        if (isEnrolled) {
+            accessStatus = 'approved';
+        } else if (isFree && !isComingSoon) {
+            accessStatus = 'approved';
         }
       }
     } else {
-      if (isFree) accessStatus = 'approved';
+      if (isFree && !isComingSoon) accessStatus = 'approved';
     }
 
     const studentInfo = session?.user?.role === 'student' ? { name: session.user.name || '', email: session.user.email || '', phone: '' } : null;

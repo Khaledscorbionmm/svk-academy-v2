@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { use } from 'react';
+import { COMING_SOON_COURSE_IDS } from '@/lib/courseConfig';
 
 interface Lesson {
   id: number;
@@ -88,6 +89,22 @@ export default function CourseDetailPage({ params }: { params: Promise<{ id: str
   const [activationRequested, setActivationRequested] = useState(false);
   const [activationLoading, setActivationLoading] = useState(false);
 
+  const isComingSoon = course ? COMING_SOON_COURSE_IDS.includes(course.id) : false;
+
+  async function checkUser() {
+    try {
+      const res = await fetch('/api/auth/me', { cache: 'no-store' });
+      if (res.ok) {
+        const data = await res.json();
+        if (data.user) {
+          setUser(data.user);
+        }
+      }
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
   useEffect(() => {
     setMounted(true);
     async function load() {
@@ -112,20 +129,6 @@ export default function CourseDetailPage({ params }: { params: Promise<{ id: str
     load();
     checkUser();
   }, [id]);
-
-  async function checkUser() {
-    try {
-      const res = await fetch('/api/auth/me', { cache: 'no-store' });
-      if (res.ok) {
-        const data = await res.json();
-        if (data.user) {
-          setUser(data.user);
-        }
-      }
-    } catch (e) {
-      console.error(e);
-    }
-  }
 
   async function handleRequestActivation() {
     if (!user) {
@@ -310,6 +313,12 @@ export default function CourseDetailPage({ params }: { params: Promise<{ id: str
                   استكمال الكورس ←
                 </button>
               </Link>
+            ) : isComingSoon ? (
+              <div style={{ marginTop: 20, background: 'rgba(239, 68, 68, 0.1)', border: '1px solid rgba(239, 68, 68, 0.3)', borderRadius: 12, padding: 16, textAlign: 'center' }}>
+                <div style={{ fontSize: 24, marginBottom: 8 }}>🚧</div>
+                <div style={{ color: '#ef4444', fontWeight: 800, fontSize: 16, marginBottom: 4 }}>مسار قيد التطوير</div>
+                <div style={{ color: '#fca5a5', fontSize: 13 }}>هذا المسار قيد التطوير حالياً وسيتم إطلاقه قريباً.</div>
+              </div>
             ) : (
               <div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginTop: 20 }}>
                 <Link href={firstLessonHref} style={{ textDecoration: 'none', display: 'block' }}>
@@ -433,7 +442,7 @@ export default function CourseDetailPage({ params }: { params: Promise<{ id: str
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
               {lessons.length > 0 ? lessons.map((lesson, i) => {
                 const href = getLessonHref(lesson);
-                const canAccess = lesson.is_free;
+                const canAccess = isEnrolled || (lesson.is_free && !isComingSoon);
                 return (
                   <div key={lesson.id} style={{
                     display: 'flex', alignItems: 'center', justifyContent: 'space-between',
@@ -457,17 +466,21 @@ export default function CourseDetailPage({ params }: { params: Promise<{ id: str
                           {i + 1}. {lesson.title}
                         </div>
                         {canAccess && (
-                          <span style={{ fontSize: 11, color: '#22c55e', fontWeight: 700 }}>✓ مجاني</span>
+                          <span style={{ fontSize: 11, color: '#22c55e', fontWeight: 700 }}>✓ متاح لك</span>
                         )}
                       </div>
                     </div>
                     <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
                       <span style={{ color: '#64748b', fontSize: 13 }}>⏱ {lesson.duration_minutes || 30} د</span>
-                      {canAccess && (
+                      {canAccess ? (
                         <Link href={href} style={{ textDecoration: 'none', padding: '6px 16px', background: 'rgba(99,102,241,0.2)', border: '1px solid rgba(99,102,241,0.3)', borderRadius: 8, color: '#a855f7', fontSize: 13, fontWeight: 700 }}>
                           ابدأ
                         </Link>
-                      )}
+                      ) : isComingSoon ? (
+                        <span style={{ padding: '6px 16px', background: 'rgba(239, 68, 68, 0.1)', border: '1px solid rgba(239, 68, 68, 0.3)', borderRadius: 8, color: '#ef4444', fontSize: 13, fontWeight: 700 }}>
+                          قريباً
+                        </span>
+                      ) : null}
                     </div>
                   </div>
                 );

@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { COMING_SOON_COURSE_IDS } from '@/lib/courseConfig';
 
 interface Course {
   id: number;
@@ -80,6 +81,7 @@ function CourseCard({ course }: { course: Course }) {
   
   const isBeginner = course.level === 'beginner' || course.level === 'all_levels' || !course.level;
   const isAdvanced = course.level === 'advanced' || course.level === 'professional';
+  const isComingSoon = COMING_SOON_COURSE_IDS.includes(course.id);
 
   // Dynamic styling based on level
   const cardStyle = isBeginner ? {
@@ -175,6 +177,12 @@ function CourseCard({ course }: { course: Course }) {
         </div>
       </div>
 
+      {isComingSoon && (
+        <div style={{ position: 'absolute', top: 20, left: 20, zIndex: 10, background: 'rgba(239, 68, 68, 0.9)', padding: '6px 16px', borderRadius: 20, color: 'white', fontWeight: 900, fontSize: 14, boxShadow: '0 4px 15px rgba(239, 68, 68, 0.4)', backdropFilter: 'blur(4px)', border: '1px solid rgba(255,255,255,0.2)' }}>
+          🚧 قريباً
+        </div>
+      )}
+
       {/* Card Body */}
       <div style={{ padding: '24px', position: 'relative', zIndex: 1 }}>
         <h3 style={{ fontSize: isBeginner ? 20 : 18, fontWeight: 900, margin: '0 0 10px', lineHeight: 1.4, color: isAdvanced ? '#4ade80' : '#fff', textShadow: isAdvanced ? '0 0 10px rgba(74,222,128,0.2)' : 'none' }}>
@@ -199,13 +207,19 @@ function CourseCard({ course }: { course: Course }) {
 
         {/* Price + CTA */}
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 24 }}>
-          <div>
-            <div>
-              <span style={{ fontSize: 24, fontWeight: 900, color: isBeginner ? '#ec4899' : isAdvanced ? '#22c55e' : '#a855f7' }}>369</span>
-              <span style={{ color: '#64748b', fontSize: 12, marginRight: 4, fontWeight: 700 }}>EGP</span>
+          {isComingSoon ? (
+            <div style={{ color: '#ef4444', fontWeight: 800, fontSize: 14 }}>
+              في مرحلة التطوير
             </div>
-            <div style={{ fontSize: 11, color: '#22c55e', fontWeight: 800, marginTop: 4 }}>🎁 الدرس الأول مجاني</div>
-          </div>
+          ) : (
+            <div>
+              <div>
+                <span style={{ fontSize: 24, fontWeight: 900, color: isBeginner ? '#ec4899' : isAdvanced ? '#22c55e' : '#a855f7' }}>369</span>
+                <span style={{ color: '#64748b', fontSize: 12, marginRight: 4, fontWeight: 700 }}>EGP</span>
+              </div>
+              <div style={{ fontSize: 11, color: '#22c55e', fontWeight: 800, marginTop: 4 }}>🎁 الدرس الأول مجاني</div>
+            </div>
+          )}
           <span style={{
             display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
             background: isBeginner ? 'linear-gradient(135deg, #ec4899, #8b5cf6)' : isAdvanced ? 'transparent' : 'linear-gradient(135deg, #6366f1, #a855f7)',
@@ -217,7 +231,7 @@ function CourseCard({ course }: { course: Course }) {
             fontWeight: 800,
             boxShadow: isBeginner ? '0 10px 20px rgba(236,72,153,0.3)' : 'none',
           }}>
-            {isBeginner ? '🚀 ابدأ المغامرة' : isAdvanced ? '⚡ بدء التحدي' : 'عرض الكورس ←'}
+            {isComingSoon ? 'تفاصيل المسار' : isBeginner ? '🚀 ابدأ المغامرة' : isAdvanced ? '⚡ بدء التحدي' : 'عرض الكورس ←'}
           </span>
         </div>
       </div>
@@ -249,12 +263,6 @@ export default function CoursesPage() {
   const [mounted, setMounted] = useState(false);
   const [user, setUser] = useState<any>(null);
 
-  useEffect(() => {
-    setMounted(true);
-    fetchCourses();
-    checkUser();
-  }, []);
-
   async function checkUser() {
     try {
       const res = await fetch('/api/auth/me', { cache: 'no-store' });
@@ -281,6 +289,14 @@ export default function CoursesPage() {
       setLoading(false);
     }
   }
+
+  useEffect(() => {
+    setMounted(true);
+    fetchCourses();
+    checkUser();
+  }, []);
+
+
 
   const filtered = courses.filter(c => {
     // Hide empty courses like 89

@@ -24,10 +24,6 @@ export default function QADashboard() {
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState<QAResponse | null>(null);
 
-  useEffect(() => {
-    fetchQAData();
-  }, []);
-
   async function fetchQAData() {
     try {
       const res = await fetch('/api/admin/qa');
@@ -43,6 +39,12 @@ export default function QADashboard() {
       setLoading(false);
     }
   }
+
+  useEffect(() => {
+    fetchQAData();
+  }, []);
+
+
 
   if (loading) {
     return (

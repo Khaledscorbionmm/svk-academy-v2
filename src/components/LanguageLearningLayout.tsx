@@ -675,7 +675,7 @@ function LanguageSandbox({ flashcards, isKids, isDarkMode, onComplete }: { flash
         direction: 'ltr',
         textAlign: 'left'
       }}>
-        <div style={{ color: '#475569', marginBottom: '4px' }}>// Sandbox Terminal Logs:</div>
+        <div style={{ color: '#475569', marginBottom: '4px' }}>{'// Sandbox Terminal Logs:'}</div>
         {logs.map((log, idx) => {
           let logColor = '#60a5fa';
           if (log.startsWith('[SUCCESS]')) logColor = '#10b981';

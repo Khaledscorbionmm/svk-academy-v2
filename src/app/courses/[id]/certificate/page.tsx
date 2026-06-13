@@ -92,7 +92,7 @@ export default function CertificatePage({ params }: { params: Promise<{ id: stri
   }
 
   // Generate a mock verification code based on course and name length
-  const verificationCode = `SVK-${courseId}-${(nameAr.length + nameEn.length) * 7}-${Math.floor(1000 + Math.random() * 9000)}`;
+  const verificationCode = `SVK-${courseId}-${(nameAr.length + nameEn.length) * 7}-${(Number(courseId) * 11) % 9999}`;
 
   return (
     <div style={{ minHeight: '100vh', background: '#080810', padding: '40px 20px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', fontFamily: "'Cairo', system-ui, sans-serif" }} className="cert-page-container">

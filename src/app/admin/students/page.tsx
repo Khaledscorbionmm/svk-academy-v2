@@ -36,10 +36,6 @@ export default function AdminStudents() {
   const [requestedCourseIds, setRequestedCourseIds] = useState<number[]>([]);
   const [modalLoading, setModalLoading] = useState(false);
 
-  useEffect(() => {
-    fetchStudents();
-  }, []);
-
   const fetchStudents = async () => {
     try {
       const res = await fetch('/api/admin/students');
@@ -53,6 +49,10 @@ export default function AdminStudents() {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    fetchStudents();
+  }, []);
 
   const toggleStudentActive = async (studentId: number, currentActive: boolean) => {
     try {

@@ -243,7 +243,7 @@ export default function CourseBuilderPage() {
             </div>
 
             <div>
-              <label style={{ display: 'block', marginBottom: '6px', fontSize: '0.9rem', color: '#cbd5e1', display: 'flex', justifyContent: 'space-between' }}>
+              <label style={{ marginBottom: '6px', fontSize: '0.9rem', color: '#cbd5e1', display: 'flex', justifyContent: 'space-between' }}>
                 <span>مواضيع الدروس (موضوع لكل سطر)</span>
                 <span style={{ color: '#10b981', fontSize: '0.8rem' }}>{config.topics.split('\n').filter(t => t.trim() !== '').length} موضوع</span>
               </label>

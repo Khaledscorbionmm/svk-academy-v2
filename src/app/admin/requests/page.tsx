@@ -9,14 +9,6 @@ export default function AdminRequests() {
   const [loading, setLoading] = useState(true);
   const [actionLoading, setActionLoading] = useState<string | null>(null);
 
-  useEffect(() => {
-    fetch('/api/auth/me', { cache: 'no-store' }).then(r => r.json()).then(d => {
-      if (!d.user || d.user.role !== 'admin') router.push('/admin/login');
-    }).catch(() => router.push('/admin/login'));
-
-    fetchRequests();
-  }, []);
-
   async function fetchRequests() {
     setLoading(true);
     try {
@@ -36,6 +28,16 @@ export default function AdminRequests() {
       setLoading(false);
     }
   }
+
+  useEffect(() => {
+    fetch('/api/auth/me', { cache: 'no-store' }).then(r => r.json()).then(d => {
+      if (!d.user || d.user.role !== 'admin') router.push('/admin/login');
+    }).catch(() => router.push('/admin/login'));
+
+    fetchRequests();
+  }, []);
+
+
 
   async function handleApprove(req: any) {
     setActionLoading(`${req.student_id}-${req.course_id}`);
