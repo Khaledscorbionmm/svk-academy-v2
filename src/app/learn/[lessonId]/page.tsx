@@ -1228,7 +1228,13 @@ export default function LessonPage({ params }: { params: Promise<{ lessonId: str
   };
 
   const handleRequestActivation = async () => {
-    if (!data || requesting) return;
+    if (!data) return;
+    if (!data.studentInfo) {
+      alert('يجب تسجيل الدخول بحسابك أولاً لتتمكن من تفعيل الكورس.');
+      router.push('/login');
+      return;
+    }
+    if (requesting) return;
     setRequesting(true);
     try {
       const res = await fetch('/api/courses/request-activation', {
