@@ -41,3 +41,22 @@ export const COOKIE_OPTIONS = {
 };
 
 export { COOKIE_NAME };
+
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { cookies } from "next/headers";
+
+export async function getCombinedSession() {
+  let session = await getServerSession(authOptions);
+  if (!session) {
+    const cookieStore = cookies();
+    const customToken = cookieStore.get('svk_student_token')?.value || cookieStore.get('svk_admin_token')?.value || cookieStore.get('svk_token')?.value || cookieStore.get('svk_admin_token')?.value;
+    if (customToken) {
+      const payload = verifyToken(customToken) as any;
+      if (payload) {
+        session = { user: { id: payload.id, name: payload.name, email: payload.email, role: payload.role || 'student' } };
+      }
+    }
+  }
+  return session;
+}

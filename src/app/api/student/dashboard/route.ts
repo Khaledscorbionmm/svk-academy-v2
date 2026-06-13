@@ -1,6 +1,6 @@
 import { NextResponse, NextRequest } from 'next/server';
 import { query, initDb } from '@/lib/db';
-import { getServerSession } from "next-auth";
+import { getCombinedSession } from "@/lib/auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { pythonTrackData } from '@/context/tracks/pythonData';
 import { cyberTrackData } from '@/context/tracks/cyberData';
@@ -11,7 +11,7 @@ export async function GET(req: NextRequest) {
     await initDb();
 
     // Get student from NextAuth session
-    const session = await getServerSession(authOptions);
+    const session = await getCombinedSession();
 
     if (!session || !session.user || (session.user as any).role !== 'student') {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });

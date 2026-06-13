@@ -1,12 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { query, queryOne, initializeDatabase } from '@/lib/db';
-import { getServerSession } from "next-auth";
+import { getCombinedSession } from "@/lib/auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
 export async function GET(request: NextRequest) {
   try {
     await initializeDatabase();
-    const session = await getServerSession(authOptions);
+    const session = await getCombinedSession();
     const { searchParams } = new URL(request.url);
     const studentIdParam = searchParams.get('studentId');
     
@@ -41,7 +41,7 @@ export async function GET(request: NextRequest) {
 export async function POST(request: NextRequest) {
   try {
     await initializeDatabase();
-    const session = await getServerSession(authOptions);
+    const session = await getCombinedSession();
     
     if (!session || !session.user || (session.user as any).role !== 'student') {
       return NextResponse.json({ error: 'يرجى تسجيل الدخول كطالب أولاً' }, { status: 401 });
@@ -71,7 +71,7 @@ export async function POST(request: NextRequest) {
 export async function PUT(request: NextRequest) {
   try {
     await initializeDatabase();
-    const session = await getServerSession(authOptions);
+    const session = await getCombinedSession();
     
     if (!session || !session.user || (session.user as any).role !== 'admin') {
       return NextResponse.json({ error: 'غير مصرح لك للقيام بهذا الإجراء' }, { status: 403 });
