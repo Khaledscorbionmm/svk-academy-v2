@@ -9,6 +9,7 @@ import { useTargetGroup } from '@/context/UserTargetGroupContext';
 import SmartExamView from '@/components/SmartExamView';
 import QuickExamplesPanel from '@/components/QuickExamplesPanel';
 import LessonModeHeader from '@/components/lesson-types/LessonModeHeader';
+import SyntaxGlossaryPanel from '@/components/SyntaxGlossaryPanel';
 
 function PremiumAudioPlayer({ src, title, textContent }: { src: string; title: string; textContent: string }) {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -89,7 +90,7 @@ function PremiumAudioPlayer({ src, title, textContent }: { src: string; title: s
           utterance.lang = hasArabic ? 'ar-EG' : 'en-US';
           utterance.rate = 0.85 * playbackRate; // base speed adjusted by user rate
           
-          const voices = typeof window !== 'undefined' && window.speechSynthesis ? window.speechSynthesis.getVoices : () => []();
+          const voices = typeof window !== 'undefined' && window.speechSynthesis ? window.speechSynthesis.getVoices() : [];
           const targetLangPrefix = hasArabic ? 'ar' : 'en';
           const voice = voices.find(v => v.lang.startsWith(targetLangPrefix));
           if (voice) utterance.voice = voice;
@@ -755,8 +756,8 @@ export default function LessonPage({ params }: { params: Promise<{ lessonId: str
     utterance.lang = langTag;
     utterance.rate = 0.9;
 
-    const voices = typeof window !== 'undefined' && window.speechSynthesis ? window.speechSynthesis.getVoices : () => []();
-    const targetVoice = voices.find(v => v.lang.startsWith(lang === 'ar' ? 'ar' : 'en'));
+    const voices = typeof window !== 'undefined' && window.speechSynthesis ? window.speechSynthesis.getVoices() : [];
+    const targetVoice = voices.find((v: SpeechSynthesisVoice) => v.lang.startsWith(lang === 'ar' ? 'ar' : 'en'));
     if (targetVoice) {
       utterance.voice = targetVoice;
     }
@@ -1830,6 +1831,11 @@ export default function LessonPage({ params }: { params: Promise<{ lessonId: str
                         </div>
                       );
                     })()}
+
+                    {/* NEW: Syntax Glossary Panel with specific lesson dictionary */}
+                    {lesson.syntax_dictionary && lesson.syntax_dictionary.length > 0 && (
+                      <SyntaxGlossaryPanel dictionary={lesson.syntax_dictionary} />
+                    )}
 
                     <div style={{ marginTop: '30px', textAlign: 'center' }}>
                       <button onClick={() => setActiveWorkspaceTab('editor')} style={{ background: 'linear-gradient(135deg, #10b981, #059669)', color: '#fff', border: 'none', padding: '12px 32px', borderRadius: '10px', fontWeight: 900, cursor: 'pointer', fontFamily: "'Cairo', sans-serif" }}>

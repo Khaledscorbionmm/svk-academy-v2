@@ -1,6 +1,20 @@
 export const pythonTrackData = [
   {
     "lesson_slug": "python-1",
+    "syntax_dictionary": [
+      {
+        "name": "print()",
+        "description": "دالة تُستخدم لعرض النصوص أو القيم على الشاشة لكي يراها المستخدم بسهولة.",
+        "syntax": "print('Hello')",
+        "example": "apples = 10\nprint(apples)"
+      },
+      {
+        "name": "int()",
+        "description": "تقوم بتحويل النصوص التي تحتوي على أرقام إلى أعداد صحيحة يمكن إجراء العمليات الحسابية عليها.",
+        "syntax": "int('5')",
+        "example": "age = int('20')\nprint(age + 5)"
+      }
+    ],
     "quick_practical_examples": [
       {
         "type": "correct",
