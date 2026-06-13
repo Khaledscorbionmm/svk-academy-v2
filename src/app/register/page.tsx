@@ -30,20 +30,8 @@ export default function RegisterPage() {
       const data = await res.json();
       
       if (res.ok) {
-        // Sign in via custom JWT API
-        const loginRes = await fetch('/api/auth/login', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ identifier: formData.email, password: formData.password })
-        });
-        const loginData = await loginRes.json();
-
-        if (loginRes.ok && loginData.success) {
-          router.push('/dashboard');
-          router.refresh();
-        } else {
-          router.push('/login?registered=true');
-        }
+        router.push('/dashboard');
+        router.refresh();
       } else {
         setError(data.error || 'حدث خطأ أثناء التسجيل');
       }
